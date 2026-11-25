@@ -10,7 +10,7 @@ Help large enterprises run their VMware private cloud well, with the knowledge o
 - **Success for stage 1:** *(interview, Q-I1)*
 - **Not done:** the customer's on-premises deployment with a local model (stage 2).
 
-## PCM (private-cloud-management)
+## PCM (private-cloud-manager)
 
 - **For:** operations roles in a large global enterprise: NOC (L1), L2 platform, capacity, and the CIO ([PCM D-005, D-012](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md)).
 - **Does:** one workspace per role, each showing only the data that role acts on, with Agent E2 as a team member that explains what the screen shows.
@@ -22,7 +22,7 @@ Help large enterprises run their VMware private cloud well, with the knowledge o
 - **For:** PCM and isvara.io, as their one source of domain knowledge ([W-001](../DECISIONS.md)).
 - **Does:** answers like a senior VMware performance and capacity expert: the facts, the mechanism, the evidence and what to check next; the fix stays the human's decision ([MISSION.md](https://github.com/e1-rahabok/agent-e2/blob/main/MISSION.md)).
 - **Success for stage 1:** *(interview, Q-I3)*
-- **Not done:** fine-tuning a model; the final fix in troubleshooting.
+- **Not done:** fine-tuning a model; the final fix in troubleshooting. [e1: why do we need to fine tune a model? Document the pros and cons on a separate design document as it seems to be a major design work. Provide recommendation]
 
 ## PCM-Adapter
 
