@@ -16,7 +16,7 @@ The goals today are directions (connect PCM to live data, revamp isvara.io). Suc
 
 - **Recommendation:** three outcomes: (1) a PCM demo where live lab data and ACME data both work and Agent E2 explains a real lab KPI correctly; (2) isvara.io answering with Agent E2 at or below AskIO's cost; (3) every contract checked automatically.
 
-**Answer:**
+**Answer:** (1) correct. (2) is irrelevant as it will be cheaper as AskIO uses a more expensive model today. Agent E2 is capable of answering back, forming a chat back and forth. AskIO is a single prompt. Agent E2 is capable of accepting CSV file and VMware screenshots. So the total cost may go up. (3) Yes. I expect you to check all the contracts.
 
 ### Q-I2 Who watches the PCM demo, and what must they believe afterwards? (blocks M3)
 
@@ -24,7 +24,7 @@ This decides which pages must be live, which can stay ACME only, and what "convi
 
 - **Recommendation:** you name the audience (for example customers' operations leaders, or Broadcom colleagues) and the one sentence they should repeat afterwards.
 
-**Answer:**
+**Answer:** I've been demoing it to VMware colleagues and customers. They should say it's useful and they want to fork the repository private so they can customise and deploy in their private cloud. 
 
 ### Q-I3 What is Agent E2's stage 1 success, separate from its stage 2 release gate? (blocks M3)
 
@@ -32,7 +32,7 @@ Agent E2's release gate is a multiple-choice benchmark on a local model. Stage 1
 
 - **Recommendation:** stage 1 success is the answer set in Q-5 passing, on the model chosen in Q-7, within the time and cost limits of Q-8 and Q-9.
 
-**Answer:**
+**Answer:** Agree. Time is less of a concern, as even minutes are better than human. Accuracy matters more. Streaming is not needed. If it's going to take minutes, how to inform user Agent E2 is not hung or dead?
 
 ### Q-I4 What may PCM-Adapter change in stage 1, and what must it not? (blocks M2)
 
@@ -40,7 +40,7 @@ It runs inside VCF Operations for people other than PCM. Renaming its adapter ki
 
 - **Recommendation:** stage 1 changes only labels, documentation, the fixes in Q-1 and Q-14 to Q-17, and issue #85. No change to the adapter kind, manifest name, keys or image path.
 
-**Answer:**
+**Answer:** It can change anything. No issue on upgrade. 
 
 ### Q-I5 Who is isvara.io for, what is success, and what is not done? (blocks M5)
 
@@ -48,7 +48,7 @@ Today it is built from the books for their readers. After the revamp its source 
 
 - **Recommendation:** for VMware administrators and architects learning to run a private cloud. Success: every approved knowledge file is a page people can read, Agent E2 answers with sources, and the exam exists. Not done: live connections, sign-in, paid content.
 
-**Answer:**
+**Answer:** Agree. The knowledge should be bookmarkable. Today each HTML page is very deep, making it hard to find the information. The page navigation is poor. Hard to tell where we are in the overall structure. 
 
 ## B. Quality bars for Agent E2's answers
 
@@ -58,7 +58,7 @@ The release gate scores multiple-choice letters only ([benchmark/design.md](http
 
 - **Recommendation:** a stage 1 answer set of about 40 free-text questions, split between PCM screens and isvara.io readers. You grade each answer right, partly right, wrong or unsure. The bar: no confidently wrong answer you would act on. Rerun on every change of model or prompt.
 
-**Answer:**
+**Answer:** The grader should be automated. Agent E2 old benchmark has free text questions. It was graded by Opus 5.5.
 
 ### Q-6 What is "done" for Agent E2 in stage 1? (blocks M3)
 
@@ -66,7 +66,7 @@ Agent E2's own plan defines release 1.0 by stage 2 items: a local model, an offl
 
 - **Recommendation:** add a "Stage 1" exit to agent-e2's plan: model chosen (Q-7), Q-5 passed, C3 passing for PCM and isvara.io, time and cost measured. Mark the local items as stage 2. Rename agent-e2's milestones A1 to A6.
 
-**Answer:**
+**Answer:** Update Agent E2's plan. It's outdated. 
 
 ### Q-7 Which model and reasoning setting serve PCM and isvara.io? (blocks M3)
 
@@ -74,7 +74,7 @@ Agent E2's service runs a placeholder, `google/gemma-4-31b-it`, until its model 
 
 - **Recommendation:** one configuration for both apps: the open-weight model agent-e2's round picks (so stage 2 stays possible), reasoning off unless Q-5 shows a gain. Keep the placeholder until the round runs.
 
-**Answer:**
+**Answer:** Gemma 4 31B, or later version when it comes. 
 
 ### Q-8 How long may an answer take, and must it stream?
 
@@ -82,7 +82,7 @@ PCM answers take a median of 22 to 29 seconds ([project/plan.md](https://github.
 
 - **Recommendation:** 95% of answers under 45 seconds, with a progress state on screen. No streaming in stage 1. A live PCM page (not the answer) loads in under 5 seconds.
 
-**Answer:**
+**Answer:** already answered.
 
 ### Q-9 What may one answer cost, and how is spending capped?
 
@@ -90,7 +90,7 @@ One gateway key and one team budget serve the benchmark, PCM and isvara.io; a be
 
 - **Recommendation:** three keys (benchmark, PCM lab, isvara.io), each with a budget and an alert at 80%. AskIO's cost per answer, measured from its question log, is the baseline Agent E2 must not exceed. A per-IP rate limit on isvara.io.
 
-**Answer:**
+**Answer:** Today I manually track via vercel.com. I adjusted the budget if I need more. During development, since we're benchmarking, budget per benchmark is $100. Write down as a to do list that after isvara.io goes live, you keep the budget within $50 per month. My Vercel subscription is already $40. 
 
 ### Q-10 May unreviewed knowledge files reach answers and public pages?
 
@@ -98,7 +98,7 @@ One gateway key and one team budget serve the benchmark, PCM and isvara.io; a be
 
 - **Recommendation:** answers may use drafts in stage 1, as today, with a "beta" note on isvara.io. Public pages publish only files you approve on a list; each pilot page's files are reviewed first.
 
-**Answer:**
+**Answer:** While it's a good idea, I don't have time to edit each markdown file one by one. It's not a practical idea for now. So we park this check as after go live. In the meantime, use all files.
 
 ### Q-11 Who keeps the record of each answer: trace, prompt version, rating?
 
@@ -106,7 +106,7 @@ The mission requires a stored trace and a rating per answer ([MISSION.md](https:
 
 - **Recommendation:** C3 returns a trace ID and prompt version; Agent E2 writes traces to a local file kept 30 days; each app stores question, answer, trace ID and rating.
 
-**Answer:**
+**Answer:** what's the purpose of this? What answer? Today, isvara.io is already saving what users typed. There is a lot of spams and jealous people. 
 
 ### Q-12 Which unbuilt Agent E2 features are in stage 1?
 
