@@ -1,0 +1,38 @@
+name: Cross-repo checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: private-cloud-workspace
+      - uses: actions/checkout@v4
+        with:
+          repository: e1-rahabok/agent-e2
+          path: agent-e2
+      - uses: actions/checkout@v4
+        with:
+          repository: e1-rahabok/PCM-Adapter
+          path: PCM-Adapter
+      - uses: actions/checkout@v4
+        with:
+          repository: e1-rahabok/private-cloud-management
+          path: private-cloud-management
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml requests
+      - run: python private-cloud-workspace/checks/run_all.py --no-clone

@@ -1,36 +1,38 @@
 # Private Cloud Workspace
 
-Overview of the 4-repo app.
+The parent repository of four repositories that are built and tested as one integrated set. It holds what no single repository can: how the parts fit, the contracts between them, the decisions that bind more than one of them, the roadmap, and the code that checks the contracts.
 
-The app is 4 GitHub repos that form one product.
+## The repositories
 
-## The four repos
-
-| Repo | Role | Notes |
+| Repository | What it is | Owns |
 |---|---|---|
-| `private-cloud-management` | Web app | Runs on-premise, not on the Internet. Customers deploy it privately. |
-| `agent-e2` | The "brain" | Used by the LLM. |
-| `VCF-vCommunity-Adapter` | Metrics | A VCF Operations adapter. |
-| `isvara` (https://isvara.io) | Public site | Helps readers learn the domain. Not part of the on-premise product. |
+| [agent-e2](https://github.com/e1-rahabok/agent-e2) | The knowledge service. No UI. Answers like a VMware expert, over HTTP. | All domain knowledge: KPI definitions, thresholds, flows, explanations |
+| [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) | The VCF Operations management pack (formerly VCF-vCommunity-Adapter). Computes the KPIs inside VCF Operations. | The implementation of the KPIs that Agent E2 defines |
+| [private-cloud-management](https://github.com/e1-rahabok/private-cloud-management) | PCM, a private web app for operations roles. Runs in the lab. | Screens, roles, data connections, actions |
+| [isvara](https://github.com/e1-rahabok/isvara) | isvara.io, a public web app for learning the domain. Private repository. | Public reading, tools and exam pages |
 
-## How the pieces fit
+PCM and isvara.io are two web apps. Both get their knowledge from Agent E2. [SYSTEM.md](SYSTEM.md) has the whole picture.
 
-- The 4 repos form one product.
-- A change can span more than one repo.
-- `isvara` is separate. It is a public site, not part of the on-premise deployment.
+## The files here
 
-## Deployment
+| File | Holds |
+|---|---|
+| [SYSTEM.md](SYSTEM.md) | The parts, how data and questions flow, the lab, what is in scope (stage 1) |
+| [CONTRACTS.md](CONTRACTS.md) | Every interface between two repositories: owner, consumer, shape, the check that proves it |
+| [DECISIONS.md](DECISIONS.md) | Decisions that bind more than one repository |
+| [ROADMAP.md](ROADMAP.md) | Milestones, each with a definition of done |
+| [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) | Questions for the author, with a recommendation each |
+| [CLAUDE.md](CLAUDE.md) | How Claude works across the repositories |
+| [`checks/`](checks) | The cross-repo checks |
 
-- Customers deploy the product privately, on-premise.
-- The product is not hosted on the Internet.
-- TODO: Confirm how `agent-e2` and `VCF-vCommunity-Adapter` are deployed with `private-cloud-management`.
-- TODO: Confirm the deployment steps and requirements.
+## Run the checks
 
-## Build and test
+Clone the repositories next to this one, or let the script clone what is missing:
 
-- See the "Build and test" section in each repo.
-- TODO: Fill in per repo.
+```powershell
+uv run checks/run_all.py
+```
 
-## Working rules
+Without uv: `pip install pyyaml requests`, then `python checks/run_all.py`. Add `--pull` to update the clones first. To test a branch of a child repository before merging it, check that branch out in its clone and run without `--pull`.
 
-- See [CLAUDE.md](CLAUDE.md).
+GitHub Actions runs the same checks on every push and pull request here, every day, and on demand ([checks workflow](.github/workflows/checks.yml)).
