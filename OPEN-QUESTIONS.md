@@ -1,535 +1,464 @@
-# Open questions: the interview
+# Open questions: the interview, round 2
 
-The interview before any build (ROADMAP, M1). Four read-only surveys of the repositories, one each, listed every conflict, undecided item, unstated assumption and missing requirement that affects stage 1. This file holds them, merged and grouped. Each has the evidence, a recommendation, and an `Answer:` line.
+Round 1 is answered and kept as the record in [spec/interview-round-1.md](spec/interview-round-1.md). Its answers are now in [DECISIONS.md](DECISIONS.md) (W-012 to W-021), [spec/intent.md](spec/intent.md) and the [requirements](spec/requirements). Round 2 holds what the answers left open, or what writing the requirements raised.
 
-**How to answer.** Edit this file on GitHub. Under a question, write `Agree` to take the recommendation, or your own answer. To take every recommendation in a section, write `All agreed` under the section heading. Leave a line empty to skip it for now; a question marked "blocks" stops its milestone until answered.
+**How to answer.** As before: under a question write `Agree`, your own answer, or nothing for now; `All agreed` under a section heading takes every recommendation in it. IDs are explained in the [glossary](spec/glossary.md).
 
-**What happens next.** Claude moves each answer into [DECISIONS.md](DECISIONS.md) or a requirement in [`spec/requirements/`](spec/requirements), with the question ID as its source, and deletes the question here.
+**Separate from this file:** the isvara.io plan, [spec/design/isvara-revamp.md](spec/design/isvara-revamp.md), lists 47 features with an `Author's reply:` line each, as you asked. Reply there.
 
-## A. Intent
+**Order that matters most:** section A first, then B and C (they block the PCM live demo, milestones M3 and M4). The rest can wait.
 
-Answers fill [spec/intent.md](spec/intent.md).
+## A. Across the repositories
 
-### Q-I1 What makes stage 1 a success? (blocks M1)
+### Q-57 How does a user see that Agent E2 is still working? (blocks M3)
 
-The goals today are directions (connect PCM to live data, revamp isvara.io). Success needs a few outcomes you could check in a demo or on the site.
+You asked this in Q-I3. The two drafts differ: the Agent E2 draft adds job calls that report the current stage ("reading files", "writing", "checking") and a time stamp that moves at least every 10 seconds ([R-E2-007](spec/requirements/agent-e2-service.md)); the isvara.io draft proposed a timer only.
 
-- **Recommendation:** three outcomes: (1) a PCM demo where live lab data and ACME data both work and Agent E2 explains a real lab KPI correctly; (2) isvara.io answering with Agent E2 at or below AskIO's cost; (3) every contract checked automatically.
-
-**Answer:** (1) correct. (2) is irrelevant as it will be cheaper as AskIO uses a more expensive model today. Agent E2 is capable of answering back, forming a chat back and forth. AskIO is a single prompt. Agent E2 is capable of accepting CSV file and VMware screenshots. So the total cost may go up. (3) Yes. I expect you to check all the contracts.
-
-### Q-I2 Who watches the PCM demo, and what must they believe afterwards? (blocks M3)
-
-This decides which pages must be live, which can stay ACME only, and what "convincing" means.
-
-- **Recommendation:** you name the audience (for example customers' operations leaders, or Broadcom colleagues) and the one sentence they should repeat afterwards.
-
-**Answer:** I've been demoing it to VMware colleagues and customers. They should say it's useful and they want to fork the repository private so they can customise and deploy in their private cloud. 
-
-### Q-I3 What is Agent E2's stage 1 success, separate from its stage 2 release gate? (blocks M3)
-
-Agent E2's release gate is a multiple-choice benchmark on a local model. Stage 1 users read free-text answers on a cloud model. See Q-5 and Q-6.
-
-- **Recommendation:** stage 1 success is the answer set in Q-5 passing, on the model chosen in Q-7, within the time and cost limits of Q-8 and Q-9.
-
-**Answer:** Agree. Time is less of a concern, as even minutes are better than human. Accuracy matters more. Streaming is not needed. If it's going to take minutes, how to inform user Agent E2 is not hung or dead?
-
-### Q-I4 What may PCM-Adapter change in stage 1, and what must it not? (blocks M2)
-
-It runs inside VCF Operations for people other than PCM. Renaming its adapter kind or keys would orphan their instances and content (Q-2).
-
-- **Recommendation:** stage 1 changes only labels, documentation, the fixes in Q-1 and Q-14 to Q-17, and issue #85. No change to the adapter kind, manifest name, keys or image path.
-
-**Answer:** It can change anything. No issue on upgrade. 
-
-### Q-I5 Who is isvara.io for, what is success, and what is not done? (blocks M5)
-
-Today it is built from the books for their readers. After the revamp its source is the Agent E2 knowledge base.
-
-- **Recommendation:** for VMware administrators and architects learning to run a private cloud. Success: every approved knowledge file is a page people can read, Agent E2 answers with sources, and the exam exists. Not done: live connections, sign-in, paid content.
-
-**Answer:** Agree. The knowledge should be bookmarkable. Today each HTML page is very deep, making it hard to find the information. The page navigation is poor. Hard to tell where we are in the overall structure. 
-
-## B. Quality bars for Agent E2's answers
-
-### Q-5 What does "good enough" mean for a free-text answer? (blocks M3)
-
-The release gate scores multiple-choice letters only ([benchmark/design.md](https://github.com/e1-rahabok/agent-e2/blob/main/benchmark/design.md#L270)). PCM and isvara.io users read free text, which no check verifies ([harness/AGENT.md](https://github.com/e1-rahabok/agent-e2/blob/main/harness/AGENT.md#L142): "open answers are not verified"). Open answers were confidently wrong 31 to 41% of the time in an earlier generation ([harness/README.md](https://github.com/e1-rahabok/agent-e2/blob/main/harness/README.md#L86)).
-
-- **Recommendation:** a stage 1 answer set of about 40 free-text questions, split between PCM screens and isvara.io readers. You grade each answer right, partly right, wrong or unsure. The bar: no confidently wrong answer you would act on. Rerun on every change of model or prompt.
-
-**Answer:** The grader should be automated. Agent E2 old benchmark has free text questions. It was graded by Opus 5.5.
-
-### Q-6 What is "done" for Agent E2 in stage 1? (blocks M3)
-
-Agent E2's own plan defines release 1.0 by stage 2 items: a local model, an offline bundle, a test with blocked egress ([project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md#L20)). Its milestones M1 to M6 also clash in name with this roadmap's.
-
-- **Recommendation:** add a "Stage 1" exit to agent-e2's plan: model chosen (Q-7), Q-5 passed, C3 passing for PCM and isvara.io, time and cost measured. Mark the local items as stage 2. Rename agent-e2's milestones A1 to A6.
-
-**Answer:** Update Agent E2's plan. It's outdated. 
-
-### Q-7 Which model and reasoning setting serve PCM and isvara.io? (blocks M3)
-
-Agent E2's service runs a placeholder, `google/gemma-4-31b-it`, until its model round picks one ([service_config.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/harness/service_config.yaml#L5)). isvara.io runs Gemini Flash and Flash-Lite ([lib/model.ts](https://github.com/e1-rahabok/isvara/blob/main/lib/model.ts#L29)).
-
-- **Recommendation:** one configuration for both apps: the open-weight model agent-e2's round picks (so stage 2 stays possible), reasoning off unless Q-5 shows a gain. Keep the placeholder until the round runs.
-
-**Answer:** Gemma 4 31B, or later version when it comes. 
-
-### Q-8 How long may an answer take, and must it stream?
-
-PCM answers take a median of 22 to 29 seconds ([project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md#L32)). Agent E2 returns one JSON body; AskIO streams. A public reader sees nothing for half a minute.
-
-- **Recommendation:** 95% of answers under 45 seconds, with a progress state on screen. No streaming in stage 1. A live PCM page (not the answer) loads in under 5 seconds.
-
-**Answer:** already answered.
-
-### Q-9 What may one answer cost, and how is spending capped?
-
-One gateway key and one team budget serve the benchmark, PCM and isvara.io; a benchmark round once stopped on the US$100 budget ([project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md#L183)). W-004 says Agent E2 is cheaper than AskIO, but nothing measures it.
-
-- **Recommendation:** three keys (benchmark, PCM lab, isvara.io), each with a budget and an alert at 80%. AskIO's cost per answer, measured from its question log, is the baseline Agent E2 must not exceed. A per-IP rate limit on isvara.io.
-
-**Answer:** Today I manually track via vercel.com. I adjusted the budget if I need more. During development, since we're benchmarking, budget per benchmark is $100. Write down as a to do list that after isvara.io goes live, you keep the budget within $50 per month. My Vercel subscription is already $40. 
-
-### Q-10 May unreviewed knowledge files reach answers and public pages?
-
-287 of 288 knowledge files are drafts. Agent E2's mission says release content is reviewed ([MISSION.md](https://github.com/e1-rahabok/agent-e2/blob/main/MISSION.md#L126)), and drafts are served today ([KNOWLEDGE-ENGINEERING.md](https://github.com/e1-rahabok/agent-e2/blob/main/KNOWLEDGE-ENGINEERING.md#L49)).
-
-- **Recommendation:** answers may use drafts in stage 1, as today, with a "beta" note on isvara.io. Public pages publish only files you approve on a list; each pilot page's files are reviewed first.
-
-**Answer:** While it's a good idea, I don't have time to edit each markdown file one by one. It's not a practical idea for now. So we park this check as after go live. In the meantime, use all files.
-
-### Q-11 Who keeps the record of each answer: trace, prompt version, rating?
-
-The mission requires a stored trace and a rating per answer ([MISSION.md](https://github.com/e1-rahabok/agent-e2/blob/main/MISSION.md#L119)); the service stores nothing ([ARCHITECTURE.md](https://github.com/e1-rahabok/agent-e2/blob/main/ARCHITECTURE.md#L374)).
-
-- **Recommendation:** C3 returns a trace ID and prompt version; Agent E2 writes traces to a local file kept 30 days; each app stores question, answer, trace ID and rating.
-
-**Answer:** what's the purpose of this? What answer? Today, isvara.io is already saving what users typed. There is a lot of spams and jealous people typing non sensical prompts. What can we do about it?
-
-### Q-12 Which unbuilt Agent E2 features are in stage 1?
-
-Planned for 1.0 but not built: threshold bands in answers, executable flow steps, the capacity consultation, screenshot questions ([harness/AGENT.md](https://github.com/e1-rahabok/agent-e2/blob/main/harness/AGENT.md#L123)). Known wrong band statements appear in demo answers today ([project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md#L44)).
-
-- **Recommendation:** stage 1 gets the threshold-band lookup only. The rest come after M6, unless you want the capacity consultation on isvara.io.
-
-**Answer:** I'm unsure what this means. BTW, Agent E2 repository contains outdated information. All the older benchmarks are irrelevant, and confusing you and readers. Remove them permanently.
-
-### Q-13 Where does a session write a question that binds several repositories?
-
-agent-e2 says questions go only to its own file ([CLAUDE.md](https://github.com/e1-rahabok/agent-e2/blob/main/CLAUDE.md#L41)); this workspace says here.
-
-- **Recommendation:** questions about one repository stay in that repository; questions that bind several come here. Amend agent-e2's CLAUDE.md to say so.
-
-**Answer:** agree
-
-## C. KPI definitions (contract C1)
-
-### Q-1 VM and Guest OS sub-metric names (blocks M2)
-
-PCM-Adapter publishes 11 VM Performance and Guest OS Performance sub-metrics under names other than the Agent E2 catalog's; their limits agree. New finding: a metric key is the adapter's row name and never changes; a label changes only the display name in VCF Operations ([definition.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/definition.py#L46)). The Suite API returns keys, not labels, so PCM must map keys to catalog names itself.
-
-| KPI | Adapter key | Agent E2 catalog |
-|---|---|---|
-| VM Performance | CPU Co-Stop | Peak CPU Co-stop among any vCPU |
-| VM Performance | CPU Ready | Peak CPU Ready among any vCPU |
-| VM Performance | CPU Overlap | Peak CPU Overlap |
-| VM Performance | Disk Latency | Peak read/write latency among vDisks |
-| VM Performance | Network Dropped Tx | Peak network TX dropped packets |
-| VM Performance | CPU Run | CPU Net Run |
-| VM Performance | Memory Ballooned | VM Memory Ballooned |
-| Guest OS Performance | Guest CPU Run Queue per vCPU | Peak vCPU run queue length |
-| Guest OS Performance | Guest Disk Queue | Peak disk queue length |
-| Guest OS Performance | Guest Free Memory | Free memory |
-| Guest OS Performance | Guest Page-Out Rate | Memory page-out rate |
-
-- **Recommendation:** the catalog gets a `key` column (it already has an optional one) holding each adapter key; C1 matches on it; the adapter adds catalog names as labels. Keys stay.
-- **Needs your field knowledge:** is "Guest CPU Run Queue per vCPU" the same measure as "Peak vCPU run queue length"?
-
-**Answer:** You must understand that a metric name and the VCF Operations API key are 2 different things. For key, adapter is correct. For name, Agent E2 is correct.
-
-### Q-14 Is the scoring formula part of the contract?
-
-The catalog says it uses the adapter's model ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L25)). The weighting, rounding and missing-data rules exist only as prose in Agent E2 and as code in the adapter; C1 checks limits only. The grey band has no value (Q258 in [author-questions.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions.md#L48)).
-
-- **Recommendation:** add worked examples to the catalog (inputs, expected score) and have C1 run them through the adapter's scoring code. Grey is not in stage 1.
-
-**Answer:** if we're changing formula, yes. 
-
-### Q-15 Where do the Cluster Performance score bands and the closure levels live?
-
-Cluster Risk and Cluster Consumption have score rows in the catalog; Cluster Performance has none, so its colours exist only in the adapter docs and PCM's spec ([periodic-cluster-check.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/periodic-cluster-check.md#L74)). The closure levels (20, 40, 60, 80) are not checked.
-
-- **Recommendation:** add a score row for Cluster Performance to the catalog, and extend C1 to the score rows and closure levels.
-
-**Answer:** Check again. All their logic should come from Agent E2. PCM Adapter must implement the same. 
-
-### Q-16 Close for Business: one Risk level for every cluster, or one for production and another for non-production?
-
-The adapter closes at orange for every cluster ([periodic-cluster-check.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/periodic-cluster-check.md#L97)); the catalog has 60 for production and 80 for non-production ([thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L100)). Agent E2 would explain a rule PCM does not apply.
-
-- **Recommendation:** keep the adapter's single level for stage 1 (it cannot tell production from non-production) and record that in the catalog.
-
-**Answer:** agree
-
-### Q-17 Is the buffer part of usable capacity?
-
-Open issue [#14](https://github.com/e1-rahabok/PCM-Adapter/issues/14) says no; the code and the catalog say Usable = Total − HA − Buffer.
-
-- **Recommendation:** keep Total − HA − Buffer and close #14.
-
-**Answer:** agree
-
-### Q-18 Does isvara.io become a consumer of C1?
-
-isvara.io's tools hold their own copies, for example Bronze overcommit CPU 4 and memory 2 ([analyse.ts](https://github.com/e1-rahabok/isvara/blob/main/lib/rvtools/analyse.ts#L31)), against the catalog's 3 and 1.4 ([thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L360)).
-
-- **Recommendation:** yes. isvara.io generates its numbers from the catalog, checked by C1; a tool with no catalog source waits.
-
-**Answer:** Isvara.io should never have its own knowledge. Fix it. It should be aligned with Agent E2
-
-### Q-19 Is each part a 5-minute peak of 20-second values, or a 5-minute average?
-
-PCM colours parts with 20-second levels ([D-108](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L115)); what the adapter publishes per part is still "to verify" in PCM's spec ([spec/README.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/README.md#L60)).
-
-- **Recommendation:** record the statistic per key in PCM's key list (Q-29) and colour by the matching catalog interval; leave a part uncoloured when no level matches.
-
-**Answer:** 20-second. If a metric does not have the word peak, it's likely a 5-minute average. 
-
-## D. PCM live mode
-
-### Q-20 Does release 1.0 now include live reads? (blocks M3)
-
-PCM's spec says release 1.0 has no VCF Operations connector and shows placeholder values ([build/README.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/build/README.md#L275), [D-106](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L113)).
-
-- **Recommendation:** yes. Every "placeholder" rule becomes "synthetic mode: placeholder or story values; live mode: read from VCF Operations, with time and source".
-
-**Answer:** yes. I already replied much earlier that PCM will add A NEW drop down called Live. The synthetic remains as they are. 
-
-### Q-21 Which pages are live in stage 1? (blocks M3)
-
-"Release 1.0 pages" can be read as the four L2 pages of [D-124](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L132) or the four workspaces of [D-053](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L60).
-
-- **Recommendation:** the four L2 pages (cluster Performance and Capacity, ESXi host Performance, VM Performance) and the L2 inventory tree. M3 is one cluster's Performance tab; M4 is the rest.
+- **Recommendation:** the job calls with stages. PCM and isvara.io show the stage name and the time so far. If the time stamp stops moving for 60 seconds, the screen says Agent E2 stopped, with a button to ask again.
 
 **Answer:**
 
-### Q-22 What do the other pages show in live mode? (blocks M3)
+### Q-58 Agent E2's new plan (milestones for stage 1)
 
-Executive, the NOC, Capacity, Docs, and L2 Troubleshoot and Improve need data the lab does not have: cost, recovery, availability minutes, alerts.
+You said Agent E2's plan is outdated (Q-6). Proposed milestones, replacing M1 to M6 in [project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md), named A1 to A6 so they do not clash with this workspace's M1 to M7:
 
-- **Recommendation:** a clear state, "Not available in Live VCF Operations; switch to Synthetic ACME". Never synthetic numbers under a live label.
+| # | Milestone | Done when |
+|---|---|---|
+| A1 | Repository cleaned for stage 1 | Older benchmarks removed (Q-59); stage 2 text marked as stage 2; questions across repositories sent to the workspace (W-019); wrong counts in SECURITY.md fixed |
+| A2 | Answer set and grader | The free-text answer set and the automated grader built; first report on Gemma 4 31B |
+| A3 | Service for two callers | The Agent E2 API additions built (progress, attachments, sources, usage); its contract check passes |
+| A4 | Live demo support | Agent E2 answers correctly on facts recorded from the lab |
+| A5 | isvara.io support | isvara.io's calls work; where the public Agent E2 runs is measured and chosen (Q-4) |
+| A6 | Stage 1 exit | The answer set passes on the shipped settings; spending projected within US$50 a month |
+| Ongoing | Knowledge base | Content work continues; the review gate waits until after go-live (Q-10) |
+| Stage 2, parked | Local model, offline bundle, live test with blocked network, every file reviewed | Text kept as the target (W-002) |
 
-**Answer:** I think you're confused. The live mode is only L2. The rest of the role is synthetic only.
+- **Recommendation:** approve. Claude then rewrites plan.md in one pull request.
 
-### Q-23 Does PCM only read the KPIs, never recompute them? (blocks M3)
+**Answer:**
 
-PCM's core design says PCM computes the models from raw metrics ([pcm-core.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/design/pcm-core.md#L48)); D-096 and W-001 say the adapter computes them. The adapter publishes raw values and scores, not per-part scores or "excluded" flags.
+### Q-59 What "remove the older benchmarks permanently" covers
 
-- **Recommendation:** PCM reads every KPI, part and check value. It computes only statistics across objects or time (worst, percentile), and each part's colour from the catalog limits with the adapter's rounding. Fix pcm-core sections 3.2, 3.3 and 3.13.
+You asked to remove them (Q-12). The survey listed them in [project/archive](https://github.com/e1-rahabok/agent-e2/tree/main/project/archive): the result folders from before 2026-11-16 (about 26 MB), the 20 retired questions, the old harness code and its design notes, the old plan decisions and review, and the retrieval results of 2026-11-14. Live documents that quote old numbers (MISSION.md, README.md, harness/README.md, harness/AGENT.md, benchmark/design.md, benchmark/models.md) are rewritten at the same time.
 
-**Answer:** PCM can compute for UI purpose. It can't store in the VCF Operations database.
+- **Keep:** the round of 2026-11-16 ([`benchmark/results/20261116-*`](https://github.com/e1-rahabok/agent-e2/tree/main/benchmark/results)), the only one on the current pipeline and the evidence behind Gemma 4 31B; and the question-set history files that about 130 current question files link to.
+- **Before deleting:** move the old free-text judge's scoring rubric into the new grader.
+- **"Permanently":** deleted on main; git history keeps them. Rewriting history needs a force push and breaks old links, including round 1's.
+- **Recommendation:** all three points as written.
 
-### Q-24 Where do region, location, class of service, environment and time zone come from in live mode? (blocks M3)
+**Answer:**
 
-ACME derives class from a letter in the cluster name ([estate.yaml](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/data/estate.yaml#L140)), and class is required ([objects.yaml](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/objects/objects.yaml#L47)). The lab has its own names and probably no tags.
+### Q-60 Is PCM's repository renamed?
 
-- **Recommendation:** a small live mapping file: the lab is one region and one location with a set time zone; class and environment come from vSphere tags read through VCF Operations; untagged objects show as "Unclassified". Tag the M3 cluster Gold.
+You changed the heading in [spec/intent.md](spec/intent.md) to "private-cloud-manager"; the repository is [private-cloud-management](https://github.com/e1-rahabok/private-cloud-management), and PCM's D-001 says "Private Cloud Management".
 
-**Answer:** All these are only applicable in synthetic. 
+- **Recommendation:** keep the name as it is, unless you want the repository renamed; then it is renamed like PCM-Adapter was.
 
-### Q-25 Which inventory tree does live mode build?
+**Answer:**
 
-D-087 and PCM's catalog say Location, VCF instance, workload domain, down to the cluster; the L2 design says no VCF instance, down to the host ([l2-workspace.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/design/l2-workspace.md#L97)).
+### Q-61 The answer record, and spam on isvara.io
 
-- **Recommendation:** D-087's path, filled from VCF Operations' VCF topology where the lab has it, otherwise vCenter as the workload domain. Fix the design text.
+You asked what Q-11 was for. **Purpose:** when an answer is wrong, the fix depends on why: Agent E2 missed the right file, the file is wrong or missing, or the model ignored it. A trace records what Agent E2 read and computed, with which model and knowledge version. isvara.io already saves the question; the answer, the trace and a thumbs up or down are missing.
 
-**Answer:** Use the inventory from VCF Operations. It starts with VCF Instance. 
+**Spam and nonsense prompts**, all handled in isvara.io before Agent E2 (Q-47): (a) a free code filter: empty, too short, no letters, very long or repeated text gets a fixed reply and never reaches Agent E2; (b) limits per visitor and address, for example 10 questions an hour; (c) an invisible bot check before the first question; (d) a daily spending stop at about US$1.60; (e) a cheap topic check by a small model, which costs money; (f) sign-in, which you ruled out; (g) logs kept 30 days, with flagged spam left out of reviews.
 
-### Q-26 What is an object's ID in live mode?
+- **Recommendation:** (a), (b), (c), (d) and (g) now; (e) only if spam still gets through. Agent E2 returns a trace ID and keeps traces 30 days; PCM and isvara.io store question, answer, trace ID and rating.
 
-Synthetic IDs are names such as SG-S-04. Names can repeat across vCenters and change.
+**Answer:**
 
-- **Recommendation:** the VCF Operations resource ID, with the name as a separate field. Synthetic IDs stay.
+### Q-62 The four unbuilt Agent E2 features
 
-**Answer:** Yes.
+You were unsure what Q-12 meant. In plain words:
 
-### Q-27 When is a value stale, and what does PCM show? (blocks M3)
+1. **Threshold bands in answers.** Code looks up a value's colour band in the catalog, instead of the model reading the table. The model has misread bands (it called a Co-stop of 7.7% orange; it is red). Done for figures on PCM screens; missing for values typed in a question or read from a screenshot.
+2. **Executable flow steps.** Code walks a troubleshooting flow step by step and takes each branch. Today the model reads the flow and follows it itself. Large work.
+3. **The capacity consultation.** Agent E2 interviews the user over several turns for a new cluster's capacity plan, then computes it. The calculator exists; the conversation does not.
+4. **Screenshot questions.** Already in stage 1 by your answer to Q-I1.
 
-When data is missing, the adapter publishes nothing, and a "latest" read returns the last old value as if current ([metrics/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md#L138)). Collection also stops after each pack upgrade until restarted.
+- **Recommendation:** 1 and 4 in stage 1; 2 and 3 after isvara.io goes live, 3 first, as an isvara.io feature.
 
-- **Recommendation:** a key on an object is stale when its newest sample is older than 15 minutes (3 cycles); "Now" then shows "No data" and the time of the last sample. A failed read or failed login marks the whole source stale. Gaps break the line. One test per case.
+**Answer:**
 
-**Answer:** PCM simply regurgitate the adapter. If the data is stale, say no data. No need to wait 15 minutes.
+## B. PCM live demo
 
-### Q-28 How are data that are absent by design shown?
+From [spec/requirements/pcm-live.md](spec/requirements/pcm-live.md).
 
-Some keys are missing on purpose: tiering keys on clusters without memory tiering, bad packets while two policy counters are off (the default), VM rows when no VM is on, and Consumption forced to 100 with no usable capacity ([metrics-and-properties.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics-and-properties.md#L65)). Values built from partial reads look normal (issue [#60](https://github.com/e1-rahabok/PCM-Adapter/issues/60)).
+### Q-63 Which live pages and objects are in M4?
 
-- **Recommendation:** "Not applicable" for keys absent by design, marked conditional in the key list; "Full: no usable capacity" and "No running host" for the Consumption cases; partial reads accepted for the small lab.
+Q-21 has no answer. **Recommendation:** the Performance and Capacity tabs of a cluster, an ESXi host and a VM, the same tabs above the cluster (the VCF instance and the levels VCF Operations puts between it and the cluster), and the tree. M3 is one cluster's Performance tab.
 
-**Answer:** we should fix them in the PCM Adapter. 
+**Answer:**
 
-### Q-29 Where is the list of keys PCM reads? (blocks M3)
+### Q-64 Are the stale rules right?
 
-PCM's spec names keys only for scores; parts have names but no keys ([l2.yaml](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/catalog/l2.yaml#L114)). For hosts, VMs and vCenter, the keys the adapter declares differ from the keys it publishes (issue [#85](https://github.com/e1-rahabok/PCM-Adapter/issues/85)).
+You said: no waiting, say "No data" (Q-27). A rule still needs a number. [R-LIVE-015](spec/requirements/pcm-live.md) proposes: a value is stale when its newest sample is more than 10 minutes old (one 5-minute collection cycle plus one cycle of margin; the adapter's own limit). [R-LIVE-021](spec/requirements/pcm-live.md) proposes: a Periodic Cluster Check result is missing 30 minutes after its window ends, since results can arrive a few cycles late. **Recommendation:** confirm both.
 
-- **Recommendation:** one file in PCM, `spec/catalog/vcf-operations-keys.yaml`: key, object kind, unit, statistic, catalog name, conditional or not. C2 compares it with the keys the adapter's KPI modules publish. Fix #85 before M4.
+**Answer:**
 
-**Answer:** You will need to get from a live environment. 
+### Q-65 Where does the live demo live?
 
-### Q-30 Does live mode store metrics, or read through on each request?
+**Recommendation:** the same PCM server, page `/live/l2` and API `/api/live/l2/...`, so one deployment serves both demos and no request can mix them.
 
-PCM's spec keeps its own history ([l2.yaml](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/catalog/l2.yaml#L264)); D-080 says metrics are never stored. The lab has days of data, not the 13 months ACME has.
+**Answer:**
 
-- **Recommendation:** read through, with a 60-second cache and no store. Longer windows ask VCF Operations for the maximum per slot, draw nothing before the first point, and say "Data from {date}".
+### Q-66 Which object types does the live tree show between the VCF instance and the cluster?
 
-**Answer:** Agree
+"Use the inventory from VCF Operations" (Q-25) may include datacenters and folders, which [PCM D-087](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L94) leaves out. **Recommendation:** VCF Operations' VCF chain (VCF instance, workload domain, vCenter, cluster, host, VM), without datacenters and folders; the exact types are read from the lab and recorded.
 
-### Q-31 How does PCM get the Periodic Cluster Check's values and settings?
+**Answer:**
 
-The check publishes once per fixed window, set on the adapter instance, not on the cluster ([periodic-cluster-check.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/periodic-cluster-check.md#L38)).
+### Q-67 Does the live tree have a Guest OS node, and the Storage, Network and Management views?
 
-- **Recommendation:** PCM shows the published values with their window end. It reads the settings from the adapter instance if the read-only account can; otherwise it shows "(default assumed)".
+**Recommendation:** no. Compute only; the VM's Performance tab already shows its Guest OS layer.
 
-**Answer:** PCM gets from the PCM Adapter. Do you know how to get it? 
+**Answer:**
 
-### Q-32 How is the mode carried, and what happens to `now` and `enable`?
+### Q-68 Until PCM-Adapter makes absent data explicit, is a missing part left out or shown as "No data"?
 
-A server-wide switch lets two viewers flip each other's data; `now` and `enable` work only on synthetic data ([l2.yaml API](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/api/l2.yaml#L6)).
+**Recommendation:** left out ([R-LIVE-020](spec/requirements/pcm-live.md)), so a cluster without memory tiering shows 10 Cluster Risk parts, as the synthetic demo does.
 
-- **Recommendation:** a per-request parameter `data=acme|live` in the URL, set by the demo control. In live mode, `now` and `enable` are refused with a visible note.
+**Answer:**
 
-**Answer:** I think you confuse. The synthetic and the live are 2 separate demoes. Not flippable. The drop down menu clearly shows they are 2 different solution altogether. 
+### Q-69 What response time must a live page meet?
 
-### Q-33 What do actions, stories, cases and the calendar do in live mode?
+Q-8 was answered "already answered", but that answer was about Agent E2, not pages. **Recommendation:** a page in under 5 seconds; each Suite API read stops after 10 seconds.
 
-SOP buttons and approvals act on synthetic objects ([deploy/README.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/deploy/README.md#L3)). A synthetic calendar entry could reach Agent E2's facts about a real cluster.
+**Answer:**
 
-- **Recommendation:** every write is disabled in live mode ("Read-only lab connection"); no stories; findings, cases and Improve show "Not in Live VCF Operations"; records are kept apart by mode.
+### Q-70 What if the lab is too quiet for the Agent E2 test?
 
-**Answer:** All these are out of scope in 1.0. Focus on performance and capacity management. Ignore the rest. 
+If no part lost points in the last 24 hours, [R-LIVE-030](spec/requirements/pcm-live.md) can only check that Agent E2 says so. **Recommendation:** accept that; add a load generator to the lab build later if you want a real dip in the demo.
 
-### Q-34 How does PCM sign in to VCF Operations?
+**Answer:**
 
-PCM's settings have nothing for it; PCM's lab script skips certificate checks ([Test-Lab.ps1](https://github.com/e1-rahabok/private-cloud-management/blob/main/tools/lab/Test-Lab.ps1#L65)).
+### Q-71 Which VCF Operations version is the lab?
 
-- **Recommendation:** URL, user and password from `/etc/pcm/pcm.env`; the lab CA pinned, no skip-verify; token cached and renewed on 401; a read-only account. PCM itself keeps no sign-in in stage 1, behind the lab firewall.
+**Recommendation:** the lab test reads it at sign-in, as PCM-Adapter's validate.ps1 does, and records it in [SYSTEM.md](SYSTEM.md).
 
-**Answer:** agree
+**Answer:**
 
-### Q-35 What exactly does "matches VCF Operations" mean in a test? (blocks M3)
+## C. PCM-Adapter
 
-VCF Operations shows no percentile for an arbitrary window and no "worst part". PCM labels Cluster Performance's figure the 5th percentile ([D-131](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L139)).
+From [spec/requirements/pcm-adapter.md](spec/requirements/pcm-adapter.md). Q-72 to Q-77 name the new identity, since you said to change everything (Q-2).
 
-- **Recommendation:** the reference is a test script that reads the raw 5-minute points from the Suite API for the last 24 hours. Now is the last point, Worst the minimum, the 5th percentile by nearest rank, equal at whole percent. The worst part is the one that lost the most points at the worst point, under the adapter's scoring.
+### Q-72 Adapter kind
 
-**Answer:** okay
+**Recommendation:** `PCM`. Short, matches the product, and VCF Operations shows it as the solution's kind.
 
-### Q-36 Which facts must PCM send Agent E2 in live mode, and what if one is missing?
+**Answer:**
 
-ACME sends every fact. Live keys may lack hourly parts or the check values, and Agent E2's opening and worst-part line then disappear without notice ([ARCHITECTURE.md](https://github.com/e1-rahabok/agent-e2/blob/main/ARCHITECTURE.md#L54)).
+### Q-73 Metric key prefix
 
-- **Recommendation:** C3's specification lists the facts each answer feature needs; C3's check adds a live-shaped case; Agent E2 says when a needed fact is missing.
+**Recommendation:** `PCM|`, the same word as the adapter kind, so a key shows which pack published it.
 
-**Answer:** agree
+**Answer:**
 
-### Q-37 How is live mode tested without the lab?
+### Q-74 Display name and description
 
-PCM's tests assume synthetic data with a fixed clock.
+**Recommendation:** "PCM Adapter" for the display name and the adapter name. Rewrite the description in [resources.properties](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/resources/resources.properties#L7) to say the pack computes the KPIs for PCM.
 
-- **Recommendation:** recorded, cleaned Suite API responses as fixtures, and a fake Suite API for unit and page tests (missing key, timeout, 401). One separate lab smoke test.
+**Answer:**
 
-**Answer:** You forgot you have live access. https://github.com/e1-rahabok/PCM-Adapter/tree/main/tools shows you it automatically install, validate. It even takes screenshots.
+### Q-75 Manifest name
 
-### Q-38 Lab facts to confirm before M3
+**Recommendation:** `iSDK_PCM`, following the SDK's pattern; verify that the build tool accepts it.
 
-- The exact VCF Operations version (the spec assumes 9.1; [D-062](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L69)).
-- Whether any lab host has memory tiering.
-- Whether the two packet counters are active in the lab policy.
-- The host power and maintenance values the adapter has not checked live (issue [#2](https://github.com/e1-rahabok/PCM-Adapter/issues/2)).
-- **Recommendation:** Claude reads all four from the lab, read-only, and records them in SYSTEM.md; you turn on the packet counters.
+**Answer:**
 
-**Answer:** the physical host does not have memory tiering. Create the automatic build https://github.com/e1-rahabok/lab-build using Virtual ESXi. 
+### Q-76 Image path and the old image
 
-### Q-39 May live lab facts go to the cloud model?
+**Recommendation:** `ghcr.io/e1-rahabok/pcm-adapter`. Delete the old `vcf-operations-vcommunity` package after the old pack is removed from the lab, because a pak works only while its image exists ([build.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/build/build.md#L14)).
 
-D-076 says the demo sends only synthetic ACME data ([decisions.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L406)). Live mode sends lab object names and metrics through the gateway.
+**Answer:**
 
-- **Recommendation:** yes for your own lab; amend D-076. Facts never carry credentials or IP addresses.
+### Q-77 Pak file name
 
-**Answer:** yes no issue at all. It's just a lab.
+**Recommendation:** whatever the build tool makes from the new adapter kind, expected `PCM_<version>.pak`; the release step in [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L135) changes with it.
 
-## E. Credentials and the rename
+**Answer:**
 
-### Q-40 One standard for lab credentials
+### Q-78 Names of the shipped dashboards, views and reports
 
-DECISIONS W-011 is wrong about today. PCM-Adapter's tools read `.secrets/vcf-ops.xml` inside the repository folder, with the admin login ([validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1#L32)). PCM's lab script reads Windows Credential Manager ([Test-Lab.ps1](https://github.com/e1-rahabok/private-cloud-management/blob/main/tools/lab/Test-Lab.ps1#L2)), which was your first idea.
+**Recommendation:** remove "vCommunity" from every name, for example "ESXi Host Details". Keep "VOA" in the VCF Optimization Assessment set, where it names the assessment.
 
-- **Options:** (a) DPAPI files in `$HOME\.secrets\`; (b) Windows Credential Manager. Only your Windows account can read either. (b) has a Windows screen to manage it; (a) needs no extra module in PowerShell.
-- **Recommendation:** (a), with two files: a read-only account for reading and validating, the admin account for install and restart. Change both repositories' scripts to it.
+**Answer:**
 
-**Answer:** agree
+### Q-79 Removing the old pack from the lab
 
-### Q-2 The `vCommunity|` prefix and the pack's identity
+It deletes the old keys' history and the old Adapter Instances. **Recommendation:** Claude writes the steps and the importer file; you approve; Claude runs them with the admin credential in one session.
 
-The adapter kind `vCommunity`, the manifest name, the keys and the container image path identify the pack to VCF Operations; changing them orphans every installed instance ([constants/main.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/constants/main.py#L4), [build.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/build/build.md#L14)).
+**Answer:**
 
-- **Recommendation:** keep all four. Change only display names, titles, badges and repository links. Keep the pak file name.
+### Q-80 What keeps the old name
 
-**Answer:** Change all. No issue on installed instances at all. 
+**Recommendation:** the dated engineering reviews in [docs/development-guide/engineering-review](https://github.com/e1-rahabok/PCM-Adapter/tree/main/docs/development-guide/engineering-review) stay as written. The README sentence that calls the project a free project "from the vCommunity (VMUG, vExpert, VCP)" stays, because it names the community, not the pack.
 
-### Q-3 Renaming references in the child repositories
+**Answer:**
 
-The old repository name appears in agent-e2 (10 files), PCM-Adapter (12) and private-cloud-management (3). GitHub redirects the old links.
+### Q-81 Two rows whose statistic disagrees with your "peak" rule
 
-- **Recommendation:** one pull request per repository in M2, leaving archive files as they are.
+You said a name with "peak" is a 20-second peak, others a 5-minute average (Q-19). VM Network Dropped Tx reads a 5-minute maximum while its catalog name says "peak"; the memory wait rows read a 20-second peak while their names do not say "peak". **Recommendation:** the catalog's interval is the rule. Add "peak" to the memory wait names. Check on the lab whether a 20-second peak of dropped TX packets exists; if none does, make that row 5-minute and remove "peak" from its name.
 
-**Answer:** agree. 
+**Answer:**
 
-## F. isvara.io
+### Q-82 How a data state is published
 
-### Q-4 Where the public Agent E2 runs, and who guards it (blocks M6)
+You said absent data is fixed in the adapter (Q-28). The draft gives every part and every KPI a state each cycle: 0 counted, 1 excluded while green, 2 not applicable, 3 not collected, 4 no current data, 5 read failed, 6 no usable capacity. **Recommendation:** a numeric metric per part, because a metric has a time stamp every cycle; a property is stored only when it changes, so its time says nothing about the current cycle.
 
-Agent E2 binds to the loopback with no sign-in ([answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py#L563)). isvara.io is open to all and has its own injection checks.
+**Answer:**
 
-- **Options:** (a) a Vercel Python function; (b) a small container host; (c) logic copied into isvara (breaks W-001).
-- **Recommendation:** isvara.io stays the only public entry, keeps its injection checks and rate limit, and calls Agent E2 with a shared secret. Choose (a) or (b) after measuring start-up time and cost in M5.
+### Q-83 Where the state codes are defined
 
-**Answer:** You advice after measuring.
+They are an interface between the adapter and PCM, not domain knowledge. **Recommendation:** the adapter's [metrics reference](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md) holds the table; contract C2, the KPI metric keys, links to it and its check compares PCM's copy.
 
-### Q-41 What does Agent E2 give isvara.io to build pages from? (blocks M5)
+**Answer:**
 
-Nothing today: the export tool writes benchmark attachments only ([export_generator](https://github.com/e1-rahabok/agent-e2/blob/main/project/tools/export_generator/README.md#L1)). agent-e2's plan says isvara.io is generated by AI in your fork ([plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md#L31)).
+### Q-84 Credential file names
 
-- **Recommendation:** agent-e2 publishes an export, one JSON per published file (id, title, sections, misconceptions, catalog values filled in, images, links, status), with its commit. isvara.io builds pages from it at build time. A check proves every link and image resolves.
+PCM-Adapter's CONTRIBUTING.md forbids lab addresses in code, but W-011 names the file `vcf-ops-10.115.1.81.xml`. **Recommendation:** `$HOME\.secrets\vcf-ops-readonly.xml` and `vcf-ops-admin.xml`; W-011 changes to match.
 
-**Answer:** create a separate files detailing the massive change to isvara.io. Document the before and after so I can review before executing.
+**Answer:**
 
-### Q-42 A faithful render of each knowledge file, or an AI rewrite into prose? (blocks M5)
+### Q-85 The two packet counters in the lab policy
 
-Knowledge files are written for a model: one fact per bullet, no narrative ([KNOWLEDGE-ENGINEERING.md](https://github.com/e1-rahabok/agent-e2/blob/main/KNOWLEDGE-ENGINEERING.md#L74)).
+Without them the bad-packets part of Cluster Performance has no data; you did not cover this in Q-38. **Recommendation:** the adapter first reports state 3, not collected; then Claude turns the counters on in the lab policy once you approve.
 
-- **Recommendation:** render the facts as written (bullets, tables, values; misconceptions in a "common misreadings" box). An optional short AI introduction per page, kept per commit and checked: every number in it must be in the source file.
+**Answer:**
 
-**Answer:** Agree. AI rewrite. However, no AI-speak, no LLM-lese.
+### Q-86 Periodic Cluster Check settings
 
-### Q-43 In what order does a reader meet the pages?
+You asked whether Claude knows how PCM gets them (Q-31). Today they are advanced settings on each adapter instance, readable through `GET /suite-api/api/adapters`, but linking an instance to its clusters takes three more reads. **Recommendation:** the adapter publishes the period, time and percent it used as properties on each cluster, with a window-end metric on each result ([R-ADP-020](spec/requirements/pcm-adapter.md)); the settings keep their defaults from the catalog.
 
-The books had 5 parts and 50 chapters; the knowledge base has 288 topic files and no reading order.
+**Answer:**
 
-- **Recommendation:** a small ordered list in agent-e2 (sections, each a list of file IDs); its check confirms every published file appears once.
+### Q-87 Is the scoring formula part of contract C1?
 
-**Answer:** This is the hard part. You need to think how to present the topic. Today isvara presents the book as HTML, which is bad. It should fully take advantage of web experience. It should present multiple ways to slice and dice the knowledge. 
+You answered Q-14 "if we're changing formula, yes". **Recommendation:** read as: the formula belongs to the KPI definitions contract, owned by Agent E2 and checked by worked examples, whether or not it changes now. Confirm.
 
-### Q-44 Do old `/read/...` links redirect, and where does each page's search description come from?
+**Answer:**
 
-About 130 links inside isvara.io, plus outside links (PCM's decisions, search engines), point at `/read/...` pages ([sitemap.ts](https://github.com/e1-rahabok/isvara/blob/main/app/sitemap.ts#L38)). Knowledge files have no description field.
+### Q-88 Guest OS run queue: per vCPU, or total?
 
-- **Recommendation:** a permanent redirect from each old page to its new page, using the book heading each knowledge file records. The description comes from the file's first bullet, checked for length.
+Still open from Q-1. The adapter's part is "Guest CPU Run Queue per vCPU"; the catalog's is "Peak vCPU run queue length". **Recommendation:** if the limits were set per vCPU, rename the catalog row "Peak run queue length per vCPU"; otherwise the adapter changes to the total.
 
-**Answer:** not sure what you mean here. You will revamp isvara.io. It's not just changing AskIO with Agent E2. The old isvara.io will be gone. Same overall UX theme, look and feel, but totally different functionality.
+**Answer:**
 
-### Q-45 How does an answer cite pages?
+### Q-89 A key column in the catalog
 
-AskIO writes `/read/...` links into its text, and the eval checks for them ([evals/run.mjs](https://github.com/e1-rahabok/isvara/blob/main/evals/run.mjs#L26)). Agent E2 removes file references from its text and returns them separately ([answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py#L326)).
+**Recommendation:** each catalog row gets the adapter's key next to its name, so PCM maps keys to names and the C1 check matches on the key ([R-KPI-001](spec/requirements/kpi-definitions.md)).
 
-- **Recommendation:** isvara.io turns Agent E2's `files_read` into a Sources list of page links, through the export's ID-to-page map.
+**Answer:**
 
-**Answer:** User must be able to click on the cited page , as he may want to read the actual source. Tell him the source is not designed for human, but for LLM. 
+## D. Agent E2
 
-### Q-46 What must C3 add for isvara.io?
+From [spec/requirements/agent-e2-service.md](spec/requirements/agent-e2-service.md).
 
-C3 knows PCM's roles only and has no page context ([answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py#L63)). isvara.io's chat knows the chapter being read; its MCP tool `ask_isvara` also calls the agent.
+### Q-90 The pass bar of the answer set
 
-- **Recommendation:** an optional `page` field and a `reader` role, added the safe way (expand first); the chat supports Agent E2's clarifying round; `ask_isvara` goes through the same call. No images in stage 1.
+R-E2-006 sets: mean credit at least 0.75 of 3, at most 5% confidently wrong, no misconception stated as true, and at least 0.67 on each live-demo question. The earlier free-text benchmark scored at most 0.41 for every model ([analysis](https://github.com/e1-rahabok/agent-e2/blob/main/project/archive/benchmark-results-before-2026-11-14/analysis-2026-11-13.md)), but the agent has been rebuilt since. **Recommendation:** keep these as the target, run once, and set the gate from that first run if it is far below.
 
-**Answer:** What is C3? I notice Opus likes to shorthand something. Add a link or an explanation, as i have no idea what C3 is.
+**Answer:**
 
-### Q-47 Who owns the public conduct rules, and may public answers look things up on the web?
+### Q-91 The grader model
 
-isvara.io's prompt holds an injection guard, British English, a neutral rule on migration and a docs lookup ([lib/prompt.ts](https://github.com/e1-rahabok/isvara/blob/main/lib/prompt.ts#L21)); they go when AskIO goes. Agent E2 has web lookup off, because PCM sends customer data ([service_config.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/harness/service_config.yaml#L31)).
+You remembered the old free-text answers being graded by Opus 5.5. The run records show a GPT model as judge, because Opus was a model under test and a judge may not be a candidate. In stage 1 Opus is not a candidate. **Recommendation:** Opus 5.5, as you said.
 
-- **Recommendation:** Agent E2 owns the conduct rules as a public caller profile. Web lookup (vendor documents and URLs users give) is on for isvara.io, off for PCM.
+**Answer:**
 
-**Answer:** The docs look up is not applicable for Agent E2. isvara.io is public, so injection guard is necessary before calling Agent E2. That's part of isvara, not agent E2.
+### Q-92 Who writes the answer set
 
-### Q-48 Do isvara.io's "load-and-ask, no retrieval" rules retire?
+**Recommendation:** Claude drafts the 40 questions from the knowledge base and your demo questions; an independent agent tries to break each answer key; you review only the keys it marks uncertain, and grade 20 answers once to check the grader agrees with you.
 
-isvara.io's CLAUDE.md and PLAN.md forbid retrieval, a database and a vector store ([CLAUDE.md](https://github.com/e1-rahabok/isvara/blob/main/CLAUDE.md#L10)); Agent E2 retrieves.
+**Answer:**
 
-- **Recommendation:** yes. Rewrite them in isvara.io's first pull request; `/api/chat` becomes a thin call to Agent E2.
+### Q-93 The time limit per answer
 
-**Answer:** yes
+**Recommendation:** 10 minutes. The longest answer measured so far is about a minute.
 
-### Q-49 Is the Operations Score rescored on the catalog?
+**Answer:**
 
-isvara.io's score uses the book's four indicators and a 4× curve ([lib/opsScore.ts](https://github.com/e1-rahabok/isvara/blob/main/lib/opsScore.ts#L34)); the knowledge base has no performance SLA and five limits per metric ([kpi-vs-sla.md](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/sp5-framework/performance/kpi-vs-sla.md#L4)). The curve feeds the home dial, /tools, /assess, /estate, the MCP tools and the 2am game.
+### Q-94 Where answer jobs are kept
 
-- **Recommendation:** yes. One module generated from the catalog; the 4× curve goes.
+The progress calls (Q-57) keep each job in the service's memory. That works on one long-running process (the lab VM, or a container host), not as a Vercel Python function. **Recommendation:** include this in the Q-4 measurement; prefer a container host for the public service.
 
-**Answer:** Create a document for isvara.io. This operation score is meaningless. Think of capacity management and performance management. Is this even relevant?
+**Answer:**
 
-### Q-50 Which of the ten tools stay?
+### Q-95 Attachment limits
 
-Two are ports of the Excel files ([CLAUDE.md](https://github.com/e1-rahabok/isvara/blob/main/CLAUDE.md#L408)); the catalog has no cost or price rows; the SLA builder conflicts with "no performance SLA".
+**Recommendation:** up to 5 images of 5 MB each, and up to 3 CSV files of 200 KB in all; raise them only when a real question needs more.
 
-- **Recommendation:** keep a tool only where Agent E2 holds its knowledge: the capacity planner from Agent E2's calculator; park the cost calculator and the SLA builder; ground the maturity tool on the SP5 files.
+**Answer:**
 
-**Answer:** Create a document for isvara.io detailing the plan. List each feature there. I will review and reply.
+### Q-96 CSV values read by the model, or computed by code
 
-### Q-51 What does /assess become?
+**Recommendation:** the model reads them as text in stage 1; code computes peaks and percentiles only if the CSV questions of the answer set lose credit on figures.
 
-It weighs four readings (the old score) and five practice questions ([Assess.tsx](https://github.com/e1-rahabok/isvara/blob/main/app/_signal/screens/Assess.tsx#L10)).
+**Answer:**
 
-- **Recommendation:** a self-assessment of SP5 practice only, from the knowledge base's health-check and operations files.
+### Q-97 What isvara.io sends besides the question
 
-**Answer:** Create a document for isvara.io detailing the plan. List each feature there. I will review and reply.
+Still open from Q-46, since "C3" was unexplained there. C3 is contract 3, the Agent E2 API. **Recommendation:** add an optional `page` field (the knowledge file the reader has open, read first) and a `reader` role.
 
-### Q-52 Does the MCP endpoint stay?
+**Answer:**
 
-It offers `ask_isvara`, `ops_score`, `health_check`, `fleet_view` and the books as resources ([MCP.md](https://github.com/e1-rahabok/isvara/blob/main/MCP.md#L14)).
+### Q-98 A shared secret between isvara.io and Agent E2
 
-- **Recommendation:** keep it. `ask_isvara` calls Agent E2, `ops_score` is rescored, and the resources come from the export. `health_check` and `fleet_view` stay: the caller sends the data, and isvara.io connects to nothing.
+**Recommendation:** yes. The public Agent E2 answers only calls carrying a secret known to isvara.io, so nobody can bypass isvara.io's injection guard and limits.
 
-**Answer:** Create a document for isvara.io detailing the plan. List each feature there. I will review and reply.
+**Answer:**
 
-### Q-53 Do /estate (RVTools health check) and /fleet stay?
+### Q-99 When the answer set is rerun
 
-Each of the 13 checks cites a book passage that disappears ([CLAUDE.md](https://github.com/e1-rahabok/isvara/blob/main/CLAUDE.md#L283)).
+**Recommendation:** on a change of model, prompt or service settings, and before a milestone closes; not on every knowledge edit. One run is about 120 answers and 120 gradings; each run reports its cost.
 
-- **Recommendation:** keep both, with files staying in the browser. Ground each check on a catalog row or knowledge file; a check with no source is marked "to review".
+**Answer:**
 
-**Answer:** Create a document for isvara.io detailing the plan. List each feature there. I will review and reply.
+## E. isvara.io
 
-### Q-54 What does "the evals pass" mean? (blocks M6)
+From [spec/design/isvara-revamp.md](spec/design/isvara-revamp.md). The 47 features there have their own reply lines.
 
-The eval prints a count and never fails ([evals/run.mjs](https://github.com/e1-rahabok/isvara/blob/main/evals/run.mjs#L34)). Three expectations describe AskIO's behaviour, and one expects a refusal that contradicts the restriction you lifted ([queries.json](https://github.com/e1-rahabok/isvara/blob/main/evals/queries.json#L18)).
+### Q-100 Do old `/read/...` addresses redirect?
 
-- **Recommendation:** rewrite the expectations from the knowledge base; the eval fails on any miss. Pass: all 20 answers cite a published page and contain each question's key fact. The injection battery is unchanged, with 0 violations.
+You said the old site goes (Q-44). Old links from search engines and from PCM's decisions would then break. **Recommendation:** redirect each to the topic that covers it, mapped from the book heading each knowledge file records; anything unmatched goes to `/guide`.
 
-**Answer:** I don't know what you mean by eval pass. Explain the context. 
+**Answer:**
 
-### Q-55 Where is the revamp built, and when is it done? (blocks M5)
+### Q-101 Where the source view is served
 
-- **Recommendation:** on a branch of isvara, deployed as a Vercel preview, switched over in one release. Done when every approved file has a page, old links redirect, the evals pass, lint, type check and build pass, cost and time limits hold, and the 2am game's citations point at new pages. /download stays as an archive marked "the books may differ from the guide"; the weekly Word refresh stops.
+agent-e2 is a public repository today, but a reader should not depend on that. **Recommendation:** isvara.io serves the source view itself at `/topic/<name>/source`, from the export, with the note that it is written for a model (Q-45).
 
-**Answer:** Agree. The weekly Word refresh should continue, as it's just a download. Readers want to download a copy of the materials (which includes spreadsheet)
+**Answer:**
 
-## G. The exam
+### Q-102 Where the role slice comes from
 
-### Q-56 What is the exam's format, and where are its questions kept? (blocks M7)
+No knowledge file carries a role tag. **Recommendation:** a short list in agent-e2: for each of PCM's four roles, the files that role reads first; isvara.io shows it as a reading path.
 
-- **Recommendation:** one fixed set of 10 multiple-choice questions, written from the knowledge base's misconceptions and never copied from the benchmark; kept in agent-e2 (not indexed); each answer cites its pages; scored in the browser with no model call; the reasoning shown after each answer.
+**Answer:**
 
-**Answer:** Format is MCQ. Have a penalty for wrong answer. 0 for no answer. Keep the exams at isvara.io
+### Q-103 Do pages say the knowledge is still under review?
 
-## Fixes Claude makes without asking
+Every file is used, drafts included (W-013). **Recommendation:** one footer line on each topic page: "Written by AI from Agent E2's knowledge base, which is still being reviewed."
 
-Each is a mistake with only one right answer. Say so here if you object.
+**Answer:**
 
-- PCM: two decisions numbered D-114 ([decisions.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L121)); `l2.log_noise_max` defined twice ([settings.yaml](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/catalog/settings.yaml#L244)); three different counts of Cluster Risk parts in the text (D-106, D-113, l2.yaml).
-- PCM-Adapter: "5 sub-metrics" should be 6 ([metrics-and-properties.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics-and-properties.md#L79)); issues #2 and #94 are out of date.
-- agent-e2: SECURITY.md understates model calls per answer ([SECURITY.md](https://github.com/e1-rahabok/agent-e2/blob/main/SECURITY.md#L31)); two documents say the service runs 3 samples, its config says 1 ([service_config.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/harness/service_config.yaml#L32)).
-- isvara: CLAUDE.md says three books; there are five.
+### Q-104 Is the US$50 a month for the gateway alone?
+
+**Recommendation:** the gateway alone; the daily stop is then about US$1.65.
+
+**Answer:**
+
+### Q-105 Limits per visitor
+
+**Recommendation:** 10 questions an hour and 30 a day per address; attachments up to 5 MB each, CSV and PNG or JPEG only.
+
+**Answer:**
+
+### Q-106 Which model rewrites the pages
+
+**Recommendation:** try Gemma 4 31B and one stronger model on the pilot page, compare cost and failed page checks, then choose.
+
+**Answer:**
+
+### Q-107 Do the Fleet Console's own 56 rules go?
+
+**Recommendation:** yes. They are knowledge of isvara.io's own (Q-18).
+
+**Answer:**
+
+### Q-108 Does the weekly refresh keep converting the Word books into pages?
+
+You said downloads and the weekly refresh continue (Q-55). **Recommendation:** keep refreshing the downloads; stop converting the books into pages, since nothing will read them.
+
+**Answer:**
+
+## F. isvara.io exam
+
+From [spec/requirements/isvara-exam.md](spec/requirements/isvara-exam.md).
+
+### Q-109 One correct option per question?
+
+**Recommendation:** one.
+
+**Answer:**
+
+### Q-110 How many options, and what marks?
+
+**Recommendation:** four options; 3 marks for a correct answer, minus 1 for a wrong one, 0 for none. Random guessing then averages 0; the maximum is 30.
+
+**Answer:**
+
+### Q-111 One fixed set, or a pool?
+
+**Recommendation:** one fixed set of 10 for everyone, so results compare; replaced as a whole and dated.
+
+**Answer:**
+
+### Q-112 How the questions stay aligned with Agent E2
+
+They live in isvara.io (Q-56), so they copy facts whose master is Agent E2. **Recommendation:** each question is written from the misconception lines of the files it cites and carries those files' fingerprints; when a cited file changes, the build stops; Claude updates the question in a pull request, a judge rechecks it, and you approve only the changed questions.
+
+**Answer:**
+
+### Q-113 Who approves the first set?
+
+**Recommendation:** you, all 10 once, before go-live.
+
+**Answer:**
+
+### Q-114 Reasoning after each answer, or at the end?
+
+**Recommendation:** after each answer, with the answer then locked.
+
+**Answer:**
+
+### Q-115 A score board or a share card?
+
+**Recommendation:** a share card with the total only; no board.
+
+**Answer:**
+
+### Q-116 A "not official" line?
+
+**Recommendation:** yes: "Not a Broadcom or VMware certification."
+
+**Answer:**
+
+### Q-117 Length limits
+
+**Recommendation:** at most 50 words per question and 20 per option, for now.
+
+**Answer:**
+
+### Q-118 Leaving and coming back
+
+**Recommendation:** progress kept in the browser until midnight UTC; nothing is sent.
+
+**Answer:**
+
+## G. Lab build
+
+From [spec/requirements/lab-build.md](spec/requirements/lab-build.md).
+
+### Q-119 Can a nested ESXi host use a virtual NVMe device as its memory tier?
+
+Not proven. **Recommendation:** a first spike builds one nested host and reports whether the tier is accepted, before the rest is built.
+
+**Answer:**
+
+### Q-120 How many nested hosts, and how big?
+
+**Recommendation:** two hosts, so DRS and the cluster parts have something to compare, each small enough to leave the physical lab usable. You name the physical cluster, datastore and network.
+
+**Answer:**
+
+### Q-121 A plain vCenter cluster or a VCF workload domain?
+
+**Recommendation:** a plain cluster under the lab vCenter, monitored by the same VCF Operations.
+
+**Answer:**
+
+### Q-122 ESXi version and licences
+
+**Recommendation:** the same ESXi build as the physical hosts; you confirm the lab licences cover two more hosts.
+
+**Answer:**

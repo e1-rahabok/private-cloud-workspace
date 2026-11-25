@@ -45,6 +45,10 @@ Each correction went into [`DECISIONS.md`](../DECISIONS.md) and [`SYSTEM.md`](..
 
 **9. The author's conventions were missed at first.** The author's other repositories already had two conventions the new files ignored: every file reference is a clickable link, and every diagram is an SVG with its text generated underneath for machines. The agent had read those repositories and still used plain paths and text drawings. Both now have a tool and a check, so they cannot be missed again.
 
+**10. The answers, and the whole specification.** The author answered nearly all 61 questions on GitHub in one evening, often in a few words, and corrected several assumptions: the live demo is a separate demo of one role, the management pack may change everything, the public site is rebuilt from scratch. The agent then moved the answers into decisions and an intent page, and four agents, the same ones that ran the surveys and still held their context, drafted the requirements of their repository in parallel: 105 requirements with 176 test scenarios, each citing the answer it came from. A check confirms every requirement has a source and a test. Writing the requirements raised 66 new questions, mostly naming and exact numbers, which became round 2.
+
+**11. A self-inflicted loss.** While gathering the round-two questions from six new files, a script rewrote the files before it had saved what it collected, and the save failed. The files were new and not yet committed, so git could not restore them; the agent rebuilt the questions from what it had read earlier. Commit drafts early: an uncommitted file has no undo.
+
 ## Lessons from the log
 
 - The survey was useful because it was wrong in places: each error pointed to a missing document.
@@ -54,3 +58,5 @@ Each correction went into [`DECISIONS.md`](../DECISIONS.md) and [`SYSTEM.md`](..
 - An agent drifts back to "build, then ask" even after writing the method down. The human's best tool is a short question: "is the interview done?"
 - A convention the agent "knows" is not a convention it follows. Only a check makes it hold.
 - One honest survey found about 80 open points across four repositories that had been built through thousands of conversations. Each one is a guess the next build would have made.
+- Answers in a few words are enough when each question carries a recommendation: most answers were "Agree", and the rest were exactly the corrections that mattered.
+- A specification raises its own questions. Expect a second round, smaller and more precise than the first.

@@ -36,6 +36,8 @@ jobs:
           python-version: "3.12"
       - run: pip install pyyaml requests
       - run: python private-cloud-workspace/checks/run_all.py --no-clone
+      - name: Requirements, test scenarios and sources
+        run: python private-cloud-workspace/tools/spec_check.py
       - name: Links and diagram text
         run: python private-cloud-workspace/tools/docs.py --check
       - name: Diagrams are up to date
