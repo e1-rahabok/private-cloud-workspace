@@ -1,54 +1,60 @@
 # Roadmap
 
-Stage 1 (SYSTEM.md). Each milestone is a thin slice across the repositories, with a definition of done made of statements that can be checked. A session works on one milestone, stops when the specification does not decide something, and writes the question to [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md).
+Stage 1 ([SYSTEM.md](SYSTEM.md)). Specification first: M1 settles what is built and how it is tested, before any build milestone starts. Each build milestone is a thin slice across the repositories. Its definition of done is the list of requirement IDs it delivers, each with its test scenarios in [`spec/requirements/`](spec/requirements).
 
 Progress is marked on each line: `[ ]` open, `[x]` done (with the pull request).
 
-## M0 Workspace specification and checks
+## M0 Workspace and checks
 
-- [x] SYSTEM, CONTRACTS, DECISIONS, ROADMAP, OPEN-QUESTIONS and CLAUDE.md merged in this repository (#1).
+- [x] SYSTEM, CONTRACTS, DECISIONS, ROADMAP, OPEN-QUESTIONS and CLAUDE.md in this repository (#1).
 - [x] C1 and C3 run in GitHub Actions on push, pull request, daily and on demand, and pass (#1).
-- [ ] A tutorial that teaches the method to others, with this workspace as the case study (`tutorial/`).
+- [x] A tutorial that teaches the method, with this workspace as the case study (#2).
 
-## M1 Close the known gaps
+## M1 Interview and specification
 
-- [ ] C1 runs with an empty `NAME_GAPS`: every VM Performance and Guest OS Performance row in PCM-Adapter carries its catalog name (Q-1).
-- [ ] C1 also checks the part names PCM uses, from a structured list in PCM's specification instead of prose.
-- [ ] No file outside an archive names the old repository VCF-vCommunity-Adapter, in any of the four repositories.
-- [ ] Each child repository runs `checks/run_all.py` on its own pull requests, so a break is caught before merge instead of the next day.
+No code is written in M1. Done when:
 
-## M2 Live VCF Operations in PCM: one cluster, one KPI
+- [ ] Every question in [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) has an answer from the author, and each answer is moved to DECISIONS or a requirement.
+- [ ] [`spec/intent.md`](spec/intent.md) states, for the product and for each app, who it is for, what success looks like, and what is not done. The author has approved it.
+- [ ] Each build milestone below has its requirements in [`spec/requirements/`](spec/requirements): one ID each, written as Given, When, Then, with the answer or decision it comes from.
+- [ ] Each requirement has at least one test scenario: the data, the steps, the expected result, and where it runs (anywhere, or the lab).
+- [ ] Each test scenario names the test or check that will automate it, or says why it stays manual.
+- [ ] A check confirms the links: every requirement has a test scenario, and every scenario names an existing requirement.
+- [ ] The author has approved the requirements and scenarios of the next build milestone.
 
-Done when:
+## Build milestones
 
-- [ ] The demo control has "Live VCF Operations". Choosing it switches PCM's data to https://10.115.1.81; "Synthetic ACME" switches back. ACME stays the default.
-- [ ] For one lab cluster, the L2 Performance tab shows Cluster Performance for the last 24 hours, read from VCF Operations. Now, Worst and the 95th percentile match VCF Operations for the same window, within rounding.
-- [ ] Every part under Details comes from a `vCommunity|` key of that cluster. None is synthetic.
-- [ ] A missing key or a failed read shows as no data or stale, never as zero or green (PCM D-041).
-- [ ] The Agent E2 panel's answer names the same worst part VCF Operations shows.
-- [ ] PCM lists every key it reads in one structured file, and C2 checks each against PCM-Adapter.
-- [ ] The credential is in `/etc/pcm/pcm.env` on the lab VM; no secret is in any repository.
-- [ ] All synthetic-mode tests still pass.
+The lines below are the scope of each milestone as known today. M1 replaces each list with requirement IDs.
 
-## M3 Live VCF Operations: the rest of release 1.0
+### M2 Close the known gaps
 
-- [ ] The other KPIs and objects on the release 1.0 pages read live data, by the same pattern as M2.
-- [ ] C2 also runs against the lab: each listed key has data on at least one object.
+- C1 runs with an empty `NAME_GAPS` (Q-1).
+- C1 also checks the part names PCM uses, from a structured list in PCM's specification.
+- No file outside an archive names the old repository VCF-vCommunity-Adapter.
+- Each child repository runs [`checks/run_all.py`](checks/run_all.py) on its own pull requests.
 
-## M4 isvara.io content from Agent E2: one pilot page
+### M3 Live VCF Operations in PCM: one cluster, one KPI
 
-- [ ] One concept page on isvara.io is generated from the Agent E2 knowledge base, with no hand edits, and reads well for a person.
-- [ ] The export from Agent E2 is a written contract (C4) with a check.
-- [ ] The author decides from the pilot whether to rebuild the guide, the tools and the assessment the same way.
+- A "Live VCF Operations" choice in the demo control; Synthetic ACME stays the default.
+- One lab cluster's Cluster Performance for the last 24 hours, read from VCF Operations, matching it within rounding.
+- Missing or failed data shows as no data or stale, never as zero or green.
+- PCM lists every key it reads; C2 checks them against PCM-Adapter.
 
-## M5 Agent E2 on isvara.io
+### M4 Live VCF Operations: the rest of release 1.0
 
-- [ ] Q-4 is decided: where the public Agent E2 runs.
-- [ ] isvara.io's chat calls Agent E2 through the C3 contract. AskIO is removed.
-- [ ] isvara.io's eval and injection batteries pass against Agent E2.
+- The other KPIs and objects on the release 1.0 pages, by the same pattern as M3.
+- C2 also runs against the lab.
 
-## M6 isvara.io exam
+### M5 isvara.io content from Agent E2: one pilot page
 
-- [ ] 10 questions for people, short and very hard, each testing understanding of a mechanism, with the reasoning shown after the answer (W-006).
-- [ ] The author has reviewed every question and answer.
-- [ ] The exam sits next to the 2am game.
+- One concept page generated from the Agent E2 knowledge base, with no hand edits.
+- The export is a written contract (C4) with a check.
+
+### M6 Agent E2 on isvara.io
+
+- Agent E2 answers on isvara.io in place of AskIO, through the C3 contract.
+- isvara.io's eval and injection batteries pass against Agent E2.
+
+### M7 isvara.io exam
+
+- 10 short, very hard questions for people, with the reasoning shown after each answer (W-006).

@@ -8,6 +8,22 @@ How Claude works across the four repositories. Each child repository has its own
 - Then read the CLAUDE.md of each repository the change touches, and follow it inside that repository.
 - Work on GitHub through clones; the author's laptop is for what needs Windows or the lab (VPN): PCM-Adapter's build, install and validation tools, and live VCF Operations.
 
+## Specification first
+
+- No build milestone starts until its requirements are written in [`spec/requirements/`](spec/requirements), each with its test scenarios, and the author has approved them (ROADMAP, M1).
+- Requirements come from the author's answers in [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md), never from a guess. A requirement cites the answer or decision it comes from.
+
+## Stop conditions
+
+Stop that line of work, write the question to [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) with a recommendation and an empty `Answer:` line, and tell the author, when:
+
+- the specification does not decide something, or two documents disagree;
+- a requirement cannot be tested as written;
+- a fix would change a contract's shape or reverse a decision;
+- a test needs the lab and the lab cannot be reached: say so, and never report it as passed.
+
+Never weaken, skip, delete or loosen a test or a check to make it pass. A failing test is either a bug to fix or a question for the author.
+
 ## Scope
 
 - Stage 1 only (DECISIONS, W-002). Do not build toward the on-premises local model, and do not remove the text that describes it.

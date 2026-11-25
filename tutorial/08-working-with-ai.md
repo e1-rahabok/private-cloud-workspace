@@ -38,6 +38,26 @@ A cheaper, faster model is fine for work that is fully specified: applying agree
 
 Compare models on your own work rather than on claims. Give two models the same slice and specification, and count the rework each needs, using your checks and a fresh review. Repositories of a few hundred to a few thousand files, like the four here, fit comfortably within a strong model's reach when the method gives it the right files to read.
 
+## Running the interview
+
+Before a build, the agent surveys every repository for four kinds of finding, and turns each into a question:
+
+| Kind | Example from this workspace |
+|---|---|
+| Conflict | One document says the app computes the scores, another says it only reads them |
+| Undecided | "Release 1.0: placeholder values", while the roadmap wants live data |
+| Unstated assumption | Demo data has 13 months of history; the lab has days |
+| Missing requirement | "The answer must match the live system", with no rule for how to compare |
+
+Surveys of separate repositories are independent, so they can run as parallel agents, each returning a list with links to the lines that prove each finding. The agent then merges them into one file the human answers directly ([OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md)): each question with its evidence, a recommendation, and an empty `Answer:` line. A human can answer sixty questions this way in an evening, mostly with "Agree", and spends their thinking on the few where the recommendation is wrong. Chat is a poor place for this: answers scroll away, and the next session cannot see them.
+
+## Documents for people and machines
+
+Every document is read by both. Two rules from the author's repositories, now enforced by [`tools/docs.py`](../tools/docs.py):
+
+- **Every file reference is a link.** A path in backticks becomes a link GitHub can open: relative inside the repository, a full GitHub URL for another repository. A reviewer clicks instead of searching; the agent reads the same path.
+- **Every diagram is an SVG with its text underneath.** The SVG is drawn by a script ([`tools/diagrams.py`](../tools/diagrams.py)) and the text (boxes, nesting, arrows and labels) is generated from the SVG into a folded block below the image. People see the picture; a model reads the text; the check fails if the two differ. No text drawings: they break on narrow screens and a model reads them poorly.
+
 ## A fresh reviewer
 
 Review finished work in a new session that sees only the specification and the change. It is not anchored on the builder's reasoning, so it catches different mistakes.

@@ -2,7 +2,7 @@
 
 ## The idea
 
-Before any work, write down what the system is: its parts, where each one runs, what talks to what, and which parts of the plan are in scope now. One page. It is `SYSTEM.md` in this repository.
+Before any work, write down what the system is: its parts, where each one runs, what talks to what, and which parts of the plan are in scope now. One page. It is [`SYSTEM.md`](../SYSTEM.md) in this repository.
 
 ## Current state and target state
 

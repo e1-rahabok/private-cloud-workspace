@@ -21,7 +21,9 @@ PCM and isvara.io are two web apps. Both get their knowledge from Agent E2. [SYS
 | [CONTRACTS.md](CONTRACTS.md) | Every interface between two repositories: owner, consumer, shape, the check that proves it |
 | [DECISIONS.md](DECISIONS.md) | Decisions that bind more than one repository |
 | [ROADMAP.md](ROADMAP.md) | Milestones, each with a definition of done |
-| [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) | Questions for the author, with a recommendation each |
+| [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) | The interview: questions for the author, each with evidence, a recommendation and an `Answer:` line |
+| [`spec/`](spec) | The specification: intent, then requirements with test scenarios |
+| [`tools/`](tools) | Keep the documents readable by people and machines: clickable links, SVG diagrams with generated text |
 | [CLAUDE.md](CLAUDE.md) | How Claude works across the repositories |
 | [`checks/`](checks) | The cross-repo checks |
 | [`tutorial/`](tutorial) | How this workspace is built with AI, written to teach the method to others |

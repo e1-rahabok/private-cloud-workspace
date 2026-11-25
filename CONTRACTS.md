@@ -4,17 +4,17 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 
 | ID | Contract | Owner | Consumers | Check | Status |
 |---|---|---|---|---|---|
-| C1 | KPI definitions | agent-e2 | PCM-Adapter, PCM | `checks/kpi_definitions.py` | Running. Limits and excluded-when-green agree for all 49 sub-metrics of 6 KPIs. 11 known name gaps (OPEN-QUESTIONS, Q-1) |
-| C2 | KPI metric keys | PCM-Adapter | PCM (live mode) | Planned, ROADMAP M2 | No PCM connector yet |
-| C3 | Agent E2 API | agent-e2 | PCM; isvara (planned) | `checks/agent_e2_api.py` | Running. 4 endpoints, 0 differences |
-| C4 | Knowledge content for isvara | agent-e2 | isvara | Planned, ROADMAP M4 | Not built |
+| C1 | KPI definitions | agent-e2 | PCM-Adapter, PCM | [`checks/kpi_definitions.py`](checks/kpi_definitions.py) | Running. Limits and excluded-when-green agree for all 49 sub-metrics of 6 KPIs. 11 known name gaps (OPEN-QUESTIONS, Q-1) |
+| C2 | KPI metric keys | PCM-Adapter | PCM (live mode) | Planned, ROADMAP M3 | No PCM connector yet |
+| C3 | Agent E2 API | agent-e2 | PCM; isvara (planned) | [`checks/agent_e2_api.py`](checks/agent_e2_api.py) | Running. 4 endpoints, 0 differences |
+| C4 | Knowledge content for isvara | agent-e2 | isvara | Planned, ROADMAP M5 | Not built |
 | C5 | Model gateway | Vercel AI Gateway | agent-e2, PCM, isvara | None. A third-party API | `AI_GATEWAY_API_KEY`, OpenAI-compatible |
 
 ## C1 KPI definitions
 
-- **Owner:** agent-e2, `knowledge/catalog/thresholds-performance.yaml` (section `kpi`), `thresholds-risk.yaml` and `thresholds-capacity.yaml` (section `model`). One row per sub-metric: name with unit, group, direction, five limits per interval, `excluded_when_green`.
+- **Owner:** agent-e2, [`knowledge/catalog/thresholds-performance.yaml`](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml) (section `kpi`), `thresholds-risk.yaml` and `thresholds-capacity.yaml` (section `model`). One row per sub-metric: name with unit, group, direction, five limits per interval, `excluded_when_green`.
 - **Implementer:** PCM-Adapter, `Management Pack/app/metrics/`: one module per KPI, a `METRICS` table of `Metric` rows (name, unit, five limits, `skip_when_green`) and a `LABELS` table that gives a row its catalog name.
-- **Consumer:** PCM shows the parts under the catalog names (PCM D-113, D-115) in `spec/catalog/l2.yaml`. Not checked yet: PCM names parts in prose. ROADMAP M1.
+- **Consumer:** PCM shows the parts under the catalog names (PCM D-113, D-115) in [`spec/catalog/l2.yaml`](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/catalog/l2.yaml). Not checked yet: PCM names parts in prose. ROADMAP M1.
 - **The check** matches each sub-metric by name (the adapter's label against the catalog name without its unit) and compares the five limits and excluded-when-green, for Cluster Performance, ESXi Performance, VM Performance, Guest OS Performance, Cluster Risk and Cluster Consumption.
 - **To change a KPI:** change the catalog first, then the adapter, in the same session, with the check run before both merges.
 
@@ -22,12 +22,12 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 
 - **Owner:** PCM-Adapter. Keys are `vCommunity|<KPI>|<sub-metric or score>`, for example `vCommunity|Cluster Performance|Cluster Performance Score`, on the vCenter objects in VCF Operations.
 - **Consumer:** PCM live mode reads them through the Suite API (PCM D-064, D-096).
-- **Check, ROADMAP M2:** PCM lists every key it reads in one structured file; the check confirms each key is one the adapter publishes, and, against the lab, that it has data.
+- **Check, ROADMAP M3:** PCM lists every key it reads in one structured file; the check confirms each key is one the adapter publishes, and, against the lab, that it has data.
 
 ## C3 Agent E2 API
 
-- **Owner:** agent-e2, `harness/answer_service.py` (its docstring is the specification). Endpoints: `POST /v1/answer`, `POST /v1/topic`, `POST /v1/suggest` (page and card), `GET /v1/health`.
-- **Consumer:** PCM, `build/pcm_proto/agent_e2.py`, generated from `spec/catalog/settings.yaml` and `spec/workspaces/l2/frame.md`.
+- **Owner:** agent-e2, [`harness/answer_service.py`](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py) (its docstring is the specification). Endpoints: `POST /v1/answer`, `POST /v1/topic`, `POST /v1/suggest` (page and card), `GET /v1/health`.
+- **Consumer:** PCM, [`build/pcm_proto/agent_e2.py`](https://github.com/e1-rahabok/private-cloud-management/blob/main/build/pcm_proto/agent_e2.py), generated from [`spec/catalog/settings.yaml`](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/catalog/settings.yaml) and [`spec/workspaces/l2/frame.md`](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/workspaces/l2/frame.md).
 - **The check** starts the real service in mock mode (no model, no network) and calls it with PCM's own client code. It checks every field PCM reads, by name and type, on the raw responses: PCM's client turns errors into `source: unavailable`, which would hide a broken contract.
 
 ## C4 Knowledge content for isvara
