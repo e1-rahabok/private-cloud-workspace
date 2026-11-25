@@ -1,14 +1,14 @@
 # Contracts
 
-Every interface between two repositories. Each has one owner, its consumers, where its shape is written, and the check that proves both sides still agree. A contract without a check is a promise nobody verifies, so every one gets a check or a milestone that adds one.
+Every interface between two repositories. Each has one owner, its consumers, where its shape is written, and the check that proves both sides still agree. A contract without a check is a promise nobody verifies, so every one gets a check or a milestone that adds one. The IDs C1 to C5 are also in the [glossary](spec/glossary.md); requirements per contract are in [spec/requirements](spec/requirements).
 
 | ID | Contract | Owner | Consumers | Check | Status |
 |---|---|---|---|---|---|
-| C1 | KPI definitions | agent-e2 | PCM-Adapter, PCM | [`checks/kpi_definitions.py`](checks/kpi_definitions.py) | Running. Limits and excluded-when-green agree for all 49 sub-metrics of 6 KPIs. 11 known name gaps (OPEN-QUESTIONS, Q-1) |
-| C2 | KPI metric keys | PCM-Adapter | PCM (live mode) | Planned, ROADMAP M3 | No PCM connector yet |
+| C1 | KPI definitions | agent-e2 | PCM-Adapter, PCM, isvara | [`checks/kpi_definitions.py`](checks/kpi_definitions.py) | Running. Limits and excluded-when-green agree for all 49 sub-metrics of 6 KPIs. 11 known name gaps, to close by [R-KPI-003](spec/requirements/kpi-definitions.md) |
+| C2 | KPI metric keys | PCM-Adapter | PCM (live demo) | Planned, ROADMAP M3 | No PCM connector yet |
 | C3 | Agent E2 API | agent-e2 | PCM; isvara (planned) | [`checks/agent_e2_api.py`](checks/agent_e2_api.py) | Running. 4 endpoints, 0 differences |
 | C4 | Knowledge content for isvara | agent-e2 | isvara | Planned, ROADMAP M5 | Not built |
-| C5 | Model gateway | Vercel AI Gateway | agent-e2, PCM, isvara | None. A third-party API | `AI_GATEWAY_API_KEY`, OpenAI-compatible |
+| C5 | Model gateway | Vercel AI Gateway | agent-e2 | None. A third-party API | `AI_GATEWAY_API_KEY`, OpenAI-compatible |
 
 ## C1 KPI definitions
 

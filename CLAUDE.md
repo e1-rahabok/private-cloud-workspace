@@ -41,6 +41,8 @@ Never weaken, skip, delete or loosen a test or a check to make it pass. A failin
 - A decision that binds more than one repository goes in [DECISIONS.md](DECISIONS.md). A decision inside one repository goes in that repository's log (index in DECISIONS.md).
 - When the specification does not decide something, stop and write the question to [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) with a recommendation. Do not guess.
 - Mark finished lines in ROADMAP.md with the pull request.
+- No bare short names (W-020). On first use in a document, write an ID such as C3, W-012 or Q-27 with its meaning, or as a link to [spec/glossary.md](spec/glossary.md). A new kind of ID goes into the glossary first.
+- Write for a reader on GitHub: plain words, short sentences, every file reference a link, every diagram an SVG with its text underneath ([tools/docs.py](tools/docs.py)).
 
 ## Git
 

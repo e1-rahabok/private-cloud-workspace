@@ -7,7 +7,7 @@ One file per area. Each requirement is one testable statement with its own ID, a
 | File | Area | Milestone |
 |---|---|---|
 | `kpi-definitions.md` | One KPI definition across Agent E2, PCM-Adapter and PCM | M2 |
-| `pcm-live-mode.md` | PCM reading the lab VCF Operations | M3, M4 |
+| `pcm-live.md` | PCM reading the lab VCF Operations | M3, M4 |
 | `agent-e2-service.md` | What Agent E2 answers, for PCM and isvara.io | M3, M6 |
 | `isvara-content.md` | isvara.io pages generated from the Agent E2 knowledge base | M5 |
 | `isvara-agent.md` | Agent E2 in place of AskIO | M6 |
