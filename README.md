@@ -24,6 +24,7 @@ PCM and isvara.io are two web apps. Both get their knowledge from Agent E2. [SYS
 | [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) | Questions for the author, with a recommendation each |
 | [CLAUDE.md](CLAUDE.md) | How Claude works across the repositories |
 | [`checks/`](checks) | The cross-repo checks |
+| [`tutorial/`](tutorial) | How this workspace is built with AI, written to teach the method to others |
 
 ## Run the checks
 

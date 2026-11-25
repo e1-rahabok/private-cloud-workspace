@@ -30,8 +30,9 @@ How Claude works across the four repositories. Each child repository has its own
 
 - One branch and one pull request per change per repository. A change across repositories uses the same branch name in each, and each pull request links the others.
 - Merge order follows ownership: agent-e2, then PCM-Adapter, then private-cloud-management, then isvara.
-- Claude merges its own pull request when the checks pass and the change is inside an approved milestone.
-- These wait for the author: a change to a contract's shape, a new or changed entry in DECISIONS.md, and anything that deletes data or changes the lab.
+- Claude merges its own pull request once the checks pass (DECISIONS, W-009: the early phase).
+- A major change is still merged, with a warning at the top of the pull request text and in the report to the author. Major means: a contract's shape changes, a decision is added, changed or reversed, files are deleted or archived, or the change spans more than one child repository.
+- Never merge a pull request whose checks fail. Anything that deletes data or changes the lab waits for the author.
 - Never push to a default branch directly. Delete the branch after the merge.
 - Commit messages and pull request text describe the change in plain words.
 
