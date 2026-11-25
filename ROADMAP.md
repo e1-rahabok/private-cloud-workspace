@@ -6,8 +6,9 @@ Progress is marked on each line: `[ ]` open, `[x]` done (with the pull request).
 
 ## M0 Workspace specification and checks
 
-- [ ] SYSTEM, CONTRACTS, DECISIONS, ROADMAP, OPEN-QUESTIONS and CLAUDE.md merged in this repository.
-- [ ] C1 and C3 run in GitHub Actions on push, pull request, daily and on demand, and pass.
+- [x] SYSTEM, CONTRACTS, DECISIONS, ROADMAP, OPEN-QUESTIONS and CLAUDE.md merged in this repository (#1).
+- [x] C1 and C3 run in GitHub Actions on push, pull request, daily and on demand, and pass (#1).
+- [ ] A tutorial that teaches the method to others, with this workspace as the case study (`tutorial/`).
 
 ## M1 Close the known gaps
 
