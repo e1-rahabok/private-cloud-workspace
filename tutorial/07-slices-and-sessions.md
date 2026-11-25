@@ -4,7 +4,7 @@
 
 Build in thin slices. A slice goes end to end across every part it touches, but covers only a narrow case: one cluster and one KPI, not all of them. After each slice the whole system works and the checks pass.
 
-**Riskiest first.** Order the slices by how much is unknown. In this workspace, connecting the web app to a live system came early (M2): the APIs had never been tried against a live instance, the metric keys had never been read for real, and the network path from the app's server to the live system was unproven. Everything learned there changes the later slices. A slice with few unknowns, such as extending the same pattern to more KPIs (M3), comes after.
+**Riskiest first.** Order the slices by how much is unknown. In this workspace, connecting the web app to a live system came early (M3): the APIs had never been tried against a live instance, the metric keys had never been read for real, and the network path from the app's server to the live system was unproven. Everything learned there changes the later slices. A slice with few unknowns, such as extending the same pattern to more KPIs (M4), comes after.
 
 **Why not one repository at a time?** "Finish repository A, then B" defers every seam problem to the end, when it is most expensive.
 
@@ -21,7 +21,7 @@ One long session per slice, not hundreds of small ones. A session follows the sa
 
 ## Stop conditions
 
-Write them into `CLAUDE.md`, so every session follows them:
+Write them into [`CLAUDE.md`](../CLAUDE.md), so every session follows them:
 
 - The specification does not decide something.
 - A check fails and the fix would mean changing a contract.

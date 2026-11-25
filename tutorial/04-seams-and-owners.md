@@ -4,7 +4,7 @@
 
 A seam is any place where two parts meet: an API call, a file one part writes and another reads, a definition that two parts must agree on. Bugs collect at seams, because each side is tested on its own and nobody tests the meeting.
 
-List every seam in `CONTRACTS.md`. For each one:
+List every seam in [`CONTRACTS.md`](../CONTRACTS.md). For each one:
 
 | Field | Meaning |
 |---|---|

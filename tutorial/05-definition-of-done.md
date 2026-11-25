@@ -8,7 +8,7 @@ A goal such as "connect the app to the live system" is a direction, not an instr
 
 **Before:** "Connect PCM to live VCF Operations."
 
-**After** (ROADMAP, M2):
+**After** (an early draft of ROADMAP, M3):
 
 - The demo control has "Live VCF Operations". Choosing it switches PCM's data to the lab; "Synthetic ACME" switches back. ACME stays the default.
 - For one lab cluster, the Performance tab shows Cluster Performance for the last 24 hours, read from the live system. Now, Worst and the 95th percentile match the live system for the same window, within rounding.
@@ -33,7 +33,7 @@ The agent drafts it from the goal, the map and the existing decisions. The human
 
 ## In this case study
 
-The first draft of the M2 definition said "PCM changes from synthetic data to live data". The author corrected it: both stay, because the lab is too quiet to show the product well. One line in the specification; a large piece of wasted work avoided.
+The first draft of that definition said "PCM changes from synthetic data to live data". The author corrected it: both stay, because the lab is too quiet to show the product well. One line in the specification; a large piece of wasted work avoided.
 
 ## Exercise
 

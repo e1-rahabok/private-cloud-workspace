@@ -28,7 +28,7 @@ All built with AI over several months, through thousands of small conversations.
 | PCM moves from demo data to live data | It keeps both | Never written down |
 | Publishing exam questions risks a benchmark contest | The author does not care about contests | The agent assumed a goal the author did not have |
 
-Each correction went into `DECISIONS.md` and `SYSTEM.md`.
+Each correction went into [`DECISIONS.md`](../DECISIONS.md) and [`SYSTEM.md`](../SYSTEM.md).
 
 **4. Decisions.** The author answered six questions in a few words each: who owns the KPI definitions, where decisions live, the git workflow, the exam, the public site's model, where credentials live. These became DECISIONS W-001 to W-011.
 
@@ -39,9 +39,18 @@ Each correction went into `DECISIONS.md` and `SYSTEM.md`.
 
 **6. The pull request.** All files and checks went into one pull request for the author's review, because it held new cross-repo decisions.
 
+**7. The agent skipped its own advice.** With the files merged, the agent proposed starting the first build milestone. The author stopped it with three questions: is the interview done? Are the requirements written, each one testable? Are the stop conditions in place? The honest answers were: no, no, and partly. Six questions answered in chat is not an interview; the milestones were bullet points, not requirements with test scenarios. The agent had fallen back into the pattern the method exists to replace: building, then asking the author to react.
+
+**8. The interview, done properly.** Four agents surveyed the four repositories in parallel, each listing every conflict, undecided item, unstated assumption and missing requirement, with links to the lines that prove it. About 80 findings were merged into 61 questions, grouped by area, each with a recommendation and an empty `Answer:` line that the author fills in on GitHub. The roadmap gained a milestone with no code in it: interview and specification first, then build.
+
+**9. The author's conventions were missed at first.** The author's other repositories already had two conventions the new files ignored: every file reference is a clickable link, and every diagram is an SVG with its text generated underneath for machines. The agent had read those repositories and still used plain paths and text drawings. Both now have a tool and a check, so they cannot be missed again.
+
 ## Lessons from the log
 
 - The survey was useful because it was wrong in places: each error pointed to a missing document.
 - The author's time went into answers and decisions, not into explaining the system again.
 - The first check found a real, unknown gap on its first run.
 - The repository was renamed during the session. The map, the contracts and the checks absorbed it in minutes, because the name was written in a few known places.
+- An agent drifts back to "build, then ask" even after writing the method down. The human's best tool is a short question: "is the interview done?"
+- A convention the agent "knows" is not a convention it follows. Only a check makes it hold.
+- One honest survey found about 80 open points across four repositories that had been built through thousands of conversations. Each one is a guess the next build would have made.
