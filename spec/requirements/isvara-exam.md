@@ -150,7 +150,7 @@ Source: W-006 ("10 short, very hard multiple-choice questions").
 
 Given the exam data file
 When the site is built
-Then each question's text is at most 50 words and each option at most 20 words (limits to confirm in round two, Q-117 in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md))
+Then each question's text is at most 50 words and each option at most 20 words (Q-117 in the [interview, round 2](../interview-round-2.md))
 
 Test scenarios:
 - T-EXAM-011a (anywhere, automated by the exam data check, to write): a fixture question of 51 words fails the build; a fixture option of 21 words fails; the real file passes.
@@ -180,4 +180,4 @@ Test scenarios:
 
 ## Questions for round two
 
-The questions on this file are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md), Q-109 to Q-118, each with a recommendation and an Answer line.
+The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-109 to Q-118. The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).

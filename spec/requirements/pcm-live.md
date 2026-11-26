@@ -210,7 +210,7 @@ Test scenarios:
 
 ### R-LIVE-015 A stale value shows "No data" at once
 
-Source: answer to Q-27 ("No need to wait 15 minutes"); W-015. The rule below is proposed and waits for the author's confirmation in round two (Q-64 in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md)).
+Source: answer to Q-27 ("No need to wait 15 minutes"); W-015. The rule below is proposed and waits for the author's confirmation in round two (Q-64 in the [interview, round 2](../interview-round-2.md): decided, 10 minutes).
 
 Given PCM-Adapter collects every 5 minutes, and marks its own inputs stale after 10 minutes ([STALE_AFTER_MINUTES in ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L32))
 When the newest sample of a key on an object is older than 10 minutes (one collection cycle plus a margin of one cycle) at the time PCM reads it
@@ -490,4 +490,4 @@ Each line is a change to make in private-cloud-management in a later pull reques
 
 ## Questions for round two
 
-The questions on this file are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md), Q-63 to Q-71 (and Q-57), each with a recommendation and an Answer line.
+The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-63 to Q-71 (and Q-57). The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).

@@ -1,43 +1,74 @@
-# Intent
+# Intent and principles
 
-Why each part exists, for whom, what success looks like, and what is not done. Built from the repositories' own documents and the author's answers in the [interview, round 1](interview-round-1.md). IDs are explained in the [glossary](glossary.md).
+Why the product exists, what it must achieve, what it will not do, and the principles that decide a trade-off. Mostly in the author's own words from the interview of 2026-11-26. IDs are explained in the [glossary](glossary.md).
 
-## The product
+## Origin
 
-Help large enterprises run their VMware private cloud well, with the knowledge of a senior expert available to every role, through two web apps and one knowledge service.
+The material began as the first edition of the author's book in 2014. Each year it has become deeper, broader and easier to consume, and the reaction has been almost entirely positive. But it lands only when the author explains or demonstrates it, and that does not scale. The software exists so that customers can deploy and use the knowledge without him.
 
-- **Stage 1 (now):** a demo of PCM in the lab, and the public site isvara.io, both using Agent E2 through a cloud model ([DECISIONS](../DECISIONS.md), W-002).
-- **Success for stage 1** ([W-012](../DECISIONS.md), from answers Q-I1 and Q-I2):
-  - VMware colleagues and customers who see the PCM demo find it useful and want to fork the repositories privately, to customise and deploy in their own private cloud.
-  - In the live demo, Agent E2 explains a real lab KPI correctly.
-  - Every contract between the repositories is checked automatically.
-- **Not done:** the customer's on-premises deployment with a local model (stage 2).
+## Goal
 
-## PCM (private-cloud-management)
+- **In the customer's private cloud:** VMware administrators have the author's knowledge inside their own environment, made visible through PCM for every role of the SP5 framework.
+- **In public:** isvara.io is recognised worldwide as the authority on large-scale private cloud performance and capacity management, based on VCF.
+- **The test of both:** a customer gets value without the author. They install from the manual without contacting him; Agent E2 answers the questions people ask him after his demos; PCM shows each role what he would have pointed at.
+- **Horizon:** a few years. Release 1.0 is the first step.
 
-- **For:** operations roles in a large global enterprise: NOC (L1), L2 platform, capacity, and the CIO ([PCM D-005, D-012](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md)).
-- **Does:** one workspace per role, each showing only the data that role acts on, with Agent E2 as a team member that explains what the screen shows. Two demos: the synthetic ACME demo for every role, and a live demo of the L2 workspace on the author's lab ([W-015](../DECISIONS.md)).
-- **Who sees the demo:** VMware colleagues and customers. Afterwards they should say it is useful and that they want to fork it privately to customise and deploy (Q-I2).
-- **Not done (from PCM's decisions):** VCF lifecycle management and security operations (D-008); applications, mainframe and VDI (D-034); end-user help desk and business transactions (D-030); compliance until after release 1.0 (D-022). In the live demo: every role but L2, and everything but performance and capacity management (Q-22, Q-33).
+## The parts
 
-## Agent E2
+| Part | What it is | Who takes it |
+|---|---|---|
+| Agent E2 | The knowledge, codified: the foundation | Customers, with PCM |
+| PCM-Adapter | Agent E2's KPIs, computed inside VCF Operations | Customers; also installable alone |
+| PCM | The web app that shows the knowledge for each role | Customers, as a Linux container |
+| isvara.io | The public place to learn, ask, practise and contribute | Everyone; never installed or forked |
+| Books and spreadsheets | The author's own living editions, updated by hand | Downloaded from isvara.io |
 
-- **For:** PCM and isvara.io, as their one source of domain knowledge ([W-001](../DECISIONS.md)).
-- **Does:** answers like a senior VMware performance and capacity expert: the facts, the mechanism, the evidence and what to check next; the fix stays the human's decision ([MISSION.md](https://github.com/e1-rahabok/agent-e2/blob/main/MISSION.md)). Holds a conversation over several turns, and reads CSV files and VMware screenshots (Q-I1).
-- **Success for stage 1** ([W-013](../DECISIONS.md), from answers Q-I3, Q-5, Q-7): its free-text answers pass an automated grader with a strong model as judge, on Gemma 4 31B or a later version. Accuracy comes before speed: an answer may take minutes, and the user always sees that it is still working.
-- **Not done:** the final fix in troubleshooting. Fine-tuning the model is not planned; the reasons, with the pros and cons, are in [design/fine-tuning.md](design/fine-tuning.md).
+- Customers take all three product repositories, and the parent workspace, as one product ([DECISIONS](../DECISIONS.md), W-025).
+- PCM-Adapter alone is the simplest deployment: one pak file in VCF Operations, no Linux and no container, with the KPIs, dashboards and reports but without Agent E2. Its documentation presents it as one part of the whole.
+- Domain knowledge lives in Agent E2 only. PCM-Adapter's documentation explains what it computes and how to install it, and points to the knowledge on isvara.io (W-001).
+- The books, spreadsheets and diagrams are a separate, living body of the author's work. They reach isvara.io once or twice a month, and the site refreshes from there weekly.
 
-## PCM-Adapter
+## Success
 
-- **For:** VCF Operations administrators, and PCM, which reads what it publishes.
-- **Does:** computes the KPIs that Agent E2 defines, and publishes them on the vCenter objects in VCF Operations.
-- **May change:** anything, including its identity in VCF Operations (Q-I4, Q-2; [W-016](../DECISIONS.md)).
-- **Not done:** its own definitions. Every limit, band and rule comes from Agent E2's catalog (Q-15).
+- Customers who see the PCM demo find it useful and want to copy it privately, to customise and deploy in their own private cloud (W-012).
+- With PCM, a team becomes proactive: each person ends up with a dashboard that answers exactly their own questions, and a weekly one for deeper analysis (personal dashboards come after 1.0).
+- Agent E2 explains a real lab KPI correctly in the live demo.
+- isvara.io is where administrators come back to: for tools, for an expert to ask, and to learn.
 
-## isvara.io
+## Failure
 
-- **For:** VMware administrators and architects learning to run a private cloud (Q-I5).
-- **Does:** serves the reasons visitors come ([W-022](../DECISIONS.md)): read articles, books and infographics; ask Agent E2; listen to a podcast; solve with calculators; catch up on what changed; fork the base; find with search; practise with a quiz; engage through a survey; download the books. Connects to no live system ([W-004](../DECISIONS.md)). Holds no knowledge of its own (Q-18).
-- **Success** (Q-I5): every knowledge file becomes a page a person can read and bookmark; a reader always knows where they are in the whole; the knowledge can be explored in several ways; Agent E2 answers with sources a reader can open; the exam exists.
-- **Not done:** live connections, sign-in, paid content.
-- **Plan:** each feature, before and after, waits for the author's review in [design/isvara-revamp.md](design/isvara-revamp.md).
+- **Agent E2 fails if it gives confident wrong answers.** Saying "I don't know" is acceptable; an expert says it too.
+- **isvara.io fails today** because nothing brings people back regularly, and they cannot tell what has changed.
+- **Every requirement can pass and the product still fail** if a customer cannot get value without the author.
+
+## Audience
+
+- **Agent E2 and PCM:** the VMware administrator first. The CIO is not a focus for Agent E2. After L2, the next role in PCM is the tenant or application owner.
+- **Customers:** large global enterprises. Their difficulty is organisational, with many teams and many people, which is why PCM is organised by role. Mid-sized companies are not the focus.
+- **isvara.io:** VMware administrators and architects who want to master the operation of a private cloud.
+
+## Scope
+
+- **Day 2 only:** running, monitoring, troubleshooting and planning. Design, installation, building, configuration and upgrades (Day 0 and Day 1) are out, because they depend on the release. Agent E2 says so when asked, and points to Broadcom's documentation (W-026).
+- **Stage 1 only:** a lab demo, with a cloud model through Vercel AI Gateway. The customer's on-premises deployment with a local model is stage 2 (W-002).
+- **PCM replaces VCF Operations narrowly:** performance and capacity management, for the L2 role in the live demo. It does not replace lifecycle, fleet management or SDDC Manager.
+- **After 1.0:** personal dashboards in PCM, what-if analysis, the "people" side of operations (convincing application owners), and areas beyond vSphere at depth.
+
+## Principles
+
+These decide a conflict between two good things, without asking the author.
+
+1. **Free.** No paid content, no paid tier.
+2. **Accurate before complete.** A confident wrong answer is worse than none. Say what is unknown.
+3. **The customer's data stays with the customer.** In stage 2 nothing leaves their network; on isvara.io, visitors remove their own IP addresses and host names before uploading, and the site keeps no copy of what they ask about.
+4. **Forkable.** Customers can copy the product privately and make it theirs. Nothing in the product depends at run time on the author's services.
+5. **One master copy of each fact.** Knowledge lives in Agent E2; every other copy is generated from it or checked against it (W-001).
+6. **The specification is what people maintain.** AI writes the code; the author and Claude keep the specification true (PCM D-010).
+7. **Challenge with evidence.** Few rules hold in operations management. Any assumption, the author's included, can be challenged with evidence (Agent E2's [MISSION.md](https://github.com/e1-rahabok/agent-e2/blob/main/MISSION.md)).
+
+## Measures of authority
+
+- **Search visibility,** from Google Search Console: isvara.io's position for about 20 searches that define the field.
+- **Returning visitors and questions asked,** from the site's own counters and question log.
+- **Contributions** from the vCommunity, once they open.
+- **Referral by Broadcom** is the author's, through marketing.
