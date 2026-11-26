@@ -13,7 +13,7 @@ Every short name and ID used in this workspace, with what it means and where it 
 | <a id="c5"></a>C5 | Contract 5, **the model gateway**: Vercel AI Gateway, through which Agent E2 calls its model | [CONTRACTS.md](../CONTRACTS.md) |
 | W-001 to W-0nn | A decision that binds more than one repository | [DECISIONS.md](../DECISIONS.md) |
 | D-001 to D-1nn | A decision inside PCM | [PCM decisions.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md) |
-| Q-1, Q-I1 and so on | A question in the interview; Q-I questions are about intent | [Round 1](interview-round-1.md), [round 2](interview-round-2.md), [open](../OPEN-QUESTIONS.md) |
+| Q-1, Q-I1 and so on | A question in the interview; Q-I questions are about intent | Rounds [1](interview-round-1.md), [2](interview-round-2.md), [3](interview-round-3.md) |
 | M0 to M10 | A milestone of the roadmap | [ROADMAP.md](../ROADMAP.md) |
 | R-AREA-nnn | A requirement, for example R-LIVE-003 | [requirements/](requirements) |
 | T-AREA-nnnx | A test scenario of a requirement, for example T-LIVE-003a | [requirements/](requirements) |
@@ -22,6 +22,7 @@ Every short name and ID used in this workspace, with what it means and where it 
 
 | Word | Meaning |
 |---|---|
+| PCM | Private Cloud Manager, the web app (W-028) |
 | Stage 1 | Now: PCM as a lab demo, a cloud model, isvara.io public on Vercel |
 | Stage 2 | Later, out of scope: customers run everything on premises, with a local model |
 | ACME | The synthetic customer, a global bank, whose data PCM generates for the main demo |

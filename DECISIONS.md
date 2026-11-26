@@ -173,3 +173,17 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-26
 - **Decision:** isvara.io follows the [isvara.io plan](spec/design/isvara-revamp.md): the three learning paths as navigation; articles rewritten from knowledge files; infographics as a core feature; Ask Agent E2; contributions; a quiz with a mastery map, the exam and the 2am game; calculators on the catalog; a weekly summary of changes. Dropped: the podcast, the Operations Score, the cost calculator and SLA builder, the self-assessment, a global leaderboard. The [knowledge model](spec/knowledge-model.md) (three paths, four lenses as a completeness check, depth, experience, scale notes) is shared by Agent E2, isvara.io and the knowledge factory.
 - **Reason:** The author's paths and answers of 2026-11-26, and Claude's decisions at the author's request on the details. Replaces W-022.
+
+## W-028 The product's name
+
+- **Date:** 2026-11-26
+- **Decision:** The product is Private Cloud Manager, PCM for short. The books keep "Private Cloud Management" as the name of the discipline. PCM's own D-001 ("Private Cloud Management") is updated in PCM's decision log in M2.
+- **Reason:** The author, 2026-11-26: "Manager, not Management" (round 3, Q-60).
+
+## W-029 No licence file for now
+
+- **Date:** 2026-11-26
+- **Decision:** The repositories keep no licence file for now, as today.
+- **Reason:** The author, 2026-11-26 (round 3, Q-133).
+- **Consequence:** without a licence, ordinary copyright applies: GitHub's terms let others view a public repository and fork it on GitHub, but give no permission to copy it elsewhere, change it or run it. That conflicts with principle 4 (forkable: customers copy the product privately and customise it) and with the contributions agreement of W-024. Revisit before the first customer copies the product; this is not legal advice.
+

@@ -69,7 +69,7 @@ No code is written in M1.
 - [x] [Intent and principles](spec/intent.md), the [knowledge model](spec/knowledge-model.md), and the [isvara.io plan](spec/design/isvara-revamp.md).
 - [x] 105 requirements with 176 test scenarios, each with its source.
 - [ ] Requirements updated for the decisions of 2026-11-26 (W-024 to W-027) and the round 2 decisions, and isvara.io's requirements written from its plan.
-- [ ] The author answers the seven [open questions](OPEN-QUESTIONS.md).
+- [x] The author answered the last questions ([round 3](spec/interview-round-3.md)); the lab facts (Q-120, Q-122) come when M9 starts.
 - [ ] The author approves the requirements of M2, the first build milestone.
 
 ### M2 Contracts tightened and repositories cleaned
@@ -77,6 +77,7 @@ No code is written in M1.
 - Requirements: R-WS-001 to R-WS-005; R-KPI-001 to R-KPI-007; R-ADP-005 to R-ADP-012.
 - PCM-Adapter's knowledge pages (its concept pages and the explanations in its metric pages) move to Agent E2; the adapter keeps what it computes and how to install it (W-025).
 - Agent E2's plan rewritten for stage 1, and its older benchmarks removed (Q-58, Q-59).
+- The product renamed Private Cloud Manager in PCM's documents and decision log (W-028); Agent E2's run queue row renamed "Peak run queue length per vCPU" ([round 3](spec/interview-round-3.md), Q-88).
 - The writing rules move to this workspace for every repository, and each repository runs the shared checks on its pull requests.
 
 ### M8 PCM-Adapter's new identity and data states
@@ -123,7 +124,8 @@ No code is written in M1.
 
 ## Waiting for the author
 
-- The seven [open questions](OPEN-QUESTIONS.md): the product's name, one field question, lab facts, the GitHub organization, the licence.
+- The lab facts for M9 ([OPEN-QUESTIONS.md](OPEN-QUESTIONS.md), Q-120 and Q-122): Claude asks when M9 starts.
+- The licence, before the first customer copies the product (W-029).
 - Approvals at the time of the work: removing the old pack from the lab (Q-79), turning on the packet counters (Q-85), the exam's ten questions (Q-113), grading 20 answers once (Q-92).
 - Review of each pull request marked as a major change.
 

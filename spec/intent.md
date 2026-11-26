@@ -19,7 +19,7 @@ The material began as the first edition of the author's book in 2014. Each year 
 |---|---|---|
 | Agent E2 | The knowledge, codified: the foundation | Customers, with PCM |
 | PCM-Adapter | Agent E2's KPIs, computed inside VCF Operations | Customers; also installable alone |
-| PCM | The web app that shows the knowledge for each role | Customers, as a Linux container |
+| PCM (Private Cloud Manager) | The web app that shows the knowledge for each role | Customers, as a Linux container |
 | isvara.io | The public place to learn, ask, practise and contribute | Everyone; never installed or forked |
 | Books and spreadsheets | The author's own living editions, updated by hand | Downloaded from isvara.io |
 
@@ -61,7 +61,7 @@ These decide a conflict between two good things, without asking the author.
 1. **Free.** No paid content, no paid tier.
 2. **Accurate before complete.** A confident wrong answer is worse than none. Say what is unknown.
 3. **The customer's data stays with the customer.** In stage 2 nothing leaves their network; on isvara.io, visitors remove their own IP addresses and host names before uploading, and the site keeps no copy of what they ask about.
-4. **Forkable.** Customers can copy the product privately and make it theirs. Nothing in the product depends at run time on the author's services.
+4. **Forkable.** Customers can copy the product privately and make it theirs. Nothing in the product depends at run time on the author's services. Today the repositories have no licence (W-029), which gives no such permission; it is revisited before the first customer copies the product.
 5. **One master copy of each fact.** Knowledge lives in Agent E2; every other copy is generated from it or checked against it (W-001).
 6. **The specification is what people maintain.** AI writes the code; the author and Claude keep the specification true (PCM D-010).
 7. **Challenge with evidence.** Few rules hold in operations management. Any assumption, the author's included, can be challenged with evidence (Agent E2's [MISSION.md](https://github.com/e1-rahabok/agent-e2/blob/main/MISSION.md)).
