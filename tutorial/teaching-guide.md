@@ -2,7 +2,7 @@
 
 For anyone using this tutorial in a workshop or a course.
 
-## What participants should be able to do afterwards
+## Learning outcomes
 
 1. Explain when iterative prompting is enough and when a specification pays for itself.
 2. Write a one-page map of a system that keeps what exists now apart from what is planned.
@@ -14,12 +14,10 @@ For anyone using this tutorial in a workshop or a course.
 
 ## Format: one day, or four sessions of 90 minutes
 
-| Session | Chapters | Activity |
-|---|---|---|
-| 1. Why, and the map | 1, 2, 3 | Participants ask an agent to describe a sample repository, then count its mistakes and find the documents that caused them |
-| 2. Interview, seams and owners | 4, 5 | The agent surveys the sample for open questions; participants sort them into judgement questions and questions the agent should have answered itself; then draw the seams and choose owners |
-| 3. Requirements and checks | 6, 7 | Turn a vague goal into requirements with scenarios; write a small check; break something on purpose |
-| 4. Running the work | 8, 9, 10, 11 | Run one slice with an agent, following the session shape; give the agent a suggestion and see whether it argues or obeys; review the result in a fresh session |
+1. **The problem and the map** (chapters 1 to 3). Participants ask an agent to describe a sample repository, then count its mistakes and find the documents that caused them.
+2. **Interview, seams and owners** (chapters 4 and 5). The agent surveys the sample for open questions. Participants sort them into judgement questions and questions the agent should have answered itself, then draw the seams and choose owners.
+3. **Requirements and checks** (chapters 6 and 7). Turn a vague goal into requirements with scenarios, write a small check, and break something on purpose.
+4. **Running the work** (chapters 8 to 11). Run one slice with an agent, following the session shape. Give the agent a suggestion and see whether it argues or obeys. Review the result in a fresh session.
 
 ## Materials
 

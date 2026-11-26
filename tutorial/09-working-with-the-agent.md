@@ -1,6 +1,6 @@
 # 9. Working with the agent
 
-## Who decides what
+## Division of decisions
 
 | The person | The agent |
 |---|---|
@@ -45,7 +45,21 @@ To compare models, give two of them the same slice and the same files, and count
 
 ## Documents for people and machines
 
-Every document here is read by both. Two rules from the author's own repositories are now enforced by a script ([tools/docs.py](../tools/docs.py)):
+Some documents are mainly for people: the readme, the map, the decisions, the design notes, this tutorial, commit messages. Others are mainly for the agent: its working rules (CLAUDE.md), the requirements, the templates. They are written differently, and each kind has its own rules.
+
+**For people,** the rules are the ones the author had already worked out in the knowledge service's repository, after fixing AI-written text there several times ([writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md)). In short:
+
+- plain sentences, with the fact itself rather than filler;
+- none of the phrases on a list of typical AI wording (each listed with its plain replacement), kept in one file in that repository;
+- no slogans and no "X, not Y" constructions;
+- headings that name the topic, as in a reference book: "Stop conditions" rather than "When the agent must stop";
+- short table cells, with bullets instead when the text is long, because GitHub squeezes wide tables.
+
+A script ([tools/style.py](../tools/style.py)) reads the phrase list from that repository, so the rules exist in one place, and checks every document for people on each pull request. It cannot spot a slogan or an "X, not Y"; those need a reader, who should judge each line together with the lines around it.
+
+**For the agent,** the aim is to be followed exactly: one rule per bullet, the trigger before the action ("Before each commit, run…"), exact file paths and names, and no history or attribution the agent has to skip.
+
+Two rules apply to both kinds, and a second script enforces them ([tools/docs.py](../tools/docs.py)):
 
 - Every file reference is a clickable link: relative inside the repository, a full GitHub address for another repository. A reviewer clicks instead of searching.
 - Every diagram is an SVG drawn by a script ([tools/diagrams.py](../tools/diagrams.py)), with its text generated from the SVG and placed underneath in a folded block. People see the picture and a model reads the text. The check fails if the two no longer match. There are no drawings made of text characters, which break on narrow screens and are hard for a model to read.

@@ -13,7 +13,7 @@ They need different fixes, so it helps to separate them.
 1. **The source is wrong.** A fact in the knowledge base is false. Books written by hand carry this risk too.
 2. **The derivation is wrong.** A correct fact is changed on its way into an article, a quiz question or a summary: something added, dropped or bent. AI adds this risk, and it grows with every new form the same knowledge is published in.
 
-## What works without AI
+## Practices without AI
 
 The established practices still apply:
 
@@ -27,7 +27,7 @@ The established practices still apply:
 
 None of these scales to hundreds of pages with one reviewer who has no time, which was this project's situation.
 
-## What AI adds
+## Practices with AI
 
 AI cannot replace an expert's judgement, but it can reduce how much of that judgement each page needs.
 

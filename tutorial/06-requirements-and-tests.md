@@ -32,7 +32,7 @@ A few things to notice:
 - **Each scenario says where it runs.** "Anywhere" means on any machine, with fakes. "Lab" means it needs the real environment. Prefer "anywhere" when a fake is cheap and honest, and keep a lab scenario for what a fake cannot prove.
 - **The numbers are pinned.** "Stale" means more than 10 minutes, not "too old". Where the number was not yet agreed, the requirement says so and links to the open question.
 
-## How to write them
+## Writing guidance
 
 - Start from what a user sees. "The tab shows the last 24 hours" can be checked. "Integrate the API" cannot.
 - Say what must not change: existing behaviour that stays, defaults that stay defaults.
