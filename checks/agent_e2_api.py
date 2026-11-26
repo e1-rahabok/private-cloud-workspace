@@ -119,9 +119,9 @@ def run(url: str, client) -> list[str]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--repos", type=Path, default=Path(__file__).resolve().parents[2],
-                        help="folder that holds the clones agent-e2 and private-cloud-management (default: next to this repository)")
+                        help="folder that holds the clones agent-e2 and private-cloud-manager (default: next to this repository)")
     args = parser.parse_args()
-    agent_e2, pcm = args.repos / "agent-e2", args.repos / "private-cloud-management"
+    agent_e2, pcm = args.repos / "agent-e2", args.repos / "private-cloud-manager"
     for repo in (agent_e2, pcm):
         if not repo.is_dir():
             print(f"ERROR: {repo} not found. Clone it, or pass --repos.")

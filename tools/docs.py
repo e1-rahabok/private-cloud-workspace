@@ -24,7 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PARENT = ROOT.parent
 OWNER = "e1-rahabok"
-CHILDREN = ["agent-e2", "PCM-Adapter", "private-cloud-management", "isvara"]
+CHILDREN = ["agent-e2", "PCM-Adapter", "private-cloud-manager", "isvara"]
 sys.path.insert(0, str(PARENT / "agent-e2" / "project" / "tools"))
 from diagram_text import svg_to_text  # noqa: E402
 

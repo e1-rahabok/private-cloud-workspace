@@ -6,7 +6,7 @@ Decisions that bind more than one repository. A decision inside one repository g
 |---|---|
 | agent-e2 | [project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md) |
 | PCM-Adapter | Its issues and pull requests |
-| private-cloud-management | [decisions.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md) |
+| private-cloud-manager | [decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md) |
 | isvara | [PLAN.md](https://github.com/e1-rahabok/isvara/blob/main/PLAN.md) |
 
 One entry each, newest at the bottom. A changed decision is edited in place; git keeps the history. Each entry has a heading with its ID, the decision, and the reason. "Q-" IDs are the author's answers in the [interview, round 1](spec/interview-round-1.md); other IDs are explained in the [glossary](spec/glossary.md).
@@ -177,7 +177,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## W-028 The product's name
 
 - **Date:** 2026-11-26
-- **Decision:** The product is Private Cloud Manager, PCM for short. The books keep "Private Cloud Management" as the name of the discipline. PCM's own D-001 ("Private Cloud Management") is updated in PCM's decision log in M2.
+- **Decision:** The product is Private Cloud Manager, PCM for short. The books keep "Private Cloud Management" as the name of the discipline. PCM's own D-001 ("Private Cloud Management") is updated in PCM's decision log in M2. The repository was renamed from private-cloud-management to [private-cloud-manager](https://github.com/e1-rahabok/private-cloud-manager) on 2026-11-26; GitHub redirects the old address.
 - **Reason:** The author, 2026-11-26: "Manager, not Management" (round 3, Q-60).
 
 ## W-029 No licence file for now

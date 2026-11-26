@@ -63,7 +63,7 @@ Two kinds of document (W-023):
 ## Git
 
 - One branch and one pull request per change per repository. Across repositories: the same branch name in each, and each pull request links the others.
-- Merge in ownership order: agent-e2, PCM-Adapter, private-cloud-management, isvara.
+- Merge in ownership order: agent-e2, PCM-Adapter, private-cloud-manager, isvara.
 - Merge your own pull request once its checks have reported and passed (W-009). Never merge while checks are pending or failing.
 - Put a warning at the top of the pull request and in the report when the change is major: a contract's shape changes; a decision is added, changed or reversed; files are deleted or archived; or more than one child repository changes.
 - Wait for the author before anything that deletes data or changes the lab.

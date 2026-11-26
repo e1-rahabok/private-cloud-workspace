@@ -4,7 +4,7 @@ Rules (spec/requirements/README.md and requirement R-WS-003):
 - A requirement is a heading "### R-AREA-nnn Title". Its ID is unique across all files.
 - It has a "Source:" line naming at least one existing question (Q-), workspace decision (W-) or
   PCM decision (D-). Questions are found in spec/interview-round-*.md and OPEN-QUESTIONS.md,
-  workspace decisions in DECISIONS.md, PCM decisions in the private-cloud-management clone.
+  workspace decisions in DECISIONS.md, PCM decisions in the private-cloud-manager clone.
 - It has at least one test scenario: a line "- T-AREA-nnnx (anywhere|lab, ...)" whose number is
   the requirement's.
 - Every scenario belongs to an existing requirement.
@@ -19,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REQ_DIR = ROOT / "spec" / "requirements"
-PCM_DECISIONS = ROOT.parent / "private-cloud-management" / "decisions.md"
+PCM_DECISIONS = ROOT.parent / "private-cloud-manager" / "decisions.md"
 
 REQ = re.compile(r"^### (R-[A-Z0-9]+-\d{3})\b", re.M)
 SCEN = re.compile(r"^- (T-[A-Z0-9]+-\d{3}[a-z]) \(([a-z]+)", re.M)

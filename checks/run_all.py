@@ -9,7 +9,7 @@ The clones sit next to this repository by default:
     <folder>/private-cloud-workspace   (this repository)
     <folder>/agent-e2
     <folder>/PCM-Adapter
-    <folder>/private-cloud-management
+    <folder>/private-cloud-manager
 
 A missing clone is cloned from GitHub (depth 1), unless --no-clone. --pull updates the existing
 clones to their default branch first; without it the checks run on what the clones hold, which is
@@ -28,7 +28,7 @@ OWNER = "e1-rahabok"
 HERE = Path(__file__).resolve().parent
 CHECKS = [
     ("C1 KPI definitions", "kpi_definitions.py", ["agent-e2", "PCM-Adapter"]),
-    ("C3 Agent E2 API", "agent_e2_api.py", ["agent-e2", "private-cloud-management"]),
+    ("C3 Agent E2 API", "agent_e2_api.py", ["agent-e2", "private-cloud-manager"]),
 ]
 
 
