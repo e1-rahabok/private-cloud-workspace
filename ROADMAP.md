@@ -77,7 +77,7 @@ No code is written in M1.
 - Requirements: R-WS-001 to R-WS-005; R-KPI-001 to R-KPI-007; R-ADP-005 to R-ADP-012.
 - PCM-Adapter's knowledge pages (its concept pages and the explanations in its metric pages) move to Agent E2; the adapter keeps what it computes and how to install it (W-025).
 - Agent E2's plan rewritten for stage 1, and its older benchmarks removed (Q-58, Q-59).
-- The product renamed Private Cloud Manager in PCM's documents and decision log (W-028); Agent E2's run queue row renamed "Peak run queue length per vCPU" ([round 3](spec/interview-round-3.md), Q-88).
+- The product renamed Private Cloud Manager in PCM's documents and decision log, and links to the old repository name updated in the other repositories (W-028); Agent E2's run queue row renamed "Peak run queue length per vCPU" ([round 3](spec/interview-round-3.md), Q-88).
 - The writing rules move to this workspace for every repository, and each repository runs the shared checks on its pull requests.
 
 ### M8 PCM-Adapter's new identity and data states

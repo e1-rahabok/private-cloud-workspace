@@ -46,7 +46,7 @@ You asked to remove them (Q-12). The survey listed them in [project/archive](htt
 
 ### Q-60 Is PCM's repository renamed?
 
-You changed the heading in [spec/intent.md](intent.md) to "private-cloud-manager"; the repository is [private-cloud-management](https://github.com/e1-rahabok/private-cloud-management), and PCM's D-001 says "Private Cloud Management".
+You changed the heading in [spec/intent.md](intent.md) to "private-cloud-manager"; the repository is [private-cloud-manager](https://github.com/e1-rahabok/private-cloud-manager), and PCM's D-001 says "Private Cloud Management".
 
 - **Recommendation:** keep the name as it is, unless you want the repository renamed; then it is renamed like PCM-Adapter was.
 
@@ -99,7 +99,7 @@ You said: no waiting, say "No data" (Q-27). A rule still needs a number. [R-LIVE
 
 ### Q-66 Which object types does the live tree show between the VCF instance and the cluster?
 
-"Use the inventory from VCF Operations" (Q-25) may include datacenters and folders, which [PCM D-087](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L94) leaves out. **Recommendation:** VCF Operations' VCF chain (VCF instance, workload domain, vCenter, cluster, host, VM), without datacenters and folders; the exact types are read from the lab and recorded.
+"Use the inventory from VCF Operations" (Q-25) may include datacenters and folders, which [PCM D-087](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L94) leaves out. **Recommendation:** VCF Operations' VCF chain (VCF instance, workload domain, vCenter, cluster, host, VM), without datacenters and folders; the exact types are read from the lab and recorded.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): the VCF chain, without datacenters and folders.
 

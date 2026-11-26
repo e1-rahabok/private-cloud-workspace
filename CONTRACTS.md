@@ -14,7 +14,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 
 - **Owner:** agent-e2, [`knowledge/catalog/thresholds-performance.yaml`](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml) (section `kpi`), `thresholds-risk.yaml` and `thresholds-capacity.yaml` (section `model`). One row per sub-metric: name with unit, group, direction, five limits per interval, `excluded_when_green`.
 - **Implementer:** PCM-Adapter, `Management Pack/app/metrics/`: one module per KPI, a `METRICS` table of `Metric` rows (name, unit, five limits, `skip_when_green`) and a `LABELS` table that gives a row its catalog name.
-- **Consumer:** PCM shows the parts under the catalog names (PCM D-113, D-115) in [`spec/catalog/l2.yaml`](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/catalog/l2.yaml). Not checked yet: PCM names parts in prose (ROADMAP M2).
+- **Consumer:** PCM shows the parts under the catalog names (PCM D-113, D-115) in [`spec/catalog/l2.yaml`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml). Not checked yet: PCM names parts in prose (ROADMAP M2).
 - **The check** matches each sub-metric by name (the adapter's label against the catalog name without its unit) and compares the five limits and excluded-when-green, for Cluster Performance, ESXi Performance, VM Performance, Guest OS Performance, Cluster Risk and Cluster Consumption.
 - **To change a KPI:** change the catalog first, then the adapter, in the same session, with the check run before both merges.
 - **Status:** limits and excluded-when-green agree for all 49 sub-metrics of 6 KPIs; 11 known name gaps, to close by [R-KPI-003](spec/requirements/kpi-definitions.md).
@@ -29,7 +29,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 ## C3 Agent E2 API
 
 - **Owner:** agent-e2, [`harness/answer_service.py`](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py) (its docstring is the specification). Endpoints: `POST /v1/answer`, `POST /v1/topic`, `POST /v1/suggest` (page and card), `GET /v1/health`.
-- **Consumer:** PCM, [`build/pcm_proto/agent_e2.py`](https://github.com/e1-rahabok/private-cloud-management/blob/main/build/pcm_proto/agent_e2.py), generated from [`spec/catalog/settings.yaml`](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/catalog/settings.yaml) and [`spec/workspaces/l2/frame.md`](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/workspaces/l2/frame.md).
+- **Consumer:** PCM, [`build/pcm_proto/agent_e2.py`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/pcm_proto/agent_e2.py), generated from [`spec/catalog/settings.yaml`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/settings.yaml) and [`spec/workspaces/l2/frame.md`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/workspaces/l2/frame.md).
 - **The check** starts the real service in mock mode (no model, no network) and calls it with PCM's own client code. It checks every field PCM reads, by name and type, on the raw responses: PCM's client turns errors into `source: unavailable`, which would hide a broken contract.
 - **Status:** running; 4 endpoints, 0 differences.
 

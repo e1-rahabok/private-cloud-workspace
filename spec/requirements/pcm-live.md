@@ -6,7 +6,7 @@ Milestones ([ROADMAP.md](../../ROADMAP.md)): M3 is one lab cluster's Cluster Per
 
 Files involved:
 
-- PCM's L2 specification: [spec/catalog/l2.yaml](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/catalog/l2.yaml), [spec/workspaces/l2/monitor.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/workspaces/l2/monitor.md), [spec/workspaces/l2/frame.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/workspaces/l2/frame.md), [spec/api/l2.yaml](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/api/l2.yaml).
+- PCM's L2 specification: [spec/catalog/l2.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml), [spec/workspaces/l2/monitor.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/workspaces/l2/monitor.md), [spec/workspaces/l2/frame.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/workspaces/l2/frame.md), [spec/api/l2.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/api/l2.yaml).
 - What PCM-Adapter publishes, and how it makes absent data and its check settings readable: [pcm-adapter.md](pcm-adapter.md), drafted in parallel. This file does not repeat it.
 - The contracts: [C2, KPI metric keys](../glossary.md#c2) (the keys PCM-Adapter publishes and PCM reads) and [C3, the Agent E2 API](../glossary.md#c3) (the calls PCM makes to Agent E2), in [CONTRACTS.md](../../CONTRACTS.md).
 
@@ -90,7 +90,7 @@ When it opens
 Then it has no class of service filter, and no text about Gold, Silver or Bronze
 And the lines across clusters (worst and percentile) cover every cluster under the selected object
 And no live object shows a region, location, class, environment or local time zone
-And times are shown in the viewer's time zone with the zone named, as in the synthetic demo ([PCM D-074, three rules from the first build's review](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L81))
+And times are shown in the viewer's time zone with the zone named, as in the synthetic demo ([PCM D-074, three rules from the first build's review](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L81))
 
 Test scenarios:
 - T-LIVE-006a (anywhere, automated by build/tests/live.page.test.mjs::test_no_class, to write). Data: the fake Suite API with two clusters under one VCF instance. Steps: open the VCF instance's Performance and Capacity tabs. Expected: no class filter; the words Gold, Silver and Bronze are absent; the worst line is the lower of the two clusters at each point.
@@ -154,7 +154,7 @@ Test scenarios:
 
 ### R-LIVE-011 A failed read shows "No data" for the whole page
 
-Source: answer to Q-27 ("If the data is stale, say no data"); [PCM D-041, wall behaviour: stale data turns grey, never green](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L47).
+Source: answer to Q-27 ("If the data is stale, say no data"); [PCM D-041, wall behaviour: stale data turns grey, never green](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L47).
 
 Given the Suite API times out (proposed limit 10 seconds), answers an HTTP error, refuses the login, or fails the certificate check
 When a live page loads
@@ -241,7 +241,7 @@ Source: answer to Q-30 ("Agree": longer windows ask for the maximum per slot, dr
 
 Given a window of 7 days, 30 days or 1 year
 When PCM reads a key for it
-Then it asks VCF Operations for the maximum of each slot (1 hour, 4 hours and 1 day, as in [l2.statistics](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/catalog/l2.yaml#L241))
+Then it asks VCF Operations for the maximum of each slot (1 hour, 4 hours and 1 day, as in [l2.statistics](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml#L241))
 And when the key's history starts inside the window, nothing is drawn before the first point, and the chart says "Data from {date}"
 
 Test scenarios:
@@ -289,7 +289,7 @@ Test scenarios:
 
 ### R-LIVE-021 The Periodic Cluster Check as the adapter publishes it
 
-Source: answer to Q-31 ("PCM gets from the PCM Adapter"); [PCM D-094, the Capacity tab reads the check and never recomputes it](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L101).
+Source: answer to Q-31 ("PCM gets from the PCM Adapter"); [PCM D-094, the Capacity tab reads the check and never recomputes it](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L101).
 
 Given a lab cluster with Periodic Cluster Check values for its latest window
 When its Capacity tab opens
@@ -303,7 +303,7 @@ Test scenarios:
 
 ### R-LIVE-022 The check labels use the adapter's own settings
 
-Source: answer to Q-31; [PCM D-095, which statistic, on which axis](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L102).
+Source: answer to Q-31; [PCM D-095, which statistic, on which axis](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L102).
 
 Given the Adapter Instance's Cluster Check Period, Cluster Check Time (UTC) and Cluster Check Worst Percent, made readable by PCM-Adapter ([pcm-adapter.md](pcm-adapter.md))
 When the Capacity tab labels a check value
@@ -331,7 +331,7 @@ Test scenarios:
 
 ### R-LIVE-024 Cluster Performance matches VCF Operations (M3)
 
-Source: answer to Q-35 ("okay"); [PCM D-131, percentiles labelled by rank](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L139).
+Source: answer to Q-35 ("okay"); [PCM D-131, percentiles labelled by rank](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L139).
 
 Milestone: M3.
 
@@ -347,7 +347,7 @@ Test scenarios:
 
 ### R-LIVE-025 The other KPIs match VCF Operations (M4)
 
-Source: answer to Q-35; [PCM D-124, the four pages of release 1.0](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L132). The page list waits for round two, because the author has not answered Q-21.
+Source: answer to Q-35; [PCM D-124, the four pages of release 1.0](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L132). The page list waits for round two, because the author has not answered Q-21.
 
 Milestone: M4.
 
@@ -361,7 +361,7 @@ Test scenarios:
 
 ### R-LIVE-026 Lines across clusters agree with vSphere World
 
-Source: answer to Q-23; [PCM D-091, the Performance tab above the cluster](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L98).
+Source: answer to Q-23; [PCM D-091, the Performance tab above the cluster](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L98).
 
 Milestone: M4.
 
@@ -375,7 +375,7 @@ Test scenarios:
 
 ### R-LIVE-027 Capacity Remaining, Time Remaining and VM Remaining are read
 
-Source: answer to Q-20 ("yes": live mode reads what the synthetic demo shows as placeholders); [PCM D-100, the KPI first on the Performance and Capacity tabs](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L107).
+Source: answer to Q-20 ("yes": live mode reads what the synthetic demo shows as placeholders); [PCM D-100, the KPI first on the Performance and Capacity tabs](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L107).
 
 Milestone: M4.
 
@@ -452,7 +452,7 @@ Test scenarios:
 Source: answer to Q-20 ("The synthetic remains as they are"); W-003.
 
 Given the live demo is added
-When the existing synthetic tests run (executive, noc, l2, capacity, store, docs, and the page tests in [build/README.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/build/README.md))
+When the existing synthetic tests run (executive, noc, l2, capacity, store, docs, and the page tests in [build/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/README.md))
 Then all pass, with no test or expected value changed
 
 Test scenarios:
@@ -460,33 +460,33 @@ Test scenarios:
 
 ## Changes to PCM's own specification
 
-Each line is a change to make in private-cloud-management in a later pull request. Nothing here is edited yet.
+Each line is a change to make in private-cloud-manager in a later pull request. Nothing here is edited yet.
 
 | File | Change |
 |---|---|
-| [decisions.md, D-076](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L83) and its [rationale](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L406) | Say that the live demo sends lab facts to the cloud model through the gateway (Q-39), and that facts never carry the VCF Operations credential, token or URL. |
-| [decisions.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md) | Add a PCM decision for the live demo that points to W-015 and this file. |
-| [decisions.md, D-062](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L69) | The VCF APIs are now checked against the lab VCF Operations; record its version. |
-| [decisions.md, D-087](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L94) | Add that the live demo's tree is VCF Operations' inventory from the VCF instance down (Q-25). |
-| [decisions.md, D-100 rationale](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L800) and [D-106](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md#L113) | "Release 1.0: placeholder values" becomes "synthetic demo: placeholder or story values; live demo: read from VCF Operations". |
-| [design/pcm-core.md, 3.2](https://github.com/e1-rahabok/private-cloud-management/blob/main/design/pcm-core.md#L46) | PCM reads every KPI, part and check value from PCM-Adapter and computes only for display (Q-23). |
-| [design/pcm-core.md, 3.3](https://github.com/e1-rahabok/private-cloud-management/blob/main/design/pcm-core.md#L67) | Stage 1 stores no metrics; the live demo reads through with a 60-second cache (Q-30). |
-| [design/pcm-core.md, 3.5](https://github.com/e1-rahabok/private-cloud-management/blob/main/design/pcm-core.md#L108) | Replace "two collection cycles" with the rule of R-LIVE-015 once confirmed. |
-| [design/pcm-core.md, 3.13](https://github.com/e1-rahabok/private-cloud-management/blob/main/design/pcm-core.md#L207) | The live demo is a separate demo, L2 only (Q-20, Q-22). |
-| [design/l2-workspace.md, 3.2](https://github.com/e1-rahabok/private-cloud-management/blob/main/design/l2-workspace.md#L97) | Fix the Compute path to match D-087, and add the live tree. |
-| [spec/catalog/l2.yaml](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/catalog/l2.yaml#L111) (L111, L264, L285) | Placeholders become synthetic-only; "PCM keeps its own history" becomes synthetic-only; add a `key` per part from the key list. |
-| [spec/catalog/settings.yaml](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/catalog/settings.yaml) | Add the live settings: the Suite API URL, user, password and CA file variable names, cache 60 s, stale after 10 minutes, check late after 30 minutes, read timeout 10 s. |
+| [decisions.md, D-076](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L83) and its [rationale](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L406) | Say that the live demo sends lab facts to the cloud model through the gateway (Q-39), and that facts never carry the VCF Operations credential, token or URL. |
+| [decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md) | Add a PCM decision for the live demo that points to W-015 and this file. |
+| [decisions.md, D-062](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L69) | The VCF APIs are now checked against the lab VCF Operations; record its version. |
+| [decisions.md, D-087](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L94) | Add that the live demo's tree is VCF Operations' inventory from the VCF instance down (Q-25). |
+| [decisions.md, D-100 rationale](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L800) and [D-106](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L113) | "Release 1.0: placeholder values" becomes "synthetic demo: placeholder or story values; live demo: read from VCF Operations". |
+| [design/pcm-core.md, 3.2](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L46) | PCM reads every KPI, part and check value from PCM-Adapter and computes only for display (Q-23). |
+| [design/pcm-core.md, 3.3](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L67) | Stage 1 stores no metrics; the live demo reads through with a 60-second cache (Q-30). |
+| [design/pcm-core.md, 3.5](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L108) | Replace "two collection cycles" with the rule of R-LIVE-015 once confirmed. |
+| [design/pcm-core.md, 3.13](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L207) | The live demo is a separate demo, L2 only (Q-20, Q-22). |
+| [design/l2-workspace.md, 3.2](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/l2-workspace.md#L97) | Fix the Compute path to match D-087, and add the live tree. |
+| [spec/catalog/l2.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml#L111) (L111, L264, L285) | Placeholders become synthetic-only; "PCM keeps its own history" becomes synthetic-only; add a `key` per part from the key list. |
+| [spec/catalog/settings.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/settings.yaml) | Add the live settings: the Suite API URL, user, password and CA file variable names, cache 60 s, stale after 10 minutes, check late after 30 minutes, read timeout 10 s. |
 | `spec/catalog/vcf-operations-keys.yaml` (new) | The key list generated from the lab (R-LIVE-023). |
-| [spec/workspaces/l2/monitor.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/workspaces/l2/monitor.md#L48) | The Details placeholder rule becomes synthetic-only; fix the stale band text and part counts at L45 and L46 (see D-108 and D-113). |
-| [spec/workspaces/l2/frame.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/workspaces/l2/frame.md) | Add the live frame: Monitor with Performance and Capacity tabs only, no class filter, the failed-read state. |
-| [spec/api/l2.yaml](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/api/l2.yaml#L6) | Add the live API prefix, the window start and end in responses, and the 400 for `now` and `enable`. |
-| [spec/api/openapi.yaml](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/api/openapi.yaml#L85) (L85, L101) | `now` is synthetic-only; the stale flag follows R-LIVE-015; the live source ID in `Meta.source`. |
-| [spec/objects/objects.yaml](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/objects/objects.yaml#L45) (L45, L47, L87) | A live object's ID is its resource ID; class of service and environment are synthetic-only. |
-| [spec/README.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/spec/README.md#L49) | Add the live demo to the status table; move each verified assumption out of "to verify". |
-| [build/README.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/build/README.md#L275) | Remove the gap "No VCF Operations connector in 1.0"; add the live tests. |
-| [deploy/README.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/deploy/README.md#L3) and [deploy/pcm.env.example](https://github.com/e1-rahabok/private-cloud-management/blob/main/deploy/pcm.env.example) | The live demo connects read-only to VCF Operations; add its variables to `pcm.env`. |
-| [demo/README.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/demo/README.md#L21) | The drop-down has the live entry; add a short live demo script. |
-| [tools/lab/Test-Lab.ps1](https://github.com/e1-rahabok/private-cloud-management/blob/main/tools/lab/Test-Lab.ps1#L2) | Read the DPAPI files of W-011 in place of Windows Credential Manager (Q-40). |
+| [spec/workspaces/l2/monitor.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/workspaces/l2/monitor.md#L48) | The Details placeholder rule becomes synthetic-only; fix the stale band text and part counts at L45 and L46 (see D-108 and D-113). |
+| [spec/workspaces/l2/frame.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/workspaces/l2/frame.md) | Add the live frame: Monitor with Performance and Capacity tabs only, no class filter, the failed-read state. |
+| [spec/api/l2.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/api/l2.yaml#L6) | Add the live API prefix, the window start and end in responses, and the 400 for `now` and `enable`. |
+| [spec/api/openapi.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/api/openapi.yaml#L85) (L85, L101) | `now` is synthetic-only; the stale flag follows R-LIVE-015; the live source ID in `Meta.source`. |
+| [spec/objects/objects.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/objects/objects.yaml#L45) (L45, L47, L87) | A live object's ID is its resource ID; class of service and environment are synthetic-only. |
+| [spec/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/README.md#L49) | Add the live demo to the status table; move each verified assumption out of "to verify". |
+| [build/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/README.md#L275) | Remove the gap "No VCF Operations connector in 1.0"; add the live tests. |
+| [deploy/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/deploy/README.md#L3) and [deploy/pcm.env.example](https://github.com/e1-rahabok/private-cloud-manager/blob/main/deploy/pcm.env.example) | The live demo connects read-only to VCF Operations; add its variables to `pcm.env`. |
+| [demo/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/demo/README.md#L21) | The drop-down has the live entry; add a short live demo script. |
+| [tools/lab/Test-Lab.ps1](https://github.com/e1-rahabok/private-cloud-manager/blob/main/tools/lab/Test-Lab.ps1#L2) | Read the DPAPI files of W-011 in place of Windows Credential Manager (Q-40). |
 
 ## Questions for round two
 

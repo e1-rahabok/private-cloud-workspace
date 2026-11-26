@@ -29,8 +29,8 @@ jobs:
           path: PCM-Adapter
       - uses: actions/checkout@v4
         with:
-          repository: e1-rahabok/private-cloud-management
-          path: private-cloud-management
+          repository: e1-rahabok/private-cloud-manager
+          path: private-cloud-manager
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"

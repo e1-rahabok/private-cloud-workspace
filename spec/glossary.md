@@ -12,7 +12,7 @@ Every short name and ID used in this workspace, with what it means and where it 
 | <a id="c4"></a>C4 | Contract 4, **knowledge content for isvara.io**: what Agent E2 gives isvara.io to build its pages from | [CONTRACTS.md](../CONTRACTS.md) |
 | <a id="c5"></a>C5 | Contract 5, **the model gateway**: Vercel AI Gateway, through which Agent E2 calls its model | [CONTRACTS.md](../CONTRACTS.md) |
 | W-001 to W-0nn | A decision that binds more than one repository | [DECISIONS.md](../DECISIONS.md) |
-| D-001 to D-1nn | A decision inside PCM | [PCM decisions.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/decisions.md) |
+| D-001 to D-1nn | A decision inside PCM | [PCM decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md) |
 | Q-1, Q-I1 and so on | A question in the interview; Q-I questions are about intent | Rounds [1](interview-round-1.md), [2](interview-round-2.md), [3](interview-round-3.md) |
 | M0 to M10 | A milestone of the roadmap | [ROADMAP.md](../ROADMAP.md) |
 | R-AREA-nnn | A requirement, for example R-LIVE-003 | [requirements/](requirements) |
