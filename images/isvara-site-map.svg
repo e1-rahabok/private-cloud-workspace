@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620" viewBox="0 0 960 620" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#555555"/></marker></defs>
+<rect width="960" height="620" fill="#ffffff"/>
+<text x="20" y="30" font-size="16" font-weight="bold" fill="#222" text-anchor="start">isvara.io: why visitors come, and what serves each reason</text>
+<text x="20" y="50" font-size="11.5" font-weight="normal" fill="#555" text-anchor="start">Every feature comes from Agent E2's knowledge; isvara.io holds none of its own.</text>
+<rect x="20" y="66" width="450" height="98" rx="6" fill="#e4edfa" stroke="#1f5fae" stroke-width="1.4"/>
+<text x="30" y="85" font-size="13" font-weight="bold" fill="#0d2a4d" text-anchor="start">Read</text>
+<text x="30" y="104" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">Articles: one topic, about 10 minutes</text>
+<text x="30" y="119" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">Books: ordered paths through articles</text>
+<text x="30" y="134" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">Infographics: interactive SVG</text>
+<text x="30" y="149" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">Guide: by object, technology, task</text>
+<rect x="490" y="66" width="450" height="98" rx="6" fill="#efe9f8" stroke="#5e35b1" stroke-width="1.4"/>
+<text x="500" y="85" font-size="13" font-weight="bold" fill="#2a1650" text-anchor="start">Ask</text>
+<text x="500" y="104" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">Chat with Agent E2, sources to the section</text>
+<text x="500" y="119" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">Ask about this page</text>
+<text x="500" y="134" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">CSV and screenshot attachments</text>
+<text x="500" y="149" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">MCP endpoint for other AI tools</text>
+<rect x="20" y="178" width="450" height="98" rx="6" fill="#e4edfa" stroke="#1f5fae" stroke-width="1.4"/>
+<text x="30" y="197" font-size="13" font-weight="bold" fill="#0d2a4d" text-anchor="start">Listen</text>
+<text x="30" y="216" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">Podcast: episodes per book chapter</text>
+<text x="30" y="231" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">Transcripts and an RSS feed</text>
+<rect x="490" y="178" width="450" height="98" rx="6" fill="#efe9f8" stroke="#5e35b1" stroke-width="1.4"/>
+<text x="500" y="197" font-size="13" font-weight="bold" fill="#2a1650" text-anchor="start">Solve</text>
+<text x="500" y="216" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">Calculators from the catalog</text>
+<text x="500" y="231" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">RVTools health check</text>
+<rect x="20" y="290" width="450" height="98" rx="6" fill="#e4edfa" stroke="#1f5fae" stroke-width="1.4"/>
+<text x="30" y="309" font-size="13" font-weight="bold" fill="#0d2a4d" text-anchor="start">Catch up</text>
+<text x="30" y="328" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">What's New: added, changed, corrected</text>
+<text x="30" y="343" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">RSS feed</text>
+<rect x="490" y="290" width="450" height="98" rx="6" fill="#efe9f8" stroke="#5e35b1" stroke-width="1.4"/>
+<text x="500" y="309" font-size="13" font-weight="bold" fill="#2a1650" text-anchor="start">Fork</text>
+<text x="500" y="328" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">Manual: clone the base privately</text>
+<text x="500" y="343" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">Add your organisation's content</text>
+<rect x="20" y="402" width="450" height="98" rx="6" fill="#e4edfa" stroke="#1f5fae" stroke-width="1.4"/>
+<text x="30" y="421" font-size="13" font-weight="bold" fill="#0d2a4d" text-anchor="start">Find</text>
+<text x="30" y="440" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">Search: plain words or regular expressions</text>
+<text x="30" y="455" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">Metric finder, symptoms, glossary</text>
+<text x="30" y="470" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">Common misreadings</text>
+<rect x="490" y="402" width="450" height="98" rx="6" fill="#efe9f8" stroke="#5e35b1" stroke-width="1.4"/>
+<text x="500" y="421" font-size="13" font-weight="bold" fill="#2a1650" text-anchor="start">Practice</text>
+<text x="500" y="440" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">Fun Quiz: rounds, progress, a board</text>
+<text x="500" y="455" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">Exam: ten very hard questions</text>
+<text x="500" y="470" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">2am game</text>
+<text x="500" y="485" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">Self-assessment</text>
+<rect x="20" y="514" width="450" height="98" rx="6" fill="#e4edfa" stroke="#1f5fae" stroke-width="1.4"/>
+<text x="30" y="533" font-size="13" font-weight="bold" fill="#0d2a4d" text-anchor="start">Engage</text>
+<text x="30" y="552" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">Survey: feedback and session requests</text>
+<text x="30" y="567" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">Thumbs up and down on answers</text>
+<rect x="490" y="514" width="450" height="98" rx="6" fill="#efe9f8" stroke="#5e35b1" stroke-width="1.4"/>
+<text x="500" y="533" font-size="13" font-weight="bold" fill="#2a1650" text-anchor="start">Download</text>
+<text x="500" y="552" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">The books and spreadsheets</text>
+<text x="500" y="567" font-size="11.5" font-weight="normal" fill="#2a1650" text-anchor="start">Weekly refresh of the downloads</text>
+</svg>
