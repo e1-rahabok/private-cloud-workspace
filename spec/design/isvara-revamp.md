@@ -163,7 +163,7 @@ A knowledge file is a list of facts under fixed section names, for example Meani
 - Write in British English, in short sentences, without em dashes. These are isvara.io's writing rules today ([CLAUDE.md](https://github.com/e1-rahabok/isvara/blob/main/CLAUDE.md#L637)).
 - Use none of the words on two lists:
   - Agent E2's own words to avoid ([vocabulary.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/vocabulary.md)).
-  - A list of AI-speak words and phrases, kept in isvara.io's checks: for example "delve", "crucial", "pivotal", "seamless", "robust", "leverage", "unlock", "in today's", "it is important to note", "in conclusion". The list holds words of style only. Domain words such as "realm" stay allowed, because the knowledge base uses them.
+  - Agent E2's list of flagged phrases, each with its plain replacement (`avoid_ai_speak` in [rules_check_values.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/project/tools/rules_check_values.yaml), W-023), read from agent-e2 so the list exists once.
 
 ### The page checks
 

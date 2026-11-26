@@ -1,10 +1,10 @@
 # 4. The interview
 
-## Why it comes before building
+## Purpose
 
 A goal such as "connect the web app to the live system" leaves dozens of things open. Which pages? What happens when data is missing? Does the demo data stay? If nobody asks, the agent answers each of these itself while it builds, and you find out which answers you disagree with when you see the result. The interview moves those questions to the start, where a one-word answer costs nothing.
 
-## What the agent looks for
+## Four kinds of finding
 
 The agent reads every repository and lists four kinds of finding. The examples are from this project.
 
@@ -17,7 +17,7 @@ The agent reads every repository and lists four kinds of finding. The examples a
 
 Each finding becomes a question. In this project four agents surveyed the four repositories in parallel, since the surveys did not depend on each other, and each returned its list with links to the exact lines that proved each finding. About 80 findings were merged into 61 questions.
 
-## How a good question is written
+## Parts of a good question
 
 Each question in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) has the same parts:
 
@@ -30,7 +30,7 @@ The recommendation does most of the work. The person reads it and writes "Agree"
 
 The person answers by editing the file on GitHub, in their own time. Answers given in chat scroll away, and the next session cannot see them.
 
-## What the agent should not ask
+## Questions the agent answers itself
 
 An interview full of questions the agent could answer itself wastes the person's time and their trust. In this project the agent asked where "availability" belongs among operations disciplines, which any practitioner knows. Questions are for judgement, field experience, scope and taste. Anything that can be found in the documents, the code or general knowledge of the field, the agent decides and states, and the person can still overrule it.
 

@@ -19,7 +19,7 @@ Work in one long session per slice, rather than many small ones. Each session fo
 5. When something is not decided, it writes the question with a recommendation and stops that line of work.
 6. At the end it marks the finished requirements in the roadmap with their pull request, and writes corrections back into the map and the decisions.
 
-## When the agent must stop
+## Stop conditions
 
 These go into [CLAUDE.md](../CLAUDE.md), so every session follows them:
 

@@ -1,6 +1,6 @@
 # 7. Checks
 
-## What a check is
+## Purpose
 
 A check is a short script that reads two sides of a seam and fails when they disagree. It runs on every pull request, once a day, and whenever someone asks. The checks in this project are in [checks](../checks) and [tools](../tools), and each can be read in a few minutes.
 
@@ -24,9 +24,9 @@ Instead the 11 are listed in the check as known gaps. They are reported, but the
 
 ## Checks on the specification itself
 
-The same idea applies to the documents. One script fails when a requirement has no source or no test scenario, or a scenario belongs to no requirement. Another fails when a file reference is not a clickable link, or when a diagram's text no longer matches its picture ([tools](../tools)).
+The same idea applies to the documents. One script fails when a requirement has no source or no test scenario, or a scenario belongs to no requirement. Another fails when a file reference is not a clickable link, or when a diagram's text no longer matches its picture. A third checks the writing of every document meant for people against the author's writing rules ([tools](../tools); [chapter 9](09-working-with-the-agent.md)).
 
-## Where they run
+## Places they run
 
 - Locally, with one command: `uv run checks/run_all.py`.
 - In GitHub Actions, on every push and pull request to this repository, once a day, and on demand.

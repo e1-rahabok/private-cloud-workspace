@@ -41,7 +41,7 @@ Arrows: `-->` solid, `..>` dashed.
 
 </details>
 
-## How the steps feed each other
+## The loop back
 
 Building a slice always teaches something: an assumption on the map that was wrong, a meeting point nobody listed, a question only the person can answer. That goes back into the files before the next slice starts, so the files get more accurate over time instead of falling behind the code.
 
@@ -59,6 +59,6 @@ The person makes the decisions that need judgement, field experience or a change
 
 Work is built in thin slices, each going end to end across every part it touches, starting with the slice that has the most unknowns.
 
-## How long it takes
+## Time needed
 
 In this project the first version of the files and two working checks took one long session. The interview and the full set of requirements took another two days, most of it the agent's work, with the author answering questions in the evenings. That is small next to the time the small chats were costing, and the files save that time again at the start of every later session.

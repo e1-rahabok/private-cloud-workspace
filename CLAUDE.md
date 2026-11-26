@@ -1,68 +1,76 @@
 # CLAUDE.md
 
-How Claude works across the four repositories. Each child repository has its own CLAUDE.md for work inside it; this file is for work that crosses them.
+Rules for Claude in work that crosses the repositories. Inside one repository, that repository's CLAUDE.md also applies. IDs: [spec/glossary.md](spec/glossary.md).
 
-## Start of every session
+## Session start
 
-- Read [SYSTEM.md](SYSTEM.md), [CONTRACTS.md](CONTRACTS.md) and [ROADMAP.md](ROADMAP.md). Find the milestone the request belongs to. If it belongs to none, say so before starting.
-- Then read the CLAUDE.md of each repository the change touches, and follow it inside that repository.
-- Work on GitHub through clones; the author's laptop is for what needs Windows or the lab (VPN): PCM-Adapter's build, install and validation tools, and live VCF Operations.
+- Read [SYSTEM.md](SYSTEM.md), [CONTRACTS.md](CONTRACTS.md), [ROADMAP.md](ROADMAP.md) and the requirement files the request touches.
+- Name the milestone and the requirement IDs. If the request belongs to none, say so before starting.
+- Read the CLAUDE.md of each repository the change touches.
+- Work on GitHub through clones. Use the author's laptop only for Windows tools and the lab (VPN): PCM-Adapter's build, install and validation tools, and live VCF Operations.
 
-## How to think
+## Thinking
 
-Claude is the author's co-architect.
-
-- A suggestion from the author is input to think with. Unless the author says "decide" or "do it", reply first with what is strong, what is weak, what is missing, and a recommendation; write to the repositories only after you agree (the author, 2026-11-26).
-- Disagree when there is a reason, and say what you know, what you believe, and what you have not checked.
-- Decide what can be worked out from the code, the documents or general knowledge of the field, and state the decision. Ask the author only about judgement, field experience, scope and taste.
+- Treat the author's suggestion as input. Unless the author says "decide" or "do it": reply with strengths, weaknesses, gaps and a recommendation; write to a repository only after agreement.
+- Disagree when there is a reason. Separate what you know, what you believe and what you have not checked.
+- Decide anything that the code, the documents or general knowledge of the field settles, and state the decision. Ask the author only about judgement, field experience, scope and taste.
 
 ## Specification first
 
-- No build milestone starts until its requirements are written in [`spec/requirements/`](spec/requirements), each with its test scenarios, and the author has approved them (ROADMAP, M1).
-- Requirements come from the author's answers in [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md), never from a guess. A requirement cites the answer or decision it comes from.
+- Start no build milestone before its requirements and test scenarios exist in [spec/requirements](spec/requirements) and the author has approved them.
+- Every requirement cites the question or decision it comes from. Never write a requirement from a guess.
 
 ## Stop conditions
 
-Stop that line of work, write the question to [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) with a recommendation and an empty `Answer:` line, and tell the author, when:
+Stop the line of work, add a question with a recommendation and an empty `Answer:` line to [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md), and tell the author, when:
 
 - the specification does not decide something, or two documents disagree;
 - a requirement cannot be tested as written;
 - a fix would change a contract's shape or reverse a decision;
-- a test needs the lab and the lab cannot be reached: say so, and never report it as passed.
-
-Never weaken, skip, delete or loosen a test or a check to make it pass. A failing test is either a bug to fix or a question for the author.
+- a test needs the lab and the lab cannot be reached. Report the test as not run.
 
 ## Scope
 
-- Stage 1 only (DECISIONS, W-002). Do not build toward the on-premises local model, and do not remove the text that describes it.
-- Agent E2 is the source of domain knowledge (W-001). A KPI, threshold or explanation changes in agent-e2 first.
+- Stage 1 only (W-002). Build nothing toward the on-premises local model; keep the text that describes it.
+- Change domain knowledge (a KPI, threshold or explanation) in agent-e2 first (W-001).
 
-## Contracts and checks
+## Tests and checks
 
-- Before changing anything listed in CONTRACTS.md, run `uv run checks/run_all.py` with the changed branch checked out in its clone, and again after.
-- A contract changes by expand, migrate, contract (CONTRACTS.md). Never break a consumer in one step.
-- Never weaken a check to make it pass. A new known gap goes in the check's baseline only with an entry in OPEN-QUESTIONS.md.
-- A new contract gets a check, or a ROADMAP line that adds one.
+- Never weaken, skip, delete or loosen a test or a check to make it pass. A failure is a bug to fix or a question for the author.
+- Before and after changing anything in CONTRACTS.md: run `uv run checks/run_all.py` with the changed branch checked out in its clone.
+- Change a contract in three steps: add the new shape, move each consumer, remove the old shape.
+- Add a known gap to a check's baseline only together with a question in OPEN-QUESTIONS.md.
+- Give every new contract a check, or a ROADMAP line that adds one.
+
+## Writing
+
+Two kinds of document (W-023):
+
+- For people: README.md, SYSTEM.md, CONTRACTS.md, DECISIONS.md, ROADMAP.md, OPEN-QUESTIONS.md, spec/intent.md, spec/glossary.md, spec/design, tutorial, commit messages, pull request text.
+  - Follow agent-e2's [writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md) and its `avoid_ai_speak` list: plain sentences; no flagged phrase, slogan or "X, not Y"; headings as noun phrases of at most 9 words; table cells of about 12 words, else bullets.
+  - Reread each changed line with the lines around it for slogans and "X, not Y"; no script finds them.
+- For machines: the CLAUDE.md files, spec/requirements, tutorial/templates.
+  - One rule or fact per bullet. Trigger before action. Exact paths, names and IDs. No history or attribution.
+- In both: every file reference a link; every diagram an SVG drawn by [tools/diagrams.py](tools/diagrams.py) with its text generated underneath; every ID with its meaning or a glossary link on first use (W-020).
+- Before each commit, run and pass: `python tools/docs.py`, `python tools/style.py`, `python tools/spec_check.py`.
 
 ## Decisions and questions
 
-- A decision that binds more than one repository goes in [DECISIONS.md](DECISIONS.md). A decision inside one repository goes in that repository's log (index in DECISIONS.md).
-- When the specification does not decide something, stop and write the question to [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) with a recommendation. Do not guess.
-- Mark finished lines in ROADMAP.md with the pull request.
-- No bare short names (W-020). On first use in a document, write an ID such as C3, W-012 or Q-27 with its meaning, or as a link to [spec/glossary.md](spec/glossary.md). A new kind of ID goes into the glossary first.
-- Write for a reader on GitHub: plain words, short sentences, every file reference a link, every diagram an SVG with its text underneath ([tools/docs.py](tools/docs.py)).
+- Record a decision that binds several repositories in [DECISIONS.md](DECISIONS.md), one block per decision. Record a decision inside one repository in that repository's log.
+- Write a question about one repository in that repository; a question that binds several in OPEN-QUESTIONS.md (W-019).
+- Mark finished ROADMAP lines with their pull request.
 
 ## Git
 
-- One branch and one pull request per change per repository. A change across repositories uses the same branch name in each, and each pull request links the others.
-- Merge order follows ownership: agent-e2, then PCM-Adapter, then private-cloud-management, then isvara.
-- Claude merges its own pull request once the checks pass (DECISIONS, W-009: the early phase).
-- A major change is still merged, with a warning at the top of the pull request text and in the report to the author. Major means: a contract's shape changes, a decision is added, changed or reversed, files are deleted or archived, or the change spans more than one child repository.
-- Never merge a pull request whose checks fail. Anything that deletes data or changes the lab waits for the author.
-- Never push to a default branch directly. Delete the branch after the merge.
-- Commit messages and pull request text describe the change in plain words.
+- One branch and one pull request per change per repository. Across repositories: the same branch name in each, and each pull request links the others.
+- Merge in ownership order: agent-e2, PCM-Adapter, private-cloud-management, isvara.
+- Merge your own pull request once its checks have reported and passed (W-009). Never merge while checks are pending or failing.
+- Put a warning at the top of the pull request and in the report when the change is major: a contract's shape changes; a decision is added, changed or reversed; files are deleted or archived; or more than one child repository changes.
+- Wait for the author before anything that deletes data or changes the lab.
+- Never push to a default branch. Delete the branch after the merge.
 
 ## Secrets and the lab
 
-- Credentials on the laptop are DPAPI files in `$HOME\.secrets\`, loaded with `Import-Clixml`. On the PCM lab VM they are in `/etc/pcm/pcm.env`. Never print, log or commit one, and never copy one into a repository.
-- Read-only against VCF Operations and vCenter unless the milestone says otherwise.
+- Load laptop credentials with `Import-Clixml` from DPAPI files in `$HOME\.secrets\`. On the PCM lab VM they are in `/etc/pcm/pcm.env`.
+- Never print, log or commit a credential, or copy one into a repository.
+- Stay read-only against VCF Operations and vCenter unless the milestone says otherwise.

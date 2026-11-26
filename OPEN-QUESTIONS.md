@@ -24,7 +24,7 @@ You said Agent E2's plan is outdated (Q-6). Proposed milestones, replacing M1 to
 
 | # | Milestone | Done when |
 |---|---|---|
-| A1 | Repository cleaned for stage 1 | Older benchmarks removed (Q-59); stage 2 text marked as stage 2; questions across repositories sent to the workspace (W-019); wrong counts in SECURITY.md fixed |
+| A1 | Repository cleaned for stage 1 | Older benchmarks removed (Q-59); stage 2 text marked; W-019 applied |
 | A2 | Answer set and grader | The free-text answer set and the automated grader built; first report on Gemma 4 31B |
 | A3 | Service for two callers | The Agent E2 API additions built (progress, attachments, sources, usage); its contract check passes |
 | A4 | Live demo support | Agent E2 answers correctly on facts recorded from the lab |

@@ -1,8 +1,8 @@
-# Building software with an AI agent: a spec-driven approach
+# Spec-driven development with an AI agent
 
 This tutorial shows how to build and maintain a system of several connected applications when an AI coding agent writes most of the code. It is based on a real project: four GitHub repositories that together make one product, built by one person working with Claude over several months. Every file the tutorial mentions is in this repository, so you can read the real thing alongside the explanation.
 
-## Who it is for
+## Readers
 
 - Builders who already use an AI coding agent for small tasks and want it to carry larger, longer work.
 - Domain experts who own the requirements but are not full-time developers.
@@ -28,7 +28,7 @@ Here you write down what the system is and what it must do before you ask the ag
 
 The agent reads these files at the start of every session and builds against them. Scripts check automatically that the parts still agree with each other. When the agent meets something the files do not cover, it asks, and the answer goes into the files.
 
-### How they compare
+### Comparison
 
 | | Iterative prompting | Spec-driven development |
 |---|---|---|
@@ -42,7 +42,7 @@ The agent reads these files at the start of every session and builds against the
 | Typical failure | Drift: copies of the same fact diverge, and old features break quietly | Specs go stale or grow too detailed, and you spend time answering questions |
 | Suits | Prototypes, one-off scripts, small self-contained work, exploring an idea | Several connected parts, a system that must last, work spread over many sessions or many people |
 
-### When to use which
+### Choosing between them
 
 The two are not exclusive. Prototyping by prompting is a good way to find out what you want. The trouble starts when the prototype becomes the product and the number of parts grows, because every conversation then has to rediscover what the others decided. In this project that point came when four repositories began to depend on each other: a threshold changed in one place and not in another, and a test passed while the feature it tested was broken in the next repository.
 
@@ -57,7 +57,7 @@ Spec-driven development has real costs, and the tutorial does not hide them:
 
 | Chapter | What it covers | Time |
 |---|---|---|
-| [1. Why small chats fail](01-why-small-chats-fail.md) | What goes wrong when a growing system is built one prompt at a time | 10 min |
+| [1. The limits of small chats](01-why-small-chats-fail.md) | What goes wrong when a growing system is built one prompt at a time | 10 min |
 | [2. The method](02-the-method.md) | The seven steps, and how they feed each other | 10 min |
 | [3. The map](03-map.md) | Describing what exists today, and what is in scope | 15 min |
 | [4. The interview](04-the-interview.md) | Getting every open question onto the table before building | 15 min |

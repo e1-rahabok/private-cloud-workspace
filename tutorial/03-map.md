@@ -1,6 +1,6 @@
 # 3. The map
 
-## What it is
+## Purpose
 
 Before any work, write down what the system is: its parts, where each runs, what talks to what, and which parts of the plan are in scope now. One page is enough. In this project it is [SYSTEM.md](../SYSTEM.md), with a second file, [spec/intent.md](../spec/intent.md), saying why each part exists, who it is for, what success looks like and what it will not do.
 
@@ -16,7 +16,7 @@ Ask the agent to read the repositories and describe the system in its own words,
 
 Correct the documents, not only the conversation. Otherwise the next session makes the same mistake.
 
-## What goes on the map
+## Contents of the map
 
 - A table of the parts: repository, what it is, where it runs, what it talks to.
 - Where each kind of thing comes from: data, definitions, content.

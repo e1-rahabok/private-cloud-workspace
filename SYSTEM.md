@@ -44,11 +44,11 @@ Arrows: `-->` solid, `..>` dashed.
 | isvara.io | isvara | Vercel, public | Agent E2 (planned, ROADMAP M6); today its own AskIO agent |
 | Agent E2 for isvara.io | agent-e2 | Not decided (OPEN-QUESTIONS, Q-4) | Vercel AI Gateway |
 
-## Where each kind of thing comes from
+## Sources of each kind of data
 
 | Thing | Source | Used by |
 |---|---|---|
-| KPI definitions: names, parts, limits, bands | Agent E2 catalog, [`knowledge/catalog/thresholds-*.yaml`](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge/catalog) | PCM-Adapter implements them; PCM shows them; Agent E2 explains them |
+| KPI definitions: names, parts, limits, bands | Agent E2's [catalog](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge/catalog) | PCM-Adapter, PCM, Agent E2 |
 | KPI values | PCM-Adapter, published in VCF Operations under `vCommunity\|` | PCM, through the Suite API (live mode) |
 | Synthetic values | PCM's generator, [`build/pcm_proto/`](https://github.com/e1-rahabok/private-cloud-management/tree/main/build/pcm_proto) | PCM demo mode |
 | Explanations and answers | Agent E2 | PCM's Agent E2 panel; isvara.io (planned) |
@@ -80,6 +80,6 @@ PCM keeps both, chosen from the demo control at the top of every page:
 |---|---|---|
 | agent-e2 | `python3 project/tools/rules_check.py` (0 problems), `python3 -m unittest harness/test_harness.py`, `python3 -m unittest benchmark/runner/test_runner.py` | The benchmark needs the gateway key |
 | PCM-Adapter | `python -m pytest tests`, from `Management Pack` | `pwsh tools/build/build.ps1`, `install.ps1`, `restart.ps1`, `validate.ps1` (Windows, PowerShell 7, the lab) |
-| private-cloud-management | The unit tests in [`build/tests/test_*.py`](https://github.com/e1-rahabok/private-cloud-management/tree/main/build/tests), for example `python3 -m unittest build.tests.test_executive -v`; page tests need Playwright ([build/README.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/build/README.md)) | Install on the lab VM: [deploy/README.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/deploy/README.md) |
+| private-cloud-management | Unit tests in [`build/tests`](https://github.com/e1-rahabok/private-cloud-management/tree/main/build/tests); page tests need Playwright ([build/README.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/build/README.md)) | Install on the lab VM: [deploy/README.md](https://github.com/e1-rahabok/private-cloud-management/blob/main/deploy/README.md) |
 | isvara | `npm run lint`, `npm run typecheck`, `npm run build`, `npm run test:rvtools` | `npm run eval` and `eval:injection` need a running server and the gateway key |
 | All four together | `uv run checks/run_all.py` (this repository) | |

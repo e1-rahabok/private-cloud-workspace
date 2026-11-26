@@ -32,7 +32,7 @@ def known_ids() -> set[str]:
     for f in list((ROOT / "spec").glob("interview-round-*.md")) + [ROOT / "OPEN-QUESTIONS.md"]:
         if f.exists():
             ids |= set(re.findall(r"^#{2,4} (Q-I?\d+)\b", f.read_text(encoding="utf-8"), re.M))
-    ids |= set(re.findall(r"^\| (W-\d{3}) \|", (ROOT / "DECISIONS.md").read_text(encoding="utf-8"), re.M))
+    ids |= set(re.findall(r"^## (W-\d{3}) ", (ROOT / "DECISIONS.md").read_text(encoding="utf-8"), re.M))
     if PCM_DECISIONS.exists():
         ids |= set(re.findall(r"^\| (D-\d{3}) \|", PCM_DECISIONS.read_text(encoding="utf-8"), re.M))
     return ids

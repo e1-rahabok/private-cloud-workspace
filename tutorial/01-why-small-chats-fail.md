@@ -1,4 +1,4 @@
-# 1. Why small chats fail
+# 1. The limits of small chats
 
 ## A familiar pattern
 
@@ -6,7 +6,7 @@ Most people begin with an AI coding agent the same way: one small request per co
 
 The author of this project built four connected repositories that way. It worked, but it took far too long, and every new request began with the agent reading the code again to work out what the system was.
 
-## What goes wrong
+## Five problems
 
 Five problems showed up, and they are common to any growing system built this way.
 
@@ -20,11 +20,11 @@ Five problems showed up, and they are common to any growing system built this wa
 
 **Nobody tests where the parts meet.** Each repository had its own tests. The places where one repository relies on another had none. In one case a field renamed in one repository would have made another show "service unavailable", and every test in both repositories would still have passed. [Chapter 7](07-checks.md) shows the check that now catches it.
 
-## What helps less than you would expect
+## Weaker remedies
 
 A longer prompt is read once and forgotten in the next session. A stronger model fills gaps more cleverly, but it still fills them. More small chats each add a little more drift.
 
-## What helps
+## The remedy
 
 Writing down the few things that keep the agent on track, in files it reads at the start of every session, and checking the meeting points between parts with scripts. The rest of the tutorial explains how.
 

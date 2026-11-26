@@ -54,7 +54,7 @@ Each correction went into the decisions and the map.
 
 **The trust question.** Discussing AI-written public content, the author noted that keeping an expert site credible is not a new problem. The discussion that followed became [chapter 10](10-trust-in-ai-written-content.md): separate a wrong source from a wrong rewrite, spend scarce review time on disagreements and on the most-read pages, and build a community that can review.
 
-## What the log teaches
+## Lessons
 
 - The agent's first survey was useful precisely because it was wrong in places. Each error pointed to a missing document.
 - The author's time went into answers and decisions instead of explaining the system again.
