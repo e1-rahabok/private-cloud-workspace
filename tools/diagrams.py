@@ -48,20 +48,21 @@ def system() -> None:
 
 def method() -> None:
     """tutorial/02-the-method.md: the six steps and the loop back."""
-    k.begin(960, 230)
-    k.t(20, 26, "The method: six steps and the loop back", 16, "bold")
-    k.legend(20, 40, [("Written once, kept current", "method"), ("Repeated for every slice", "prod")])
-    steps = [("1. Map", "SYSTEM.md"), ("2. Seams", "CONTRACTS.md"), ("3. Owners", "DECISIONS.md"),
-             ("4. Done", "ROADMAP.md"), ("5. Slices", "ROADMAP.md"), ("6. Run", "checks, CLAUDE.md")]
-    w, gap, y = 135, 22, 76
-    for i, (title, line) in enumerate(steps):
+    k.begin(1060, 250)
+    k.t(20, 26, "The method: seven steps and the loop back", 16, "bold")
+    k.legend(20, 40, [("Before building, then kept current", "method"), ("Repeated for every slice", "prod")])
+    steps = [("1. Map", ["SYSTEM.md", "intent.md"]), ("2. Interview", ["OPEN-QUESTIONS"]),
+             ("3. Seams, owners", ["CONTRACTS.md", "DECISIONS.md"]), ("4. Requirements", ["requirements/"]),
+             ("5. Checks", ["checks/, tools/"]), ("6. Slices", ["ROADMAP.md"]), ("7. Run", ["CLAUDE.md"])]
+    w, gap, y, h = 130, 18, 76, 74
+    for i, (title, lines) in enumerate(steps):
         x = 20 + i * (w + gap)
-        k.box(x, y, w, title, [line], "method" if i < 4 else "prod", h=58)
+        k.box(x, y, w, title, lines, "method" if i < 4 else "prod", h=h)
         if i:
-            k.arrow([(x - gap, y + 29), (x, y + 29)])
-    first, last = 20 + w / 2, 20 + 5 * (w + gap) + w / 2
-    k.arrow([(last, y + 58), (last, 190), (first, 190), (first, y + 58)],
-            "Corrections, answers and new decisions go back into the files", 480, 194)
+            k.arrow([(x - gap, y + h / 2), (x, y + h / 2)])
+    first, last = 20 + w / 2, 20 + 6 * (w + gap) + w / 2
+    k.arrow([(last, y + h), (last, 210), (first, 210), (first, y + h)],
+            "Corrections, answers and new decisions go back into the files", 530, 214)
     k.finish(str(ROOT / "images" / "method.svg"))
 
 

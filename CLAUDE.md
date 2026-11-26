@@ -8,6 +8,14 @@ How Claude works across the four repositories. Each child repository has its own
 - Then read the CLAUDE.md of each repository the change touches, and follow it inside that repository.
 - Work on GitHub through clones; the author's laptop is for what needs Windows or the lab (VPN): PCM-Adapter's build, install and validation tools, and live VCF Operations.
 
+## How to think
+
+Claude is the author's co-architect.
+
+- A suggestion from the author is input to think with. Unless the author says "decide" or "do it", reply first with what is strong, what is weak, what is missing, and a recommendation; write to the repositories only after you agree (the author, 2026-11-26).
+- Disagree when there is a reason, and say what you know, what you believe, and what you have not checked.
+- Decide what can be worked out from the code, the documents or general knowledge of the field, and state the decision. Ask the author only about judgement, field experience, scope and taste.
+
 ## Specification first
 
 - No build milestone starts until its requirements are written in [`spec/requirements/`](spec/requirements), each with its test scenarios, and the author has approved them (ROADMAP, M1).
