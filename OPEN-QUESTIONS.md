@@ -6,7 +6,7 @@ Round 1 is answered and kept as the record in [spec/interview-round-1.md](spec/i
 
 **Separate from this file:** the isvara.io plan, [spec/design/isvara-revamp.md](spec/design/isvara-revamp.md), lists 47 features with an `Author's reply:` line each, as you asked. Reply there.
 
-**Order that matters most:** section A first, then B and C (they block the PCM live demo, milestones M3 and M4). The rest can wait.
+**Order that matters most:** section A first, then B and C (they block the PCM live demo, milestones M3 and M4). For isvara.io, section H and the plan's reply lines go together. The rest can wait.
 
 ## A. Across the repositories
 
@@ -389,7 +389,7 @@ From [spec/requirements/isvara-exam.md](spec/requirements/isvara-exam.md).
 
 ### Q-111 One fixed set, or a pool?
 
-**Recommendation:** one fixed set of 10 for everyone, so results compare; replaced as a whole and dated.
+**Recommendation (revised 2026-11-26 for the Fun Quiz, feature 33 of the isvara.io plan):** the exam stays one fixed set of 10, dated, so results compare. The Fun Quiz draws its rounds from a larger pool per slice, so a visitor can come back and practise.
 
 **Answer:**
 
@@ -413,7 +413,7 @@ They live in isvara.io (Q-56), so they copy facts whose master is Agent E2. **Re
 
 ### Q-115 A score board or a share card?
 
-**Recommendation:** a share card with the total only; no board.
+**Recommendation (revised 2026-11-26):** a board, since your visitor model says "compare scores". Without sign-in, a visitor enters a nickname, as on the 2am game's board today. One board per quiz slice and one for the exam. This changes R-EXAM-007, which today lets nothing but a usage count leave the browser.
 
 **Answer:**
 
@@ -431,7 +431,7 @@ They live in isvara.io (Q-56), so they copy facts whose master is Agent E2. **Re
 
 ### Q-118 Leaving and coming back
 
-**Recommendation:** progress kept in the browser until midnight UTC; nothing is sent.
+**Recommendation (revised 2026-11-26):** progress per slice is kept in the browser, with no time limit, so "track progress" works without sign-in. Only a score the visitor chooses to post goes to the board. Clearing the browser clears the progress; the page says so.
 
 **Answer:**
 
@@ -460,5 +460,63 @@ Not proven. **Recommendation:** a first spike builds one nested host and reports
 ### Q-122 ESXi version and licences
 
 **Recommendation:** the same ESXi build as the physical hosts; you confirm the lab licences cover two more hosts.
+
+**Answer:**
+
+## H. isvara.io: the visitor model
+
+Your table of why visitors come (2026-11-26) is now the plan's top level ([spec/design/isvara-revamp.md](spec/design/isvara-revamp.md), section 4, and the site map there). Six features are new: Books (48), Infographics (49), Podcast (50), What's New (51), Manual (52) and Survey (53); Search gains regular expressions (12), and the exam becomes Fun Quiz and the exam (33). These questions settle what the table does not.
+
+### Q-123 Is a Download door right, next to your ten reasons?
+
+Your message says visitors come "to read, ask, download"; the table has no Download row. **Recommendation:** keep Download as an eleventh door, for the books and spreadsheets (features 37, 38).
+
+**Answer:**
+
+### Q-124 Articles: one knowledge file each?
+
+Most knowledge files take 3 to 5 minutes to read; your table says about 10. **Recommendation:** one article per file, as the knowledge base is cut; the reading time is shown, and "Read with" leads to the next file. Joining short files into one article would make articles that no file matches, and section links from Agent E2 would miss.
+
+**Answer:**
+
+### Q-125 Which books, and who decides their order?
+
+**Recommendation:** start with three: Performance management, Capacity management, and Troubleshooting. Claude drafts each book's order from the knowledge base's folders and links; you approve it once. The order is kept in agent-e2, so isvara.io holds no structure of its own.
+
+**Answer:**
+
+### Q-126 The podcast: voice, length and cost
+
+The podcast needs a synthetic voice, which costs money per minute of audio, outside or inside the US$50 a month. **Recommendation:** one voice, a fellow practitioner's tone, one episode per book chapter (10 to 15 minutes); made again only when its articles change; start with one book and measure the cost before doing the rest. You approve the voice from a sample.
+
+**Answer:**
+
+### Q-127 What's New: how much detail, and how are corrections shown?
+
+**Recommendation:** one entry per changed article, with one line on what changed; a correction is marked "Correction" and says what was wrong and what is right now. Small wording changes are grouped into one weekly line, so the list stays readable.
+
+**Answer:**
+
+### Q-128 The manual: what does a fork include?
+
+**Recommendation:** the manual covers forking Agent E2 with its knowledge base, PCM and PCM-Adapter, setting them up in one lab, pointing Agent E2 at one's own model, and adding one's own knowledge. isvara.io itself is not in the manual; it stays the author's public site.
+
+**Answer:**
+
+### Q-129 Survey: what is stored, and is anything personal asked?
+
+**Recommendation:** no personal data required. A visitor may leave an email address only to be told about a birds-of-a-feather session they asked for; it is kept apart from the answers and deleted after the session.
+
+**Answer:**
+
+### Q-130 Birds-of-a-feather sessions: where are they held?
+
+**Recommendation:** you name the events (for example VMware Explore or VMUG meetings) or "online"; the survey lists them, with a free line for another.
+
+**Answer:**
+
+### Q-131 Regular-expression search: who is it for?
+
+It searches in the browser, over every form. **Recommendation:** plain words by default, with a switch for regular expressions, since most visitors will not write them; a short help line gives three examples.
 
 **Answer:**

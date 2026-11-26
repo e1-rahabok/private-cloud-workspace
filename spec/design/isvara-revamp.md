@@ -69,6 +69,56 @@ isvara.io is a Next.js site on Vercel, in the [isvara](https://github.com/e1-rah
 
 ## 4. The site after the revamp
 
+### Why visitors come
+
+isvara.io serves VMware administrators and architects. The author's model of why they come (2026-11-26) is the site's top level: each reason is a door in the header and on the home page, and every feature sits behind one of them.
+
+| A visitor is here to | Feature | Why the feature is needed |
+|---|---|---|
+| Read | Articles (feature 5) | Know one topic; about 10 minutes |
+| Read | Books (feature 48) | The big picture, mastered in a structured way; a few quiet hours |
+| Read | Infographics (feature 49) | One picture says more; interactive, to click and hover |
+| Ask | AI chat (features 13 to 17) | Questions and answers; quick, with Agent E2 pointing to the exact section of an article |
+| Listen | Podcast (feature 50) | No screen: jogging or driving; a friendly voice, a fellow IT practitioner |
+| Solve | Calculators (features 19 to 30, 34) | A specific problem, answered more directly than by chat |
+| Catch up | What's New (feature 51) | Additions, changes and corrections to the knowledge |
+| Fork | Manual (feature 52) | Clone the base privately and add your own organisation's content |
+| Find | Search (feature 12) | Exactly what you need, at once; precise search with regular expressions across everything |
+| Practice | Fun Quiz (feature 33) | Test your knowledge, track progress, compare scores |
+| Engage | Survey (feature 53) | Feedback, and requests for birds-of-a-feather sessions |
+| Download | Downloads (features 37, 38) | A copy of the books and spreadsheets to keep |
+
+![isvara.io site map: ten reasons visitors come, each with the features behind it](../../images/isvara-site-map.svg)
+
+<details>
+<summary>Text of the diagram, for readers that cannot see it</summary>
+
+
+Boxes, nested as drawn:
+- n1 **Read**: Articles: one topic, about 10 minutes Books: ordered paths through articles Infographics: interactive SVG Guide: by object, technology, task
+- n2 **Ask**: Chat with Agent E2, sources to the section Ask about this page CSV and screenshot attachments MCP endpoint for other AI tools
+- n3 **Listen**: Podcast: episodes per book chapter Transcripts and an RSS feed
+- n4 **Solve**: Calculators from the catalog RVTools health check
+- n5 **Catch up**: What's New: added, changed, corrected RSS feed
+- n6 **Fork**: Manual: clone the base privately Add your organisation's content
+- n7 **Find**: Search: plain words or regular expressions Metric finder, symptoms, glossary Common misreadings
+- n8 **Practice**: Fun Quiz: rounds, progress, a board Exam: ten very hard questions 2am game Self-assessment
+- n9 **Engage**: Survey: feedback and session requests Thumbs up and down on answers
+- n10 **Download**: The books and spreadsheets Weekly refresh of the downloads
+
+Notes on the diagram:
+- Every feature comes from Agent E2's knowledge; isvara.io holds none of its own.
+
+Arrows: `-->` solid, `..>` dashed.
+
+</details>
+
+Rules that follow from the table:
+
+- **Every feature has one door.** A feature that serves no reason in the table is dropped, or argued for in its reply line.
+- **The same knowledge, several forms.** An article, a book chapter, an infographic, a podcast episode and a quiz question about one topic all come from the same knowledge files, so they never disagree. Each form links to the others: an article offers "Listen", "See the infographic" and "Test yourself".
+- **Every form is bookmarkable,** down to a section of an article and a minute of an episode.
+
 The header, colours, fonts (IBM Plex), dark and light themes, the ⌘K palette and the general feel stay. Everything a reader learns from comes from Agent E2:
 
 - The reading pages are rewrites of the 288 knowledge files.
@@ -174,9 +224,9 @@ Every page and every section has its own address, so anything can be bookmarked 
 | `/guide/object/vm` | A slice page |
 | `/guide/object/vm/cpu` | A crossing page |
 | `/guide/task/troubleshoot` | The troubleshooting flows |
-| `/topic/vm-cpu-ready` | A topic page. The last part is made from the file's title, which is unique across the 288 files |
-| `/topic/vm-cpu-ready#units` | One section of it |
-| `/topic/vm-cpu-ready/source` | The knowledge file as Agent E2 reads it |
+| `/articles/vm-cpu-ready` | A topic page. The last part is made from the file's title, which is unique across the 288 files |
+| `/articles/vm-cpu-ready#units` | One section of it |
+| `/articles/vm-cpu-ready/source` | The knowledge file as Agent E2 reads it |
 | `/misreadings?object=vm&technology=cpu` | Common misreadings, filtered. The filters are in the address, so a filtered list can be bookmarked |
 | `/metrics`, `/symptoms`, `/glossary#co-stop` | The finder pages |
 
@@ -240,8 +290,8 @@ Each feature: what it is today, what it becomes, why, and a line for your reply.
 
 #### 1. Home page
 - **Before:** an ask box, the Operations Score dial, links to the score, the health check and the guide map, and continue reading.
-- **After:** rebuild. A search box and an "Ask Agent E2" box; one door per slice (object, technology, task, symptom, common misreadings); continue reading at the last topic; doors to the 2am game and the exam. The dial goes (feature 21).
-- **Why:** the home page should lead into the knowledge in several ways (answer to Q-43).
+- **After:** rebuild around the visitor reasons (section 4): the "You are here to" table is the home page's main block, one row per reason, each opening its feature. Above it, a search box and an "Ask Agent E2" box; below it, continue reading, and the latest entries of What's New. The header carries the same reasons as its menu. The dial goes (feature 21).
+- **Why:** the author's model of why visitors come (2026-11-26), and the home page should lead into the knowledge in several ways (answer to Q-43).
 
 Author's reply:
 
@@ -266,10 +316,10 @@ Author's reply:
 
 Author's reply:
 
-#### 5. Topic pages `/topic/<name>`
+#### 5. Articles (topic pages) `/articles/<name>`
 - **Before:** none.
-- **After:** new. One page per knowledge file, written by the rewrite (section 5). It has the trail, the chips, the side list, "Read with", the common misreadings box, Ask about this page, and a link to the source view.
-- **Why:** bookmarkable knowledge of a readable size (answer to Q-I5).
+- **After:** new. One article per knowledge file, written by the rewrite (section 5), shown to visitors as an Article with its reading time. It has the trail, the chips, the side list, "Read with", the common misreadings box, Ask about this page, a link to the source view, and links to the same topic in the other forms: Listen (feature 50), its infographic (feature 49), Test yourself (feature 33). Most files take 3 to 5 minutes to read; the longest about 20.
+- **Why:** bookmarkable knowledge of a readable size (answer to Q-I5); "Articles: one topic, about 10 minutes" (the author's visitor model).
 
 Author's reply:
 
@@ -317,8 +367,8 @@ Author's reply:
 
 #### 12. Search and the ⌘K palette
 - **Before:** a keyword scan over the book sections ([lib/search.ts](https://github.com/e1-rahabok/isvara/blob/main/lib/search.ts)).
-- **After:** rebuild over every new page type, with Agent E2's user terms as synonyms (section 6).
-- **Why:** the books are gone, and search should find what Agent E2 would read.
+- **After:** rebuild over every form: articles, books, infographics' text, podcast transcripts, What's New, the manual, the glossary, misreadings and metric names, with Agent E2's user terms as synonyms (section 6). Two modes: plain words (the default), and precise search with a regular expression, for example `ready.*(5|10) ?%`. Results show the matching line with its address, down to the section. The index is built with the site and searched in the browser.
+- **Why:** "Find exactly what you need instantly; precise search (regular expression) across all documentation, articles and books" (the author's visitor model).
 
 Author's reply:
 
@@ -326,7 +376,7 @@ Author's reply:
 
 #### 13. Ask page `/ask`
 - **Before:** AskIO: one prompt with all five books, Gemini 2.5 Flash or Flash-Lite, streamed answers with links to chapter pages.
-- **After:** rebuild on Agent E2: conversations over several turns, Agent E2's clarifying questions, CSV and screenshot attachments, the waiting state, sources with two links each (section 7).
+- **After:** rebuild on Agent E2: conversations over several turns, Agent E2's clarifying questions, CSV and screenshot attachments, the waiting state, and sources that point to the exact section of an article, not only the article (section 7; this needs section-level sources from Agent E2, section 10).
 - **Why:** Agent E2 replaces AskIO (W-004).
 
 Author's reply:
@@ -492,10 +542,14 @@ Author's reply:
 
 Author's reply:
 
-#### 33. Exam `/exam`
+#### 33. Fun Quiz and the exam `/quiz`
 - **Before:** none.
-- **After:** new. Ten short, very hard multiple-choice questions. A wrong answer loses marks, no answer scores 0, the reasoning is shown after each answer. It sits next to the 2am game. Requirements: [isvara-exam.md](../requirements/isvara-exam.md).
-- **Why:** W-006.
+- **After:** new, in two modes under one door, Practice:
+  - **Quiz:** short rounds of multiple-choice questions on one slice (for example VM and CPU), drawn from a pool, so a visitor can come back and practise. Progress per slice is tracked, and scores can be compared on a board.
+  - **Exam:** the ten short, very hard questions of W-006. A wrong answer loses marks, no answer scores 0, the reasoning is shown after each answer. Requirements: [isvara-exam.md](../requirements/isvara-exam.md).
+
+  Every question is written from knowledge files and checked against them, as the exam's are. Without sign-in (Q-I5), progress is kept in the browser, and a score goes on the board under a nickname the visitor chooses, as the 2am game's board does today.
+- **Why:** W-006; "Fun Quiz: test your knowledge, track progress, and compare scores" (the author's visitor model).
 
 Author's reply:
 
@@ -623,6 +677,50 @@ Author's reply:
 
 Author's reply:
 
+### New forms of the knowledge
+
+#### 48. Books `/books/<name>`
+- **Before:** the five Word books as 50 long HTML chapters (feature 3).
+- **After:** new. A book is an ordered path through articles: parts, chapters, and a short introduction to each part written by the rewrite from its articles. It shows where the reader is ("Chapter 4 of 12"), the reading time left, and continue reading. Each chapter is an article, so nothing is written twice. A book can be downloaded as a PDF made from the same pages. The order of each book is a short list kept in agent-e2 (the reading order of Q-43), so isvara.io holds no structure of its own.
+- **Why:** "Books: the big picture and mastery, structured; a few hours of quiet time" (the author's visitor model). The Word books stay downloadable as the original material (feature 37).
+
+Author's reply:
+
+#### 49. Infographics `/infographics/<name>`
+- **Before:** static figures inside the book chapters.
+- **After:** new. Interactive SVG pictures generated from the knowledge, for example: a KPI with its parts and colour bands, from the catalog; a troubleshooting flow, from its chart; the layers of a VM and its Guest OS; where a metric sits among vCenter, esxtop and VCF Operations. Hovering a part shows its definition; clicking opens the article section. Each has its text underneath, for machines and screen readers, like every diagram in these repositories. A gallery page lists them by slice.
+- **Why:** "One picture is worth a thousand words; interactive diagrams you can click or hover" (the author's visitor model). Generated, so they change when the knowledge changes.
+
+Author's reply:
+
+#### 50. Podcast `/podcast`
+- **Before:** none.
+- **After:** new. Audio episodes made from the knowledge: a script rewritten for listening (numbers spoken, no tables, misreadings told as "people often think this, but") and read by a synthetic voice in the tone of a fellow IT practitioner. The proposed unit is one episode per book chapter, 10 to 15 minutes. Each episode has its transcript (searchable, feature 12), chapter marks, links to the articles it covers, and an RSS feed, so it plays in any podcast app. An episode is made again only when its articles change.
+- **Why:** "Listen: when you cannot look at a screen, jogging or driving; a friendly voice, like a fellow IT practitioner" (the author's visitor model).
+
+Author's reply:
+
+#### 51. What's New `/whats-new`
+- **Before:** none. A correction in the books reached readers only through the next download.
+- **After:** new. A list, newest first, generated from agent-e2's knowledge commits and isvara.io's own releases: articles added; articles changed, with one line on what changed; and corrections, marked as such, saying what was wrong and what is right now. Each article shows "Last changed" and, when there is one, "Corrected on" with a link to the entry. An RSS feed carries the list.
+- **Why:** "Stay updated with modifications, additions and corrections; site contents are changing" (the author's visitor model). A reader who learnt the old version needs to know.
+
+Author's reply:
+
+#### 52. Manual `/manual`
+- **Before:** none.
+- **After:** new. How a VMware administrator or architect clones the base privately and makes it theirs: fork the repositories (Agent E2 with its knowledge base, PCM, PCM-Adapter), set them up in their own lab, point Agent E2 at their own model, and add their organisation's content to the knowledge base following its rules. The text comes from the repositories' own setup documents, pulled at build time, so it is written once, next to the code.
+- **Why:** "Fork: clone the base and customise it; add your organisation's own content" (the author's visitor model), and the stage 1 success that visitors want to fork it (W-012).
+
+Author's reply:
+
+#### 53. Survey `/survey`
+- **Before:** none.
+- **After:** new. A short form: what the visitor found useful or missing, and requests for birds-of-a-feather sessions (a topic, and optionally an event and a city). Answers are stored with the site's other logs and appear in the admin digest (feature 42). The guard (section 8) screens free text for spam. Nothing personal is required.
+- **Why:** "Engage: feedback, and requests for birds-of-a-feather sessions" (the author's visitor model).
+
+Author's reply:
+
 ## 10. What Agent E2 must add
 
 isvara.io cannot do the above alone. These changes belong to agent-e2, its owner, and are made first.
@@ -636,6 +734,9 @@ isvara.io cannot do the above alone. These changes belong to agent-e2, its owner
 | **The planning calculator as an API call** with no model use | Capacity Planner (feature 23) |
 | **Scoring worked examples in the catalog** | KPI explorer (feature 22); W-016 |
 | **A role list:** which files each of the four roles reads first | The role slice ("Questions for round two", question 3) |
+| **Section-level sources:** each source in an answer names the section of the file it used, not only the file | The chat points to the exact section of an article (feature 13) |
+| **Book orders:** for each book, its parts and the ordered file IDs of its chapters | Books (feature 48) |
+| **A change feed:** per knowledge commit, the files added, changed and corrected, with one line each, and a flag for a correction | What's New (feature 51) |
 
 ## 11. Budget and where Agent E2 runs
 
@@ -645,7 +746,8 @@ After go-live, isvara.io must stay within US$50 a month on Vercel AI Gateway (W-
 
 - answers from Agent E2, which may hold several turns and read attachments;
 - the guard's classifier call;
-- rewriting changed pages;
+- rewriting changed pages, book introductions and podcast scripts;
+- the synthetic voice for podcast episodes, if it is bought through the gateway;
 - the judge in the page checks;
 - the eval batteries run after go-live.
 
@@ -740,4 +842,4 @@ The MCP smoke test stays, updated for the new tools. All of them run against the
 
 ## Questions for round two
 
-The questions on this file are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md), Q-100 to Q-108 (and Q-57), each with a recommendation and an Answer line.
+The questions on this file are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md), Q-100 to Q-108, Q-123 to Q-131 (and Q-57), each with a recommendation and an Answer line.

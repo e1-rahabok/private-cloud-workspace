@@ -37,7 +37,7 @@ Help large enterprises run their VMware private cloud well, with the knowledge o
 ## isvara.io
 
 - **For:** VMware administrators and architects learning to run a private cloud (Q-I5).
-- **Does:** lets people learn how to run a private cloud, with Agent E2 answering questions. Connects to no live system ([W-004](../DECISIONS.md)). Holds no knowledge of its own (Q-18).
+- **Does:** serves the reasons visitors come ([W-022](../DECISIONS.md)): read articles, books and infographics; ask Agent E2; listen to a podcast; solve with calculators; catch up on what changed; fork the base; find with search; practise with a quiz; engage through a survey; download the books. Connects to no live system ([W-004](../DECISIONS.md)). Holds no knowledge of its own (Q-18).
 - **Success** (Q-I5): every knowledge file becomes a page a person can read and bookmark; a reader always knows where they are in the whole; the knowledge can be explored in several ways; Agent E2 answers with sources a reader can open; the exam exists.
 - **Not done:** live connections, sign-in, paid content.
 - **Plan:** each feature, before and after, waits for the author's review in [design/isvara-revamp.md](design/isvara-revamp.md).
