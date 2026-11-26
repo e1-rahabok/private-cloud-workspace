@@ -1,6 +1,6 @@
 # Requirements: KPI definitions
 
-One definition of each KPI, owned by Agent E2's catalog and implemented by PCM-Adapter, shown by PCM and isvara.io. This is contract [C1, KPI definitions](../glossary.md#c1). Question IDs (Q-) point at the author's answers in the [interview, round 1](../interview-round-1.md).
+One definition of each KPI, owned by Agent E2's catalog and implemented by PCM-Adapter, shown by PCM and isvara.io. This is contract [C1, KPI definitions](../glossary.md#c1). Question IDs (Q-) point at the interview: [round 1](../interview-round-1.md), [round 2](../interview-round-2.md), [round 3](../interview-round-3.md). R-KPI-001 to R-KPI-007 belong to milestone M2; R-KPI-008 to M5.
 
 Files involved:
 
@@ -10,12 +10,13 @@ Files involved:
 
 ### R-KPI-001 Every KPI part has one complete row in the catalog
 
-Source: W-001; answers to Q-1, Q-15 and Q-19.
+Source: W-001; answers to Q-1, Q-15 and Q-19 (round 1); Q-81 and Q-89 (round 2: the interval decides the statistic; a key column in every row).
 
 Given any KPI that PCM-Adapter publishes (Cluster Performance, ESXi Performance, VM Performance, Guest OS Performance, Cluster Risk, Cluster Consumption)
 When its catalog rows are read
 Then each part has exactly one row with: its name, its metric key, its unit, its statistic (20-second peak or 5-minute average), its group, its direction, five limits and whether it is excluded while green
 And the statistic agrees with the name: a name with "peak" is a 20-second peak, any other a 5-minute average
+And the Guest OS run queue row is named "Peak run queue length per vCPU" (Q-88, round 3), since its limits apply per vCPU
 
 Test scenarios:
 - T-KPI-001a (anywhere, automated by checks/kpi_definitions.py, to extend): read every KPI row; fail on a missing field, a duplicate name or key, or a statistic that disagrees with the name.
@@ -37,7 +38,7 @@ Test scenarios:
 
 The contract side. PCM-Adapter's side is [R-ADP-006](pcm-adapter.md); this requirement holds the catalog and the check, that one the code.
 
-Source: answer to Q-1 ("For key, adapter is correct. For name, Agent E2 is correct").
+Source: answer to Q-1 ("For key, adapter is correct. For name, Agent E2 is correct"); Q-89 (round 2).
 
 Given a part
 When it is published in VCF Operations and shown in PCM
@@ -52,7 +53,7 @@ Test scenarios:
 
 The contract side. PCM-Adapter's side is [R-ADP-009](pcm-adapter.md); this requirement holds the catalog and the check, that one the code.
 
-Source: answers to Q-14 and Q-15 ("All their logic should come from Agent E2").
+Source: answers to Q-14 and Q-15 ("All their logic should come from Agent E2"); Q-87 (round 2: the formula is part of C1).
 
 Given the scoring rules (how a part's value becomes a score, how parts are weighted, how values are rounded, what happens to a part with no data, how "excluded while green" works)
 When the catalog is read

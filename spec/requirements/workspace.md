@@ -1,6 +1,6 @@
 # Requirements: the workspace
 
-What keeps the four repositories one integrated set: the contract checks, the specification's own checks, and the documentation rules. Question IDs (Q-) point at the author's answers in the [interview, round 1](../interview-round-1.md); other IDs are explained in the [glossary](../glossary.md).
+What keeps the repositories one integrated set: the contract checks, the specification's own checks, and the documentation rules. All belong to milestone M2. Question IDs (Q-) point at the author's answers in the [interview, round 1](../interview-round-1.md); other IDs are explained in the [glossary](../glossary.md).
 
 ### R-WS-001 Every contract has an automated check
 
@@ -26,6 +26,7 @@ And they also run daily on main, and on demand
 
 Test scenarios:
 - T-WS-002a (anywhere, automated by GitHub Actions): a pull request in a child repository shows the cross-repo checks as a status. Today only this repository runs them.
+- T-WS-002b (anywhere, manual once per repository): open a pull request in agent-e2 that changes one catalog limit; expect the KPI definitions check to fail on that pull request, before merge.
 
 ### R-WS-003 Every requirement is tested, and every test has a requirement
 
@@ -47,10 +48,12 @@ Given any Markdown file in this repository
 When the documentation check runs
 Then every file reference is a clickable link
 And every diagram is an SVG drawn by a script, with its text generated underneath
+And every arrow in a diagram starts and ends on a box
 And every relative link resolves
 
 Test scenarios:
 - T-WS-004a (anywhere, automated by tools/docs.py --check and tools/diagrams.py in CI): an unlinked path, a stale diagram text or a broken link fails.
+- T-WS-004b (anywhere, manual, done 2026-11-26): move one arrow's end off its box; expect tools/docs.py --check to fail and name the diagram.
 
 ### R-WS-005 No bare short names
 
@@ -62,6 +65,20 @@ Then on its first use in that document it gives the meaning, or links to the [gl
 
 Test scenarios:
 - T-WS-005a (anywhere, manual by a fresh reviewer for each pull request): read the changed files and list every ID used without its meaning. A check is not planned: the rule needs judgement about what a reader already knows.
+
+### R-WS-006 One set of writing rules, checked in every repository
+
+Source: W-023 (writing rules for people and for machines), as revised for M2.
+
+Given the general writing rules (plain sentences, the flagged phrases, noun-phrase headings, short table cells) and the list of flagged phrases
+When any repository's documents for people are checked
+Then the rules and the list exist once, in this workspace
+And agent-e2's writing rules keep only what is particular to knowledge files, and link to the general ones
+And each repository runs [tools/style.py](../../tools/style.py) on its pull requests, against a baseline of its problems today that may only shrink
+
+Test scenarios:
+- T-WS-006a (anywhere, automated by tools/style.py in each repository's CI): a pull request that adds a flagged phrase or a sentence heading to a document for people fails; one that fixes a known problem passes and lowers the baseline.
+- T-WS-006b (anywhere, automated by a check to write in agent-e2's lint): agent-e2's list of flagged phrases is read from this workspace; a copy of the list in agent-e2 fails.
 
 ## Questions for round two
 
