@@ -141,11 +141,35 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 
 - **Date:** 2026-11-26
 - **Decision:** isvara.io is organised by why its visitors come: to read (articles, books, infographics), ask (Agent E2), listen (podcast), solve (calculators), catch up (What's New), fork (manual), find (search, with regular expressions), practise (Fun Quiz), engage (survey), and download. Each is a door in the header and on the home page; every feature sits behind one. All forms come from the same knowledge files.
-- **Reason:** The author's visitor model, 2026-11-26. Plan: [spec/design/isvara-revamp.md](spec/design/isvara-revamp.md), section 4.
-- **Status:** a proposal under review. The author shared the visitor model as a suggestion (2026-11-26); the three learning paths discussed since may replace it.
+- **Reason:** The author's visitor model, 2026-11-26. Recorded for history; the plan now follows W-027.
+- **Status:** replaced by W-027. The visitor model was a suggestion; the three learning paths became the backbone. Its ideas that remain (infographics, What's New, the manual, search, practice) are in the isvara.io plan.
 
 ## W-023 Writing rules for people and for machines
 
 - **Date:** 2026-11-26
 - **Decision:** Documents for people follow Agent E2's writing rules ([writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md)) and its list of flagged phrases (`avoid_ai_speak` in [rules_check_values.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/project/tools/rules_check_values.yaml)): plain sentences, no flagged phrases, no slogans or "X, not Y", headings as noun phrases of at most 9 words, short table cells. Documents for machines (the CLAUDE.md files, requirements, templates) are written for an agent to follow: one rule per bullet, exact paths and names, the trigger before the action. The rules stay in agent-e2; [tools/style.py](tools/style.py) reads them from there and checks this repository in CI. The same rules apply to commit messages and pull request text.
 - **Reason:** The author has fixed AI-speak in Agent E2 several times (2026-11-26). One copy of the rules, checked by code, keeps every repository consistent.
+
+## W-024 Contributions from release 1.0
+
+- **Date:** 2026-11-26
+- **Decision:** isvara.io accepts contributions from release 1.0: a correction, an addition or something to review, with a note, one link and up to three files (PNG, JPEG, CSV). They go to a private queue and are never published automatically; the author decides each week from an AI-sorted list, and accepted items become source notes in agent-e2. Contributors may stay anonymous; credit is shown only with a public profile link, checked at review. No email address is collected. Contributors agree, in one sentence, that they may share it, that it holds no confidential customer data, and that it may be used, changed and published. Files are deleted once processed, and after at most 30 days; no IP address is kept with a contribution. Limits: 3 contributions a day per address, 3 files, 5 MB per image, 2 MB per CSV file, 2,000 characters, 1 link, 100 contributions a day in total; all are settings. There is no masking in 1.0: visitors remove IP addresses and host names before uploading. Protection against floods, bots, large or disguised files and indecent images is described in the [isvara.io plan](spec/design/isvara-revamp.md), section Protection.
+- **Reason:** The author wants the vCommunity to give feedback, corrections and files from 1.0, and asked Claude to decide the details as the one who knows public websites (2026-11-26). Nothing published without review removes the incentive for spam; no account and no email address keep the barrier low and the personal data nil.
+
+## W-025 The product and how customers take it
+
+- **Date:** 2026-11-26
+- **Decision:** The product is Agent E2, PCM-Adapter and PCM, which customers take together, with this parent workspace. PCM-Adapter alone is the simplest deployment (one pak file, no Linux), without Agent E2; its documentation presents it as one part of the whole and points to the knowledge rather than repeating it. PCM runs as a Linux container, with VKS integration. isvara.io is a separate public site that customers use but never install or copy. Customers copy the product privately by mirroring each repository into a private one, since a fork of a public repository on GitHub is always public; the manual says so.
+- **Reason:** The author, 2026-11-26.
+
+## W-026 Release 1.0 scope
+
+- **Date:** 2026-11-26
+- **Decision:** The knowledge covers Day 2: running, monitoring, troubleshooting and planning. Design, installation, building, configuration and upgrades are out, and Agent E2 says so when asked. After 1.0: personal dashboards in PCM, what-if analysis, the people side of operations, and depth beyond vSphere (breadth grows through contributions). The product track comes before a separate knowledge track. The audience of Agent E2 and PCM is the VMware administrator first; the CIO is not a focus for Agent E2.
+- **Reason:** The author, 2026-11-26: Day 1 knowledge depends on the release; release 1.0 must be small enough to finish.
+
+## W-027 isvara.io plan and the knowledge model
+
+- **Date:** 2026-11-26
+- **Decision:** isvara.io follows the [isvara.io plan](spec/design/isvara-revamp.md): the three learning paths as navigation; articles rewritten from knowledge files; infographics as a core feature; Ask Agent E2; contributions; a quiz with a mastery map, the exam and the 2am game; calculators on the catalog; a weekly summary of changes. Dropped: the podcast, the Operations Score, the cost calculator and SLA builder, the self-assessment, a global leaderboard. The [knowledge model](spec/knowledge-model.md) (three paths, four lenses as a completeness check, depth, experience, scale notes) is shared by Agent E2, isvara.io and the knowledge factory.
+- **Reason:** The author's paths and answers of 2026-11-26, and Claude's decisions at the author's request on the details. Replaces W-022.

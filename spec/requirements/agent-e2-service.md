@@ -296,4 +296,4 @@ Test scenarios:
 
 ## Questions for round two
 
-The questions on this file are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md), Q-90 to Q-99 (and Q-57, Q-61, Q-62), each with a recommendation and an Answer line.
+The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-90 to Q-99 (and Q-57, Q-61, Q-62). The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).

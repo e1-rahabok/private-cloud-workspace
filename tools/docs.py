@@ -88,7 +88,10 @@ def diagram_text(text: str, doc: Path, problems: list[str]) -> str:
         if not svg.exists():
             problems.append(f"{doc.relative_to(ROOT)}: image {m.group(2)} not found")
             return m.group(0)
-        return f"{m.group(1)}\n<details>\n<summary>{SUMMARY}</summary>\n\n{svg_to_text(str(svg))}\n\n</details>\n"
+        text = svg_to_text(str(svg))
+        if "(outside any box)" in text:
+            problems.append(f"{doc.relative_to(ROOT)}: {m.group(2)} has an arrow that starts or ends outside any box: fix its coordinates in tools/diagrams.py")
+        return f"{m.group(1)}\n<details>\n<summary>{SUMMARY}</summary>\n\n{text}\n\n</details>\n"
     return IMAGE.sub(repl, text)
 
 

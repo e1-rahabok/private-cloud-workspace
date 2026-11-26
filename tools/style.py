@@ -35,9 +35,7 @@ RULES = ROOT.parent / "agent-e2" / "project" / "tools" / "rules_check_values.yam
 MACHINE = ["CLAUDE.md", "*/CLAUDE.md", "spec/requirements/*", "tutorial/templates/*"]
 VERBATIM = ["spec/interview-round-*.md"]
 # Files waiting for a rewrite that will fix their style; remove a line when the file is clean.
-STYLE_DEBT = {
-    "spec/design/isvara-revamp.md": "rewritten once the three learning paths are agreed (OPEN-QUESTIONS, section H)",
-}
+STYLE_DEBT: dict[str, str] = {}
 OPENER = re.compile(r"(How|Why|What|When|Where|Which|Who)\b")
 HEADING = re.compile(r"^(#{1,4}) (.+)$")
 FENCE = re.compile(r"^```.*?^```", re.S | re.M)

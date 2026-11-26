@@ -95,7 +95,46 @@ def isvara_site_map() -> None:
     k.finish(str(ROOT / "images" / "isvara-site-map.svg"))
 
 
+def roadmap() -> None:
+    """ROADMAP.md: the milestones of release 1.0, their state and what each depends on."""
+    k.begin(1060, 500)
+    k.t(20, 26, "Release 1.0: milestones and what each depends on", 16, "bold")
+    k.legend(20, 40, [("Done", "prod"), ("In progress", "guest"), ("Not started", "white")])
+    w, h = 180, 70
+
+    def b(x, y, title, lines, kind):
+        k.box(x, y, w, title, lines, kind, h=h)
+
+    b(20, 80, "M0 Workspace", ["Files, checks, tutorial"], "prod")
+    b(20, 190, "M1 Specification", ["Intent, model, requirements;", "approval"], "guest")
+    b(230, 190, "M2 Contracts, clean-up", ["KPI definitions, docs,", "Agent E2 plan"], "white")
+    b(440, 190, "M8 Adapter identity", ["New name, data states"], "white")
+    b(650, 190, "M9 Lab build", ["Nested hosts with tiering"], "white")
+    b(440, 300, "M10 Agent E2 stage 1", ["Grader, progress, files,", "Day 2 scope"], "white")
+    b(650, 80, "M3 Live demo: one KPI", ["One cluster, live"], "white")
+    b(860, 80, "M4 Live demo: the rest", ["L2 performance, capacity"], "white")
+    b(650, 410, "M5 isvara.io content", ["Paths, articles, search,", "infographics, tools"], "white")
+    b(860, 300, "M6 isvara.io Ask", ["Agent E2, contributions,", "protection"], "white")
+    b(860, 410, "M7 isvara.io Practice", ["Quiz, mastery map, exam"], "white")
+
+    k.arrow([(110, 150), (110, 190)])
+    k.arrow([(200, 225), (230, 225)])
+    k.arrow([(410, 205), (420, 205), (420, 115), (650, 115)])
+    k.arrow([(410, 225), (440, 225)])
+    k.arrow([(410, 245), (425, 245), (425, 335), (440, 335)])
+    k.arrow([(410, 255), (430, 255), (430, 445), (650, 445)])
+    k.arrow([(830, 115), (860, 115)])
+    k.arrow([(620, 225), (650, 225)])
+    k.arrow([(530, 190), (530, 170), (940, 170), (940, 150)])
+    k.arrow([(620, 320), (845, 320), (845, 160), (880, 160), (880, 150)])
+    k.arrow([(620, 350), (860, 350)])
+    k.arrow([(740, 410), (740, 390), (950, 390), (950, 370)])
+    k.arrow([(830, 445), (860, 445)])
+    k.finish(str(ROOT / "images" / "roadmap.svg"))
+
+
 if __name__ == "__main__":
     system()
     method()
     isvara_site_map()
+    roadmap()
