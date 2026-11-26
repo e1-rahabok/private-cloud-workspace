@@ -74,27 +74,32 @@ Test scenarios:
 
 ### R-ADP-005 No file names the old repository
 
-Source: Q-3 in [round 1](../interview-round-1.md) ("agree": one pull request per repository, archive files left as they are).
+Milestone: M2. The pack's own names ("vCommunity MP", "vCommunity_") change with its identity in M8 (R-ADP-004).
 
-Given the files git tracks in PCM-Adapter, outside the archive (see question 9 at the end)
+Source: Q-3 in [round 1](../interview-round-1.md) ("agree": one pull request per repository, archive files left as they are); Q-80 in [round 2](../interview-round-2.md) (the dated engineering reviews and the README's sentence about the vCommunity keep the old name).
+
+Given the files git tracks in PCM-Adapter, outside the dated engineering reviews
 When they are searched
-Then none contains "VCF-vCommunity-Adapter", "vCommunity MP", "vCommunity Management Pack" or "vCommunity_"
+Then none contains "VCF-vCommunity-Adapter" or "private-cloud-management", the old names of two repositories
 And the README badges, the link in [resources.properties](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/resources/resources.properties#L7), the release command in [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L135) and the image path in [dark-site.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/installation-guide/dark-site.md#L48) and [system-requirements.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/installation-guide/system-requirements.md#L19) name PCM-Adapter
 
 Test scenarios:
-- T-ADP-005a (anywhere, automated by `Management Pack/tests/test_old_name.py` (new), run in CI like [test_docs_links.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_docs_links.py)): run `git ls-files`, read each text file outside the archive, and search for the four strings; expect no match.
+- T-ADP-005a (anywhere, automated by `Management Pack/tests/test_old_name.py` (new), run in CI like [test_docs_links.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_docs_links.py)): run `git ls-files`, read each text file outside the archive, and search for the two old repository names; expect no match outside the engineering reviews.
 
 ## Metric keys and names
 
 ### R-ADP-006 A metric's name comes from the Agent E2 catalog
 
-Source: Q-1 in [round 1](../interview-round-1.md) ("For key, adapter is correct. For name, Agent E2 is correct."); [W-016](../../DECISIONS.md); [W-001](../../DECISIONS.md), Agent E2 as the source of domain knowledge.
+Milestone: M2.
+
+Source: Q-1 in [round 1](../interview-round-1.md) ("For key, adapter is correct. For name, Agent E2 is correct."); Q-89 in [round 2](../interview-round-2.md) (a key column in every catalog row); Q-88 in [round 3](../interview-round-3.md) (the run queue is per vCPU); [W-016](../../DECISIONS.md); [W-001](../../DECISIONS.md), Agent E2 as the source of domain knowledge.
 
 Given a KPI row in any of the six KPI modules under [Management Pack/app/metrics](https://github.com/e1-rahabok/PCM-Adapter/tree/main/Management%20Pack/app/metrics)
 When the adapter definition is built
 Then the row's key is its adapter name, as today
 And its label, the name VCF Operations shows, is the catalog's metric name without its unit
-And this holds for the 11 VM Performance and Guest OS Performance rows that have no catalog label today
+And this holds for the 11 VM Performance and Guest OS Performance rows that have no catalog label today, with the Guest OS run queue row named "Peak run queue length per vCPU" after agent-e2 renames it
+And the KPI definitions check matches adapter rows to catalog rows by key, using the catalog's key column
 And the known name gaps in [the KPI definitions check](../../checks/kpi_definitions.py#L62) (`NAME_GAPS`) are empty
 
 Test scenarios:
@@ -102,6 +107,8 @@ Test scenarios:
 - T-ADP-006b (lab, automated by a new [screenshot.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/screenshot/screenshot.md) entry, reviewed by hand): install; open the metric tree of one lab cluster and one lab VM; expect the catalog names. **Verify on the lab:** the labels are declared on the adapter's own object type "Cluster Compute Resource" ([definition.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/definition.py#L310)), while the values land on the vCenter adapter's `ClusterComputeResource` ([collectClusterData.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/collectors/cluster/collectClusterData.py#L70)). Nothing yet shows that VCF Operations displays those labels on the vCenter objects.
 
 ### R-ADP-007 The declared keys equal the published keys
+
+Milestone: M2.
 
 Source: Q-29 in [round 1](../interview-round-1.md) (its recommendation: fix issue [#85](https://github.com/e1-rahabok/PCM-Adapter/issues/85) before PCM reads host, VM and vCenter keys; the answer does not change that).
 
@@ -117,7 +124,9 @@ Test scenarios:
 
 ### R-ADP-008 Each sub-metric reads the statistic its catalog name states
 
-Source: Q-19 in [round 1](../interview-round-1.md) ("20-second. If a metric does not have the word peak, it's likely a 5-minute average."); [W-016](../../DECISIONS.md).
+Milestone: M2.
+
+Source: Q-19 in [round 1](../interview-round-1.md) ("20-second. If a metric does not have the word peak, it's likely a 5-minute average."); Q-81 in [round 2](../interview-round-2.md) (the catalog's interval is the rule); [W-016](../../DECISIONS.md).
 
 Given a KPI row whose catalog limits are given for the `20s` interval, a 20-second peak
 When the adapter reads its input from VCF Operations
@@ -128,13 +137,15 @@ And the KPI definitions check compares that interval with the catalog interval w
 
 Test scenarios:
 - T-ADP-008a (anywhere, automated by [checks/kpi_definitions.py](../../checks/kpi_definitions.py), extended): for each matched row, expect the adapter's interval to equal the catalog interval that holds the matching limits.
-- T-ADP-008b (anywhere, automated by `Management Pack/tests/test_statistics.py` (new)): for every `20s` row, expect its stat key to contain `20_sec_peak`. Known cases to settle first (question 10): VM Network Dropped Tx reads `net|droppedTxPct_max` ([vm_performance_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/vm_performance_metrics.py#L97)) against a catalog name with "peak" ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L60)). The memory wait rows read a 20-second peak ([memory_wait.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/memory_wait.py#L25)), but their catalog names have no "peak" ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L39)).
+- T-ADP-008b (anywhere, automated by `Management Pack/tests/test_statistics.py` (new)): for every `20s` row, expect its stat key to contain `20_sec_peak`. Known cases, settled by Q-81 in round 2 (agent-e2 adds "peak" to the memory wait names; the dropped TX row is checked on the lab, and becomes 5-minute without "peak" if no 20-second peak exists): VM Network Dropped Tx reads `net|droppedTxPct_max` ([vm_performance_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/vm_performance_metrics.py#L97)) against a catalog name with "peak" ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L60)). The memory wait rows read a 20-second peak ([memory_wait.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/memory_wait.py#L25)), but their catalog names have no "peak" ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L39)).
 
 ## Scoring from the Agent E2 catalog
 
 ### R-ADP-009 The scoring formula reproduces the catalog's worked examples
 
-Source: Q-14 in [round 1](../interview-round-1.md) ("if we're changing formula, yes"; question 16 asks the author to confirm how this is read); [W-016](../../DECISIONS.md) ("All scoring logic comes from Agent E2").
+Milestone: M2.
+
+Source: Q-14 in [round 1](../interview-round-1.md) ("if we're changing formula, yes"); Q-87 in [round 2](../interview-round-2.md) (the formula belongs to contract C1, checked by worked examples); [W-016](../../DECISIONS.md) ("All scoring logic comes from Agent E2").
 
 Given a worked example in the Agent E2 catalog: the sub-metric values of one KPI and the expected KPI
 When the values go through the adapter's scoring, `publish_kpi()` in [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py#L198), including the rounding to two decimals and the "higher is worse" flip
@@ -147,6 +158,8 @@ Test scenarios:
 
 ### R-ADP-010 The score bands come from the catalog
 
+Milestone: M2.
+
 Source: Q-15 in [round 1](../interview-round-1.md) ("All their logic should come from Agent E2. PCM Adapter must implement the same."); [W-016](../../DECISIONS.md).
 
 Given the catalog's score rows for Cluster Risk ([thresholds-risk.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-risk.yaml#L23)) and Cluster Consumption ([thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L40)), and a score row for Cluster Performance that agent-e2 adds first (the catalog has none today)
@@ -158,6 +171,8 @@ Test scenarios:
 - T-ADP-010b (anywhere, automated by the existing tests `test_bands` and `test_a_value_on_a_limit_belongs_to_the_better_band` in [test_periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_periodic_cluster_check.py#L84)): expect them to pass.
 
 ### R-ADP-011 The closure levels come from the catalog, with one Risk level
+
+Milestone: M2.
 
 Source: Q-15 and Q-16 in [round 1](../interview-round-1.md) (Q-16: "agree", one Cluster Risk level for every cluster); [W-016](../../DECISIONS.md).
 
@@ -174,6 +189,8 @@ Test scenarios:
 - T-ADP-011c (lab, automated by validate.ps1 check 20): install and validate after a window has ended; expect the published Close for Business to follow the rule from the published Worst values on every sampled cluster.
 
 ### R-ADP-012 Usable capacity is Total − HA − Buffer
+
+Milestone: M2.
 
 Source: Q-17 in [round 1](../interview-round-1.md) ("agree"); [W-016](../../DECISIONS.md).
 

@@ -70,15 +70,16 @@ No code is written in M1.
 - [x] 105 requirements with 176 test scenarios, each with its source.
 - [ ] Requirements updated for the decisions of 2026-11-26 (W-024 to W-027) and the round 2 decisions, and isvara.io's requirements written from its plan.
 - [x] The author answered the last questions ([round 3](spec/interview-round-3.md)); the lab facts (Q-120, Q-122) come when M9 starts.
-- [ ] The author approves the requirements of M2, the first build milestone.
+- [ ] The author approves the requirements of M2, the first build milestone (listed under M2 below).
 
 ### M2 Contracts tightened and repositories cleaned
 
-- Requirements: R-WS-001 to R-WS-005; R-KPI-001 to R-KPI-007; R-ADP-005 to R-ADP-012.
-- PCM-Adapter's knowledge pages (its concept pages and the explanations in its metric pages) move to Agent E2; the adapter keeps what it computes and how to install it (W-025).
-- Agent E2's plan rewritten for stage 1, and its older benchmarks removed (Q-58, Q-59).
-- The product renamed Private Cloud Manager in PCM's documents and decision log, and links to the old repository name updated in the other repositories (W-028); Agent E2's run queue row renamed "Peak run queue length per vCPU" ([round 3](spec/interview-round-3.md), Q-88).
-- The writing rules move to this workspace for every repository, and each repository runs the shared checks on its pull requests.
+Requirements, ready for the author's approval:
+
+- Workspace checks: R-WS-001 to R-WS-006 ([workspace.md](spec/requirements/workspace.md)).
+- KPI definitions: R-KPI-001 to R-KPI-007 ([kpi-definitions.md](spec/requirements/kpi-definitions.md)).
+- PCM-Adapter, the parts that follow from the KPI definitions: R-ADP-005 to R-ADP-012 ([pcm-adapter.md](spec/requirements/pcm-adapter.md)).
+- Repository clean-up: R-REPO-001 to R-REPO-006 ([repositories.md](spec/requirements/repositories.md)): the adapter's knowledge pages to Agent E2, Agent E2's plan and old benchmarks, the product's name, old repository names.
 
 ### M8 PCM-Adapter's new identity and data states
 
