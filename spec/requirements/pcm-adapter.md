@@ -2,79 +2,46 @@
 
 What [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) must do in release 1.0, written from the author's answers in [interview round 1](../interview-round-1.md) and the decisions in [DECISIONS.md](../../DECISIONS.md). Short names and IDs are explained in the [glossary](../glossary.md).
 
-**Draft for the author's review.** The new identifiers in this file (adapter kind `PCM`, key prefix `PCM|` and the others) are proposals. The author has not named them yet; each one is a question at the end of this file.
+**Draft for the author's review.** The pack keeps its identity: adapter kind `vCommunity`, display name "VCF vCommunity Adapter" and key prefix `vCommunity|` ([WD-032](../../DECISIONS.md)).
 
 ## Scope and conventions
 
 - **Area:** the management pack in VCF Operations, its build and lab tools, and its side of two contracts: [C1, the KPI definitions](../glossary.md#c1), and [C2, the KPI metric keys](../glossary.md#c2), both described in [CONTRACTS.md](../../CONTRACTS.md).
-- **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-001 to R-ADP-018 and R-ADP-021 to R-ADP-022 belong to M2, closing the known gaps. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M6, the first live cluster in PCM. R-ADP-007 is needed before M7, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build).
-- **Keys** are written with the proposed prefix `PCM|`. Today the prefix is `vCommunity|`.
+- **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-005 to R-ADP-012 belong to M2, and R-ADP-018 to R-ADP-023 to M3. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M6, the first live cluster in PCM. R-ADP-013 to R-ADP-017, the state codes, come after release 1.0 ([WD-033](../../DECISIONS.md)). R-ADP-007 is needed before M7, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build) and comes after release 1.0 ([WD-031](../../DECISIONS.md)).
+- **Keys** start with `vCommunity|` ([WD-032](../../DECISIONS.md)).
 - **The adapter may change anything.** The author confirmed that no installed instance or upgrade path needs protecting: Q-I4 and Q-2 in [round 1](../interview-round-1.md), recorded as decisions [WD-007 and WD-016](../../DECISIONS.md).
 - **How lab scenarios run.** From the author's laptop over VPN, with the repository's own tools ([tools/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/README.md)): [build.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/build/build.ps1), [install.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/install/install.ps1), [restart.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/restart/restart.ps1), then one collection cycle, then [validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1). This sequence is called "install and validate" below. The live validation checks the build installed on the lab, so a lab scenario passes only after that build is installed ([validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L12)).
 - **Test names marked "(new)"** do not exist yet. Each is written as part of its requirement.
 
-## Pack identity and the rename
+## Pack identity
 
-### R-ADP-001 The pack has its own identity in VCF Operations
+### R-ADP-001 Dropped: the pack has its own identity in VCF Operations
 
-Source: Q-I4 and Q-2 in [interview round 1](../interview-round-1.md) ("It can change anything", "Change all"); [WD-016](../../DECISIONS.md), the decision on PCM-Adapter's scope; [WD-007](../../DECISIONS.md), the rename.
+Source: [WD-032](../../DECISIONS.md).
 
-Given the pack is built from `main`
-When `build.ps1` finishes
-Then the adapter kind is `PCM` ([constants/main.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/constants/main.py#L4), today `vCommunity`)
-And the adapter name and the display name are "PCM Adapter" ([constants/main.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/constants/main.py#L5), [resources.properties](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/resources/resources.properties#L4))
-And the manifest name is `iSDK_PCM` ([manifest.txt](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/manifest.txt#L3))
-And the image is pushed to `ghcr.io/e1-rahabok/pcm-adapter` ([build.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/build/build.ps1#L21))
-And the pak file is `PCM_<version>.pak`
+Dropped by WD-032: the pack keeps adapter kind `vCommunity`, display name "VCF vCommunity Adapter", manifest name `iSDK_vCommunity`, its image and its pak name.
 
-Test scenarios:
-- T-ADP-001a (anywhere, automated by `Management Pack/tests/test_identity.py` (new)): read the constants, the manifest, `resources.properties` and the default registry of `build.ps1`; expect the five values above, and no "vCommunity" in any of them.
-- T-ADP-001b (lab, automated by validate.ps1 check 3, changed to the new adapter kind): install and validate; expect adapter kind `PCM` to exist, and the installed solution version to equal `manifest.txt`.
+### R-ADP-002 Dropped: every key has the new prefix, set in one place
 
-### R-ADP-002 Every key has the new prefix, set in one place
+Source: [WD-032](../../DECISIONS.md).
 
-Source: Q-2 in [round 1](../interview-round-1.md); [WD-016](../../DECISIONS.md).
+Dropped by WD-032: every key keeps the prefix `vCommunity|`.
 
-Given any collection cycle
-When the adapter publishes metrics and properties
-Then every key starts with `PCM|`
-And the prefix is one constant that every module uses. Today it is written out 239 times in 50 files under `Management Pack/app`, for example in [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py#L218)
-And no key starts with `vCommunity|`
+### R-ADP-003 Dropped: the old pack is replaced on the lab
 
-Test scenarios:
-- T-ADP-002a (anywhere, automated by `Management Pack/tests/test_key_prefix.py` (new)): run every collector against the fakes in [tests/fakes.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/fakes.py) and collect each key published; expect each to start with `PCM|`. Search `Management Pack/app` for the text `vCommunity|`; expect no match.
-- T-ADP-002b (lab, automated by validate.ps1 checks 7 to 12, changed to the new prefix): install and validate; expect `PCM|` keys with fresh samples on every sampled object type.
+Source: [WD-032](../../DECISIONS.md).
 
-### R-ADP-003 The old pack is replaced on the lab
+Dropped by WD-032: with the identity kept, the pack is upgraded in place and keeps its history.
 
-Source: Q-2 in [round 1](../interview-round-1.md) ("No issue on installed instances at all"); the rule in the workspace [CLAUDE.md](../../CLAUDE.md) that anything that deletes data or changes the lab waits for the author.
+### R-ADP-004 Dropped: the shipped content uses the new keys and names
 
-Given the lab VCF Operations at https://10.115.1.81 runs the old pack, adapter kind `vCommunity`
-When the new pack is installed
-Then the old pack and its Adapter Instances are removed
-And each vCenter that had an old Adapter Instance has a new one, with the same Advanced Settings
-And the history of the old keys is not carried over
+Source: [WD-032](../../DECISIONS.md).
 
-Test scenarios:
-- T-ADP-003a (lab, manual with the author, because it deletes data on the lab): the author approves; the old pack is uninstalled; the new Adapter Instances are created with the [bulk importer](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/importer/importer.md); install and validate; expect adapter kind `vCommunity` gone, check 5 (instance state) passing for every vCenter, and no `vCommunity|` sample newer than the removal.
-
-### R-ADP-004 The shipped content uses the new keys and names
-
-Source: Q-2 in [round 1](../interview-round-1.md); [WD-016](../../DECISIONS.md).
-
-Given the content in [Management Pack/content](https://github.com/e1-rahabok/PCM-Adapter/tree/main/Management%20Pack/content): dashboards, views, reports, alert definitions and super metrics (38 files name "vCommunity" today)
-When the pak is built
-Then every key in that content starts with `PCM|`
-And every adapter kind in it is `PCM`
-And no content name contains "vCommunity", such as "ESXi Host Details vCommunity"
-
-Test scenarios:
-- T-ADP-004a (anywhere, automated by `Management Pack/tests/test_content_rename.py` (new)): scan every file under `Management Pack/content`; expect no "vCommunity" in keys, adapter kinds or names.
-- T-ADP-004b (lab, automated by `validate.ps1 -Release`, checks 21 to 24): install and validate with `-Release`; expect every shipped view and dashboard on the instance once. Then open the vSphere Cluster Performance 2.0 dashboard with [screenshot.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/screenshot/screenshot.md); expect no empty widget on a lab cluster (manual review of the screenshot).
+Dropped by WD-032: the shipped content keeps its keys and its names, "vCommunity" included.
 
 ### R-ADP-005 No file names the old repository
 
-Milestone: M2. The pack's own names ("vCommunity MP", "vCommunity_") change with its identity in M3 (R-ADP-004).
+Milestone: M2. The pack's own names, such as "vCommunity MP" and "vCommunity_", stay (WD-032).
 
 Source: Q-3 in [round 1](../interview-round-1.md) ("agree": one pull request per repository, archive files left as they are); Q-80 in [round 2](../interview-round-2.md) (the dated engineering reviews and the README's sentence about the vCommunity keep the old name).
 
@@ -120,7 +87,7 @@ And the case in issue #85 is closed, including the cluster property declared as 
 
 Test scenarios:
 - T-ADP-007a (anywhere, automated by `Management Pack/tests/test_declared_keys.py` (new)): build the definition; run every collector against the fakes; expect the two key sets to be equal, for each object type.
-- T-ADP-007b (lab, automated by a new validate.ps1 check): for one object of each type, read the `PCM|` keys from `GET /suite-api/api/resources/stats/latest?resourceId=<id>` and from `GET /suite-api/api/resources/<id>/properties`; expect each to be in the declared set. **Verify on the lab** that the properties endpoint returns the adapter's properties for a vCenter object.
+- T-ADP-007b (lab, automated by a new validate.ps1 check): for one object of each type, read the `vCommunity|` keys from `GET /suite-api/api/resources/stats/latest?resourceId=<id>` and from `GET /suite-api/api/resources/<id>/properties`; expect each to be in the declared set. **Verify on the lab** that the properties endpoint returns the adapter's properties for a vCenter object.
 
 ### R-ADP-008 Each sub-metric reads the statistic its catalog name states
 
@@ -207,6 +174,8 @@ Test scenarios:
 
 The adapter today publishes nothing for a row with no data. A Suite API "latest" read then returns the last old value as if it were current ([metrics/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md#L138)). The author asked for this to be fixed in the adapter (Q-28), so that PCM shows what the adapter publishes and says "No data" when it is stale ([WD-015](../../DECISIONS.md)).
 
+In release 1.0, only R-ADP-018 is built: a value from a partial read is not published. PCM shows "No data" for a stale value from the time of the value (R-LIVE-015 in [pcm-live.md](pcm-live.md)). The state codes below, which say why a row has no value, come after release 1.0 ([WD-033](../../DECISIONS.md)).
+
 The states use one code each:
 
 | Code | State | Applies to | Meaning |
@@ -221,12 +190,14 @@ The states use one code each:
 
 ### R-ADP-013 Every row and every KPI has a state, every cycle
 
+Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
+
 Source: Q-28 in [round 1](../interview-round-1.md) ("we should fix them in the PCM Adapter"); [WD-016](../../DECISIONS.md) ("Data absent by design is made explicit by the adapter"); Q-27 and [WD-015](../../DECISIONS.md) (PCM says "No data" when a value is stale).
 
 Given an object with a KPI: a cluster, host or VM
 When a collection cycle publishes that KPI
-Then for each row the adapter publishes `PCM|<KPI>|State|<row key>` with one code from the table
-And for the KPI it publishes `PCM|<KPI>|State|<KPI key>`
+Then for each row the adapter publishes `vCommunity|<KPI>|State|<row key>` with one code from the table
+And for the KPI it publishes `vCommunity|<KPI>|State|<KPI key>`
 And the states carry the same timestamp as the values of that cycle
 And a row's value is published exactly when its state is 0 or 1
 And the code table is in the adapter's [Metrics reference](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md) and in the C2 contract
@@ -236,6 +207,8 @@ Test scenarios:
 - T-ADP-013b (lab, automated by a new validate.ps1 check): install and validate; on every sampled cluster, host and VM, expect a state key for every row and KPI, no state older than the KPI's newest sample, and a value next to every state 0 or 1.
 
 ### R-ADP-014 Memory tiering rows say when a cluster has no tiering
+
+Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
 
 Source: Q-28 and Q-38 in [round 1](../interview-round-1.md) (Q-38: "the physical host does not have memory tiering"); [WD-018](../../DECISIONS.md), the lab-build decision.
 
@@ -250,6 +223,8 @@ Test scenarios:
 
 ### R-ADP-015 Bad network packets say when the policy counters are off
 
+Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
+
 Source: Q-28 in [round 1](../interview-round-1.md); the policy page [policy.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/configuration-guide/policy.md#L7) (Total Packets Received and Transmitted are off by default).
 
 Given hosts that report the dropped and error packet counters, but not `net|packetsRx_summation_sum` and `net|packetsTx_summation_sum` ([host_bad_network_packets.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/host/host_bad_network_packets.py#L20))
@@ -262,6 +237,8 @@ Test scenarios:
 - T-ADP-015b (lab, automated by the new validate.ps1 state check): with the lab policy as it is; expect state 3 if the counters are off. Then the counters are turned on (question 14); after one cycle, expect state 0 or 1. **Verify on the lab** that a counter turned off is absent from `stats/latest`, so that "off" can be told from "late".
 
 ### R-ADP-016 VM rows say when a cluster or host has no powered-on VM
+
+Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
 
 Source: Q-28 in [round 1](../interview-round-1.md).
 
@@ -276,6 +253,8 @@ Test scenarios:
 
 ### R-ADP-017 Cluster Consumption says when it is full or when no host runs
 
+Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
+
 Source: Q-28 in [round 1](../interview-round-1.md); the two cases in [cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_consumption_metrics.py#L336).
 
 Given a cluster whose hosts run, while HA and the buffer leave no usable capacity
@@ -289,37 +268,40 @@ Test scenarios:
 
 ### R-ADP-018 A value built from a partial read is not published
 
-Source: Q-28 in [round 1](../interview-round-1.md) (its evidence names issue [#60](https://github.com/e1-rahabok/PCM-Adapter/issues/60): values from partial reads look normal).
+Milestone: M3.
+
+Source: Q-28 in [round 1](../interview-round-1.md) (its evidence names issue [#60](https://github.com/e1-rahabok/PCM-Adapter/issues/60): values from partial reads look normal); WD-033 (in release 1.0, without the state code).
 
 Given a stats request that fails for one batch of objects ([ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L155): "resources have no stats this cycle")
 When a row aggregates over those objects, for example the worst VM of a cluster
-Then the row has state 5 and no value
+Then the row and its KPI are not published that cycle
+And the log names the KPI and the number of objects not read
 And issue #60 is closed
 
 Test scenarios:
-- T-ADP-018a (anywhere, automated by `Management Pack/tests/test_data_states.py` (new)): a fake Suite API that answers HTTP 500 to the second batch, with a small batch size; expect state 5 on every row built from that read, and no value.
+- T-ADP-018a (anywhere, automated by `Management Pack/tests/test_data_states.py` (new)): a fake Suite API that answers HTTP 500 to the second batch, with a small batch size; expect no value on every row and KPI built from that read, and one log line per KPI.
 
 ## Key list from the live environment
 
 PCM must take the keys it reads from a live environment (Q-29). The adapter's part is to make the full key set visible on any one object, every cycle, so one read gives the list.
 
-**How the keys are read today.** `GET /suite-api/api/resources?adapterKind=VMWARE&resourceKind=ClusterComputeResource` lists the clusters, then `GET /suite-api/api/resources/stats/latest?resourceId=<id>` returns every stat of one object, with `values[].stat-list.stat[].statKey.key`, `timestamps` and `data`. validate.ps1 does this ([validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1#L142)) and keeps the keys that start with the prefix. The adapter itself uses `POST /suite-api/api/resources/stats/latest/query` with a list of resource IDs and stat keys ([ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L16)). The Suite API returns keys only. The names come from the Agent E2 catalog (R-ADP-006). Today a row with no data is missing from that read, so the list depends on the object. R-ADP-013 removes that: every row has a state key on every object.
+**How the keys are read today.** `GET /suite-api/api/resources?adapterKind=VMWARE&resourceKind=ClusterComputeResource` lists the clusters, then `GET /suite-api/api/resources/stats/latest?resourceId=<id>` returns every stat of one object, with `values[].stat-list.stat[].statKey.key`, `timestamps` and `data`. validate.ps1 does this ([validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1#L142)) and keeps the keys that start with the prefix. The adapter itself uses `POST /suite-api/api/resources/stats/latest/query` with a list of resource IDs and stat keys ([ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L16)). The Suite API returns keys only. The names come from the Agent E2 catalog (R-ADP-006). A row with no data is missing from that read, so the list depends on the object. In release 1.0 the expected set comes from the module tables (R-ADP-007), and the lab read checks that no other key appears ([WD-033](../../DECISIONS.md)).
 
-Two other endpoints may give the declared keys with their names: `GET /suite-api/api/resources/<id>/statkeys` and `GET /suite-api/api/adapterkinds/PCM/resourcekinds/<kind>/statkeys`. Neither is used in the repository. **Verify on the lab** what each returns for a vCenter cluster.
+Two other endpoints may give the declared keys with their names: `GET /suite-api/api/resources/<id>/statkeys` and `GET /suite-api/api/adapterkinds/vCommunity/resourcekinds/<kind>/statkeys`. Neither is used in the repository. **Verify on the lab** what each returns for a vCenter cluster.
 
 ### R-ADP-019 One read of one object gives its full key set
 
-Source: Q-29 in [round 1](../interview-round-1.md) ("You will need to get from a live environment"); Q-1 (key from the adapter, name from the catalog).
+Source: Q-29 in [round 1](../interview-round-1.md) ("You will need to get from a live environment"); Q-1 (key from the adapter, name from the catalog); WD-033 (no state keys in release 1.0).
 
 Given one lab cluster, one host and one VM, after one collection cycle of the new pack
-When `GET /suite-api/api/resources/stats/latest?resourceId=<id>` is read for each, keeping the keys that start with `PCM|`
-Then the keys of each object equal the expected set for its object type: every value key with state 0 or 1, and every state key
+When `GET /suite-api/api/resources/stats/latest?resourceId=<id>` is read for each, keeping the keys that start with `vCommunity|`
+Then every key found is in the expected set for its object type
 And the expected set for a cluster is the one listed in [Cluster keys](#cluster-keys) below
-And the same set comes from every object of that type, so the list does not depend on which object is read
+And every expected key that no object of the type carries is listed, with the reason its row has no data
 
 Test scenarios:
 - T-ADP-019a (anywhere, automated by `Management Pack/tests/test_declared_keys.py` (new)): from the module tables (`GROUP`, `KPI_KEY`, `PUBLISHED_METRICS`), build the expected key set per object type; expect it to equal the keys the collectors publish with fakes.
-- T-ADP-019b (lab, automated by a new validate.ps1 check that writes the keys it found to a file for PCM's key list): install and validate; for every sampled cluster, host and VM, expect the state keys to equal the expected set exactly.
+- T-ADP-019b (lab, automated by a new validate.ps1 check that writes the keys it found to a file for PCM's key list): install and validate; for every sampled cluster, host and VM, expect no key outside the expected set, and a list of the expected keys not seen, each with its reason (for example no memory tiering, packet counters off).
 
 ## Periodic Cluster Check settings
 
@@ -348,8 +330,8 @@ Source: Q-31 in [round 1](../interview-round-1.md) ("PCM gets from the PCM Adapt
 
 Given a cluster collected by a PCM-Adapter instance
 When a collection cycle runs
-Then the cluster has the properties `PCM|Periodic Cluster Check|Period (hours)`, `PCM|Periodic Cluster Check|Time (UTC)` and `PCM|Periodic Cluster Check|Worst Percent`, with the values the check uses after defaults
-And each time the check publishes its four values, it also publishes the metric `PCM|Periodic Cluster Check|Window End`, the end of the window in UTC as epoch milliseconds, with the same timestamp
+Then the cluster has the properties `vCommunity|Periodic Cluster Check|Period (hours)`, `vCommunity|Periodic Cluster Check|Time (UTC)` and `vCommunity|Periodic Cluster Check|Worst Percent`, with the values the check uses after defaults
+And each time the check publishes its four values, it also publishes the metric `vCommunity|Periodic Cluster Check|Window End`, the end of the window in UTC as epoch milliseconds, with the same timestamp
 And PCM can read both with the cluster, through `GET /suite-api/api/resources/<id>/properties` and `stats/latest`, with no read of the adapter instances
 
 Test scenarios:
@@ -419,13 +401,13 @@ Test scenarios:
 
 ## Cluster keys
 
-The value keys a cluster carries after the rename, with the proposed prefix. Each row also has a state key, `PCM|<KPI>|State|<row key>`, and each KPI a state key, `PCM|<KPI>|State|<KPI key>` (R-ADP-013). The keys after the prefix are the adapter's row names today.
+The value keys a cluster carries. After release 1.0, each row also gets a state key, `vCommunity|<KPI>|State|<row key>`, and each KPI a state key, `vCommunity|<KPI>|State|<KPI key>` (R-ADP-013). The keys after the prefix are the adapter's row names today.
 
 | KPI | KPI key | Row keys | Defined in |
 |---|---|---|---|
-| Cluster Performance | `PCM\|Cluster Performance\|Cluster Performance Score` | Worst VM CPU Ready, Worst VM CPU Co-Stop, Worst VM Memory Latency, Worst VM Disk Latency, 90th Percentile VM CPU Ready, 90th Percentile VM CPU Co-Stop, 90th Percentile VM Memory Latency, 90th Percentile VM Disk Latency, Highest ESXi Bad Network Packets | [cluster_performance_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_performance_metrics.py#L28), [contention_by_vms.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/contention_by_vms.py#L47) |
-| Cluster Risk | `PCM\|Cluster Risk\|Cluster Risk Score` | Highest ESXi CPU Thread Utilization, Worst ESXi CPU Imbalance, Worst ESXi Memory Ballooned, Worst ESXi Memory Zip Swap, Worst ESXi Active Memory, Worst ESXi Memory Tiering Latency, Highest ESXi CPU Reservation, Highest ESXi Memory Reservation, Highest ESXi CPU Overcommit Ratio, Highest ESXi Memory Overcommit Ratio, Highest CPU Monster VM to Host Ratio, Highest Memory Monster VM to Host Ratio | [cluster_risk_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_risk_metrics.py#L349) |
-| Cluster Consumption | `PCM\|Cluster Consumption\|Cluster Consumption Score` | Cluster-wide ESXi CPU Thread Utilization, Cluster-wide ESXi Memory Consumed, Cluster-wide ESXi DRAM Consumed, Cluster Memory Tiering Consumption, Cluster-wide ESXi Memory Ballooned, Cluster-wide ESXi Memory Zip Swap | [cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_consumption_metrics.py#L284) |
+| Cluster Performance | `vCommunity\|Cluster Performance\|Cluster Performance Score` | Worst VM CPU Ready, Worst VM CPU Co-Stop, Worst VM Memory Latency, Worst VM Disk Latency, 90th Percentile VM CPU Ready, 90th Percentile VM CPU Co-Stop, 90th Percentile VM Memory Latency, 90th Percentile VM Disk Latency, Highest ESXi Bad Network Packets | [cluster_performance_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_performance_metrics.py#L28), [contention_by_vms.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/contention_by_vms.py#L47) |
+| Cluster Risk | `vCommunity\|Cluster Risk\|Cluster Risk Score` | Highest ESXi CPU Thread Utilization, Worst ESXi CPU Imbalance, Worst ESXi Memory Ballooned, Worst ESXi Memory Zip Swap, Worst ESXi Active Memory, Worst ESXi Memory Tiering Latency, Highest ESXi CPU Reservation, Highest ESXi Memory Reservation, Highest ESXi CPU Overcommit Ratio, Highest ESXi Memory Overcommit Ratio, Highest CPU Monster VM to Host Ratio, Highest Memory Monster VM to Host Ratio | [cluster_risk_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_risk_metrics.py#L349) |
+| Cluster Consumption | `vCommunity\|Cluster Consumption\|Cluster Consumption Score` | Cluster-wide ESXi CPU Thread Utilization, Cluster-wide ESXi Memory Consumed, Cluster-wide ESXi DRAM Consumed, Cluster Memory Tiering Consumption, Cluster-wide ESXi Memory Ballooned, Cluster-wide ESXi Memory Zip Swap | [cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_consumption_metrics.py#L284) |
 | Periodic Cluster Check | none | Worst Cluster Performance, Worst Cluster Risk, Worst Cluster Consumption, Close for Business, Window End (new, R-ADP-020) | [periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/periodic_cluster_check.py#L81) |
 
 ## Questions for round two

@@ -143,11 +143,15 @@ From [spec/requirements/pcm-adapter.md](requirements/pcm-adapter.md). Q-72 to Q-
 
 **Status:** Decided by Claude at the author's request (2026-11-26): `PCM`.
 
+**Replaced:** by WD-032 (2026-11-27): the pack keeps its vCommunity identity.
+
 ### Q-73 Metric key prefix
 
 **Recommendation:** `PCM|`, the same word as the adapter kind, so a key shows which pack published it.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): `PCM|`.
+
+**Replaced:** by WD-032 (2026-11-27): the pack keeps its vCommunity identity.
 
 ### Q-74 Display name and description
 
@@ -155,11 +159,15 @@ From [spec/requirements/pcm-adapter.md](requirements/pcm-adapter.md). Q-72 to Q-
 
 **Status:** Decided by Claude at the author's request (2026-11-26): "PCM Adapter", with the description rewritten.
 
+**Replaced:** by WD-032 (2026-11-27): the pack keeps its vCommunity identity.
+
 ### Q-75 Manifest name
 
 **Recommendation:** `iSDK_PCM`, following the SDK's pattern; verify that the build tool accepts it.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): `iSDK_PCM`, if the build tool accepts it.
+
+**Replaced:** by WD-032 (2026-11-27): the pack keeps its vCommunity identity.
 
 ### Q-76 Image path and the old image
 
@@ -167,11 +175,15 @@ From [spec/requirements/pcm-adapter.md](requirements/pcm-adapter.md). Q-72 to Q-
 
 **Status:** Decided by Claude at the author's request (2026-11-26): `ghcr.io/e1-rahabok/pcm-adapter`; the old package is deleted after the old pack leaves the lab.
 
+**Replaced:** by WD-032 (2026-11-27): the pack keeps its vCommunity identity.
+
 ### Q-77 Pak file name
 
 **Recommendation:** whatever the build tool makes from the new adapter kind, expected `PCM_<version>.pak`; the release step in [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L135) changes with it.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): the name the build tool makes.
+
+**Replaced:** by WD-032 (2026-11-27): the pack keeps its vCommunity identity.
 
 ### Q-78 Names of the shipped dashboards, views and reports
 
@@ -179,11 +191,15 @@ From [spec/requirements/pcm-adapter.md](requirements/pcm-adapter.md). Q-72 to Q-
 
 **Status:** Decided by Claude at the author's request (2026-11-26): "vCommunity" removed from every name; "VOA" kept.
 
+**Replaced:** by WD-032 (2026-11-27): the pack keeps its vCommunity identity.
+
 ### Q-79 Removing the old pack from the lab
 
 It deletes the old keys' history and the old Adapter Instances. **Recommendation:** Claude writes the steps and the importer file; you approve; Claude runs them with the admin credential in one session.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): Claude prepares the steps; the author approves at the time, because it deletes data in the lab.
+
+**Replaced:** by WD-032 (2026-11-27): the pack is upgraded in place, so nothing is removed.
 
 ### Q-80 What keeps the old name
 

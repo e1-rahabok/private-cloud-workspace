@@ -6,7 +6,8 @@ Rules (spec/requirements/README.md and requirement R-WS-003):
   PCM decision (D-). Questions are found in spec/interview-round-*.md and OPEN-QUESTIONS.md,
   workspace decisions in DECISIONS.md, PCM decisions in the private-cloud-manager clone.
 - It has at least one test scenario: a line "- T-AREA-nnnx (anywhere|lab, ...)" whose number is
-  the requirement's.
+  the requirement's. A dropped requirement ("### R-AREA-nnn Dropped: ...") keeps its ID and Source and
+  has no scenario (spec/requirements/README.md, Rules).
 - Every scenario belongs to an existing requirement.
 
     python tools/spec_check.py      # exit 1 on any problem
@@ -21,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REQ_DIR = ROOT / "spec" / "requirements"
 PCM_DECISIONS = ROOT.parent / "private-cloud-manager" / "decisions.md"
 
-REQ = re.compile(r"^### (R-[A-Z0-9]+-\d{3})\b", re.M)
+REQ = re.compile(r"^### (R-[A-Z0-9]+-\d{3})\b( Dropped:)?", re.M)
 SCEN = re.compile(r"^- (T-[A-Z0-9]+-\d{3}[a-z]) \(([a-z]+)", re.M)
 SOURCE = re.compile(r"^Source:(.*)$", re.M)
 CITED = re.compile(r"\b(Q-I?\d+|WD-\d{3}|D-\d{3})\b")
@@ -66,7 +67,7 @@ def main() -> int:
                     if c not in ids:
                         problems.append(f"{f.name}: {rid} Source names {c}, which does not exist")
             own = [s for s in SCEN.finditer(body) if "R-" + s.group(1)[2:-1] == rid]
-            if not own:
+            if not own and not m.group(2):
                 problems.append(f"{f.name}: {rid} has no test scenario")
         for s in SCEN.finditer(text):
             scenarios.append((s.group(1), s.group(2), f.name))

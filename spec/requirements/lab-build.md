@@ -1,6 +1,6 @@
 # Requirements: lab build
 
-An automatic build of nested virtual ESXi hosts with memory tiering in the author's lab, in the new repository [lab-build](https://github.com/e1-rahabok/lab-build) (empty today). The physical lab hosts have no memory tiering, so the tiering parts of Cluster Risk and Cluster Consumption cannot be tested without it (answer to Q-38 in the [interview, round 1](../interview-round-1.md); [WD-018](../../DECISIONS.md)).
+An automatic build of nested virtual ESXi hosts with memory tiering in the author's lab, in the new repository [lab-build](https://github.com/e1-rahabok/lab-build) (empty today). The physical lab hosts have no memory tiering, so the tiering parts of Cluster Risk and Cluster Consumption cannot be tested without it (answer to Q-38 in the [interview, round 1](../interview-round-1.md); [WD-018](../../DECISIONS.md)). It is built after release 1.0 ([WD-031](../../DECISIONS.md)).
 
 ### R-LAB-001 One command builds the tiered nested hosts
 
