@@ -91,6 +91,8 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **The workspace in the wrong territory.** Asked to approve milestone M2, the author pointed out two problems. The first was the approval itself: its requirements were spread over four files, and approving meant reading each one and its numbers. The second was worse. A requirement said the scoring rules were "defined once, in the catalog, with worked examples". The catalog is a list of data rows: one row per metric with five limits. The scoring model is explained in Agent E2's knowledge and implemented in the management pack's code, and nothing reads the other at run time. An earlier session had turned the author's answer "all their logic should come from Agent E2" into a storage mechanism, without reading the code. Two more requirements restated a capacity formula that Agent E2 already held. The fix was a rule about territory: the workspace specifies only where repositories meet, Agent E2 holds the domain knowledge, and each repository specifies its own implementation. A generated review page now lists each milestone's requirements on one page, one line each.
 
+**Asking for approval too early.** With the review page built, the agent asked the author to approve milestone M2. The author asked why it had jumped to M2 while M1 was unfinished. Approving M2 was the last item of M1, and four items above it were still open: requirements to update, isvara.io's requirements to write, the files to check against the new territory rule, and the milestones to renumber. Any of them could still change M2. The agent had read the line it wanted and skipped the checklist around it.
+
 **The lesson log.** At the end the agent reported that nothing was outstanding. The author asked whether this tutorial had been updated with the session's lessons, "or you forget about it, again?" It had not. Updating this log is now a rule for the end of every session in the agent's working rules ([CLAUDE.md](../CLAUDE.md)).
 
 ## Lessons
@@ -119,6 +121,7 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - Give the workspace a territory. It specifies the contracts between repositories and the checks that compare both sides. Domain knowledge and each repository's implementation belong elsewhere.
 - Read the code and the knowledge file before writing a requirement about them. "Comes from" can mean "is stored in" or "is equal to"; say which.
 - Make approval easy. One page per milestone, one line per requirement, generated from the files so it never goes stale.
+- Finish a milestone's checklist in order. Approval of the next milestone comes last, because the open items before it can still change what is approved.
 - Updating the lesson log is part of finishing a session. Without a written rule, the agent forgot it.
 - The strongest model available, at high effort, made every mistake in this log. The files, the checks and the person's questions are what stopped them repeating.
 - Hard-wrapped Markdown read as one run-on sentence on GitHub. The agent wrapped lines by habit; a rule in CLAUDE.md and a one-time reflow of 46 files fixed it.

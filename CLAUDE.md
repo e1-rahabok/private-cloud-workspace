@@ -64,6 +64,7 @@ Two kinds of document (WD-023):
 - Write each paragraph as one source line. GitHub joins wrapped lines into one sentence, so a wrapped line reads as a run-on.
 - Before each commit, run and pass: `python tools/milestone_review.py`, `python tools/docs.py`, `python tools/style.py`, `python tools/spec_check.py`.
 - To ask the author to approve a milestone: link its review page, [spec/review](spec/review)`/M<n>.md`. Never ask them to read the requirement files one by one.
+- Ask for a milestone's approval only when every other item of the milestone before it in [ROADMAP.md](ROADMAP.md) is ticked.
 
 ## Session end
 

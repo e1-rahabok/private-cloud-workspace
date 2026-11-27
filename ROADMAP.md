@@ -66,13 +66,16 @@ No code is written in M1.
 - [x] The interview: round 1 answered by the author; round 2 decided or answered ([round 1](spec/interview-round-1.md), [round 2](spec/interview-round-2.md)).
 - [x] [Intent and principles](spec/intent.md), the [knowledge model](spec/knowledge-model.md), and the [isvara.io plan](spec/design/isvara-revamp.md).
 - [x] 105 requirements with 176 test scenarios, each with its source.
-- [ ] Requirements updated for the decisions of 2026-11-26 (WD-024 to WD-027) and the round 2 decisions, and isvara.io's requirements written from its plan.
+- [ ] Requirements updated for the decisions of 2026-11-26 (WD-024 to WD-027) and the round 2 decisions: [agent-e2-service.md](spec/requirements/agent-e2-service.md), [pcm-live.md](spec/requirements/pcm-live.md), [isvara-exam.md](spec/requirements/isvara-exam.md).
+- [ ] isvara.io's requirements written from its plan, in [isvara-content.md](spec/requirements/isvara-content.md) and the files the plan needs.
+- [ ] Every requirement file checked against WD-036: a requirement on one repository's own code or files moves to that repository; the workspace keeps the contracts and their checks.
+- [ ] The milestones renumbered in the order of work, since M4 left release 1.0 (WD-031).
 - [x] The author answered the last questions ([round 3](spec/interview-round-3.md)); the lab facts (Q-120, Q-122) wait until the lab build, after release 1.0 (WD-031).
-- [ ] The author approves the requirements of M2, the first build milestone (listed under M2 below).
+- [ ] Last: the author approves the requirements of M2, the first build milestone, from its [review page](spec/review/M2.md).
 
 ### M2 Contracts tightened and repositories cleaned
 
-Requirements, ready for the author's approval, on one page: [spec/review/M2.md](spec/review/M2.md).
+Requirements as drafted; they may still change in M1. The author approves them at the end of M1, from the [review page](spec/review/M2.md).
 
 - Workspace checks: R-WS-001 to R-WS-007 ([workspace.md](spec/requirements/workspace.md)), including the check that folder and file names carry no version, milestone or status word (WD-030).
 - KPI definitions: R-KPI-001 to R-KPI-006 ([kpi-definitions.md](spec/requirements/kpi-definitions.md)): the adapter's tables equal Agent E2's catalog.
