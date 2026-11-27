@@ -32,7 +32,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 RULES = ROOT.parent / "agent-e2" / "project" / "tools" / "rules_check_values.yaml"
 
-MACHINE = ["CLAUDE.md", "*/CLAUDE.md", "spec/requirements/*", "tutorial/templates/*"]
+MACHINE = ["CLAUDE.md", "CLAUDE-PROJECT.md", "*/CLAUDE.md", "spec/requirements/*", "tutorial/templates/*"]
 VERBATIM = ["spec/interview-round-*.md"]
 # Files waiting for a rewrite that will fix their style; remove a line when the file is clean.
 STYLE_DEBT: dict[str, str] = {}

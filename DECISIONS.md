@@ -256,3 +256,9 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** Milestone M-1 comes before M0. It holds Claude's rules (CLAUDE.md), the milestone gate of WD-039 and its hook. It is about how Claude works, never about the product. M0, the workspace set-up, waits until the author approves M-1.
 - **Reason:** The author, 2026-11-27: "M0 requires you to be in SDD-mode already. M-1 is to prep Claude to be in SDD mode."
+
+## WD-041 CLAUDE.md holds only the method
+
+- **Date:** 2026-11-27
+- **Decision:** CLAUDE.md holds only the rules of spec-driven development, written so they apply to any project, in any field. Everything about this project, its repositories, tools, paths, domain and lab, is in [CLAUDE-PROJECT.md](CLAUDE-PROJECT.md). CLAUDE.md loads it with an `@CLAUDE-PROJECT.md` import line, so Claude reads both files at the start of every session.
+- **Reason:** The author, 2026-11-27: "The Claude.md should be universal claude setting. It should be 100% relevant to other project that I will work in the future." and "Project-specific rules should be placed in a separate file."
