@@ -93,7 +93,7 @@ Source: WD-030; WD-032 (the shipped content keeps its names).
 - And each problem the first run finds is renamed in M2, or listed in a baseline that may only shrink, with one question per repository that names its list, in that repository's question file (WD-019); a repository without one starts it, with the IDs of WD-038
 
 Test scenarios:
-- T-WS-007a (anywhere, automated by a check to write in [checks](../../checks), run by run_all.py and in each repository's CI): a pull request that adds `report_v2.md` or `story_m5.py` fails; one that adds `knowledge/…/why-a-new-framework.md` or `spec/review/M9.md` passes; one that renames a known problem passes and lowers the baseline.
+- T-WS-007a (anywhere, automated by [checks/file_names.py](../../checks/file_names.py), run by run_all.py and in each repository's CI; planted breaks in [checks/test_file_names.py](../../checks/test_file_names.py)): a pull request that adds `report_v2.md` or `story_m5.py` fails; one that adds `knowledge/…/why-a-new-framework.md` or `spec/review/M9.md` passes; one that renames a known problem passes and lowers the baseline.
 - T-WS-007b (anywhere, manual by a fresh session, once per repository): given only the repository's folder tree, the session writes what it expects in each top-level folder and in each folder one level down, then opens them. Each wrong guess becomes a rename in the same milestone.
 
 ### R-REPO-006 No repository uses an old repository name
@@ -107,7 +107,7 @@ Source: Q-WS-3 (round 1: rename references, archives left as they are); WD-007; 
 - Then none contains "VCF-vCommunity-Adapter" or "private-cloud-management"
 
 Test scenarios:
-- T-REPO-006a (anywhere, automated by a check to write in [checks](../../checks), run by run_all.py): search the clones for the two old names outside archives, dated records and the files that forbid them; expect no match.
+- T-REPO-006a (anywhere, automated by [checks/forbidden_names.py](../../checks/forbidden_names.py), run by run_all.py; planted breaks in [checks/test_forbidden_names.py](../../checks/test_forbidden_names.py)): search the clones for the two old names outside archives, dated records and the files that forbid them; expect no match.
 
 
 ### R-WS-008 The model gateway answers the model Agent E2 is set to

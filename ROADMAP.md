@@ -106,7 +106,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - [ ] C1, step 3: the catalog's renamed rows, its Cluster Performance score row and its one Cluster Risk level, with the adapter's labels and intervals to match; the check also compares intervals, score bands and closure levels, and `NAME_GAPS` is empty (R-KPI-005, R-KPI-006, R-ADP-006, R-ADP-008, R-ADP-010, R-ADP-011).
 - [ ] The adapter's declared keys equal its published keys, and its files use one name for the pack and none of the old repository names (R-ADP-005, R-ADP-007, R-ADP-025).
 - [ ] One set of writing rules, run by [tools/style.py](tools/style.py) in every repository (R-WS-006).
-- [ ] The name check and the old repository names check, run by [checks/run_all.py](checks/run_all.py) (R-WS-007, R-REPO-006).
+- [ ] The name check and the forbidden names check, run by [checks/run_all.py](checks/run_all.py) (R-WS-007, R-REPO-006, T-REPO-007b, T-REPO-008e).
 - [ ] Every contract names its check, and the cross-repo checks run on the pull requests of every child repository, isvara's in its own CI (R-WS-001, R-WS-002).
 - [ ] R-WS-003 to R-WS-005 hold on every pull request of M2.
 - [ ] Agent E2's plan describes release 1.0, and the older benchmarks are removed (R-REPO-003, R-REPO-004).
