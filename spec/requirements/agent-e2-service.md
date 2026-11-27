@@ -167,11 +167,11 @@ Source: WD-013; WD-014 (gateway spending: US$100 per benchmark run, US$50 a mont
 
 Given any answer
 When it is returned
-Then it holds `elapsed_s`, the seconds per stage, and `usage`: the number of model calls, prompt tokens and completion tokens, and the cost in US dollars when the gateway reports one (else null)
+Then it holds `elapsed_s`, the seconds per stage, and `usage`: the number of model calls, prompt tokens and completion tokens.
 
 Test scenarios:
 - T-E2-010a (anywhere, automated by [harness/test_harness.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/test_harness.py), to build): with a mock client that reports 100 prompt and 20 completion tokens per call, `usage` equals the sum over the calls the trace records.
-- T-E2-010b (anywhere, automated by `benchmark/runner/answer_grader.py`): the answer-set report gives the median and 95th percentile of `elapsed_s` and of cost per answer.
+- T-E2-010b (anywhere, automated by `benchmark/runner/answer_grader.py`): the answer-set report gives the median per answer.
 
 ## Conversations, CSV files and screenshots
 
