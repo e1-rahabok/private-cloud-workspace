@@ -18,7 +18,7 @@ Rules, tools and paths of this project: Private Cloud Manager and its repositori
 
 ## Writing
 
-- Writing rules: agent-e2's [writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md) and its `avoid_ai_speak` list, checked by [tools/style.py](tools/style.py) (WD-023).
+- Writing rules: [writing/README.md](writing/README.md) and its list [writing/flagged-phrases.yaml](writing/flagged-phrases.yaml), checked by [tools/style.py](tools/style.py) (WD-023, R-WS-006). Agent E2's knowledge files also follow agent-e2's [writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md).
 - Machine documents also include the child repositories' CLAUDE.md files and [`tutorial/templates`](tutorial/templates).
 - Every diagram is an SVG drawn by [tools/diagrams.py](tools/diagrams.py), with its text generated underneath (WD-020).
 
