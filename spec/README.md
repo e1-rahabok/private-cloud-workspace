@@ -15,7 +15,7 @@ What the product must do, and how each part of that is tested. Built in M1 from 
 ## Supporting files
 
 - [knowledge-model.md](knowledge-model.md): the three learning paths, the four lenses, depth, experience and scale.
-- [design/isvara-revamp.md](design/isvara-revamp.md): the isvara.io plan. [design/fine-tuning.md](design/fine-tuning.md): why the model is not fine-tuned in stage 1.
+- [design/isvara-revamp.md](design/isvara-revamp.md): the isvara.io plan. [design/fine-tuning.md](design/fine-tuning.md): why the model is not fine-tuned in release 1.0.
 - [interview-round-1.md](interview-round-1.md) and [interview-round-2.md](interview-round-2.md): the interview, with the author's answers and the decisions taken at his request. The questions still open are in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md).
 - [glossary.md](glossary.md): every ID and short name.
 

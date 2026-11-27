@@ -1,6 +1,6 @@
 # Requirements: the Agent E2 service
 
-What Agent E2 must do in stage 1 for its two callers, PCM and isvara.io, and how each part is tested. The service is one Python program, [harness/answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py). Its HTTP calls are contract [C3, the Agent E2 API](../glossary.md#c3), and its docstring is that contract's specification.
+What Agent E2 must do in release 1.0 for its two callers, PCM and isvara.io, and how each part is tested. The service is one Python program, [harness/answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py). Its HTTP calls are contract [C3, the Agent E2 API](../glossary.md#c3), and its docstring is that contract's specification.
 
 How to read the IDs: "Q-5" is a question of the interview, with the author's answer, in [interview, round 1](../interview-round-1.md). "W-013" is a decision that binds several repositories, in [DECISIONS.md](../../DECISIONS.md). Every other ID is explained in the [glossary](../glossary.md).
 
@@ -16,7 +16,7 @@ Files involved:
 
 ### R-E2-001 The service runs Gemma 4 31B through Vercel AI Gateway
 
-Source: W-013 (Agent E2 in stage 1: accuracy first, the model, drafts used); answer to Q-7 ("Gemma 4 31B, or later version when it comes"); W-002 (stage 1 only, cloud model through the gateway).
+Source: W-013 (Agent E2 in release 1.0: accuracy first, the model, drafts used); answer to Q-7 ("Gemma 4 31B, or later version when it comes"); W-002 (release 1.0 in the lab, cloud model through the gateway).
 
 Given the service as deployed for PCM or for isvara.io
 When `GET /v1/health` is called
@@ -55,9 +55,9 @@ Test scenarios:
 
 ## Answer quality
 
-### R-E2-004 A stage 1 answer set of free-text questions exists
+### R-E2-004 An answer set of free-text questions for release 1.0 exists
 
-Source: W-013; answers to Q-5 ("The grader should be automated") and Q-I1 (conversations, CSV files and screenshots); W-012 (stage 1 success: Agent E2 explains a real lab KPI correctly).
+Source: W-013; answers to Q-5 ("The grader should be automated") and Q-I1 (conversations, CSV files and screenshots); W-012 (release 1.0 success: Agent E2 explains a real lab KPI correctly).
 
 Given the questions PCM users and isvara.io readers ask
 When the answer set is read
