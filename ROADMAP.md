@@ -14,7 +14,7 @@ VMware administrators have the author's knowledge inside their own private cloud
 - **isvara.io:** rebuilt on the three learning paths, with ask, contributions and practice ([plan](spec/design/isvara-plan.md)). This is the main focus on Release 1.0
 - **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge, value management, the VCF vCommunity Adapter's state codes, Agent E2's new knowledge forms ([DECISIONS](DECISIONS.md), WD-026, WD-033, WD-034, WD-035).
 
-![Release 1.0 milestones and what each depends on: M-1 in progress; M0 paused; M1 paused; M2 leads to M5, M3, M4 and M7; M5 to M6; M3 to M6; M4 to M6 and M8; M7 to M8 and M9](images/roadmap.svg)
+![Release 1.0 milestones and what each depends on: M-1 done; M0 in progress; M1 paused; M2 leads to M5, M3, M4 and M7; M5 to M6; M3 to M6; M4 to M6 and M8; M7 to M8 and M9](images/roadmap.svg)
 
 <details>
 <summary>Text of the diagram, for readers that cannot see it</summary>
@@ -22,8 +22,8 @@ VMware administrators have the author's knowledge inside their own private cloud
 Colour key: green = Done; orange = In progress; white = Not started or paused.
 
 Boxes, nested as drawn:
-- n1 **M0 Workspace** (Not started or paused): Files, checks, tutorial
-- n2 **M-1 Claude in SDD mode** (In progress): Rules, gate, hook
+- n1 **M0 Workspace** (In progress): Files, checks, tutorial
+- n2 **M-1 Claude in SDD mode** (Done): Rules, gate, hook
 - n3 **M5 Live demo: one KPI** (Not started or paused): One cluster, live
 - n4 **M6 Live demo: the rest** (Not started or paused): L2 performance, capacity
 - n5 **M1 Specification** (Not started or paused): Intent, model, requirements; approval
@@ -57,21 +57,21 @@ Arrows: `-->` solid, `..>` dashed.
 
 Milestones are numbered in the order of work. The diagram shows which ones can run in parallel. Work happens only in the open milestone: the first one whose heading does not end with "done". A milestone is marked done only after the author approves it. [tools/milestone_gate.py](tools/milestone_gate.py) shows the open milestone and its next item at every prompt, and fails a pull request that changes a file owned only by a later milestone (WD-039). A build milestone is done when every test scenario of its requirements passes ([tools/spec_check.py](tools/spec_check.py) checks that each requirement has one).
 
-### M-1 Claude in SDD mode: in progress
+### M-1 Claude in SDD mode: done
 
 Claude's own rules and the mechanism that holds Claude to them, before any other work (WD-040). Nothing in M-1 is about the product.
 
-- Files in this repository: [`CLAUDE.md`](CLAUDE.md), [`CLAUDE-PROJECT.md`](CLAUDE-PROJECT.md), [`ROADMAP.md`](ROADMAP.md), [`DECISIONS.md`](DECISIONS.md), [`spec/glossary.md`](spec/glossary.md), [`.claude/`](.claude), [`.github/`](.github), [`tools/milestone_gate.py`](tools/milestone_gate.py), [`tools/diagrams.py`](tools/diagrams.py), [`images/roadmap.svg`](images/roadmap.svg).
+- Files in this repository: [`CLAUDE.md`](CLAUDE.md), [`CLAUDE-PROJECT.md`](CLAUDE-PROJECT.md), [`ROADMAP.md`](ROADMAP.md), [`DECISIONS.md`](DECISIONS.md), [`spec/glossary.md`](spec/glossary.md), [`.claude/`](.claude), [`.github/`](.github), [`tools/milestone_gate.py`](tools/milestone_gate.py), [`tools/claude_md_copies.py`](tools/claude_md_copies.py), [`tools/diagrams.py`](tools/diagrams.py), [`images/roadmap.svg`](images/roadmap.svg).
 - [x] One rule for the order of work, its prompt hook and its CI check ([#35](https://github.com/e1-rahabok/private-cloud-workspace/pull/35)).
 - [x] CLAUDE.md pruned: one rule per bullet, no rule twice, the method apart from this project's rules ([#36](https://github.com/e1-rahabok/private-cloud-workspace/pull/36)).
 - [x] CLAUDE.md holds only the method, for any project; this project's rules, tools and paths are in CLAUDE-PROJECT.md, which CLAUDE.md loads ([#37](https://github.com/e1-rahabok/private-cloud-workspace/pull/37)).
-- [ ] The same CLAUDE.md in each child repository, each with its own CLAUDE-PROJECT.md. Done in private-cloud-manager ([#75](https://github.com/e1-rahabok/private-cloud-manager/pull/75)) and isvara ([#2](https://github.com/e1-rahabok/isvara/pull/2)). agent-e2 and PCM-Adapter wait for this session's push access.
-- [ ] A check that every copy of CLAUDE.md equals the workspace's.
-- [ ] The author approves M-1.
+- [x] The same CLAUDE.md in each child repository, each with its own CLAUDE-PROJECT.md: agent-e2 ([#475](https://github.com/e1-rahabok/agent-e2/pull/475)), PCM-Adapter ([#105](https://github.com/e1-rahabok/PCM-Adapter/pull/105)), private-cloud-manager ([#75](https://github.com/e1-rahabok/private-cloud-manager/pull/75)), isvara ([#2](https://github.com/e1-rahabok/isvara/pull/2)).
+- [x] A check that every copy of CLAUDE.md equals the workspace's, [tools/claude_md_copies.py](tools/claude_md_copies.py), run in CI for all but isvara ([#39](https://github.com/e1-rahabok/private-cloud-workspace/pull/39)). The settings allow this session to attach a repository with push access.
+- [x] The author approves M-1 (2026-11-27).
 
-### M0 Workspace, checks and tutorial: paused
+### M0 Workspace, checks and tutorial: in progress
 
-Reopened on 2026-11-27: it was marked done without the author's review. Waits for M-1.
+Reopened on 2026-11-27: it was marked done without the author's review.
 
 - Files in this repository: [`CLAUDE.md`](CLAUDE.md), [`README.md`](README.md), [`ROADMAP.md`](ROADMAP.md), [`DECISIONS.md`](DECISIONS.md), [`OPEN-QUESTIONS.md`](OPEN-QUESTIONS.md), [`spec/glossary.md`](spec/glossary.md), [`spec/README.md`](spec/README.md), [`spec/requirements/README.md`](spec/requirements/README.md), [`spec/review/`](spec/review), [`.claude/`](.claude), [`.github/`](.github), [`tools/`](tools), [`checks/run_all.py`](checks/run_all.py), [`images/`](images).
 - [ ] Each foundation of M0 listed, reviewed with the author one at a time, and approved.
