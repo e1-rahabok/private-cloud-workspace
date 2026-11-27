@@ -15,7 +15,7 @@ Boxes, nested as drawn:
 - n1 **PCM** (PCM): Web app for operations roles; synthetic ACME or live data; lab VM, https://10.114.1.29
 - n2 **Agent E2 for PCM** (Agent E2): Knowledge service over HTTP; owns all domain knowledge; same lab VM, port 8090
 - n3 **isvara.io** (isvara.io): Public learning site; on Vercel; no live system
-- n4 **Agent E2 for isvara.io** (Agent E2): Where it runs: OPEN-QUESTIONS Q-4
+- n4 **Agent E2 for isvara.io** (Agent E2): Where it runs: OPEN-QUESTIONS Q-WS-4
 - n5 **VCF Operations**: Lab, https://10.115.1.81
   - n6 **VCF vCommunity Adapter** (VCF vCommunity Adapter): Computes the KPIs inside VCF Operations, under vCommunity|
 - n7 **Vercel AI Gateway** (Model): Cloud model for release 1.0
@@ -41,8 +41,8 @@ Arrows: `-->` solid, `..>` dashed.
 | PCM | private-cloud-manager | Lab Linux VM moltbot29, https://10.114.1.29 (VPN) | Agent E2 over HTTP; VCF Operations Suite API (scenario 7) |
 | Agent E2 for PCM | agent-e2 | Same lab VM, port 8090, as a systemd service | Vercel AI Gateway |
 | VCF vCommunity Adapter | PCM-Adapter | Inside the lab VCF Operations, https://10.115.1.81 (VPN) | vCenter, VCF Operations |
-| isvara.io | isvara | Vercel, public | Agent E2 (planned, ROADMAP M9); today its own AskIO agent |
-| Agent E2 for isvara.io | agent-e2 | Not decided (OPEN-QUESTIONS, Q-4) | Vercel AI Gateway |
+| isvara.io | isvara | Vercel, public | Agent E2 (planned, ROADMAP M8); today its own AskIO agent |
+| Agent E2 for isvara.io | agent-e2 | Not decided (OPEN-QUESTIONS, Q-WS-4) | Vercel AI Gateway |
 
 ## Sources of each kind of data
 
@@ -66,7 +66,7 @@ PCM is a web application that runs in a browser. In release 1.0 all of PCM is a 
 6. Docs reader (auditor)
 
 - **Scenarios 1 to 6** show synthetic data: ACME, a global bank with stories written relative to now. They show Agent E2 at its best.
-- **Scenario 7, added in release 1.0** (ROADMAP M6 and M7): the L2 platform engineer on the author's lab VCF Operations, with live data. It proves PCM reads real data. It is still a demo, and the lab is too quiet to show Agent E2 well.
+- **Scenario 7, added in release 1.0** (ROADMAP M5 and M6): the L2 platform engineer on the author's lab VCF Operations, with live data. It proves PCM reads real data. It is still a demo, and the lab is too quiet to show Agent E2 well.
 
 ## PCM and the VCF vCommunity Adapter
 

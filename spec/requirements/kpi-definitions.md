@@ -10,7 +10,7 @@ Files involved:
 
 ### R-KPI-001 Every part the adapter publishes has a catalog row with a key
 
-Source: WD-001; answers to Q-1 and Q-19 (round 1); Q-89 (round 2: a key column in every row); WD-036.
+Source: WD-001; answers to Q-WS-1 and Q-WS-19 (round 1); Q-WS-89 (round 2: a key column in every row); WD-036.
 
 - Given any KPI that the VCF vCommunity Adapter publishes (Cluster Performance, ESXi Performance, VM Performance, Guest OS Performance, Cluster Risk, Cluster Consumption)
 - When the check reads Agent E2's catalog
@@ -21,7 +21,7 @@ Test scenarios:
 
 ### R-KPI-002 Each part's limits in the adapter equal the catalog's
 
-Source: WD-001; answers to Q-15 and Q-16.
+Source: WD-001; answers to Q-WS-15 and Q-WS-16.
 
 - Given a part in the catalog
 - When VCF vCommunity Adapter's KPI module for that KPI is read
@@ -36,7 +36,7 @@ Test scenarios:
 
 The contract side. VCF vCommunity Adapter's side is [R-ADP-006](pcm-adapter.md); this requirement holds the catalog and the check, that one the code.
 
-Source: answer to Q-1 ("For key, adapter is correct. For name, Agent E2 is correct"); Q-89 (round 2).
+Source: answer to Q-WS-1 ("For key, adapter is correct. For name, Agent E2 is correct"); Q-WS-89 (round 2).
 
 - Given a part
 - When it is published in VCF Operations and shown in PCM
@@ -57,7 +57,7 @@ Dropped by WD-036. The catalog holds data and cannot hold rules. The scoring mod
 
 The contract side. The VCF vCommunity Adapter's side is [R-ADP-010](pcm-adapter.md).
 
-Source: answer to Q-15; WD-036.
+Source: answer to Q-WS-15; WD-036.
 
 - Given a KPI with a score row in Agent E2's catalog
 - When the check compares it with the band table in the adapter's code
@@ -71,7 +71,7 @@ Test scenarios:
 
 The contract side. The VCF vCommunity Adapter's side is [R-ADP-011](pcm-adapter.md).
 
-Source: answers to Q-15 and Q-16; WD-036.
+Source: answers to Q-WS-15 and Q-WS-16; WD-036.
 
 - Given the close-for-business levels in Agent E2's catalog
 - When the check compares them with the levels in the adapter's Periodic Cluster Check code

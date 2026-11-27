@@ -14,7 +14,7 @@ Each requirement has an ID, a short title, the answer or decision it comes from,
 
 > **R-LIVE-015 A stale value shows "No data" at once**
 >
-> Source: the author's answer to Q-27; decision WD-015.
+> Source: the author's answer to Q-WS-27; decision WD-015.
 >
 > Given the management pack collects every 5 minutes
 > When the newest sample of a metric is more than 10 minutes old when the web app reads it

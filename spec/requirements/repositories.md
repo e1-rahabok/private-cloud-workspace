@@ -27,7 +27,7 @@ Source: WD-025; the author's message of 2026-11-26 naming the adapter's concept 
 - Given VCF vCommunity Adapter's documentation after R-REPO-001
 - When a reader opens a metric or concept page
 - Then it describes what the adapter computes and publishes (keys, inputs, settings, states) and how to install and run it
-- And for what a metric means and how to use it, it links to the Agent E2 knowledge file (until isvara.io's articles exist in M8, then to the article)
+- And for what a metric means and how to use it, it links to the Agent E2 knowledge file (until isvara.io's articles exist in M7, then to the article)
 - And the README presents the adapter as one part of Private Cloud Manager, with links to Agent E2 and PCM, and names the simplest deployment: the pak file alone
 
 Test scenarios:
@@ -40,11 +40,11 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-6 (round 1: "Update Agent E2's plan. It's outdated."); Q-58 (round 2: milestones A1 to A6).
+Source: Q-WS-6 (round 1: "Update Agent E2's plan. It's outdated."); Q-WS-58 (round 2: milestones A1 to A6).
 
 - Given Agent E2's [project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md)
 - When a session reads it at the start of work
-- Then its milestones are A1 to A6 as decided in Q-58, with the items of the on-premises deployment (local model, offline bundle, live test with blocked network) listed as parked
+- Then its milestones are A1 to A6 as decided in Q-WS-58, with the items of the on-premises deployment (local model, offline bundle, live test with blocked network) listed as parked
 - And its fine-tuning row points to the workspace's [design note](../design/fine-tuning.md)
 - And agent-e2's CLAUDE.md sends questions that bind several repositories to this workspace (WD-019)
 
@@ -55,13 +55,13 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-12 (round 1: "Remove them permanently."); Q-59 (round 2: what is removed and what stays).
+Source: Q-WS-12 (round 1: "Remove them permanently."); Q-WS-59 (round 2: what is removed and what stays).
 
-- Given the older benchmark material listed in Q-59
+- Given the older benchmark material listed in Q-WS-59
 - When the removal is merged
 - Then the result folders from before 2026-11-16, the retired questions, the old harness code and its design notes, the old plan decisions and review, and the retrieval results of 2026-11-14 are deleted from main
 - And the round of 2026-11-16 and the question-set history files stay
-- And the free-text judge's scoring rubric is kept first, in agent-e2's benchmark folder, for the new grader of M5
+- And the free-text judge's scoring rubric is kept first, in agent-e2's benchmark folder, for the new grader of M4
 - And the live documents that quote old numbers (MISSION.md, README.md, harness/README.md, harness/AGENT.md, benchmark/design.md, benchmark/models.md) are rewritten without them
 - And git history is not rewritten
 
@@ -75,7 +75,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-60 (round 3: "Manager, not Management"); WD-028.
+Source: Q-WS-60 (round 3: "Manager, not Management"); WD-028.
 
 - Given PCM's documents and its decision log
 - When a reader meets the product's full name
@@ -89,14 +89,14 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-3 (round 1: rename references, archives left as they are); WD-007; WD-028.
+Source: Q-WS-3 (round 1: rename references, archives left as they are); WD-007; WD-028.
 
 - Given the repositories agent-e2, PCM-Adapter, private-cloud-manager, isvara and this workspace
 - When their files outside archives and dated records are searched
 - Then none contains "VCF-vCommunity-Adapter" or "private-cloud-management"
 
 Test scenarios:
-- T-REPO-006a (anywhere, automated by a check to write in [checks](../../checks), run by run_all.py): search the clones for the two old names outside archives and dated records; expect no match. Today: about 10 files in agent-e2, 1 in PCM, and the adapter's own files.
+- T-REPO-006a (anywhere, automated by a check to write in [checks](../../checks), run by run_all.py): search the clones for the two old names outside archives and dated records; expect no match.
 
 ### R-REPO-007 PCM's folders and files are named for what they hold
 
@@ -108,7 +108,7 @@ Source: WD-030.
 - When a reader sees its folder tree
 - Then the Python package `pcm_proto` is `pcm`
 - And [`sources/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/sources) is `author-papers/`, and the papers' file names carry no version number
-- And `l2_story_m5.py` and `test_story_m5.py` are named for the story they hold, without a milestone
+- And `l2_story_m5.py` and `test_story_m5.py` are named for what their story shows; the story ID M-5 in the file name tells a reader nothing
 - And [`spec/data/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/spec/data) is `spec/demo-data/`
 - And "design" names one thing: [`design/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/design) and [`spec/design-system/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/spec/design-system) no longer share the word with two meanings
 - And [`tools/moltbot/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/tools/moltbot) is named for what it does
@@ -123,7 +123,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-134 (round 4: "Yes, by workspace."); WD-030.
+Source: Q-WS-134 (round 4: "Yes, by workspace."); WD-030.
 
 - Given PCM's five workspaces (executive, NOC, L2, capacity, docs) and the parts they share
 - When a session works on one workspace

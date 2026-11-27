@@ -2,7 +2,7 @@
 
 What Agent E2 must do in release 1.0 for its two callers, PCM and isvara.io, and how each part is tested. The service is one Python program, [harness/answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py). Its HTTP calls are contract [C3, the Agent E2 API](../glossary.md#c3), and its docstring is that contract's specification.
 
-How to read the IDs: "Q-5" is a question of the interview, with the author's answer, in [interview, round 1](../interview-round-1.md). "WD-013" is a decision that binds several repositories, in [DECISIONS.md](../../DECISIONS.md). Every other ID is explained in the [glossary](../glossary.md).
+How to read the IDs: "Q-WS-5" is a question of the interview, with the author's answer, in [interview, round 1](../interview-round-1.md). "WD-013" is a decision that binds several repositories, in [DECISIONS.md](../../DECISIONS.md). Every other ID is explained in the [glossary](../glossary.md).
 
 Files involved:
 
@@ -16,7 +16,7 @@ Files involved:
 
 ### R-E2-001 The service runs Gemma 4 31B through Vercel AI Gateway
 
-Source: WD-013 (Agent E2 in release 1.0: accuracy first, the model, drafts used); answer to Q-7 ("Gemma 4 31B, or later version when it comes"); WD-002 (release 1.0 in the lab, cloud model through the gateway).
+Source: WD-013 (Agent E2 in release 1.0: accuracy first, the model, drafts used); answer to Q-WS-7 ("Gemma 4 31B, or later version when it comes"); WD-002 (release 1.0 in the lab, cloud model through the gateway).
 
 - Given the service as deployed for PCM or for isvara.io
 - When `GET /v1/health` is called
@@ -29,7 +29,7 @@ Test scenarios:
 
 ### R-E2-002 Every knowledge file is used, drafts included
 
-Source: WD-013; answer to Q-10 ("park this check as after go live. In the meantime, use all files").
+Source: WD-013; answer to Q-WS-10 ("park this check as after go live. In the meantime, use all files").
 
 - Given the knowledge base at one commit, where most files have `status: draft`
 - When the service starts
@@ -42,7 +42,7 @@ Test scenarios:
 
 ### R-E2-003 Agent E2 looks nothing up on the web
 
-Source: answer to Q-47 ("The docs look up is not applicable for Agent E2").
+Source: answer to Q-WS-47 ("The docs look up is not applicable for Agent E2").
 
 - Given a question from PCM or isvara.io, with or without a link in its text
 - When Agent E2 answers
@@ -57,7 +57,7 @@ Test scenarios:
 
 ### R-E2-004 An answer set of free-text questions for release 1.0 exists
 
-Source: WD-013; answers to Q-5 ("The grader should be automated") and Q-I1 (conversations, CSV files and screenshots); WD-012 (release 1.0 success: Agent E2 explains a real lab KPI correctly); the author, 2026-11-27 (about 15 questions in release 1.0, since the grader has lower priority; more questions after 1.0).
+Source: WD-013; answers to Q-WS-5 ("The grader should be automated") and Q-WS-I1 (conversations, CSV files and screenshots); WD-012 (release 1.0 success: Agent E2 explains a real lab KPI correctly); the author, 2026-11-27 (about 15 questions in release 1.0, since the grader has lower priority; more questions after 1.0).
 
 - Given the questions PCM users and isvara.io readers ask
 - When the answer set is read
@@ -71,7 +71,7 @@ Test scenarios:
 
 ### R-E2-005 An automated grader scores every answer
 
-Source: answer to Q-5 ("It was graded by Opus 5.5"); WD-013.
+Source: answer to Q-WS-5 ("It was graded by Opus 5.5"); WD-013.
 
 - Given an answer to an answer-set question
 - When the grader reads it
@@ -87,7 +87,7 @@ Test scenarios:
 
 ### R-E2-006 The answer set passes on the shipped configuration
 
-Source: WD-013; answers to Q-5 and Q-I3 ("Accuracy matters more"); WD-012.
+Source: WD-013; answers to Q-WS-5 and Q-WS-I3 ("Accuracy matters more"); WD-012.
 
 - Given the service with its shipped `service_config.yaml`
 - When every answer-set question is answered 3 times and graded
@@ -105,7 +105,7 @@ Test scenarios:
 
 ### R-E2-007 A caller can follow a long answer while it is written
 
-Source: WD-013 ("an answer may take minutes; no streaming, but the user always sees that Agent E2 is still working"); answer to Q-I3 ("how to inform user Agent E2 is not hung or dead?").
+Source: WD-013 ("an answer may take minutes; no streaming, but the user always sees that Agent E2 is still working"); answer to Q-WS-I3 ("how to inform user Agent E2 is not hung or dead?").
 
 - Given a caller that sends `POST /v1/answer` with `"async": true`
 - When the service accepts it
@@ -120,7 +120,7 @@ Test scenarios:
 
 ### R-E2-008 A stuck or failed answer ends with a reason
 
-Source: WD-013; answer to Q-I3.
+Source: WD-013; answer to Q-WS-I3.
 
 - Given a job whose model call fails, or which runs longer than 10 minutes
 - When the caller polls it
@@ -134,7 +134,7 @@ Test scenarios:
 
 ### R-E2-020 A caller reads a job every 10 seconds
 
-Source: WD-013 ("the user always sees that Agent E2 is still working"); answer to Q-I3 ("how to inform user Agent E2 is not hung or dead?"); the author, 2026-11-27 ("VMware Admin does not mind 10 seconds waiting as he knows this is not a general chat").
+Source: WD-013 ("the user always sees that Agent E2 is still working"); answer to Q-WS-I3 ("how to inform user Agent E2 is not hung or dead?"); the author, 2026-11-27 ("VMware Admin does not mind 10 seconds waiting as he knows this is not a general chat").
 
 - Given PCM or isvara.io waiting on an Agent E2 job (R-E2-007)
 - When the job is queued or running
@@ -147,7 +147,7 @@ Source: WD-013 ("the user always sees that Agent E2 is still working"); answer t
 Test scenarios:
 - T-E2-020a (anywhere, automated in private-cloud-manager by `build/tests/agent_e2_job.test.mjs`, to write): a fake job endpoint that counts requests and runs a job for 60 seconds; expect at most 7 reads, the stage in words, and the answer at the end.
 - T-E2-020b (anywhere, the same test): the fake stops changing `updated_at`; expect "not responding" on screen within 70 seconds.
-- T-E2-020c (anywhere, automated in isvara by Ask Agent E2's tests, to write in M9): T-E2-020a and T-E2-020b on Ask Agent E2.
+- T-E2-020c (anywhere, automated in isvara by Ask Agent E2's tests, to write in M8): T-E2-020a and T-E2-020b on Ask Agent E2.
 
 ### R-E2-009 The synchronous call keeps working until both callers have moved
 
@@ -163,7 +163,7 @@ Test scenarios:
 
 ### R-E2-010 Each answer reports its time and use
 
-Source: WD-013; WD-014 (gateway spending: US$100 per benchmark run, US$50 a month after isvara.io goes live); answer to Q-9.
+Source: WD-013; WD-014 (gateway spending: US$100 per benchmark run, US$50 a month after isvara.io goes live); answer to Q-WS-9.
 
 - Given any answer
 - When it is returned
@@ -177,7 +177,7 @@ Test scenarios:
 
 ### R-E2-011 A conversation continues over several turns
 
-Source: answer to Q-I1 ("Agent E2 is capable of answering back, forming a chat back and forth").
+Source: answer to Q-WS-I1 ("Agent E2 is capable of answering back, forming a chat back and forth").
 
 - Given a caller that sends the earlier turns of the current topic in `history`, and the clarifying round in `turns`
 - When it asks a follow-up question
@@ -190,7 +190,7 @@ Test scenarios:
 
 ### R-E2-012 Agent E2 reads screenshots a caller sends
 
-Source: answer to Q-I1 ("Agent E2 is capable of accepting CSV file and VMware screenshots").
+Source: answer to Q-WS-I1 ("Agent E2 is capable of accepting CSV file and VMware screenshots").
 
 - Given a call to `/v1/answer` with `attachments` holding up to 5 images (PNG, JPEG or WebP, base64, each at most 5 MB)
 - When Agent E2 answers
@@ -203,7 +203,7 @@ Test scenarios:
 
 ### R-E2-013 Agent E2 reads CSV files a caller sends
 
-Source: answer to Q-I1.
+Source: answer to Q-WS-I1.
 
 - Given a call to `/v1/answer` with `attachments` holding up to 3 CSV files, at most 200 KB of text in all
 - When Agent E2 answers
@@ -216,7 +216,7 @@ Test scenarios:
 
 ### R-E2-014 An attachment that cannot be read is refused, never dropped
 
-Source: answer to Q-I1.
+Source: answer to Q-WS-I1.
 
 - Given a call with an attachment of another type, above the size limits, or that does not decode
 - When the service receives it
@@ -229,7 +229,7 @@ Test scenarios:
 
 ### R-E2-015 A call without page facts gets a general answer
 
-Source: WD-004 (PCM and isvara.io both use Agent E2; Agent E2 replaces AskIO); answer to Q-I5 (isvara.io for VMware administrators and architects).
+Source: WD-004 (PCM and isvara.io both use Agent E2; Agent E2 replaces AskIO); answer to Q-WS-I5 (isvara.io for VMware administrators and architects).
 
 - Given a call with a question and no `facts`, as isvara.io sends
 - When Agent E2 answers
@@ -241,7 +241,7 @@ Test scenarios:
 
 ### R-E2-016 Every answer lists the knowledge files it used, by ID and title
 
-Source: answer to Q-45 ("User must be able to click on the cited page"); WD-017 (isvara.io rebuilt; a cited source opens the knowledge file, with a note that it is written for a model).
+Source: answer to Q-WS-45 ("User must be able to click on the cited page"); WD-017 (isvara.io rebuilt; a cited source opens the knowledge file, with a note that it is written for a model).
 
 - Given any answer
 - When it is returned
@@ -257,7 +257,7 @@ Test scenarios:
 
 ### R-E2-017 The specification lists the facts each answer feature needs
 
-Source: answer to Q-36 ("agree": C3's specification lists the facts each feature needs; C3's check adds a live-shaped case; Agent E2 says when a needed fact is missing).
+Source: answer to Q-WS-36 ("agree": C3's specification lists the facts each feature needs; C3's check adds a live-shaped case; Agent E2 says when a needed fact is missing).
 
 - Given the docstring of [answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py), the specification of the Agent E2 API
 - When it is read
@@ -279,7 +279,7 @@ Test scenarios:
 
 ### R-E2-018 A missing fact is said, never guessed
 
-Source: answer to Q-36; WD-015 (PCM's live demo shows what the VCF vCommunity Adapter publishes and says "No data" when a value is stale).
+Source: answer to Q-WS-36; WD-015 (PCM's live demo shows what the VCF vCommunity Adapter publishes and says "No data" when a value is stale).
 
 - Given a live-demo call whose facts lack a fact a feature needs (for example no `parts_hourly`, or a part whose value is "No data")
 - When Agent E2 answers
@@ -294,7 +294,7 @@ Test scenarios:
 
 ### R-E2-019 The contract check covers both callers and every new field
 
-Source: WD-010; answer to Q-I1 ("I expect you to check all the contracts").
+Source: WD-010; answer to Q-WS-I1 ("I expect you to check all the contracts").
 
 - Given the Agent E2 service in mock mode (no model, no network)
 - When [checks/agent_e2_api.py](../../checks/agent_e2_api.py) runs
@@ -307,10 +307,10 @@ Test scenarios:
 
 ## Not in this file
 
-- The injection guard and the limits on public use belong to isvara.io, before it calls Agent E2 (answer to Q-47; WD-017). They go in `isvara-agent.md`.
-- Where the public Agent E2 runs is decided after measuring start-up time and cost per question (answer to Q-4).
+- The injection guard and the limits on public use belong to isvara.io, before it calls Agent E2 (answer to Q-WS-47; WD-017). They go in `isvara-agent.md`.
+- Where the public Agent E2 runs is decided after measuring start-up time and cost per question (answer to Q-WS-4).
 - Keeping gateway spending within US$50 a month after isvara.io goes live is a task for after go-live (WD-014). `usage` in R-E2-010 gives the numbers it needs.
 
 ## Questions for round two
 
-The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-90 to Q-99 (and Q-57, Q-61, Q-62). The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).
+The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-WS-90 to Q-WS-99 (and Q-WS-57, Q-WS-61, Q-WS-62). The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).

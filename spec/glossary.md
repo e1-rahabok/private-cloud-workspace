@@ -13,8 +13,10 @@ Every short name and ID used in this workspace, with what it means and where it 
 | <a id="c5"></a>C5 | Contract 5, **the model gateway**: Vercel AI Gateway, through which Agent E2 calls its model | [CONTRACTS.md](../CONTRACTS.md) |
 | WD-001 to WD-0nn | A workspace decision: one that binds more than one repository | [DECISIONS.md](../DECISIONS.md) |
 | D-001 to D-1nn | A decision inside PCM | [PCM decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md) |
-| Q-1, Q-I1 and so on | A question in the interview; Q-I questions are about intent | Rounds [1](interview-round-1.md), [2](interview-round-2.md), [3](interview-round-3.md), [4](interview-round-4.md) |
-| M0 to M5 | A milestone of the roadmap | [ROADMAP.md](../ROADMAP.md) |
+| Q-WS-1, Q-WS-I1 and so on | A question to the author about the workspace; Q-WS-I questions are about intent | Rounds [1](interview-round-1.md), [2](interview-round-2.md), [3](interview-round-3.md), [4](interview-round-4.md); [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) |
+| Q-E2-001 and so on | A question to the author about agent-e2 | [agent-e2 author-questions.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions.md) |
+| M0, M1 and so on | A milestone of the roadmap, numbered in the order of work | [ROADMAP.md](../ROADMAP.md) |
+| A1 to A6 | A milestone of agent-e2's plan toward its part of release 1.0 (Q-WS-58) | [agent-e2 plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md) |
 | R-AREA-nnn | A requirement, for example R-LIVE-003 | [requirements/](requirements) |
 | T-AREA-nnnx | A test scenario of a requirement, for example T-LIVE-003a | [requirements/](requirements) |
 
@@ -24,9 +26,11 @@ Every short name and ID used in this workspace, with what it means and where it 
 |---|---|
 | PCM | Private Cloud Manager, the web app (WD-028) |
 | Release 1.0 | The goal: PCM as a lab demo, a cloud model, isvara.io public on Vercel |
-| Milestone | A step toward release 1.0, M0 to M5 in the roadmap |
+| Release | A scope of work for all repositories at once, set only in the roadmap (WD-037) |
+| Milestone | A step toward release 1.0 in the roadmap |
 | On-premises deployment | After release 1.0, out of scope: customers run everything on premises, with a local model |
-| Stage 1, stage 2 | Older words in the interview records and child repositories: release 1.0, the on-premises deployment |
+| Stage 1, stage 2 | In the interview records: release 1.0, and the on-premises deployment |
+| The Book | Private Cloud Management, 5th edition: four Parts and an Executive Summary. 6th edition planned for 2027 |
 | ACME | The synthetic customer, a global bank, whose data PCM generates for the main demo |
 | Live demo | PCM's L2 workspace on the author's lab VCF Operations; its own demo entry |
 | L2 | The platform engineer role in PCM, the expert behind the NOC |

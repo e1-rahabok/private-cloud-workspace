@@ -7,9 +7,9 @@ What [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) must do in release
 ## Scope and conventions
 
 - **Area:** the management pack in VCF Operations, its build and lab tools, and its side of two contracts: [C1, the KPI definitions](../glossary.md#c1), and [C2, the KPI metric keys](../glossary.md#c2), both described in [CONTRACTS.md](../../CONTRACTS.md).
-- **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-005 to R-ADP-008, R-ADP-010, R-ADP-011 and R-ADP-025 belong to M2, and R-ADP-018 to R-ADP-023 to M3. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M6, the first live cluster in PCM. R-ADP-013 to R-ADP-017, the state codes, come after release 1.0 ([WD-033](../../DECISIONS.md)). R-ADP-007 is needed before M7, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build) and comes after release 1.0 ([WD-031](../../DECISIONS.md)).
+- **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-005 to R-ADP-008, R-ADP-010, R-ADP-011 and R-ADP-025 belong to M2, and R-ADP-018 to R-ADP-023 to M3. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M5, the first live cluster in PCM. R-ADP-013 to R-ADP-017, the state codes, come after release 1.0 ([WD-033](../../DECISIONS.md)). R-ADP-007 is needed before M6, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build) and comes after release 1.0 ([WD-031](../../DECISIONS.md)).
 - **Keys** start with `vCommunity|` ([WD-032](../../DECISIONS.md)).
-- **The adapter may change anything.** The author confirmed that no installed instance or upgrade path needs protecting: Q-I4 and Q-2 in [round 1](../interview-round-1.md), recorded as decisions [WD-007 and WD-016](../../DECISIONS.md).
+- **The adapter may change anything.** The author confirmed that no installed instance or upgrade path needs protecting: Q-WS-I4 and Q-WS-2 in [round 1](../interview-round-1.md), recorded as decisions [WD-007 and WD-016](../../DECISIONS.md).
 - **How lab scenarios run.** From the author's laptop over VPN, with the repository's own tools ([tools/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/README.md)): [build.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/build/build.ps1), [install.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/install/install.ps1), [restart.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/restart/restart.ps1), then one collection cycle, then [validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1). This sequence is called "install and validate" below. The live validation checks the build installed on the lab, so a lab scenario passes only after that build is installed ([validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L12)).
 - **Test names marked "(new)"** do not exist yet. Each is written as part of its requirement.
 
@@ -43,7 +43,7 @@ Dropped by WD-032: the shipped content keeps its keys and its names, "vCommunity
 
 Milestone: M2. The pack's own names, such as "vCommunity MP" and "vCommunity_", stay (WD-032).
 
-Source: Q-3 in [round 1](../interview-round-1.md) ("agree": one pull request per repository, archive files left as they are); Q-80 in [round 2](../interview-round-2.md) (the dated engineering reviews and the README's sentence about the vCommunity keep the old name).
+Source: Q-WS-3 in [round 1](../interview-round-1.md) ("agree": one pull request per repository, archive files left as they are); Q-WS-80 in [round 2](../interview-round-2.md) (the dated engineering reviews and the README's sentence about the vCommunity keep the old name).
 
 - Given the files git tracks in the PCM-Adapter repository, outside the dated engineering reviews
 - When they are searched
@@ -75,7 +75,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-1 in [round 1](../interview-round-1.md) ("For key, adapter is correct. For name, Agent E2 is correct."); Q-89 in [round 2](../interview-round-2.md) (a key column in every catalog row); Q-88 in [round 3](../interview-round-3.md) (the run queue is per vCPU); [WD-016](../../DECISIONS.md); [WD-001](../../DECISIONS.md), Agent E2 as the source of domain knowledge.
+Source: Q-WS-1 in [round 1](../interview-round-1.md) ("For key, adapter is correct. For name, Agent E2 is correct."); Q-WS-89 in [round 2](../interview-round-2.md) (a key column in every catalog row); Q-WS-88 in [round 3](../interview-round-3.md) (the run queue is per vCPU); [WD-016](../../DECISIONS.md); [WD-001](../../DECISIONS.md), Agent E2 as the source of domain knowledge.
 
 - Given a KPI row in any of the six KPI modules under [Management Pack/app/metrics](https://github.com/e1-rahabok/PCM-Adapter/tree/main/Management%20Pack/app/metrics)
 - When the adapter definition is built
@@ -93,7 +93,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-29 in [round 1](../interview-round-1.md) (its recommendation: fix issue [#85](https://github.com/e1-rahabok/PCM-Adapter/issues/85) before PCM reads host, VM and vCenter keys; the answer does not change that).
+Source: Q-WS-29 in [round 1](../interview-round-1.md) (its recommendation: fix issue [#85](https://github.com/e1-rahabok/PCM-Adapter/issues/85) before PCM reads host, VM and vCenter keys; the answer does not change that).
 
 - Given every object type the adapter publishes on: cluster, host, VM, datastore, vCenter, vSphere World, datacenter, and its own types
 - When the adapter definition is compared with what the collectors publish
@@ -109,7 +109,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-19 in [round 1](../interview-round-1.md) ("20-second. If a metric does not have the word peak, it's likely a 5-minute average."); Q-81 in [round 2](../interview-round-2.md) (the catalog's interval is the rule); [WD-016](../../DECISIONS.md).
+Source: Q-WS-19 in [round 1](../interview-round-1.md) ("20-second. If a metric does not have the word peak, it's likely a 5-minute average."); Q-WS-81 in [round 2](../interview-round-2.md) (the catalog's interval is the rule); [WD-016](../../DECISIONS.md).
 
 - Given a KPI row whose catalog limits are given for the `20s` interval, a 20-second peak
 - When the adapter reads its input from VCF Operations
@@ -120,7 +120,7 @@ Source: Q-19 in [round 1](../interview-round-1.md) ("20-second. If a metric does
 
 Test scenarios:
 - T-ADP-008a (anywhere, automated by [checks/kpi_definitions.py](../../checks/kpi_definitions.py), extended): for each matched row, expect the adapter's interval to equal the catalog interval that holds the matching limits.
-- T-ADP-008b (anywhere, automated by `Management Pack/tests/test_statistics.py` (new)): for every `20s` row, expect its stat key to contain `20_sec_peak`. Known cases, settled by Q-81 in round 2 (agent-e2 adds "peak" to the memory wait names; the dropped TX row is checked on the lab, and becomes 5-minute without "peak" if no 20-second peak exists): VM Network Dropped Tx reads `net|droppedTxPct_max` ([vm_performance_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/vm_performance_metrics.py#L97)) against a catalog name with "peak" ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L60)). The memory wait rows read a 20-second peak ([memory_wait.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/memory_wait.py#L25)), but their catalog names have no "peak" ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L39)).
+- T-ADP-008b (anywhere, automated by `Management Pack/tests/test_statistics.py` (new)): for every `20s` row, expect its stat key to contain `20_sec_peak`. Known cases, settled by Q-WS-81 in round 2 (agent-e2 adds "peak" to the memory wait names; the dropped TX row is checked on the lab, and becomes 5-minute without "peak" if no 20-second peak exists): VM Network Dropped Tx reads `net|droppedTxPct_max` ([vm_performance_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/vm_performance_metrics.py#L97)) against a catalog name with "peak" ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L60)). The memory wait rows read a 20-second peak ([memory_wait.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/memory_wait.py#L25)), but their catalog names have no "peak" ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L39)).
 
 ## Scoring tables compared with the Agent E2 catalog
 
@@ -134,7 +134,7 @@ Dropped by WD-036. The catalog holds no scoring rules or worked examples. The ad
 
 Milestone: M2.
 
-Source: Q-15 in [round 1](../interview-round-1.md) ("All their logic should come from Agent E2. PCM Adapter must implement the same."); [WD-016](../../DECISIONS.md); WD-036.
+Source: Q-WS-15 in [round 1](../interview-round-1.md) ("All their logic should come from Agent E2. PCM Adapter must implement the same."); [WD-016](../../DECISIONS.md); WD-036.
 
 - Given the catalog's score rows for Cluster Risk ([thresholds-risk.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-risk.yaml#L23)) and Cluster Consumption ([thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L40)), and a score row for Cluster Performance that agent-e2 adds first (the catalog has none today)
 - When the adapter colours a KPI value, in `band()` of [periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/periodic_cluster_check.py#L97)
@@ -148,7 +148,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-15 and Q-16 in [round 1](../interview-round-1.md) (Q-16: "agree", one Cluster Risk level for every cluster); [WD-016](../../DECISIONS.md).
+Source: Q-WS-15 and Q-WS-16 in [round 1](../interview-round-1.md) (Q-WS-16: "agree", one Cluster Risk level for every cluster); [WD-016](../../DECISIONS.md).
 
 - Given the catalog's Close for Business decisions in [thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L55)
 - When the Periodic Cluster Check decides Close for Business
@@ -170,7 +170,7 @@ Dropped by WD-036. The formula is domain knowledge in Agent E2, and the adapter'
 
 ## Explicit data states
 
-The adapter today publishes nothing for a row with no data. A Suite API "latest" read then returns the last old value as if it were current ([metrics/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md#L138)). The author asked for this to be fixed in the adapter (Q-28), so that PCM shows what the adapter publishes and says "No data" when it is stale ([WD-015](../../DECISIONS.md)).
+The adapter today publishes nothing for a row with no data. A Suite API "latest" read then returns the last old value as if it were current ([metrics/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md#L138)). The author asked for this to be fixed in the adapter (Q-WS-28), so that PCM shows what the adapter publishes and says "No data" when it is stale ([WD-015](../../DECISIONS.md)).
 
 In release 1.0, only R-ADP-018 is built: a value from a partial read is not published. PCM shows "No data" for a stale value from the time of the value (R-LIVE-015 in [pcm-live.md](pcm-live.md)). The state codes below, which say why a row has no value, come after release 1.0 ([WD-033](../../DECISIONS.md)).
 
@@ -190,7 +190,7 @@ The states use one code each:
 
 Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
 
-Source: Q-28 in [round 1](../interview-round-1.md) ("we should fix them in the PCM Adapter"); [WD-016](../../DECISIONS.md) ("Data absent by design is made explicit by the adapter"); Q-27 and [WD-015](../../DECISIONS.md) (PCM says "No data" when a value is stale).
+Source: Q-WS-28 in [round 1](../interview-round-1.md) ("we should fix them in the PCM Adapter"); [WD-016](../../DECISIONS.md) ("Data absent by design is made explicit by the adapter"); Q-WS-27 and [WD-015](../../DECISIONS.md) (PCM says "No data" when a value is stale).
 
 - Given an object with a KPI: a cluster, host or VM
 - When a collection cycle publishes that KPI
@@ -208,7 +208,7 @@ Test scenarios:
 
 Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
 
-Source: Q-28 and Q-38 in [round 1](../interview-round-1.md) (Q-38: "the physical host does not have memory tiering"); [WD-018](../../DECISIONS.md), the lab-build decision.
+Source: Q-WS-28 and Q-WS-38 in [round 1](../interview-round-1.md) (Q-WS-38: "the physical host does not have memory tiering"); [WD-018](../../DECISIONS.md), the lab-build decision.
 
 - Given a cluster where no host has an NVMe memory tier (`mem:NVMe|memory_tier_size` is 0 or missing)
 - When Cluster Risk and Cluster Consumption are published
@@ -223,7 +223,7 @@ Test scenarios:
 
 Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
 
-Source: Q-28 in [round 1](../interview-round-1.md); the policy page [policy.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/configuration-guide/policy.md#L7) (Total Packets Received and Transmitted are off by default).
+Source: Q-WS-28 in [round 1](../interview-round-1.md); the policy page [policy.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/configuration-guide/policy.md#L7) (Total Packets Received and Transmitted are off by default).
 
 - Given hosts that report the dropped and error packet counters, but not `net|packetsRx_summation_sum` and `net|packetsTx_summation_sum` ([host_bad_network_packets.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/host/host_bad_network_packets.py#L20))
 - When Cluster Performance and ESXi Performance are published
@@ -238,7 +238,7 @@ Test scenarios:
 
 Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
 
-Source: Q-28 in [round 1](../interview-round-1.md).
+Source: Q-WS-28 in [round 1](../interview-round-1.md).
 
 - Given a cluster or host with no powered-on VM
 - When Cluster Performance or ESXi Performance is published
@@ -253,7 +253,7 @@ Test scenarios:
 
 Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
 
-Source: Q-28 in [round 1](../interview-round-1.md); the two cases in [cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_consumption_metrics.py#L336).
+Source: Q-WS-28 in [round 1](../interview-round-1.md); the two cases in [cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_consumption_metrics.py#L336).
 
 - Given a cluster whose hosts run, while HA and the buffer leave no usable capacity
 - When Cluster Consumption is published
@@ -268,7 +268,7 @@ Test scenarios:
 
 Milestone: M3.
 
-Source: Q-28 in [round 1](../interview-round-1.md) (its evidence names issue [#60](https://github.com/e1-rahabok/PCM-Adapter/issues/60): values from partial reads look normal); WD-033 (in release 1.0, without the state code).
+Source: Q-WS-28 in [round 1](../interview-round-1.md) (its evidence names issue [#60](https://github.com/e1-rahabok/PCM-Adapter/issues/60): values from partial reads look normal); WD-033 (in release 1.0, without the state code).
 
 - Given a stats request that fails for one batch of objects ([ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L155): "resources have no stats this cycle")
 - When a row aggregates over those objects, for example the worst VM of a cluster
@@ -281,7 +281,7 @@ Test scenarios:
 
 ## Key list from the live environment
 
-PCM must take the keys it reads from a live environment (Q-29). The adapter's part is to make the full key set visible on any one object, every cycle, so one read gives the list.
+PCM must take the keys it reads from a live environment (Q-WS-29). The adapter's part is to make the full key set visible on any one object, every cycle, so one read gives the list.
 
 **How the keys are read today.** `GET /suite-api/api/resources?adapterKind=VMWARE&resourceKind=ClusterComputeResource` lists the clusters, then `GET /suite-api/api/resources/stats/latest?resourceId=<id>` returns every stat of one object, with `values[].stat-list.stat[].statKey.key`, `timestamps` and `data`. validate.ps1 does this ([validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1#L142)) and keeps the keys that start with the prefix. The adapter itself uses `POST /suite-api/api/resources/stats/latest/query` with a list of resource IDs and stat keys ([ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L16)). The Suite API returns keys only. The names come from the Agent E2 catalog (R-ADP-006). A row with no data is missing from that read, so the list depends on the object. In release 1.0 the expected set comes from the module tables (R-ADP-007), and the lab read checks that no other key appears ([WD-033](../../DECISIONS.md)).
 
@@ -289,7 +289,7 @@ Two other endpoints may give the declared keys with their names: `GET /suite-api
 
 ### R-ADP-019 One read of one object gives its full key set
 
-Source: Q-29 in [round 1](../interview-round-1.md) ("You will need to get from a live environment"); Q-1 (key from the adapter, name from the catalog); WD-033 (no state keys in release 1.0).
+Source: Q-WS-29 in [round 1](../interview-round-1.md) ("You will need to get from a live environment"); Q-WS-1 (key from the adapter, name from the catalog); WD-033 (no state keys in release 1.0).
 
 - Given one lab cluster, one host and one VM, after one collection cycle of the new pack
 - When `GET /suite-api/api/resources/stats/latest?resourceId=<id>` is read for each, keeping the keys that start with `vCommunity|`
@@ -303,7 +303,7 @@ Test scenarios:
 
 ## Periodic Cluster Check settings
 
-The author asked how PCM gets the check's settings (Q-31).
+The author asked how PCM gets the check's settings (Q-WS-31).
 
 **How they are read today.** The settings are Advanced Settings of each VCF vCommunity Adapter instance, and are not published on the cluster ([periodic-cluster-check.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/periodic-cluster-check.md#L46)). `GET /suite-api/api/adapters?adapterKindKey=vCommunity` returns `adapterInstancesInfoDto[]`. Each instance has `resourceKey.resourceIdentifiers[]`, a list of `identifierType.name` and `value` pairs:
 
@@ -324,7 +324,7 @@ Linking a cluster to its instance takes three more steps:
 
 ### R-ADP-020 Each cluster carries its check settings and each result its window
 
-Source: Q-31 in [round 1](../interview-round-1.md) ("PCM gets from the PCM Adapter"); [WD-015](../../DECISIONS.md) (PCM shows what the VCF vCommunity Adapter publishes).
+Source: Q-WS-31 in [round 1](../interview-round-1.md) ("PCM gets from the PCM Adapter"); [WD-015](../../DECISIONS.md) (PCM shows what the VCF vCommunity Adapter publishes).
 
 - Given a cluster collected by a VCF vCommunity Adapter instance
 - When a collection cycle runs
@@ -340,7 +340,7 @@ Test scenarios:
 
 ### R-ADP-021 Reading and validating use a read-only account
 
-Source: Q-40 in [round 1](../interview-round-1.md) ("agree": two DPAPI files in `$HOME\.secrets\`); [WD-011](../../DECISIONS.md), the decision on lab credentials.
+Source: Q-WS-40 in [round 1](../interview-round-1.md) ("agree": two DPAPI files in `$HOME\.secrets\`); [WD-011](../../DECISIONS.md), the decision on lab credentials.
 
 - Given the author's laptop, with the read-only VCF Operations login saved as a DPAPI file in `$HOME\.secrets\` (`Export-Clixml`, the format in [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L24): `Url` and `Credential`)
 - When validate.ps1 or screenshot.ps1 runs with no `-SecretFile`
@@ -354,7 +354,7 @@ Test scenarios:
 
 ### R-ADP-022 Installing and restarting use the admin account
 
-Source: Q-40 in [round 1](../interview-round-1.md); [WD-011](../../DECISIONS.md).
+Source: Q-WS-40 in [round 1](../interview-round-1.md); [WD-011](../../DECISIONS.md).
 
 - Given the admin login saved as a second DPAPI file in `$HOME\.secrets\`
 - When install.ps1 or restart.ps1 runs with no `-SecretFile`
@@ -370,7 +370,7 @@ Test scenarios:
 
 ### R-ADP-023 The inputs not yet seen live are checked on the lab
 
-Source: Q-38 in [round 1](../interview-round-1.md) (lab facts to confirm before M6); issue [#2](https://github.com/e1-rahabok/PCM-Adapter/issues/2) ("Verify on a live system"); [WD-018](../../DECISIONS.md).
+Source: Q-WS-38 in [round 1](../interview-round-1.md) (lab facts to confirm before M5); issue [#2](https://github.com/e1-rahabok/PCM-Adapter/issues/2) ("Verify on a live system"); [WD-018](../../DECISIONS.md).
 
 - Given the lab VCF Operations
 - When a read-only script reads the lab hosts and VMs
@@ -383,7 +383,7 @@ Test scenarios:
 
 ### R-ADP-024 Memory tiering is tested on nested hosts built by lab-build
 
-Source: Q-38 in [round 1](../interview-round-1.md) ("Create the automatic build https://github.com/e1-rahabok/lab-build using Virtual ESXi"); [WD-018](../../DECISIONS.md); requirements in [lab-build.md](lab-build.md).
+Source: Q-WS-38 in [round 1](../interview-round-1.md) ("Create the automatic build https://github.com/e1-rahabok/lab-build using Virtual ESXi"); [WD-018](../../DECISIONS.md); requirements in [lab-build.md](lab-build.md).
 
 Depends on lab-build: a cluster of nested ESXi hosts with an NVMe memory tier, monitored by the lab VCF Operations.
 
@@ -410,4 +410,4 @@ The value keys a cluster carries. After release 1.0, each row also gets a state 
 
 ## Questions for round two
 
-The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-72 to Q-89. The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).
+The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-WS-72 to Q-WS-89. The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).

@@ -1,10 +1,10 @@
 # Requirements: lab build
 
-An automatic build of nested virtual ESXi hosts with memory tiering in the author's lab, in the new repository [lab-build](https://github.com/e1-rahabok/lab-build) (empty today). The physical lab hosts have no memory tiering, so the tiering parts of Cluster Risk and Cluster Consumption cannot be tested without it (answer to Q-38 in the [interview, round 1](../interview-round-1.md); [WD-018](../../DECISIONS.md)). It is built after release 1.0 ([WD-031](../../DECISIONS.md)).
+An automatic build of nested virtual ESXi hosts with memory tiering in the author's lab, in the new repository [lab-build](https://github.com/e1-rahabok/lab-build) (empty today). The physical lab hosts have no memory tiering, so the tiering parts of Cluster Risk and Cluster Consumption cannot be tested without it (answer to Q-WS-38 in the [interview, round 1](../interview-round-1.md); [WD-018](../../DECISIONS.md)). It is built after release 1.0 ([WD-031](../../DECISIONS.md)).
 
 ### R-LAB-001 One command builds the tiered nested hosts
 
-Source: answer to Q-38.
+Source: answer to Q-WS-38.
 
 - Given the lab vCenter (https://10.115.1.87) and the author's credential file in `$HOME\.secrets\`
 - When the build command runs on the author's laptop
@@ -17,7 +17,7 @@ Test scenarios:
 
 ### R-LAB-002 The tiered cluster is monitored by the lab VCF Operations
 
-Source: answer to Q-38; WD-018.
+Source: answer to Q-WS-38; WD-018.
 
 - Given the nested cluster is built
 - When one collection cycle of the VCF vCommunity Adapter has passed
@@ -28,7 +28,7 @@ Test scenarios:
 
 ### R-LAB-003 The build can be repeated and removed
 
-Source: answer to Q-38 ("automatic build").
+Source: answer to Q-WS-38 ("automatic build").
 
 - Given the build has run once
 - When it runs again
@@ -51,4 +51,4 @@ Test scenarios:
 
 ## Questions for round two
 
-The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-119 to Q-122. The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).
+The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-WS-119 to Q-WS-122. The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).

@@ -6,9 +6,9 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 | ID | Contract                     | Owner, then consumers              | Check                                                             |
 | -- | ---------------------------- | ---------------------------------- | ----------------------------------------------------------------- |
 | C1 | KPI definitions              | agent-e2; VCF vCommunity Adapter, PCM, isvara | [`checks/kpi_definitions.py`](checks/kpi_definitions.py), running |
-| C2 | KPI metric keys              | VCF vCommunity Adapter; PCM (live demo)       | Planned in ROADMAP M6                                             |
+| C2 | KPI metric keys              | VCF vCommunity Adapter; PCM (live demo)       | Planned in ROADMAP M5                                             |
 | C3 | Agent E2 API                 | agent-e2; PCM, isvara (planned)    | [`checks/agent_e2_api.py`](checks/agent_e2_api.py), running       |
-| C4 | Knowledge content for isvara | agent-e2; isvara                   | Planned in ROADMAP M8                                             |
+| C4 | Knowledge content for isvara | agent-e2; isvara                   | Planned in ROADMAP M7                                             |
 | C5 | Model gateway                | Vercel AI Gateway; agent-e2        | None: a third-party API                                           |
 
 ## C1 KPI definitions
@@ -18,13 +18,13 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 - **Consumer:** PCM shows the parts under the catalog names (PCM D-113, D-115) in [`spec/catalog/l2.yaml`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml). Not checked yet: PCM names parts in prose (ROADMAP M2).
 - **The check** matches each sub-metric by name (the adapter's label against the catalog name without its unit) and compares the five limits and excluded-when-green, for Cluster Performance, ESXi Performance, VM Performance, Guest OS Performance, Cluster Risk and Cluster Consumption.
 - **To change a KPI:** change the documentation & catalog first, then the PCM adapter, in the same session, with the check run before both merges.
-- **Status:** limits and excluded-when-green agree for all 49 sub-metrics of 6 KPIs; 11 known name gaps, to close by [R-KPI-003](spec/requirements/kpi-definitions.md).
+- **Status:** limits and excluded-when-green agree for every sub-metric; the known name gaps are to close by [R-KPI-003](spec/requirements/kpi-definitions.md). [`checks/run_all.py`](checks/run_all.py) prints the counts.
 
 ## C2 KPI metric keys
 
 - **Owner:** the VCF vCommunity Adapter (repository PCM-Adapter). Keys are `vCommunity|<KPI>|<sub-metric or score>`, for example `vCommunity|Cluster Performance|Cluster Performance Score`, on the vCenter objects in VCF Operations.
 - **Consumer:** PCM's demo scenario 7 (live) reads them through the VCF Operations Suite API (PCM D-064, D-096). PCM never connects to the adapter itself; without the adapter installed, scenario 7 has no KPI data.
-- **Check, ROADMAP M6:** PCM lists every key it reads in one structured file; the check confirms each key is one the adapter publishes, and, against the lab, that it has data.
+- **Check, ROADMAP M5:** PCM lists every key it reads in one structured file; the check confirms each key is one the adapter publishes, and, against the lab, that it has data.
 - **Status:** no PCM connector yet.
 
 ## C3 Agent E2 API
@@ -36,7 +36,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 
 ## C4 Knowledge content for isvara
 
-- Agent E2's knowledge base becomes the source of isvara.io's reading pages, replacing the Word books (DECISIONS, WD-005). Its structure is built for a model to read, so the shape of the export is design work (ROADMAP M8).
+- Agent E2's knowledge base becomes the source of isvara.io's reading pages, replacing the Word books (DECISIONS, WD-005). Its structure is built for a model to read, so the shape of the export is design work (ROADMAP M7).
 - **Status:** not built.
 
 ## C5 Model gateway

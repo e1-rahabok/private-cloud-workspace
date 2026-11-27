@@ -95,6 +95,8 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **The lesson log.** At the end the agent reported that nothing was outstanding. The author asked whether this tutorial had been updated with the session's lessons, "or you forget about it, again?" It had not. Updating this log is now a rule for the end of every session in the agent's working rules ([CLAUDE.md](../CLAUDE.md)).
 
+**The cold-read audit, answered.** A fresh session read the five repositories the way a newcomer would and listed the names it could not guess. The author's answers sorted its findings. Two were already settled: WD-032 had decided the management pack's name, and agent-e2's benchmark questions keep a file name and a separate ID on purpose, which agent-e2's documentation says. Others became changes across all five repositories: question IDs that name their repository (Q-WS-, Q-E2-), releases defined only in the workspace, milestones renumbered in the order of work, no hand-written counts, and every child README linking the workspace. The audit also misread one name: `story_m5` holds PCM's demo story M-5, which the audit took for milestone 5.
+
 ## Lessons
 
 - The agent's first survey was useful precisely because it was wrong in places. Each error pointed to a missing document.
@@ -125,3 +127,6 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - Updating the lesson log is part of finishing a session. Without a written rule, the agent forgot it.
 - The strongest model available, at high effort, made every mistake in this log. The files, the checks and the person's questions are what stopped them repeating.
 - Hard-wrapped Markdown read as one run-on sentence on GitHub. The agent wrapped lines by habit; a rule in CLAUDE.md and a one-time reflow of 46 files fixed it.
+- Check an audit's findings against the decisions and the owning repository's documents before acting on them. Two of the ten were settled designs read wrongly.
+- Two ID series that differ only by a hyphen read as one. Put the owner in the ID: Q-WS-120 and Q-E2-120.
+- A child repository's plan drifts into a release of its own. The workspace sets releases for all repositories, and each child plan names the workspace milestone it serves.
