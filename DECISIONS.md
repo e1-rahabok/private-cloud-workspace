@@ -17,7 +17,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Decision:** Agent E2 is the source of all domain knowledge: KPI names, parts, limits, scoring, thresholds, flows and explanations. PCM-Adapter implements the KPIs. PCM and isvara.io consume; isvara.io holds no knowledge of its own (Q-15, Q-18). A change to domain knowledge starts in agent-e2.
 - **Reason:** With one master copy, every other copy can be generated from it or checked against it ([C1, KPI definitions](spec/glossary.md#c1)).
 
-## W-002 Release 1.0 in the lab on a cloud model
+## W-002 Release 1.0: lab demo, cloud model
 
 - **Date:** 2026-11-25
 - **Decision:** Release 1.0 is a demo in the lab. PCM runs in the lab, and Agent E2 uses a cloud model through Vercel AI Gateway. A customer's on-premises deployment with a local model comes after release 1.0 and is out of scope.

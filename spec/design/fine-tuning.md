@@ -87,7 +87,7 @@ The budget after isvara.io goes live is US$50 a month for the gateway, on top of
 
 ## Effect on the on-premises deployment
 
-The on-premises deployment is the customer's own, with a local model; it comes after release 1.0 and is out of scope now ([W-002](../../DECISIONS.md), release 1.0 in the lab on a cloud model). There, an adapter is easier: a local vLLM server can load LoRA adapters next to the base model, and the adapter could ship in the offline bundle with the knowledge. Two limits stay: the adapter is tied to one model version, and customers who pick another open model would get no adapter. Training on a customer's own data is a separate question, with privacy concerns, and is not proposed.
+The on-premises deployment is the customer's own, with a local model; it comes after release 1.0 and is out of scope now ([W-002](../../DECISIONS.md), release 1.0: lab demo, cloud model). There, an adapter is easier: a local vLLM server can load LoRA adapters next to the base model, and the adapter could ship in the offline bundle with the knowledge. Two limits stay: the adapter is tied to one model version, and customers who pick another open model would get no adapter. Training on a customer's own data is a separate question, with privacy concerns, and is not proposed.
 
 ## Recommendation
 
