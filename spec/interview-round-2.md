@@ -35,7 +35,7 @@ You said Agent E2's plan is outdated (Q-WS-6). Proposed milestones, replacing M1
 
 ### Q-WS-59 What "remove the older benchmarks permanently" covers
 
-You asked to remove them (Q-WS-12). The survey listed them in [project/archive](https://github.com/e1-rahabok/agent-e2/tree/main/project/archive): the result folders from before 2026-11-16 (about 26 MB), the 20 retired questions, the old harness code and its design notes, the old plan decisions and review, and the retrieval results of 2026-11-14. Live documents that quote old numbers (MISSION.md, README.md, harness/README.md, harness/AGENT.md, benchmark/design.md, benchmark/models.md) are rewritten at the same time.
+You asked to remove them (Q-WS-12). The survey listed them in [project/archive](https://github.com/e1-rahabok/agent-e2/tree/ebbc7dc0be3268abc0f4939fe1ea40e400ac9bbb/project/archive): the result folders from before 2026-11-16 (about 26 MB), the 20 retired questions, the old harness code and its design notes, the old plan decisions and review, and the retrieval results of 2026-11-14. Live documents that quote old numbers (MISSION.md, README.md, harness/README.md, harness/AGENT.md, benchmark/design.md, benchmark/models.md) are rewritten at the same time.
 
 - **Keep:** the round of 2026-11-16 ([`benchmark/results/20261116-*`](https://github.com/e1-rahabok/agent-e2/tree/main/benchmark/results)), the only one on the current pipeline and the evidence behind Gemma 4 31B; and the question-set history files that about 130 current question files link to.
 - **Before deleting:** move the old free-text judge's scoring rubric into the new grader.
@@ -269,7 +269,7 @@ From [spec/requirements/agent-e2-service.md](requirements/agent-e2-service.md).
 
 ### Q-WS-90 The pass bar of the answer set
 
-R-E2-006 sets: mean credit at least 0.75 of 3, at most 5% confidently wrong, no misconception stated as true, and at least 0.67 on each live-demo question. The earlier free-text benchmark scored at most 0.41 for every model ([analysis](https://github.com/e1-rahabok/agent-e2/blob/main/project/archive/benchmark-results-before-2026-11-14/analysis-2026-11-13.md)), but the agent has been rebuilt since. **Recommendation:** keep these as the target, run once, and set the gate from that first run if it is far below.
+R-E2-006 sets: mean credit at least 0.75 of 3, at most 5% confidently wrong, no misconception stated as true, and at least 0.67 on each live-demo question. The earlier free-text benchmark scored at most 0.41 for every model ([analysis](https://github.com/e1-rahabok/agent-e2/blob/ebbc7dc0be3268abc0f4939fe1ea40e400ac9bbb/project/archive/benchmark-results-before-2026-11-14/analysis-2026-11-13.md)), but the agent has been rebuilt since. **Recommendation:** keep these as the target, run once, and set the gate from that first run if it is far below.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): the target as written; the gate is set from the first run if that run is far below.
 
