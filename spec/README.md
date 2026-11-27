@@ -28,7 +28,7 @@ What the product must do, and how each part of that is tested. Built in M1 from 
 | [repositories.md](requirements/repositories.md) | 6 | M2: ready for approval |
 | [pcm-adapter.md](requirements/pcm-adapter.md) | 24 | M2 part (005 to 012): ready for approval; the rest to update |
 | [lab-build.md](requirements/lab-build.md) | 4 | Waits for Q-120 and Q-122 |
-| [agent-e2-service.md](requirements/agent-e2-service.md) | 19 | To update for round 2 and WD-026 |
+| [agent-e2-service.md](requirements/agent-e2-service.md) | 20 | To update for round 2 and WD-026 |
 | [pcm-live.md](requirements/pcm-live.md) | 32 | To update for round 2 |
 | [isvara-exam.md](requirements/isvara-exam.md) | 13 | To update for round 2 |
 | isvara.io content, Ask, contributions, practice | none yet | To write from the [isvara.io plan](design/isvara-revamp.md) |

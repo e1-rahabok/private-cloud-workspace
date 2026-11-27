@@ -91,7 +91,7 @@ Requirements, ready for the author's approval:
 
 ### M5 Agent E2 for release 1.0
 
-- Requirements: R-E2-001 to R-E2-019.
+- Requirements: R-E2-001 to R-E2-020. The grader's answer set holds about 15 questions in release 1.0 (R-E2-004).
 - The knowledge model's proposals in agent-e2: a configuration pillar tag, workload footprints, investigations over several steps, "At large scale" notes ([knowledge model](spec/knowledge-model.md), section Proposals).
 - Agent E2 declines Day 0 and Day 1 questions with a pointer to Broadcom's documentation (WD-026).
 
@@ -134,6 +134,7 @@ Requirements, ready for the author's approval:
 
 - Personal dashboards and what-if analysis in PCM; the tenant or application owner role.
 - The people side of operations.
+- A larger answer set for Agent E2's grader, from about 15 questions toward 40, weighted to the questions visitors ask.
 - Depth beyond vSphere, grown through contributions: vSAN, NSX, Kubernetes, Guest OS, physical infrastructure.
 - Executable flow steps and the capacity consultation in Agent E2.
 - An email newsletter for isvara.io's weekly summary.

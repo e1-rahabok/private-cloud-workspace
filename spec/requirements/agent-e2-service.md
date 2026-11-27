@@ -57,11 +57,11 @@ Test scenarios:
 
 ### R-E2-004 An answer set of free-text questions for release 1.0 exists
 
-Source: WD-013; answers to Q-5 ("The grader should be automated") and Q-I1 (conversations, CSV files and screenshots); WD-012 (release 1.0 success: Agent E2 explains a real lab KPI correctly).
+Source: WD-013; answers to Q-5 ("The grader should be automated") and Q-I1 (conversations, CSV files and screenshots); WD-012 (release 1.0 success: Agent E2 explains a real lab KPI correctly); the author, 2026-11-27 (about 15 questions in release 1.0, since the grader has lower priority; more questions after 1.0).
 
 Given the questions PCM users and isvara.io readers ask
 When the answer set is read
-Then it holds at least 40 free-text questions: at least 12 on PCM's synthetic ACME screens with their facts, 5 on the live demo with facts recorded from the lab, 12 for isvara.io readers with no facts, 4 with a CSV file, 4 with a screenshot, and 3 that continue a conversation of two or more turns
+Then it holds at least 15 free-text questions: at least 3 on PCM's synthetic ACME screens with their facts, 2 on the live demo with facts recorded from the lab, 5 for isvara.io readers with no facts, 2 with a CSV file, 2 with a screenshot, and 1 that continues a conversation of two or more turns
 And each question has its expected key points, its likely wrong answer, and the knowledge files that hold the answer
 And no question copies the wording of a multiple-choice benchmark question
 
@@ -131,6 +131,23 @@ And a finished or failed job can be read for 15 minutes, then returns HTTP 404
 Test scenarios:
 - T-E2-008a (anywhere, automated by [harness/test_harness.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/test_harness.py), to build): a mock client that raises `LLMError`; expect `failed` and `model_error`.
 - T-E2-008b (anywhere, automated, to build): a time limit of 3 seconds set for the test and a mock client that sleeps 5 seconds; expect `failed` and `time_limit`.
+
+### R-E2-020 A caller reads a job every 10 seconds
+
+Source: WD-013 ("the user always sees that Agent E2 is still working"); answer to Q-I3 ("how to inform user Agent E2 is not hung or dead?"); the author, 2026-11-27 ("VMware Admin does not mind 10 seconds waiting as he knows this is not a general chat").
+
+Given PCM or isvara.io waiting on an Agent E2 job (R-E2-007)
+When the job is queued or running
+Then the caller reads `GET /v1/jobs/<id>` once every 10 seconds, and not more often
+And between reads, the time so far counts up every second in the browser, with no call to Agent E2
+And the screen shows the current stage as words a person reads, never the stage's code name
+And when `updated_at` is more than 60 seconds old, the screen says that Agent E2 is not responding and offers to try again
+And when the job fails, the screen shows the reason of R-E2-008; when Agent E2 cannot be reached, it says that Agent E2 is unavailable
+
+Test scenarios:
+- T-E2-020a (anywhere, automated in private-cloud-manager by `build/tests/agent_e2_job.test.mjs`, to write): a fake job endpoint that counts requests and runs a job for 60 seconds; expect at most 7 reads, the stage in words, and the answer at the end.
+- T-E2-020b (anywhere, the same test): the fake stops changing `updated_at`; expect "not responding" on screen within 70 seconds.
+- T-E2-020c (anywhere, automated in isvara by Ask Agent E2's tests, to write in M9): T-E2-020a and T-E2-020b on Ask Agent E2.
 
 ### R-E2-009 The synchronous call keeps working until both callers have moved
 
