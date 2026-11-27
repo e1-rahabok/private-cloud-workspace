@@ -55,7 +55,7 @@ Arrows: `-->` solid, `..>` dashed.
 - The milestones are numbered from M1 in the order of work (WD-042). One is open at a time: the first whose heading does not end with ": done" (WD-039).
 - [tools/milestone_gate.py](tools/milestone_gate.py) shows the open milestone and its next item at every prompt. It fails a pull request that changes a file owned only by a later milestone, and fails when two milestones own one file or the numbers do not run M1, M2, M3 in order.
 - Each requirement belongs to exactly one milestone, or to the list after release 1.0. [tools/milestone_review.py](tools/milestone_review.py) fails otherwise, and writes one review page per milestone from the requirement files.
-- A build milestone is done when every test scenario of its requirements passes ([tools/spec_check.py](tools/spec_check.py) checks that each requirement has one). Every test scenario that needs the lab sits in M8, the only milestone that uses the lab.
+- A build milestone is done when every test scenario of its requirements passes ([tools/spec_check.py](tools/spec_check.py) checks that each requirement has one). Every test scenario that needs the lab sits in M8, the only milestone that runs in the lab; the review tool fails otherwise.
 - The author approves each milestone. For M1 only, the author delegated the approval to Claude's self-review, and reviews M1 afterwards (WD-042).
 
 ## Done before the milestones
@@ -81,12 +81,12 @@ Claude's working method, about how Claude works and never about the product (WD-
 - [x] The milestones revamped: M1 to M8, one outcome each, no file or requirement in two milestones, both checked by code (WD-042) ([#40](https://github.com/e1-rahabok/private-cloud-workspace/pull/40), [agent-e2#476](https://github.com/e1-rahabok/agent-e2/pull/476)).
 - [x] The foundations reviewed against the decisions: SYSTEM.md, CONTRACTS.md, README.md, the glossary and the tutorial's method chapters ([#41](https://github.com/e1-rahabok/private-cloud-workspace/pull/41)).
 - [x] Every requirement in the repository that implements it (WD-036); the workspace keeps the contracts and their checks, and its tools read the requirements of every repository ([#42](https://github.com/e1-rahabok/private-cloud-workspace/pull/42), [agent-e2#477](https://github.com/e1-rahabok/agent-e2/pull/477), [PCM-Adapter#106](https://github.com/e1-rahabok/PCM-Adapter/pull/106), [private-cloud-manager#76](https://github.com/e1-rahabok/private-cloud-manager/pull/76), [isvara#3](https://github.com/e1-rahabok/isvara/pull/3)).
-- [ ] Every contradiction between two requirement files fixed, each listed in its pull request.
-- [ ] Agent E2's requirements updated for the Day 2 scope (WD-026) and the round 2 decisions; the parts that need live lab facts moved to M8.
+- [x] Every contradiction between two requirement files fixed, each listed in its pull request ([agent-e2#478](https://github.com/e1-rahabok/agent-e2/pull/478), [PCM-Adapter#107](https://github.com/e1-rahabok/PCM-Adapter/pull/107), [private-cloud-manager#77](https://github.com/e1-rahabok/private-cloud-manager/pull/77), [isvara#4](https://github.com/e1-rahabok/isvara/pull/4), [#43](https://github.com/e1-rahabok/private-cloud-workspace/pull/43)).
+- [x] Agent E2's requirements updated for the Day 2 scope (WD-026) and the round 2 decisions; the parts that need live lab facts moved to M8 ([agent-e2#478](https://github.com/e1-rahabok/agent-e2/pull/478), [PCM-Adapter#107](https://github.com/e1-rahabok/PCM-Adapter/pull/107), [private-cloud-manager#77](https://github.com/e1-rahabok/private-cloud-manager/pull/77), [isvara#4](https://github.com/e1-rahabok/isvara/pull/4), [#43](https://github.com/e1-rahabok/private-cloud-workspace/pull/43)).
 - [ ] Requirements on the callers of Agent E2 moved to the callers: PCM's to M8, isvara.io's to M5.
-- [ ] The live demo's requirements updated for the round 2 decisions.
-- [ ] Every test scenario that needs the lab in M8; M2 and M3 keep the scenarios that run anywhere.
-- [ ] The exam's requirements updated for the round 2 decisions.
+- [x] The live demo's requirements updated for the round 2 decisions ([agent-e2#478](https://github.com/e1-rahabok/agent-e2/pull/478), [PCM-Adapter#107](https://github.com/e1-rahabok/PCM-Adapter/pull/107), [private-cloud-manager#77](https://github.com/e1-rahabok/private-cloud-manager/pull/77), [isvara#4](https://github.com/e1-rahabok/isvara/pull/4), [#43](https://github.com/e1-rahabok/private-cloud-workspace/pull/43)).
+- [x] Every test scenario that needs the lab in M8; M2 and M3 keep the scenarios that run anywhere, and the review tool checks it ([agent-e2#478](https://github.com/e1-rahabok/agent-e2/pull/478), [PCM-Adapter#107](https://github.com/e1-rahabok/PCM-Adapter/pull/107), [private-cloud-manager#77](https://github.com/e1-rahabok/private-cloud-manager/pull/77), [isvara#4](https://github.com/e1-rahabok/isvara/pull/4), [#43](https://github.com/e1-rahabok/private-cloud-workspace/pull/43)).
+- [x] The exam's requirements updated for the round 2 decisions ([agent-e2#478](https://github.com/e1-rahabok/agent-e2/pull/478), [PCM-Adapter#107](https://github.com/e1-rahabok/PCM-Adapter/pull/107), [private-cloud-manager#77](https://github.com/e1-rahabok/private-cloud-manager/pull/77), [isvara#4](https://github.com/e1-rahabok/isvara/pull/4), [#43](https://github.com/e1-rahabok/private-cloud-workspace/pull/43)).
 - [ ] isvara.io before and after: one document, feature by feature, for the author's review before anything is built (answer to Q-WS-41).
 - [ ] isvara.io's requirements for M4 to M7, written from that document.
 - [ ] A fresh agent reads the specification cold and finds no contradiction, no requirement that cannot be tested, and no requirement outside a milestone.
@@ -105,7 +105,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Outcome:** one Agent E2 service answers both callers: long answers as jobs with a visible stage, screenshots and CSV files, sources by ID and title, time and tokens per answer, Day 2 questions only; its free-text answers are graded automatically.
 - **Needs:** M2, so the contract check C3 (the Agent E2 API) runs on every pull request.
 - **Runs:** in a cloud session. The graded runs need the Vercel AI Gateway key, within US$100 a run (WD-014). The author grades 20 answers once (Q-WS-92).
-- **Requirements:** R-E2-001 to R-E2-019 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md); R-E2-009, R-E2-017 and R-E2-019 in the workspace's [agent-e2-api.md](spec/requirements/agent-e2-api.md)).
+- **Requirements:** R-E2-001 to R-E2-019 and R-E2-021 to R-E2-025 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md); R-E2-009, R-E2-017 and R-E2-019 in the workspace's [agent-e2-api.md](spec/requirements/agent-e2-api.md)).
 
 ### M4 isvara.io reading
 
@@ -126,7 +126,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Outcome:** the quiz with its mastery map, the exam, the daily question and the 2am game's debriefs link to articles; the calculators and the RVTools health check take every number from Agent E2's catalog; the dropped tools are gone.
 - **Needs:** M4 for the articles.
 - **Runs:** in a cloud session. The author approves the exam's ten questions once (Q-WS-113).
-- **Requirements:** R-EXAM-001 to R-EXAM-013 (isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md)), R-CONTENT-001 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), and the quiz, mastery map, daily question and calculators, written in M1.
+- **Requirements:** R-EXAM-001 to R-EXAM-016 (isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md)), R-CONTENT-001 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), and the quiz, mastery map, daily question and calculators, written in M1.
 
 ### M7 isvara.io switched over
 
@@ -141,7 +141,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Needs:** M2 for the catalog names, M3 for Agent E2's jobs and facts.
 - **Runs:** in the lab, from the author's laptop over the VPN, with the adapter's build, install, restart and validation tools. A cloud session writes the code and the tests that run anywhere.
 - **First slice:** one lab cluster's Cluster Performance on the L2 Performance tab (R-LIVE-001, R-LIVE-024, R-LIVE-030), then the rest.
-- **Requirements:** R-ADP-018 to R-ADP-023 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-LIVE-001 to R-LIVE-032 and R-E2-020 (private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)); the check of contract C2 (KPI metric keys).
+- **Requirements:** R-ADP-018 to R-ADP-023 and R-ADP-026 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-LIVE-001 to R-LIVE-033 and R-E2-020 (private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)), R-E2-026 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md)); the check of contract C2 (KPI metric keys).
 - **Release 1.0 is done** when the author approves M8.
 
 ## Waiting for the author
