@@ -11,7 +11,10 @@ For each KPI this check compares, sub-metric by sub-metric:
   - its name: the adapter's label (its LABELS table, else the row name) against the catalog's
     metric name without its unit in brackets (R-KPI-003),
   - the five limits [best, green, yellow, orange, zero-at] (R-KPI-002),
-  - "excluded when green" (the adapter's skip_when_green).
+  - "excluded when green" (the adapter's skip_when_green),
+  - the interval: the adapter row's interval against the catalog interval whose limits matched (R-ADP-008).
+It also compares the band table of the adapter's Periodic Cluster Check with the catalog's score row of each KPI it
+colours (R-KPI-005), and its closure levels and window with the catalog's Close for Business decisions (R-KPI-006).
 Each catalog row must have a key and five limits for at least one interval, and no KPI may use
 one key twice. A ratio has no unit, so a unit is not required.
 
@@ -60,15 +63,25 @@ ADAPTER_MODULES = {
     "Cluster Consumption": "metrics.cluster.cluster_consumption_metrics",
 }
 
-# Known name gaps (Q-WS-1; R-ADP-006 closes them in M2): the keys of the rows whose adapter label differs
-# from the catalog name. Close a gap by giving the adapter row the catalog name (its LABELS table), then
-# delete the key here; the check fails until you do.
-NAME_GAPS = {
-    "VM Performance": {"CPU Co-Stop", "CPU Ready", "CPU Overlap", "Disk Latency", "Network Dropped Tx", "CPU Run",
-                       "Memory Ballooned"},
-    "Guest OS Performance": {"Guest CPU Run Queue per vCPU", "Guest Disk Queue", "Guest Free Memory",
-                             "Guest Page-Out Rate"},
+# Known name gaps (Q-WS-1): the keys of rows whose adapter label differs from the catalog name. Empty since R-ADP-006;
+# a new gap fails. An entry may be added only with a question in OPEN-QUESTIONS.md, and the check fails once it is fixed.
+NAME_GAPS: dict[str, set[str]] = {}
+
+# Close for Business decisions compared with the adapter's levels: decision id -> (KPI, band). Cluster Risk is a known
+# gap until Q-WS-138 is answered: the catalog keeps a production and a non-production level, the adapter one level.
+CLOSURE_DECISIONS = {
+    "closure-cluster-consumption-red": ("Consumption", "red"),
+    "closure-cluster-consumption-orange": ("Consumption", "orange"),
+    "closure-cluster-performance-red": ("Performance", "red"),
+    "closure-cluster-performance-orange": ("Performance", "orange"),
 }
+CLOSURE_GAPS = {"closure-cluster-risk-prod": "Q-WS-138", "closure-cluster-risk-nonprod": "Q-WS-138"}
+
+# The score row of each KPI the Periodic Cluster Check colours, by the last part of its kb path.
+SCORE_ROWS = {"Performance": "cluster-performance", "Risk": "cluster-risk", "Consumption": "cluster-consumption"}
+SCORE_FILES = ["knowledge/catalog/thresholds-performance.yaml", "knowledge/catalog/thresholds-risk.yaml",
+               "knowledge/catalog/thresholds-capacity.yaml"]
+PERCENTILE = re.compile(r"(\d+)(?:st|nd|rd|th) percentile of the last (\d+) hours")
 
 UNIT_SUFFIX = re.compile(r"\s*\([^()]*\)\s*$")
 
@@ -145,13 +158,69 @@ def compare(catalog: dict, adapter: dict, known: list[str], gaps: dict | None = 
                     known.append(f"{kpi}: '{key}' is labelled '{label}', the catalog names it '{row['metric']}'")
             elif not same_name:
                 problems.append(f"{kpi}: '{key}' is labelled '{label}', the catalog names it '{row['metric']}'")
-            wanted = [row[k] for k in ("5m", "20s", "2s") if row.get(k)]
+            wanted = {k: row[k] for k in ("5m", "20s", "2s") if row.get(k)}
             have = limits_of(metric)
-            if not any([float(v) for v in w] == [float(v) for v in have] for w in wanted):
-                problems.append(f"{kpi}: '{row['metric']}' limits: catalog {wanted or 'none entered'}, adapter {have}")
+            matched = [k for k, w in wanted.items() if [float(v) for v in w] == [float(v) for v in have]]
+            if not matched:
+                problems.append(f"{kpi}: '{row['metric']}' limits: catalog {list(wanted.values()) or 'none entered'}, adapter {have}")
+            elif getattr(metric, "interval", "") not in matched:
+                problems.append(f"{kpi}: '{row['metric']}' interval: catalog {' or '.join(matched)}, "
+                                f"adapter {getattr(metric, 'interval', '') or 'none'}")
             if bool(row.get("excluded_when_green", False)) != bool(metric.skip_when_green):
                 problems.append(f"{kpi}: '{row['metric']}' excluded when green: catalog "
                                 f"{bool(row.get('excluded_when_green', False))}, adapter {bool(metric.skip_when_green)}")
+    return problems
+
+
+def health_limits(row: dict) -> list[float]:
+    """A score row's green, yellow and orange limits on the health scale: 100 minus the value when higher is worse."""
+    limits = [float(v) for v in row["5m"][1:4]]
+    return [100.0 - v for v in limits] if row["direction"] == "above" else limits
+
+
+def compare_periodic(agent_e2: Path, known: list[str]) -> list[str]:
+    """The Periodic Cluster Check's band table, closure levels and window against the catalog (R-KPI-005, R-KPI-006)."""
+    pcc = importlib.import_module("metrics.cluster.periodic_cluster_check")
+    problems: list[str] = []
+    scores = {}
+    for rel in SCORE_FILES:
+        for row in yaml.safe_load((agent_e2 / rel).read_text(encoding="utf-8")).get("score") or []:
+            scores[str(row.get("kb", "")).rsplit("/", 1)[-1]] = row
+    bands = [pcc.YELLOW_BELOW, pcc.ORANGE_BELOW, pcc.RED_BELOW]
+    for kpi, kb in SCORE_ROWS.items():
+        row = scores.get(kb)
+        if row is None or not row.get("5m"):
+            problems.append(f"Periodic Cluster Check colours Cluster {kpi}, which has no score row in the catalog")
+        elif health_limits(row) != [float(b) for b in bands]:
+            problems.append(f"Cluster {kpi} score bands: catalog {row['5m']} ({row['direction']}), "
+                            f"adapter yellow/orange/red below {bands} on the health scale")
+    decisions = {d["id"]: d for d in yaml.safe_load(
+        (agent_e2 / "knowledge/catalog/thresholds-capacity.yaml").read_text(encoding="utf-8")).get("decisions") or []}
+    levels = {"red": pcc.CLOSE_RED_BELOW, "orange": pcc.CLOSE_ORANGE_BELOW}
+    for did, (kpi, band) in CLOSURE_DECISIONS.items():
+        d = decisions.get(did)
+        if d is None:
+            problems.append(f"Close for Business: the catalog has no decision '{did}'")
+            continue
+        value = float(d["value"])
+        health = 100.0 - value if d["operator"] == ">" else value
+        if health != float(levels[band]):
+            problems.append(f"Close for Business, {kpi} {band}: catalog {d['operator']} {d['value']}, "
+                            f"adapter {band} below {levels[band]} on the health scale")
+        m = PERCENTILE.search(d["metric"])
+        if not m:
+            problems.append(f"Close for Business, '{did}': no percentile and window in '{d['metric']}'")
+            continue
+        percentile, hours = int(m.group(1)), int(m.group(2))
+        worst = percentile if kpi == "Performance" else 100 - percentile
+        if (worst, hours) != (pcc.DEFAULT_WORST_PERCENT, int(pcc.DEFAULT_PERIOD)):
+            problems.append(f"Close for Business, '{did}': catalog {percentile}th percentile of {hours} hours, adapter "
+                            f"{pcc.DEFAULT_WORST_PERCENT} % of the worst samples ignored over {pcc.DEFAULT_PERIOD} hours")
+    for did, question in CLOSURE_GAPS.items():
+        if did in decisions:
+            known.append(f"Close for Business: '{did}' is not compared until {question} is answered")
+        else:
+            problems.append(f"CLOSURE_GAPS lists '{did}', which the catalog no longer has: delete the entry")
     return problems
 
 
@@ -169,13 +238,14 @@ def main() -> int:
     catalog, implemented = load_catalog(agent_e2, problems), load_adapter(adapter)
     known: list[str] = []
     problems += compare(catalog, implemented, known)
+    problems += compare_periodic(agent_e2, known)
     checked = sum(len(v) for v in catalog.values())
     for k in known:
         print(f"KNOWN {k}")
     for p in problems:
         print(f"FAIL {p}")
     print(f"C1 KPI definitions: {checked} catalog sub-metrics in {len(ADAPTER_MODULES)} KPIs, "
-          f"{len(problems)} difference(s), {len(known)} known name gap(s)")
+          f"{len(problems)} difference(s), {len(known)} known gap(s)")
     return 1 if problems else 0
 
 

@@ -28,3 +28,14 @@ Agent E2's catalog names the VM row "Peak network TX dropped packets" with 20-se
 
 Answer:
 
+
+### Q-WS-138 Close for Business: is the non-production Risk level kept in Agent E2's knowledge? (blocks one comparison of M2)
+
+You agreed in Q-WS-16 to "keep the adapter's single level for stage 1 (it cannot tell production from non-production) and record that in the catalog". The VCF vCommunity Adapter closes every cluster above 60% Cluster Risk ([periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/periodic_cluster_check.py#L276)). Agent E2's knowledge keeps two levels and says to keep them apart: production above 60%, non-production above 80% ([can-cluster-take-more-vms.md](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/vsphere/object-types/cluster/decision-tree/can-cluster-take-more-vms.md#L44), lines 44 to 46, and its two images). Agent E2's code uses both catalog rows (`closure-cluster-risk-prod` and `closure-cluster-risk-nonprod`) when it explains a closure. R-ADP-011 reads Q-WS-16 as "Agent E2's catalog holds one Risk level for every cluster", which would remove the non-production level from Agent E2's knowledge.
+
+- (a) Keep both levels as Agent E2's practice. The catalog's production row says the adapter applies it to every cluster in release 1.0, and the KPI definitions check compares the adapter's level with that row. R-ADP-011 and R-KPI-006 are reworded to say so.
+- (b) One level in the catalog and the knowledge: the non-production row and the text that keeps the two apart are removed, and Agent E2 explains 60% for every cluster.
+
+- **Recommendation:** (a). It keeps your field knowledge, and it still lets Agent E2 explain the rule PCM applies, which was the reason for Q-WS-16. Until you answer, the check compares the Consumption and Performance levels and lists the Risk level as its one known gap.
+
+Answer:

@@ -76,6 +76,49 @@ class PlantedBreaks(unittest.TestCase):
         self.assertTrue(any("has no key" in p for p in problems), problems)
         self.assertTrue(any("twice" in p for p in problems), problems)
 
+    def test_an_interval_that_differs_fails(self):
+        adapter = copy.deepcopy(self.adapter)
+        metric, label = adapter["VM Performance"]["CPU Ready"]
+        adapter["VM Performance"]["CPU Ready"] = (metric._replace(interval="5m"), label)
+        problems, _ = self.run_compare(adapter=adapter)
+        self.assertTrue(any("interval" in p and "CPU Ready" in p for p in problems), problems)
+
+    def periodic_problems(self, edit):
+        """compare_periodic on a copy of the catalog changed by edit(folder)."""
+        with tempfile.TemporaryDirectory() as tmp:
+            shutil.copytree(AGENT_E2 / "knowledge" / "catalog", Path(tmp) / "knowledge" / "catalog")
+            edit(Path(tmp) / "knowledge" / "catalog")
+            return c1.compare_periodic(Path(tmp), [])
+
+    def test_the_periodic_check_agrees_on_main(self):
+        self.assertEqual(c1.compare_periodic(AGENT_E2, []), [])
+
+    def test_a_changed_score_row_fails(self):
+        def edit(folder):
+            f = folder / "thresholds-risk.yaml"
+            f.write_text(f.read_text(encoding="utf-8").replace("5m: [0, 25, 50, 75, 100]", "5m: [0, 30, 50, 75, 100]", 1),
+                         encoding="utf-8")
+        problems = self.periodic_problems(edit)
+        self.assertTrue(any("Cluster Risk score bands" in p for p in problems), problems)
+
+    def test_a_kpi_without_a_score_row_fails(self):
+        def edit(folder):
+            f = folder / "thresholds-performance.yaml"
+            text = f.read_text(encoding="utf-8")
+            f.write_text(text[:text.index("\nscore:\n")] + "\n", encoding="utf-8")
+        problems = self.periodic_problems(edit)
+        self.assertTrue(any("Cluster Performance, which has no score row" in p for p in problems), problems)
+
+    def test_a_changed_closure_level_fails(self):
+        def edit(folder):
+            f = folder / "thresholds-capacity.yaml"
+            text = f.read_text(encoding="utf-8")
+            at = text.index("id: closure-cluster-consumption-red")
+            end = text.index("value: 80", at)
+            f.write_text(text[:end] + "value: 85" + text[end + len("value: 80"):], encoding="utf-8")
+        problems = self.periodic_problems(edit)
+        self.assertTrue(any("Consumption red" in p for p in problems), problems)
+
 
 if __name__ == "__main__":
     unittest.main()
