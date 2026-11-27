@@ -4,7 +4,7 @@ Questions only the author can answer. Everything else from the interview is deci
 
 ## Q-120 Where the nested ESXi hosts run
 
-The lab build creates two small nested ESXi hosts with memory tiering ([lab-build requirements](spec/requirements/lab-build.md)). Needed when milestone M9 starts; the author will supply it then.
+The lab build creates two small nested ESXi hosts with memory tiering ([lab-build requirements](spec/requirements/lab-build.md)). Needed when milestone M4 starts; the author will supply it then.
 
 - **Needs you:** the physical cluster, datastore and network to use, and how much CPU, memory and NVMe space you can spare.
 

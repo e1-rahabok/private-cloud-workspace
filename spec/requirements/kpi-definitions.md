@@ -1,6 +1,6 @@
 # Requirements: KPI definitions
 
-One definition of each KPI, owned by Agent E2's catalog and implemented by PCM-Adapter, shown by PCM and isvara.io. This is contract [C1, KPI definitions](../glossary.md#c1). Question IDs (Q-) point at the interview: [round 1](../interview-round-1.md), [round 2](../interview-round-2.md), [round 3](../interview-round-3.md). R-KPI-001 to R-KPI-007 belong to milestone M2; R-KPI-008 to M5.
+One definition of each KPI, owned by Agent E2's catalog and implemented by PCM-Adapter, shown by PCM and isvara.io. This is contract [C1, KPI definitions](../glossary.md#c1). Question IDs (Q-) point at the interview: [round 1](../interview-round-1.md), [round 2](../interview-round-2.md), [round 3](../interview-round-3.md). R-KPI-001 to R-KPI-007 belong to milestone M2; R-KPI-008 to M8.
 
 Files involved:
 

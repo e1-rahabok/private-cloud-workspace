@@ -18,7 +18,7 @@ The last questions only the author could answer, asked in [OPEN-QUESTIONS.md](..
 
 **Answer:** "will supply later. remind me."
 
-**Result:** both stay in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md). They are needed when milestone M9 (lab build) starts; Claude asks again then.
+**Result:** both stay in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md). They are needed when milestone M4 (lab build) starts; Claude asks again then.
 
 ## Q-130 Events for birds-of-a-feather sessions
 

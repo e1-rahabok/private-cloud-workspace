@@ -41,7 +41,7 @@ Arrows: `-->` solid, `..>` dashed.
 | PCM | private-cloud-manager | Lab Linux VM moltbot29, https://10.114.1.29 (VPN) | Agent E2 over HTTP; VCF Operations Suite API (live mode) |
 | Agent E2 for PCM | agent-e2 | Same lab VM, port 8090, as a systemd service | Vercel AI Gateway |
 | PCM-Adapter | PCM-Adapter | Inside the lab VCF Operations, https://10.115.1.81 (VPN) | vCenter, VCF Operations |
-| isvara.io | isvara | Vercel, public | Agent E2 (planned, ROADMAP M6); today its own AskIO agent |
+| isvara.io | isvara | Vercel, public | Agent E2 (planned, ROADMAP M9); today its own AskIO agent |
 | Agent E2 for isvara.io | agent-e2 | Not decided (OPEN-QUESTIONS, Q-4) | Vercel AI Gateway |
 
 ## Sources of each kind of data
@@ -59,7 +59,7 @@ Arrows: `-->` solid, `..>` dashed.
 PCM keeps both, chosen from the demo control at the top of every page:
 
 - **Synthetic ACME** (default): a global bank with stories written relative to now. It shows Agent E2 at its best.
-- **Live VCF Operations** (ROADMAP M3): the lab instance. It proves PCM reads real data; the lab is too quiet to show Agent E2 well.
+- **Live VCF Operations** (ROADMAP M6): the lab instance. It proves PCM reads real data; the lab is too quiet to show Agent E2 well.
 
 ## Release 1.0 and the on-premises deployment
 

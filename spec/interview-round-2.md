@@ -6,7 +6,7 @@ Links in this file point at the files as they were when the question was asked.
 
 ## A. Across the repositories
 
-### Q-57 How does a user see that Agent E2 is still working? (blocks M3)
+### Q-57 How does a user see that Agent E2 is still working? (blocks M6)
 
 You asked this in Q-I3. The two drafts differ: the Agent E2 draft adds job calls that report the current stage ("reading files", "writing", "checking") and a time stamp that moves at least every 10 seconds ([R-E2-007](requirements/agent-e2-service.md)); the isvara.io draft proposed a timer only.
 
@@ -79,9 +79,9 @@ You were unsure what Q-12 meant. In plain words:
 
 From [spec/requirements/pcm-live.md](requirements/pcm-live.md).
 
-### Q-63 Which live pages and objects are in M4?
+### Q-63 Which live pages and objects are in M7?
 
-Q-21 has no answer. **Recommendation:** the Performance and Capacity tabs of a cluster, an ESXi host and a VM, the same tabs above the cluster (the VCF instance and the levels VCF Operations puts between it and the cluster), and the tree. M3 is one cluster's Performance tab.
+Q-21 has no answer. **Recommendation:** the Performance and Capacity tabs of a cluster, an ESXi host and a VM, the same tabs above the cluster (the VCF instance and the levels VCF Operations puts between it and the cluster), and the tree. M6 is one cluster's Performance tab.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): as recommended.
 
