@@ -84,7 +84,7 @@ From release 1.0 (WD-024):
 - **Quiz:** short rounds of multiple-choice questions on one path or crossing, from a pool, so a visitor can come back. Each wrong answer links to the section that explains it.
 - **Mastery map:** the paths as a grid, filled in as the visitor proves each part, showing which lens is weak ("strong in how CPU works, weak in how it is measured"). Kept in the visitor's browser; no account.
 - **Comparing scores:** as anonymous percentiles ("you beat 78% of visitors on this round"), a share card for LinkedIn, and boards for one event with a room code, such as a VMUG session. There is no global board, because an open-book quiz proves little at the top and an anonymous board attracts abuse.
-- **Exam:** ten short, very hard questions; a wrong answer loses marks and a blank scores 0 (WD-006). Requirements: [isvara-exam.md](../requirements/isvara-exam.md).
+- **Exam:** ten short, very hard questions; a wrong answer loses marks and a blank scores 0 (WD-006). Requirements: isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md).
 - **Daily question:** one question a day, with how many visitors got it right.
 
 ## Knowing what changed

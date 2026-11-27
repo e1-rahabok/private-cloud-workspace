@@ -34,7 +34,7 @@ Test scenarios:
 
 ### R-KPI-003 Each part's key and name agree between catalog and adapter
 
-The contract side. VCF vCommunity Adapter's side is [R-ADP-006](pcm-adapter.md); this requirement holds the catalog and the check, that one the code.
+The contract side. VCF vCommunity Adapter's side is [R-ADP-006](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md#r-adp-006-a-metrics-label-equals-the-agent-e2-catalog-name); this requirement holds the catalog and the check, that one the code.
 
 Source: answer to Q-WS-1 ("For key, adapter is correct. For name, Agent E2 is correct"); Q-WS-89 (round 2).
 
@@ -55,7 +55,7 @@ Dropped by WD-036. The catalog holds data and cannot hold rules. The scoring mod
 
 ### R-KPI-005 Each KPI's score bands equal the catalog's score row
 
-The contract side. The VCF vCommunity Adapter's side is [R-ADP-010](pcm-adapter.md).
+The contract side. The VCF vCommunity Adapter's side is [R-ADP-010](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md#r-adp-010-the-score-bands-equal-the-catalogs-score-rows).
 
 Source: answer to Q-WS-15; WD-036.
 
@@ -69,7 +69,7 @@ Test scenarios:
 
 ### R-KPI-006 The close-for-business levels equal the catalog's
 
-The contract side. The VCF vCommunity Adapter's side is [R-ADP-011](pcm-adapter.md).
+The contract side. The VCF vCommunity Adapter's side is [R-ADP-011](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md#r-adp-011-the-closure-levels-equal-the-catalogs).
 
 Source: answers to Q-WS-15 and Q-WS-16; WD-036.
 
@@ -90,7 +90,7 @@ Dropped by WD-036. The formula is domain knowledge in Agent E2's [cluster-consum
 
 Source: WD-036.
 
-Dropped by WD-036: it describes how isvara.io is built, so it moved to [R-CONTENT-001](isvara-content.md).
+Dropped by WD-036: it describes how isvara.io is built, so it moved to [R-CONTENT-001](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md).
 
 ## Questions for round two
 

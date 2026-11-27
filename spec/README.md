@@ -7,7 +7,7 @@ What the product must do, and how each part of that is tested. Built in mileston
 | Layer | Answers | Where |
 |---|---|---|
 | 1. Intent | Why the product exists, success, failure, principles | [intent.md](intent.md) |
-| 2. Requirements | What each part must do, each with its tests | [requirements/](requirements) |
+| 2. Requirements | What each part must do, each with its tests | [requirements/](requirements) here for the contracts; each repository's own (WD-036) |
 | 3. Contracts | How the repositories meet | [CONTRACTS.md](../CONTRACTS.md) |
 | 4. Decisions | What is settled, and why | [DECISIONS.md](../DECISIONS.md) |
 | 5. Checks | The code that proves layers 2 and 3 | [checks/](../checks), [tools/](../tools), each repository's tests |
@@ -26,13 +26,16 @@ What the product must do, and how each part of that is tested. Built in mileston
 |---|---|
 | [workspace.md](requirements/workspace.md) | M2 |
 | [kpi-definitions.md](requirements/kpi-definitions.md) | M2 (001 to 006; 004 dropped) |
-| [isvara-content.md](requirements/isvara-content.md) | M6 (001); the rest to write in M1 from the isvara.io plan |
-| [repositories.md](requirements/repositories.md) | M2 |
-| [pcm-adapter.md](requirements/pcm-adapter.md) | M2 (005 to 012, 025), M8 (018 to 023); after release 1.0 (013 to 017, 024) |
+| [agent-e2-api.md](requirements/agent-e2-api.md) | M3 |
 | [lab-build.md](requirements/lab-build.md) | After release 1.0 (WD-031) |
-| [agent-e2-service.md](requirements/agent-e2-service.md) | M3; to update in M1 for round 2 and WD-026 |
-| [pcm-live.md](requirements/pcm-live.md) | M8; to update in M1 for round 2 |
-| [isvara-exam.md](requirements/isvara-exam.md) | M6; to update in M1 for round 2 |
+| agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md) | M3; to update in M1 for round 2 and WD-026 |
+| agent-e2's [clean-up.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/clean-up.md) | M2 |
+| PCM-Adapter's [adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md) | M2 (005 to 012, 025), M8 (018 to 023); after release 1.0 (013 to 017, 024) |
+| PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md) | M2 |
+| private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md) | M8; to update in M1 for round 2 |
+| private-cloud-manager's [clean-up.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/clean-up.md) | M2 |
+| isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md) | M6; to update in M1 for round 2 |
+| isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md) | M6 (001); the rest to write in M1 from the isvara.io plan |
 | isvara.io reading, Ask, contributions, practice, switch-over | M4 to M7; to write in M1 from the [isvara.io plan](design/isvara-plan.md) |
 
 `python tools/spec_check.py` prints the current totals and fails on a requirement with no source or no test, or a test with no requirement.

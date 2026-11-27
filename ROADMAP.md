@@ -11,9 +11,9 @@ VMware administrators have the author's knowledge inside their own private cloud
 Two goals, and the work that supports them:
 
 - **isvara.io, the main goal and most of the work:** rebuilt on the three learning paths, with articles, Ask Agent E2, contributions and practice ([plan](spec/design/isvara-plan.md)).
-- **PCM's live demo, the second goal:** the synthetic demo unchanged, plus a live demo of the L2 workspace for performance and capacity on the lab ([requirements](spec/requirements/pcm-live.md)).
-- **Agent E2, in support of both:** Day 2 knowledge on Gemma 4 31B, its free-text answers graded automatically, a visible progress state, screenshots and CSV files, sources for every answer ([requirements](spec/requirements/agent-e2-service.md)).
-- **VCF vCommunity Adapter, in support of the live demo:** no value from a partial read, and every KPI definition taken from Agent E2 ([requirements](spec/requirements/pcm-adapter.md), [KPI definitions](spec/requirements/kpi-definitions.md)).
+- **PCM's live demo, the second goal:** the synthetic demo unchanged, plus a live demo of the L2 workspace for performance and capacity on the lab ([requirements](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)).
+- **Agent E2, in support of both:** Day 2 knowledge on Gemma 4 31B, its free-text answers graded automatically, a visible progress state, screenshots and CSV files, sources for every answer ([requirements](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md), [API](spec/requirements/agent-e2-api.md)).
+- **VCF vCommunity Adapter, in support of the live demo:** no value from a partial read, and every KPI definition taken from Agent E2 ([requirements](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md), [KPI definitions](spec/requirements/kpi-definitions.md)).
 - **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge, value management, the VCF vCommunity Adapter's state codes, Agent E2's new knowledge forms ([DECISIONS](DECISIONS.md), WD-026, WD-033, WD-034, WD-035).
 
 ![Release 1.0 milestones and what each depends on: Claude's method done before them; M1 in progress; M2 to M8 not started; M1 leads to M2; M2 to M3 and M4; M3 to M5 and M8; M4 to M5 and M6; M5 and M6 to M7](images/roadmap.svg)
@@ -76,7 +76,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Outcome:** every requirement of release 1.0 is written, testable, free of contradictions and kept in the repository that implements it, and every later milestone has its review page. No code is written in M1.
 - **Runs:** in a cloud session; documents only.
 - **The author:** delegated the approval to Claude's self-review (WD-042); reviews M1 on return and can reopen it.
-- Files in this repository: [`ROADMAP.md`](ROADMAP.md), [`DECISIONS.md`](DECISIONS.md), [`OPEN-QUESTIONS.md`](OPEN-QUESTIONS.md), [`README.md`](README.md), [`SYSTEM.md`](SYSTEM.md), [`CONTRACTS.md`](CONTRACTS.md), [`spec/`](spec), [`images/`](images), [`tools/milestone_gate.py`](tools/milestone_gate.py), [`tools/milestone_review.py`](tools/milestone_review.py), [`tools/spec_check.py`](tools/spec_check.py), [`tools/diagrams.py`](tools/diagrams.py), [`tools/docs.py`](tools/docs.py).
+- Files in this repository: [`ROADMAP.md`](ROADMAP.md), [`DECISIONS.md`](DECISIONS.md), [`OPEN-QUESTIONS.md`](OPEN-QUESTIONS.md), [`README.md`](README.md), [`SYSTEM.md`](SYSTEM.md), [`CONTRACTS.md`](CONTRACTS.md), [`spec/`](spec), [`images/`](images), [`tools/milestone_gate.py`](tools/milestone_gate.py), [`tools/milestone_review.py`](tools/milestone_review.py), [`tools/spec_check.py`](tools/spec_check.py), [`tools/diagrams.py`](tools/diagrams.py), [`tools/docs.py`](tools/docs.py), [`tools/requirement_files.py`](tools/requirement_files.py), [`.github/`](.github).
 
 - [x] The milestones revamped: M1 to M8, one outcome each, no file or requirement in two milestones, both checked by code (WD-042) ([#40](https://github.com/e1-rahabok/private-cloud-workspace/pull/40), [agent-e2#476](https://github.com/e1-rahabok/agent-e2/pull/476)).
 - [x] The foundations reviewed against the decisions: SYSTEM.md, CONTRACTS.md, README.md, the glossary and the tutorial's method chapters ([#41](https://github.com/e1-rahabok/private-cloud-workspace/pull/41)).
@@ -97,15 +97,15 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Outcome:** every contract that exists today is checked on every pull request of every repository, and each repository has the names and the folder layout the decisions set.
 - **Needs:** M1.
 - **Runs:** in a cloud session. The adapter's lab scenarios run in M8.
-- Files in this repository: [`checks/`](checks), [`tools/style.py`](tools/style.py), [`.github/`](.github).
-- **Requirements:** R-WS-001 to R-WS-007 ([workspace.md](spec/requirements/workspace.md)), R-KPI-001 to R-KPI-006 ([kpi-definitions.md](spec/requirements/kpi-definitions.md)), R-ADP-005 to R-ADP-011 and R-ADP-025 ([pcm-adapter.md](spec/requirements/pcm-adapter.md)), R-REPO-001 to R-REPO-008 ([repositories.md](spec/requirements/repositories.md)).
+- Files in this repository: [`checks/`](checks), [`tools/style.py`](tools/style.py).
+- **Requirements:** R-WS-001 to R-WS-007 and R-REPO-006 ([workspace.md](spec/requirements/workspace.md)), R-KPI-001 to R-KPI-006 ([kpi-definitions.md](spec/requirements/kpi-definitions.md)), R-ADP-005 to R-ADP-011 and R-ADP-025 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-REPO-001 and R-REPO-002 (PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md)), R-REPO-003 and R-REPO-004 (agent-e2's [clean-up.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/clean-up.md)), R-REPO-005, R-REPO-007 and R-REPO-008 (private-cloud-manager's [clean-up.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/clean-up.md)).
 
 ### M3 Agent E2 serves PCM and isvara.io
 
 - **Outcome:** one Agent E2 service answers both callers: long answers as jobs with a visible stage, screenshots and CSV files, sources by ID and title, time and tokens per answer, Day 2 questions only; its free-text answers are graded automatically.
 - **Needs:** M2, so the contract check C3 (the Agent E2 API) runs on every pull request.
 - **Runs:** in a cloud session. The graded runs need the Vercel AI Gateway key, within US$100 a run (WD-014). The author grades 20 answers once (Q-WS-92).
-- **Requirements:** R-E2-001 to R-E2-020 ([agent-e2-service.md](spec/requirements/agent-e2-service.md)).
+- **Requirements:** R-E2-001 to R-E2-019 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md); R-E2-009, R-E2-017 and R-E2-019 in the workspace's [agent-e2-api.md](spec/requirements/agent-e2-api.md)).
 
 ### M4 isvara.io reading
 
@@ -126,7 +126,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Outcome:** the quiz with its mastery map, the exam, the daily question and the 2am game's debriefs link to articles; the calculators and the RVTools health check take every number from Agent E2's catalog; the dropped tools are gone.
 - **Needs:** M4 for the articles.
 - **Runs:** in a cloud session. The author approves the exam's ten questions once (Q-WS-113).
-- **Requirements:** R-EXAM-001 to R-EXAM-013 ([isvara-exam.md](spec/requirements/isvara-exam.md)), R-CONTENT-001 ([isvara-content.md](spec/requirements/isvara-content.md)), and the quiz, mastery map, daily question and calculators, written in M1.
+- **Requirements:** R-EXAM-001 to R-EXAM-013 (isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md)), R-CONTENT-001 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), and the quiz, mastery map, daily question and calculators, written in M1.
 
 ### M7 isvara.io switched over
 
@@ -141,7 +141,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Needs:** M2 for the catalog names, M3 for Agent E2's jobs and facts.
 - **Runs:** in the lab, from the author's laptop over the VPN, with the adapter's build, install, restart and validation tools. A cloud session writes the code and the tests that run anywhere.
 - **First slice:** one lab cluster's Cluster Performance on the L2 Performance tab (R-LIVE-001, R-LIVE-024, R-LIVE-030), then the rest.
-- **Requirements:** R-ADP-018 to R-ADP-023 ([pcm-adapter.md](spec/requirements/pcm-adapter.md)), R-LIVE-001 to R-LIVE-032 ([pcm-live.md](spec/requirements/pcm-live.md)); the check of contract C2 (KPI metric keys).
+- **Requirements:** R-ADP-018 to R-ADP-023 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-LIVE-001 to R-LIVE-032 and R-E2-020 (private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)); the check of contract C2 (KPI metric keys).
 - **Release 1.0 is done** when the author approves M8.
 
 ## Waiting for the author

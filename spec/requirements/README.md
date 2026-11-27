@@ -1,6 +1,6 @@
 # Requirements
 
-One file per area. Each requirement is one testable statement with its own ID, and at least one test scenario. A requirement that cannot be tested as written goes back to [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).
+One file per area. Each requirement is one testable statement with its own ID, and at least one test scenario. This folder holds the requirements on the contracts between repositories, their checks and the workspace's tools. Every other requirement is in the repository that implements it (WD-036), in the folder named by [tools/requirement_files.py](../../tools/requirement_files.py): project/requirements in agent-e2, and spec/requirements in PCM-Adapter, private-cloud-manager and isvara. The tools read them all from clones next to this repository. A requirement that cannot be tested as written goes back to [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).
 
 ## Files
 

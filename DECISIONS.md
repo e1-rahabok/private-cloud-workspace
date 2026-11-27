@@ -100,13 +100,13 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 
 - **Date:** 2026-11-25
 - **Decision:** PCM's live demo: the L2 workspace only, for performance and capacity management only. Its inventory comes from VCF Operations and starts at the VCF instance; an object's ID is its VCF Operations resource ID. Class of service, region, environment and time zone exist only in the synthetic demo. PCM shows what the VCF vCommunity Adapter publishes and says "No data" when a value is stale. It reads through with a 60-second cache and stores no metrics. It may compute for display, and never writes to VCF Operations. Lab facts may go to the cloud model. Actions, stories, cases and the calendar are out of 1.0.
-- **Reason:** The author's answers to Q-WS-20 to Q-WS-39. Requirements: [spec/requirements/pcm-live.md](spec/requirements/pcm-live.md).
+- **Reason:** The author's answers to Q-WS-20 to Q-WS-39. Requirements: private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md).
 
 ## WD-016 Scope of change for the VCF vCommunity Adapter
 
 - **Date:** 2026-11-25
 - **Decision:** The VCF vCommunity Adapter may change anything, including its adapter kind, manifest name, metric key prefix, image path and pak name. A metric's key comes from the adapter; its name comes from Agent E2's catalog. All scoring logic comes from Agent E2, including the score bands and the closure levels. One Cluster Risk level for every cluster. Usable capacity is Total − HA − Buffer. A metric whose name says "peak" is a 20-second peak; others are 5-minute averages. Data absent by design is made explicit by the adapter.
-- **Reason:** The author's answers to Q-WS-I4, Q-WS-1, Q-WS-2, Q-WS-14 to Q-WS-17, Q-WS-19 and Q-WS-28. Requirements: [spec/requirements/pcm-adapter.md](spec/requirements/pcm-adapter.md).
+- **Reason:** The author's answers to Q-WS-I4, Q-WS-1, Q-WS-2, Q-WS-14 to Q-WS-17, Q-WS-19 and Q-WS-28. Requirements: PCM-Adapter's [adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md).
 - **Status:** the adapter kind, manifest name, key prefix, image path and pak name stay, by WD-032. Data absent by design is made explicit after release 1.0, by WD-033. "Comes from Agent E2" means: stated in Agent E2's knowledge and catalog, implemented in the adapter's code, and compared by the C1 check, by WD-036.
 
 ## WD-017 isvara.io rebuild

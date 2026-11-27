@@ -1,5 +1,8 @@
 """Check the specification's links: requirements, test scenarios and their sources.
 
+Requirement files are read from every repository (WD-036): the workspace's spec/requirements and each
+child repository's folder named in tools/requirement_files.py, from clones next to this one.
+
 Rules (spec/requirements/README.md and requirement R-WS-003):
 - A requirement is a heading "### R-AREA-nnn Title". Its ID is unique across all files.
 - It has a "Source:" line naming at least one existing question (Q-WS-), workspace decision (WD-) or
@@ -10,16 +13,19 @@ Rules (spec/requirements/README.md and requirement R-WS-003):
   has no scenario (spec/requirements/README.md, Rules).
 - Every scenario belongs to an existing requirement.
 
-    python tools/spec_check.py      # exit 1 on any problem
+    python tools/spec_check.py                    # every repository; exit 1 on any problem
+    python tools/spec_check.py --repos agent-e2   # only these child repositories (CI cannot read isvara)
 """
 from __future__ import annotations
 
+import argparse
 import re
 import sys
 from pathlib import Path
 
+from requirement_files import add_repos_argument, files
+
 ROOT = Path(__file__).resolve().parents[1]
-REQ_DIR = ROOT / "spec" / "requirements"
 PCM_DECISIONS = ROOT.parent / "private-cloud-manager" / "decisions.md"
 
 REQ = re.compile(r"^### (R-[A-Z0-9]+-\d{3})\b( Dropped:)?", re.M)
@@ -40,14 +46,21 @@ def known_ids() -> set[str]:
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    add_repos_argument(ap)
+    args = ap.parse_args()
+    req_files, unread, missing = files(args.repos)
+    for repo in missing:
+        print(f"COULD NOT RUN {repo}: no clone next to this repository")
+    if missing:
+        return 2
     ids = known_ids()
     problems: list[str] = []
     reqs: dict[str, str] = {}
     scenarios: list[tuple[str, str, str]] = []
-    for f in sorted(REQ_DIR.glob("*.md")):
-        if f.name == "README.md":
-            continue
-        text = f.read_text(encoding="utf-8")
+    for rf in req_files:
+        f = rf
+        text = rf.path.read_text(encoding="utf-8")
         heads = list(REQ.finditer(text))
         for i, m in enumerate(heads):
             rid = m.group(1)
@@ -79,6 +92,8 @@ def main() -> int:
             problems.append(f"{fname}: {sid} says it runs '{where}'; use anywhere or lab")
     for p in problems:
         print(f"FAIL {p}")
+    for repo in unread:
+        print(f"NOT RUN {repo}: its requirements were not read")
     lab = sum(1 for _, w, _ in scenarios if w == "lab")
     print(f"spec: {len(reqs)} requirements, {len(scenarios)} test scenarios ({lab} lab), {len(problems)} problem(s)")
     return 1 if problems else 0

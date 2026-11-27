@@ -8,7 +8,7 @@ Links in this file point at the files as they were when the question was asked.
 
 ### Q-WS-57 How does a user see that Agent E2 is still working? (blocks M6)
 
-You asked this in Q-WS-I3. The two drafts differ: the Agent E2 draft adds job calls that report the current stage ("reading files", "writing", "checking") and a time stamp that moves at least every 10 seconds ([R-E2-007](requirements/agent-e2-service.md)); the isvara.io draft proposed a timer only.
+You asked this in Q-WS-I3. The two drafts differ: the Agent E2 draft adds job calls that report the current stage ("reading files", "writing", "checking") and a time stamp that moves at least every 10 seconds ([R-E2-007](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md)); the isvara.io draft proposed a timer only.
 
 - **Recommendation:** the job calls with stages. PCM and isvara.io show the stage name and the time so far. If the time stamp stops moving for 60 seconds, the screen says Agent E2 stopped, with a button to ask again.
 
@@ -77,7 +77,7 @@ You were unsure what Q-WS-12 meant. In plain words:
 
 ## B. PCM live demo
 
-From [spec/requirements/pcm-live.md](requirements/pcm-live.md).
+From [spec/requirements/pcm-live.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md).
 
 ### Q-WS-63 Which live pages and objects are in M7?
 
@@ -87,7 +87,7 @@ Q-WS-21 has no answer. **Recommendation:** the Performance and Capacity tabs of 
 
 ### Q-WS-64 Are the stale rules right?
 
-You said: no waiting, say "No data" (Q-WS-27). A rule still needs a number. [R-LIVE-015](requirements/pcm-live.md) proposes: a value is stale when its newest sample is more than 10 minutes old (one 5-minute collection cycle plus one cycle of margin; the adapter's own limit). [R-LIVE-021](requirements/pcm-live.md) proposes: a Periodic Cluster Check result is missing 30 minutes after its window ends, since results can arrive a few cycles late. **Recommendation:** confirm both.
+You said: no waiting, say "No data" (Q-WS-27). A rule still needs a number. [R-LIVE-015](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md) proposes: a value is stale when its newest sample is more than 10 minutes old (one 5-minute collection cycle plus one cycle of margin; the adapter's own limit). [R-LIVE-021](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md) proposes: a Periodic Cluster Check result is missing 30 minutes after its window ends, since results can arrive a few cycles late. **Recommendation:** confirm both.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): 10 minutes for a value, 30 minutes for a check result. The author asked for no long wait (Q-WS-27); 10 minutes is one collection cycle plus one of margin.
 
@@ -111,7 +111,7 @@ You said: no waiting, say "No data" (Q-WS-27). A rule still needs a number. [R-L
 
 ### Q-WS-68 Until PCM-Adapter makes absent data explicit, is a missing part left out or shown as "No data"?
 
-**Recommendation:** left out ([R-LIVE-020](requirements/pcm-live.md)), so a cluster without memory tiering shows 10 Cluster Risk parts, as the synthetic demo does.
+**Recommendation:** left out ([R-LIVE-020](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)), so a cluster without memory tiering shows 10 Cluster Risk parts, as the synthetic demo does.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): left out until the adapter makes absent data explicit.
 
@@ -123,7 +123,7 @@ Q-WS-8 was answered "already answered", but that answer was about Agent E2, not 
 
 ### Q-WS-70 What if the lab is too quiet for the Agent E2 test?
 
-If no part lost points in the last 24 hours, [R-LIVE-030](requirements/pcm-live.md) can only check that Agent E2 says so. **Recommendation:** accept that; add a load generator to the lab build later if you want a real dip in the demo.
+If no part lost points in the last 24 hours, [R-LIVE-030](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md) can only check that Agent E2 says so. **Recommendation:** accept that; add a load generator to the lab build later if you want a real dip in the demo.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): accepted; a load generator may come later.
 
@@ -135,7 +135,7 @@ If no part lost points in the last 24 hours, [R-LIVE-030](requirements/pcm-live.
 
 ## C. PCM-Adapter
 
-From [spec/requirements/pcm-adapter.md](requirements/pcm-adapter.md). Q-WS-72 to Q-WS-77 name the new identity, since you said to change everything (Q-WS-2).
+From [spec/requirements/pcm-adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md). Q-WS-72 to Q-WS-77 name the new identity, since you said to change everything (Q-WS-2).
 
 ### Q-WS-72 Adapter kind
 
@@ -239,7 +239,7 @@ Without them the bad-packets part of Cluster Performance has no data; you did no
 
 ### Q-WS-86 Periodic Cluster Check settings
 
-You asked whether Claude knows how PCM gets them (Q-WS-31). Today they are advanced settings on each adapter instance, readable through `GET /suite-api/api/adapters`, but linking an instance to its clusters takes three more reads. **Recommendation:** the adapter publishes the period, time and percent it used as properties on each cluster, with a window-end metric on each result ([R-ADP-020](requirements/pcm-adapter.md)); the settings keep their defaults from the catalog.
+You asked whether Claude knows how PCM gets them (Q-WS-31). Today they are advanced settings on each adapter instance, readable through `GET /suite-api/api/adapters`, but linking an instance to its clusters takes three more reads. **Recommendation:** the adapter publishes the period, time and percent it used as properties on each cluster, with a window-end metric on each result ([R-ADP-020](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)); the settings keep their defaults from the catalog.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): the adapter publishes the settings it used on each cluster.
 
@@ -265,7 +265,7 @@ Still open from Q-WS-1. The adapter's part is "Guest CPU Run Queue per vCPU"; th
 
 ## D. Agent E2
 
-From [spec/requirements/agent-e2-service.md](requirements/agent-e2-service.md).
+From [spec/requirements/agent-e2-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md).
 
 ### Q-WS-90 The pass bar of the answer set
 
@@ -387,7 +387,7 @@ You said downloads and the weekly refresh continue (Q-WS-55). **Recommendation:*
 
 ## F. isvara.io exam
 
-From [spec/requirements/isvara-exam.md](requirements/isvara-exam.md).
+From [spec/requirements/isvara-exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md).
 
 ### Q-WS-109 One correct option per question?
 
