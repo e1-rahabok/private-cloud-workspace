@@ -113,6 +113,10 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **A commit with a failing check.** The agent ran every check in a loop that printed the results and then committed, and one style failure went into a commit. A script that exits with a failure now runs before every commit, and the commit only follows a pass.
 
+**Five reviews before approval.** The author delegated M1's approval on one condition: a fresh agent's cold read finds no contradiction. Three cold reads and two checks of the fixes ran in turn. The findings fell from 23 to about a dozen, then to six, then to one stale word. Each round of fixes brought contradictions of its own: a rule added to one repository's project file contradicted the shared stop rule, and two status lines credited a source with a number it did not give. The check after each round caught them.
+
+**An answer quoted where the rule lives.** The author's answer on lab tests sat in the session's record, and the files only paraphrased it. A later session reading the shared stop rule would have stopped at the first change to the adapter's code. The decision now quotes the answer, and the project file cites the decision.
+
 ## Lessons
 
 - The agent's first survey was useful precisely because it was wrong in places. Each error pointed to a missing document.
@@ -138,6 +142,8 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - Describe how two parts relate by mechanism: code, network, data, dependency or contract. A word with several meanings, such as "part of", hides which one is meant.
 - Give the workspace a territory. It specifies the contracts between repositories and the checks that compare both sides. Domain knowledge and each repository's implementation belong elsewhere.
 - Read the code and the knowledge file before writing a requirement about them. "Comes from" can mean "is stored in" or "is equal to"; say which.
+- Check every round of fixes with a fresh agent. A fix often credits a source with more than it says.
+- Quote the person's answer in the decision it settles. A project file that paraphrases it cannot outweigh a shared rule.
 - Make approval easy. One page per milestone, one line per requirement, generated from the files so it never goes stale.
 - Finish a milestone's checklist in order. Approval of the next milestone comes last, because the open items before it can still change what is approved.
 - Updating the lesson log is part of finishing a session. Without a written rule, the agent forgot it.
