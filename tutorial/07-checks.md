@@ -16,6 +16,8 @@ Use the second kind where it is cheap enough. Documentation can say one thing wh
 
 After writing a check, break something on purpose and run it. In this project a limit in the catalog was changed from 200 to 250, and the first check failed and named the row. A field in the service's response was renamed, and the second check failed and named the field. Then the changes were undone. It takes ten minutes, and without it you do not know whether the check works at all.
 
+Plant the break on a copy of the file and restore it from the copy. In this project the agent once planned to undo a planted break with `git checkout` on the roadmap, which would also have thrown away its own edits that were not yet committed. The session's permission check refused the command.
+
 ## Known gaps
 
 A new check often finds real problems that cannot all be fixed at once. The first check here found 11 sub-metrics whose names differed between the two repositories, although their limits agreed. Letting the check fail every day until all 11 were fixed would have taught everyone to ignore it. Removing it would have let the gaps grow.
@@ -25,6 +27,8 @@ Instead the 11 are listed in the check as known gaps. They are reported, but the
 ## Checks on the specification itself
 
 The same idea applies to the documents. One script fails when a requirement has no source or no test scenario, or a scenario belongs to no requirement. Another fails when a file reference is not a clickable link, or when a diagram's text no longer matches its picture. A third checks the writing of every document meant for people against the author's writing rules ([tools](../tools); [chapter 9](09-working-with-the-agent.md)).
+
+The plan itself is checked too. When the roadmap was rebuilt, a count showed that 26 of the 32 requirements of the live demo belonged to no milestone and two belonged to two. Nobody had noticed, because each milestone read well on its own. The review tool now fails when a requirement sits in no milestone or in two, and when a test that needs the lab sits in a milestone that does not run there; the milestone gate fails when two milestones own one file, or when the numbers do not run M1, M2, M3.
 
 ## Places they run
 

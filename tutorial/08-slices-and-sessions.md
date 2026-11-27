@@ -4,7 +4,9 @@
 
 Build in thin slices. A slice goes end to end through every part it touches but covers only a narrow case, for example one cluster and one score, rather than all of them. After each slice the whole system still works and every check passes.
 
-Order the slices by how much is unknown, and start with the most. In this project, connecting the web app to the live lab came early: the API had never been called against a live instance, the metric keys had never been read for real, and nobody knew whether the web app's server could reach the lab at all. Whatever that slice teaches changes the later ones. Extending the same pattern to more scores has few unknowns, so it comes after.
+Order the slices by how much is unknown, and start with the most. In this project, connecting the web app to the live lab held the most unknowns: the API had never been called against a live instance, the metric keys had never been read for real, and nobody knew whether the web app's server could reach the lab at all. Whatever that slice teaches changes the later ones. Extending the same pattern to more scores has few unknowns, so it comes after.
+
+Where the work can run limits the order too. The lab sits behind a VPN that only the author's laptop reaches, and the agent's cloud sessions cannot. Spread over three milestones, the lab tests would have held each of them open until the author had time for a lab session. The author chose to gather every lab test into the live demo's milestone and put it last, accepting that its unknowns surface later. Its first slice is still one cluster and one score.
 
 Finishing one repository before starting the next sounds tidy, but it pushes every problem between repositories to the end, where it is most expensive to fix.
 

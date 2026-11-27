@@ -97,6 +97,22 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **The cold-read audit, answered.** A fresh session read the five repositories the way a newcomer would and listed the names it could not guess. The author's answers sorted its findings. Two were already settled: WD-032 had decided the management pack's name, and agent-e2's benchmark questions keep a file name and a separate ID on purpose, which agent-e2's documentation says. Others became changes across all five repositories: question IDs that name their repository (Q-WS-, Q-E2-), releases defined only in the workspace, milestones renumbered in the order of work, no hand-written counts, and every child README linking the workspace. The audit also misread one name: `story_m5` holds PCM's demo story M-5, which the audit took for milestone 5.
 
+## Day five: the milestones rebuilt
+
+**The request.** The author asked for a fresh look at the five repositories and logical milestones: "M0, M1, M2 today overlap. M5 and M6 seems to be just 1 milestone." and "A project first milestone is called Milestone 1." The agent surveyed every repository, then asked three questions before the author left for several hours: may it approve M1 itself after a self-review, which goal comes first, and what to do with tests that need the lab. The author delegated M1's approval only, put isvara.io before the live demo, and accepted lab tests reported as not run.
+
+**What the count showed.** A script counted which milestone each requirement belonged to. 26 of the 32 live demo requirements belonged to none, and two Agent E2 requirements belonged to two. The roadmap also ran two milestones in parallel while the gate allowed one open milestone. Each problem had been invisible because each file read well alone. Both counts became checks.
+
+**One milestone for the lab.** Tests that need the lab sat in three milestones. The laptop that reaches the lab is not offered to cloud sessions, so each of those milestones would have stayed open until a lab session. They moved, unchanged, into new requirements of the live demo's milestone, and the review tool now fails when a lab test sits elsewhere.
+
+**Requirements where their code lives.** The workspace had kept requirements on each repository's own code, against its own decision WD-036. They moved to each repository, and the workspace's tools now read all five. The private isvara repository cannot be read by the workspace's CI, so its pages are reported as not run there and checked by the local run.
+
+**A request half answered.** In round 1 the author asked for a document of isvara.io's before and after, to review before anything was built. A plan of the new site existed, and the request had been treated as answered. The before-and-after document was written in this session, and the first isvara.io milestone now waits for the author's review of it.
+
+**Two claims checked late.** The first draft of that document said the health check's four counters would be scored against catalog rows, and that the super metric builder's keys came from the catalog. Neither was in the catalog. A read of the catalog before publishing caught both.
+
+**A commit with a failing check.** The agent ran every check in a loop that printed the results and then committed, and one style failure went into a commit. A script that exits with a failure now runs before every commit, and the commit only follows a pass.
+
 ## Lessons
 
 - The agent's first survey was useful precisely because it was wrong in places. Each error pointed to a missing document.
@@ -132,3 +148,9 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - A child repository's plan drifts into a release of its own. The workspace sets releases for all repositories, and each child plan names the workspace milestone it serves.
 - Work under review lives on a branch until it merges. A request to review it links the file on the branch and the pull request; the author looked on `main` and found nothing.
 - A repository setting that blocks the agreed way of working is a blocker to report, with the change it needs and why. The agent called PCM-Adapter's review rule the author's choice; under spec-driven work with self-merge (WD-009) it was a change the work needed.
+- A milestone list can read well file by file and still leave requirements in no milestone. Count membership with a script.
+- Gather work that needs a place only the person can reach into one milestone, so the others can finish without them.
+- A request answered in part reads as done. Check each request of the person against what was delivered, word for word.
+- Read the data a design document relies on before writing a claim about it.
+- A loop that prints check results does not stop a commit. Make the commit depend on the checks' exit code.
+- Restore a planted break from a copy. A version-control command that restores a file also discards the edits not yet committed.
