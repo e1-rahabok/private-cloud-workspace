@@ -8,7 +8,7 @@ Contract [C3, the Agent E2 API](../glossary.md#c3): the HTTP calls PCM and isvar
 
 Source: WD-010 (every contract has a check; changes go expand, migrate, contract); WD-013.
 
-- Given PCM's client, which calls `/v1/answer` and waits up to 180 seconds ([agent_e2.py](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/pcm_proto/agent_e2.py#L105))
+- Given PCM's client, which calls `/v1/answer` and waits up to 180 seconds ([agent_e2.py](https://github.com/e1-rahabok/private-cloud-manager/blob/main/pcm/core/agent_e2.py#L105))
 - When the job calls of R-E2-007 are added
 - Then a call without `"async"` still returns the answer in one reply, with every field it has today
 - And PCM's live demo and isvara.io each move to the job calls in their own pull request
@@ -26,7 +26,7 @@ Source: answer to Q-WS-36 ("agree": C3's specification lists the facts each feat
 - Given the docstring of [answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py), the specification of the Agent E2 API
 - When it is read
 - Then it has one table: each feature, the facts it needs, and what Agent E2 does without them
-- And the table starts from these features, with the fact names PCM sends today ([frame.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/workspaces/l2/frame.md)):
+- And the table starts from these features, with the fact names PCM sends today ([frame.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/pcm/l2/spec/pages/frame.md)):
 
 | Feature | Facts it needs | Without them |
 |---|---|---|
