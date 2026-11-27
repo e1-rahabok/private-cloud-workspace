@@ -33,7 +33,7 @@ The author's answer to what would bring an administrator back weekly (2026-11-26
 - **Three learning paths** as the navigation: Architecture (CPU, memory, storage, network), IT management (the five pillars: availability, performance, security, capacity, value), and Product (vSphere, vSAN, NSX, VCF Operations, Kubernetes, Windows, Linux, each by object type). They come from the knowledge files' tags ([knowledge model](../knowledge-model.md)).
 - **Crossings:** a reader narrows by any path and then by the others, for example CPU, then performance, then the cluster. Every narrowing has its own address and can be bookmarked.
 - **Where the reader is:** a trail at the top of each article, chips for its other paths, the neighbouring articles in its topic, and "read with" links at the end.
-- **Scale:** the reader says once whether their estate is small or large; "At large scale" notes are shown first for large estates.
+- **Scale:** after release 1.0 ([WD-035](../../DECISIONS.md)), the reader says once whether their estate is small or large; "At large scale" notes are shown first for large estates.
 - **Search:** one box over articles, the glossary, misreadings and metric names, with the words people use mapped to the knowledge base's terms. An advanced switch allows regular expressions.
 
 ## Features

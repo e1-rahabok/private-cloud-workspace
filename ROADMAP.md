@@ -12,7 +12,7 @@ VMware administrators have the author's knowledge inside their own private cloud
 - **PCM-Adapter:** no value from a partial read, and every KPI definition taken from Agent E2 ([requirements](spec/requirements/pcm-adapter.md), [KPI definitions](spec/requirements/kpi-definitions.md)).
 - **PCM:** the synthetic demo unchanged, plus a live demo of the L2 workspace for performance and capacity on the lab ([requirements](spec/requirements/pcm-live.md)).
 - **isvara.io:** rebuilt on the three learning paths, with ask, contributions and practice ([plan](spec/design/isvara-revamp.md)). This is the main focus on Release 1.0
-- **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge, value management, PCM-Adapter's state codes ([DECISIONS](DECISIONS.md), WD-026, WD-033, WD-034).
+- **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge, value management, PCM-Adapter's state codes, Agent E2's new knowledge forms ([DECISIONS](DECISIONS.md), WD-026, WD-033, WD-034, WD-035).
 
 ![Release 1.0 milestones and what each depends on: M0 done; M1 in progress; M2 leads to M6, M3, M5 and M8; M6 to M7; M3 to M7; M5 to M7 and M9; M8 to M9 and M10](images/roadmap.svg)
 
@@ -86,7 +86,6 @@ Requirements, ready for the author's approval:
 ### M5 Agent E2 for release 1.0
 
 - Requirements: R-E2-001 to R-E2-020. The grader's answer set holds about 15 questions in release 1.0 (R-E2-004).
-- The knowledge model's proposals in agent-e2: workload footprints, investigations over several steps, "At large scale" notes ([knowledge model](spec/knowledge-model.md), section Proposals).
 - Agent E2 declines Day 0 and Day 1 questions with a pointer to Broadcom's documentation (WD-026).
 
 ### M6 Live demo: one cluster, one KPI
@@ -127,6 +126,7 @@ Requirements, ready for the author's approval:
 
 - Personal dashboards and what-if analysis in PCM; the tenant or application owner role.
 - The people side of operations.
+- Agent E2's new knowledge forms: workload footprints, investigations over several steps, "At large scale" notes; then isvara.io's choice of a small or large estate ([knowledge model](spec/knowledge-model.md), section Proposals; WD-035).
 - Value management, the fifth pillar of The SP5 Framework: cost, price and business value (WD-034).
 - PCM-Adapter's state codes: every row and KPI says why it has no value (R-ADP-013 to R-ADP-017; WD-033).
 - A larger answer set for Agent E2's grader, from about 15 questions toward 40, weighted to the questions visitors ask.

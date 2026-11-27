@@ -220,3 +220,9 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** Value management, the fifth pillar of The SP5 Framework (cost, price and business value), comes after release 1.0. Release 1.0 adds no knowledge, KPI or feature for it. Agent E2's files tagged `value` stay as they are, and isvara.io's IT management path shows them under value.
 - **Reason:** The author, 2026-11-27: "Value Management is after Release 1.0."
+
+## WD-035 New knowledge forms after release 1.0
+
+- **Date:** 2026-11-27
+- **Decision:** Three new knowledge forms proposed for Agent E2 come after release 1.0: workload footprints, investigations over several steps, and "At large scale" notes ([knowledge model](spec/knowledge-model.md), sections Experience and Scale). isvara.io's choice of a small or large estate waits for the notes. Adding the knowledge model to agent-e2's KNOWLEDGE-ENGINEERING.md stays in release 1.0.
+- **Reason:** The author, 2026-11-27: "Defer all three to after Release 1.0", on Claude's recommendation. Each form needs new knowledge from the author's field experience, and release 1.0 must stay small enough to finish (WD-026).

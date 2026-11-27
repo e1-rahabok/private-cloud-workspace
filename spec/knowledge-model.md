@@ -48,14 +48,14 @@ Each topic, in each lens, runs from Level 100 (name it) to Level 400 (explain th
 
 ## Experience: the deepest gap
 
-What separates the author from a strong Level 400 reader is experience: long-chain troubleshooting and pattern recognition. Two forms would let Agent E2 hold some of it. Both are proposals for agent-e2, which owns the knowledge:
+What separates the author from a strong Level 400 reader is experience: long-chain troubleshooting and pattern recognition. Two forms would let Agent E2 hold some of it. Both are proposals for agent-e2, which owns the knowledge, and come after release 1.0 ([WD-035](../DECISIONS.md)):
 
 - **Workload footprints.** For each recurring pattern (backup window, antivirus scan, patching night, batch job, boot storm), its shape across metrics, objects and time. Backup and antivirus leave different footprints, so a footprint tells them apart.
 - **Investigations over several steps.** A flow that crosses areas and goes back in time: trace the symptom to the layer below, look wider (other objects) or deeper (finer metrics, longer history), check what changed. In PCM, Agent E2 can ask for more data; on isvara.io, it asks the visitor for another screenshot or CSV file.
 
 ## Scale
 
-At large scale, some answers change: thousands of VMs, many vCenters and regions. Instead of tagging every file, an "At large scale" note is added where the answer changes:
+At large scale, some answers change: thousands of VMs, many vCenters and regions. Instead of tagging every file, an "At large scale" note is added where the answer changes. The notes come after release 1.0 ([WD-035](../DECISIONS.md)):
 
 - performance: start from the cluster KPI's worst VM and its 90th percentile, because nobody can look at 10,000 VMs;
 - alerts: per-VM alerts become storms, so insights and the daily check replace most of them;
@@ -64,7 +64,7 @@ At large scale, some answers change: thousands of VMs, many vCenters and regions
 - statistics: an average across thousands of objects hides everything; percentiles and worst-of carry the meaning;
 - collection: metric volume and collection interval have a real cost.
 
-On isvara.io the reader says once whether their estate is small or large, and the notes for their estate are shown first.
+Once the notes exist, the isvara.io reader says once whether their estate is small or large, and the notes for their estate are shown first.
 
 ## Areas and coverage
 
@@ -89,5 +89,5 @@ Breadth grows through contributions at isvara.io (WD-024): the coverage table, b
 To raise in agent-e2's own question file, since agent-e2 owns the knowledge design:
 
 1. Add the knowledge model to [KNOWLEDGE-ENGINEERING.md](https://github.com/e1-rahabok/agent-e2/blob/main/KNOWLEDGE-ENGINEERING.md): the paths, the lenses as a completeness check, the Day 2 boundary.
-2. Add workload footprints and investigations over several steps as knowledge forms.
-3. Add "At large scale" notes where the answer changes.
+2. After release 1.0 ([WD-035](../DECISIONS.md)): add workload footprints and investigations over several steps as knowledge forms.
+3. After release 1.0 ([WD-035](../DECISIONS.md)): add "At large scale" notes where the answer changes.
