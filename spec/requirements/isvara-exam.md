@@ -1,6 +1,6 @@
 # Requirements: the isvara.io exam
 
-The exam for people on isvara.io, roadmap milestone M10 ([ROADMAP.md](../../ROADMAP.md)). It has ten short, very hard multiple-choice questions that test depth of understanding. A wrong answer loses marks, and no answer scores 0. The exam is kept in isvara.io and is separate from Agent E2's benchmark, which tests the machine ([WD-006](../../DECISIONS.md), a decision binding several repositories).
+The exam for people on isvara.io, roadmap milestone M10 ([ROADMAP.md](../../ROADMAP.md)). It has ten short, Level 400 multiple-choice questions that test depth of understanding. A wrong answer loses marks, and no answer scores 0. The exam is kept in isvara.io and is separate from Agent E2's benchmark, which tests the machine ([WD-006](../../DECISIONS.md), a decision binding several repositories).
 
 Question IDs (Q-) point at your answers in the [interview, round 1](../interview-round-1.md). Decision IDs (WD-) are in [DECISIONS.md](../../DECISIONS.md). Other IDs are explained in the [glossary](../glossary.md). The rest of the site's revamp, including where the exam sits, is in [design/isvara-revamp.md](../design/isvara-revamp.md), feature 33.
 
@@ -23,7 +23,7 @@ Test scenarios:
 
 ### R-EXAM-002 Ten questions, each with one correct option
 
-Source: WD-006 ("10 short, very hard multiple-choice questions"); answer to Q-56 ("Format is MCQ").
+Source: WD-006 ("10 short, Level 400 multiple-choice questions"); answer to Q-56 ("Format is MCQ").
 
 Given the exam data file
 When the site is built
