@@ -38,6 +38,8 @@ jobs:
       - run: python private-cloud-workspace/checks/run_all.py --no-clone
       - name: Requirements, test scenarios and sources
         run: python private-cloud-workspace/tools/spec_check.py
+      - name: Milestone review pages are up to date
+        run: python private-cloud-workspace/tools/milestone_review.py --check
       - name: Writing style of documents for people
         run: python private-cloud-workspace/tools/style.py
       - name: Links and diagram text

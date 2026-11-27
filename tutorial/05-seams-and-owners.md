@@ -28,6 +28,10 @@ In this project the documents disagreed about who owned the performance definiti
 
 Once a master is chosen, check it first whenever two copies disagree. In this project a new design document listed the operations topics with "configuration" where the knowledge service had "value". The agent proposed changing the knowledge service to match. The knowledge service was right: it follows the framework the author wrote. The newer document was the copy that had drifted.
 
+## The parent repository's territory
+
+The parent repository specifies the seams and nothing inside the parts. In this project its requirements once said that the knowledge service's catalog "defines the scoring rules", and they restated a capacity formula. Both belonged elsewhere. The formula is domain knowledge, kept in the knowledge service. The scoring code, and its tests, belong to the management pack that runs it. The catalog is a list of numbers that the management pack's tables must equal. A requirement on a seam says that two sides are equal, and names the check that compares them.
+
 ## Changing a seam safely
 
 A contract changes in three steps:

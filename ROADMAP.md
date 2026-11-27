@@ -72,11 +72,11 @@ No code is written in M1.
 
 ### M2 Contracts tightened and repositories cleaned
 
-Requirements, ready for the author's approval:
+Requirements, ready for the author's approval, on one page: [spec/review/M2.md](spec/review/M2.md).
 
 - Workspace checks: R-WS-001 to R-WS-007 ([workspace.md](spec/requirements/workspace.md)), including the check that folder and file names carry no version, milestone or status word (WD-030).
-- KPI definitions: R-KPI-001 to R-KPI-007 ([kpi-definitions.md](spec/requirements/kpi-definitions.md)).
-- VCF vCommunity Adapter, the parts that follow from the KPI definitions: R-ADP-005 to R-ADP-012 and R-ADP-025 ([pcm-adapter.md](spec/requirements/pcm-adapter.md)).
+- KPI definitions: R-KPI-001 to R-KPI-006 ([kpi-definitions.md](spec/requirements/kpi-definitions.md)): the adapter's tables equal Agent E2's catalog.
+- VCF vCommunity Adapter, the parts that follow from the KPI definitions: R-ADP-005 to R-ADP-011 and R-ADP-025 ([pcm-adapter.md](spec/requirements/pcm-adapter.md)).
 - Repository clean-up: R-REPO-001 to R-REPO-008 ([repositories.md](spec/requirements/repositories.md)): the adapter's knowledge pages to Agent E2, Agent E2's plan and old benchmarks, the product's name, old repository names, and PCM's folders and files named for what they hold and grouped by workspace.
 
 ### M3 VCF vCommunity Adapter for the live demo
@@ -98,7 +98,7 @@ Requirements, ready for the author's approval:
 
 ### M8 isvara.io content
 
-- The export from Agent E2 (contract C4), articles on the three learning paths, search, infographics, calculators on the catalog, the weekly summary, the manual ([plan](spec/design/isvara-revamp.md)). R-KPI-008.
+- The export from Agent E2 (contract C4), articles on the three learning paths, search, infographics, calculators on the catalog, the weekly summary, the manual ([plan](spec/design/isvara-revamp.md)). R-CONTENT-001 ([isvara-content.md](spec/requirements/isvara-content.md)).
 
 ### M9 isvara.io Ask and contributions
 

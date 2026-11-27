@@ -7,7 +7,7 @@ What [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) must do in release
 ## Scope and conventions
 
 - **Area:** the management pack in VCF Operations, its build and lab tools, and its side of two contracts: [C1, the KPI definitions](../glossary.md#c1), and [C2, the KPI metric keys](../glossary.md#c2), both described in [CONTRACTS.md](../../CONTRACTS.md).
-- **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-005 to R-ADP-012 and R-ADP-025 belong to M2, and R-ADP-018 to R-ADP-023 to M3. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M6, the first live cluster in PCM. R-ADP-013 to R-ADP-017, the state codes, come after release 1.0 ([WD-033](../../DECISIONS.md)). R-ADP-007 is needed before M7, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build) and comes after release 1.0 ([WD-031](../../DECISIONS.md)).
+- **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-005 to R-ADP-008, R-ADP-010, R-ADP-011 and R-ADP-025 belong to M2, and R-ADP-018 to R-ADP-023 to M3. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M6, the first live cluster in PCM. R-ADP-013 to R-ADP-017, the state codes, come after release 1.0 ([WD-033](../../DECISIONS.md)). R-ADP-007 is needed before M7, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build) and comes after release 1.0 ([WD-031](../../DECISIONS.md)).
 - **Keys** start with `vCommunity|` ([WD-032](../../DECISIONS.md)).
 - **The adapter may change anything.** The author confirmed that no installed instance or upgrade path needs protecting: Q-I4 and Q-2 in [round 1](../interview-round-1.md), recorded as decisions [WD-007 and WD-016](../../DECISIONS.md).
 - **How lab scenarios run.** From the author's laptop over VPN, with the repository's own tools ([tools/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/README.md)): [build.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/build/build.ps1), [install.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/install/install.ps1), [restart.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/restart/restart.ps1), then one collection cycle, then [validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1). This sequence is called "install and validate" below. The live validation checks the build installed on the lab, so a lab scenario passes only after that build is installed ([validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L12)).
@@ -71,7 +71,7 @@ Test scenarios:
 
 ## Metric keys and names
 
-### R-ADP-006 A metric's name comes from the Agent E2 catalog
+### R-ADP-006 A metric's label equals the Agent E2 catalog name
 
 Milestone: M2.
 
@@ -122,28 +122,19 @@ Test scenarios:
 - T-ADP-008a (anywhere, automated by [checks/kpi_definitions.py](../../checks/kpi_definitions.py), extended): for each matched row, expect the adapter's interval to equal the catalog interval that holds the matching limits.
 - T-ADP-008b (anywhere, automated by `Management Pack/tests/test_statistics.py` (new)): for every `20s` row, expect its stat key to contain `20_sec_peak`. Known cases, settled by Q-81 in round 2 (agent-e2 adds "peak" to the memory wait names; the dropped TX row is checked on the lab, and becomes 5-minute without "peak" if no 20-second peak exists): VM Network Dropped Tx reads `net|droppedTxPct_max` ([vm_performance_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/vm_performance_metrics.py#L97)) against a catalog name with "peak" ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L60)). The memory wait rows read a 20-second peak ([memory_wait.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/memory_wait.py#L25)), but their catalog names have no "peak" ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L39)).
 
-## Scoring from the Agent E2 catalog
+## Scoring tables compared with the Agent E2 catalog
 
-### R-ADP-009 The scoring formula reproduces the catalog's worked examples
+### R-ADP-009 Dropped: the scoring formula reproduces the catalog's worked examples
 
-Milestone: M2.
+Source: WD-036.
 
-Source: Q-14 in [round 1](../interview-round-1.md) ("if we're changing formula, yes"); Q-87 in [round 2](../interview-round-2.md) (the formula belongs to contract C1, checked by worked examples); [WD-016](../../DECISIONS.md) ("All scoring logic comes from Agent E2").
+Dropped by WD-036. The catalog holds no scoring rules or worked examples. The adapter's own tests ([test_kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_kpi_score.py)) cover its scoring code.
 
-- Given a worked example in the Agent E2 catalog: the sub-metric values of one KPI and the expected KPI
-- When the values go through the adapter's scoring, `publish_kpi()` in [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py#L198), including the rounding to two decimals and the "higher is worse" flip
-- Then the KPI equals the expected value
-- And the worked examples on the adapter's KPI pages, for example [cluster-performance.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/cluster-performance.md#L72), are taken from the catalog's examples
-
-Test scenarios:
-- T-ADP-009a (anywhere, automated by [checks/kpi_definitions.py](../../checks/kpi_definitions.py), extended): load every worked example from the catalog; run it through the adapter module of its KPI; expect each KPI equal at two decimals. A catalog with no examples fails the check.
-- T-ADP-009b (anywhere, automated by the existing [test_kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_kpi_score.py)): unchanged; expect it to pass.
-
-### R-ADP-010 The score bands come from the catalog
+### R-ADP-010 The score bands equal the catalog's score rows
 
 Milestone: M2.
 
-Source: Q-15 in [round 1](../interview-round-1.md) ("All their logic should come from Agent E2. PCM Adapter must implement the same."); [WD-016](../../DECISIONS.md).
+Source: Q-15 in [round 1](../interview-round-1.md) ("All their logic should come from Agent E2. PCM Adapter must implement the same."); [WD-016](../../DECISIONS.md); WD-036.
 
 - Given the catalog's score rows for Cluster Risk ([thresholds-risk.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-risk.yaml#L23)) and Cluster Consumption ([thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L40)), and a score row for Cluster Performance that agent-e2 adds first (the catalog has none today)
 - When the adapter colours a KPI value, in `band()` of [periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/periodic_cluster_check.py#L97)
@@ -153,7 +144,7 @@ Test scenarios:
 - T-ADP-010a (anywhere, automated by [checks/kpi_definitions.py](../../checks/kpi_definitions.py), extended to the `score` sections): expect the adapter's `RED_BELOW`, `ORANGE_BELOW` and `YELLOW_BELOW` to equal each catalog score row, after the "higher is worse" flip. A KPI with no score row in the catalog fails.
 - T-ADP-010b (anywhere, automated by the existing tests `test_bands` and `test_a_value_on_a_limit_belongs_to_the_better_band` in [test_periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_periodic_cluster_check.py#L84)): expect them to pass.
 
-### R-ADP-011 The closure levels come from the catalog, with one Risk level
+### R-ADP-011 The closure levels equal the catalog's
 
 Milestone: M2.
 
@@ -163,7 +154,7 @@ Source: Q-15 and Q-16 in [round 1](../interview-round-1.md) (Q-16: "agree", one 
 - When the Periodic Cluster Check decides Close for Business
 - Then Consumption closes above 80 (red) and above 60 (orange), Performance below 20 (red) and below 40 (orange), as in `CLOSE_RED_BELOW` and `CLOSE_ORANGE_BELOW` ([periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/periodic_cluster_check.py#L104))
 - And Risk decides above 60 for every cluster
-- And the catalog records that one Risk level applies to every cluster, in place of its two rows for production (60) and non-production (80) ([thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L100))
+- And Agent E2's catalog holds one Risk level for every cluster; that change to the catalog is made in agent-e2 (WD-001)
 - And the default window, 24 hours with 5 % of the worst samples ignored, equals the catalog's "95th percentile of the last 24 hours" (5th percentile for Performance)
 
 Test scenarios:
@@ -171,20 +162,11 @@ Test scenarios:
 - T-ADP-011b (anywhere, automated by the existing tests from `test_closure_levels_sit_inside_the_display_bands` to `test_open_when_healthy` in [test_periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_periodic_cluster_check.py#L98)): expect them to pass.
 - T-ADP-011c (lab, automated by validate.ps1 check 20): install and validate after a window has ended; expect the published Close for Business to follow the rule from the published Worst values on every sampled cluster.
 
-### R-ADP-012 Usable capacity is Total − HA − Buffer
+### R-ADP-012 Dropped: usable capacity is Total − HA − Buffer
 
-Milestone: M2.
+Source: WD-036.
 
-Source: Q-17 in [round 1](../interview-round-1.md) ("agree"); [WD-016](../../DECISIONS.md).
-
-- Given a cluster with HA admission control and a Capacity Buffer (Demand) in its policy
-- When Cluster Consumption is calculated
-- Then each row is measured against Total − HA − Buffer, as VCF Operations reports it in `cpu|demand|usableCapacity` and `mem|demand|usableCapacity` ([cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_consumption_metrics.py#L40))
-- And issue [#14](https://github.com/e1-rahabok/PCM-Adapter/issues/14), which asks to leave the buffer out, is closed with a link to this answer
-
-Test scenarios:
-- T-ADP-012a (anywhere, automated by the existing `test_consumption_is_against_usable_capacity` in [test_cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_cluster_consumption_metrics.py#L82)): expect it to pass.
-- T-ADP-012b (lab, automated by a new validate.ps1 check): on one lab cluster, read its usable and total capacity stats and its hosts' `cpu|utilization_average` from `stats/latest`; recompute Cluster-wide ESXi CPU Thread Utilization; expect it within 0.5 points of the published value. The inputs and the value may come from different cycles, so the margin is set wider than the rounding.
+Dropped by WD-036. The formula is domain knowledge in Agent E2, and the adapter's existing test `test_consumption_is_against_usable_capacity` covers its code. Closing issue [#14](https://github.com/e1-rahabok/PCM-Adapter/issues/14) is the adapter repository's own work.
 
 ## Explicit data states
 

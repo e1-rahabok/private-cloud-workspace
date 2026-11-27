@@ -107,7 +107,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-25
 - **Decision:** The VCF vCommunity Adapter may change anything, including its adapter kind, manifest name, metric key prefix, image path and pak name. A metric's key comes from the adapter; its name comes from Agent E2's catalog. All scoring logic comes from Agent E2, including the score bands and the closure levels. One Cluster Risk level for every cluster. Usable capacity is Total − HA − Buffer. A metric whose name says "peak" is a 20-second peak; others are 5-minute averages. Data absent by design is made explicit by the adapter.
 - **Reason:** The author's answers to Q-I4, Q-1, Q-2, Q-14 to Q-17, Q-19 and Q-28. Requirements: [spec/requirements/pcm-adapter.md](spec/requirements/pcm-adapter.md).
-- **Status:** the adapter kind, manifest name, key prefix, image path and pak name stay, by WD-032. Data absent by design is made explicit after release 1.0, by WD-033.
+- **Status:** the adapter kind, manifest name, key prefix, image path and pak name stay, by WD-032. Data absent by design is made explicit after release 1.0, by WD-033. "Comes from Agent E2" means: stated in Agent E2's knowledge and catalog, implemented in the adapter's code, and compared by the C1 check, by WD-036.
 
 ## WD-017 isvara.io rebuild
 
@@ -226,3 +226,9 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** Three new knowledge forms proposed for Agent E2 come after release 1.0: workload footprints, investigations over several steps, and "At large scale" notes ([knowledge model](spec/knowledge-model.md), sections Experience and Scale). isvara.io's choice of a small or large estate waits for the notes. Adding the knowledge model to agent-e2's KNOWLEDGE-ENGINEERING.md stays in release 1.0.
 - **Reason:** The author, 2026-11-27: "Defer all three to after Release 1.0", on Claude's recommendation. Each form needs new knowledge from the author's field experience, and release 1.0 must stay small enough to finish (WD-026).
+
+## WD-036 What the workspace specifies
+
+- **Date:** 2026-11-27
+- **Decision:** The workspace specifies only where the repositories meet: the contracts, the checks that compare both sides, and the workspace's own tools. Domain knowledge, such as a formula, the scoring model or a threshold, lives in agent-e2: its knowledge files explain it and its catalog holds the data rows. How a repository implements something, and the tests of that implementation, live in that repository. A workspace requirement on a contract says that two sides are equal and names the check that compares them. "Comes from Agent E2" means that a value is stated in Agent E2 and that the implementing repository's copy equals it; nothing reads the agent-e2 repository at run time. Dropped by this decision: R-KPI-004, R-KPI-007, R-KPI-008 (moved to R-CONTENT-001), R-ADP-009 and R-ADP-012. Replaces the decision on Q-87.
+- **Reason:** The author, 2026-11-27. R-KPI-004 asked the catalog to hold scoring rules, which a catalog of data rows cannot do; the scoring is explained in Agent E2's [performance-kpi-design.md](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/sp5-framework/performance/performance-kpi-design.md) and implemented in the adapter's [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py). R-KPI-007 and R-ADP-012 restated domain knowledge that Agent E2 already holds.
