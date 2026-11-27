@@ -12,6 +12,8 @@ Rules (spec/requirements/README.md and requirement R-WS-003):
   the requirement's. A dropped requirement ("### R-AREA-nnn Dropped: ...") keeps its ID and Source and
   has no scenario (spec/requirements/README.md, Rules).
 - Every scenario belongs to an existing requirement.
+- Every contract row of CONTRACTS.md names a check file in checks/ that exists and that checks/run_all.py runs, or
+  says it is planned in a ROADMAP milestone (R-WS-001, T-WS-001a).
 
     python tools/spec_check.py                    # every repository; exit 1 on any problem
     python tools/spec_check.py --repos agent-e2   # only these child repositories (CI cannot read isvara)
@@ -43,6 +45,32 @@ def known_ids() -> set[str]:
     if PCM_DECISIONS.exists():
         ids |= set(re.findall(r"^\| (D-\d{3}) \|", PCM_DECISIONS.read_text(encoding="utf-8"), re.M))
     return ids
+
+
+CONTRACT_ROW = re.compile(r"^\| (C\d+) \|(.*)$", re.M)
+CHECK_LINK = re.compile(r"\]\((checks/[\w./-]+\.py)\)")
+PLANNED = re.compile(r"planned in ROADMAP M\d+", re.I)
+
+
+def contract_problems() -> list[str]:
+    """Each contract row names a running check that exists and run_all.py runs, or a milestone that plans one."""
+    problems = []
+    run_all = (ROOT / "checks" / "run_all.py").read_text(encoding="utf-8")
+    rows = CONTRACT_ROW.findall((ROOT / "CONTRACTS.md").read_text(encoding="utf-8"))
+    if not rows:
+        problems.append("CONTRACTS.md: no contract rows found")
+    for cid, rest in rows:
+        check = rest.rstrip(" |").rsplit("|", 1)[-1]
+        link = CHECK_LINK.search(check)
+        if link:
+            path = ROOT / link.group(1)
+            if not path.is_file():
+                problems.append(f"CONTRACTS.md: {cid} names {link.group(1)}, which does not exist")
+            elif f'"{path.name}"' not in run_all:
+                problems.append(f"CONTRACTS.md: {cid} names {link.group(1)}, which checks/run_all.py does not run")
+        elif not PLANNED.search(check):
+            problems.append(f"CONTRACTS.md: {cid} names no check and no milestone that plans one")
+    return problems
 
 
 def main() -> int:
@@ -90,6 +118,7 @@ def main() -> int:
             problems.append(f"{fname}: {sid} belongs to no requirement ({rid})")
         if where not in ("anywhere", "lab"):
             problems.append(f"{fname}: {sid} says it runs '{where}'; use anywhere or lab")
+    problems += contract_problems()
     for p in problems:
         print(f"FAIL {p}")
     for repo in unread:
