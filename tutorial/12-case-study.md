@@ -130,3 +130,4 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - Check an audit's findings against the decisions and the owning repository's documents before acting on them. Two of the ten were settled designs read wrongly.
 - Two ID series that differ only by a hyphen read as one. Put the owner in the ID: Q-WS-120 and Q-E2-120.
 - A child repository's plan drifts into a release of its own. The workspace sets releases for all repositories, and each child plan names the workspace milestone it serves.
+- Work under review lives on a branch until it merges. A request to review it links the file on the branch and the pull request; the author looked on `main` and found nothing.
