@@ -98,8 +98,8 @@ def roadmap() -> None:
     def b(x, y, title, lines, kind):
         k.box(x, y, w, title, lines, kind, h=h)
 
-    b(230, 80, "M-1 Claude in SDD mode", ["Rules, gate, hook"], "guest")
-    b(20, 80, "M0 Workspace", ["Files, checks, tutorial"], "white")
+    b(230, 80, "M-1 Claude in SDD mode", ["Rules, gate, hook"], "prod")
+    b(20, 80, "M0 Workspace", ["Files, checks, tutorial"], "guest")
     b(20, 190, "M1 Specification", ["Intent, model, requirements;", "approval"], "white")
     b(230, 190, "M2 Contracts, clean-up", ["KPI definitions, docs,", "Agent E2 plan"], "white")
     b(440, 190, "M3 Adapter for live demo", ["Partial reads, key list,", "settings, accounts"], "white")

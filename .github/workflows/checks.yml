@@ -45,6 +45,8 @@ jobs:
         run: python private-cloud-workspace/tools/style.py
       - name: Links and diagram text
         run: python private-cloud-workspace/tools/docs.py --check
+      - name: Every repository has the workspace's CLAUDE.md (WD-041)
+        run: python private-cloud-workspace/tools/claude_md_copies.py agent-e2 PCM-Adapter private-cloud-manager
       - name: Changes stay in the open milestone (WD-039)
         if: github.event_name == 'pull_request'
         run: python private-cloud-workspace/tools/milestone_gate.py --check origin/${{ github.base_ref }}
