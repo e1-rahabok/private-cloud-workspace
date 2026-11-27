@@ -1,10 +1,10 @@
 # System
 
-How the four repositories work as one system. Current state, stage 1. For people and for Claude.
+How the four repositories work as one system. Current state, release 1.0. For people and for Claude.
 
 ## Two web apps, one knowledge service
 
-![The system in stage 1: PCM, Agent E2, VCF Operations with PCM-Adapter in the lab; isvara.io, its planned Agent E2 and the model gateway on the Internet; the contracts C1 to C5 between them](images/system.svg)
+![The system in release 1.0: PCM, Agent E2, VCF Operations with PCM-Adapter in the lab; isvara.io, its planned Agent E2 and the model gateway on the Internet; the contracts C1 to C5 between them](images/system.svg)
 
 <details>
 <summary>Text of the diagram, for readers that cannot see it</summary>
@@ -18,7 +18,7 @@ Boxes, nested as drawn:
 - n4 **Agent E2 for isvara.io** (Agent E2): Where it runs: OPEN-QUESTIONS Q-4
 - n5 **VCF Operations**: Lab, https://10.115.1.81
   - n6 **PCM-Adapter** (PCM-Adapter): Computes the KPIs inside VCF Operations, under vCommunity|
-- n7 **Vercel AI Gateway** (Model): Cloud model for stage 1
+- n7 **Vercel AI Gateway** (Model): Cloud model for release 1.0
 
 Arrows (from, to, label):
 - n1 PCM --> n2 Agent E2 for PCM: C3
@@ -61,10 +61,10 @@ PCM keeps both, chosen from the demo control at the top of every page:
 - **Synthetic ACME** (default): a global bank with stories written relative to now. It shows Agent E2 at its best.
 - **Live VCF Operations** (ROADMAP M3): the lab instance. It proves PCM reads real data; the lab is too quiet to show Agent E2 well.
 
-## Stage 1 and stage 2
+## Release 1.0 and the on-premises deployment
 
-- **Stage 1 (now, in scope):** PCM is a demo in the lab. Agent E2 uses a cloud model through Vercel AI Gateway. isvara.io is public on Vercel.
-- **Stage 2 (out of scope):** a customer deploys PCM and Agent E2 on premises with a local model server. Text in the child repositories about on-premises models describes stage 2. Do not build toward it now; do not remove it either.
+- **Release 1.0 (now, in scope):** PCM is a demo in the lab. Agent E2 uses a cloud model through Vercel AI Gateway. isvara.io is public on Vercel.
+- **On-premises deployment (after release 1.0, out of scope):** a customer deploys PCM and Agent E2 on premises with a local model server. Text in the child repositories about on-premises models describes this deployment; some of it calls it stage 2. Do not build toward it now; do not remove it either.
 
 ## Lab
 

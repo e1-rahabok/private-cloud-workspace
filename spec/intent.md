@@ -50,7 +50,7 @@ The material began as the first edition of the author's book in 2014. Each year 
 ## Scope
 
 - **Day 2 only:** running, monitoring, troubleshooting and planning. Design, installation, building, configuration and upgrades (Day 0 and Day 1) are out, because they depend on the release. Agent E2 says so when asked, and points to Broadcom's documentation (W-026).
-- **Stage 1 only:** a lab demo, with a cloud model through Vercel AI Gateway. The customer's on-premises deployment with a local model is stage 2 (W-002).
+- **Release 1.0 in the lab:** a lab demo, with a cloud model through Vercel AI Gateway. The customer's on-premises deployment with a local model comes after release 1.0 (W-002).
 - **PCM replaces VCF Operations narrowly:** performance and capacity management, for the L2 role in the live demo. It does not replace lifecycle, fleet management or SDDC Manager.
 - **After 1.0:** personal dashboards in PCM, what-if analysis, the "people" side of operations (convincing application owners), and areas beyond vSphere at depth.
 
@@ -60,7 +60,7 @@ These decide a conflict between two good things, without asking the author.
 
 1. **Free.** No paid content, no paid tier.
 2. **Accurate before complete.** A confident wrong answer is worse than none. Say what is unknown.
-3. **The customer's data stays with the customer.** In stage 2 nothing leaves their network; on isvara.io, visitors remove their own IP addresses and host names before uploading, and the site keeps no copy of what they ask about.
+3. **The customer's data stays with the customer.** In the on-premises deployment nothing leaves their network; on isvara.io, visitors remove their own IP addresses and host names before uploading, and the site keeps no copy of what they ask about.
 4. **Forkable.** Customers can copy the product privately and make it theirs. Nothing in the product depends at run time on the author's services. Today the repositories have no licence (W-029), which gives no such permission; it is revisited before the first customer copies the product.
 5. **One master copy of each fact.** Knowledge lives in Agent E2; every other copy is generated from it or checked against it (W-001).
 6. **The specification is what people maintain.** AI writes the code; the author and Claude keep the specification true (PCM D-010).

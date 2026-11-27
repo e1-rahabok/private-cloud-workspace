@@ -34,9 +34,9 @@ Test scenarios:
 - T-REPO-002a (anywhere, manual review by a fresh session): read every page of the adapter's docs; expect no explanation of a metric's meaning beyond one sentence, and a knowledge link on each metric page.
 - T-REPO-002b (anywhere, automated by the adapter's existing link check, [check_links.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/check-docs/check_links.py)): expect no broken link after the pages are removed.
 
-## Agent E2's repository for stage 1
+## Agent E2's repository for release 1.0
 
-### R-REPO-003 Agent E2's plan describes stage 1
+### R-REPO-003 Agent E2's plan describes release 1.0
 
 Milestone: M2.
 
@@ -44,12 +44,12 @@ Source: Q-6 (round 1: "Update Agent E2's plan. It's outdated."); Q-58 (round 2: 
 
 Given Agent E2's [project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md)
 When a session reads it at the start of work
-Then its milestones are A1 to A6 as decided in Q-58, with stage 2 items (local model, offline bundle, live test with blocked network) listed as parked
+Then its milestones are A1 to A6 as decided in Q-58, with the items of the on-premises deployment (local model, offline bundle, live test with blocked network) listed as parked
 And its fine-tuning row points to the workspace's [design note](../design/fine-tuning.md)
 And agent-e2's CLAUDE.md sends questions that bind several repositories to this workspace (W-019)
 
 Test scenarios:
-- T-REPO-003a (anywhere, manual review): the plan's milestone table has A1 to A6 and a parked stage 2 row; agent-e2's rules check passes.
+- T-REPO-003a (anywhere, manual review): the plan's milestone table has A1 to A6 and a parked row for the on-premises deployment; agent-e2's rules check passes.
 
 ### R-REPO-004 The older benchmarks are removed
 

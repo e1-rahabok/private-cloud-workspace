@@ -17,11 +17,11 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Decision:** Agent E2 is the source of all domain knowledge: KPI names, parts, limits, scoring, thresholds, flows and explanations. PCM-Adapter implements the KPIs. PCM and isvara.io consume; isvara.io holds no knowledge of its own (Q-15, Q-18). A change to domain knowledge starts in agent-e2.
 - **Reason:** With one master copy, every other copy can be generated from it or checked against it ([C1, KPI definitions](spec/glossary.md#c1)).
 
-## W-002 Stage 1 only
+## W-002 Release 1.0: lab demo, cloud model
 
 - **Date:** 2026-11-25
-- **Decision:** Stage 1 only. PCM is a demo in the lab, and Agent E2 uses a cloud model through Vercel AI Gateway. A customer's on-premises deployment with a local model is stage 2 and out of scope.
-- **Reason:** A plan that describes two futures at once leads each session to build toward the wrong one. Stage 2 text stays in the child repositories as the target.
+- **Decision:** Release 1.0 is a demo in the lab. PCM runs in the lab, and Agent E2 uses a cloud model through Vercel AI Gateway. A customer's on-premises deployment with a local model comes after release 1.0 and is out of scope.
+- **Reason:** A plan that describes two futures at once leads each session to build toward the wrong one. Text about the on-premises deployment stays in the child repositories as the target.
 
 ## W-003 Synthetic and live demos kept apart
 
@@ -77,16 +77,16 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Decision:** Lab credentials. On the author's laptop: two DPAPI files in `$HOME\.secrets\` (`Export-Clixml`), one for a read-only VCF Operations account (reading and validating) and one for the admin account (installing and restarting the pack); the scripts of PCM-Adapter and PCM change to read them. On the PCM lab VM: `/etc/pcm/pcm.env`, root and group `pcm` only.
 - **Reason:** Agreed (Q-40). Before this, PCM-Adapter's scripts read an admin login from a file inside the repository folder, and PCM's lab script read Windows Credential Manager.
 
-## W-012 Stage 1 success
+## W-012 Release 1.0 success
 
 - **Date:** 2026-11-25
-- **Decision:** Stage 1 succeeds when VMware colleagues and customers who see the PCM demo find it useful and want to fork the repositories privately, to customise and deploy in their own private cloud; when Agent E2 explains a real lab KPI correctly in the live demo; and when every contract is checked automatically.
+- **Decision:** Release 1.0 succeeds when VMware colleagues and customers who see the PCM demo find it useful and want to fork the repositories privately, to customise and deploy in their own private cloud; when Agent E2 explains a real lab KPI correctly in the live demo; and when every contract is checked automatically.
 - **Reason:** The author's answers to Q-I1 and Q-I2.
 
-## W-013 Agent E2 in stage 1
+## W-013 Agent E2 in release 1.0
 
 - **Date:** 2026-11-25
-- **Decision:** Agent E2 in stage 1: accuracy comes before speed; an answer may take minutes; no streaming, but the user always sees that Agent E2 is still working. Free-text answers are graded automatically by a strong model as judge, as Agent E2's earlier free-text benchmark was. The model is Gemma 4 31B, or a later version when one comes. Every knowledge file is used, drafts included; a review gate on files waits until after go-live.
+- **Decision:** Agent E2 in release 1.0: accuracy comes before speed; an answer may take minutes; no streaming, but the user always sees that Agent E2 is still working. Free-text answers are graded automatically by a strong model as judge, as Agent E2's earlier free-text benchmark was. The model is Gemma 4 31B, or a later version when one comes. Every knowledge file is used, drafts included; a review gate on files waits until after go-live.
 - **Reason:** The author's answers to Q-I3, Q-5, Q-7 and Q-10.
 
 ## W-014 Spending on Vercel AI Gateway
@@ -134,7 +134,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## W-021 Agent E2's plan and older benchmarks
 
 - **Date:** 2026-11-25
-- **Decision:** Agent E2's plan is rewritten for stage 1, and its older benchmarks are removed permanently.
+- **Decision:** Agent E2's plan is rewritten for release 1.0, and its older benchmarks are removed permanently.
 - **Reason:** The author's answers to Q-6 and Q-12: the outdated material confuses readers and Claude.
 
 ## W-022 isvara.io organised by visitor reasons

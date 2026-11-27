@@ -7,7 +7,7 @@ The parent repository of four repositories that are built and tested as one inte
 | Repository | What it is | Owns |
 |---|---|---|
 | [agent-e2](https://github.com/e1-rahabok/agent-e2) | The knowledge service. No UI. Answers like a VMware expert, over HTTP. | All domain knowledge: KPI definitions, thresholds, flows, explanations |
-| [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) | The VCF Operations management pack (formerly VCF-vCommunity-Adapter). Computes the KPIs inside VCF Operations. | The implementation of the KPIs that Agent E2 defines. Additional object types, properties, metrics that Agent E2 needs |
+| [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) | The VCF Operations management pack (formerly VCF-vCommunity-Adapter). Computes the KPIs inside VCF Operations. | The KPIs Agent E2 defines; the objects and metrics it needs |
 | [private-cloud-manager](https://github.com/e1-rahabok/private-cloud-manager) | PCM, a private web app for operations roles. Runs in the lab.    | Screens, roles, data connections, actions |
 | [isvara](https://github.com/e1-rahabok/isvara) | isvara.io, a public web app for learning the domain. Private repository. | Public reading and vCommunity feedback, books dowload, tools and exam pages |
 
@@ -17,7 +17,7 @@ PCM and isvara.io are two web apps. Both get their knowledge from Agent E2. [SYS
 
 | File | Holds |
 |---|---|
-| [SYSTEM.md](SYSTEM.md) | The parts, how data and questions flow, the lab, what is in scope (stage 1) |
+| [SYSTEM.md](SYSTEM.md) | The parts, how data and questions flow, the lab, what is in scope (release 1.0) |
 | [CONTRACTS.md](CONTRACTS.md) | Every interface between two repositories: owner, consumer, shape, the check that proves it |
 | [DECISIONS.md](DECISIONS.md) | Decisions that bind more than one repository |
 | [ROADMAP.md](ROADMAP.md) | The whole plan on one page: goal, release 1.0, milestones, what waits for the author |
