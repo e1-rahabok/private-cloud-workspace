@@ -4,10 +4,10 @@ Decisions that bind more than one repository. A decision inside one repository g
 
 | Repository | Its decision log |
 |---|---|
-| agent-e2 | The document that owns each rule ([CLAUDE.md](https://github.com/e1-rahabok/agent-e2/blob/main/CLAUDE.md), Start of every session) |
+| agent-e2 | The document that owns each rule ([CLAUDE-PROJECT.md](https://github.com/e1-rahabok/agent-e2/blob/main/CLAUDE-PROJECT.md), Start of every session) |
 | PCM-Adapter | Its issues and pull requests |
 | private-cloud-manager | [decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md) |
-| isvara | [CLAUDE.md](https://github.com/e1-rahabok/isvara/blob/main/CLAUDE.md) |
+| isvara | [CLAUDE-PROJECT.md](https://github.com/e1-rahabok/isvara/blob/main/CLAUDE-PROJECT.md) |
 
 One entry each, newest at the bottom. A changed decision is edited in place; git keeps the history. Each entry has a heading with its ID, the decision, and the reason. "Q-WS-" IDs are the author's answers in the interview rounds and [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md); other IDs are explained in the [glossary](spec/glossary.md).
 
@@ -108,7 +108,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-25
 - **Decision:** The VCF vCommunity Adapter may change anything, including its adapter kind, manifest name, metric key prefix, image path and pak name. A metric's key comes from the adapter; its name comes from Agent E2's catalog. All scoring logic comes from Agent E2, including the score bands and the closure levels. One Cluster Risk level for every cluster. Usable capacity is Total − HA − Buffer. A metric whose name says "peak" is a 20-second peak; others are 5-minute averages. Data absent by design is made explicit by the adapter.
 - **Reason:** The author's answers to Q-WS-I4, Q-WS-1, Q-WS-2, Q-WS-14 to Q-WS-17, Q-WS-19 and Q-WS-28. Requirements: PCM-Adapter's [adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md).
-- **Status:** the adapter kind, manifest name, key prefix, image path and pak name stay, by WD-032. Data absent by design is made explicit after release 1.0, by WD-033. "Comes from Agent E2" means: stated in Agent E2's knowledge and catalog, implemented in the adapter's code, and compared by the C1 check, by WD-036.
+- **Status:** the adapter kind, manifest name, key prefix, image path and pak name stay, by WD-032. Data absent by design is made explicit after release 1.0, by WD-033. "Comes from Agent E2" means: stated in Agent E2's knowledge and catalog, implemented in the adapter's code, and compared by the C1 check, by WD-036. Where a catalog row's interval and its name disagree, the catalog's interval is the rule (Q-WS-81).
 
 ## WD-017 isvara.io rebuild
 

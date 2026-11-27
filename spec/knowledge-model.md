@@ -16,6 +16,7 @@ The paths are how a reader looks for knowledge, and the backbone of isvara.io.
 | IT management | SP5's five pillars: availability, performance, security, capacity, value; with monitoring, troubleshooting | `pillar` |
 | Product | vSphere, vSAN, NSX, VCF Operations, Kubernetes, Windows, Linux, by object type | `product`, `object` |
 
+- The glossary (`term-meaning`) serves search and sits under no lens.
 - The paths overlap on purpose. CPU, performance and the cluster meet in the cluster's CPU contention; a reader can arrive by any of the three and move to the others from there.
 - Every path is generated from the tags each knowledge file already carries, so isvara.io holds no structure of its own.
 - Configuration and inventory are not pillars: they sit under all five ([SP5 overview](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/sp5-framework/concepts/overview.md), section The five pillars). A `what-to-set` file appears under the pillars its `pillar` tag names.
@@ -28,7 +29,7 @@ Each topic is known through four lenses. A reader, or Agent E2, can be strong in
 |---|---|---|
 | How it works | What happens inside the technology | `how-it-works` files |
 | How it is measured | What a counter counts: where, how often, with which statistic | `metric-meaning` files, the catalog |
-| How it is managed | The discipline: KPIs, class of service, capacity and performance practice | The SP5 framework, `health-check` and `decision-tree` files |
+| How it is managed | The discipline: KPIs, class of service, capacity and performance practice | The SP5 framework, `what-to-set`, `health-check` and `decision-tree` files |
 | How it fails | Diagnosis, often across several areas and systems | 12 `troubleshooting` flows, mostly within one area |
 
 Examples from the field:
