@@ -1,4 +1,4 @@
-# 11. Case study log
+# 12. Case study log
 
 What happened while this workspace was set up, in order, mistakes included. It covers four days in November 2026.
 
@@ -52,9 +52,26 @@ Each correction went into the decisions and the map.
 
 **A question it should have answered itself.** Asked where four topics belong among the learning paths, the agent put the question back to the author, although the answers are basic knowledge in the field. The author pointed this out. Questions are for judgement; the rest the agent decides and states.
 
-**The trust question.** Discussing AI-written public content, the author noted that keeping an expert site credible is not a new problem. The discussion that followed became [chapter 10](10-trust-in-ai-written-content.md): separate a wrong source from a wrong rewrite, spend scarce review time on disagreements and on the most-read pages, and build a community that can review.
+**Round three.** The last questions only the author could answer went out in the open-questions file. Two answers taught the agent something about asking:
 
-## Day four: the plan against the person's intent
+- One question asked whether the run queue in the guest operating system is counted per vCPU or for the whole guest. The author was unsure. The agent's own knowledge base already held the answer. It should have looked there first.
+- Another offered "birds-of-a-feather sessions" at events. The author replied: "not sure what you mean here. We have VMUG event." The jargon cost a round trip.
+
+A third answer was "will supply later. remind me." Those questions stayed open with a trigger: the agent asks again when the milestone that needs them starts.
+
+**The trust question.** Discussing AI-written public content, the author noted that keeping an expert site credible is not a new problem. The discussion that followed became [chapter 11](11-trust-in-ai-written-content.md): separate a wrong source from a wrong rewrite, spend scarce review time on disagreements and on the most-read pages, and build a community that can review.
+
+## Day four: names, and the plan against intent
+
+**Names first.** Early that morning, in short sessions, the author asked for names that explain themselves ([chapter 10](10-names-and-vocabulary.md)):
+
+- "Stage 1" and "release 1.0" meant the same scope. The plan now says release 1.0 for the goal and milestones for its steps.
+- Milestones had been numbered in the order they were added, so the roadmap read M2, M8, M9, M10, M3. They were renumbered in the order of work, across 16 files.
+- Decision IDs W-001 to W-029 became WD-, for "workspace decision": 208 references in 26 files.
+- A new decision made names guessable everywhere, and folders in the web app's repository will be grouped by workspace instead of by phase, so one folder holds the context of one task.
+
+The author's reason fits on one line: "The best documentation is No Documentation."
+
 
 **The plan had grown.** The session opened with the author's own summary of release 1.0: rebuild isvara.io, add the live demo to PCM, and leave Agent E2 and the management pack nearly untouched. The agent compared it with the roadmap. The files said otherwise: 19 requirements for Agent E2 and 24 for the management pack, in three milestones that the live demo and the site depended on. Each requirement had a source. Together they made a release larger than the author meant, and nobody had noticed. The author then went through the plan item by item.
 
@@ -82,6 +99,9 @@ Each correction went into the decisions and the map.
 - Most answers can be one word when each question carries a recommendation.
 - A specification raises its own questions. Expect a second round.
 - The agent is most useful when it argues. The best design idea in this log came from the author, in reply to the agent's critique of the author's first idea.
+- Look in your own knowledge base before asking the person. Use their words in a question, without jargon.
+- A question that can wait gets a trigger: the milestone or event when it is asked again.
+- A name that needs explaining costs every session. Rename it everywhere, and let the checks catch what the renaming broke.
 - Compare the plan with the person's intent at the start of each release. Requirements with good sources can still add up to a release nobody asked for.
 - Ask what each planned item is for. An item whose purpose takes more than a sentence to explain is a candidate for later.
 - A deferral is a decision, with its own line in the plan after the release.

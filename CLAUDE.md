@@ -58,7 +58,7 @@ Two kinds of document (WD-023):
 
 ## Session end
 
-- Before reporting a session as finished: add its lessons to [tutorial/11-case-study.md](tutorial/11-case-study.md) and to the tutorial chapter each lesson belongs to.
+- Before reporting a session as finished: add its lessons to [tutorial/12-case-study.md](tutorial/12-case-study.md) and to the tutorial chapter each lesson belongs to.
 - When work remains: give the author a prompt for the next session, with the files to read, the settled scope, the tasks and how to report.
 
 ## Decisions and questions

@@ -5,11 +5,30 @@ This tutorial shows how to build and maintain a system of several connected appl
 
 ## Readers
 
-- Builders who already use an AI coding agent for small tasks and want it to carry larger, longer work.
-- Domain experts who own the requirements but are not full-time developers.
-- Teachers looking for material for a course or workshop. The [teaching guide](teaching-guide.md) has a session plan.
+- VMware administrators and architects who use an AI agent for small tasks, such as a PowerCLI script, and want it to carry larger work. No programming background is assumed.
+- Other domain experts who own the requirements but are not full-time developers.
+- Teachers and presenters. The [teaching guide](teaching-guide.md) has a plan for a workshop or a series of video calls.
 
-You do not need to know VMware. The project's subject matter is only the example.
+The examples come from a VMware project. If you know VMware, the table below links each step to work you already do. If you don't, skip the table; the method does not depend on it.
+
+## The method in VMware terms
+
+| In spec-driven development | What a VMware administrator already does |
+|---|---|
+| The map | The current-state section of a design document |
+| Intent and scope | Requirements, constraints and what is out of scope in a design |
+| The interview | A design workshop: assumptions and risks for the customer to confirm |
+| Decisions | Design decisions, each with its justification and impact |
+| Seams and owners | Interfaces between teams: who owns DNS, storage, the vCenter |
+| Requirements with test scenarios | The test plan signed off before handover |
+| Checks | A compliance check against a host profile, run on a schedule |
+| Known gaps | Accepted exceptions in a compliance report, each with an owner |
+| Slices | A pilot cluster before the full rollout |
+| The agent's working rules | Runbooks and procedures for a new team member |
+| Stop conditions | Change rules: stop and escalate when the plan does not cover it |
+| The case log | Post-incident reviews, written so the next team learns |
+
+The difference is upkeep. A design document is written once and goes stale. Here the agent reads the files at the start of every session, and scripts check them on every change, so they stay true.
 
 ## Two ways to work with an AI agent
 
@@ -52,7 +71,7 @@ Spec-driven development has real costs, and the tutorial does not hide them:
 - **It costs the person time.** In this project the first round of questions had 61 items and the second 66. Most could be answered with "Agree", but someone has to read them.
 - **A wrong spec is built faithfully.** The agent will implement a mistaken requirement as carefully as a correct one. The spec needs the same scrutiny as code.
 - **Specs need upkeep.** A spec that no longer matches the system is worse than none, so the checks and the habit of writing corrections back matter as much as the first draft.
-- **The agent slips back.** Even after writing the method down, the agent in this project twice went back to building first and asking afterwards. [Chapter 11](11-case-study.md) shows both times. The person has to hold the line.
+- **The agent slips back.** Even after writing the method down, the agent in this project twice went back to building first and asking afterwards. [Chapter 12](12-case-study.md) shows both times. The person has to hold the line.
 
 ## Chapters
 
@@ -67,8 +86,10 @@ Spec-driven development has real costs, and the tutorial does not hide them:
 | [7. Checks](07-checks.md) | Scripts that prove the parts still agree | 20 min |
 | [8. Slices and sessions](08-slices-and-sessions.md) | The order of work, and how each working session runs | 15 min |
 | [9. Working with the agent](09-working-with-the-agent.md) | Who decides what; the agent as co-architect; models and effort | 20 min |
-| [10. Trust in AI-written content](10-trust-in-ai-written-content.md) | Keeping published material credible when an AI writes it | 15 min |
-| [11. Case study log](11-case-study.md) | What actually happened in this project, mistakes included | 20 min |
+| [10. Names and vocabulary](10-names-and-vocabulary.md) | Names, IDs and folders the agent can guess | 15 min |
+| [11. Trust in AI-written content](11-trust-in-ai-written-content.md) | Keeping published material credible when an AI writes it | 15 min |
+| [12. Case study log](12-case-study.md) | What actually happened in this project, mistakes included | 25 min |
+| [13. Your first project](13-your-first-project.md) | A week-long plan to try the method on your own work | 10 min |
 
 The [templates](templates) folder has empty versions of each file, to start your own project.
 
@@ -85,3 +106,4 @@ Each is a working example of what the method produces:
 | [checks](../checks) and [tools](../tools) | The scripts that check contracts, requirements and documents | 7 |
 | [ROADMAP.md](../ROADMAP.md) | The milestones and their order | 8 |
 | [CLAUDE.md](../CLAUDE.md) | How the agent is told to work | 9 |
+| [spec/glossary.md](../spec/glossary.md) | Every ID and term, with its meaning | 10 |

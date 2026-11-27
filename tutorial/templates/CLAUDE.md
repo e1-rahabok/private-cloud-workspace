@@ -37,6 +37,17 @@ Write the question in OPEN-QUESTIONS.md with a recommendation and an empty Answe
 - Run the checks before and after any change to a contract, and change a contract in three steps: add the new shape, move each consumer, remove the old shape.
 - Never weaken, skip or delete a check or a test to make it pass. Record a known gap only together with an open question.
 
+## Names
+
+- Before adding an ID prefix, term, heading, folder or file name: make it guessable from itself, with one word per concept and no overlap with an existing one.
+- Put no version, milestone or status word in a folder or file name.
+- When a name or number stops being true: rename it in every file. Add no note that explains the exception.
+
+## Session end
+
+- Before reporting a session as finished: add its lessons to the case log.
+- When work remains: write a prompt for the next session, with the files to read, the settled scope, the tasks and how to report.
+
 ## Git
 
 - One branch and pull request per change per repository.
