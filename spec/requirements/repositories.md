@@ -27,7 +27,7 @@ Source: W-025; the author's message of 2026-11-26 naming the adapter's concept a
 Given PCM-Adapter's documentation after R-REPO-001
 When a reader opens a metric or concept page
 Then it describes what the adapter computes and publishes (keys, inputs, settings, states) and how to install and run it
-And for what a metric means and how to use it, it links to the Agent E2 knowledge file (until isvara.io's articles exist in M5, then to the article)
+And for what a metric means and how to use it, it links to the Agent E2 knowledge file (until isvara.io's articles exist in M8, then to the article)
 And the README presents the adapter as one part of Private Cloud Manager, with links to Agent E2 and PCM, and names the simplest deployment: the pak file alone
 
 Test scenarios:
@@ -61,7 +61,7 @@ Given the older benchmark material listed in Q-59
 When the removal is merged
 Then the result folders from before 2026-11-16, the retired questions, the old harness code and its design notes, the old plan decisions and review, and the retrieval results of 2026-11-14 are deleted from main
 And the round of 2026-11-16 and the question-set history files stay
-And the free-text judge's scoring rubric is kept first, in agent-e2's benchmark folder, for the new grader of M10
+And the free-text judge's scoring rubric is kept first, in agent-e2's benchmark folder, for the new grader of M5
 And the live documents that quote old numbers (MISSION.md, README.md, harness/README.md, harness/AGENT.md, benchmark/design.md, benchmark/models.md) are rewritten without them
 And git history is not rewritten
 

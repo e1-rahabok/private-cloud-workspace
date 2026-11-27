@@ -7,7 +7,7 @@ What [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) must do in release
 ## Scope and conventions
 
 - **Area:** the management pack in VCF Operations, its build and lab tools, and its side of two contracts: [C1, the KPI definitions](../glossary.md#c1), and [C2, the KPI metric keys](../glossary.md#c2), both described in [CONTRACTS.md](../../CONTRACTS.md).
-- **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-001 to R-ADP-018 and R-ADP-021 to R-ADP-022 belong to M2, closing the known gaps. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M3, the first live cluster in PCM. R-ADP-007 is needed before M4, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build).
+- **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-001 to R-ADP-018 and R-ADP-021 to R-ADP-022 belong to M2, closing the known gaps. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M6, the first live cluster in PCM. R-ADP-007 is needed before M7, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build).
 - **Keys** are written with the proposed prefix `PCM|`. Today the prefix is `vCommunity|`.
 - **The adapter may change anything.** The author confirmed that no installed instance or upgrade path needs protecting: Q-I4 and Q-2 in [round 1](../interview-round-1.md), recorded as decisions [W-007 and W-016](../../DECISIONS.md).
 - **How lab scenarios run.** From the author's laptop over VPN, with the repository's own tools ([tools/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/README.md)): [build.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/build/build.ps1), [install.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/install/install.ps1), [restart.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/restart/restart.ps1), then one collection cycle, then [validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1). This sequence is called "install and validate" below. The live validation checks the build installed on the lab, so a lab scenario passes only after that build is installed ([validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L12)).
@@ -74,7 +74,7 @@ Test scenarios:
 
 ### R-ADP-005 No file names the old repository
 
-Milestone: M2. The pack's own names ("vCommunity MP", "vCommunity_") change with its identity in M8 (R-ADP-004).
+Milestone: M2. The pack's own names ("vCommunity MP", "vCommunity_") change with its identity in M3 (R-ADP-004).
 
 Source: Q-3 in [round 1](../interview-round-1.md) ("agree": one pull request per repository, archive files left as they are); Q-80 in [round 2](../interview-round-2.md) (the dated engineering reviews and the README's sentence about the vCommunity keep the old name).
 
@@ -390,7 +390,7 @@ Test scenarios:
 
 ### R-ADP-023 The inputs not yet seen live are checked on the lab
 
-Source: Q-38 in [round 1](../interview-round-1.md) (lab facts to confirm before M3); issue [#2](https://github.com/e1-rahabok/PCM-Adapter/issues/2) ("Verify on a live system"); [W-018](../../DECISIONS.md).
+Source: Q-38 in [round 1](../interview-round-1.md) (lab facts to confirm before M6); issue [#2](https://github.com/e1-rahabok/PCM-Adapter/issues/2) ("Verify on a live system"); [W-018](../../DECISIONS.md).
 
 Given the lab VCF Operations
 When a read-only script reads the lab hosts and VMs

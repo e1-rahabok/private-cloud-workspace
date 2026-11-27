@@ -6,9 +6,9 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 | ID | Contract                     | Owner, then consumers              | Check                                                             |
 | -- | ---------------------------- | ---------------------------------- | ----------------------------------------------------------------- |
 | C1 | KPI definitions              | agent-e2; PCM-Adapter, PCM, isvara | [`checks/kpi_definitions.py`](checks/kpi_definitions.py), running |
-| C2 | KPI metric keys              | PCM-Adapter; PCM (live demo)       | Planned in ROADMAP M3                                             |
+| C2 | KPI metric keys              | PCM-Adapter; PCM (live demo)       | Planned in ROADMAP M6                                             |
 | C3 | Agent E2 API                 | agent-e2; PCM, isvara (planned)    | [`checks/agent_e2_api.py`](checks/agent_e2_api.py), running       |
-| C4 | Knowledge content for isvara | agent-e2; isvara                   | Planned in ROADMAP M5                                             |
+| C4 | Knowledge content for isvara | agent-e2; isvara                   | Planned in ROADMAP M8                                             |
 | C5 | Model gateway                | Vercel AI Gateway; agent-e2        | None: a third-party API                                           |
 
 ## C1 KPI definitions
@@ -24,7 +24,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 
 - **Owner:** PCM-Adapter. Keys are `vCommunity|<KPI>|<sub-metric or score>`, for example `vCommunity|Cluster Performance|Cluster Performance Score`, on the vCenter objects in VCF Operations.
 - **Consumer:** PCM live mode reads them through the Suite API (PCM D-064, D-096).
-- **Check, ROADMAP M3:** PCM lists every key it reads in one structured file; the check confirms each key is one the adapter publishes, and, against the lab, that it has data.
+- **Check, ROADMAP M6:** PCM lists every key it reads in one structured file; the check confirms each key is one the adapter publishes, and, against the lab, that it has data.
 - **Status:** no PCM connector yet.
 
 ## C3 Agent E2 API
@@ -36,7 +36,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 
 ## C4 Knowledge content for isvara
 
-- Agent E2's knowledge base becomes the source of isvara.io's reading pages, replacing the Word books (DECISIONS, W-005). Its structure is built for a model to read, so the shape of the export is design work (ROADMAP M5).
+- Agent E2's knowledge base becomes the source of isvara.io's reading pages, replacing the Word books (DECISIONS, W-005). Its structure is built for a model to read, so the shape of the export is design work (ROADMAP M8).
 - **Status:** not built.
 
 ## C5 Model gateway
