@@ -19,9 +19,9 @@ Then the KPI shows "stale" with the time of the last sample
 And it is not coloured green and not shown as 0
 
 Test scenarios:
-- T-AREA-001a (lab, automated by build/tests/test_live.py::test_stale_cluster): stop collection on one lab
+- T-AREA-001a (lab, automated by pcm/l2/tests/test_live.py::test_stale_cluster): stop collection on one lab
   cluster's adapter instance for 25 minutes; open the tab; expect "stale" and the last sample time.
-- T-AREA-001b (anywhere, automated by build/tests/test_live.py::test_stale_fake): a fake Suite API whose
+- T-AREA-001b (anywhere, automated by pcm/l2/tests/test_live.py::test_stale_fake): a fake Suite API whose
   newest sample is 21 minutes old; expect the same.
 ```
 

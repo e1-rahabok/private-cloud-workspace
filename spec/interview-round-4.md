@@ -4,7 +4,7 @@ Questions asked in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) on 2026-11-27, with
 
 ## Q-WS-134 PCM's folders by workspace or by phase
 
-PCM's folders follow the phase of work: [spec](https://github.com/e1-rahabok/private-cloud-manager/tree/main/spec), [design](https://github.com/e1-rahabok/private-cloud-manager/tree/main/design), the application code, deploy. One workspace such as L2 is spread over six folders: its design note, its API, catalog and test specifications, its code and its tests. Agent E2 instead groups by subject ([knowledge](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge)), so one folder holds the context of one task. R-REPO-007 renames PCM's folders without moving files between them.
+PCM's folders follow the phase of work: [spec](https://github.com/e1-rahabok/private-cloud-manager/tree/main/spec), [design](https://github.com/e1-rahabok/private-cloud-manager/tree/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/design), the application code, deploy. One workspace such as L2 is spread over six folders: its design note, its API, catalog and test specifications, its code and its tests. Agent E2 instead groups by subject ([knowledge](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge)), so one folder holds the context of one task. R-REPO-007 renames PCM's folders without moving files between them.
 
 - **Option A, keep the phases:** no move; a session gathers each workspace from six places.
 - **Option B, one folder per workspace** (L2, NOC, capacity, docs, executive), each with its design, specifications, code and tests, plus one shared folder for the core: one folder is the whole context of a task, at the cost of moving several dozen files and updating every import and path.

@@ -199,7 +199,7 @@ PCM colours parts with 20-second levels ([D-108](https://github.com/e1-rahabok/p
 
 ### Q-WS-20 Does release 1.0 now include live reads? (blocks M6)
 
-PCM's spec says release 1.0 has no VCF Operations connector and shows placeholder values ([build/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/README.md#L275), [D-106](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L113)).
+PCM's spec says release 1.0 has no VCF Operations connector and shows placeholder values ([build/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/build/README.md#L275), [D-106](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L113)).
 
 - **Recommendation:** yes. Every "placeholder" rule becomes "synthetic mode: placeholder or story values; live mode: read from VCF Operations, with time and source".
 
@@ -223,7 +223,7 @@ Executive, the NOC, Capacity, Docs, and L2 Troubleshoot and Improve need data th
 
 ### Q-WS-23 Does PCM only read the KPIs, never recompute them? (blocks M6)
 
-PCM's core design says PCM computes the models from raw metrics ([pcm-core.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L48)); D-096 and WD-001 say the adapter computes them. The adapter publishes raw values and scores, not per-part scores or "excluded" flags.
+PCM's core design says PCM computes the models from raw metrics ([pcm-core.md](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/design/pcm-core.md#L48)); D-096 and WD-001 say the adapter computes them. The adapter publishes raw values and scores, not per-part scores or "excluded" flags.
 
 - **Recommendation:** PCM reads every KPI, part and check value. It computes only statistics across objects or time (worst, percentile), and each part's colour from the catalog limits with the adapter's rounding. Fix pcm-core sections 3.2, 3.3 and 3.13.
 
@@ -231,7 +231,7 @@ PCM's core design says PCM computes the models from raw metrics ([pcm-core.md](h
 
 ### Q-WS-24 Where do region, location, class of service, environment and time zone come from in live mode? (blocks M6)
 
-ACME derives class from a letter in the cluster name ([estate.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/data/estate.yaml#L140)), and class is required ([objects.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/objects/objects.yaml#L47)). The lab has its own names and probably no tags.
+ACME derives class from a letter in the cluster name ([estate.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/spec/data/estate.yaml#L140)), and class is required ([objects.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/spec/objects/objects.yaml#L47)). The lab has its own names and probably no tags.
 
 - **Recommendation:** a small live mapping file: the lab is one region and one location with a set time zone; class and environment come from vSphere tags read through VCF Operations; untagged objects show as "Unclassified". Tag the M6 cluster Gold.
 
@@ -239,7 +239,7 @@ ACME derives class from a letter in the cluster name ([estate.yaml](https://gith
 
 ### Q-WS-25 Which inventory tree does live mode build?
 
-D-087 and PCM's catalog say Location, VCF instance, workload domain, down to the cluster; the L2 design says no VCF instance, down to the host ([l2-workspace.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/l2-workspace.md#L97)).
+D-087 and PCM's catalog say Location, VCF instance, workload domain, down to the cluster; the L2 design says no VCF instance, down to the host ([l2-workspace.md](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/design/l2-workspace.md#L97)).
 
 - **Recommendation:** D-087's path, filled from VCF Operations' VCF topology where the lab has it, otherwise vCenter as the workload domain. Fix the design text.
 
@@ -271,7 +271,7 @@ Some keys are missing on purpose: tiering keys on clusters without memory tierin
 
 ### Q-WS-29 Where is the list of keys PCM reads? (blocks M6)
 
-PCM's spec names keys only for scores; parts have names but no keys ([l2.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml#L114)). For hosts, VMs and vCenter, the keys the adapter declares differ from the keys it publishes (issue [#85](https://github.com/e1-rahabok/PCM-Adapter/issues/85)).
+PCM's spec names keys only for scores; parts have names but no keys ([l2.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/spec/catalog/l2.yaml#L114)). For hosts, VMs and vCenter, the keys the adapter declares differ from the keys it publishes (issue [#85](https://github.com/e1-rahabok/PCM-Adapter/issues/85)).
 
 - **Recommendation:** one file in PCM, `spec/catalog/vcf-operations-keys.yaml`: key, object kind, unit, statistic, catalog name, conditional or not. C2 compares it with the keys the adapter's KPI modules publish. Fix #85 before M7.
 
@@ -279,7 +279,7 @@ PCM's spec names keys only for scores; parts have names but no keys ([l2.yaml](h
 
 ### Q-WS-30 Does live mode store metrics, or read through on each request?
 
-PCM's spec keeps its own history ([l2.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml#L264)); D-080 says metrics are never stored. The lab has days of data, not the 13 months ACME has.
+PCM's spec keeps its own history ([l2.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/spec/catalog/l2.yaml#L264)); D-080 says metrics are never stored. The lab has days of data, not the 13 months ACME has.
 
 - **Recommendation:** read through, with a 60-second cache and no store. Longer windows ask VCF Operations for the maximum per slot, draw nothing before the first point, and say "Data from {date}".
 
@@ -295,7 +295,7 @@ The check publishes once per fixed window, set on the adapter instance, not on t
 
 ### Q-WS-32 How is the mode carried, and what happens to `now` and `enable`?
 
-A server-wide switch lets two viewers flip each other's data; `now` and `enable` work only on synthetic data ([l2.yaml API](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/api/l2.yaml#L6)).
+A server-wide switch lets two viewers flip each other's data; `now` and `enable` work only on synthetic data ([l2.yaml API](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/spec/api/l2.yaml#L6)).
 
 - **Recommendation:** a per-request parameter `data=acme|live` in the URL, set by the demo control. In live mode, `now` and `enable` are refused with a visible note.
 
@@ -527,7 +527,7 @@ The eval prints a count and never fails ([evals/run.mjs](https://github.com/e1-r
 
 Each is a mistake with only one right answer. Say so here if you object.
 
-- PCM: two decisions numbered D-114 ([decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L121)); `l2.log_noise_max` defined twice ([settings.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/settings.yaml#L244)); three different counts of Cluster Risk parts in the text (D-106, D-113, l2.yaml).
+- PCM: two decisions numbered D-114 ([decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L121)); `l2.log_noise_max` defined twice ([settings.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/spec/catalog/settings.yaml#L244)); three different counts of Cluster Risk parts in the text (D-106, D-113, l2.yaml).
 - PCM-Adapter: "5 sub-metrics" should be 6 ([metrics-and-properties.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics-and-properties.md#L79)); issues #2 and #94 are out of date.
 - agent-e2: SECURITY.md understates model calls per answer ([SECURITY.md](https://github.com/e1-rahabok/agent-e2/blob/main/SECURITY.md#L31)); two documents say the service runs 3 samples, its config says 1 ([service_config.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/harness/service_config.yaml#L32)).
 - isvara: CLAUDE.md says three books; there are five.

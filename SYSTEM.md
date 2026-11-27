@@ -50,7 +50,7 @@ Arrows: `-->` solid, `..>` dashed.
 |---|---|---|
 | KPI definitions: names, parts, limits, bands | Agent E2's [catalog](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge/catalog) | VCF vCommunity Adapter, PCM, Agent E2 |
 | KPI values | VCF vCommunity Adapter, published in VCF Operations under `vCommunity\|` | PCM scenario 7, through the Suite API |
-| Synthetic values | PCM's generator, [`build/pcm_proto/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/build/pcm_proto) | PCM scenarios 1 to 6 |
+| Synthetic values | PCM's generator, [`pcm/core/generator.py`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/pcm/core/generator.py) | PCM scenarios 1 to 6 |
 | Explanations and answers | Agent E2 | PCM's Agent E2 panel; isvara.io (planned) |
 | Reading content | Today: the Word books. Planned: the Agent E2 knowledge base | isvara.io |
 
@@ -99,6 +99,6 @@ Describe this relation by one of these mechanisms. "Part of PCM" means the data 
 |---|---|---|
 | agent-e2 | `python3 project/tools/rules_check.py` (0 problems), `python3 -m unittest harness/test_harness.py`, `python3 -m unittest benchmark/runner/test_runner.py` | The benchmark needs the gateway key |
 | PCM-Adapter | `python -m pytest tests`, from `Management Pack` | `pwsh tools/build/build.ps1`, `install.ps1`, `restart.ps1`, `validate.ps1` (Windows, PowerShell 7, the lab) |
-| private-cloud-manager | Unit tests in [`build/tests`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/build/tests); page tests need Playwright ([build/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/README.md)) | Install on the lab VM: [deploy/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/deploy/README.md) |
+| private-cloud-manager | Unit and page tests in each workspace's `tests/` folder under [`pcm/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm); page tests need Playwright ([pcm/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/pcm/README.md)) | Install on the lab VM: [deploy/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/deploy/README.md) |
 | isvara | `npm run lint`, `npm run typecheck`, `npm run build`, `npm run test:rvtools` | `npm run eval` and `eval:injection` need a running server and the gateway key |
 | All four together | `uv run checks/run_all.py` (this repository) | |

@@ -6,7 +6,7 @@
 
 Agent E2 owns the API (CONTRACTS.md, C3); PCM is its caller. The check starts the real Agent E2
 service from its clone in mock mode (no model, no network), then calls it with PCM's own client
-code, build/pcm_proto/agent_e2.py, for each endpoint PCM uses. PCM's client turns any error into
+code, pcm/core/agent_e2.py, for each endpoint PCM uses. PCM's client turns any error into
 source "unavailable" so the panel can say so; that same behaviour would hide a broken contract,
 so this check also reads the raw responses and checks every field PCM reads.
 
@@ -61,7 +61,7 @@ def start_service(agent_e2: Path, port: int) -> subprocess.Popen:
 
 
 def load_pcm_client(pcm: Path):
-    path = pcm / "build" / "pcm_proto" / "agent_e2.py"
+    path = pcm / "pcm" / "core" / "agent_e2.py"
     spec = importlib.util.spec_from_file_location("pcm_agent_e2_client", path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
