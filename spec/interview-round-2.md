@@ -50,7 +50,7 @@ You changed the heading in [spec/intent.md](intent.md) to "private-cloud-manager
 
 - **Recommendation:** keep the name as it is, unless you want the repository renamed; then it is renamed like PCM-Adapter was.
 
-**Status:** Open: in OPEN-QUESTIONS.md: the product's name.
+**Status:** Answered in [round 3](interview-round-3.md): Private Cloud Manager (WD-028).
 
 ### Q-WS-61 The answer record, and spam on isvara.io
 
@@ -255,7 +255,7 @@ You answered Q-WS-14 "if we're changing formula, yes". **Recommendation:** read 
 
 Still open from Q-WS-1. The adapter's part is "Guest CPU Run Queue per vCPU"; the catalog's is "Peak vCPU run queue length". **Recommendation:** if the limits were set per vCPU, rename the catalog row "Peak run queue length per vCPU"; otherwise the adapter changes to the total.
 
-**Status:** Open: in OPEN-QUESTIONS.md: needs the author's field knowledge.
+**Status:** Answered in [round 3](interview-round-3.md).
 
 ### Q-WS-89 A key column in the catalog
 
@@ -463,7 +463,7 @@ Not proven. **Recommendation:** a first spike builds one nested host and reports
 
 **Recommendation:** two hosts, so DRS and the cluster parts have something to compare, each small enough to leave the physical lab usable. You name the physical cluster, datastore and network.
 
-**Status:** Open: in OPEN-QUESTIONS.md: the author names the cluster, datastore and network.
+**Status:** Answered in [round 5](interview-round-5.md): in the lab, after release 1.0 (WD-031).
 
 ### Q-WS-121 A plain vCenter cluster or a VCF workload domain?
 
@@ -475,7 +475,7 @@ Not proven. **Recommendation:** a first spike builds one nested host and reports
 
 **Recommendation:** the same ESXi build as the physical hosts; you confirm the lab licences cover two more hosts.
 
-**Status:** Open: in OPEN-QUESTIONS.md: the author confirms the licences.
+**Status:** Answered in [round 5](interview-round-5.md): yes.
 
 ## H. isvara.io: the visitor model
 
@@ -527,7 +527,7 @@ The podcast needs a synthetic voice, which costs money per minute of audio, outs
 
 **Recommendation:** you name the events (for example VMware Explore or VMUG meetings) or "online"; the survey lists them, with a free line for another.
 
-**Status:** Open: in OPEN-QUESTIONS.md: the author names the events.
+**Status:** Answered in [round 3](interview-round-3.md): VMUG events.
 
 ### Q-WS-131 Regular-expression search: who is it for?
 

@@ -123,10 +123,9 @@ The exact Vercel features and limits are checked against the current plan before
 
 ## Order of work
 
-1. Agent E2's export for pages and its Ask additions.
-2. Articles and the three paths, with search; the page checks.
-3. Ask Agent E2 with protection; contributions.
-4. Practice: quiz, mastery map, exam, daily question.
-5. Infographics, beginning with the I/O path.
-6. Calculators rebuilt on the catalog; What's New; the manual.
-7. Switch over in one release from a Vercel preview, with old links redirected.
+The milestones of [ROADMAP.md](../../ROADMAP.md), detailed in the [before and after](isvara-before-and-after.md):
+
+1. M4 reading: Agent E2's export, articles and the three paths, search, the page checks, the first infographic (the I/O path), old links redirected.
+2. M5 Ask and contributions: Ask Agent E2 with protection, contributions.
+3. M6 practice and tools: quiz, mastery map, exam, daily question; calculators rebuilt on the catalog.
+4. M7 switch-over: What's New, the manual, the header and home page, and the switch from a Vercel preview in one release.

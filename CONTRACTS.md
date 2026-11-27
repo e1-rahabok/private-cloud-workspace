@@ -9,13 +9,13 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 | C2 | KPI metric keys              | VCF vCommunity Adapter; PCM (live demo)       | Planned in ROADMAP M8                                             |
 | C3 | Agent E2 API                 | agent-e2; PCM, isvara (planned)    | [`checks/agent_e2_api.py`](checks/agent_e2_api.py), running       |
 | C4 | Knowledge content for isvara | agent-e2; isvara                   | `checks/knowledge_export.py`, planned in ROADMAP M4          |
-| C5 | Model gateway                | Vercel AI Gateway; agent-e2        | None: a third-party API                                           |
+| C5 | Model gateway                | Vercel AI Gateway; agent-e2        | `checks/model_gateway.py`, planned in ROADMAP M3                  |
 
 ## C1 KPI definitions
 
 - **Owner:** agent-e2, [`knowledge/catalog/thresholds-performance.yaml`](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml) (section `kpi`), `thresholds-risk.yaml` and `thresholds-capacity.yaml` (section `model`). One row per sub-metric: name with unit, group, direction, five limits per interval, `excluded_when_green`.
 - **Implementer:** VCF vCommunity Adapter, `Management Pack/app/metrics/`: one module per KPI, a `METRICS` table of `Metric` rows (name, unit, five limits, `skip_when_green`) and a `LABELS` table that gives a row its catalog name.
-- **Consumer:** PCM shows the parts under the catalog names (PCM D-113, D-115) in [`spec/catalog/l2.yaml`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml). Not checked yet: PCM names parts in prose (ROADMAP M2).
+- **Consumer:** PCM shows the parts under the catalog names (PCM D-113, D-115) in [`spec/catalog/l2.yaml`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml). PCM's live demo finds each part's catalog name by its key ([R-LIVE-018](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)), checked in ROADMAP M8; the synthetic demo's names in prose are not checked in release 1.0.
 - **The check** matches each sub-metric by name (the adapter's label against the catalog name without its unit) and compares the five limits and excluded-when-green, for Cluster Performance, ESXi Performance, VM Performance, Guest OS Performance, Cluster Risk and Cluster Consumption.
 - **To change a KPI:** change Agent E2's knowledge file and catalog first, then the VCF vCommunity Adapter, in the same session, with the check run before both merges.
 - **Status:** limits and excluded-when-green agree for every sub-metric; the known name gaps are to close by [R-KPI-003](spec/requirements/kpi-definitions.md). [`checks/run_all.py`](checks/run_all.py) prints the counts.
@@ -43,7 +43,8 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 ## C5 Model gateway
 
 - **Owner:** Vercel AI Gateway, an OpenAI-compatible service; Agent E2 calls it with the key `AI_GATEWAY_API_KEY`.
-- **Status:** no check; it is a third-party API.
+- **Check, ROADMAP M3:** one call to the model agent-e2 is set to, with the gateway key; without the key it reports not run ([R-WS-008](spec/requirements/workspace.md)). It is a third-party API, so the check proves only that the configured model answers.
+- **Status:** not built.
 
 ## Changing a contract
 

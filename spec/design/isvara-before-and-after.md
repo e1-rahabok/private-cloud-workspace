@@ -106,7 +106,7 @@ A knowledge file's form says which lens it serves. The lenses are a completeness
 | SLA builder | `/tools/sla-builder` | Gone | Author, WD-027 |
 | Cost calculator | `/tools/cost-calculator` | Gone | Author, WD-027 |
 
-- **Redirects:** each old `/read/...` address goes to the article whose `source.path` names that book heading; an address with no match goes to `/learn`. Every redirect is permanent, so search engines move their links.
+- **Redirects:** each old `/read/<book>/<page>` address goes to the article whose `source.path` names that page's first heading, from a frozen copy of the old chapter index; an address with no match goes to `/learn`. A `#fragment` never reaches the server, so the browser keeps it across the redirect and a script on the article takes the reader to the article of that heading. Every redirect is permanent, so search engines move their links. Claude's call for the mechanism.
 
 ### Ask
 
@@ -114,12 +114,12 @@ A knowledge file's form says which lens it serves. The lenses are a completeness
 - **After:** Ask Agent E2 at `/ask` (Author, WD-004, WD-017):
   - a conversation over several turns, where Agent E2 may ask for another screenshot, a CSV file or a longer history;
   - up to 5 screenshots of 5 MB and 3 CSV files of 2 MB, with a box the visitor ticks to confirm IP addresses and host names are removed (Round 2, Q-WS-95; Author, WD-024);
-  - the stage and the time so far while Agent E2 works, read every 10 seconds, and a message when it stops responding (Author, R-E2-020);
+  - the stage and the time so far while Agent E2 works, read every 10 seconds, and a message when it stops responding (Author, WD-043; R-ASK-002);
   - sources as links to articles and their source view (Author, Q-WS-45);
   - Day 0 and Day 1 questions answered with a pointer to Broadcom's documentation (Author, WD-026);
   - thumbs up and down kept, stored with the question, the answer and Agent E2's trace ID (Round 2, Q-WS-61).
 - **Kept from AskIO:** select-to-ask in an article, the Ask button and ⌘I, the shared thread across pages, the names of an RVTools report swapped for stand-ins before they leave the browser.
-- **The injection guard** stays in isvara.io, before Agent E2 is called (Author, Q-WS-47, WD-017): the pre-scan, the fenced user turn and the evals that test them. The rules that lived in AskIO's prompt move to the guard; Agent E2 holds no guard of its own.
+- **The injection guard** stays in isvara.io, before Agent E2 is called (Author, Q-WS-47, WD-017): the pre-scan and the fenced user turn. Rule 4 of AskIO's prompt, the layer that stops an attack today, loses its place when Agent E2 writes the prompt; where it goes, and how the two eval batteries change, is open question Q-WS-136, before M5.
 - **Where Agent E2 runs:** measured in M5 on a Vercel Python function and a small container host; a container host is preferred, since answer jobs live in memory (Author, Q-WS-4; Round 2, Q-WS-94). It answers only calls carrying isvara.io's secret (Round 2, Q-WS-98).
 - **Sample questions:** four, answered by Agent E2 ahead of time and served from a cache, as today. Claude's call: a first visitor sees an answer at once, at no model cost.
 
@@ -135,11 +135,11 @@ A knowledge file's form says which lens it serves. The lenses are a completeness
 
 All from the plan's Protection table (Author, WD-024; Round 2, Q-WS-61, Q-WS-104, Q-WS-105):
 
-- Vercel's firewall rate limits and an "under attack" switch against floods.
+- Vercel's firewall rate limits, 60 requests a minute per address (Claude's call), and an "under attack" switch against floods.
 - An invisible bot check and a hidden field before Ask and Contribute.
 - 10 questions an hour and 30 a day per address; 3 contributions a day per address; 100 contributions a day in all.
 - Files checked by content, image metadata removed, and every image checked by a model to be an IT screenshot.
-- A daily stop on model spending of about US$1.65, within US$50 a month on the gateway.
+- A daily stop on model spending of about US$1.65, within US$50 a month on the gateway, counted from tokens and a price table, over Ask and isvara.io's own model calls; the weekly rewrites report their cost in their pull requests (Claude's call for the counting).
 - One switch each that closes Ask or Contribute without a redeploy.
 
 ### Practice
@@ -150,9 +150,9 @@ All from the plan's Protection table (Author, WD-024; Round 2, Q-WS-61, Q-WS-104
   - **Mastery map:** the paths as a grid against the four lenses, filled in as the visitor proves each part ("strong in how CPU works, weak in how it is measured"), kept in the browser.
   - **Exam:** `/exam`, ten very hard questions, four options, +3 and −1, dated (Author, WD-006; Round 2, Q-WS-109 to Q-WS-118; requirements in isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md)).
   - **Daily question:** one question a day for everyone, with the share of visitors who got it right.
-  - **2am game:** kept; its debriefs cite articles, and its numbers are checked against the knowledge files.
+  - **2am game:** kept; its debriefs cite articles, and its numbers are checked against the knowledge files. Its nightly board, one per UTC day, stays as it is. Claude's call: WD-027's dropped global board is the quiz's.
 - **Comparing scores:** anonymous percentiles, a share card, and boards for one event with a room code; no global board (Author, WD-027).
-- **Quiz questions:** written from the misconceptions of the files they cite, each with the files' fingerprints, checked by a judge, and stopped from building when a cited file changes, as the exam's are (Round 2, Q-WS-112). Claude's call: the author approves the exam's ten and reviews a sample of the quiz pool, since the quiz is open-book practice.
+- **Quiz questions:** written from the misconceptions of the files they cite, each with the files' fingerprints, checked by a judge, and stopped from building when a cited file changes, as the exam's are (Round 2, Q-WS-112). Claude's call: the pool holds at least 10 questions for every topic with at least 10 articles; the author approves the exam's ten and reviews 20 quiz questions, since the quiz is open-book practice.
 - **Header:** the exam sits in Practice beside the 2am game. Claude's call: the new header has one entry for practice (see Header and home page).
 
 ### Tools
@@ -177,7 +177,7 @@ Each tool stays only where Agent E2 holds its knowledge (Author, WD-001; Q-WS-50
 - **Cluster KPI:** a second copy of the KPI scoring, which the VCF vCommunity Adapter implements and Agent E2 explains (WD-036). The articles show each KPI's parts and limits from the catalog. Revisit after release 1.0 with a check against the adapter's scoring.
 - **Maturity:** its fifteen questions are isvara.io's own knowledge; an organisation's SP5 maturity needs files in Agent E2 first, after release 1.0.
 - **Advanced troubleshooting:** a talk, like the downloads, the author's own work; it computes nothing.
-- **RVTools health check:** a check with no catalog row or file behind it shows as "to review" and is not scored. The Contention area used the Operations Score curve. After, a counter is scored only where the catalog has a row for the same metric and statistic: CPU Ready and disk latency have peak rows; memory latency and a count of dropped packets have none today, so they show unscored, as "to review". Claude's call for the Contention area, since the curve goes.
+- **RVTools health check:** a check with five catalog limits is scored by Agent E2's KPI scoring; a check whose article gives one limit shows red or green with no score; a check with neither shows as "to review". Each cluster shows how many checks sit in each band, and the 0 to 100 cluster score goes with the Operations Score curve and the Cluster KPI weights it was built on. Claude's call: Agent E2's weighted average needs a 0 to 100 score per check, which only the checks with five limits have. The Contention area used the Operations Score curve. After, a counter is scored only where the catalog has a row for the same metric and statistic: CPU Ready and disk latency have peak rows; memory latency and a count of dropped packets have none today, so they show unscored, as "to review". Claude's call for the Contention area, since the curve goes.
 
 ### MCP endpoint
 

@@ -4,7 +4,7 @@ Contract [C4, knowledge content for isvara.io](../glossary.md#c4): what Agent E2
 
 ### R-EXPORT-001 One schema for the export, checked on both sides
 
-Source: answer to Q-WS-41 (the export, with a check that every link and image resolves); WD-010 (every contract has a check); WD-036.
+Source: Q-WS-41 (the recommendation of an export with a check that every link and image resolves; the author reviews the change in the [before and after](../design/isvara-before-and-after.md) before M4); WD-010 (every contract has a check); WD-036.
 
 - Given the export schema in this workspace, `checks/knowledge_export_schema.json`
 - When the cross-repo checks run

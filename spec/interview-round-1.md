@@ -149,7 +149,7 @@ PCM-Adapter publishes 11 VM Performance and Guest OS Performance sub-metrics und
 
 ### Q-WS-14 Is the scoring formula part of the contract?
 
-The catalog says it uses the adapter's model ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L25)). The weighting, rounding and missing-data rules exist only as prose in Agent E2 and as code in the adapter; C1 checks limits only. The grey band has no value (Q258 in [author-questions.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions.md#L48)).
+The catalog says it uses the adapter's model ([thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml#L25)). The weighting, rounding and missing-data rules exist only as prose in Agent E2 and as code in the adapter; C1 checks limits only. The grey band has no value (Q-E2-258 in [author-questions.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions.md#L48)).
 
 - **Recommendation:** add worked examples to the catalog (inputs, expected score) and have C1 run them through the adapter's scoring code. Grey is not in stage 1.
 

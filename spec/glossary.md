@@ -6,14 +6,14 @@ Every short name and ID used in this workspace, with what it means and where it 
 
 | ID | Meaning | Defined in |
 |---|---|---|
-| <a id="c1"></a>C1 | Contract 1, **KPI definitions**: each KPI's names, parts, limits and scoring | [CONTRACTS.md](../CONTRACTS.md) |
+| <a id="c1"></a>C1 | Contract 1, **KPI definitions**: each KPI's names, parts and limits | [CONTRACTS.md](../CONTRACTS.md) |
 | <a id="c2"></a>C2 | Contract 2, **KPI metric keys**: published by the VCF vCommunity Adapter, read by PCM | [CONTRACTS.md](../CONTRACTS.md) |
 | <a id="c3"></a>C3 | Contract 3, **the Agent E2 API**: the HTTP calls PCM and isvara.io make to Agent E2 | [CONTRACTS.md](../CONTRACTS.md) |
 | <a id="c4"></a>C4 | Contract 4, **knowledge content for isvara.io**: what Agent E2 gives isvara.io to build its pages from | [CONTRACTS.md](../CONTRACTS.md) |
 | <a id="c5"></a>C5 | Contract 5, **the model gateway**: Vercel AI Gateway, through which Agent E2 calls its model | [CONTRACTS.md](../CONTRACTS.md) |
 | WD-001 to WD-0nn | A workspace decision: one that binds more than one repository | [DECISIONS.md](../DECISIONS.md) |
 | D-001 to D-1nn | A decision inside PCM | [PCM decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md) |
-| Q-WS-1, Q-WS-I1 and so on | A question to the author about the workspace; Q-WS-I questions are about intent | Rounds [1](interview-round-1.md), [2](interview-round-2.md), [3](interview-round-3.md), [4](interview-round-4.md); [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) |
+| Q-WS-1, Q-WS-I1 and so on | A question to the author about the workspace; Q-WS-I questions are about intent | Rounds [1](interview-round-1.md), [2](interview-round-2.md), [3](interview-round-3.md), [4](interview-round-4.md), [5](interview-round-5.md); [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) |
 | Q-E2-001 and so on | A question to the author about agent-e2 | [agent-e2 author-questions.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions.md) |
 | M1 to M8 | A roadmap milestone of release 1.0, numbered from M1 in the order of work (WD-042) | [ROADMAP.md](../ROADMAP.md) |
 | A1 to A6 | A milestone of agent-e2's plan toward its part of release 1.0 (Q-WS-58) | [agent-e2 plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md) |

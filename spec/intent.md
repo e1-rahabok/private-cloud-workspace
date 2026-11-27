@@ -60,7 +60,7 @@ These decide a conflict between two good things, without asking the author.
 
 1. **Free.** No paid content, no paid tier.
 2. **Accurate before complete.** A confident wrong answer is worse than none. Say what is unknown.
-3. **The customer's data stays with the customer.** In the on-premises deployment nothing leaves their network; on isvara.io, visitors remove their own IP addresses and host names before uploading, and the site keeps no copy of what they ask about.
+3. **The customer's data stays with the customer.** In the on-premises deployment nothing leaves their network; on isvara.io, visitors remove their own IP addresses and host names before uploading; the site keeps no copy of their files, and keeps their questions and answers for 30 days, to improve the answers (Q-WS-61).
 4. **Forkable.** Customers can copy the product privately and make it theirs. Nothing in the product depends at run time on the author's services. Today the repositories have no licence (WD-029), which gives no such permission; it is revisited before the first customer copies the product.
 5. **One master copy of each fact.** Knowledge lives in Agent E2; every other copy is generated from it or checked against it (WD-001).
 6. **The specification is what people maintain.** AI writes the code; the author and Claude keep the specification true (PCM D-010).
