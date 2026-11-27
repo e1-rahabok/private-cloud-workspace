@@ -1,6 +1,6 @@
 # isvara.io plan
 
-The design of the rebuilt isvara.io for release 1.0. It replaces the earlier draft, which listed 47 features under ten visitor reasons ([DECISIONS](../../DECISIONS.md), WD-022, now replaced by WD-027). The author delegated the remaining choices to Claude on 2026-11-26; they are recorded here as decisions. To change one, write under it or open a question. IDs are explained in the [glossary](../glossary.md).
+The design of the rebuilt isvara.io for release 1.0. It replaces the earlier draft, which listed 47 features under ten visitor reasons ([DECISIONS](../../DECISIONS.md), WD-022, now replaced by WD-027). The author delegated the remaining choices to Claude on 2026-11-26; they are recorded here as decisions. Feature by feature, with what changes from today's site: [isvara-before-and-after.md](isvara-before-and-after.md). To change one, write under it or open a question. IDs are explained in the [glossary](../glossary.md).
 
 ## Purpose
 
