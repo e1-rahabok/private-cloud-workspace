@@ -1,7 +1,6 @@
 # Spec-driven development with an AI agent
 
-If you're not familiar with SDD, read this https://github.com/github/spec-kit/blob/main/README.md#spec-driven-development.
-This tutorial shows how to build and maintain a system of several connected applications when an AI coding agent writes most of the code. It is based on a real project: four GitHub repositories that together make one product, built by one person working with Claude over several months. Every file the tutorial mentions is in this repository, so you can read the real thing alongside the explanation.
+If you're not familiar with SDD, read this https://github.com/github/spec-kit/blob/main/README.md#spec-driven-development. This tutorial shows how to build and maintain a system of several connected applications when an AI coding agent writes most of the code. It is based on a real project: four GitHub repositories that together make one product, built by one person working with Claude over several months. Every file the tutorial mentions is in this repository, so you can read the real thing alongside the explanation.
 
 ## Readers
 

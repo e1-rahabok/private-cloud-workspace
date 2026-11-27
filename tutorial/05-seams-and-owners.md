@@ -22,7 +22,7 @@ The second was an API hidden by its own error handling. The web app turns any fa
 
 ## Owners
 
-When a fact exists in more than one place, decide which copy is the master. The others are then generated from it or checked against it. Without that decision, each copy is edited by a different session and they drift apart.
+- When a fact exists in more than one place, decide which copy is the master. The others are then generated from it or checked against it. Without that decision, each copy is edited by a different session and they drift apart.
 
 In this project the documents disagreed about who owned the performance definitions. One repository said its knowledge base was the only master; another said its own metrics were the definitions; a third followed the knowledge base. Only the author could settle that, and did: knowledge starts in the knowledge service, the management pack implements it, the web apps consume it ([DECISIONS](../DECISIONS.md), WD-001). The agent's part was to find the disagreement and put it to the author.
 

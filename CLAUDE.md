@@ -58,6 +58,7 @@ Two kinds of document (WD-023):
 - Before adding an ID prefix, term, heading or numbering: make it guessable from itself, with one word per concept and no overlap with an existing one.
 - When a name or number stops being true: rename it in every file. Never add text that explains the exception.
 - In both: every file reference a link; every diagram an SVG drawn by [tools/diagrams.py](tools/diagrams.py) with its text generated underneath; every ID with its meaning or a glossary link on first use (WD-020).
+- Write each paragraph as one source line. GitHub joins wrapped lines into one sentence, so a wrapped line reads as a run-on.
 - Before each commit, run and pass: `python tools/docs.py`, `python tools/style.py`, `python tools/spec_check.py`.
 
 ## Session end

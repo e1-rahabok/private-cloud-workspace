@@ -20,11 +20,11 @@ Source: the author's answers to Q-20 and Q-32 in the interview, round 1 ("The sy
 
 Milestone: M6.
 
-Given PCM runs with the demo control on
-When a person opens the demo drop-down on any page
-Then it lists one new entry for the live L2 demo, with its own URL (proposed: `/live/l2`)
-And every synthetic entry keeps its place, its URL and its behaviour
-And no page of either demo has a control that switches its data to the other
+- Given PCM runs with the demo control on
+- When a person opens the demo drop-down on any page
+- Then it lists one new entry for the live L2 demo, with its own URL (proposed: `/live/l2`)
+- And every synthetic entry keeps its place, its URL and its behaviour
+- And no page of either demo has a control that switches its data to the other
 
 Test scenarios:
 - T-LIVE-001a (anywhere, automated by build/tests/live.page.test.mjs::test_demo_entry, to write). Data: PCM started against the fake Suite API (build/tests/fake_suite_api.py, to write). Steps: open `/exec`, open the drop-down, choose the live entry. Expected: the entry is listed once; choosing it opens `/live/l2`; the synthetic entries are unchanged in order and URL.
@@ -34,11 +34,11 @@ Test scenarios:
 
 Source: answer to Q-32; WD-015.
 
-Given the live demo and the synthetic demo run in the same PCM
-When any page or API call of either demo answers
-Then every value from the live demo carries the source of the lab VCF Operations instance in its metadata
-And no live response contains a synthetic object, value, story or calendar entry
-And no synthetic response contains a live object or value
+- Given the live demo and the synthetic demo run in the same PCM
+- When any page or API call of either demo answers
+- Then every value from the live demo carries the source of the lab VCF Operations instance in its metadata
+- And no live response contains a synthetic object, value, story or calendar entry
+- And no synthetic response contains a live object or value
 
 Test scenarios:
 - T-LIVE-002a (anywhere, automated by build/tests/test_live.py::test_no_mixing, to write). Data: the fake Suite API with three objects whose names do not occur in ACME. Steps: call every live API path, then every synthetic API path. Expected: live responses carry only the fake's objects, each value with the live source; synthetic responses carry no fake object name.
@@ -47,10 +47,10 @@ Test scenarios:
 
 Source: answer to Q-22 ("The live mode is only L2. The rest of the role is synthetic only"); WD-015.
 
-Given the live demo
-When a person or a test asks for an Executive, NOC, Capacity or Docs page or API path under the live prefix
-Then PCM answers 404
-And the live demo's pages link to no page of another workspace
+- Given the live demo
+- When a person or a test asks for an Executive, NOC, Capacity or Docs page or API path under the live prefix
+- Then PCM answers 404
+- And the live demo's pages link to no page of another workspace
 
 Test scenarios:
 - T-LIVE-003a (anywhere, automated by build/tests/test_live.py::test_l2_only, to write). Steps: request `/live/exec`, `/live/noc`, `/live/capacity`, `/live/docs` and their API paths. Expected: 404 for each; the live L2 page has no link to another workspace.
@@ -59,11 +59,11 @@ Test scenarios:
 
 Source: answer to Q-33 ("All these are out of scope in 1.0. Focus on performance and capacity management"); WD-015.
 
-Given the live L2 page
-When it opens on any object
-Then it shows the Monitor activity with the Performance and Capacity tabs only
-And it shows no Troubleshoot, Improve, Rules or Calendar entry, no other pillar tab, no story, no case and no action button
-And the live API refuses every write path with 404
+- Given the live L2 page
+- When it opens on any object
+- Then it shows the Monitor activity with the Performance and Capacity tabs only
+- And it shows no Troubleshoot, Improve, Rules or Calendar entry, no other pillar tab, no story, no case and no action button
+- And the live API refuses every write path with 404
 
 Test scenarios:
 - T-LIVE-004a (anywhere, automated by build/tests/live.page.test.mjs::test_tabs_only, to write). Data: the fake Suite API. Steps: open a cluster, a host and a VM. Expected: only Performance and Capacity tabs; no Troubleshoot, Improve, Rules or Calendar entry; no action button.
@@ -73,10 +73,10 @@ Test scenarios:
 
 Source: answer to Q-32; answer to Q-33.
 
-Given the live API
-When a request carries `now` or `enable`
-Then PCM answers 400 and names the parameter
-And the live page has no control that sets the clock or turns on a story
+- Given the live API
+- When a request carries `now` or `enable`
+- Then PCM answers 400 and names the parameter
+- And the live page has no control that sets the clock or turns on a story
 
 Test scenarios:
 - T-LIVE-005a (anywhere, automated by build/tests/test_live.py::test_now_enable_refused, to write). Steps: call a live API path with `now=2026-10-19T10:05:00+08:00`, then with `enable=E-7`. Expected: 400 each time, with the parameter named in the body.
@@ -85,12 +85,12 @@ Test scenarios:
 
 Source: answer to Q-24 ("All these are only applicable in synthetic"); WD-015.
 
-Given the live L2 page above the cluster, on the Performance or Capacity tab
-When it opens
-Then it has no class of service filter, and no text about Gold, Silver or Bronze
-And the lines across clusters (worst and percentile) cover every cluster under the selected object
-And no live object shows a region, location, class, environment or local time zone
-And times are shown in the viewer's time zone with the zone named, as in the synthetic demo ([PCM D-074, three rules from the first build's review](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L81))
+- Given the live L2 page above the cluster, on the Performance or Capacity tab
+- When it opens
+- Then it has no class of service filter, and no text about Gold, Silver or Bronze
+- And the lines across clusters (worst and percentile) cover every cluster under the selected object
+- And no live object shows a region, location, class, environment or local time zone
+- And times are shown in the viewer's time zone with the zone named, as in the synthetic demo ([PCM D-074, three rules from the first build's review](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L81))
 
 Test scenarios:
 - T-LIVE-006a (anywhere, automated by build/tests/live.page.test.mjs::test_no_class, to write). Data: the fake Suite API with two clusters under one VCF instance. Steps: open the VCF instance's Performance and Capacity tabs. Expected: no class filter; the words Gold, Silver and Bronze are absent; the worst line is the lower of the two clusters at each point.
@@ -101,11 +101,11 @@ Test scenarios:
 
 Source: answer to Q-34 ("agree"); WD-011.
 
-Given `/etc/pcm/pcm.env` on the lab VM holds the Suite API URL, user and password (proposed names `PCM_VCFOPS_URL`, `PCM_VCFOPS_USER`, `PCM_VCFOPS_PASSWORD`)
-When the live demo needs data
-Then PCM acquires a Suite API token with them, keeps it until it expires, and acquires a new one once after a 401
-And the password and the token appear in no log, page, API response, error message or Agent E2 fact
-And PCM itself keeps no sign-in of its own in release 1.0, behind the lab firewall
+- Given `/etc/pcm/pcm.env` on the lab VM holds the Suite API URL, user and password (proposed names `PCM_VCFOPS_URL`, `PCM_VCFOPS_USER`, `PCM_VCFOPS_PASSWORD`)
+- When the live demo needs data
+- Then PCM acquires a Suite API token with them, keeps it until it expires, and acquires a new one once after a 401
+- And the password and the token appear in no log, page, API response, error message or Agent E2 fact
+- And PCM itself keeps no sign-in of its own in release 1.0, behind the lab firewall
 
 Test scenarios:
 - T-LIVE-007a (anywhere, automated by build/tests/test_live.py::test_token_reuse_and_renewal, to write). Data: the fake Suite API counting token requests, set to answer 401 once. Steps: load three pages; then trigger the 401. Expected: one token request for the three pages; exactly one new token request after the 401; the page then loads.
@@ -116,10 +116,10 @@ Test scenarios:
 
 Source: answer to Q-34 (the lab CA pinned, no skip-verify).
 
-Given the CA file of the lab VCF Operations certificate is named in `/etc/pcm/pcm.env` (proposed `PCM_VCFOPS_CA_FILE`)
-When PCM connects to the Suite API
-Then it verifies the certificate against that file
-And a certificate that does not verify is a failed read (R-LIVE-011), with the reason "certificate not trusted"
+- Given the CA file of the lab VCF Operations certificate is named in `/etc/pcm/pcm.env` (proposed `PCM_VCFOPS_CA_FILE`)
+- When PCM connects to the Suite API
+- Then it verifies the certificate against that file
+- And a certificate that does not verify is a failed read (R-LIVE-011), with the reason "certificate not trusted"
 
 Test scenarios:
 - T-LIVE-008a (anywhere, automated by build/tests/test_live.py::test_tls_pinned, to write). Data: the fake Suite API over TLS with a certificate from a test CA. Steps: start PCM with the test CA, then with another CA. Expected: data loads with the right CA; with the wrong CA the page shows the failed-read state with "certificate not trusted".
@@ -129,10 +129,10 @@ Test scenarios:
 
 Source: answer to Q-23 ("It can't store in the VCF Operations database"); WD-015.
 
-Given the live demo
-When PCM calls the Suite API for any page or Agent E2 question
-Then every call is on a list of read calls: token acquire and release, GET calls, and the query calls that use POST only to read (for example the stats query)
-And no call creates, changes or deletes anything in VCF Operations
+- Given the live demo
+- When PCM calls the Suite API for any page or Agent E2 question
+- Then every call is on a list of read calls: token acquire and release, GET calls, and the query calls that use POST only to read (for example the stats query)
+- And no call creates, changes or deletes anything in VCF Operations
 
 Test scenarios:
 - T-LIVE-009a (anywhere, automated by build/tests/test_live.py::test_read_calls_only, to write). Data: the fake Suite API logging method and path. Steps: load every live page and ask one Agent E2 question on each. Expected: every logged call is on the read list.
@@ -142,11 +142,11 @@ Test scenarios:
 
 Source: answer to Q-30 ("Agree"); WD-015.
 
-Given the live demo
-When the same data is asked for twice within 60 seconds
-Then PCM calls the Suite API once
-And after 60 seconds it calls again
-And PCM writes no metric value to its database, to disk or to any other store
+- Given the live demo
+- When the same data is asked for twice within 60 seconds
+- Then PCM calls the Suite API once
+- And after 60 seconds it calls again
+- And PCM writes no metric value to its database, to disk or to any other store
 
 Test scenarios:
 - T-LIVE-010a (anywhere, automated by build/tests/test_live.py::test_cache_60s, to write). Data: the fake Suite API counting stats calls, and a fake clock in the cache. Steps: load a cluster's Performance tab at 0 s, 30 s and 61 s. Expected: two stats calls.
@@ -156,11 +156,11 @@ Test scenarios:
 
 Source: answer to Q-27 ("If the data is stale, say no data"); [PCM D-041, wall behaviour: stale data turns grey, never green](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L47).
 
-Given the Suite API times out (proposed limit 10 seconds), answers an HTTP error, refuses the login, or fails the certificate check
-When a live page loads
-Then every KPI, part and check value on it shows "No data", in grey
-And the page says that VCF Operations did not answer, with the reason and the time of the last good read
-And no last value, zero or green colour is shown
+- Given the Suite API times out (proposed limit 10 seconds), answers an HTTP error, refuses the login, or fails the certificate check
+- When a live page loads
+- Then every KPI, part and check value on it shows "No data", in grey
+- And the page says that VCF Operations did not answer, with the reason and the time of the last good read
+- And no last value, zero or green colour is shown
 
 Test scenarios:
 - T-LIVE-011a (anywhere, automated by build/tests/live.page.test.mjs::test_failed_read, to write). Data: the fake Suite API set in turn to time out, answer 500, and refuse the login. Steps: load a cluster's Performance tab in each case. Expected: "No data" in grey for every figure; the reason and the last good read time are shown; no green and no 0.
@@ -171,11 +171,11 @@ Test scenarios:
 
 Source: answer to Q-25 ("Use the inventory from VCF Operations. It starts with VCF Instance"); WD-015.
 
-Given the lab VCF Operations
-When the live L2 page opens
-Then its tree starts at the VCF instance objects and follows VCF Operations' own parent and child relationships down to the cluster, the ESXi host and the VM
-And each node shows the object's name as VCF Operations shows it, and its type
-And a node whose KPI has no data shows grey "No data"
+- Given the lab VCF Operations
+- When the live L2 page opens
+- Then its tree starts at the VCF instance objects and follows VCF Operations' own parent and child relationships down to the cluster, the ESXi host and the VM
+- And each node shows the object's name as VCF Operations shows it, and its type
+- And a node whose KPI has no data shows grey "No data"
 
 Test scenarios:
 - T-LIVE-012a (anywhere, automated by build/tests/test_live.py::test_tree_from_relationships, to write). Data: the fake Suite API with one VCF instance, two clusters, three hosts and five VMs, linked as parent and child. Steps: open the tree and expand every node. Expected: the same hierarchy, names and types as the fake; nothing else.
@@ -185,10 +185,10 @@ Test scenarios:
 
 Source: answer to Q-26 ("Yes"); WD-015.
 
-Given any live object
-When it appears in a URL, an API response or an Agent E2 fact
-Then its ID is its VCF Operations resource ID, and its name is a separate field
-And a renamed object keeps its URL
+- Given any live object
+- When it appears in a URL, an API response or an Agent E2 fact
+- Then its ID is its VCF Operations resource ID, and its name is a separate field
+- And a renamed object keeps its URL
 
 Test scenarios:
 - T-LIVE-013a (anywhere, automated by build/tests/test_live.py::test_resource_id, to write). Data: the fake Suite API with two clusters of the same name under different vCenters. Steps: open each; then rename one in the fake. Expected: two distinct URLs by resource ID; after the rename the same URL opens the object with its new name.
@@ -199,11 +199,11 @@ Test scenarios:
 
 Source: answer to Q-23 ("PCM can compute for UI purpose"); answer to Q-27 ("PCM simply regurgitate the adapter"); WD-015.
 
-Given a KPI, a part or a check value that the VCF vCommunity Adapter publishes on a live object
-When a live page shows it
-Then each point on the chart is the sample value VCF Operations returns for that key and time
-And PCM computes only what the page displays from those samples: Now, Worst, the percentile figure, the worst and percentile lines across objects, and the band colour
-And PCM never recomputes a KPI from its parts, nor a check result from its inputs
+- Given a KPI, a part or a check value that the VCF vCommunity Adapter publishes on a live object
+- When a live page shows it
+- Then each point on the chart is the sample value VCF Operations returns for that key and time
+- And PCM computes only what the page displays from those samples: Now, Worst, the percentile figure, the worst and percentile lines across objects, and the band colour
+- And PCM never recomputes a KPI from its parts, nor a check result from its inputs
 
 Test scenarios:
 - T-LIVE-014a (anywhere, automated by build/tests/test_live.py::test_values_passed_through, to write). Data: the fake Suite API with a Cluster Performance series that cannot be rebuilt from its parts. Steps: open the cluster's Performance tab. Expected: the chart's points equal the fake's KPI samples exactly.
@@ -212,12 +212,12 @@ Test scenarios:
 
 Source: answer to Q-27 ("No need to wait 15 minutes"); WD-015. The rule below is proposed and waits for the author's confirmation in round two (Q-64 in the [interview, round 2](../interview-round-2.md): decided, 10 minutes).
 
-Given VCF vCommunity Adapter collects every 5 minutes, and marks its own inputs stale after 10 minutes ([STALE_AFTER_MINUTES in ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L32))
-When the newest sample of a key on an object is older than 10 minutes (one collection cycle plus a margin of one cycle) at the time PCM reads it
-Then Now shows "No data" in grey, with the time of the newest sample
-And the chart keeps the older points and draws nothing after the newest
-And the value is never shown as 0 or coloured green
-And with the 60-second cache (R-LIVE-010), a value is shown as stale at most 11 minutes after its newest sample
+- Given VCF vCommunity Adapter collects every 5 minutes, and marks its own inputs stale after 10 minutes ([STALE_AFTER_MINUTES in ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L32))
+- When the newest sample of a key on an object is older than 10 minutes (one collection cycle plus a margin of one cycle) at the time PCM reads it
+- Then Now shows "No data" in grey, with the time of the newest sample
+- And the chart keeps the older points and draws nothing after the newest
+- And the value is never shown as 0 or coloured green
+- And with the 60-second cache (R-LIVE-010), a value is shown as stale at most 11 minutes after its newest sample
 
 Test scenarios:
 - T-LIVE-015a (anywhere, automated by build/tests/test_live.py::test_stale_after_10_minutes, to write). Data: the fake Suite API with Cluster Performance samples ending 9 minutes ago on one cluster and 11 minutes ago on another. Steps: open both Performance tabs. Expected: the first shows its Now value; the second shows "No data" with the time of its newest sample.
@@ -227,10 +227,10 @@ Test scenarios:
 
 Source: answer to Q-27; answer to Q-30.
 
-Given a key whose samples in the window have a gap longer than one collection cycle
-When its chart is drawn
-Then the line breaks at the gap; nothing is drawn or filled in across it
-And the percentile figure is computed over the samples that exist, and the page states how many
+- Given a key whose samples in the window have a gap longer than one collection cycle
+- When its chart is drawn
+- Then the line breaks at the gap; nothing is drawn or filled in across it
+- And the percentile figure is computed over the samples that exist, and the page states how many
 
 Test scenarios:
 - T-LIVE-016a (anywhere, automated by build/tests/live.page.test.mjs::test_gap, to write). Data: the fake Suite API with a 24-hour series missing 40 minutes in the middle. Steps: open the chart. Expected: two separate line segments; the percentile uses 280 samples and says so.
@@ -239,10 +239,10 @@ Test scenarios:
 
 Source: answer to Q-30 ("Agree": longer windows ask for the maximum per slot, draw nothing before the first point, say "Data from {date}").
 
-Given a window of 7 days, 30 days or 1 year
-When PCM reads a key for it
-Then it asks VCF Operations for the maximum of each slot (1 hour, 4 hours and 1 day, as in [l2.statistics](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml#L241))
-And when the key's history starts inside the window, nothing is drawn before the first point, and the chart says "Data from {date}"
+- Given a window of 7 days, 30 days or 1 year
+- When PCM reads a key for it
+- Then it asks VCF Operations for the maximum of each slot (1 hour, 4 hours and 1 day, as in [l2.statistics](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml#L241))
+- And when the key's history starts inside the window, nothing is drawn before the first point, and the chart says "Data from {date}"
 
 Test scenarios:
 - T-LIVE-017a (anywhere, automated by build/tests/test_live.py::test_long_window, to write). Data: the fake Suite API with 3 days of samples. Steps: open the 30-day window. Expected: the stats request asks for the maximum per 4-hour slot; the chart starts at the first point and says "Data from" that date.
@@ -252,10 +252,10 @@ Test scenarios:
 
 Source: answer to Q-1 ("For key, adapter is correct. For name, Agent E2 is correct"); [WD-016, VCF vCommunity Adapter changes and key and name ownership](../../DECISIONS.md).
 
-Given a part VCF vCommunity Adapter publishes under its key
-When a live page shows it
-Then its name is the name in Agent E2's catalog row that holds that key ([C1, KPI definitions](../glossary.md#c1))
-And a key with no catalog row is shown under its key, and the key list check (R-LIVE-023) fails on it
+- Given a part VCF vCommunity Adapter publishes under its key
+- When a live page shows it
+- Then its name is the name in Agent E2's catalog row that holds that key ([C1, KPI definitions](../glossary.md#c1))
+- And a key with no catalog row is shown under its key, and the key list check (R-LIVE-023) fails on it
 
 Test scenarios:
 - T-LIVE-018a (anywhere, automated by build/tests/test_live.py::test_part_names_from_catalog, to write). Data: the fake Suite API publishing two catalog keys and one key the catalog lacks. Steps: open the Details fold. Expected: the two parts under their catalog names; the third under its key.
@@ -265,11 +265,11 @@ Test scenarios:
 
 Source: answer to Q-19 ("If a metric does not have the word peak, it's likely a 5-minute average"); WD-016.
 
-Given a part whose catalog name contains "peak"
-When its figures and chart are coloured
-Then the catalog's 20-second limits are used
-And a part without "peak" uses the catalog's 5-minute limits
-And a part with no limits for its statistic stays uncoloured
+- Given a part whose catalog name contains "peak"
+- When its figures and chart are coloured
+- Then the catalog's 20-second limits are used
+- And a part without "peak" uses the catalog's 5-minute limits
+- And a part with no limits for its statistic stays uncoloured
 
 Test scenarios:
 - T-LIVE-019a (anywhere, automated by build/tests/test_live.py::test_band_by_statistic, to write). Data: one peak part, one 5-minute part and one part with no 5-minute limits, from a copy of the catalog. Steps: open the Details fold. Expected: the first two coloured by the matching limits; the third plain.
@@ -278,10 +278,10 @@ Test scenarios:
 
 Source: answer to Q-28 ("we should fix them in the PCM Adapter"); WD-016. Until the VCF vCommunity Adapter makes absent data explicit ([pcm-adapter.md](pcm-adapter.md)), the rule below is proposed for round two.
 
-Given a part key that VCF Operations does not hold for an object at all (for example a memory tiering key on a cluster without a tiered host)
-When the object's Details fold opens
-Then that part is left out, and the fold's heading counts the parts it shows
-And a part key the object holds, with no recent sample, shows "No data" (R-LIVE-015)
+- Given a part key that VCF Operations does not hold for an object at all (for example a memory tiering key on a cluster without a tiered host)
+- When the object's Details fold opens
+- Then that part is left out, and the fold's heading counts the parts it shows
+- And a part key the object holds, with no recent sample, shows "No data" (R-LIVE-015)
 
 Test scenarios:
 - T-LIVE-020a (anywhere, automated by build/tests/test_live.py::test_absent_part, to write). Data: the fake Suite API with a cluster that holds 10 of the 12 Cluster Risk part keys, one of them with samples ending 30 minutes ago. Steps: open the Cluster Risk Details fold. Expected: 10 parts shown; the old one shows "No data".
@@ -291,11 +291,11 @@ Test scenarios:
 
 Source: answer to Q-31 ("PCM gets from the PCM Adapter"); [PCM D-094, the Capacity tab reads the check and never recomputes it](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L101).
 
-Given a lab cluster with Periodic Cluster Check values for its latest window
-When its Capacity tab opens
-Then the verdict and the three check values are the published values of that window, with its window end
-And the rule shown is named by comparing published values with published closure levels; PCM decides nothing
-And when no value is published for a window that ended more than 30 minutes ago (proposed: the VCF vCommunity Adapter may publish a few cycles late), the page says "No check for the {period} to {end time}", never "Open"
+- Given a lab cluster with Periodic Cluster Check values for its latest window
+- When its Capacity tab opens
+- Then the verdict and the three check values are the published values of that window, with its window end
+- And the rule shown is named by comparing published values with published closure levels; PCM decides nothing
+- And when no value is published for a window that ended more than 30 minutes ago (proposed: the VCF vCommunity Adapter may publish a few cycles late), the page says "No check for the {period} to {end time}", never "Open"
 
 Test scenarios:
 - T-LIVE-021a (anywhere, automated by build/tests/test_live.py::test_check_published, to write). Data: the fake Suite API with a check window ending 2 hours ago (Close for Business 1) and none for a window ending 40 minutes ago. Steps: open the Capacity tab. Expected: "No check" for the latest window; the strip shows the earlier window closed with its published values.
@@ -305,10 +305,10 @@ Test scenarios:
 
 Source: answer to Q-31; [PCM D-095, which statistic, on which axis](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L102).
 
-Given the Adapter Instance's Cluster Check Period, Cluster Check Time (UTC) and Cluster Check Worst Percent, made readable by the VCF vCommunity Adapter ([pcm-adapter.md](pcm-adapter.md))
-When the Capacity tab labels a check value
-Then the label uses those settings, for example "5th percentile, 24 hours to 08:00 GMT+8"
-And when the settings cannot be read, the label omits the percentile rank and the period, and says "check settings not available"
+- Given the Adapter Instance's Cluster Check Period, Cluster Check Time (UTC) and Cluster Check Worst Percent, made readable by the VCF vCommunity Adapter ([pcm-adapter.md](pcm-adapter.md))
+- When the Capacity tab labels a check value
+- Then the label uses those settings, for example "5th percentile, 24 hours to 08:00 GMT+8"
+- And when the settings cannot be read, the label omits the percentile rank and the period, and says "check settings not available"
 
 Test scenarios:
 - T-LIVE-022a (anywhere, automated by build/tests/test_live.py::test_check_labels, to write). Data: the fake with period 12 hours, time 06:00 UTC and Worst Percent 10; then the fake with no settings. Steps: open the Capacity tab, viewer zone GMT+8. Expected: "10th percentile, 12 hours to 14:00 GMT+8" for Cluster Performance; then "check settings not available".
@@ -318,11 +318,11 @@ Test scenarios:
 
 Source: answer to Q-29 ("You will need to get from a live environment"); C2.
 
-Given the lab VCF Operations with the VCF vCommunity Adapter installed
-When a read-only tool lists the `vCommunity|` keys, and the VCF Operations capacity keys PCM reads, that the cluster, host and VM objects hold
-Then it writes one file in PCM's specification (proposed `spec/catalog/vcf-operations-keys.yaml`) with each key, its object type, its unit and its catalog name, plus the adapter version and the date
-And every key PCM's live demo reads is in that file
-And the C2 check compares the file with the keys PCM reads and with what the VCF vCommunity Adapter says it publishes ([pcm-adapter.md](pcm-adapter.md))
+- Given the lab VCF Operations with the VCF vCommunity Adapter installed
+- When a read-only tool lists the `vCommunity|` keys, and the VCF Operations capacity keys PCM reads, that the cluster, host and VM objects hold
+- Then it writes one file in PCM's specification (proposed `spec/catalog/vcf-operations-keys.yaml`) with each key, its object type, its unit and its catalog name, plus the adapter version and the date
+- And every key PCM's live demo reads is in that file
+- And the C2 check compares the file with the keys PCM reads and with what the VCF vCommunity Adapter says it publishes ([pcm-adapter.md](pcm-adapter.md))
 
 Test scenarios:
 - T-LIVE-023a (lab, automated by tools/lab/live_keys.py, to write). Steps: run the tool against the lab. Expected: the file lists at least the KPI score keys and their parts for cluster, host and VM; it names the adapter version shown by validate.ps1.
@@ -335,11 +335,11 @@ Source: answer to Q-35 ("okay"); [PCM D-131, percentiles labelled by rank](https
 
 Milestone: M6.
 
-Given one lab cluster and the 24-hour window
-When its live Performance tab opens
-Then the API returns the window's start and end, aligned to 5 minutes
-And for that window, Now is the newest 5-minute sample of `vCommunity|Cluster Performance|Cluster Performance Score`, Worst is the lowest sample with its time, and the 5th percentile is taken by nearest rank over the samples
-And each equals the reference computed from the Suite API for the same window, at whole percent
+- Given one lab cluster and the 24-hour window
+- When its live Performance tab opens
+- Then the API returns the window's start and end, aligned to 5 minutes
+- And for that window, Now is the newest 5-minute sample of `vCommunity|Cluster Performance|Cluster Performance Score`, Worst is the lowest sample with its time, and the 5th percentile is taken by nearest rank over the samples
+- And each equals the reference computed from the Suite API for the same window, at whole percent
 
 Test scenarios:
 - T-LIVE-024a (lab, automated by tools/lab/live_reference.py and build/tests/live.lab.test.mjs::test_cluster_performance_matches, to write). Steps: open the tab; read its window from the API; the reference script reads the raw samples for that window and computes Now, Worst and the 5th percentile. Expected: all three equal at whole percent; Worst's time equal; a screenshot is saved.
@@ -351,10 +351,10 @@ Source: answer to Q-35; [PCM D-124, the four pages of release 1.0](https://githu
 
 Milestone: M7.
 
-Given the live Performance and Capacity tabs of a lab cluster, a lab ESXi host and a lab VM
-When they open on the 24-hour window
-Then Cluster Risk, Cluster Consumption, ESXi Performance, VM Performance and Guest OS Performance, and each of their parts, match the reference of R-LIVE-024
-And the percentile figure is the 5th where higher is better and the 95th where higher is worse
+- Given the live Performance and Capacity tabs of a lab cluster, a lab ESXi host and a lab VM
+- When they open on the 24-hour window
+- Then Cluster Risk, Cluster Consumption, ESXi Performance, VM Performance and Guest OS Performance, and each of their parts, match the reference of R-LIVE-024
+- And the percentile figure is the 5th where higher is better and the 95th where higher is worse
 
 Test scenarios:
 - T-LIVE-025a (lab, automated by tools/lab/live_reference.py and build/tests/live.lab.test.mjs::test_all_kpis_match, to write). Steps: as T-LIVE-024a, for every KPI and part on the three objects. Expected: all equal at whole percent, or at the part's own decimals where its limits have decimals.
@@ -365,10 +365,10 @@ Source: answer to Q-23; [PCM D-091, the Performance tab above the cluster](https
 
 Milestone: M7.
 
-Given every lab cluster is under the selected node
-When its Performance and Capacity tabs above the cluster open
-Then the worst and percentile lines are computed from each cluster's published score at each point
-And they equal VCF vCommunity Adapter's vSphere World metrics (Worst Cluster Performance, Worst 10 Percent Cluster Performance, Worst Cluster Risk, Worst 10 Percent Cluster Risk, Highest Cluster Utilization, Highest 10 Percent Cluster Utilization) at whole percent
+- Given every lab cluster is under the selected node
+- When its Performance and Capacity tabs above the cluster open
+- Then the worst and percentile lines are computed from each cluster's published score at each point
+- And they equal VCF vCommunity Adapter's vSphere World metrics (Worst Cluster Performance, Worst 10 Percent Cluster Performance, Worst Cluster Risk, Worst 10 Percent Cluster Risk, Highest Cluster Utilization, Highest 10 Percent Cluster Utilization) at whole percent
 
 Test scenarios:
 - T-LIVE-026a (lab, automated by tools/lab/live_reference.py and build/tests/live.lab.test.mjs::test_world_lines, to write). Steps: open the lab's VCF instance node; read the vSphere World keys for the same window. Expected: equal at whole percent at every point. If the lab has one cluster only, the scenario says so and still compares.
@@ -379,10 +379,10 @@ Source: answer to Q-20 ("yes": live mode reads what the synthetic demo shows as 
 
 Milestone: M7.
 
-Given a lab VM, ESXi host or cluster
-When its live Capacity tab opens
-Then Capacity Remaining and Time Remaining (and VM Remaining on a host and a cluster) are VCF Operations' own values, from the keys in the key list (R-LIVE-023), with their time and the line "From VCF Operations, {time}"
-And a value VCF Operations does not hold shows "No data"; no placeholder is shown
+- Given a lab VM, ESXi host or cluster
+- When its live Capacity tab opens
+- Then Capacity Remaining and Time Remaining (and VM Remaining on a host and a cluster) are VCF Operations' own values, from the keys in the key list (R-LIVE-023), with their time and the line "From VCF Operations, {time}"
+- And a value VCF Operations does not hold shows "No data"; no placeholder is shown
 
 Test scenarios:
 - T-LIVE-027a (anywhere, automated by build/tests/test_live.py::test_remaining, to write). Data: the fake with the three values on a cluster and none on a VM. Expected: the cluster shows the fake's values and the line; the VM shows "No data".
@@ -394,11 +394,11 @@ Test scenarios:
 
 Source: answer to Q-36 ("agree"); C3.
 
-Given a question asked in the Agent E2 panel of the live demo
-When PCM builds the facts
-Then they have the same fields and shapes as in the synthetic demo (the screen, the KPI series, the parts at the KPI's worst point, the parts once an hour, the page's KPI series for the suggested questions), filled only with live values from the same reads as the page
-And a fact with no data is sent with its value missing and marked "no data"; it is never dropped silently and never filled with a synthetic value
-And the list of facts each answer feature needs is the one in C3's specification
+- Given a question asked in the Agent E2 panel of the live demo
+- When PCM builds the facts
+- Then they have the same fields and shapes as in the synthetic demo (the screen, the KPI series, the parts at the KPI's worst point, the parts once an hour, the page's KPI series for the suggested questions), filled only with live values from the same reads as the page
+- And a fact with no data is sent with its value missing and marked "no data"; it is never dropped silently and never filled with a synthetic value
+- And the list of facts each answer feature needs is the one in C3's specification
 
 Test scenarios:
 - T-LIVE-028a (anywhere, automated by build/tests/test_live.py::test_agent_facts, to write). Data: the fake Suite API, with one part key stale; a stub Agent E2 that records the request. Steps: ask "Why the worst?" on Cluster Performance. Expected: the recorded facts have every field of the synthetic request; values equal the page's; the stale part is present and marked "no data".
@@ -408,11 +408,11 @@ Test scenarios:
 
 Source: answer to Q-39 ("yes no issue at all. It's just a lab"); answer to Q-33.
 
-Given a question asked in the live demo
-When PCM sends the facts to Agent E2
-Then they carry lab object names and values, which may reach the cloud model
-And they never carry the VCF Operations password, token or URL
-And they carry no story, case, calendar or action record
+- Given a question asked in the live demo
+- When PCM sends the facts to Agent E2
+- Then they carry lab object names and values, which may reach the cloud model
+- And they never carry the VCF Operations password, token or URL
+- And they carry no story, case, calendar or action record
 
 Test scenarios:
 - T-LIVE-029a (anywhere, automated by build/tests/test_live.py::test_facts_clean, to write). Data: the marker password and token of T-LIVE-007b, and a calendar entry in PCM's database. Steps: ask one question on each live page. Expected: no marker, no Suite API URL and no calendar entry in any recorded request.
@@ -423,10 +423,10 @@ Source: answer to Q-35 (the worst part is the one that lost the most points at t
 
 Milestone: M6.
 
-Given one lab cluster and the 24-hour window
-When the person asks Agent E2 "Why the worst?" on its Cluster Performance
-Then Agent E2's answer names, as the main cause, the part the reference identifies: the part that lost the most points at the KPI's worst point under the catalog's scoring
-And when no part lost points, the answer says no part pulled the KPI down
+- Given one lab cluster and the 24-hour window
+- When the person asks Agent E2 "Why the worst?" on its Cluster Performance
+- Then Agent E2's answer names, as the main cause, the part the reference identifies: the part that lost the most points at the KPI's worst point under the catalog's scoring
+- And when no part lost points, the answer says no part pulled the KPI down
 
 Test scenarios:
 - T-LIVE-030a (lab, automated by tools/lab/live_reference.py and build/tests/live.lab.test.mjs::test_agent_worst_part, to write). Data: Agent E2 on the lab VM with the gateway key. Steps: the reference script scores every part at the worst point; the page test asks the question and reads the answer. Expected: the answer names the reference's part, judged by the automatic grader of [WD-013, Agent E2 in release 1.0](../../DECISIONS.md) when the wording differs.
@@ -437,11 +437,11 @@ Test scenarios:
 
 Source: answer to Q-37 ("You forgot you have live access"); [WD-018, the lab build and lab tests from the laptop](../../DECISIONS.md); WD-011.
 
-Given the author's laptop on the VPN, the read-only credential file in `$HOME\.secrets\`, and the live demo deployed on the lab VM
-When one command runs (proposed `pwsh tools/lab/Test-Live.ps1` in PCM)
-Then it runs VCF vCommunity Adapter's validate.ps1 first and stops with its result if the pack is not collecting
-And it runs every lab scenario of this file, writes a screenshot of each live page checked, and prints pass, fail or not run per scenario
-And it changes nothing in VCF Operations, vCenter or the lab VM's data
+- Given the author's laptop on the VPN, the read-only credential file in `$HOME\.secrets\`, and the live demo deployed on the lab VM
+- When one command runs (proposed `pwsh tools/lab/Test-Live.ps1` in PCM)
+- Then it runs VCF vCommunity Adapter's validate.ps1 first and stops with its result if the pack is not collecting
+- And it runs every lab scenario of this file, writes a screenshot of each live page checked, and prints pass, fail or not run per scenario
+- And it changes nothing in VCF Operations, vCenter or the lab VM's data
 
 Test scenarios:
 - T-LIVE-031a (lab, automated by tools/lab/Test-Live.ps1, to write). Steps: run it. Expected: a result line per lab scenario; screenshots in one folder; exit code 1 if any scenario failed.
@@ -451,9 +451,9 @@ Test scenarios:
 
 Source: answer to Q-20 ("The synthetic remains as they are"); WD-003.
 
-Given the live demo is added
-When the existing synthetic tests run (executive, noc, l2, capacity, store, docs, and the page tests in [build/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/README.md))
-Then all pass, with no test or expected value changed
+- Given the live demo is added
+- When the existing synthetic tests run (executive, noc, l2, capacity, store, docs, and the page tests in [build/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/README.md))
+- Then all pass, with no test or expected value changed
 
 Test scenarios:
 - T-LIVE-032a (anywhere, automated by the existing build/tests suite). Steps: run every test listed in build/README.md on the branch that adds the live demo. Expected: all pass; `git diff` shows no change under spec/tests/ and build/tests/ other than new live files.

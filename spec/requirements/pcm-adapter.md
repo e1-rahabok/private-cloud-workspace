@@ -45,10 +45,10 @@ Milestone: M2. The pack's own names, such as "vCommunity MP" and "vCommunity_", 
 
 Source: Q-3 in [round 1](../interview-round-1.md) ("agree": one pull request per repository, archive files left as they are); Q-80 in [round 2](../interview-round-2.md) (the dated engineering reviews and the README's sentence about the vCommunity keep the old name).
 
-Given the files git tracks in the PCM-Adapter repository, outside the dated engineering reviews
-When they are searched
-Then none contains "VCF-vCommunity-Adapter" or "private-cloud-management", the old names of two repositories
-And the README badges, the link in [resources.properties](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/resources/resources.properties#L7), the release command in [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L135) and the image path in [dark-site.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/installation-guide/dark-site.md#L48) and [system-requirements.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/installation-guide/system-requirements.md#L19) name VCF vCommunity Adapter
+- Given the files git tracks in the PCM-Adapter repository, outside the dated engineering reviews
+- When they are searched
+- Then none contains "VCF-vCommunity-Adapter" or "private-cloud-management", the old names of two repositories
+- And the README badges, the link in [resources.properties](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/resources/resources.properties#L7), the release command in [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L135) and the image path in [dark-site.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/installation-guide/dark-site.md#L48) and [system-requirements.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/installation-guide/system-requirements.md#L19) name VCF vCommunity Adapter
 
 Test scenarios:
 - T-ADP-005a (anywhere, automated by `Management Pack/tests/test_old_name.py` (new), run in CI like [test_docs_links.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_docs_links.py)): run `git ls-files`, read each text file outside the archive, and search for the two old repository names; expect no match outside the engineering reviews.
@@ -59,12 +59,12 @@ Milestone: M2.
 
 Source: WD-030 (guessable names, one word per concept); WD-032 (the display name "VCF vCommunity Adapter" stays). An audit on 2026-11-27 found six names for the pack in the PCM-Adapter repository.
 
-Given the files git tracks in the PCM-Adapter repository, outside the dated engineering reviews
-When a file names the management pack
-Then it uses "VCF vCommunity Adapter", and "the adapter" only after that name in the same file
-And no file uses "vCommunity MP", "vCommunity Management Pack" or "the pack" for it
-And "PCM-Adapter" names only the repository
-And the copyright lines at the top of the code files stay as they are
+- Given the files git tracks in the PCM-Adapter repository, outside the dated engineering reviews
+- When a file names the management pack
+- Then it uses "VCF vCommunity Adapter", and "the adapter" only after that name in the same file
+- And no file uses "vCommunity MP", "vCommunity Management Pack" or "the pack" for it
+- And "PCM-Adapter" names only the repository
+- And the copyright lines at the top of the code files stay as they are
 
 Test scenarios:
 - T-ADP-025a (anywhere, automated by `Management Pack/tests/test_old_name.py` (new), the test of T-ADP-005a): read each tracked text file outside the engineering reviews; skip each code file's copyright line and the author line under it; expect no "vCommunity MP", "vCommunity Management Pack" or "the pack".
@@ -77,13 +77,13 @@ Milestone: M2.
 
 Source: Q-1 in [round 1](../interview-round-1.md) ("For key, adapter is correct. For name, Agent E2 is correct."); Q-89 in [round 2](../interview-round-2.md) (a key column in every catalog row); Q-88 in [round 3](../interview-round-3.md) (the run queue is per vCPU); [WD-016](../../DECISIONS.md); [WD-001](../../DECISIONS.md), Agent E2 as the source of domain knowledge.
 
-Given a KPI row in any of the six KPI modules under [Management Pack/app/metrics](https://github.com/e1-rahabok/PCM-Adapter/tree/main/Management%20Pack/app/metrics)
-When the adapter definition is built
-Then the row's key is its adapter name, as today
-And its label, the name VCF Operations shows, is the catalog's metric name without its unit
-And this holds for the 11 VM Performance and Guest OS Performance rows that have no catalog label today, with the Guest OS run queue row named "Peak run queue length per vCPU" after agent-e2 renames it
-And the KPI definitions check matches adapter rows to catalog rows by key, using the catalog's key column
-And the known name gaps in [the KPI definitions check](../../checks/kpi_definitions.py#L62) (`NAME_GAPS`) are empty
+- Given a KPI row in any of the six KPI modules under [Management Pack/app/metrics](https://github.com/e1-rahabok/PCM-Adapter/tree/main/Management%20Pack/app/metrics)
+- When the adapter definition is built
+- Then the row's key is its adapter name, as today
+- And its label, the name VCF Operations shows, is the catalog's metric name without its unit
+- And this holds for the 11 VM Performance and Guest OS Performance rows that have no catalog label today, with the Guest OS run queue row named "Peak run queue length per vCPU" after agent-e2 renames it
+- And the KPI definitions check matches adapter rows to catalog rows by key, using the catalog's key column
+- And the known name gaps in [the KPI definitions check](../../checks/kpi_definitions.py#L62) (`NAME_GAPS`) are empty
 
 Test scenarios:
 - T-ADP-006a (anywhere, automated by [checks/kpi_definitions.py](../../checks/kpi_definitions.py) through `uv run checks/run_all.py`): with `NAME_GAPS` emptied; expect 0 differences for all six KPIs.
@@ -95,11 +95,11 @@ Milestone: M2.
 
 Source: Q-29 in [round 1](../interview-round-1.md) (its recommendation: fix issue [#85](https://github.com/e1-rahabok/PCM-Adapter/issues/85) before PCM reads host, VM and vCenter keys; the answer does not change that).
 
-Given every object type the adapter publishes on: cluster, host, VM, datastore, vCenter, vSphere World, datacenter, and its own types
-When the adapter definition is compared with what the collectors publish
-Then each published key is declared, with the same groups and spelling
-And each declared key is published by some collector
-And the case in issue #85 is closed, including the cluster property declared as `Host Isolation` ([definition.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/definition.py#L336)) and published as `Response \ Host Isolation` ([ha_properties.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/properties/cluster/ha_properties.py#L12))
+- Given every object type the adapter publishes on: cluster, host, VM, datastore, vCenter, vSphere World, datacenter, and its own types
+- When the adapter definition is compared with what the collectors publish
+- Then each published key is declared, with the same groups and spelling
+- And each declared key is published by some collector
+- And the case in issue #85 is closed, including the cluster property declared as `Host Isolation` ([definition.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/definition.py#L336)) and published as `Response \ Host Isolation` ([ha_properties.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/properties/cluster/ha_properties.py#L12))
 
 Test scenarios:
 - T-ADP-007a (anywhere, automated by `Management Pack/tests/test_declared_keys.py` (new)): build the definition; run every collector against the fakes; expect the two key sets to be equal, for each object type.
@@ -111,12 +111,12 @@ Milestone: M2.
 
 Source: Q-19 in [round 1](../interview-round-1.md) ("20-second. If a metric does not have the word peak, it's likely a 5-minute average."); Q-81 in [round 2](../interview-round-2.md) (the catalog's interval is the rule); [WD-016](../../DECISIONS.md).
 
-Given a KPI row whose catalog limits are given for the `20s` interval, a 20-second peak
-When the adapter reads its input from VCF Operations
-Then it reads a 20-second peak stat, one whose key contains `20_sec_peak`
-And a row whose catalog limits are given for `5m` reads a 5-minute value
-And each `Metric` row in [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py#L67) records its interval, `20s` or `5m`
-And the KPI definitions check compares that interval with the catalog interval whose limits matched
+- Given a KPI row whose catalog limits are given for the `20s` interval, a 20-second peak
+- When the adapter reads its input from VCF Operations
+- Then it reads a 20-second peak stat, one whose key contains `20_sec_peak`
+- And a row whose catalog limits are given for `5m` reads a 5-minute value
+- And each `Metric` row in [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py#L67) records its interval, `20s` or `5m`
+- And the KPI definitions check compares that interval with the catalog interval whose limits matched
 
 Test scenarios:
 - T-ADP-008a (anywhere, automated by [checks/kpi_definitions.py](../../checks/kpi_definitions.py), extended): for each matched row, expect the adapter's interval to equal the catalog interval that holds the matching limits.
@@ -130,10 +130,10 @@ Milestone: M2.
 
 Source: Q-14 in [round 1](../interview-round-1.md) ("if we're changing formula, yes"); Q-87 in [round 2](../interview-round-2.md) (the formula belongs to contract C1, checked by worked examples); [WD-016](../../DECISIONS.md) ("All scoring logic comes from Agent E2").
 
-Given a worked example in the Agent E2 catalog: the sub-metric values of one KPI and the expected KPI
-When the values go through the adapter's scoring, `publish_kpi()` in [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py#L198), including the rounding to two decimals and the "higher is worse" flip
-Then the KPI equals the expected value
-And the worked examples on the adapter's KPI pages, for example [cluster-performance.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/cluster-performance.md#L72), are taken from the catalog's examples
+- Given a worked example in the Agent E2 catalog: the sub-metric values of one KPI and the expected KPI
+- When the values go through the adapter's scoring, `publish_kpi()` in [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py#L198), including the rounding to two decimals and the "higher is worse" flip
+- Then the KPI equals the expected value
+- And the worked examples on the adapter's KPI pages, for example [cluster-performance.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/cluster-performance.md#L72), are taken from the catalog's examples
 
 Test scenarios:
 - T-ADP-009a (anywhere, automated by [checks/kpi_definitions.py](../../checks/kpi_definitions.py), extended): load every worked example from the catalog; run it through the adapter module of its KPI; expect each KPI equal at two decimals. A catalog with no examples fails the check.
@@ -145,9 +145,9 @@ Milestone: M2.
 
 Source: Q-15 in [round 1](../interview-round-1.md) ("All their logic should come from Agent E2. PCM Adapter must implement the same."); [WD-016](../../DECISIONS.md).
 
-Given the catalog's score rows for Cluster Risk ([thresholds-risk.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-risk.yaml#L23)) and Cluster Consumption ([thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L40)), and a score row for Cluster Performance that agent-e2 adds first (the catalog has none today)
-When the adapter colours a KPI value, in `band()` of [periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/periodic_cluster_check.py#L97)
-Then its band limits (25, 50 and 75 on the health scale today) equal the catalog's score limits for that KPI
+- Given the catalog's score rows for Cluster Risk ([thresholds-risk.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-risk.yaml#L23)) and Cluster Consumption ([thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L40)), and a score row for Cluster Performance that agent-e2 adds first (the catalog has none today)
+- When the adapter colours a KPI value, in `band()` of [periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/periodic_cluster_check.py#L97)
+- Then its band limits (25, 50 and 75 on the health scale today) equal the catalog's score limits for that KPI
 
 Test scenarios:
 - T-ADP-010a (anywhere, automated by [checks/kpi_definitions.py](../../checks/kpi_definitions.py), extended to the `score` sections): expect the adapter's `RED_BELOW`, `ORANGE_BELOW` and `YELLOW_BELOW` to equal each catalog score row, after the "higher is worse" flip. A KPI with no score row in the catalog fails.
@@ -159,12 +159,12 @@ Milestone: M2.
 
 Source: Q-15 and Q-16 in [round 1](../interview-round-1.md) (Q-16: "agree", one Cluster Risk level for every cluster); [WD-016](../../DECISIONS.md).
 
-Given the catalog's Close for Business decisions in [thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L55)
-When the Periodic Cluster Check decides Close for Business
-Then Consumption closes above 80 (red) and above 60 (orange), Performance below 20 (red) and below 40 (orange), as in `CLOSE_RED_BELOW` and `CLOSE_ORANGE_BELOW` ([periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/periodic_cluster_check.py#L104))
-And Risk decides above 60 for every cluster
-And the catalog records that one Risk level applies to every cluster, in place of its two rows for production (60) and non-production (80) ([thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L100))
-And the default window, 24 hours with 5 % of the worst samples ignored, equals the catalog's "95th percentile of the last 24 hours" (5th percentile for Performance)
+- Given the catalog's Close for Business decisions in [thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L55)
+- When the Periodic Cluster Check decides Close for Business
+- Then Consumption closes above 80 (red) and above 60 (orange), Performance below 20 (red) and below 40 (orange), as in `CLOSE_RED_BELOW` and `CLOSE_ORANGE_BELOW` ([periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/periodic_cluster_check.py#L104))
+- And Risk decides above 60 for every cluster
+- And the catalog records that one Risk level applies to every cluster, in place of its two rows for production (60) and non-production (80) ([thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L100))
+- And the default window, 24 hours with 5 % of the worst samples ignored, equals the catalog's "95th percentile of the last 24 hours" (5th percentile for Performance)
 
 Test scenarios:
 - T-ADP-011a (anywhere, automated by [checks/kpi_definitions.py](../../checks/kpi_definitions.py), extended to the `decisions` section): expect every closure level, and the default period and percent, to equal the catalog.
@@ -177,10 +177,10 @@ Milestone: M2.
 
 Source: Q-17 in [round 1](../interview-round-1.md) ("agree"); [WD-016](../../DECISIONS.md).
 
-Given a cluster with HA admission control and a Capacity Buffer (Demand) in its policy
-When Cluster Consumption is calculated
-Then each row is measured against Total − HA − Buffer, as VCF Operations reports it in `cpu|demand|usableCapacity` and `mem|demand|usableCapacity` ([cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_consumption_metrics.py#L40))
-And issue [#14](https://github.com/e1-rahabok/PCM-Adapter/issues/14), which asks to leave the buffer out, is closed with a link to this answer
+- Given a cluster with HA admission control and a Capacity Buffer (Demand) in its policy
+- When Cluster Consumption is calculated
+- Then each row is measured against Total − HA − Buffer, as VCF Operations reports it in `cpu|demand|usableCapacity` and `mem|demand|usableCapacity` ([cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_consumption_metrics.py#L40))
+- And issue [#14](https://github.com/e1-rahabok/PCM-Adapter/issues/14), which asks to leave the buffer out, is closed with a link to this answer
 
 Test scenarios:
 - T-ADP-012a (anywhere, automated by the existing `test_consumption_is_against_usable_capacity` in [test_cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_cluster_consumption_metrics.py#L82)): expect it to pass.
@@ -210,13 +210,13 @@ Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
 
 Source: Q-28 in [round 1](../interview-round-1.md) ("we should fix them in the PCM Adapter"); [WD-016](../../DECISIONS.md) ("Data absent by design is made explicit by the adapter"); Q-27 and [WD-015](../../DECISIONS.md) (PCM says "No data" when a value is stale).
 
-Given an object with a KPI: a cluster, host or VM
-When a collection cycle publishes that KPI
-Then for each row the adapter publishes `vCommunity|<KPI>|State|<row key>` with one code from the table
-And for the KPI it publishes `vCommunity|<KPI>|State|<KPI key>`
-And the states carry the same timestamp as the values of that cycle
-And a row's value is published exactly when its state is 0 or 1
-And the code table is in the adapter's [Metrics reference](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md) and in the C2 contract
+- Given an object with a KPI: a cluster, host or VM
+- When a collection cycle publishes that KPI
+- Then for each row the adapter publishes `vCommunity|<KPI>|State|<row key>` with one code from the table
+- And for the KPI it publishes `vCommunity|<KPI>|State|<KPI key>`
+- And the states carry the same timestamp as the values of that cycle
+- And a row's value is published exactly when its state is 0 or 1
+- And the code table is in the adapter's [Metrics reference](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md) and in the C2 contract
 
 Test scenarios:
 - T-ADP-013a (anywhere, automated by `Management Pack/tests/test_data_states.py` (new)): for each of the six KPI modules, call its collect function with fakes for each state; expect one state per row and per KPI, a value exactly for states 0 and 1, and one timestamp for the cycle.
@@ -228,10 +228,10 @@ Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
 
 Source: Q-28 and Q-38 in [round 1](../interview-round-1.md) (Q-38: "the physical host does not have memory tiering"); [WD-018](../../DECISIONS.md), the lab-build decision.
 
-Given a cluster where no host has an NVMe memory tier (`mem:NVMe|memory_tier_size` is 0 or missing)
-When Cluster Risk and Cluster Consumption are published
-Then Worst ESXi Active Memory, Worst ESXi Memory Tiering Latency, Cluster-wide ESXi DRAM Consumed and Cluster Memory Tiering Consumption have state 2
-And the same holds for the tiering row of ESXi Performance on such a host
+- Given a cluster where no host has an NVMe memory tier (`mem:NVMe|memory_tier_size` is 0 or missing)
+- When Cluster Risk and Cluster Consumption are published
+- Then Worst ESXi Active Memory, Worst ESXi Memory Tiering Latency, Cluster-wide ESXi DRAM Consumed and Cluster Memory Tiering Consumption have state 2
+- And the same holds for the tiering row of ESXi Performance on such a host
 
 Test scenarios:
 - T-ADP-014a (anywhere, automated by `Management Pack/tests/test_data_states.py` (new)): hosts without the tier stat; expect state 2 on the four rows and no value.
@@ -243,10 +243,10 @@ Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
 
 Source: Q-28 in [round 1](../interview-round-1.md); the policy page [policy.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/configuration-guide/policy.md#L7) (Total Packets Received and Transmitted are off by default).
 
-Given hosts that report the dropped and error packet counters, but not `net|packetsRx_summation_sum` and `net|packetsTx_summation_sum` ([host_bad_network_packets.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/host/host_bad_network_packets.py#L20))
-When Cluster Performance and ESXi Performance are published
-Then the bad packets row has state 3
-And when the two counters are on, the row has state 0 or 1
+- Given hosts that report the dropped and error packet counters, but not `net|packetsRx_summation_sum` and `net|packetsTx_summation_sum` ([host_bad_network_packets.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/host/host_bad_network_packets.py#L20))
+- When Cluster Performance and ESXi Performance are published
+- Then the bad packets row has state 3
+- And when the two counters are on, the row has state 0 or 1
 
 Test scenarios:
 - T-ADP-015a (anywhere, automated by `Management Pack/tests/test_data_states.py` (new)): fake host stats with and without the two counters; expect state 3, then state 0 or 1.
@@ -258,10 +258,10 @@ Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
 
 Source: Q-28 in [round 1](../interview-round-1.md).
 
-Given a cluster or host with no powered-on VM
-When Cluster Performance or ESXi Performance is published
-Then the 8 VM contention rows have state 2
-And the KPI is scored from the rows that remain, with state 0, or has state 2 when none remains
+- Given a cluster or host with no powered-on VM
+- When Cluster Performance or ESXi Performance is published
+- Then the 8 VM contention rows have state 2
+- And the KPI is scored from the rows that remain, with state 0, or has state 2 when none remains
 
 Test scenarios:
 - T-ADP-016a (anywhere, automated by `Management Pack/tests/test_data_states.py` (new)): a cluster whose VMs are all powered off; expect state 2 on the 8 rows.
@@ -273,10 +273,10 @@ Milestone: after release 1.0 ([WD-033](../../DECISIONS.md)).
 
 Source: Q-28 in [round 1](../interview-round-1.md); the two cases in [cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_consumption_metrics.py#L336).
 
-Given a cluster whose hosts run, while HA and the buffer leave no usable capacity
-When Cluster Consumption is published
-Then the KPI is 100 with state 6, and the rows of that resource have state 6
-And given a cluster where no host runs (down, powered off, in maintenance mode or disconnected), the KPI and every row have state 2 and no value
+- Given a cluster whose hosts run, while HA and the buffer leave no usable capacity
+- When Cluster Consumption is published
+- Then the KPI is 100 with state 6, and the rows of that resource have state 6
+- And given a cluster where no host runs (down, powered off, in maintenance mode or disconnected), the KPI and every row have state 2 and no value
 
 Test scenarios:
 - T-ADP-017a (anywhere, automated by `test_usable_zero_is_full_but_missing_usable_is_no_data` in [test_cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_cluster_consumption_metrics.py#L146), extended with the states): expect state 6, then state 2.
@@ -288,11 +288,11 @@ Milestone: M3.
 
 Source: Q-28 in [round 1](../interview-round-1.md) (its evidence names issue [#60](https://github.com/e1-rahabok/PCM-Adapter/issues/60): values from partial reads look normal); WD-033 (in release 1.0, without the state code).
 
-Given a stats request that fails for one batch of objects ([ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L155): "resources have no stats this cycle")
-When a row aggregates over those objects, for example the worst VM of a cluster
-Then the row and its KPI are not published that cycle
-And the log names the KPI and the number of objects not read
-And issue #60 is closed
+- Given a stats request that fails for one batch of objects ([ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L155): "resources have no stats this cycle")
+- When a row aggregates over those objects, for example the worst VM of a cluster
+- Then the row and its KPI are not published that cycle
+- And the log names the KPI and the number of objects not read
+- And issue #60 is closed
 
 Test scenarios:
 - T-ADP-018a (anywhere, automated by `Management Pack/tests/test_data_states.py` (new)): a fake Suite API that answers HTTP 500 to the second batch, with a small batch size; expect no value on every row and KPI built from that read, and one log line per KPI.
@@ -309,11 +309,11 @@ Two other endpoints may give the declared keys with their names: `GET /suite-api
 
 Source: Q-29 in [round 1](../interview-round-1.md) ("You will need to get from a live environment"); Q-1 (key from the adapter, name from the catalog); WD-033 (no state keys in release 1.0).
 
-Given one lab cluster, one host and one VM, after one collection cycle of the new pack
-When `GET /suite-api/api/resources/stats/latest?resourceId=<id>` is read for each, keeping the keys that start with `vCommunity|`
-Then every key found is in the expected set for its object type
-And the expected set for a cluster is the one listed in [Cluster keys](#cluster-keys) below
-And every expected key that no object of the type carries is listed, with the reason its row has no data
+- Given one lab cluster, one host and one VM, after one collection cycle of the new pack
+- When `GET /suite-api/api/resources/stats/latest?resourceId=<id>` is read for each, keeping the keys that start with `vCommunity|`
+- Then every key found is in the expected set for its object type
+- And the expected set for a cluster is the one listed in [Cluster keys](#cluster-keys) below
+- And every expected key that no object of the type carries is listed, with the reason its row has no data
 
 Test scenarios:
 - T-ADP-019a (anywhere, automated by `Management Pack/tests/test_declared_keys.py` (new)): from the module tables (`GROUP`, `KPI_KEY`, `PUBLISHED_METRICS`), build the expected key set per object type; expect it to equal the keys the collectors publish with fakes.
@@ -344,11 +344,11 @@ Linking a cluster to its instance takes three more steps:
 
 Source: Q-31 in [round 1](../interview-round-1.md) ("PCM gets from the PCM Adapter"); [WD-015](../../DECISIONS.md) (PCM shows what the VCF vCommunity Adapter publishes).
 
-Given a cluster collected by a VCF vCommunity Adapter instance
-When a collection cycle runs
-Then the cluster has the properties `vCommunity|Periodic Cluster Check|Period (hours)`, `vCommunity|Periodic Cluster Check|Time (UTC)` and `vCommunity|Periodic Cluster Check|Worst Percent`, with the values the check uses after defaults
-And each time the check publishes its four values, it also publishes the metric `vCommunity|Periodic Cluster Check|Window End`, the end of the window in UTC as epoch milliseconds, with the same timestamp
-And PCM can read both with the cluster, through `GET /suite-api/api/resources/<id>/properties` and `stats/latest`, with no read of the adapter instances
+- Given a cluster collected by a VCF vCommunity Adapter instance
+- When a collection cycle runs
+- Then the cluster has the properties `vCommunity|Periodic Cluster Check|Period (hours)`, `vCommunity|Periodic Cluster Check|Time (UTC)` and `vCommunity|Periodic Cluster Check|Worst Percent`, with the values the check uses after defaults
+- And each time the check publishes its four values, it also publishes the metric `vCommunity|Periodic Cluster Check|Window End`, the end of the window in UTC as epoch milliseconds, with the same timestamp
+- And PCM can read both with the cluster, through `GET /suite-api/api/resources/<id>/properties` and `stats/latest`, with no read of the adapter instances
 
 Test scenarios:
 - T-ADP-020a (anywhere, automated by [test_periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_periodic_cluster_check.py), extended from `test_publish`): with set and empty settings; expect the three properties with the values in use, and Window End equal to the window the values cover.
@@ -360,11 +360,11 @@ Test scenarios:
 
 Source: Q-40 in [round 1](../interview-round-1.md) ("agree": two DPAPI files in `$HOME\.secrets\`); [WD-011](../../DECISIONS.md), the decision on lab credentials.
 
-Given the author's laptop, with the read-only VCF Operations login saved as a DPAPI file in `$HOME\.secrets\` (`Export-Clixml`, the format in [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L24): `Url` and `Credential`)
-When validate.ps1 or screenshot.ps1 runs with no `-SecretFile`
-Then it reads that file
-And no script reads `.secrets` inside the repository folder, as all four do today ([validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1#L32))
-And [tools/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/README.md#L51), [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L24) and [CLAUDE.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/CLAUDE.md#L53) describe the two files
+- Given the author's laptop, with the read-only VCF Operations login saved as a DPAPI file in `$HOME\.secrets\` (`Export-Clixml`, the format in [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L24): `Url` and `Credential`)
+- When validate.ps1 or screenshot.ps1 runs with no `-SecretFile`
+- Then it reads that file
+- And no script reads `.secrets` inside the repository folder, as all four do today ([validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1#L32))
+- And [tools/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/README.md#L51), [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L24) and [CLAUDE.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/CLAUDE.md#L53) describe the two files
 
 Test scenarios:
 - T-ADP-021a (anywhere, automated by `Management Pack/tests/test_tool_secrets.py` (new)): read the `param` blocks of the four scripts; expect each default `-SecretFile` under `$HOME\.secrets\`, and the read-only file for validate.ps1 and screenshot.ps1.
@@ -374,10 +374,10 @@ Test scenarios:
 
 Source: Q-40 in [round 1](../interview-round-1.md); [WD-011](../../DECISIONS.md).
 
-Given the admin login saved as a second DPAPI file in `$HOME\.secrets\`
-When install.ps1 or restart.ps1 runs with no `-SecretFile`
-Then it reads the admin file
-And when it is given the read-only file, it stops with a message naming the admin file, before it uploads or stops anything
+- Given the admin login saved as a second DPAPI file in `$HOME\.secrets\`
+- When install.ps1 or restart.ps1 runs with no `-SecretFile`
+- Then it reads the admin file
+- And when it is given the read-only file, it stops with a message naming the admin file, before it uploads or stops anything
 
 Test scenarios:
 - T-ADP-022a (anywhere, automated by `Management Pack/tests/test_tool_secrets.py` (new)): expect the admin file as the default of install.ps1 and restart.ps1.
@@ -390,11 +390,11 @@ Test scenarios:
 
 Source: Q-38 in [round 1](../interview-round-1.md) (lab facts to confirm before M6); issue [#2](https://github.com/e1-rahabok/PCM-Adapter/issues/2) ("Verify on a live system"); [WD-018](../../DECISIONS.md).
 
-Given the lab VCF Operations
-When a read-only script reads the lab hosts and VMs
-Then the values of `runtime|powerState` and `runtime|maintenanceState` that the adapter compares against are recorded for a powered-on host and a host in maintenance mode ([cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_consumption_metrics.py#L73))
-And the VCF Operations version is recorded in the workspace [SYSTEM.md](../../SYSTEM.md)
-And issue #2 is brought up to date: it still names the old Daily Cluster Check
+- Given the lab VCF Operations
+- When a read-only script reads the lab hosts and VMs
+- Then the values of `runtime|powerState` and `runtime|maintenanceState` that the adapter compares against are recorded for a powered-on host and a host in maintenance mode ([cluster_consumption_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_consumption_metrics.py#L73))
+- And the VCF Operations version is recorded in the workspace [SYSTEM.md](../../SYSTEM.md)
+- And issue #2 is brought up to date: it still names the old Daily Cluster Check
 
 Test scenarios:
 - T-ADP-023a (lab, automated by a new read-only option of validate.ps1, with one manual step): the author puts one host into maintenance mode; the script reads both properties on every host; expect values that the adapter's comparison, with case and spaces ignored, classifies as the code expects.
@@ -405,11 +405,11 @@ Source: Q-38 in [round 1](../interview-round-1.md) ("Create the automatic build 
 
 Depends on lab-build: a cluster of nested ESXi hosts with an NVMe memory tier, monitored by the lab VCF Operations.
 
-Given that cluster, after one collection cycle of the new pack
-When the tiering rows are read
-Then Worst ESXi Active Memory, Worst ESXi Memory Tiering Latency, Cluster-wide ESXi DRAM Consumed and Cluster Memory Tiering Consumption have state 0 or 1 with a value
-And the inputs marked "not checked on a live host yet" have values: `mem|active_average` ([cluster_risk_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_risk_metrics.py#L212)) and `mem:NVMe|bandwidth.read_latest` ([memory_wait.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/memory_wait.py#L26))
-And Memory Wait on a VM that reads from the tier is higher than its Memory Contention
+- Given that cluster, after one collection cycle of the new pack
+- When the tiering rows are read
+- Then Worst ESXi Active Memory, Worst ESXi Memory Tiering Latency, Cluster-wide ESXi DRAM Consumed and Cluster Memory Tiering Consumption have state 0 or 1 with a value
+- And the inputs marked "not checked on a live host yet" have values: `mem|active_average` ([cluster_risk_metrics.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/cluster_risk_metrics.py#L212)) and `mem:NVMe|bandwidth.read_latest` ([memory_wait.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/vm/memory_wait.py#L26))
+- And Memory Wait on a VM that reads from the tier is higher than its Memory Contention
 
 Test scenarios:
 - T-ADP-024a (lab, automated by the new validate.ps1 state check, pointed at the lab-build cluster): expect the four rows with state 0 or 1 and a value, and the two inputs present in `stats/latest`.
