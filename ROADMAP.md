@@ -65,7 +65,8 @@ Claude's own rules and the mechanism that holds Claude to them, before any other
 - [x] One rule for the order of work, its prompt hook and its CI check ([#35](https://github.com/e1-rahabok/private-cloud-workspace/pull/35)).
 - [x] CLAUDE.md pruned: one rule per bullet, no rule twice, the method apart from this project's rules ([#36](https://github.com/e1-rahabok/private-cloud-workspace/pull/36)).
 - [x] CLAUDE.md holds only the method, for any project; this project's rules, tools and paths are in CLAUDE-PROJECT.md, which CLAUDE.md loads ([#37](https://github.com/e1-rahabok/private-cloud-workspace/pull/37)).
-- [ ] The same CLAUDE.md in each child repository, each with its own CLAUDE-PROJECT.md.
+- [ ] The same CLAUDE.md in each child repository, each with its own CLAUDE-PROJECT.md. Done in private-cloud-manager ([#75](https://github.com/e1-rahabok/private-cloud-manager/pull/75)) and isvara ([#2](https://github.com/e1-rahabok/isvara/pull/2)). agent-e2 and PCM-Adapter wait for this session's push access.
+- [ ] A check that every copy of CLAUDE.md equals the workspace's.
 - [ ] The author approves M-1.
 
 ### M0 Workspace, checks and tutorial: paused
