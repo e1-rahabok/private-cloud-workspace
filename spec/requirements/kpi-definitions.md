@@ -109,7 +109,7 @@ Test scenarios:
 
 ### R-KPI-008 isvara.io holds no KPI numbers of its own
 
-Source: answer to Q-18 ("isvara.io should never have its own knowledge").
+Source: answer to Q-18 ("isvara.io is just a website. It is not where knowledge is stored.").
 
 - Given any number isvara.io uses about performance or capacity (a limit, a band, an overcommit ratio, a class of service)
 - When isvara.io is built
