@@ -42,7 +42,8 @@ COMMON_MACHINE = ["CLAUDE.md", "*/CLAUDE.md", "CLAUDE-PROJECT.md", "spec/require
 GROUPS = {
     WORKSPACE: (["tutorial/templates/*"], ["spec/interview-round-*.md"]),
     "agent-e2": (["knowledge/*", "benchmark/questions/*", "benchmark/_templates/*", "project/templates/*"],
-                 ["project/author-questions-resolved.md", "benchmark/results/*", "project/sources/*"]),
+                 ["project/author-questions-resolved.md", "benchmark/results/*", "project/sources/*",
+                  "project/*-20[0-9][0-9]-[0-9][0-9]-[0-9][0-9].md"]),  # dated records
     "PCM-Adapter": (["Management Pack/content/*"], ["docs/development-guide/engineering-review/*"]),
     "private-cloud-manager": ([], ["author-papers/*"]),
     "isvara": ([], ["content/*", "node_modules/*"]),
@@ -79,7 +80,7 @@ def markdown_files(root: Path) -> list[str]:
 
 
 def check_headings(rel: str, lines: list[str], problems: list[str]) -> None:
-    questions_file = rel == "OPEN-QUESTIONS.md"
+    questions_file = rel.endswith("OPEN-QUESTIONS.md") or rel == "project/author-questions.md"
     for i, line in enumerate(lines, 1):
         m = HEADING.match(line)
         if not m:
