@@ -40,9 +40,9 @@ Every short name and ID used in this workspace, with what it means and where it 
 | PCM-Adapter | The repository of the VCF vCommunity Adapter |
 | VCF vCommunity Adapter | The management pack in VCF Operations that computes the KPIs of PCM's scenario 7 ([SYSTEM.md](../SYSTEM.md)) |
 | Review page | One page per milestone, [spec/review](review), listing its requirements for the author's approval |
-| Slice | A thin piece of a milestone that runs end to end for one narrow case; M8's first slice is one lab cluster and one KPI |
+| Slice | A thin piece of a milestone, end to end, for one narrow case |
 | Learning path | One of isvara.io's three ways into the knowledge: Architecture, IT management, Product ([knowledge model](knowledge-model.md)) |
-| Lens | One of four ways a topic is known: how it works, how it is measured, how it is managed, how it fails ([knowledge model](knowledge-model.md)) |
+| Lens | One of four ways to know a topic ([knowledge model](knowledge-model.md)) |
 | Demo scenario | One entry of PCM's demo control; 7 is live, 1 to 6 synthetic |
 | PCM scenario story | A condition planted in PCM's synthetic data, with the result each workspace must show (PCM D-132) |
 | Catalog | Agent E2's [knowledge/catalog](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge/catalog) YAML files, master of every KPI definition |

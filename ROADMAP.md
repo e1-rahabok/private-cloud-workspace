@@ -79,7 +79,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - Files in this repository: [`ROADMAP.md`](ROADMAP.md), [`DECISIONS.md`](DECISIONS.md), [`OPEN-QUESTIONS.md`](OPEN-QUESTIONS.md), [`README.md`](README.md), [`SYSTEM.md`](SYSTEM.md), [`CONTRACTS.md`](CONTRACTS.md), [`spec/`](spec), [`images/`](images), [`tools/milestone_gate.py`](tools/milestone_gate.py), [`tools/milestone_review.py`](tools/milestone_review.py), [`tools/spec_check.py`](tools/spec_check.py), [`tools/diagrams.py`](tools/diagrams.py), [`tools/docs.py`](tools/docs.py).
 
 - [x] The milestones revamped: M1 to M8, one outcome each, no file or requirement in two milestones, both checked by code (WD-042) ([#40](https://github.com/e1-rahabok/private-cloud-workspace/pull/40), [agent-e2#476](https://github.com/e1-rahabok/agent-e2/pull/476)).
-- [ ] The foundations reviewed against the decisions: SYSTEM.md, CONTRACTS.md, README.md, the glossary and the tutorial's method chapters.
+- [x] The foundations reviewed against the decisions: SYSTEM.md, CONTRACTS.md, README.md, the glossary and the tutorial's method chapters ([#41](https://github.com/e1-rahabok/private-cloud-workspace/pull/41)).
 - [ ] Every requirement in the repository that implements it (WD-036); the workspace keeps the contracts and their checks, and its tools read the requirements of every repository.
 - [ ] Every contradiction between two requirement files fixed, each listed in its pull request.
 - [ ] Agent E2's requirements updated for the Day 2 scope (WD-026) and the round 2 decisions; the parts that need live lab facts moved to M8.
