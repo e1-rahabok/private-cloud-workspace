@@ -8,7 +8,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 | C1 | KPI definitions              | agent-e2; VCF vCommunity Adapter, PCM, isvara | [`checks/kpi_definitions.py`](checks/kpi_definitions.py), running |
 | C2 | KPI metric keys              | VCF vCommunity Adapter; PCM (live demo)       | Planned in ROADMAP M8                                             |
 | C3 | Agent E2 API                 | agent-e2; PCM, isvara (planned)    | [`checks/agent_e2_api.py`](checks/agent_e2_api.py), running       |
-| C4 | Knowledge content for isvara | agent-e2; isvara                   | Planned in ROADMAP M4                                             |
+| C4 | Knowledge content for isvara | agent-e2; isvara                   | `checks/knowledge_export.py`, planned in ROADMAP M4          |
 | C5 | Model gateway                | Vercel AI Gateway; agent-e2        | None: a third-party API                                           |
 
 ## C1 KPI definitions
@@ -37,7 +37,8 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 ## C4 Knowledge content for isvara
 
 - Agent E2's knowledge base becomes the source of isvara.io's reading pages, replacing the Word books (DECISIONS, WD-005). Its structure is built for a model to read, so the shape of the export is design work (ROADMAP M1), built in ROADMAP M4.
-- **Status:** not built.
+- **Shape:** one schema in this workspace, `checks/knowledge_export_schema.json`, that agent-e2's export and isvara.io's build both check against ([knowledge-export.md](spec/requirements/knowledge-export.md)).
+- **Status:** not built; planned in ROADMAP M4.
 
 ## C5 Model gateway
 
