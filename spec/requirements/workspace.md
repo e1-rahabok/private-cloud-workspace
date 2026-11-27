@@ -4,7 +4,7 @@ What keeps the repositories one integrated set: the contract checks, the specifi
 
 ### R-WS-001 Every contract has an automated check
 
-Source: answer to Q-I1 ("I expect you to check all the contracts"); W-010.
+Source: answer to Q-I1 ("I expect you to check all the contracts"); WD-010.
 
 Given a contract listed in [CONTRACTS.md](../../CONTRACTS.md)
 When the checks run
@@ -17,7 +17,7 @@ Test scenarios:
 
 ### R-WS-002 The checks run where a break would happen
 
-Source: W-010; answer to Q-I1.
+Source: WD-010; answer to Q-I1.
 
 Given a pull request in this repository or in any child repository
 When it is opened or updated
@@ -42,7 +42,7 @@ Test scenarios:
 
 ### R-WS-004 Documents work for people and for machines
 
-Source: the author's message of 2026-11-25 on links and diagrams; W-020.
+Source: the author's message of 2026-11-25 on links and diagrams; WD-020.
 
 Given any Markdown file in this repository
 When the documentation check runs
@@ -57,10 +57,10 @@ Test scenarios:
 
 ### R-WS-005 No bare short names
 
-Source: W-020 (from Q-46).
+Source: WD-020 (from Q-46).
 
 Given a document in this repository
-When it uses an ID such as C3, W-012 or Q-27
+When it uses an ID such as C3, WD-012 or Q-27
 Then on its first use in that document it gives the meaning, or links to the [glossary](../glossary.md)
 
 Test scenarios:
@@ -68,7 +68,7 @@ Test scenarios:
 
 ### R-WS-006 One set of writing rules, checked in every repository
 
-Source: W-023 (writing rules for people and for machines), as revised for M2.
+Source: WD-023 (writing rules for people and for machines), as revised for M2.
 
 Given the general writing rules (plain sentences, the flagged phrases, noun-phrase headings, short table cells) and the list of flagged phrases
 When any repository's documents for people are checked

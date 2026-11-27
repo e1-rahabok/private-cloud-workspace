@@ -36,7 +36,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 
 ## C4 Knowledge content for isvara
 
-- Agent E2's knowledge base becomes the source of isvara.io's reading pages, replacing the Word books (DECISIONS, W-005). Its structure is built for a model to read, so the shape of the export is design work (ROADMAP M8).
+- Agent E2's knowledge base becomes the source of isvara.io's reading pages, replacing the Word books (DECISIONS, WD-005). Its structure is built for a model to read, so the shape of the export is design work (ROADMAP M8).
 - **Status:** not built.
 
 ## C5 Model gateway

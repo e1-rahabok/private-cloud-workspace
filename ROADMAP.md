@@ -12,7 +12,7 @@ VMware administrators have the author's knowledge inside their own private cloud
 - **PCM-Adapter:** a new identity, explicit data states, and every KPI definition taken from Agent E2 ([requirements](spec/requirements/pcm-adapter.md), [KPI definitions](spec/requirements/kpi-definitions.md)).
 - **PCM:** the synthetic demo unchanged, plus a live demo of the L2 workspace for performance and capacity on the lab ([requirements](spec/requirements/pcm-live.md)).
 - **isvara.io:** rebuilt on the three learning paths, with Ask, contributions and practice ([plan](spec/design/isvara-revamp.md)).
-- **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge ([DECISIONS](DECISIONS.md), W-026).
+- **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge ([DECISIONS](DECISIONS.md), WD-026).
 
 ![Release 1.0 milestones and what each depends on: M0 done; M1 in progress; M2 leads to M6, M3, M5 and M8; M6 to M7; M3 to M4 and M7; M5 to M7 and M9; M8 to M9 and M10](images/roadmap.svg)
 
@@ -68,7 +68,7 @@ No code is written in M1.
 - [x] The interview: round 1 answered by the author; round 2 decided or answered ([round 1](spec/interview-round-1.md), [round 2](spec/interview-round-2.md)).
 - [x] [Intent and principles](spec/intent.md), the [knowledge model](spec/knowledge-model.md), and the [isvara.io plan](spec/design/isvara-revamp.md).
 - [x] 105 requirements with 176 test scenarios, each with its source.
-- [ ] Requirements updated for the decisions of 2026-11-26 (W-024 to W-027) and the round 2 decisions, and isvara.io's requirements written from its plan.
+- [ ] Requirements updated for the decisions of 2026-11-26 (WD-024 to WD-027) and the round 2 decisions, and isvara.io's requirements written from its plan.
 - [x] The author answered the last questions ([round 3](spec/interview-round-3.md)); the lab facts (Q-120, Q-122) come when M4 starts.
 - [ ] The author approves the requirements of M2, the first build milestone (listed under M2 below).
 
@@ -93,7 +93,7 @@ Requirements, ready for the author's approval:
 
 - Requirements: R-E2-001 to R-E2-019.
 - The knowledge model's proposals in agent-e2: a configuration pillar tag, workload footprints, investigations over several steps, "At large scale" notes ([knowledge model](spec/knowledge-model.md), section Proposals).
-- Agent E2 declines Day 0 and Day 1 questions with a pointer to Broadcom's documentation (W-026).
+- Agent E2 declines Day 0 and Day 1 questions with a pointer to Broadcom's documentation (WD-026).
 
 ### M6 Live demo: one cluster, one KPI
 
@@ -109,7 +109,7 @@ Requirements, ready for the author's approval:
 
 ### M9 isvara.io Ask and contributions
 
-- Agent E2 on isvara.io in place of AskIO, contributions, and the protection layers (W-024). R-E2-015, R-E2-016.
+- Agent E2 on isvara.io in place of AskIO, contributions, and the protection layers (WD-024). R-E2-015, R-E2-016.
 
 ### M10 isvara.io Practice
 
@@ -126,7 +126,7 @@ Requirements, ready for the author's approval:
 ## Waiting for the author
 
 - The lab facts for M4 ([OPEN-QUESTIONS.md](OPEN-QUESTIONS.md), Q-120 and Q-122): Claude asks when M4 starts.
-- The licence, before the first customer copies the product (W-029).
+- The licence, before the first customer copies the product (WD-029).
 - Approvals at the time of the work: removing the old pack from the lab (Q-79), turning on the packet counters (Q-85), the exam's ten questions (Q-113), grading 20 answers once (Q-92).
 - Review of each pull request marked as a major change.
 
@@ -137,4 +137,4 @@ Requirements, ready for the author's approval:
 - Depth beyond vSphere, grown through contributions: vSAN, NSX, Kubernetes, Guest OS, physical infrastructure.
 - Executable flow steps and the capacity consultation in Agent E2.
 - An email newsletter for isvara.io's weekly summary.
-- Keeping isvara.io within US$50 a month (W-014).
+- Keeping isvara.io within US$50 a month (WD-014).

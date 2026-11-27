@@ -71,7 +71,7 @@ PCM keeps both, chosen from the demo control at the top of every page:
 | Host | What | Access |
 |---|---|---|
 | 10.114.1.29 (moltbot29) | PCM and Agent E2 | VPN from the author's laptop. Secrets in `/etc/pcm/pcm.env` on the VM |
-| 10.115.1.81 | VCF Operations 9 with PCM-Adapter installed | VPN. Laptop credential: `$HOME\.secrets\vcf-ops-10.115.1.81.xml` (DECISIONS, W-011) |
+| 10.115.1.81 | VCF Operations 9 with PCM-Adapter installed | VPN. Laptop credential: `$HOME\.secrets\vcf-ops-10.115.1.81.xml` (DECISIONS, WD-011) |
 | 10.115.1.87 | vCenter | VPN. Laptop credential: `$HOME\.secrets\vcenter-10.115.1.87.xml` |
 
 ## Build and test per repository

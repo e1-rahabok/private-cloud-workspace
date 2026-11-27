@@ -31,8 +31,8 @@ Stop the line of work, add a question with a recommendation and an empty `Answer
 
 ## Scope
 
-- Release 1.0 only (W-002): a lab demo on a cloud model. Build nothing toward the on-premises deployment with a local model; keep the text that describes it.
-- Change domain knowledge (a KPI, threshold or explanation) in agent-e2 first (W-001).
+- Release 1.0 only (WD-002): a lab demo on a cloud model. Build nothing toward the on-premises deployment with a local model; keep the text that describes it.
+- Change domain knowledge (a KPI, threshold or explanation) in agent-e2 first (WD-001).
 
 ## Tests and checks
 
@@ -44,27 +44,29 @@ Stop the line of work, add a question with a recommendation and an empty `Answer
 
 ## Writing
 
-Two kinds of document (W-023):
+Two kinds of document (WD-023):
 
 - For people: README.md, SYSTEM.md, CONTRACTS.md, DECISIONS.md, ROADMAP.md, OPEN-QUESTIONS.md, spec/intent.md, spec/glossary.md, spec/design, tutorial, commit messages, pull request text.
   - Follow agent-e2's [writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md) and its `avoid_ai_speak` list: plain sentences; no flagged phrase, slogan or "X, not Y"; headings as noun phrases of at most 9 words; table cells of about 12 words, else bullets.
   - Reread each changed line with the lines around it for slogans and "X, not Y"; no script finds them.
 - For machines: the CLAUDE.md files, spec/requirements, tutorial/templates.
   - One rule or fact per bullet. Trigger before action. Exact paths, names and IDs. No history or attribution.
-- In both: every file reference a link; every diagram an SVG drawn by [tools/diagrams.py](tools/diagrams.py) with its text generated underneath; every ID with its meaning or a glossary link on first use (W-020).
+- Before adding an ID prefix, term, heading or numbering: make it guessable from itself, with one word per concept and no overlap with an existing one.
+- When a name or number stops being true: rename it in every file. Never add text that explains the exception.
+- In both: every file reference a link; every diagram an SVG drawn by [tools/diagrams.py](tools/diagrams.py) with its text generated underneath; every ID with its meaning or a glossary link on first use (WD-020).
 - Before each commit, run and pass: `python tools/docs.py`, `python tools/style.py`, `python tools/spec_check.py`.
 
 ## Decisions and questions
 
 - Record a decision that binds several repositories in [DECISIONS.md](DECISIONS.md), one block per decision. Record a decision inside one repository in that repository's log.
-- Write a question about one repository in that repository; a question that binds several in OPEN-QUESTIONS.md (W-019).
+- Write a question about one repository in that repository; a question that binds several in OPEN-QUESTIONS.md (WD-019).
 - Mark finished ROADMAP lines with their pull request.
 
 ## Git
 
 - One branch and one pull request per change per repository. Across repositories: the same branch name in each, and each pull request links the others.
 - Merge in ownership order: agent-e2, PCM-Adapter, private-cloud-manager, isvara.
-- Merge your own pull request once its checks have reported and passed (W-009). Never merge while checks are pending or failing.
+- Merge your own pull request once its checks have reported and passed (WD-009). Never merge while checks are pending or failing.
 - Put a warning at the top of the pull request and in the report when the change is major: a contract's shape changes; a decision is added, changed or reversed; files are deleted or archived; or more than one child repository changes.
 - Wait for the author before anything that deletes data or changes the lab.
 - Never push to a default branch. Delete the branch after the merge.

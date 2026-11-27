@@ -1,10 +1,10 @@
 # Knowledge model
 
-How the knowledge is organised for people and checked for completeness. It is shared by Agent E2 (what it holds), isvara.io (how people find and learn it) and the knowledge factory (where help is needed). Agent E2 owns the knowledge itself ([DECISIONS](../DECISIONS.md), W-001); this file is the model the three use. IDs are explained in the [glossary](glossary.md).
+How the knowledge is organised for people and checked for completeness. It is shared by Agent E2 (what it holds), isvara.io (how people find and learn it) and the knowledge factory (where help is needed). Agent E2 owns the knowledge itself ([DECISIONS](../DECISIONS.md), WD-001); this file is the model the three use. IDs are explained in the [glossary](glossary.md).
 
 ## Scope: Day 2
 
-The knowledge covers running an existing private cloud: monitoring, troubleshooting and planning. Design, installation, building, configuration and upgrades are out, because they change with each release (W-026). Settings stay in only where they affect performance, capacity or availability, as Agent E2's `what-to-set` files already do.
+The knowledge covers running an existing private cloud: monitoring, troubleshooting and planning. Design, installation, building, configuration and upgrades are out, because they change with each release (WD-026). Settings stay in only where they affect performance, capacity or availability, as Agent E2's `what-to-set` files already do.
 
 ## Three learning paths
 
@@ -76,7 +76,7 @@ On isvara.io the reader says once whether their estate is small or large, and th
 | vSAN, NSX, Kubernetes (VKS), physical servers, switches and arrays | Little or none |
 | Workloads: backup, antivirus, databases, VDI | None, beyond mentions |
 
-Breadth grows through contributions at isvara.io (W-024): the coverage table, by area and lens, shows the vCommunity exactly where help is needed.
+Breadth grows through contributions at isvara.io (WD-024): the coverage table, by area and lens, shows the vCommunity exactly where help is needed.
 
 ## Uses
 

@@ -84,7 +84,7 @@ PCM answers take a median of 22 to 29 seconds ([project/plan.md](https://github.
 
 ### Q-9 What may one answer cost, and how is spending capped?
 
-One gateway key and one team budget serve the benchmark, PCM and isvara.io; a benchmark round once stopped on the US$100 budget ([project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md#L183)). W-004 says Agent E2 is cheaper than AskIO, but nothing measures it.
+One gateway key and one team budget serve the benchmark, PCM and isvara.io; a benchmark round once stopped on the US$100 budget ([project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md#L183)). WD-004 says Agent E2 is cheaper than AskIO, but nothing measures it.
 
 - **Recommendation:** three keys (benchmark, PCM lab, isvara.io), each with a budget and an alert at 80%. AskIO's cost per answer, measured from its question log, is the baseline Agent E2 must not exceed. A per-IP rate limit on isvara.io.
 
@@ -223,7 +223,7 @@ Executive, the NOC, Capacity, Docs, and L2 Troubleshoot and Improve need data th
 
 ### Q-23 Does PCM only read the KPIs, never recompute them? (blocks M6)
 
-PCM's core design says PCM computes the models from raw metrics ([pcm-core.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L48)); D-096 and W-001 say the adapter computes them. The adapter publishes raw values and scores, not per-part scores or "excluded" flags.
+PCM's core design says PCM computes the models from raw metrics ([pcm-core.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L48)); D-096 and WD-001 say the adapter computes them. The adapter publishes raw values and scores, not per-part scores or "excluded" flags.
 
 - **Recommendation:** PCM reads every KPI, part and check value. It computes only statistics across objects or time (worst, percentile), and each part's colour from the catalog limits with the adapter's rounding. Fix pcm-core sections 3.2, 3.3 and 3.13.
 
@@ -363,7 +363,7 @@ D-076 says the demo sends only synthetic ACME data ([decisions.md](https://githu
 
 ### Q-40 One standard for lab credentials
 
-DECISIONS W-011 is wrong about today. PCM-Adapter's tools read `.secrets/vcf-ops.xml` inside the repository folder, with the admin login ([validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1#L32)). PCM's lab script reads Windows Credential Manager ([Test-Lab.ps1](https://github.com/e1-rahabok/private-cloud-manager/blob/main/tools/lab/Test-Lab.ps1#L2)), which was your first idea.
+DECISIONS WD-011 is wrong about today. PCM-Adapter's tools read `.secrets/vcf-ops.xml` inside the repository folder, with the admin login ([validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1#L32)). PCM's lab script reads Windows Credential Manager ([Test-Lab.ps1](https://github.com/e1-rahabok/private-cloud-manager/blob/main/tools/lab/Test-Lab.ps1#L2)), which was your first idea.
 
 - **Options:** (a) DPAPI files in `$HOME\.secrets\`; (b) Windows Credential Manager. Only your Windows account can read either. (b) has a Windows screen to manage it; (a) needs no extra module in PowerShell.
 - **Recommendation:** (a), with two files: a read-only account for reading and validating, the admin account for install and restart. Change both repositories' scripts to it.
@@ -392,7 +392,7 @@ The old repository name appears in agent-e2 (10 files), PCM-Adapter (12) and pri
 
 Agent E2 binds to the loopback with no sign-in ([answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py#L563)). isvara.io is open to all and has its own injection checks.
 
-- **Options:** (a) a Vercel Python function; (b) a small container host; (c) logic copied into isvara (breaks W-001).
+- **Options:** (a) a Vercel Python function; (b) a small container host; (c) logic copied into isvara (breaks WD-001).
 - **Recommendation:** isvara.io stays the only public entry, keeps its injection checks and rate limit, and calls Agent E2 with a shared secret. Choose (a) or (b) after measuring start-up time and cost in M8.
 
 **Answer:** You advice after measuring.
