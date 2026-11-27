@@ -73,13 +73,18 @@ def check(base: str) -> int:
         return 0
     allowed = [p for m in ms[: i + 1] for p in m["files"]]
     later = [(m["id"], p) for m in ms[i + 1:] for p in m["files"]]
-    r = subprocess.run(["git", "diff", "--name-only", f"{base}...HEAD"], cwd=ROOT,
-                       capture_output=True, text=True)
-    if r.returncode:
-        print(f"could not run git diff from {base}: {r.stderr.strip()}")
+    # Committed, staged, unstaged and untracked changes since the branch left BASE, so the check
+    # also works before a commit.
+    mb = subprocess.run(["git", "merge-base", base, "HEAD"], cwd=ROOT, capture_output=True, text=True)
+    if mb.returncode:
+        print(f"could not find where HEAD left {base}: {mb.stderr.strip()}")
         return 2
+    changed = subprocess.run(["git", "diff", "--name-only", mb.stdout.strip()], cwd=ROOT,
+                             capture_output=True, text=True).stdout.split()
+    changed += subprocess.run(["git", "ls-files", "--others", "--exclude-standard"], cwd=ROOT,
+                              capture_output=True, text=True).stdout.split()
     problems = 0
-    for path in r.stdout.split():
+    for path in sorted(set(changed)):
         if any(owns(path, p) for p in allowed):
             continue
         owners = sorted({mid for mid, p in later if owns(path, p)})

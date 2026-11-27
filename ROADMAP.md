@@ -61,9 +61,11 @@ Milestones are numbered in the order of work. The diagram shows which ones can r
 
 Claude's own rules and the mechanism that holds Claude to them, before any other work (WD-040). Nothing in M-1 is about the product.
 
-- Files in this repository: [`CLAUDE.md`](CLAUDE.md), [`ROADMAP.md`](ROADMAP.md), [`DECISIONS.md`](DECISIONS.md), [`spec/glossary.md`](spec/glossary.md), [`.claude/`](.claude), [`.github/`](.github), [`tools/milestone_gate.py`](tools/milestone_gate.py), [`tools/diagrams.py`](tools/diagrams.py), [`images/roadmap.svg`](images/roadmap.svg).
+- Files in this repository: [`CLAUDE.md`](CLAUDE.md), [`CLAUDE-PROJECT.md`](CLAUDE-PROJECT.md), [`ROADMAP.md`](ROADMAP.md), [`DECISIONS.md`](DECISIONS.md), [`spec/glossary.md`](spec/glossary.md), [`.claude/`](.claude), [`.github/`](.github), [`tools/milestone_gate.py`](tools/milestone_gate.py), [`tools/diagrams.py`](tools/diagrams.py), [`images/roadmap.svg`](images/roadmap.svg).
 - [x] One rule for the order of work, its prompt hook and its CI check ([#35](https://github.com/e1-rahabok/private-cloud-workspace/pull/35)).
 - [x] CLAUDE.md pruned: one rule per bullet, no rule twice, the method apart from this project's rules ([#36](https://github.com/e1-rahabok/private-cloud-workspace/pull/36)).
+- [x] CLAUDE.md holds only the method, for any project; this project's rules, tools and paths are in CLAUDE-PROJECT.md, which CLAUDE.md loads ([#37](https://github.com/e1-rahabok/private-cloud-workspace/pull/37)).
+- [ ] The same CLAUDE.md in each child repository, each with its own CLAUDE-PROJECT.md.
 - [ ] The author approves M-1.
 
 ### M0 Workspace, checks and tutorial: paused
@@ -76,7 +78,7 @@ Reopened on 2026-11-27: it was marked done without the author's review. Waits fo
 - [x] The contract checks C1 and C3, run in CI on every pull request and every night ([#1](https://github.com/e1-rahabok/private-cloud-workspace/pull/1)).
 - [x] The stop rules and the diagram tool ([#3](https://github.com/e1-rahabok/private-cloud-workspace/pull/3)).
 - [x] The writing rules and their check, [tools/style.py](tools/style.py) ([#7](https://github.com/e1-rahabok/private-cloud-workspace/pull/7)).
-- [x] The tutorial, first version ([#2](https://github.com/e1-rahabok/private-cloud-workspace/pull/2), [#6](https://github.com/e1-rahabok/private-cloud-workspace/pull/6)). Each session adds its lessons to it afterwards (CLAUDE.md, section Session end).
+- [x] The tutorial, first version ([#2](https://github.com/e1-rahabok/private-cloud-workspace/pull/2), [#6](https://github.com/e1-rahabok/private-cloud-workspace/pull/6)). Each session adds its lessons to it afterwards ([CLAUDE-PROJECT.md](CLAUDE-PROJECT.md), section Session end).
 
 ### M1 Specification: paused
 
