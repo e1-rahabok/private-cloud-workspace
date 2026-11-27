@@ -13,6 +13,36 @@ The parent repository of four repositories that are built and tested as one inte
 
 PCM and isvara.io are two web apps. Both get their knowledge from Agent E2. [SYSTEM.md](SYSTEM.md) has the whole picture.
 
+## The parts and their audiences
+
+The Book, Agent E2, isvara.io, PCM and the adapter carry the same knowledge, for the same audience, in different forms. The Book is for people to read. Agent E2 holds the knowledge for AI. isvara.io teaches it, PCM applies it to a live private cloud, and the adapter computes its KPIs inside VCF Operations.
+
+![The five parts and what flows between them: the Book to isvara.io and to Agent E2; Agent E2 to isvara.io, PCM and the adapter; the adapter to PCM](images/parts.svg)
+
+<details>
+<summary>Text of the diagram, for readers that cannot see it</summary>
+
+Colour key: green = By people, for people; blue = For AI to read; purple = For people, built with AI; white = No AI.
+
+Boxes, nested as drawn:
+- n1 **The Book** (By people, for people): Private Cloud Management, 4 parts, with spreadsheets, slides, diagrams. Curated by people, for people.
+- n2 **isvara.io** (For people, built with AI): Public website for learning: articles, tools, practice, Ask. Articles written by AI from Agent E2. The Book to download.
+- n3 **Agent E2: the brain** (For AI to read): Holds the knowledge, for AI to read. Answers questions; defines every KPI, threshold and metric name.
+- n4 **VCF vCommunity Adapter** (No AI): Management pack for VCF Operations 9.1. Calculates the Agent E2 KPIs; adds features. No AI.
+- n5 **Private Cloud Manager (PCM)** (For people, built with AI): Web app for operations teams. Shows the KPIs; Agent E2 explains them. A demo in release 1.0.
+
+Arrows (from, to, label):
+- n1 The Book --> n2 isvara.io: the Book to download
+- n1 The Book --> n3 Agent E2: the brain: extracted; kept in agreement
+- n3 Agent E2: the brain --> n2 isvara.io: articles; Ask Agent E2
+- n3 Agent E2: the brain --> n4 VCF vCommunity Adapter: KPI definitions, names
+- n3 Agent E2: the brain --> n5 Private Cloud Manager (PCM): explains the KPIs
+- n4 VCF vCommunity Adapter --> n5 Private Cloud Manager (PCM): KPIs, read from VCF Operations
+
+Arrows: `-->` solid, `..>` dashed.
+
+</details>
+
 ## The files here
 
 | File | Holds |

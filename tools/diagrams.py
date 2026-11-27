@@ -95,6 +95,28 @@ def isvara_site_map() -> None:
     k.finish(str(ROOT / "images" / "isvara-site-map.svg"))
 
 
+def parts() -> None:
+    """README.md: the five parts, who each is for, and what flows between them."""
+    k.begin(960, 500)
+    k.t(20, 30, "One body of knowledge, five parts", 16, "bold")
+    k.legend(20, 44, [("By people, for people", "prod"), ("For AI to read", "method"),
+                      ("For people, built with AI", "shared"), ("No AI", "white")])
+
+    k.box(20, 90, 250, "The Book", ["Private Cloud Management, 4 parts,", "with spreadsheets, slides, diagrams.", "Curated by people, for people."], "prod")
+    k.box(355, 230, 250, "Agent E2: the brain", ["Holds the knowledge, for AI to read.", "Answers questions; defines every", "KPI, threshold and metric name."], "method")
+    k.box(690, 90, 250, "isvara.io", ["Public website for learning:", "articles, tools, practice, Ask.", "Articles written by AI from Agent E2.", "The Book to download."], "shared")
+    k.box(690, 380, 250, "Private Cloud Manager (PCM)", ["Web app for operations teams.", "Shows the KPIs; Agent E2 explains", "them. A demo in release 1.0."], "shared")
+    k.box(20, 380, 250, "VCF vCommunity Adapter", ["Management pack for VCF", "Operations 9.1. Calculates the", "Agent E2 KPIs; adds features.", "No AI."], "white")
+
+    k.arrow([(270, 110), (690, 110)], "the Book to download", 480, 103)
+    k.arrow([(145, 171), (145, 250), (355, 250)], "extracted; kept in agreement", 145, 215)
+    k.arrow([(605, 250), (780, 250), (780, 186)], "articles; Ask Agent E2", 690, 243)
+    k.arrow([(420, 311), (420, 428), (270, 428)], "KPI definitions, names", 345, 421)
+    k.arrow([(540, 311), (540, 400), (690, 400)], "explains the KPIs", 615, 393)
+    k.arrow([(270, 455), (690, 455)], "KPIs, read from VCF Operations", 480, 448)
+    k.finish(str(ROOT / "images" / "parts.svg"))
+
+
 def roadmap() -> None:
     """ROADMAP.md: the milestones of release 1.0, their state and what each depends on."""
     k.begin(1060, 500)
@@ -136,3 +158,4 @@ if __name__ == "__main__":
     method()
     isvara_site_map()
     roadmap()
+    parts()
