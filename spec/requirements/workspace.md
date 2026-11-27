@@ -1,6 +1,6 @@
 # Requirements: the workspace
 
-What keeps the repositories one integrated set: the contract checks, the specification's own checks, and the documentation rules. All belong to milestone M2. Question IDs (Q-) point at the author's answers in the [interview, round 1](../interview-round-1.md); other IDs are explained in the [glossary](../glossary.md).
+What keeps the repositories one integrated set: the contract checks, the specification's own checks, and the documentation rules. All belong to milestone M2, except R-WS-008 (the gateway check), in M3. Question IDs (Q-) point at the author's answers in the [interview, round 1](../interview-round-1.md); other IDs are explained in the [glossary](../glossary.md).
 
 ### R-WS-001 Every contract has an automated check
 

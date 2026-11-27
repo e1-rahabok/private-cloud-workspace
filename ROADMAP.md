@@ -104,7 +104,8 @@ Claude's working method, about how Claude works and never about the product (WD-
 
 - **Outcome:** one Agent E2 service answers both callers: long answers as jobs with a visible stage, screenshots and CSV files, sources by ID and title, time and tokens per answer, Day 2 questions only; its free-text answers are graded automatically.
 - **Needs:** M2, so the contract check C3 (the Agent E2 API) runs on every pull request.
-- **Runs:** in a cloud session. The graded runs need the Vercel AI Gateway key, within US$100 a run (WD-014). The author grades 20 answers once (Q-WS-92).
+- **Runs:** in a cloud session. The graded runs need the Vercel AI Gateway key, within US$100 a run (WD-014).
+- **The author:** gives the gateway key for this environment at the start, reviews the answer keys an independent agent marks uncertain, and grades 20 answers once (Q-WS-92). M3 is done only after these.
 - **Requirements:** R-WS-008 (the C5 check, in [workspace.md](spec/requirements/workspace.md)); R-E2-001 to R-E2-019 and R-E2-021 to R-E2-025 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md); R-E2-009, R-E2-017 and R-E2-019 in the workspace's [agent-e2-api.md](spec/requirements/agent-e2-api.md)).
 
 ### M4 isvara.io reading
@@ -149,7 +150,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - The licence, before the first customer copies the product (WD-029).
 - Approval of each milestone from M2 on.
 - Before M4: a review of the [isvara.io before and after](spec/design/isvara-before-and-after.md) (Q-WS-41).
-- At M3: the Vercel AI Gateway key for this cloud environment, and grading 20 answers once (Q-WS-92).
+- At M3: the Vercel AI Gateway key for this cloud environment, the answer keys marked uncertain, and grading 20 answers once (Q-WS-92).
 - Before M5: the answer to Q-WS-136, the injection guard once Agent E2 answers; at M5, an account on the host chosen for the public Agent E2, if it needs one, and the bot-check service the protection uses.
 - At M6: the exam's ten questions (Q-WS-113), and a review of 20 quiz questions (R-PRACTICE-003).
 - At M7: the switch from the preview.

@@ -24,18 +24,18 @@ What the product must do, and how each part of that is tested. Built in mileston
 
 | File | Status |
 |---|---|
-| [workspace.md](requirements/workspace.md) | M2 |
+| [workspace.md](requirements/workspace.md) | M2; R-WS-008 in M3 |
 | [kpi-definitions.md](requirements/kpi-definitions.md) | M2 (001 to 006; 004 dropped) |
 | [agent-e2-api.md](requirements/agent-e2-api.md) | M3 |
 | [lab-build.md](requirements/lab-build.md) | After release 1.0 (WD-031) |
 | agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md) | M3; R-E2-026 in M8 |
 | agent-e2's [clean-up.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/clean-up.md) | M2 |
 | PCM-Adapter's [adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md) | M2: 005 to 011, 025. M8: 018 to 023, 026. Later: 013 to 017, 024 |
-| PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md) | M2 |
+| PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md) | M2; R-REPO-009 in M7 |
 | private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md) | M8; R-LIVE-034 after release 1.0 |
 | private-cloud-manager's [clean-up.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/clean-up.md) | M2 |
 | isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md) | M6 |
-| isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md) | M4 (002 to 020), M6 (001) |
+| isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md) | M4 (002 to 021), M6 (001) |
 | isvara's [ask.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/ask.md), [contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md), [protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md) | M5 |
 | isvara's [practice.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/practice.md), [tools.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/tools.md) | M6 |
 | isvara's [site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md) | M7 |

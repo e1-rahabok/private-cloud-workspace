@@ -55,10 +55,10 @@ A knowledge file's form says which lens it serves. The lenses are a completeness
 |---|---|
 | How it works | how-it-works |
 | How it is measured | metric-meaning; the catalog |
-| How it is managed | what-to-set, health-check; the SP5 framework files |
-| How it fails | troubleshooting, decision-tree |
+| How it is managed | what-to-set, health-check, decision-tree; the SP5 framework files |
+| How it fails | troubleshooting |
 
-- Claude's call: the mapping uses the forms as they are; no file gets a new tag.
+- The mapping is the [knowledge model](../knowledge-model.md)'s, which adds `what-to-set` under managed; no file gets a new tag. The glossary serves search and sits under no lens.
 
 ### Three paths and their crossings
 
@@ -177,14 +177,14 @@ Each tool stays only where Agent E2 holds its knowledge (Author, WD-001; Q-WS-50
 - **Cluster KPI:** a second copy of the KPI scoring, which the VCF vCommunity Adapter implements and Agent E2 explains (WD-036). The articles show each KPI's parts and limits from the catalog. Revisit after release 1.0 with a check against the adapter's scoring.
 - **Maturity:** its fifteen questions are isvara.io's own knowledge; an organisation's SP5 maturity needs files in Agent E2 first, after release 1.0.
 - **Advanced troubleshooting:** a talk, like the downloads, the author's own work; it computes nothing.
-- **RVTools health check:** a check with five catalog limits is scored by Agent E2's KPI scoring; a check whose article gives one limit shows red or green with no score; a check with neither shows as "to review". Each cluster shows how many checks sit in each band, and the 0 to 100 cluster score goes with the Operations Score curve and the Cluster KPI weights it was built on. Claude's call: Agent E2's weighted average needs a 0 to 100 score per check, which only the checks with five limits have. The Contention area used the Operations Score curve. After, a counter is scored only where the catalog has a row for the same metric and statistic: CPU Ready and disk latency have peak rows; memory latency and a count of dropped packets have none today, so they show unscored, as "to review". Claude's call for the Contention area, since the curve goes.
+- **RVTools health check:** a check with five catalog limits shows the band those limits give its value; a check whose article gives one limit shows red or green; a check with neither shows as "to review". Each cluster shows how many checks sit in each band, and the 0 to 100 cluster score goes with the Operations Score curve and the Cluster KPI weights it was built on. Claude's call: a band read from the catalog's limits needs no scoring code, so isvara.io holds no copy of the KPI scoring, for the reason Cluster KPI goes. The Contention area used the Operations Score curve. After, a counter is scored only where the catalog has a row for the same metric and statistic: CPU Ready and disk latency have peak rows; memory latency and a count of dropped packets have none today, so they show unscored, as "to review". Claude's call for the Contention area, since the curve goes.
 
 ### MCP endpoint
 
 - **Before:** `ask_isvara`, `ops_score`, `health_check`, `fleet_view`, and the books as resources.
 - **After (Author, WD-027; Q-WS-52 left it to this document):**
   - `ask_isvara` calls Agent E2 through the same guard and limits as Ask;
-  - `ops_score` goes with the Operations Score;
+  - `ops_score` goes with the Operations Score, in M6;
   - `health_check` stays, scored as the health check is;
   - `fleet_view` is hidden with the Fleet Console;
   - the resources are the articles and the catalog, from the export, in place of the books.
