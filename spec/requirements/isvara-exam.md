@@ -21,7 +21,7 @@ And `/exam` opens the first question with no sign-in
 Test scenarios:
 - T-EXAM-001a (anywhere, automated by a page test in isvara, to write): open `/`; find a link to `/exam` next to the link to `/2am` in the header and on the home page; follow it; question 1 of 10 is shown.
 
-### R-EXAM-002 Ten questions, each with one correct option
+### R-EXAM-002 Ten questions, each with one or more correct option(s)
 
 Source: WD-006 ("10 short, Level 400 multiple-choice questions"); answer to Q-56 ("Format is MCQ").
 
@@ -166,7 +166,7 @@ Then no exam question shares a run of 12 or more words with a benchmark question
 Test scenarios:
 - T-EXAM-012a (anywhere, automated by the exam data check reading the agent-e2 clone, to write): a fixture question copied from a benchmark question fails; the real file passes.
 
-### R-EXAM-013 The exam keeps the site's look and works on a phone
+### R-EXAM-013 The exam keeps the site's look
 
 Source: WD-017 ("same look and feel"); answer to Q-44.
 
