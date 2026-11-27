@@ -16,7 +16,7 @@ Two goals, and the work that supports them:
 - **VCF vCommunity Adapter, in support of the live demo:** no value from a partial read, and every KPI definition taken from Agent E2 ([requirements](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md), [KPI definitions](spec/requirements/kpi-definitions.md)).
 - **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge, value management, the VCF vCommunity Adapter's state codes, Agent E2's new knowledge forms ([DECISIONS](DECISIONS.md), WD-026, WD-033, WD-034, WD-035).
 
-![Release 1.0 milestones and what each depends on: Claude's method done before them; M1 in progress; M2 to M8 not started; M1 leads to M2; M2 to M3 and M4; M3 to M5 and M8; M4 to M5 and M6; M5 and M6 to M7](images/roadmap.svg)
+![Release 1.0 milestones and what each depends on: Claude's method done before them; M1 done; M2 in progress; M3 to M8 not started; M1 leads to M2; M2 to M3 and M4; M3 to M5 and M8; M4 to M5 and M6; M5 and M6 to M7](images/roadmap.svg)
 
 <details>
 <summary>Text of the diagram, for readers that cannot see it</summary>
@@ -25,8 +25,8 @@ Colour key: green = Done; orange = In progress; white = Not started.
 
 Boxes, nested as drawn:
 - n1 **Claude's method** (Done): Rules, gate, hook; done before the milestones
-- n2 **M1 Release 1.0 specified** (In progress): Every requirement, isvara.io design; no code
-- n3 **M2 Contracts, clean-up** (Not started): Checks in every repository; names, PCM folders
+- n2 **M1 Release 1.0 specified** (Done): Every requirement, isvara.io design; no code
+- n3 **M2 Contracts, clean-up** (In progress): Checks in every repository; names, PCM folders
 - n4 **M3 Agent E2 for both** (Not started): Jobs, files, sources, grader, Day 2 only
 - n5 **M8 PCM live demo** (Not started): Adapter fixes, live L2; every lab test
 - n6 **M4 isvara.io reading** (Not started): Export, articles, paths, search, infographics
@@ -71,7 +71,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 
 ## Milestones
 
-### M1 Release 1.0 specified: in progress
+### M1 Release 1.0 specified: done
 
 - **Outcome:** every requirement of release 1.0 is written, testable, free of contradictions and kept in the repository that implements it, and every later milestone has its review page. No code is written in M1.
 - **Runs:** in a cloud session; documents only.
@@ -89,10 +89,10 @@ Claude's working method, about how Claude works and never about the product (WD-
 - [x] The exam's requirements updated for the round 2 decisions ([agent-e2#478](https://github.com/e1-rahabok/agent-e2/pull/478), [PCM-Adapter#107](https://github.com/e1-rahabok/PCM-Adapter/pull/107), [private-cloud-manager#77](https://github.com/e1-rahabok/private-cloud-manager/pull/77), [isvara#4](https://github.com/e1-rahabok/isvara/pull/4), [#43](https://github.com/e1-rahabok/private-cloud-workspace/pull/43)).
 - [x] isvara.io before and after: one document, feature by feature, for the author's review before anything is built (answer to Q-WS-41) ([agent-e2#479](https://github.com/e1-rahabok/agent-e2/pull/479), [private-cloud-manager#78](https://github.com/e1-rahabok/private-cloud-manager/pull/78), [isvara#5](https://github.com/e1-rahabok/isvara/pull/5), [#44](https://github.com/e1-rahabok/private-cloud-workspace/pull/44)).
 - [x] isvara.io's requirements for M4 to M7, written from that document ([agent-e2#479](https://github.com/e1-rahabok/agent-e2/pull/479), [private-cloud-manager#78](https://github.com/e1-rahabok/private-cloud-manager/pull/78), [isvara#5](https://github.com/e1-rahabok/isvara/pull/5), [#44](https://github.com/e1-rahabok/private-cloud-workspace/pull/44)).
-- [ ] A fresh agent reads the specification cold and finds no contradiction, no requirement that cannot be tested, and no requirement outside a milestone.
-- [ ] Approval: Claude's self-review, delegated by the author (WD-042).
+- [x] A fresh agent reads the specification cold and finds no contradiction, no requirement that cannot be tested, and no requirement outside a milestone: three cold reads and two checks of the fixes, the last of which found one stale word, fixed ([#46](https://github.com/e1-rahabok/private-cloud-workspace/pull/46), [#47](https://github.com/e1-rahabok/private-cloud-workspace/pull/47), [#48](https://github.com/e1-rahabok/private-cloud-workspace/pull/48), [#49](https://github.com/e1-rahabok/private-cloud-workspace/pull/49), [PCM-Adapter#112](https://github.com/e1-rahabok/PCM-Adapter/pull/112)).
+- [x] Approval: Claude's self-review, delegated by the author (WD-042); the author reviews M1 on return and can reopen it ([#50](https://github.com/e1-rahabok/private-cloud-workspace/pull/50)).
 
-### M2 Contracts checked and repositories cleaned
+### M2 Contracts checked and repositories cleaned: in progress
 
 - **Outcome:** every contract that exists today is checked on every pull request of every repository, and each repository has the names and the folder layout the decisions set.
 - **Needs:** M1.

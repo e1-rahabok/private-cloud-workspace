@@ -99,8 +99,8 @@ def roadmap() -> None:
         k.box(x, y, w, title, lines, kind, h=h)
 
     b(20, 80, "Claude's method", ["Rules, gate, hook;", "done before the milestones"], "prod")
-    b(230, 80, "M1 Release 1.0 specified", ["Every requirement, isvara.io", "design; no code"], "guest")
-    b(440, 80, "M2 Contracts, clean-up", ["Checks in every repository;", "names, PCM folders"], "white")
+    b(230, 80, "M1 Release 1.0 specified", ["Every requirement, isvara.io", "design; no code"], "prod")
+    b(440, 80, "M2 Contracts, clean-up", ["Checks in every repository;", "names, PCM folders"], "guest")
     b(650, 80, "M3 Agent E2 for both", ["Jobs, files, sources,", "grader, Day 2 only"], "white")
     b(860, 80, "M8 PCM live demo", ["Adapter fixes, live L2;", "every lab test"], "white")
     b(440, 200, "M4 isvara.io reading", ["Export, articles, paths,", "search, infographics"], "white")
