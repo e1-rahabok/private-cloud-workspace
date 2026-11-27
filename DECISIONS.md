@@ -77,6 +77,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-25
 - **Decision:** Lab credentials. On the author's laptop: two DPAPI files in `$HOME\.secrets\` (`Export-Clixml`), one for a read-only VCF Operations account (reading and validating) and one for the admin account (installing and restarting the pack); the scripts of the VCF vCommunity Adapter and PCM change to read them. On the PCM lab VM: `/etc/pcm/pcm.env`, root and group `pcm` only.
 - **Reason:** Agreed (Q-WS-40). Before this, the VCF vCommunity Adapter's scripts read an admin login from a file inside the repository folder, and PCM's lab script read Windows Credential Manager.
+- **Status:** the two files are `vcf-ops-readonly.xml` and `vcf-ops-admin.xml` (Q-WS-84).
 
 ## WD-012 Release 1.0 success
 
@@ -202,6 +203,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** The lab build for memory tiering (WD-018, [lab-build.md](spec/requirements/lab-build.md)) and R-ADP-024 move to after release 1.0. In release 1.0, the tiering rows of the VCF vCommunity Adapter are tested with fakes, and on the physical lab clusters as "not applicable" (R-ADP-014). The lab facts of Q-WS-120 and Q-WS-122 wait until the lab build starts.
 - **Reason:** The author, 2026-11-27: "Defer memory tiering lab to be after Release 1.0."
+- **Status:** the "not applicable" state of R-ADP-014 comes after release 1.0, by WD-033; in release 1.0 a tiering part that a cluster does not have is left out of PCM's page (Q-WS-68), and the rows are tested with fakes.
 
 ## WD-032 The adapter keeps its vCommunity identity
 
@@ -270,3 +272,9 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** The milestones of release 1.0 are M1 to M8, numbered in the order of work. No milestone is numbered 0 or below: Claude's working method (approved as M-1, WD-040) is done before the milestones and is not one of them. Each milestone has one outcome. No file of this repository and no requirement belongs to two milestones, and the milestone gate and the review tool fail when one does. M0's open work and M1 become M1, release 1.0 specified. M2 stays, contracts checked and repositories cleaned. Agent E2 for both callers is M3. isvara.io's four milestones (M4 reading, M5 Ask and contributions, M6 practice and tools, M7 switch-over) come before the live demo, because they run without the lab. The VCF vCommunity Adapter's work for the live demo and the two live demo milestones become M8, PCM live demo, the only milestone that uses the lab; every test scenario that needs the lab moves there. The author delegates the approval of M1 to Claude's self-review: every check passes, and a fresh agent's cold read of the specification finds no contradiction, no requirement that cannot be tested and no requirement outside a milestone. The author reviews M1 afterwards and can reopen it. The author approves every later milestone.
 - **Reason:** The author, 2026-11-27: "M0, M1, M2 today overlap. M5 and M6 seems to be just 1 milestone." and "A project first milestone is called Milestone 1." M-1 and M0 owned the same files, M0 and M2 both built checks, and M1 and M2 both changed M2's requirements. The roadmap ran M3 and M4 in parallel, which the gate of WD-039 does not allow. 26 of the 32 live demo requirements belonged to no milestone, and two Agent E2 requirements belonged to two. The lab needs the author's laptop, which a cloud session cannot reach, so the lab work is gathered in one milestone at the end. The author chose isvara.io before the live demo and delegated M1 only, before several hours away.
+
+## WD-043 Two numbers the author set for release 1.0
+
+- **Date:** 2026-11-27
+- **Decision:** Agent E2's answer set holds about 15 free-text questions in release 1.0, and grows toward 40 after it (R-E2-004). PCM and isvara.io read an Agent E2 job once every 10 seconds while it runs, and count the time up in the browser between reads (R-E2-020, R-ASK-002).
+- **Reason:** The author, 2026-11-27. On the answer set: the grader has a lower priority, since isvara.io's quiz is multiple choice and never uses it ([tutorial, chapter 12](tutorial/12-case-study.md), day four). On the interval: "VMware Admin does not mind 10 seconds waiting as he knows this is not a general chat." Both were quoted in requirements without a decision block, which the cold review of M1 found.

@@ -105,21 +105,21 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Outcome:** one Agent E2 service answers both callers: long answers as jobs with a visible stage, screenshots and CSV files, sources by ID and title, time and tokens per answer, Day 2 questions only; its free-text answers are graded automatically.
 - **Needs:** M2, so the contract check C3 (the Agent E2 API) runs on every pull request.
 - **Runs:** in a cloud session. The graded runs need the Vercel AI Gateway key, within US$100 a run (WD-014). The author grades 20 answers once (Q-WS-92).
-- **Requirements:** R-E2-001 to R-E2-019 and R-E2-021 to R-E2-025 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md); R-E2-009, R-E2-017 and R-E2-019 in the workspace's [agent-e2-api.md](spec/requirements/agent-e2-api.md)).
+- **Requirements:** R-WS-008 (the C5 check, in [workspace.md](spec/requirements/workspace.md)); R-E2-001 to R-E2-019 and R-E2-021 to R-E2-025 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md); R-E2-009, R-E2-017 and R-E2-019 in the workspace's [agent-e2-api.md](spec/requirements/agent-e2-api.md)).
 
 ### M4 isvara.io reading
 
-- **Outcome:** on the Vercel preview, a visitor reads every Agent E2 knowledge file as an article, finds it through the three learning paths and through search, and sees the first infographics. isvara.io holds no knowledge of its own.
+- **Outcome:** on the Vercel preview, a visitor reads every Agent E2 knowledge file as an article, finds it through the three learning paths and through search, and sees the first infographic. Every fact and number on an article comes from Agent E2's export; the tools follow in M6.
 - **Needs:** M2 for the checks, and the author's review of the [before and after](spec/design/isvara-before-and-after.md), which the author asked for before anything is built (Q-WS-41). It does not need M3.
 - **Runs:** in a cloud session. The rewrite of each article and its checks need the Vercel AI Gateway key.
-- **Requirements:** R-CONTENT-002 to R-CONTENT-020 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), R-E2-027 (agent-e2's [knowledge-export.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/knowledge-export.md)), R-EXPORT-001 and R-EXPORT-002 (the workspace's [knowledge-export.md](spec/requirements/knowledge-export.md), contract C4).
+- **Requirements:** R-CONTENT-002 to R-CONTENT-021 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), R-E2-027 and R-E2-028 (agent-e2's [knowledge-export.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/knowledge-export.md)), R-EXPORT-001 and R-EXPORT-002 (the workspace's [knowledge-export.md](spec/requirements/knowledge-export.md), contract C4).
 
 ### M5 isvara.io Ask and contributions
 
 - **Outcome:** on the preview, a visitor asks Agent E2 a question, with screenshots and CSV files, follows its progress and opens its sources; sends a contribution to a private queue; and the protection layers stop floods, bots, unsafe files and hidden instructions.
-- **Needs:** M3 for the Agent E2 API, M4 for the articles that sources open.
+- **Needs:** M3 for the Agent E2 API, M4 for the articles that sources open, and the author's answer to Q-WS-136 on the injection guard.
 - **Runs:** in a cloud session. Where the public Agent E2 runs is chosen after measuring (Q-WS-4); a new hosting account would need the author.
-- **Requirements:** R-ASK-001 to R-ASK-010 ([ask.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/ask.md)), R-CONTRIB-001 to R-CONTRIB-006 ([contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md)), R-PROTECT-001 to R-PROTECT-006 ([protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md)).
+- **Requirements:** R-ASK-001 to R-ASK-011 ([ask.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/ask.md)), R-CONTRIB-001 to R-CONTRIB-006 ([contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md)), R-PROTECT-001 to R-PROTECT-006 ([protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md)).
 
 ### M6 isvara.io practice and tools
 
@@ -133,7 +133,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Outcome:** isvara.io serves the rebuilt site: the home page, What's New with its weekly summary, the manual for copying the product privately, downloads and the MCP endpoint on Agent E2; every old address redirects to the page that covers it.
 - **Needs:** M4, M5 and M6.
 - **Runs:** in a cloud session. The author approves the switch from the preview.
-- **Requirements:** R-SITE-001 to R-SITE-007 ([site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md)).
+- **Requirements:** R-SITE-001 to R-SITE-007 ([site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md)); R-REPO-009 (PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md)).
 
 ### M8 PCM live demo
 
@@ -141,7 +141,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Needs:** M2 for the catalog names, M3 for Agent E2's jobs and facts.
 - **Runs:** in the lab, from the author's laptop over the VPN, with the adapter's build, install, restart and validation tools. A cloud session writes the code and the tests that run anywhere.
 - **First slice:** one lab cluster's Cluster Performance on the L2 Performance tab (R-LIVE-001, R-LIVE-024, R-LIVE-030), then the rest.
-- **Requirements:** R-ADP-018 to R-ADP-023 and R-ADP-026 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-LIVE-001 to R-LIVE-033 and R-E2-020 (private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)), R-E2-026 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md)); the check of contract C2 (KPI metric keys).
+- **Requirements:** R-ADP-018 to R-ADP-023 and R-ADP-026 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-LIVE-001 to R-LIVE-033, R-LIVE-035 and R-E2-020 (private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)), R-E2-026 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md)); the check of contract C2 (KPI metric keys).
 - **Release 1.0 is done** when the author approves M8.
 
 ## Waiting for the author
@@ -150,7 +150,8 @@ Claude's working method, about how Claude works and never about the product (WD-
 - Approval of each milestone from M2 on.
 - Before M4: a review of the [isvara.io before and after](spec/design/isvara-before-and-after.md) (Q-WS-41).
 - At M3: the Vercel AI Gateway key for this cloud environment, and grading 20 answers once (Q-WS-92).
-- At M6: the exam's ten questions (Q-WS-113).
+- Before M5: the answer to Q-WS-136, the injection guard once Agent E2 answers; at M5, an account on the host chosen for the public Agent E2, if it needs one, and the bot-check service the protection uses.
+- At M6: the exam's ten questions (Q-WS-113), and a review of 20 quiz questions (R-PRACTICE-003).
 - At M7: the switch from the preview.
 - At M8: a lab session with the laptop and the VPN, and turning on the packet counters in the lab policy (Q-WS-85).
 - Review of each pull request marked as a major change.
@@ -168,4 +169,5 @@ Claude's working method, about how Claude works and never about the product (WD-
 - Depth beyond vSphere, grown through contributions: vSAN, NSX, Kubernetes, Guest OS, physical infrastructure.
 - Executable flow steps and the capacity consultation in Agent E2.
 - An email newsletter for isvara.io's weekly summary.
-- Keeping isvara.io within US$50 a month (WD-014).
+- Watching isvara.io's spending against US$50 a month once it is live (WD-014); the daily ceiling itself is built in M5 (R-PROTECT-005).
+- Removing the synchronous Agent E2 call, once PCM's synthetic demo uses the job calls too (R-E2-009).

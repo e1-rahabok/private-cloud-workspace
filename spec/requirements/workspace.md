@@ -32,7 +32,7 @@ Test scenarios:
 
 Source: ROADMAP M1; answer to Q-WS-I1.
 
-- Given the requirement files in [spec/requirements](.)
+- Given the requirement files of every repository, in the folders [tools/requirement_files.py](../../tools/requirement_files.py) names (WD-036)
 - When the specification check runs
 - Then every requirement has a unique ID, a Source line that names an existing question or decision, and at least one test scenario
 - And every test scenario belongs to an existing requirement and says where it runs (anywhere or lab)
@@ -86,7 +86,7 @@ Source: WD-030.
 
 - Given the tracked folders and files of agent-e2, PCM-Adapter, private-cloud-manager, isvara and this workspace, outside archives and dated records
 - When the name check runs
-- Then no folder or file name contains a version (v2, v5), a milestone (m5) or a status word (proto, new, old, final, copy)
+- Then no folder or file name contains, as a whole word between separators, a version (v2, v5), a milestone (m5) or a status word (proto, new, old, final, copy); `thresholds-performance.yaml` does not match "old"
 - And the problems found when the check is first written form a baseline that may only shrink
 
 Test scenarios:
@@ -100,12 +100,26 @@ Milestone: M2.
 Source: Q-WS-3 (round 1: rename references, archives left as they are); WD-007; WD-028.
 
 - Given the repositories agent-e2, PCM-Adapter, private-cloud-manager, isvara and this workspace
-- When their files outside archives and dated records are searched
+- When their files outside archives and dated records are searched, and outside the files that name the old names to forbid them (requirement files, DECISIONS.md and the interview records)
 - Then none contains "VCF-vCommunity-Adapter" or "private-cloud-management"
 
 Test scenarios:
-- T-REPO-006a (anywhere, automated by a check to write in [checks](../../checks), run by run_all.py): search the clones for the two old names outside archives and dated records; expect no match.
+- T-REPO-006a (anywhere, automated by a check to write in [checks](../../checks), run by run_all.py): search the clones for the two old names outside archives, dated records and the files that forbid them; expect no match.
 
+
+### R-WS-008 The model gateway answers the model Agent E2 is set to
+
+Source: WD-010 (every contract has a check); WD-012 (every contract is checked automatically); C5, the model gateway, in [CONTRACTS.md](../../CONTRACTS.md).
+
+Milestone: M3.
+
+- Given the Vercel AI Gateway key in the environment
+- When `checks/model_gateway.py` runs
+- Then it sends one short question to the model named in agent-e2's `service_config.yaml` and expects an answer with text
+- And without the key it reports "not run", never "passed"
+
+Test scenarios:
+- T-WS-008a (anywhere with the gateway key, automated by `checks/model_gateway.py`, to write, run by [`checks/run_all.py`](../../checks/run_all.py)): the configured model answers; a model ID that does not exist fails and names the ID.
 ## Questions for round two
 
 - None.

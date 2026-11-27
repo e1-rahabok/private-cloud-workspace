@@ -11,7 +11,8 @@ Source: WD-010 (every contract has a check; changes go expand, migrate, contract
 - Given PCM's client, which calls `/v1/answer` and waits up to 180 seconds ([agent_e2.py](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/pcm_proto/agent_e2.py#L105))
 - When the job calls of R-E2-007 are added
 - Then a call without `"async"` still returns the answer in one reply, with every field it has today
-- And PCM and isvara.io each move to the job calls in their own pull request before the synchronous form is removed
+- And PCM's live demo and isvara.io each move to the job calls in their own pull request
+- And PCM's synthetic demo keeps the synchronous call in release 1.0, unchanged (R-LIVE-032); the synchronous form is removed after release 1.0, once that demo has moved too
 
 Test scenarios:
 - T-E2-009a (anywhere, automated by [checks/agent_e2_api.py](../../checks/agent_e2_api.py)): the check as it runs today, through PCM's client, passes after the job calls are added.
