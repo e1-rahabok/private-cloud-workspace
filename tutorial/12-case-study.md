@@ -117,6 +117,18 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **An answer quoted where the rule lives.** The author's answer on lab tests sat in the session's record, and the files only paraphrased it. A later session reading the shared stop rule would have stopped at the first change to the adapter's code. The decision now quotes the answer, and the project file cites the decision.
 
+## Day five, continued: M2 in parallel
+
+**An empty milestone.** M2 opened with no work items, and the gate reported "no open item; ask the author to approve", which would have sent a session to ask for the approval of work not yet done. The first pull request of each milestone now writes its items.
+
+**Three helpers, one branch each.** Every repository has one session branch, so two writers in one clone collide. The clean-up of PCM, of agent-e2 and of the adapter's names went to three helper agents, one repository each, while the lead worked in the workspace. A helper opened its pull request and the lead merged it after running the checks again.
+
+**Contract changes in three steps, across four repositories.** The KPI definitions check moved from matching rows by name to matching them by key: first the catalog's key column, then the check, then the renamed rows and the adapter's labels together. The C3 check moved with PCM's new folders the same way: PCM kept the old path, the check moved, the old path went. A CI run that started a minute before step 2 merged failed for that reason alone; one re-run passed.
+
+**Checks that caught their author.** The new name check failed on its own first file name, `old_names.py`. The new forbidden-names check found a stale link no review had seen. A baseline kept in the workspace would have stopped a child's fix from passing, so each repository keeps its own.
+
+**A rule against itself.** A requirement said "the catalog holds one Risk level for every cluster". Agent E2's knowledge keeps two levels and says to keep them apart. The requirement had read more into the author's answer than it said, so the comparison waits for a question.
+
 ## Lessons
 
 - The agent's first survey was useful precisely because it was wrong in places. Each error pointed to a missing document.
@@ -144,6 +156,10 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - Read the code and the knowledge file before writing a requirement about them. "Comes from" can mean "is stored in" or "is equal to"; say which.
 - Check every round of fixes with a fresh agent. A fix often credits a source with more than it says.
 - Quote the person's answer in the decision it settles. A project file that paraphrases it cannot outweigh a shared rule.
+- Give a new milestone its work items in its first pull request, or the gate has nothing to show.
+- One writer per branch. Helpers each take one repository; the lead merges after checking.
+- Keep a check's baseline in the repository whose problems it lists, so a fix and its lower count travel in one pull request.
+- Run a new check on the check itself first.
 - Make approval easy. One page per milestone, one line per requirement, generated from the files so it never goes stale.
 - Finish a milestone's checklist in order. Approval of the next milestone comes last, because the open items before it can still change what is approved.
 - Updating the lesson log is part of finishing a session. Without a written rule, the agent forgot it.
