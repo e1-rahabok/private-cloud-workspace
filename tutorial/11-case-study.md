@@ -1,6 +1,6 @@
 # 11. Case study log
 
-What happened while this workspace was set up, in order, mistakes included. It covers three days in November 2026.
+What happened while this workspace was set up, in order, mistakes included. It covers four days in November 2026.
 
 ## The system
 
@@ -54,6 +54,24 @@ Each correction went into the decisions and the map.
 
 **The trust question.** Discussing AI-written public content, the author noted that keeping an expert site credible is not a new problem. The discussion that followed became [chapter 10](10-trust-in-ai-written-content.md): separate a wrong source from a wrong rewrite, spend scarce review time on disagreements and on the most-read pages, and build a community that can review.
 
+## Day four: the plan against the person's intent
+
+**The plan had grown.** The session opened with the author's own summary of release 1.0: rebuild isvara.io, add the live demo to PCM, and leave Agent E2 and the management pack nearly untouched. The agent compared it with the roadmap. The files said otherwise: 19 requirements for Agent E2 and 24 for the management pack, in three milestones that the live demo and the site depended on. Each requirement had a source. Together they made a release larger than the author meant, and nobody had noticed. The author then went through the plan item by item.
+
+**Purpose questions shrink a plan.** "What is the grader for? The quiz is multiple choice." The grader scored Agent E2's free-text answers, which the quiz never uses. Once its purpose was stated, the author kept it at 15 questions instead of 40 and moved the rest to the plan after 1.0. The same kind of question cut the management pack's data states to one correctness fix, and moved a lab build, value management and three new kinds of knowledge to after 1.0. Each deferral became a decision with a line under "After release 1.0", so nothing was lost.
+
+**A number taken from a test.** Explaining the progress display, the agent said the caller checks every 2 seconds. The author asked whether that was too often: a VMware administrator knows this is no general chat and does not mind 10 seconds. The 2 seconds came from a test scenario. No requirement set the interval at all, and that gap was the real finding. The person's knowledge of the user set the number.
+
+**The copy that drifted.** The new site plan listed the IT management topics as availability, performance, capacity, configuration and security. Agent E2's tag listed availability, performance, security, capacity and value. The agent proposed a new "configuration" tag in Agent E2 to match the plan. The author's answer: Agent E2 is correct; it is what the framework documents. The newer design document had drifted from the master. The agent should have read the framework before proposing to change it.
+
+**Names carry identity.** In an earlier round the author had let the agent decide the management pack's new name and key prefix, and the agent chose "PCM". The author reversed it: the pack is a vCommunity project of vExperts and VMUG members, and its name shows a grassroots effort. In the same exchange the agent suggested renaming the book to match the software. The author explained the difference. The book, Private Cloud Management, is the discipline. Private Cloud Manager and isvara.io are two applications built on it, for the same audience and different uses.
+
+**A question with no context.** The agent asked: "Should isvara.io treat `what-to-set` files as configuration, with no Agent E2 change?" The author could not tell what it meant. It named a file type the author had never needed to know, gave no link, and had already been settled by the decision on the topics. [Chapter 4](04-the-interview.md)'s rule was in the files. The agent broke it while summarising many items at once.
+
+**Many decisions in one conversation.** The session changed the plan seven times in a few hours. Each change became its own pull request, and several touched the same lines of the roadmap, so two of them conflicted. The agent built the later ones on top of the earlier ones. Merging the last pull request merged the whole stack.
+
+**The lesson log.** At the end the agent reported that nothing was outstanding. The author asked whether this tutorial had been updated with the session's lessons, "or you forget about it, again?" It had not. Updating this log is now a rule for the end of every session in the agent's working rules ([CLAUDE.md](../CLAUDE.md)).
+
 ## Lessons
 
 - The agent's first survey was useful precisely because it was wrong in places. Each error pointed to a missing document.
@@ -64,4 +82,12 @@ Each correction went into the decisions and the map.
 - Most answers can be one word when each question carries a recommendation.
 - A specification raises its own questions. Expect a second round.
 - The agent is most useful when it argues. The best design idea in this log came from the author, in reply to the agent's critique of the author's first idea.
+- Compare the plan with the person's intent at the start of each release. Requirements with good sources can still add up to a release nobody asked for.
+- Ask what each planned item is for. An item whose purpose takes more than a sentence to explain is a candidate for later.
+- A deferral is a decision, with its own line in the plan after the release.
+- When two documents disagree, find the master before proposing a change. The newer document is often the copy that drifted.
+- A number in a test scenario is no design decision. Where the requirements are silent, the person's knowledge of the user sets the number.
+- A name says who a project belongs to. Even when the person delegates naming, the agent should check the choice with them.
+- A rule the agent wrote still slips under load. One question without a link or context cost a full round trip.
+- Updating the lesson log is part of finishing a session. Without a written rule, the agent forgot it.
 - The strongest model available, at high effort, made every mistake in this log. The files, the checks and the person's questions are what stopped them repeating.

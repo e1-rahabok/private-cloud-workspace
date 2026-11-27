@@ -28,6 +28,8 @@ Each question in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) has the same parts:
 
 The recommendation does most of the work. The person reads it and writes "Agree", or writes their own answer where the recommendation is wrong. In this project most answers were one word, and the rest were the corrections that mattered: the live demo is a separate demo, not a switch; the management pack may change everything; the public site is rebuilt from scratch.
 
+The same parts apply to a question asked in chat. In this project the agent once asked whether isvara.io should "treat `what-to-set` files as configuration". The author had no idea what that meant: no link, no context, and a file type only the agent knew. A question the person cannot understand costs a full round trip.
+
 The person answers by editing the file on GitHub, in their own time. Answers given in chat scroll away, and the next session cannot see them.
 
 ## Questions the agent answers itself

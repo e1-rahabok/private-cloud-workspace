@@ -26,6 +26,8 @@ When a fact exists in more than one place, decide which copy is the master. The 
 
 In this project the documents disagreed about who owned the performance definitions. One repository said its knowledge base was the only master; another said its own metrics were the definitions; a third followed the knowledge base. Only the author could settle that, and did: knowledge starts in the knowledge service, the management pack implements it, the web apps consume it ([DECISIONS](../DECISIONS.md), WD-001). The agent's part was to find the disagreement and put it to the author.
 
+Once a master is chosen, check it first whenever two copies disagree. In this project a new design document listed the operations topics with "configuration" where the knowledge service had "value". The agent proposed changing the knowledge service to match. The knowledge service was right: it follows the framework the author wrote. The newer document was the copy that had drifted.
+
 ## Changing a seam safely
 
 A contract changes in three steps:
