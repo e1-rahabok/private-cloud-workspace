@@ -74,7 +74,8 @@ Source: WD-023 (writing rules for people and for machines), as revised for M2.
 - When any repository's documents for people are checked
 - Then the rules and the list exist once, in this workspace
 - And agent-e2's writing rules keep only what is particular to knowledge files, and link to the general ones
-- And each repository runs [tools/style.py](../../tools/style.py) on its pull requests, against a baseline of its problems today that may only shrink
+- And each repository runs [tools/style.py](../../tools/style.py) on its pull requests
+- And each problem the first run finds is fixed in M2, or listed in that repository's baseline, which may only shrink, with one question per repository in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md) that names its list, as CLAUDE.md requires for a baseline
 
 Test scenarios:
 - T-WS-006a (anywhere, automated by tools/style.py in each repository's CI): a pull request that adds a flagged phrase or a sentence heading to a document for people fails; one that fixes a known problem passes and lowers the baseline.
@@ -82,15 +83,16 @@ Test scenarios:
 
 ### R-WS-007 Folder and file names carry no version, milestone or status word
 
-Source: WD-030.
+Source: WD-030; WD-032 (the shipped content keeps its names).
 
 - Given the tracked folders and files of agent-e2, PCM-Adapter, private-cloud-manager, isvara and this workspace, outside archives and dated records
+- And outside names that are titles written for readers or for the model, which describe their content and keep it true: agent-e2's [`knowledge/`](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge) and [`benchmark/questions/`](https://github.com/e1-rahabok/agent-e2/tree/main/benchmark/questions), the adapter's shipped `Management Pack/content/` (WD-032), and the review pages `spec/review/M<n>.md`, each named for the milestone it reviews
 - When the name check runs
 - Then no folder or file name contains, as a whole word between separators, a version (v2, v5), a milestone (m5) or a status word (proto, new, old, final, copy); `thresholds-performance.yaml` does not match "old"
-- And the problems found when the check is first written form a baseline that may only shrink
+- And each problem the first run finds is renamed in M2, or listed in a baseline that may only shrink, with one question per repository in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md) that names its list
 
 Test scenarios:
-- T-WS-007a (anywhere, automated by a check to write in [checks](../../checks), run by run_all.py and in each repository's CI): a pull request that adds `report_v2.md` or `story_m5.py` fails; one that renames a known problem passes and lowers the baseline.
+- T-WS-007a (anywhere, automated by a check to write in [checks](../../checks), run by run_all.py and in each repository's CI): a pull request that adds `report_v2.md` or `story_m5.py` fails; one that adds `knowledge/…/why-a-new-framework.md` or `spec/review/M9.md` passes; one that renames a known problem passes and lowers the baseline.
 - T-WS-007b (anywhere, manual by a fresh session, once per repository): given only the repository's folder tree, the session writes what it expects in each top-level folder and in each folder one level down, then opens them. Each wrong guess becomes a rename in the same milestone.
 
 ### R-REPO-006 No repository uses an old repository name
