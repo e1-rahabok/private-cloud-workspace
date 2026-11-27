@@ -12,4 +12,4 @@ PCM's folders follow the phase of work: [spec](https://github.com/e1-rahabok/pri
 
 **Answer:** "Yes, by workspace."
 
-**Result:** PCM's folders are grouped by workspace in M2, in the same change as the renames of R-REPO-007, so no file moves twice ([R-REPO-008](requirements/repositories.md)).
+**Result:** PCM's folders are grouped by workspace in M2, in the same change as the renames of R-REPO-007, so no file moves twice ([R-REPO-008](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/clean-up.md)).

@@ -38,9 +38,9 @@ jobs:
       - run: pip install pyyaml requests
       - run: python private-cloud-workspace/checks/run_all.py --no-clone
       - name: Requirements, test scenarios and sources
-        run: python private-cloud-workspace/tools/spec_check.py
+        run: python private-cloud-workspace/tools/spec_check.py --repos agent-e2 PCM-Adapter private-cloud-manager
       - name: Milestone review pages are up to date
-        run: python private-cloud-workspace/tools/milestone_review.py --check
+        run: python private-cloud-workspace/tools/milestone_review.py --check --repos agent-e2 PCM-Adapter private-cloud-manager
       - name: Writing style of documents for people
         run: python private-cloud-workspace/tools/style.py
       - name: Links and diagram text

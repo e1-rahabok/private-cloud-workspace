@@ -11,8 +11,12 @@ requirements are listed apart, for reference.
 Each requirement that is not dropped belongs to exactly one milestone, or its "Milestone:" line says
 "after release 1.0" (WD-042). Both modes fail otherwise.
 
+Requirement files are read from every repository (WD-036, tools/requirement_files.py). A page that lists a
+requirement of a repository not read (CI cannot read isvara) is reported as not run, never as checked.
+
     python tools/milestone_review.py           # write spec/review/M<n>.md for each milestone with requirements
     python tools/milestone_review.py --check   # exit 1 when a page differs from what the files say
+    python tools/milestone_review.py --check --repos agent-e2 PCM-Adapter private-cloud-manager   # CI
 """
 from __future__ import annotations
 
@@ -21,8 +25,9 @@ import re
 import sys
 from pathlib import Path
 
+from requirement_files import OWNER, ReqFile, add_repos_argument, files
+
 ROOT = Path(__file__).resolve().parents[1]
-REQ_DIR = ROOT / "spec" / "requirements"
 OUT_DIR = ROOT / "spec" / "review"
 
 MILESTONE = re.compile(r"^### (M\d+) (.+)$", re.M)
@@ -56,11 +61,10 @@ def expand(text: str) -> list[str]:
     return ids
 
 
-def requirements() -> dict[str, dict]:
+def requirements(req_files: list[ReqFile]) -> dict[str, dict]:
     reqs: dict[str, dict] = {}
-    for f in sorted(REQ_DIR.glob("*.md")):
-        if f.name == "README.md":
-            continue
+    for rf in req_files:
+        f = rf.path
         text = f.read_text(encoding="utf-8")
         h1 = re.search(r"^# (.+)$", text, re.M)
         area = h1.group(1) if h1 else f.stem
@@ -75,7 +79,7 @@ def requirements() -> dict[str, dict]:
             where = SCEN.findall(body)
             ms = MILESTONE_LINE.search(body)
             reqs[rid] = {
-                "file": f.name, "area": area, "title": title, "anchor": slug(f"{rid} {title}"),
+                "file": f.name, "link": rf.link(), "area": area, "title": title, "anchor": slug(f"{rid} {title}"),
                 "dropped": title.startswith("Dropped:"),
                 "anywhere": where.count("anywhere"), "lab": where.count("lab"),
                 "milestones": set(re.findall(r"\bM\d+\b", ms.group(1))) if ms else set(),
@@ -144,38 +148,56 @@ def page(mid: str, title: str, ids: list[str], reqs: dict[str, dict]) -> str:
         for r in rs:
             v = reqs[r]
             tests = f"{v['anywhere']} anywhere, {v['lab']} lab"
-            lines.append(f"- [{r}](../requirements/{v['file']}#{v['anchor']}) {v['title']}. Tests: {tests}.")
+            lines.append(f"- [{r}]({v['link']}#{v['anchor']}) {v['title']}. Tests: {tests}.")
     if dropped:
         lines += ["", "## Dropped requirements", "", "Listed for reference; nothing to approve.", ""]
         for r in dropped:
             v = reqs[r]
-            lines.append(f"- [{r}](../requirements/{v['file']}#{v['anchor']}) {cap(v['title'].removeprefix('Dropped: '))}")
+            lines.append(f"- [{r}]({v['link']}#{v['anchor']}) {cap(v['title'].removeprefix('Dropped: '))}")
     return "\n".join(lines) + "\n"
 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--check", action="store_true", help="fail when a page differs from the files")
+    add_repos_argument(ap)
     args = ap.parse_args()
-    reqs = requirements()
+    req_files, unread, missing = files(args.repos)
+    for repo in missing:
+        print(f"COULD NOT RUN {repo}: no clone next to this repository")
+    if missing:
+        return 2
+    if unread and not args.check:
+        print(f"refusing to write pages without {', '.join(unread)}: they would lose its requirements")
+        return 2
+    reqs = requirements(req_files)
+    unread_links = tuple(f"github.com/{OWNER}/{r}/" for r in unread)
     pages = {f"{mid}.md": page(mid, t, ids, reqs) for mid, (t, ids) in milestones(reqs).items()}
     problems = membership(reqs, milestones(reqs))
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    not_run = []
+    for old in OUT_DIR.glob("*.md"):
+        if any(u in old.read_text(encoding="utf-8") for u in unread_links):
+            not_run.append(old.name)
     for name, content in pages.items():
         path = OUT_DIR / name
+        if name in not_run:
+            continue
         if args.check:
             if not path.exists() or path.read_text(encoding="utf-8") != content:
                 problems.append(f"spec/review/{name} is out of date: run python tools/milestone_review.py")
         else:
             path.write_text(content, encoding="utf-8")
     for old in OUT_DIR.glob("*.md"):
-        if old.name not in pages:
+        if old.name not in pages and old.name not in not_run:
             if args.check:
                 problems.append(f"spec/review/{old.name} belongs to no milestone with requirements")
             else:
                 old.unlink()
     for p in problems:
         print(f"FAIL {p}")
+    for name in not_run:
+        print(f"NOT RUN spec/review/{name}: it lists requirements of {', '.join(unread)}, which were not read")
     print(f"review: {len(pages)} milestone pages, {len(problems)} problem(s)")
     return 1 if problems else 0
 

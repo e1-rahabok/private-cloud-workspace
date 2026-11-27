@@ -58,7 +58,7 @@ Fine-tuning trains the model further on examples, so that its weights hold new b
 
 The model is not where most errors come from. In the multiple-choice rounds, a model that had every needed file in front of it lost very few points: Muse lost 1.7 of its 22 lost points that way ([harness/AGENT.md](https://github.com/e1-rahabok/agent-e2/blob/main/harness/AGENT.md#L31)), and in the last round the model lost under 2 points with every needed file read ([project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md#L316)). Most errors were files the reading set missed, or facts no file held. Training fixes neither.
 
-Free-text answers are a different matter and are not measured yet. The answer set of [R-E2-004 to R-E2-006](../requirements/agent-e2-service.md) will show, for the first time, how often Gemma writes a wrong free-text answer with the right files in front of it.
+Free-text answers are a different matter and are not measured yet. The answer set of [R-E2-004 to R-E2-006](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md) will show, for the first time, how often Gemma writes a wrong free-text answer with the right files in front of it.
 
 ## Cost
 

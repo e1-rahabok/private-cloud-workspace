@@ -93,6 +93,19 @@ Test scenarios:
 - T-WS-007a (anywhere, automated by a check to write in [checks](../../checks), run by run_all.py and in each repository's CI): a pull request that adds `report_v2.md` or `story_m5.py` fails; one that renames a known problem passes and lowers the baseline.
 - T-WS-007b (anywhere, manual by a fresh session, once per repository): given only the repository's folder tree, the session writes what it expects in each top-level folder and in each folder one level down, then opens them. Each wrong guess becomes a rename in the same milestone.
 
+### R-REPO-006 No repository uses an old repository name
+
+Milestone: M2.
+
+Source: Q-WS-3 (round 1: rename references, archives left as they are); WD-007; WD-028.
+
+- Given the repositories agent-e2, PCM-Adapter, private-cloud-manager, isvara and this workspace
+- When their files outside archives and dated records are searched
+- Then none contains "VCF-vCommunity-Adapter" or "private-cloud-management"
+
+Test scenarios:
+- T-REPO-006a (anywhere, automated by a check to write in [checks](../../checks), run by run_all.py): search the clones for the two old names outside archives and dated records; expect no match.
+
 ## Questions for round two
 
 - None.
