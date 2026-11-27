@@ -102,6 +102,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-25
 - **Decision:** PCM's live demo: the L2 workspace only, for performance and capacity management only. Its inventory comes from VCF Operations and starts at the VCF instance; an object's ID is its VCF Operations resource ID. Class of service, region, environment and time zone exist only in the synthetic demo. PCM shows what the VCF vCommunity Adapter publishes and says "No data" when a value is stale. It reads through with a 60-second cache and stores no metrics. It may compute for display, and never writes to VCF Operations. Lab facts may go to the cloud model. Actions, stories, cases and the calendar are out of 1.0.
 - **Reason:** The author's answers to Q-WS-20 to Q-WS-39. Requirements: private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md).
+- **Status:** PCM keeps each Agent E2 answer with its trace ID and rating for 30 days (Q-WS-61); an answer's text is the one stored exception to "stores no metrics".
 
 ## WD-016 Scope of change for the VCF vCommunity Adapter
 
@@ -197,6 +198,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** In every repository, an ID, term, heading, folder or file name can be guessed from itself. Each concept has one word; a name uses two words when one would be ambiguous, as Agent E2's knowledge folders do. Folder and file names carry no version, milestone or status word (such as v5, m5, proto, new, old or final), because git keeps the history. When a name stops being true, it is renamed in every file, and no text explains the exception.
 - **Reason:** The author, 2026-11-27: "The best documentation is No Documentation." Every session, person or AI, reads the files without memory of earlier ones, so a name that needs explaining costs every reader and invites misreading.
+- **Status:** the words name a file's own version or state. Titles written for readers or for the model (agent-e2's knowledge and benchmark question files, the adapter's shipped content kept by WD-032) and the review pages named for their milestone describe their content and are outside the rule ([R-WS-007](spec/requirements/workspace.md)).
 
 ## WD-031 Lab build after release 1.0
 
