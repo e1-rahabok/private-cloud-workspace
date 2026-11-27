@@ -1,4 +1,4 @@
-# PCM-Adapter requirements
+# VCF vCommunity Adapter requirements
 
 What [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) must do in release 1.0, written from the author's answers in [interview round 1](../interview-round-1.md) and the decisions in [DECISIONS.md](../../DECISIONS.md). Short names and IDs are explained in the [glossary](../glossary.md).
 
@@ -7,7 +7,7 @@ What [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) must do in release
 ## Scope and conventions
 
 - **Area:** the management pack in VCF Operations, its build and lab tools, and its side of two contracts: [C1, the KPI definitions](../glossary.md#c1), and [C2, the KPI metric keys](../glossary.md#c2), both described in [CONTRACTS.md](../../CONTRACTS.md).
-- **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-005 to R-ADP-012 belong to M2, and R-ADP-018 to R-ADP-023 to M3. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M6, the first live cluster in PCM. R-ADP-013 to R-ADP-017, the state codes, come after release 1.0 ([WD-033](../../DECISIONS.md)). R-ADP-007 is needed before M7, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build) and comes after release 1.0 ([WD-031](../../DECISIONS.md)).
+- **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-005 to R-ADP-012 and R-ADP-025 belong to M2, and R-ADP-018 to R-ADP-023 to M3. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M6, the first live cluster in PCM. R-ADP-013 to R-ADP-017, the state codes, come after release 1.0 ([WD-033](../../DECISIONS.md)). R-ADP-007 is needed before M7, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build) and comes after release 1.0 ([WD-031](../../DECISIONS.md)).
 - **Keys** start with `vCommunity|` ([WD-032](../../DECISIONS.md)).
 - **The adapter may change anything.** The author confirmed that no installed instance or upgrade path needs protecting: Q-I4 and Q-2 in [round 1](../interview-round-1.md), recorded as decisions [WD-007 and WD-016](../../DECISIONS.md).
 - **How lab scenarios run.** From the author's laptop over VPN, with the repository's own tools ([tools/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/README.md)): [build.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/build/build.ps1), [install.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/install/install.ps1), [restart.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/restart/restart.ps1), then one collection cycle, then [validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1). This sequence is called "install and validate" below. The live validation checks the build installed on the lab, so a lab scenario passes only after that build is installed ([validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L12)).
@@ -45,13 +45,29 @@ Milestone: M2. The pack's own names, such as "vCommunity MP" and "vCommunity_", 
 
 Source: Q-3 in [round 1](../interview-round-1.md) ("agree": one pull request per repository, archive files left as they are); Q-80 in [round 2](../interview-round-2.md) (the dated engineering reviews and the README's sentence about the vCommunity keep the old name).
 
-Given the files git tracks in PCM-Adapter, outside the dated engineering reviews
+Given the files git tracks in the PCM-Adapter repository, outside the dated engineering reviews
 When they are searched
 Then none contains "VCF-vCommunity-Adapter" or "private-cloud-management", the old names of two repositories
-And the README badges, the link in [resources.properties](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/resources/resources.properties#L7), the release command in [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L135) and the image path in [dark-site.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/installation-guide/dark-site.md#L48) and [system-requirements.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/installation-guide/system-requirements.md#L19) name PCM-Adapter
+And the README badges, the link in [resources.properties](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/resources/resources.properties#L7), the release command in [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L135) and the image path in [dark-site.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/installation-guide/dark-site.md#L48) and [system-requirements.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/installation-guide/system-requirements.md#L19) name VCF vCommunity Adapter
 
 Test scenarios:
 - T-ADP-005a (anywhere, automated by `Management Pack/tests/test_old_name.py` (new), run in CI like [test_docs_links.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/test_docs_links.py)): run `git ls-files`, read each text file outside the archive, and search for the two old repository names; expect no match outside the engineering reviews.
+
+### R-ADP-025 One name for the management pack
+
+Milestone: M2.
+
+Source: WD-030 (guessable names, one word per concept); WD-032 (the display name "VCF vCommunity Adapter" stays). An audit on 2026-11-27 found six names for the pack in the PCM-Adapter repository.
+
+Given the files git tracks in the PCM-Adapter repository, outside the dated engineering reviews
+When a file names the management pack
+Then it uses "VCF vCommunity Adapter", and "the adapter" only after that name in the same file
+And no file uses "vCommunity MP", "vCommunity Management Pack" or "the pack" for it
+And "PCM-Adapter" names only the repository
+And the copyright lines at the top of the code files stay as they are
+
+Test scenarios:
+- T-ADP-025a (anywhere, automated by `Management Pack/tests/test_old_name.py` (new), the test of T-ADP-005a): read each tracked text file outside the engineering reviews; skip each code file's copyright line and the author line under it; expect no "vCommunity MP", "vCommunity Management Pack" or "the pack".
 
 ## Metric keys and names
 
@@ -307,7 +323,7 @@ Test scenarios:
 
 The author asked how PCM gets the check's settings (Q-31).
 
-**How they are read today.** The settings are Advanced Settings of each PCM-Adapter instance, and are not published on the cluster ([periodic-cluster-check.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/periodic-cluster-check.md#L46)). `GET /suite-api/api/adapters?adapterKindKey=vCommunity` returns `adapterInstancesInfoDto[]`. Each instance has `resourceKey.resourceIdentifiers[]`, a list of `identifierType.name` and `value` pairs:
+**How they are read today.** The settings are Advanced Settings of each VCF vCommunity Adapter instance, and are not published on the cluster ([periodic-cluster-check.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/periodic-cluster-check.md#L46)). `GET /suite-api/api/adapters?adapterKindKey=vCommunity` returns `adapterInstancesInfoDto[]`. Each instance has `resourceKey.resourceIdentifiers[]`, a list of `identifierType.name` and `value` pairs:
 
 - `cluster_check_period_hours`: stored zero-padded, "01" to "24" ([periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/periodic_cluster_check.py#L61))
 - `periodic_cluster_check_time`: "HH:MM" in UTC
@@ -326,9 +342,9 @@ Linking a cluster to its instance takes three more steps:
 
 ### R-ADP-020 Each cluster carries its check settings and each result its window
 
-Source: Q-31 in [round 1](../interview-round-1.md) ("PCM gets from the PCM Adapter"); [WD-015](../../DECISIONS.md) (PCM shows what PCM-Adapter publishes).
+Source: Q-31 in [round 1](../interview-round-1.md) ("PCM gets from the PCM Adapter"); [WD-015](../../DECISIONS.md) (PCM shows what the VCF vCommunity Adapter publishes).
 
-Given a cluster collected by a PCM-Adapter instance
+Given a cluster collected by a VCF vCommunity Adapter instance
 When a collection cycle runs
 Then the cluster has the properties `vCommunity|Periodic Cluster Check|Period (hours)`, `vCommunity|Periodic Cluster Check|Time (UTC)` and `vCommunity|Periodic Cluster Check|Worst Percent`, with the values the check uses after defaults
 And each time the check publishes its four values, it also publishes the metric `vCommunity|Periodic Cluster Check|Window End`, the end of the window in UTC as epoch milliseconds, with the same timestamp

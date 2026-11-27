@@ -6,7 +6,7 @@ One file per area. Each requirement is one testable statement with its own ID, a
 
 | File | Area | Milestone |
 |---|---|---|
-| `kpi-definitions.md` | One KPI definition across Agent E2, PCM-Adapter and PCM | M2 |
+| `kpi-definitions.md` | One KPI definition across Agent E2, the VCF vCommunity Adapter and PCM | M2 |
 | `pcm-live.md` | PCM reading the lab VCF Operations | M6, M7 |
 | `agent-e2-service.md` | What Agent E2 answers, for PCM and isvara.io | M6, M9 |
 | `isvara-content.md` | isvara.io pages generated from the Agent E2 knowledge base | M8 |
@@ -21,7 +21,7 @@ One file per area. Each requirement is one testable statement with its own ID, a
 Source: OPEN-QUESTIONS answer to Q-12; PCM D-041.
 
 Given a cluster whose Cluster Performance has no sample in the last 20 minutes
-When the L2 Performance tab of that cluster opens in Live VCF Operations mode
+When the L2 Performance tab of that cluster opens in demo scenario 7
 Then the KPI shows "stale" with the time of the last sample
 And it is not coloured green and not shown as 0
 

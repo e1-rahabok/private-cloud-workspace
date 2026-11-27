@@ -20,7 +20,7 @@ Test scenarios:
 Source: answer to Q-38; WD-018.
 
 Given the nested cluster is built
-When one collection cycle of PCM-Adapter has passed
+When one collection cycle of the VCF vCommunity Adapter has passed
 Then the cluster carries data for the tiering parts: Worst ESXi active memory (tiered hosts), Worst ESXi NVMe read latency, Cluster-wide ESXi DRAM Consumed and Cluster memory tiering consumption
 
 Test scenarios:

@@ -24,7 +24,7 @@ Workspace decisions were numbered W-001 to W-029. Nobody could guess what "W" st
 |---|---|---|
 | WD- | A decision that binds several repositories | WD-026 Release 1.0 scope |
 | Q- | A question for the author | Q-120 Where the nested ESXi hosts run |
-| R-ADP- | A requirement on PCM-Adapter | R-ADP-018 No value from a partial read |
+| R-ADP- | A requirement on the VCF vCommunity Adapter | R-ADP-018 No value from a partial read |
 | T-ADP- | A test scenario of that requirement | T-ADP-018a |
 
 ## Numbers in the order of work

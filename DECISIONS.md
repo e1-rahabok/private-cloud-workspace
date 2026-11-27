@@ -14,7 +14,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-001 Agent E2 as the source of domain knowledge
 
 - **Date:** 2026-11-25
-- **Decision:** Agent E2 is the source of all domain knowledge: KPI names, parts, limits, scoring, thresholds, flows and explanations. PCM-Adapter implements the KPIs. PCM and isvara.io consume; isvara.io holds no knowledge of its own (Q-15, Q-18). A change to domain knowledge starts in agent-e2.
+- **Decision:** Agent E2 is the source of all domain knowledge: KPI names, parts, limits, scoring, thresholds, flows and explanations. The VCF vCommunity Adapter implements the KPIs. PCM and isvara.io consume; isvara.io holds no knowledge of its own (Q-15, Q-18). A change to domain knowledge starts in agent-e2.
 - **Reason:** With one master copy, every other copy can be generated from it or checked against it ([C1, KPI definitions](spec/glossary.md#c1)).
 
 ## WD-002 Release 1.0: lab demo, cloud model
@@ -75,8 +75,8 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-011 Lab credentials
 
 - **Date:** 2026-11-25
-- **Decision:** Lab credentials. On the author's laptop: two DPAPI files in `$HOME\.secrets\` (`Export-Clixml`), one for a read-only VCF Operations account (reading and validating) and one for the admin account (installing and restarting the pack); the scripts of PCM-Adapter and PCM change to read them. On the PCM lab VM: `/etc/pcm/pcm.env`, root and group `pcm` only.
-- **Reason:** Agreed (Q-40). Before this, PCM-Adapter's scripts read an admin login from a file inside the repository folder, and PCM's lab script read Windows Credential Manager.
+- **Decision:** Lab credentials. On the author's laptop: two DPAPI files in `$HOME\.secrets\` (`Export-Clixml`), one for a read-only VCF Operations account (reading and validating) and one for the admin account (installing and restarting the pack); the scripts of the VCF vCommunity Adapter and PCM change to read them. On the PCM lab VM: `/etc/pcm/pcm.env`, root and group `pcm` only.
+- **Reason:** Agreed (Q-40). Before this, the VCF vCommunity Adapter's scripts read an admin login from a file inside the repository folder, and PCM's lab script read Windows Credential Manager.
 
 ## WD-012 Release 1.0 success
 
@@ -99,13 +99,13 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-015 PCM's live demo
 
 - **Date:** 2026-11-25
-- **Decision:** PCM's live demo: the L2 workspace only, for performance and capacity management only. Its inventory comes from VCF Operations and starts at the VCF instance; an object's ID is its VCF Operations resource ID. Class of service, region, environment and time zone exist only in the synthetic demo. PCM shows what PCM-Adapter publishes and says "No data" when a value is stale. It reads through with a 60-second cache and stores no metrics. It may compute for display, and never writes to VCF Operations. Lab facts may go to the cloud model. Actions, stories, cases and the calendar are out of 1.0.
+- **Decision:** PCM's live demo: the L2 workspace only, for performance and capacity management only. Its inventory comes from VCF Operations and starts at the VCF instance; an object's ID is its VCF Operations resource ID. Class of service, region, environment and time zone exist only in the synthetic demo. PCM shows what the VCF vCommunity Adapter publishes and says "No data" when a value is stale. It reads through with a 60-second cache and stores no metrics. It may compute for display, and never writes to VCF Operations. Lab facts may go to the cloud model. Actions, stories, cases and the calendar are out of 1.0.
 - **Reason:** The author's answers to Q-20 to Q-39. Requirements: [spec/requirements/pcm-live.md](spec/requirements/pcm-live.md).
 
-## WD-016 PCM-Adapter's scope of change and its rules
+## WD-016 Scope of change for the VCF vCommunity Adapter
 
 - **Date:** 2026-11-25
-- **Decision:** PCM-Adapter may change anything, including its adapter kind, manifest name, metric key prefix, image path and pak name. A metric's key comes from the adapter; its name comes from Agent E2's catalog. All scoring logic comes from Agent E2, including the score bands and the closure levels. One Cluster Risk level for every cluster. Usable capacity is Total − HA − Buffer. A metric whose name says "peak" is a 20-second peak; others are 5-minute averages. Data absent by design is made explicit by the adapter.
+- **Decision:** The VCF vCommunity Adapter may change anything, including its adapter kind, manifest name, metric key prefix, image path and pak name. A metric's key comes from the adapter; its name comes from Agent E2's catalog. All scoring logic comes from Agent E2, including the score bands and the closure levels. One Cluster Risk level for every cluster. Usable capacity is Total − HA − Buffer. A metric whose name says "peak" is a 20-second peak; others are 5-minute averages. Data absent by design is made explicit by the adapter.
 - **Reason:** The author's answers to Q-I4, Q-1, Q-2, Q-14 to Q-17, Q-19 and Q-28. Requirements: [spec/requirements/pcm-adapter.md](spec/requirements/pcm-adapter.md).
 - **Status:** the adapter kind, manifest name, key prefix, image path and pak name stay, by WD-032. Data absent by design is made explicit after release 1.0, by WD-033.
 
@@ -118,7 +118,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-018 Lab build for memory tiering
 
 - **Date:** 2026-11-25
-- **Decision:** The physical lab hosts have no memory tiering. The new repository [lab-build](https://github.com/e1-rahabok/lab-build) builds nested virtual ESXi hosts with memory tiering automatically, so tiering features can be tested. Tests run against the live lab from the author's laptop, using PCM-Adapter's tools to install, validate and take screenshots.
+- **Decision:** The physical lab hosts have no memory tiering. The new repository [lab-build](https://github.com/e1-rahabok/lab-build) builds nested virtual ESXi hosts with memory tiering automatically, so tiering features can be tested. Tests run against the live lab from the author's laptop, using the PCM-Adapter repository's tools to install, validate and take screenshots.
 - **Reason:** The author's answers to Q-37 and Q-38. Requirements: [spec/requirements/lab-build.md](spec/requirements/lab-build.md).
 - **Status:** after release 1.0, by WD-031.
 
@@ -162,7 +162,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-025 The product and how customers take it
 
 - **Date:** 2026-11-26
-- **Decision:** The product is Agent E2, PCM-Adapter and PCM, which customers take together, with this parent workspace. PCM-Adapter alone is the simplest deployment (one pak file, no Linux), without Agent E2; its documentation presents it as one part of the whole and points to the knowledge rather than repeating it. PCM runs as a Linux container, with VKS integration. isvara.io is a separate public site that customers use but never install or copy. Customers copy the product privately by mirroring each repository into a private one, since a fork of a public repository on GitHub is always public; the manual says so.
+- **Decision:** The product is Agent E2, the VCF vCommunity Adapter and PCM, which customers take together, with this parent workspace. The VCF vCommunity Adapter alone is the simplest deployment (one pak file, no Linux), without Agent E2; its documentation presents it as one part of the whole and points to the knowledge rather than repeating it. PCM runs as a Linux container, with VKS integration. isvara.io is a separate public site that customers use but never install or copy. Customers copy the product privately by mirroring each repository into a private one, since a fork of a public repository on GitHub is always public; the manual says so.
 - **Reason:** The author, 2026-11-26.
 
 ## WD-026 Release 1.0 scope
@@ -200,7 +200,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-031 Lab build after release 1.0
 
 - **Date:** 2026-11-27
-- **Decision:** The lab build for memory tiering (WD-018, [lab-build.md](spec/requirements/lab-build.md)) and R-ADP-024 move to after release 1.0. In release 1.0, the tiering rows of PCM-Adapter are tested with fakes, and on the physical lab clusters as "not applicable" (R-ADP-014). The lab facts of Q-120 and Q-122 wait until the lab build starts.
+- **Decision:** The lab build for memory tiering (WD-018, [lab-build.md](spec/requirements/lab-build.md)) and R-ADP-024 move to after release 1.0. In release 1.0, the tiering rows of the VCF vCommunity Adapter are tested with fakes, and on the physical lab clusters as "not applicable" (R-ADP-014). The lab facts of Q-120 and Q-122 wait until the lab build starts.
 - **Reason:** The author, 2026-11-27: "Defer memory tiering lab to be after Release 1.0."
 
 ## WD-032 The adapter keeps its vCommunity identity
@@ -212,7 +212,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-033 Data states in release 1.0
 
 - **Date:** 2026-11-27
-- **Decision:** In release 1.0, PCM-Adapter publishes no value built from a partial read (R-ADP-018). PCM shows "No data" for a stale value from the time of the value (R-LIVE-015). The state codes, which say why a row or KPI has no value, come after release 1.0 (R-ADP-013 to R-ADP-017). PCM's key list comes from the adapter's module tables, and the lab read checks it (R-ADP-019).
+- **Decision:** In release 1.0, the VCF vCommunity Adapter publishes no value built from a partial read (R-ADP-018). PCM shows "No data" for a stale value from the time of the value (R-LIVE-015). The state codes, which say why a row or KPI has no value, come after release 1.0 (R-ADP-013 to R-ADP-017). PCM's key list comes from the adapter's module tables, and the lab read checks it (R-ADP-019).
 - **Reason:** The author, 2026-11-27, accepting Claude's recommendation. The adapter already leaves a metric blank when its input is older than 10 minutes. A partial read gives values that look normal, which is a correctness bug. The reason for a blank is useful, but release 1.0 is a demo and can show "No data" without it.
 
 ## WD-034 Value management after release 1.0

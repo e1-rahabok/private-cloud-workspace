@@ -279,7 +279,7 @@ Test scenarios:
 
 ### R-E2-018 A missing fact is said, never guessed
 
-Source: answer to Q-36; WD-015 (PCM's live demo shows what PCM-Adapter publishes and says "No data" when a value is stale).
+Source: answer to Q-36; WD-015 (PCM's live demo shows what the VCF vCommunity Adapter publishes and says "No data" when a value is stale).
 
 Given a live-demo call whose facts lack a fact a feature needs (for example no `parts_hourly`, or a part whose value is "No data")
 When Agent E2 answers

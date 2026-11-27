@@ -9,10 +9,10 @@ VMware administrators have the author's knowledge inside their own private cloud
 ## Release 1.0
 
 - **Agent E2:** Day 2 knowledge on Gemma 4 31B, its free-text answers graded automatically, a visible progress state, screenshots and CSV files, sources for every answer ([requirements](spec/requirements/agent-e2-service.md)).
-- **PCM-Adapter:** no value from a partial read, and every KPI definition taken from Agent E2 ([requirements](spec/requirements/pcm-adapter.md), [KPI definitions](spec/requirements/kpi-definitions.md)).
+- **VCF vCommunity Adapter:** no value from a partial read, and every KPI definition taken from Agent E2 ([requirements](spec/requirements/pcm-adapter.md), [KPI definitions](spec/requirements/kpi-definitions.md)).
 - **PCM:** the synthetic demo unchanged, plus a live demo of the L2 workspace for performance and capacity on the lab ([requirements](spec/requirements/pcm-live.md)).
 - **isvara.io:** rebuilt on the three learning paths, with ask, contributions and practice ([plan](spec/design/isvara-revamp.md)). This is the main focus on Release 1.0
-- **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge, value management, PCM-Adapter's state codes, Agent E2's new knowledge forms ([DECISIONS](DECISIONS.md), WD-026, WD-033, WD-034, WD-035).
+- **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge, value management, the VCF vCommunity Adapter's state codes, Agent E2's new knowledge forms ([DECISIONS](DECISIONS.md), WD-026, WD-033, WD-034, WD-035).
 
 ![Release 1.0 milestones and what each depends on: M0 done; M1 in progress; M2 leads to M6, M3, M5 and M8; M6 to M7; M3 to M7; M5 to M7 and M9; M8 to M9 and M10](images/roadmap.svg)
 
@@ -76,10 +76,10 @@ Requirements, ready for the author's approval:
 
 - Workspace checks: R-WS-001 to R-WS-007 ([workspace.md](spec/requirements/workspace.md)), including the check that folder and file names carry no version, milestone or status word (WD-030).
 - KPI definitions: R-KPI-001 to R-KPI-007 ([kpi-definitions.md](spec/requirements/kpi-definitions.md)).
-- PCM-Adapter, the parts that follow from the KPI definitions: R-ADP-005 to R-ADP-012 ([pcm-adapter.md](spec/requirements/pcm-adapter.md)).
+- VCF vCommunity Adapter, the parts that follow from the KPI definitions: R-ADP-005 to R-ADP-012 and R-ADP-025 ([pcm-adapter.md](spec/requirements/pcm-adapter.md)).
 - Repository clean-up: R-REPO-001 to R-REPO-008 ([repositories.md](spec/requirements/repositories.md)): the adapter's knowledge pages to Agent E2, Agent E2's plan and old benchmarks, the product's name, old repository names, and PCM's folders and files named for what they hold and grouped by workspace.
 
-### M3 PCM-Adapter for the live demo
+### M3 VCF vCommunity Adapter for the live demo
 
 - Requirements: R-ADP-018 to R-ADP-023.
 
@@ -128,7 +128,7 @@ Requirements, ready for the author's approval:
 - The people side of operations.
 - Agent E2's new knowledge forms: workload footprints, investigations over several steps, "At large scale" notes; then isvara.io's choice of a small or large estate ([knowledge model](spec/knowledge-model.md), section Proposals; WD-035).
 - Value management, the fifth pillar of The SP5 Framework: cost, price and business value (WD-034).
-- PCM-Adapter's state codes: every row and KPI says why it has no value (R-ADP-013 to R-ADP-017; WD-033).
+- VCF vCommunity Adapter's state codes: every row and KPI says why it has no value (R-ADP-013 to R-ADP-017; WD-033).
 - A larger answer set for Agent E2's grader, from about 15 questions toward 40, weighted to the questions visitors ask.
 - The lab build for memory tiering: nested ESXi hosts with an NVMe tier (R-LAB-001 to R-LAB-004, R-ADP-024; WD-031). It starts with a spike: can a nested host use a virtual NVMe tier (Q-119)? Claude then asks for the lab facts (Q-120, Q-122).
 - Depth beyond vSphere, grown through contributions: vSAN, NSX, Kubernetes, Guest OS, physical infrastructure.
