@@ -56,6 +56,7 @@ Arrows: `-->` solid, `..>` dashed.
 - [tools/milestone_gate.py](tools/milestone_gate.py) shows the open milestone and its next item at every prompt. It fails a pull request that changes a file owned only by a later milestone, and fails when two milestones own one file or the numbers do not run M1, M2, M3 in order.
 - Each requirement belongs to exactly one milestone, or to the list after release 1.0. [tools/milestone_review.py](tools/milestone_review.py) fails otherwise, and writes one review page per milestone from the requirement files.
 - A build milestone is done when every test scenario of its requirements passes ([tools/spec_check.py](tools/spec_check.py) checks that each requirement has one). Every test scenario that needs the lab sits in M8, the only milestone that runs in the lab; the review tool fails otherwise. Before M8, a check that needs the lab, such as the adapter's live validation after a code change, is reported as not run and listed in the pull request, and the line of work goes on (WD-042). M8's lab session runs every listed check.
+- When a milestone opens, its first pull request writes its work items, one `- [ ]` line each, so the gate shows the next one.
 - The author approves each milestone. For M1 only, the author delegated the approval to Claude's self-review, and reviews M1 afterwards (WD-042).
 
 ## Done before the milestones
@@ -99,6 +100,20 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Runs:** in a cloud session. The adapter's lab scenarios run in M8.
 - Files in this repository: [`checks/`](checks), [`tools/style.py`](tools/style.py).
 - **Requirements:** R-WS-001 to R-WS-007 and R-REPO-006 ([workspace.md](spec/requirements/workspace.md)), R-KPI-001 to R-KPI-006 ([kpi-definitions.md](spec/requirements/kpi-definitions.md)), R-ADP-005 to R-ADP-011 and R-ADP-025 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-REPO-001 and R-REPO-002 (PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md)), R-REPO-003 and R-REPO-004 (agent-e2's [clean-up.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/clean-up.md)), R-REPO-005, R-REPO-007 and R-REPO-008 (private-cloud-manager's [clean-up.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/clean-up.md)).
+
+- [ ] C1, step 1: every row of Agent E2's catalog has a `key`, the adapter row's name (R-KPI-001).
+- [ ] C1, step 2: the KPI definitions check matches rows by key and compares names, limits, intervals, score bands and closure levels (R-KPI-001 to R-KPI-006, T-ADP-006a, T-ADP-008a, T-ADP-010a, T-ADP-011a).
+- [ ] C1, step 3: the catalog's renamed rows, its Cluster Performance score row and its one Cluster Risk level, with the adapter's labels and intervals to match; `NAME_GAPS` is empty (R-ADP-006, R-ADP-008, R-ADP-010, R-ADP-011).
+- [ ] The adapter's declared keys equal its published keys, and its files use one name for the pack and none of the old repository names (R-ADP-005, R-ADP-007, R-ADP-025).
+- [ ] One set of writing rules, run by [tools/style.py](tools/style.py) in every repository (R-WS-006).
+- [ ] The name check and the old repository names check, run by [checks/run_all.py](checks/run_all.py) (R-WS-007, R-REPO-006).
+- [ ] Every contract names its check, and the cross-repo checks run on the pull requests of every child repository, isvara's in its own CI (R-WS-001, R-WS-002).
+- [ ] R-WS-003 to R-WS-005 hold on every pull request of M2.
+- [ ] Agent E2's plan describes release 1.0, and the older benchmarks are removed (R-REPO-003, R-REPO-004).
+- [ ] The adapter's documentation keeps only what the adapter does (R-REPO-001, R-REPO-002).
+- [ ] PCM is named Private Cloud Manager, its files are named for what they hold, and its folders are grouped by workspace (R-REPO-005, R-REPO-007, R-REPO-008).
+- [ ] A fresh session guesses each repository's folders from the tree alone, and every wrong guess is renamed (T-WS-007b).
+- [ ] Approval: the author approves M2 from its [review page](spec/review/M2.md).
 
 ### M3 Agent E2 serves PCM and isvara.io
 
