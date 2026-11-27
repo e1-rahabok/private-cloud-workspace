@@ -12,7 +12,7 @@ This project has two futures. In the first, the product is a demo in the author'
 
 ## Building the map with the agent
 
-Ask the agent to read the repositories and describe the system in its own words, before you give it your description. Its account will be partly wrong, and the wrong parts point straight at the gaps in your documentation. In this project the first survey got four things wrong, each because a document was out of date or missing ([chapter 11](11-case-study.md) lists them).
+Ask the agent to read the repositories and describe the system in its own words, before you give it your description. Its account will be partly wrong, and the wrong parts point straight at the gaps in your documentation. In this project the first survey got four things wrong, each because a document was out of date or missing ([chapter 12](12-case-study.md) lists them).
 
 Correct the documents, not only the conversation. Otherwise the next session makes the same mistake.
 

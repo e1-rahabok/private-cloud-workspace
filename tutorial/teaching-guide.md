@@ -11,13 +11,27 @@ For anyone using this tutorial in a workshop or a course.
 5. Write a requirement in Given, When, Then form, with a source and a test scenario, including a failure case.
 6. Write a check for one seam and show that it fails when something breaks.
 7. Reply to an agent's suggestion as a co-architect: what is strong, what is weak, and a recommendation.
+8. Name files, folders, IDs and terms so a new session can guess what they hold.
+9. Check a release plan against what the person intends, and defer the rest with a decision.
+10. Start a first project of their own with one seam.
 
-## Format: one day, or four sessions of 90 minutes
+## Format: one day, or five sessions of 90 minutes
 
 1. **The problem and the map** (chapters 1 to 3). Participants ask an agent to describe a sample repository, then count its mistakes and find the documents that caused them.
 2. **Interview, seams and owners** (chapters 4 and 5). The agent surveys the sample for open questions. Participants sort them into judgement questions and questions the agent should have answered itself, then draw the seams and choose owners.
 3. **Requirements and checks** (chapters 6 and 7). Turn a vague goal into requirements with scenarios, write a small check, and break something on purpose.
-4. **Running the work** (chapters 8 to 11). Run one slice with an agent, following the session shape. Give the agent a suggestion and see whether it argues or obeys. Review the result in a fresh session.
+4. **Running the work** (chapters 8 to 10). Run one slice with an agent, following the session shape. Give the agent a suggestion and see whether it argues or obeys. Show the agent only a folder tree and count its wrong guesses. Review the result in a fresh session.
+5. **Trust, the case study and a first project** (chapters 11 to 13). Walk through one day of the case log. Each participant picks a first project with one seam and fills in its map before the session ends.
+
+## Video calls
+
+For a series of video calls, one call per session above:
+
+- Share the repository in the browser. Open the real files as each chapter names them; the links in every chapter go straight to them.
+- Spend about 30 minutes explaining, 40 minutes on a live demonstration with an agent on a small sample repository, and 20 minutes on questions.
+- Run the demonstration on a sample with nothing sensitive in it. Close other windows; never show a credential on screen.
+- Give the chapter's exercise as homework, and open the next call with two or three participants' results.
+- Record the calls. The chapters and the recording together let a participant who missed a call catch up alone.
 
 ## Materials
 
@@ -34,6 +48,9 @@ For anyone using this tutorial in a workshop or a course.
 - The agent turned a suggestion into a decision within an hour. What in the working rules would have stopped it?
 - The strongest model available made every mistake in the case study. What does that say about choosing models?
 - A calculator with no AI in it can still be wrong. How would you prove a calculator is right?
+- In the case study the plan grew to 43 requirements the author never meant to include, each with a good source. How would you have caught it earlier?
+- The agent chose a product's name when asked to, and the author reversed it. Which decisions should a person keep even when delegating?
+- Which of the VMware tasks in the README's table do you already do well? Which step of the method would be easiest for you?
 
 ## Assessment
 
@@ -43,7 +60,8 @@ For a project of their own, each participant hands in:
 - ten interview questions, each with a recommendation;
 - a contract table with at least three seams and their owners;
 - three requirements with scenarios, one of them about a failure;
-- one check, with evidence that it failed when something was broken.
+- one check, with evidence that it failed when something was broken;
+- a glossary of the ten terms their project uses most, one meaning each.
 
 ## Notes for the teacher
 
