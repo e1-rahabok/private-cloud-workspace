@@ -14,7 +14,7 @@ VMware administrators have the author's knowledge inside their own private cloud
 - **isvara.io:** rebuilt on the three learning paths, with ask, contributions and practice ([plan](spec/design/isvara-plan.md)). This is the main focus on Release 1.0
 - **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge, value management, the VCF vCommunity Adapter's state codes, Agent E2's new knowledge forms ([DECISIONS](DECISIONS.md), WD-026, WD-033, WD-034, WD-035).
 
-![Release 1.0 milestones and what each depends on: M0 in progress; M1 paused; M2 leads to M5, M3, M4 and M7; M5 to M6; M3 to M6; M4 to M6 and M8; M7 to M8 and M9](images/roadmap.svg)
+![Release 1.0 milestones and what each depends on: M-1 in progress; M0 paused; M1 paused; M2 leads to M5, M3, M4 and M7; M5 to M6; M3 to M6; M4 to M6 and M8; M7 to M8 and M9](images/roadmap.svg)
 
 <details>
 <summary>Text of the diagram, for readers that cannot see it</summary>
@@ -22,30 +22,32 @@ VMware administrators have the author's knowledge inside their own private cloud
 Colour key: green = Done; orange = In progress; white = Not started or paused.
 
 Boxes, nested as drawn:
-- n1 **M0 Workspace** (In progress): Files, checks, tutorial
-- n2 **M5 Live demo: one KPI** (Not started or paused): One cluster, live
-- n3 **M6 Live demo: the rest** (Not started or paused): L2 performance, capacity
-- n4 **M1 Specification** (Not started or paused): Intent, model, requirements; approval
-- n5 **M2 Contracts, clean-up** (Not started or paused): KPI definitions, docs, Agent E2 plan
-- n6 **M3 Adapter for live demo** (Not started or paused): Partial reads, key list, settings, accounts
-- n7 **M4 Agent E2 for 1.0** (Not started or paused): Grader, progress, files, Day 2 scope
-- n8 **M8 isvara.io Ask** (Not started or paused): Agent E2, contributions, protection
-- n9 **M7 isvara.io content** (Not started or paused): Paths, articles, search, infographics, tools
-- n10 **M9 isvara.io Practice** (Not started or paused): Quiz, mastery map, exam
+- n1 **M0 Workspace** (Not started or paused): Files, checks, tutorial
+- n2 **M-1 Claude in SDD mode** (In progress): Rules, gate, hook
+- n3 **M5 Live demo: one KPI** (Not started or paused): One cluster, live
+- n4 **M6 Live demo: the rest** (Not started or paused): L2 performance, capacity
+- n5 **M1 Specification** (Not started or paused): Intent, model, requirements; approval
+- n6 **M2 Contracts, clean-up** (Not started or paused): KPI definitions, docs, Agent E2 plan
+- n7 **M3 Adapter for live demo** (Not started or paused): Partial reads, key list, settings, accounts
+- n8 **M4 Agent E2 for 1.0** (Not started or paused): Grader, progress, files, Day 2 scope
+- n9 **M8 isvara.io Ask** (Not started or paused): Agent E2, contributions, protection
+- n10 **M7 isvara.io content** (Not started or paused): Paths, articles, search, infographics, tools
+- n11 **M9 isvara.io Practice** (Not started or paused): Quiz, mastery map, exam
 
 Arrows (from, to, label):
-- n1 M0 Workspace --> n4 M1 Specification
-- n4 M1 Specification --> n5 M2 Contracts, clean-up
-- n5 M2 Contracts, clean-up --> n2 M5 Live demo: one KPI
-- n5 M2 Contracts, clean-up --> n6 M3 Adapter for live demo
-- n5 M2 Contracts, clean-up --> n7 M4 Agent E2 for 1.0
-- n5 M2 Contracts, clean-up --> n9 M7 isvara.io content
-- n2 M5 Live demo: one KPI --> n3 M6 Live demo: the rest
-- n6 M3 Adapter for live demo --> n3 M6 Live demo: the rest
-- n7 M4 Agent E2 for 1.0 --> n3 M6 Live demo: the rest
-- n7 M4 Agent E2 for 1.0 --> n8 M8 isvara.io Ask
-- n9 M7 isvara.io content --> n8 M8 isvara.io Ask
-- n9 M7 isvara.io content --> n10 M9 isvara.io Practice
+- n2 M-1 Claude in SDD mode --> n1 M0 Workspace
+- n1 M0 Workspace --> n5 M1 Specification
+- n5 M1 Specification --> n6 M2 Contracts, clean-up
+- n6 M2 Contracts, clean-up --> n3 M5 Live demo: one KPI
+- n6 M2 Contracts, clean-up --> n7 M3 Adapter for live demo
+- n6 M2 Contracts, clean-up --> n8 M4 Agent E2 for 1.0
+- n6 M2 Contracts, clean-up --> n10 M7 isvara.io content
+- n3 M5 Live demo: one KPI --> n4 M6 Live demo: the rest
+- n7 M3 Adapter for live demo --> n4 M6 Live demo: the rest
+- n8 M4 Agent E2 for 1.0 --> n4 M6 Live demo: the rest
+- n8 M4 Agent E2 for 1.0 --> n9 M8 isvara.io Ask
+- n10 M7 isvara.io content --> n9 M8 isvara.io Ask
+- n10 M7 isvara.io content --> n11 M9 isvara.io Practice
 
 Arrows: `-->` solid, `..>` dashed.
 
@@ -55,9 +57,18 @@ Arrows: `-->` solid, `..>` dashed.
 
 Milestones are numbered in the order of work. The diagram shows which ones can run in parallel. Work happens only in the open milestone: the first one whose heading does not end with "done". A milestone is marked done only after the author approves it. [tools/milestone_gate.py](tools/milestone_gate.py) shows the open milestone and its next item at every prompt, and fails a pull request that changes a file owned only by a later milestone (WD-039). A build milestone is done when every test scenario of its requirements passes ([tools/spec_check.py](tools/spec_check.py) checks that each requirement has one).
 
-### M0 Workspace, checks and tutorial: in progress
+### M-1 Claude in SDD mode: in progress
 
-Reopened on 2026-11-27: it was marked done without the author's review.
+Claude's own rules and the mechanism that holds Claude to them, before any other work (WD-040). Nothing in M-1 is about the product.
+
+- Files in this repository: [`CLAUDE.md`](CLAUDE.md), [`ROADMAP.md`](ROADMAP.md), [`DECISIONS.md`](DECISIONS.md), [`spec/glossary.md`](spec/glossary.md), [`.claude/`](.claude), [`.github/`](.github), [`tools/milestone_gate.py`](tools/milestone_gate.py), [`tools/diagrams.py`](tools/diagrams.py), [`images/roadmap.svg`](images/roadmap.svg).
+- [x] One rule for the order of work, its prompt hook and its CI check ([#35](https://github.com/e1-rahabok/private-cloud-workspace/pull/35)).
+- [x] CLAUDE.md pruned: one rule per bullet, no rule twice, the method apart from this project's rules ([#36](https://github.com/e1-rahabok/private-cloud-workspace/pull/36)).
+- [ ] The author approves M-1.
+
+### M0 Workspace, checks and tutorial: paused
+
+Reopened on 2026-11-27: it was marked done without the author's review. Waits for M-1.
 
 - Files in this repository: [`CLAUDE.md`](CLAUDE.md), [`README.md`](README.md), [`ROADMAP.md`](ROADMAP.md), [`DECISIONS.md`](DECISIONS.md), [`OPEN-QUESTIONS.md`](OPEN-QUESTIONS.md), [`spec/glossary.md`](spec/glossary.md), [`spec/README.md`](spec/README.md), [`spec/requirements/README.md`](spec/requirements/README.md), [`spec/review/`](spec/review), [`.claude/`](.claude), [`.github/`](.github), [`tools/`](tools), [`checks/run_all.py`](checks/run_all.py), [`images/`](images).
 - [ ] Each foundation of M0 listed, reviewed with the author one at a time, and approved.
@@ -69,7 +80,7 @@ Reopened on 2026-11-27: it was marked done without the author's review.
 
 ### M1 Specification: paused
 
-No code is written in M1. Part of it was written before M0 was reopened.
+No code is written in M1. Part of it was written before M-1 and M0 were reopened.
 
 - Files in this repository: [`SYSTEM.md`](SYSTEM.md), [`CONTRACTS.md`](CONTRACTS.md), [`spec/`](spec).
 

@@ -250,3 +250,9 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** Work happens only in the open milestone: the first milestone in [ROADMAP.md](ROADMAP.md) whose heading does not end with ": done". A milestone is marked done only after the author approves it. A request for a later milestone is parked in one line, and nothing in it is done. [tools/milestone_gate.py](tools/milestone_gate.py) enforces this in two places: a hook in [.claude/settings.json](.claude/settings.json) prints the open milestone and its next item at every prompt, and CI fails a pull request that changes a file owned only by a later milestone. Each milestone lists the files it owns in this repository. This one rule replaces the earlier CLAUDE.md rules on starting a build milestone and on asking for approval. M0 is reopened, because it was marked done without the author's review.
 - **Reason:** The agent worked ahead of the open milestone three times between 2026-11-25 and 2026-11-27, and each time a narrow rule was added for that one case. The author, 2026-11-27, agreed to one rule with a mechanism behind it: "Do it. Merge".
+
+## WD-040 M-1 prepares Claude for spec-driven development
+
+- **Date:** 2026-11-27
+- **Decision:** Milestone M-1 comes before M0. It holds Claude's rules (CLAUDE.md), the milestone gate of WD-039 and its hook. It is about how Claude works, never about the product. M0, the workspace set-up, waits until the author approves M-1.
+- **Reason:** The author, 2026-11-27: "M0 requires you to be in SDD-mode already. M-1 is to prep Claude to be in SDD mode."

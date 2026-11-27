@@ -98,7 +98,8 @@ def roadmap() -> None:
     def b(x, y, title, lines, kind):
         k.box(x, y, w, title, lines, kind, h=h)
 
-    b(20, 80, "M0 Workspace", ["Files, checks, tutorial"], "guest")
+    b(230, 80, "M-1 Claude in SDD mode", ["Rules, gate, hook"], "guest")
+    b(20, 80, "M0 Workspace", ["Files, checks, tutorial"], "white")
     b(20, 190, "M1 Specification", ["Intent, model, requirements;", "approval"], "white")
     b(230, 190, "M2 Contracts, clean-up", ["KPI definitions, docs,", "Agent E2 plan"], "white")
     b(440, 190, "M3 Adapter for live demo", ["Partial reads, key list,", "settings, accounts"], "white")
@@ -109,6 +110,7 @@ def roadmap() -> None:
     b(860, 300, "M8 isvara.io Ask", ["Agent E2, contributions,", "protection"], "white")
     b(860, 410, "M9 isvara.io Practice", ["Quiz, mastery map, exam"], "white")
 
+    k.arrow([(230, 115), (200, 115)])
     k.arrow([(110, 150), (110, 190)])
     k.arrow([(200, 225), (230, 225)])
     k.arrow([(410, 205), (420, 205), (420, 115), (650, 115)])
