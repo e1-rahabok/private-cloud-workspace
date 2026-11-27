@@ -2,13 +2,14 @@
 
 Every interface between two repositories. Each has one owner, its consumers, where its shape is written, and the check that proves both sides still agree. Every contract has a check, or a milestone that adds one, because an unchecked contract drifts without anyone noticing. The IDs C1 to C5 are also in the [glossary](spec/glossary.md); requirements per contract are in [spec/requirements](spec/requirements).
 
-| ID | Contract | Owner, then consumers | Check |
-|---|---|---|---|
-| C1 | KPI definitions | agent-e2; PCM-Adapter, PCM, isvara | [`checks/kpi_definitions.py`](checks/kpi_definitions.py), running |
-| C2 | KPI metric keys | PCM-Adapter; PCM (live demo) | Planned in ROADMAP M3 |
-| C3 | Agent E2 API | agent-e2; PCM, isvara (planned) | [`checks/agent_e2_api.py`](checks/agent_e2_api.py), running |
-| C4 | Knowledge content for isvara | agent-e2; isvara | Planned in ROADMAP M5 |
-| C5 | Model gateway | Vercel AI Gateway; agent-e2 | None: a third-party API |
+
+| ID | Contract                     | Owner, then consumers              | Check                                                             |
+| -- | ---------------------------- | ---------------------------------- | ----------------------------------------------------------------- |
+| C1 | KPI definitions              | agent-e2; PCM-Adapter, PCM, isvara | [`checks/kpi_definitions.py`](checks/kpi_definitions.py), running |
+| C2 | KPI metric keys              | PCM-Adapter; PCM (live demo)       | Planned in ROADMAP M3                                             |
+| C3 | Agent E2 API                 | agent-e2; PCM, isvara (planned)    | [`checks/agent_e2_api.py`](checks/agent_e2_api.py), running       |
+| C4 | Knowledge content for isvara | agent-e2; isvara                   | Planned in ROADMAP M5                                             |
+| C5 | Model gateway                | Vercel AI Gateway; agent-e2        | None: a third-party API                                           |
 
 ## C1 KPI definitions
 
@@ -16,7 +17,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 - **Implementer:** PCM-Adapter, `Management Pack/app/metrics/`: one module per KPI, a `METRICS` table of `Metric` rows (name, unit, five limits, `skip_when_green`) and a `LABELS` table that gives a row its catalog name.
 - **Consumer:** PCM shows the parts under the catalog names (PCM D-113, D-115) in [`spec/catalog/l2.yaml`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml). Not checked yet: PCM names parts in prose (ROADMAP M2).
 - **The check** matches each sub-metric by name (the adapter's label against the catalog name without its unit) and compares the five limits and excluded-when-green, for Cluster Performance, ESXi Performance, VM Performance, Guest OS Performance, Cluster Risk and Cluster Consumption.
-- **To change a KPI:** change the catalog first, then the adapter, in the same session, with the check run before both merges.
+- **To change a KPI:** change the documentation & catalog first, then the PCM adapter, in the same session, with the check run before both merges.
 - **Status:** limits and excluded-when-green agree for all 49 sub-metrics of 6 KPIs; 11 known name gaps, to close by [R-KPI-003](spec/requirements/kpi-definitions.md).
 
 ## C2 KPI metric keys
