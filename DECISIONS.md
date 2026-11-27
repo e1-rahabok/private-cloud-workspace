@@ -118,6 +118,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-25
 - **Decision:** The physical lab hosts have no memory tiering. The new repository [lab-build](https://github.com/e1-rahabok/lab-build) builds nested virtual ESXi hosts with memory tiering automatically, so tiering features can be tested. Tests run against the live lab from the author's laptop, using PCM-Adapter's tools to install, validate and take screenshots.
 - **Reason:** The author's answers to Q-37 and Q-38. Requirements: [spec/requirements/lab-build.md](spec/requirements/lab-build.md).
+- **Status:** after release 1.0, by WD-031.
 
 ## WD-019 Place for questions across repositories
 
@@ -193,3 +194,9 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** In every repository, an ID, term, heading, folder or file name can be guessed from itself. Each concept has one word; a name uses two words when one would be ambiguous, as Agent E2's knowledge folders do. Folder and file names carry no version, milestone or status word (such as v5, m5, proto, new, old or final), because git keeps the history. When a name stops being true, it is renamed in every file, and no text explains the exception.
 - **Reason:** The author, 2026-11-27: "The best documentation is No Documentation." Every session, person or AI, reads the files without memory of earlier ones, so a name that needs explaining costs every reader and invites misreading.
+
+## WD-031 Lab build after release 1.0
+
+- **Date:** 2026-11-27
+- **Decision:** The lab build for memory tiering (WD-018, [lab-build.md](spec/requirements/lab-build.md)) and R-ADP-024 move to after release 1.0. In release 1.0, the tiering rows of PCM-Adapter are tested with fakes, and on the physical lab clusters as "not applicable" (R-ADP-014). The lab facts of Q-120 and Q-122 wait until the lab build starts.
+- **Reason:** The author, 2026-11-27: "Defer memory tiering lab to be after Release 1.0."
