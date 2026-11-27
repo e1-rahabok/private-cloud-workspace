@@ -9,10 +9,11 @@ writing/flagged-phrases.yaml. Documents fall into three groups (GROUPS below, pe
 - Records kept as they were said or written (interview answers, the author's books and papers, dated reviews):
   not checked.
 
-Known style debt is a baseline per repository (tools/style_baseline.yaml): a listed file is reported as KNOWN while
-it has at most its listed number of problems. The baseline may only shrink: a file with more problems fails, and so
-does a file with fewer until its number is lowered or, when clean, it is removed from the list. Each repository's
-baseline goes with a question in that repository's question file (WD-019).
+Known style debt is a baseline in each repository, style-baseline.yaml at its root (file -> number of problems): a
+listed file is reported as KNOWN while it has its listed number of problems. The baseline may only shrink: a file with
+more problems fails, and so does a file with fewer until the same pull request lowers its number or, when clean,
+removes it. A repository's baseline goes with a question in that repository's question file (WD-019). A repository
+without the file is not checked yet, and the check says so.
 
 What no pattern finds (slogans, "X, not Y", hedging, praise) is left to review: read each changed line with the
 lines around it.
@@ -33,7 +34,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 PHRASES = ROOT / "writing" / "flagged-phrases.yaml"
-BASELINE = ROOT / "tools" / "style_baseline.yaml"
+BASELINE = "style-baseline.yaml"  # at the root of each repository
 WORKSPACE = "private-cloud-workspace"
 
 COMMON_MACHINE = ["CLAUDE.md", "*/CLAUDE.md", "CLAUDE-PROJECT.md", "spec/requirements/*", "project/requirements/*"]
@@ -66,9 +67,9 @@ def phrases() -> dict[str, str]:
     return data.get("flagged_phrases") or {}
 
 
-def baseline(repo: str) -> dict[str, int]:
-    data = yaml.safe_load(BASELINE.read_text(encoding="utf-8")) or {}
-    return data.get(repo) or {}
+def baseline(root: Path) -> dict[str, int]:
+    """The repository's known style debt: file -> number of problems."""
+    return yaml.safe_load((root / BASELINE).read_text(encoding="utf-8")) or {}
 
 
 def markdown_files(root: Path) -> list[str]:
@@ -139,7 +140,10 @@ def main() -> int:
         print(f"COULD NOT RUN {args.repo}: no clone at {root}")
         return 2
     flagged = {re.compile(p): use for p, use in phrases().items()}
-    debt = baseline(args.repo)
+    if not (root / BASELINE).is_file():
+        print(f"NOT RUN {args.repo}: no {BASELINE} yet; its first run and its question come first")
+        return 0
+    debt = baseline(root)
     problems: list[str] = []
     known: list[str] = []
     files = markdown_files(root)
@@ -151,7 +155,7 @@ def main() -> int:
                 problems.append(f"{rel}: {len(found)} problem(s), more than its baseline of {debt[rel]}")
             elif len(found) < debt[rel]:
                 problems.append(f"{rel}: {len(found)} problem(s), fewer than its baseline of {debt[rel]}: "
-                                + ("remove it from" if not found else f"lower it to {len(found)} in") + " tools/style_baseline.yaml")
+                                + ("remove it from" if not found else f"lower it to {len(found)} in") + f" {BASELINE}")
             else:
                 known.append(f"{rel}: {len(found)} problem(s) in the baseline")
         else:

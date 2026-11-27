@@ -60,3 +60,5 @@ jobs:
           repos="agent-e2 PCM-Adapter private-cloud-manager"
           if [ -d isvara ]; then repos="$repos isvara"; fi
           python private-cloud-workspace/tools/spec_check.py --repos $repos
+      - name: Writing style of the calling repository (R-WS-006)
+        run: python private-cloud-workspace/tools/style.py --repo ${{ github.event.repository.name }}
