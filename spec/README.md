@@ -28,13 +28,13 @@ What the product must do, and how each part of that is tested. Built in mileston
 | [kpi-definitions.md](requirements/kpi-definitions.md) | M2 (001 to 006; 004 dropped) |
 | [agent-e2-api.md](requirements/agent-e2-api.md) | M3 |
 | [lab-build.md](requirements/lab-build.md) | After release 1.0 (WD-031) |
-| agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md) | M3; to update in M1 for round 2 and WD-026 |
+| agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md) | M3; R-E2-026 in M8 |
 | agent-e2's [clean-up.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/clean-up.md) | M2 |
-| PCM-Adapter's [adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md) | M2 (005 to 012, 025), M8 (018 to 023); after release 1.0 (013 to 017, 024) |
+| PCM-Adapter's [adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md) | M2: 005 to 012, 025. M8: 018 to 023, 026. Later: 013 to 017, 024 |
 | PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md) | M2 |
-| private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md) | M8; to update in M1 for round 2 |
+| private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md) | M8; R-LIVE-034 after release 1.0 |
 | private-cloud-manager's [clean-up.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/clean-up.md) | M2 |
-| isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md) | M6; to update in M1 for round 2 |
+| isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md) | M6 |
 | isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md) | M6 (001); the rest to write in M1 from the isvara.io plan |
 | isvara.io reading, Ask, contributions, practice, switch-over | M4 to M7; to write in M1 from the [isvara.io plan](design/isvara-plan.md) |
 

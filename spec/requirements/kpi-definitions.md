@@ -45,7 +45,7 @@ Source: answer to Q-WS-1 ("For key, adapter is correct. For name, Agent E2 is co
 
 Test scenarios:
 - T-KPI-003a (anywhere, automated by checks/kpi_definitions.py, to extend): match parts by key; fail when an adapter label differs from the catalog name. The baseline of 11 VM and Guest OS name gaps must be empty.
-- T-KPI-003b (lab, automated by the VCF vCommunity Adapter's tools/screenshot): after installing the pack, a screenshot of one VM's metric list shows the catalog names.
+- Its lab check, a screenshot of one lab cluster's and one lab VM's metric list after installing the pack, is T-ADP-026a in M8 ([R-ADP-026](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md#r-adp-026-the-installed-pack-matches-the-catalog-on-the-lab)).
 
 ### R-KPI-004 Dropped: the scoring rules are defined once, in the catalog
 

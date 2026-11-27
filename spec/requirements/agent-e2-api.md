@@ -49,7 +49,7 @@ Source: WD-010; answer to Q-WS-I1 ("I expect you to check all the contracts").
 - Given the Agent E2 service in mock mode (no model, no network)
 - When [checks/agent_e2_api.py](../../checks/agent_e2_api.py) runs
 - Then it calls the service as PCM does, through PCM's client, and as isvara.io does: until isvara.io has its own client, with a call the check builds from the specification
-- And it checks the fields of R-E2-007, R-E2-010, R-E2-012, R-E2-016 and R-E2-018 by name and type
+- And it checks the fields of R-E2-007, R-E2-010, R-E2-012, R-E2-016, R-E2-018, R-E2-022 (`page`, the `reader` role) and R-E2-023 (`trace_id`) by name and type, and the 401 of R-E2-024 when a secret is set
 
 Test scenarios:
 - T-E2-019a (anywhere, automated by [checks/agent_e2_api.py](../../checks/agent_e2_api.py), to extend): the check passes on agent-e2's main branch.

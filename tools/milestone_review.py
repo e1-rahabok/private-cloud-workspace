@@ -9,7 +9,8 @@ A milestone's requirements are the IDs its section in ROADMAP.md names (single I
 requirements are listed apart, for reference.
 
 Each requirement that is not dropped belongs to exactly one milestone, or its "Milestone:" line says
-"after release 1.0" (WD-042). Both modes fail otherwise.
+"after release 1.0" (WD-042). A requirement with a test scenario that needs the lab belongs to a milestone
+whose section says "**Runs:** in the lab", or to after release 1.0 (WD-042). Both modes fail otherwise.
 
 Requirement files are read from every repository (WD-036, tools/requirement_files.py). A page that lists a
 requirement of a repository not read (CI cannot read isvara) is reported as not run, never as checked.
@@ -106,8 +107,21 @@ def milestones(reqs: dict[str, dict]) -> dict[str, tuple[str, list[str]]]:
     return out
 
 
+def lab_milestones() -> set[str]:
+    """The milestones whose section in ROADMAP.md says they run in the lab."""
+    text = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
+    heads = list(MILESTONE.finditer(text))
+    out = set()
+    for i, m in enumerate(heads):
+        end = heads[i + 1].start() if i + 1 < len(heads) else len(text)
+        if "**Runs:** in the lab" in text[m.end(): end].split("\n## ", 1)[0]:
+            out.add(m.group(1))
+    return out
+
+
 def membership(reqs: dict[str, dict], ms: dict[str, tuple[str, list[str]]]) -> list[str]:
-    """Each requirement in exactly one milestone, or after release 1.0 (WD-042)."""
+    """Each requirement in exactly one milestone, or after release 1.0; lab tests only in a lab milestone (WD-042)."""
+    lab = lab_milestones()
     where: dict[str, list[str]] = {}
     for mid, (_, ids) in ms.items():
         for r in ids:
@@ -123,6 +137,8 @@ def membership(reqs: dict[str, dict], ms: dict[str, tuple[str, list[str]]]) -> l
             problems.append(f"{r} belongs to no milestone: name it in ROADMAP.md or give it a Milestone line")
         elif found and v["after"]:
             problems.append(f"{r} is after release 1.0 and also in {found[0]}")
+        if v["lab"] and len(found) == 1 and found[0] not in lab:
+            problems.append(f"{r} has a lab test scenario but {found[0]} does not run in the lab: move the scenario")
     return problems
 
 
