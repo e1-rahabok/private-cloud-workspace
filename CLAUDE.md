@@ -1,36 +1,28 @@
 # CLAUDE.md
 
-Rules for Claude in work that crosses the repositories. Inside one repository, that repository's CLAUDE.md also applies. IDs: [spec/glossary.md](spec/glossary.md). The sections up to Git hold the method; the section This project holds the rules of this product only.
+Rules for Claude in work across the repositories. Inside one repository, its own CLAUDE.md also applies. IDs: [spec/glossary.md](spec/glossary.md). All sections but the last hold the method; the last holds this project's rules.
 
-## Milestone gate
+## Order of work
 
-- Work only on the earliest milestone in [ROADMAP.md](ROADMAP.md) that is not done (WD-039). The hook in [.claude/settings.json](.claude/settings.json) prints it, and its next item, at every prompt.
+- Work only on the earliest milestone in [ROADMAP.md](ROADMAP.md) that is not done (WD-039). The hook in [.claude/settings.json](.claude/settings.json) prints it at every prompt.
 - When a request belongs to a later milestone: list it as parked, in one line, and act on nothing in it.
-- Write `: done` on a milestone's heading only after the author has approved the milestone.
+- When the author makes a suggestion: reply with strengths, weaknesses, gaps and a recommendation. Write to a repository only after the author agrees, or says "do it" or "decide".
+- Write `: done` on a milestone's heading only after the author approves it, from its review page [spec/review](spec/review)`/M<n>.md` when it has one.
 
-## Session start
+## Before acting
 
-- Read [SYSTEM.md](SYSTEM.md), [CONTRACTS.md](CONTRACTS.md), [ROADMAP.md](ROADMAP.md) and the requirement files the request touches.
-- Read the CLAUDE.md of each repository the change touches.
+- Read ROADMAP.md, the files the request touches, and the CLAUDE.md of each repository it touches.
+- Before asking the author: search DECISIONS.md, the glossary and the interview records, and quote what they say.
+- Decide what the code, the documents or knowledge of the field settle, and state the decision. Ask the author only about judgement, experience, scope and taste.
+- Verify a claim from an audit, a review or another session against the files. Report a contradiction with both sources.
 
-## Thinking
+## Replies to the author
 
-- Treat the author's suggestion as input. Unless the author says "decide" or "do it": reply with strengths, weaknesses, gaps and a recommendation; write to a repository only after agreement.
-- Disagree when there is a reason. Separate what you know, what you believe and what you have not checked.
-- Decide anything that the code, the documents or general knowledge of the field settles, and state the decision. Ask the author only about judgement, field experience, scope and taste.
-- Before asking the author anything: search SYSTEM.md, CONTRACTS.md, DECISIONS.md, the glossary and the interview records for the answer. Quote what they say in the question, or answer it yourself.
-- Treat a claim from an audit, a review or another session as input to verify against these files. Where it contradicts a decision, report the contradiction with both sources; never relay it as a new fact.
-- Describe how two parts relate by mechanism: code, network, data, dependency or contract. Never use a word with several meanings, such as "part of", without saying which one.
-- Reply to the author in bullet points and short sentences. Write each name in full on first use in a reply.
+- Bullet points and short sentences. Each name in full on first use.
+- Separate what you know, what you believe and what you have not checked. Disagree when there is a reason.
+- Describe how two parts relate by mechanism: code, network, data, dependency or contract.
 
-## Requirements
-
-- Every requirement cites the question or decision it comes from. Never write a requirement from a guess.
-- Write a workspace requirement only for a contract between repositories, its check, or a workspace tool (WD-036). It states that two sides are equal and names the check.
-- Put a repository's implementation and its tests in that repository.
-- Before writing a requirement on a repository's behaviour: read the code that implements it today.
-
-## Stop conditions
+## Stop and ask
 
 Stop the line of work, add a question with a recommendation and an empty `Answer:` line to [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md), and tell the author, when:
 
@@ -39,57 +31,45 @@ Stop the line of work, add a question with a recommendation and an empty `Answer
 - a fix would change a contract's shape or reverse a decision;
 - a test needs a system that cannot be reached. Report the test as not run.
 
+## Requirements
+
+- Every requirement cites the question or decision it comes from.
+- The workspace holds requirements only for contracts, their checks and its own tools (WD-036). Everything else goes in the repository that implements it.
+- Before writing a requirement on existing behaviour: read the code that implements it.
+
 ## Tests and checks
 
-- Never weaken, skip, delete or loosen a test or a check to make it pass. A failure is a bug to fix or a question for the author.
-- Before and after changing anything in CONTRACTS.md: run `uv run checks/run_all.py` with the changed branch checked out in its clone.
+- Never weaken, skip, delete or loosen a test or a check. A failure is a bug to fix or a question for the author.
+- Before and after changing anything in [CONTRACTS.md](CONTRACTS.md): run `uv run checks/run_all.py` with the changed branch checked out.
 - Change a contract in three steps: add the new shape, move each consumer, remove the old shape.
-- Add a known gap to a check's baseline only together with a question in OPEN-QUESTIONS.md.
-- Give every new contract a check, or a ROADMAP line that adds one.
+- Give every new contract a check, or a ROADMAP line that adds one. Add a gap to a check's baseline only with a question in OPEN-QUESTIONS.md.
+- Before each commit: run and pass `python tools/milestone_gate.py --check origin/main`, [`tools/milestone_review.py`](tools/milestone_review.py), [`tools/docs.py`](tools/docs.py), [`tools/style.py`](tools/style.py) and [`tools/spec_check.py`](tools/spec_check.py).
 
 ## Writing
 
-Two kinds of document (WD-023):
+- Machine documents: the CLAUDE.md files, [`spec/requirements`](spec/requirements), [`tutorial/templates`](tutorial/templates). One rule or fact per bullet, trigger before action, exact names, no history.
+- All other documents, commit messages and pull request text are for people (WD-023). Follow agent-e2's [writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md). Reread each changed line for slogans and "X, not Y": [tools/style.py](tools/style.py) cannot find them.
+- Every file reference a link. Every diagram drawn by [tools/diagrams.py](tools/diagrams.py). Every ID with its meaning or a glossary link on first use (WD-020). Each paragraph on one source line.
+- A new ID prefix, term or heading must be guessable from itself and overlap no existing one. When a name stops being true: rename it in every file.
 
-- For people: README.md, SYSTEM.md, CONTRACTS.md, DECISIONS.md, ROADMAP.md, OPEN-QUESTIONS.md, spec/intent.md, spec/glossary.md, spec/design, tutorial, commit messages, pull request text.
-  - Follow agent-e2's [writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md) and its `avoid_ai_speak` list: plain sentences; headings as noun phrases of at most 9 words; table cells of about 12 words, else bullets.
-  - Reread each changed line with the lines around it for slogans and "X, not Y": [tools/style.py](tools/style.py) cannot find them.
-- For machines: the CLAUDE.md files, spec/requirements, tutorial/templates.
-  - One rule or fact per bullet. Trigger before action. Exact paths, names and IDs. No history or attribution.
-- Before adding an ID prefix, term, heading or numbering: make it guessable from itself, with one word per concept and no overlap with an existing one.
-- When a name or number stops being true: rename it in every file. Never add text that explains the exception.
-- In both: every file reference a link; every diagram an SVG drawn by [tools/diagrams.py](tools/diagrams.py) with its text generated underneath; every ID with its meaning or a glossary link on first use (WD-020).
-- Write each paragraph as one source line.
-- Before each commit, run and pass: `python tools/milestone_gate.py --check origin/main`, `python tools/milestone_review.py`, `python tools/docs.py`, `python tools/style.py`, `python tools/spec_check.py`.
-- To ask the author to approve a milestone: link its review page, [spec/review](spec/review)`/M<n>.md`. Never ask them to read the requirement files one by one.
+## Decisions, questions and Git
+
+- A decision or question that binds several repositories goes in [DECISIONS.md](DECISIONS.md) or OPEN-QUESTIONS.md; one inside a repository goes in that repository (WD-019).
+- One branch and one pull request per change per repository; across repositories, the same branch name, each pull request linking the others. Mark finished ROADMAP lines with their pull request.
+- Merge your own pull request once its checks pass (WD-009). Never while they are pending or failing. Never push to a default branch. Delete the branch after the merge.
+- Put a warning at the top of the pull request and the report when a contract's shape changes, a decision changes, files are deleted, or more than one child repository changes.
+- Wait for the author before deleting data. Never print, log or commit a credential.
 
 ## Session end
 
-- Before reporting a session as finished: add its lessons to [tutorial/12-case-study.md](tutorial/12-case-study.md) and to the tutorial chapter each lesson belongs to.
-- When work remains: give the author a prompt for the next session, with the files to read, the settled scope, the tasks and how to report.
-
-## Decisions and questions
-
-- Record a decision that binds several repositories in [DECISIONS.md](DECISIONS.md), one block per decision. Record a decision inside one repository in that repository's log.
-- Write a question about one repository in that repository; a question that binds several in OPEN-QUESTIONS.md (WD-019).
-- Mark finished ROADMAP lines with their pull request.
-
-## Git
-
-- One branch and one pull request per change per repository. Across repositories: the same branch name in each, and each pull request links the others.
-- Merge your own pull request once its checks have reported and passed (WD-009). Never merge while checks are pending or failing.
-- Put a warning at the top of the pull request and in the report when the change is major: a contract's shape changes; a decision is added, changed or reversed; files are deleted or archived; or more than one child repository changes.
-- Wait for the author before anything that deletes data.
-- Never push to a default branch. Delete the branch after the merge.
-- Never print, log or commit a credential, or copy one into a repository.
+- Add the session's lessons to [tutorial/12-case-study.md](tutorial/12-case-study.md) and the chapter each belongs to.
+- When work remains: give the author a prompt for the next session: files to read, settled scope, tasks, how to report.
 
 ## This project
 
 - Release 1.0 only (WD-002): a lab demo on a cloud model. Build nothing toward the on-premises deployment with a local model; keep the text that describes it.
-- Change domain knowledge (a KPI, a threshold, a formula, the scoring model or an explanation) in agent-e2 first (WD-001).
-- Before writing a requirement on a repository's behaviour: also read the Agent E2 knowledge file that explains it.
+- Change domain knowledge (a KPI, threshold, formula, scoring model or explanation) in agent-e2 first (WD-001). Before writing a requirement on existing behaviour, also read the Agent E2 knowledge file that explains it.
 - Merge in ownership order: agent-e2, PCM-Adapter, private-cloud-manager, isvara.
 - Work on GitHub through clones. Use the author's laptop only for Windows tools and the lab (VPN): PCM-Adapter's build, install and validation tools, and live VCF Operations.
-- Wait for the author before anything that changes the lab.
-- Load laptop credentials with `Import-Clixml` from DPAPI files in `$HOME\.secrets\`. On the PCM lab VM they are in `/etc/pcm/pcm.env`.
-- Stay read-only against VCF Operations and vCenter unless the milestone says otherwise.
+- Wait for the author before changing the lab. Stay read-only against VCF Operations and vCenter unless the milestone says otherwise.
+- Credentials: on the laptop, `Import-Clixml` from DPAPI files in `$HOME\.secrets\`; on the PCM lab VM, `/etc/pcm/pcm.env`.

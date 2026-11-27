@@ -1,7 +1,7 @@
 """The milestone gate: work happens only in the earliest milestone of ROADMAP.md that is not done (WD-039).
 
 ROADMAP.md format the gate reads:
-- A milestone is a heading `### M<n> <title>`. It is done when the heading ends with `: done`.
+- A milestone is a heading `### M<n> <title>`, where n may be -1. It is done when the heading ends with `: done`.
   Claude writes `: done` only after the author has approved the milestone.
 - The open milestone is the first one, in file order, that is not done.
 - Its next item is the first `- [ ]` line in its section.
@@ -21,7 +21,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-HEADING = re.compile(r"^### (M\d+) (.+?)\s*$", re.M)
+HEADING = re.compile(r"^### (M-?\d+) (.+?)\s*$", re.M)
 FILES = re.compile(r"^- Files in this repository: (.+)$", re.M)
 ITEM = re.compile(r"^- \[ \] (.+)$", re.M)
 
