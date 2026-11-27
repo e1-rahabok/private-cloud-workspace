@@ -1,0 +1,3 @@
+# Known style debt per repository: file -> number of problems (tools/style.py). May only shrink (R-WS-006).
+# Each repository's entries go with a question in that repository's question file (WD-019).
+private-cloud-workspace: {}

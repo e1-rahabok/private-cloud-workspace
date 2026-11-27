@@ -98,7 +98,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Outcome:** every contract that exists today is checked on every pull request of every repository, and each repository has the names and the folder layout the decisions set.
 - **Needs:** M1.
 - **Runs:** in a cloud session. The adapter's lab scenarios run in M8.
-- Files in this repository: [`checks/`](checks), [`tools/style.py`](tools/style.py).
+- Files in this repository: [`checks/`](checks), [`tools/style.py`](tools/style.py), [`tools/style_baseline.yaml`](tools/style_baseline.yaml), [`writing/`](writing).
 - **Requirements:** R-WS-001 to R-WS-007 and R-REPO-006 ([workspace.md](spec/requirements/workspace.md)), R-KPI-001 to R-KPI-006 ([kpi-definitions.md](spec/requirements/kpi-definitions.md)), R-ADP-005 to R-ADP-011 and R-ADP-025 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-REPO-001 and R-REPO-002 (PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md)), R-REPO-003 and R-REPO-004 (agent-e2's [clean-up.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/clean-up.md)), R-REPO-005, R-REPO-007 and R-REPO-008 (private-cloud-manager's [clean-up.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/clean-up.md)).
 
 - [x] C1, step 1: every row of Agent E2's catalog has a `key`, the adapter row's name (R-KPI-001) ([agent-e2#483](https://github.com/e1-rahabok/agent-e2/pull/483)).
