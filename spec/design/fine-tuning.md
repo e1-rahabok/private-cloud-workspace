@@ -2,7 +2,7 @@
 
 **Status:** for the author's review. Written in answer to the author's comment in [intent.md](../intent.md): "why do we need to fine tune a model? Document the pros and cons on a separate design document … Provide recommendation".
 
-**Short answer:** fine-tuning is not needed for stage 1, and it would break the stage 1 set-up. The current approach puts the knowledge in files that Agent E2 reads at answer time. It keeps every fact current, cited and checkable. Fine-tuning becomes worth a measured trial only if the answer set shows a failure that comes from the model's own behaviour and that no prompt or knowledge fix removes.
+**Short answer:** fine-tuning is not needed for release 1.0, and it would break the set-up of release 1.0. The current approach puts the knowledge in files that Agent E2 reads at answer time. It keeps every fact current, cited and checkable. Fine-tuning becomes worth a measured trial only if the answer set shows a failure that comes from the model's own behaviour and that no prompt or knowledge fix removes.
 
 ## Origin of the rule
 
@@ -12,7 +12,7 @@ Nothing was measured to reach this. It was a design call. This note weighs it ag
 
 ## Agent E2 today
 
-- **The model is frozen.** Gemma 4 31B with open weights, the stage 1 model ([W-013](../../DECISIONS.md), Agent E2 in stage 1). Nobody changes its weights.
+- **The model is frozen.** Gemma 4 31B with open weights, the model of release 1.0 ([W-013](../../DECISIONS.md), Agent E2 in release 1.0). Nobody changes its weights.
 - **The knowledge reaches the model at answer time.** For each question, agent code picks up to 32,000 tokens of knowledge files (the reading set), looks up exact values in the catalog, computes figures with a calculator, and puts the misconceptions that matter most at the top of every prompt ([harness/AGENT.md](https://github.com/e1-rahabok/agent-e2/blob/main/harness/AGENT.md)). The model reads and writes; code decides what it reads.
 - **One fact has one home.** A change to a knowledge file reaches the next answer, with no training step. The answer cites the files it used, and the person can open them ([W-017](../../DECISIONS.md), the isvara.io rebuild).
 
@@ -44,7 +44,7 @@ Fine-tuning trains the model further on examples, so that its weights hold new b
 - **A later Gemma version** (Q-7: "or later version when it comes").
   - Today: change one line in the settings and rerun the answer set.
   - Fine-tuned: every adapter is tied to one model version, so a new version needs new training.
-- **Hosting in stage 1.**
+- **Hosting in release 1.0.**
   - Today: Vercel AI Gateway serves Gemma 4 31B from its providers ([C5, the model gateway](../glossary.md#c5)).
   - Fine-tuned: as far as is known, the gateway serves only the providers' own models, not your own weights or adapter (to verify before any trial). A fine-tuned model needs its own GPU endpoint.
 - **Cost per answer.**
@@ -81,17 +81,17 @@ The budget after isvara.io goes live is US$50 a month for the gateway, on top of
 
 ## Effect on the benchmark
 
-- **The claim changes.** Today the claim is that a standard open-weight model, with this agent, harness and knowledge base, answers better than a frontier model ([benchmark/design.md](https://github.com/e1-rahabok/agent-e2/blob/main/benchmark/design.md#L7)). A fine-tuned model makes it "our own trained model", a weaker story for customers who want to fork and run it on their own models (W-012, stage 1 success).
+- **The claim changes.** Today the claim is that a standard open-weight model, with this agent, harness and knowledge base, answers better than a frontier model ([benchmark/design.md](https://github.com/e1-rahabok/agent-e2/blob/main/benchmark/design.md#L7)). A fine-tuned model makes it "our own trained model", a weaker story for customers who want to fork and run it on their own models (W-012, release 1.0 success).
 - **More runs.** Each round would need the base model, Agent E2, and Agent E2 with the adapter, to show what the training adds.
 - **Leakage risk.** The examples come from the same knowledge base the questions test. That is fair as long as no example repeats a question; a check would compare every example with every question, as T-E2-004b does for the answer set.
 
-## Effect on stage 2
+## Effect on the on-premises deployment
 
-Stage 2 is the customer's own deployment with a local model, out of scope now ([W-002](../../DECISIONS.md), stage 1 only). There, an adapter is easier: a local vLLM server can load LoRA adapters next to the base model, and the adapter could ship in the offline bundle with the knowledge. Two limits stay: the adapter is tied to one model version, and customers who pick another open model would get no adapter. Training on a customer's own data is a separate question, with privacy concerns, and is not proposed.
+The on-premises deployment is the customer's own, with a local model; it comes after release 1.0 and is out of scope now ([W-002](../../DECISIONS.md), release 1.0 in the lab on a cloud model). There, an adapter is easier: a local vLLM server can load LoRA adapters next to the base model, and the adapter could ship in the offline bundle with the knowledge. Two limits stay: the adapter is tied to one model version, and customers who pick another open model would get no adapter. Training on a customer's own data is a separate question, with privacy concerns, and is not proposed.
 
 ## Recommendation
 
-1. **No fine-tuning in stage 1.** Hosting alone rules it out: the gateway serves no custom model, and a GPU endpoint would exceed the US$50 a month. The frozen model with the knowledge base keeps facts current and cited, and the evidence puts most errors in retrieval and knowledge, not in the model.
-2. **Keep the row under Not doing in Agent E2's plan, and point it at this note.** Reword it: "Fine-tuning: not in stage 1; see the workspace design note", and keep the ARCHITECTURE.md line on a light LoRA for behaviour as the stage 2 option.
+1. **No fine-tuning in release 1.0.** Hosting alone rules it out: the gateway serves no custom model, and a GPU endpoint would exceed the US$50 a month. The frozen model with the knowledge base keeps facts current and cited, and the evidence puts most errors in retrieval and knowledge, not in the model.
+2. **Keep the row under Not doing in Agent E2's plan, and point it at this note.** Reword it: "Fine-tuning: not in release 1.0; see the workspace design note", and keep the ARCHITECTURE.md line on a light LoRA for behaviour as the option for the on-premises deployment.
 3. **Revisit on a measured trigger.** The trigger: after the answer set has run, its traces show a recurring wrong free-text answer where the right files were in the reading set, and two rounds of prompt or knowledge fixes did not remove it. Then run one trial: a behaviour adapter on Gemma 4 31B, about 1,000 examples, measured on the answer set against the frozen model. Keep it only if it gains outside the margin.
 4. **Never train facts into the model.** Facts stay in the knowledge base, where they can be cited, checked and changed.

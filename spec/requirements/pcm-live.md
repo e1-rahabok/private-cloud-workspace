@@ -105,7 +105,7 @@ Given `/etc/pcm/pcm.env` on the lab VM holds the Suite API URL, user and passwor
 When the live demo needs data
 Then PCM acquires a Suite API token with them, keeps it until it expires, and acquires a new one once after a 401
 And the password and the token appear in no log, page, API response, error message or Agent E2 fact
-And PCM itself keeps no sign-in of its own in stage 1, behind the lab firewall
+And PCM itself keeps no sign-in of its own in release 1.0, behind the lab firewall
 
 Test scenarios:
 - T-LIVE-007a (anywhere, automated by build/tests/test_live.py::test_token_reuse_and_renewal, to write). Data: the fake Suite API counting token requests, set to answer 401 once. Steps: load three pages; then trigger the 401. Expected: one token request for the three pages; exactly one new token request after the 401; the page then loads.
@@ -419,7 +419,7 @@ Test scenarios:
 
 ### R-LIVE-030 Agent E2 names the part that moved the KPI (M3)
 
-Source: answer to Q-35 (the worst part is the one that lost the most points at the worst point, under the adapter's scoring); [W-012, stage 1 success](../../DECISIONS.md).
+Source: answer to Q-35 (the worst part is the one that lost the most points at the worst point, under the adapter's scoring); [W-012, release 1.0 success](../../DECISIONS.md).
 
 Milestone: M3.
 
@@ -429,7 +429,7 @@ Then Agent E2's answer names, as the main cause, the part the reference identifi
 And when no part lost points, the answer says no part pulled the KPI down
 
 Test scenarios:
-- T-LIVE-030a (lab, automated by tools/lab/live_reference.py and build/tests/live.lab.test.mjs::test_agent_worst_part, to write). Data: Agent E2 on the lab VM with the gateway key. Steps: the reference script scores every part at the worst point; the page test asks the question and reads the answer. Expected: the answer names the reference's part, judged by the automatic grader of [W-013, Agent E2 in stage 1](../../DECISIONS.md) when the wording differs.
+- T-LIVE-030a (lab, automated by tools/lab/live_reference.py and build/tests/live.lab.test.mjs::test_agent_worst_part, to write). Data: Agent E2 on the lab VM with the gateway key. Steps: the reference script scores every part at the worst point; the page test asks the question and reads the answer. Expected: the answer names the reference's part, judged by the automatic grader of [W-013, Agent E2 in release 1.0](../../DECISIONS.md) when the wording differs.
 
 ## Tests and the synthetic demo
 
@@ -470,7 +470,7 @@ Each line is a change to make in private-cloud-manager in a later pull request. 
 | [decisions.md, D-087](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L94) | Add that the live demo's tree is VCF Operations' inventory from the VCF instance down (Q-25). |
 | [decisions.md, D-100 rationale](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L800) and [D-106](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L113) | "Release 1.0: placeholder values" becomes "synthetic demo: placeholder or story values; live demo: read from VCF Operations". |
 | [design/pcm-core.md, 3.2](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L46) | PCM reads every KPI, part and check value from PCM-Adapter and computes only for display (Q-23). |
-| [design/pcm-core.md, 3.3](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L67) | Stage 1 stores no metrics; the live demo reads through with a 60-second cache (Q-30). |
+| [design/pcm-core.md, 3.3](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L67) | Release 1.0 stores no metrics; the live demo reads through with a 60-second cache (Q-30). |
 | [design/pcm-core.md, 3.5](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L108) | Replace "two collection cycles" with the rule of R-LIVE-015 once confirmed. |
 | [design/pcm-core.md, 3.13](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L207) | The live demo is a separate demo, L2 only (Q-20, Q-22). |
 | [design/l2-workspace.md, 3.2](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/l2-workspace.md#L97) | Fix the Compute path to match D-087, and add the live tree. |

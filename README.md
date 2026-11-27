@@ -17,7 +17,7 @@ PCM and isvara.io are two web apps. Both get their knowledge from Agent E2. [SYS
 
 | File | Holds |
 |---|---|
-| [SYSTEM.md](SYSTEM.md) | The parts, how data and questions flow, the lab, what is in scope (stage 1) |
+| [SYSTEM.md](SYSTEM.md) | The parts, how data and questions flow, the lab, what is in scope (release 1.0) |
 | [CONTRACTS.md](CONTRACTS.md) | Every interface between two repositories: owner, consumer, shape, the check that proves it |
 | [DECISIONS.md](DECISIONS.md) | Decisions that bind more than one repository |
 | [ROADMAP.md](ROADMAP.md) | The whole plan on one page: goal, release 1.0, milestones, what waits for the author |

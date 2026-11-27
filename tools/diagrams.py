@@ -22,7 +22,7 @@ def system() -> None:
     # No group frames: the text generator reads every text inside a rectangle as part of it, so an
     # arrow label inside a frame would be lost. Where a part runs is written in its own box.
     k.begin(960, 490)
-    k.t(20, 30, "The system, stage 1", 16, "bold")
+    k.t(20, 30, "The system, release 1.0", 16, "bold")
     k.legend(20, 44, [("PCM", "data"), ("Agent E2", "method"), ("PCM-Adapter", "prod"),
                       ("isvara.io", "shared"), ("Model", "guest")])
     k.t(700, 56, "Dashed: planned", 11.5, "normal", "#555")
@@ -34,7 +34,7 @@ def system() -> None:
 
     k.box(680, 90, 260, "isvara.io", ["Public learning site;", "on Vercel; no live system"], "shared")
     k.box(680, 230, 260, "Agent E2 for isvara.io", ["Where it runs: OPEN-QUESTIONS Q-4"], "method", dash=True)
-    k.box(680, 390, 260, "Vercel AI Gateway", ["Cloud model for stage 1"], "guest")
+    k.box(680, 390, 260, "Vercel AI Gateway", ["Cloud model for release 1.0"], "guest")
 
     k.arrow([(270, 130), (350, 130)], "C3", 310, 123)
     k.arrow([(145, 171), (145, 300)], "C2 Suite API, live mode", 145, 240)
@@ -110,7 +110,7 @@ def roadmap() -> None:
     b(230, 190, "M2 Contracts, clean-up", ["KPI definitions, docs,", "Agent E2 plan"], "white")
     b(440, 190, "M8 Adapter identity", ["New name, data states"], "white")
     b(650, 190, "M9 Lab build", ["Nested hosts with tiering"], "white")
-    b(440, 300, "M10 Agent E2 stage 1", ["Grader, progress, files,", "Day 2 scope"], "white")
+    b(440, 300, "M10 Agent E2 for 1.0", ["Grader, progress, files,", "Day 2 scope"], "white")
     b(650, 80, "M3 Live demo: one KPI", ["One cluster, live"], "white")
     b(860, 80, "M4 Live demo: the rest", ["L2 performance, capacity"], "white")
     b(650, 410, "M5 isvara.io content", ["Paths, articles, search,", "infographics, tools"], "white")

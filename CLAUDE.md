@@ -31,7 +31,7 @@ Stop the line of work, add a question with a recommendation and an empty `Answer
 
 ## Scope
 
-- Stage 1 only (W-002). Build nothing toward the on-premises local model; keep the text that describes it.
+- Release 1.0 only (W-002): a lab demo on a cloud model. Build nothing toward the on-premises deployment with a local model; keep the text that describes it.
 - Change domain knowledge (a KPI, threshold or explanation) in agent-e2 first (W-001).
 
 ## Tests and checks

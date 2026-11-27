@@ -23,8 +23,10 @@ Every short name and ID used in this workspace, with what it means and where it 
 | Word | Meaning |
 |---|---|
 | PCM | Private Cloud Manager, the web app (W-028) |
-| Stage 1 | Now: PCM as a lab demo, a cloud model, isvara.io public on Vercel |
-| Stage 2 | Later, out of scope: customers run everything on premises, with a local model |
+| Release 1.0 | The goal: PCM as a lab demo, a cloud model, isvara.io public on Vercel |
+| Milestone | A step toward release 1.0, M0 to M10 in the roadmap |
+| On-premises deployment | After release 1.0, out of scope: customers run everything on premises, with a local model |
+| Stage 1, stage 2 | Older words in the interview records and child repositories: release 1.0, the on-premises deployment |
 | ACME | The synthetic customer, a global bank, whose data PCM generates for the main demo |
 | Live demo | PCM's L2 workspace on the author's lab VCF Operations; its own demo entry |
 | L2 | The platform engineer role in PCM, the expert behind the NOC |

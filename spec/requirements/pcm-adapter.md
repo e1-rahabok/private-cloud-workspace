@@ -1,6 +1,6 @@
 # PCM-Adapter requirements
 
-What [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) must do in stage 1, written from the author's answers in [interview round 1](../interview-round-1.md) and the decisions in [DECISIONS.md](../../DECISIONS.md). Short names and IDs are explained in the [glossary](../glossary.md).
+What [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) must do in release 1.0, written from the author's answers in [interview round 1](../interview-round-1.md) and the decisions in [DECISIONS.md](../../DECISIONS.md). Short names and IDs are explained in the [glossary](../glossary.md).
 
 **Draft for the author's review.** The new identifiers in this file (adapter kind `PCM`, key prefix `PCM|` and the others) are proposals. The author has not named them yet; each one is a question at the end of this file.
 

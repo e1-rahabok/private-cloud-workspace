@@ -29,7 +29,7 @@ Boxes, nested as drawn:
 - n5 **M2 Contracts, clean-up** (Not started): KPI definitions, docs, Agent E2 plan
 - n6 **M8 Adapter identity** (Not started): New name, data states
 - n7 **M9 Lab build** (Not started): Nested hosts with tiering
-- n8 **M10 Agent E2 stage 1** (Not started): Grader, progress, files, Day 2 scope
+- n8 **M10 Agent E2 for 1.0** (Not started): Grader, progress, files, Day 2 scope
 - n9 **M6 isvara.io Ask** (Not started): Agent E2, contributions, protection
 - n10 **M5 isvara.io content** (Not started): Paths, articles, search, infographics, tools
 - n11 **M7 isvara.io Practice** (Not started): Quiz, mastery map, exam
@@ -39,13 +39,13 @@ Arrows (from, to, label):
 - n4 M1 Specification --> n5 M2 Contracts, clean-up
 - n5 M2 Contracts, clean-up --> n2 M3 Live demo: one KPI
 - n5 M2 Contracts, clean-up --> n6 M8 Adapter identity
-- n5 M2 Contracts, clean-up --> n8 M10 Agent E2 stage 1
+- n5 M2 Contracts, clean-up --> n8 M10 Agent E2 for 1.0
 - n5 M2 Contracts, clean-up --> n10 M5 isvara.io content
 - n2 M3 Live demo: one KPI --> n3 M4 Live demo: the rest
 - n6 M8 Adapter identity --> n7 M9 Lab build
 - n6 M8 Adapter identity --> n3 M4 Live demo: the rest
-- n8 M10 Agent E2 stage 1 --> n3 M4 Live demo: the rest
-- n8 M10 Agent E2 stage 1 --> n9 M6 isvara.io Ask
+- n8 M10 Agent E2 for 1.0 --> n3 M4 Live demo: the rest
+- n8 M10 Agent E2 for 1.0 --> n9 M6 isvara.io Ask
 - n10 M5 isvara.io content --> n9 M6 isvara.io Ask
 - n10 M5 isvara.io content --> n11 M7 isvara.io Practice
 
@@ -89,7 +89,7 @@ Requirements, ready for the author's approval:
 
 - Requirements: R-LAB-001 to R-LAB-004; R-ADP-024. Starts with a spike: can a nested host use a virtual NVMe tier (Q-119)?
 
-### M10 Agent E2 for stage 1
+### M10 Agent E2 for release 1.0
 
 - Requirements: R-E2-001 to R-E2-019.
 - The knowledge model's proposals in agent-e2: a configuration pillar tag, workload footprints, investigations over several steps, "At large scale" notes ([knowledge model](spec/knowledge-model.md), section Proposals).
