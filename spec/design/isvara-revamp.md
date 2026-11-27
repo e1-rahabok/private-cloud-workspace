@@ -30,7 +30,7 @@ The author's answer to what would bring an administrator back weekly (2026-11-26
 
 ## Structure
 
-- **Three learning paths** as the navigation: Architecture (CPU, memory, storage, network), IT management (availability, performance, capacity, configuration, security), and Product (vSphere, vSAN, NSX, VCF Operations, Kubernetes, Windows, Linux, each by object type). They come from the knowledge files' tags ([knowledge model](../knowledge-model.md)).
+- **Three learning paths** as the navigation: Architecture (CPU, memory, storage, network), IT management (the five pillars: availability, performance, security, capacity, value), and Product (vSphere, vSAN, NSX, VCF Operations, Kubernetes, Windows, Linux, each by object type). They come from the knowledge files' tags ([knowledge model](../knowledge-model.md)).
 - **Crossings:** a reader narrows by any path and then by the others, for example CPU, then performance, then the cluster. Every narrowing has its own address and can be bookmarked.
 - **Where the reader is:** a trail at the top of each article, chips for its other paths, the neighbouring articles in its topic, and "read with" links at the end.
 - **Scale:** the reader says once whether their estate is small or large; "At large scale" notes are shown first for large estates.
@@ -123,7 +123,7 @@ The exact Vercel features and limits are checked against the current plan before
 
 ## Order of work
 
-1. Agent E2's export for pages, its Ask additions, and the knowledge-model tags ([knowledge model](../knowledge-model.md), proposals).
+1. Agent E2's export for pages and its Ask additions.
 2. Articles and the three paths, with search; the page checks.
 3. Ask Agent E2 with protection; contributions.
 4. Practice: quiz, mastery map, exam, daily question.

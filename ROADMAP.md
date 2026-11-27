@@ -92,7 +92,7 @@ Requirements, ready for the author's approval:
 ### M5 Agent E2 for release 1.0
 
 - Requirements: R-E2-001 to R-E2-020. The grader's answer set holds about 15 questions in release 1.0 (R-E2-004).
-- The knowledge model's proposals in agent-e2: a configuration pillar tag, workload footprints, investigations over several steps, "At large scale" notes ([knowledge model](spec/knowledge-model.md), section Proposals).
+- The knowledge model's proposals in agent-e2: workload footprints, investigations over several steps, "At large scale" notes ([knowledge model](spec/knowledge-model.md), section Proposals).
 - Agent E2 declines Day 0 and Day 1 questions with a pointer to Broadcom's documentation (WD-026).
 
 ### M6 Live demo: one cluster, one KPI

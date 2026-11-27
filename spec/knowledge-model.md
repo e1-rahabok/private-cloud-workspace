@@ -13,12 +13,12 @@ The paths are how a reader looks for knowledge, and the backbone of isvara.io.
 | Path | Topics | Agent E2 tag |
 |---|---|---|
 | Architecture | CPU, memory, storage, network | `technology` |
-| IT management | Availability, performance, capacity, configuration, security; each with monitoring and troubleshooting | `pillar`, and the kind of file |
+| IT management | SP5's five pillars: availability, performance, security, capacity, value; with monitoring, troubleshooting | `pillar` |
 | Product | vSphere, vSAN, NSX, VCF Operations, Kubernetes, Windows, Linux, by object type | `product`, `object` |
 
 - The paths overlap on purpose. CPU, performance and the cluster meet in the cluster's CPU contention; a reader can arrive by any of the three and move to the others from there.
 - Every path is generated from the tags each knowledge file already carries, so isvara.io holds no structure of its own.
-- Gap: Agent E2 has no "configuration" pillar tag; configuration files are tagged by kind (`what-to-set`). The tags need to match the paths before isvara.io can generate them.
+- Configuration and inventory are not pillars: they sit under all five ([SP5 overview](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/sp5-framework/concepts/overview.md), section The five pillars). A `what-to-set` file appears under the pillars its `pillar` tag names.
 
 ## Four lenses: the completeness check
 
@@ -89,6 +89,5 @@ Breadth grows through contributions at isvara.io (WD-024): the coverage table, b
 To raise in agent-e2's own question file, since agent-e2 owns the knowledge design:
 
 1. Add the knowledge model to [KNOWLEDGE-ENGINEERING.md](https://github.com/e1-rahabok/agent-e2/blob/main/KNOWLEDGE-ENGINEERING.md): the paths, the lenses as a completeness check, the Day 2 boundary.
-2. Add a "configuration" pillar tag, so the IT management path can be generated.
-3. Add workload footprints and investigations over several steps as knowledge forms.
-4. Add "At large scale" notes where the answer changes.
+2. Add workload footprints and investigations over several steps as knowledge forms.
+3. Add "At large scale" notes where the answer changes.
