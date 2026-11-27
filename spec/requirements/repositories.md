@@ -1,6 +1,6 @@
 # Requirements: repository clean-up
 
-The clean-up in milestone M2 that is not a contract: knowledge that sits in the wrong repository, an outdated plan, old benchmarks, and old names. IDs are explained in the [glossary](../glossary.md); question IDs point at the interview ([round 1](../interview-round-1.md), [round 2](../interview-round-2.md), [round 3](../interview-round-3.md)).
+The clean-up in milestone M2 that is not a contract: knowledge that sits in the wrong repository, an outdated plan, old benchmarks, and old names. IDs are explained in the [glossary](../glossary.md); question IDs point at the interview ([round 1](../interview-round-1.md), [round 2](../interview-round-2.md), [round 3](../interview-round-3.md), [round 4](../interview-round-4.md)).
 
 ## Knowledge in the right place
 
@@ -106,7 +106,7 @@ Source: WD-030.
 
 Given [private-cloud-manager](https://github.com/e1-rahabok/private-cloud-manager), whose folder [`build/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/build) holds the application's source code and [`sources/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/sources) holds the author's papers
 When a reader sees its folder tree
-Then [`build/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/build) is `app/`, and the Python package `pcm_proto` is `pcm`
+Then the Python package `pcm_proto` is `pcm`
 And [`sources/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/sources) is `author-papers/`, and the papers' file names carry no version number
 And `l2_story_m5.py` and `test_story_m5.py` are named for the story they hold, without a milestone
 And [`spec/data/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/spec/data) is `spec/demo-data/`
@@ -118,3 +118,22 @@ Test scenarios:
 - T-REPO-007a (anywhere, automated by PCM's own tests): every test passes after the renames, and the demo starts.
 - T-REPO-007b (anywhere, automated by a search to write in [checks](../../checks)): no file in any repository names [`build/pcm_proto`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/build/pcm_proto), `pcm_proto`, [`sources/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/sources) of PCM or `story_m5`, outside archives and dated records.
 - T-REPO-007c (anywhere, manual): T-WS-007b on PCM finds no wrong guess.
+
+### R-REPO-008 PCM's folders are grouped by workspace
+
+Milestone: M2.
+
+Source: Q-134 (round 4: "Yes, by workspace."); WD-030.
+
+Given PCM's five workspaces (executive, NOC, L2, capacity, docs) and the parts they share
+When a session works on one workspace
+Then one folder per workspace holds everything that workspace needs: its design note, its API, catalog and test specifications, its server code, its page code and its tests
+And each workspace folder has the workspace's full name, for example `executive` and not `exec`, and the page code for Agent E2 is named `agent-e2` and not `e2`
+And the parts every workspace uses (the server, the store, the object model, the database schema, the shared catalog files, the demo data generator, the fonts) sit in one shared folder named for what it holds
+And [`build/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/build) no longer exists, and the moves are done in the same change as R-REPO-007, so no file moves twice
+And PCM's decision log records the layout as a PCM decision
+
+Test scenarios:
+- T-REPO-008a (anywhere, automated by PCM's own tests): every test passes after the move, and the demo starts.
+- T-REPO-008b (anywhere, manual): list every file that only the L2 workspace uses; expect each one inside L2's folder.
+- T-REPO-008c (anywhere, manual): T-WS-007b on PCM finds no wrong guess.

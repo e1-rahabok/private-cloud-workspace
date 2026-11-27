@@ -79,7 +79,7 @@ Requirements, ready for the author's approval:
 - Workspace checks: R-WS-001 to R-WS-007 ([workspace.md](spec/requirements/workspace.md)), including the check that folder and file names carry no version, milestone or status word (WD-030).
 - KPI definitions: R-KPI-001 to R-KPI-007 ([kpi-definitions.md](spec/requirements/kpi-definitions.md)).
 - PCM-Adapter, the parts that follow from the KPI definitions: R-ADP-005 to R-ADP-012 ([pcm-adapter.md](spec/requirements/pcm-adapter.md)).
-- Repository clean-up: R-REPO-001 to R-REPO-007 ([repositories.md](spec/requirements/repositories.md)): the adapter's knowledge pages to Agent E2, Agent E2's plan and old benchmarks, the product's name, old repository names, and PCM's folders and files named for what they hold.
+- Repository clean-up: R-REPO-001 to R-REPO-008 ([repositories.md](spec/requirements/repositories.md)): the adapter's knowledge pages to Agent E2, Agent E2's plan and old benchmarks, the product's name, old repository names, and PCM's folders and files named for what they hold and grouped by workspace.
 
 ### M3 PCM-Adapter's new identity and data states
 
@@ -127,7 +127,6 @@ Requirements, ready for the author's approval:
 
 - The lab facts for M4 ([OPEN-QUESTIONS.md](OPEN-QUESTIONS.md), Q-120 and Q-122): Claude asks when M4 starts.
 - The licence, before the first customer copies the product (WD-029).
-- How to arrange PCM's folders, by workspace or by phase (Q-134), before M6.
 - Approvals at the time of the work: removing the old pack from the lab (Q-79), turning on the packet counters (Q-85), the exam's ten questions (Q-113), grading 20 answers once (Q-92).
 - Review of each pull request marked as a major change.
 
