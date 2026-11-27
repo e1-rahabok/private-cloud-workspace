@@ -37,6 +37,8 @@ jobs:
           python-version: "3.12"
       - run: pip install pyyaml requests
       - run: python private-cloud-workspace/checks/run_all.py --no-clone
+      - name: Planted breaks of the contract checks
+        run: python -m unittest discover -s private-cloud-workspace/checks -p "test_*.py"
       - name: Requirements, test scenarios and sources
         run: python private-cloud-workspace/tools/spec_check.py --repos agent-e2 PCM-Adapter private-cloud-manager
       - name: Milestone review pages are up to date
