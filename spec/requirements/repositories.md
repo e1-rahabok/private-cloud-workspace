@@ -97,3 +97,24 @@ Then none contains "VCF-vCommunity-Adapter" or "private-cloud-management"
 
 Test scenarios:
 - T-REPO-006a (anywhere, automated by a check to write in [checks](../../checks), run by run_all.py): search the clones for the two old names outside archives and dated records; expect no match. Today: about 10 files in agent-e2, 1 in PCM, and the adapter's own files.
+
+### R-REPO-007 PCM's folders and files are named for what they hold
+
+Milestone: M2.
+
+Source: WD-030.
+
+Given [private-cloud-manager](https://github.com/e1-rahabok/private-cloud-manager), whose folder `build/` holds the application's source code and `sources/` holds the author's papers
+When a reader sees its folder tree
+Then `build/` is `app/`, and the Python package `pcm_proto` is `pcm`
+And `sources/` is `author-papers/`, and the papers' file names carry no version number
+And `l2_story_m5.py` and `test_story_m5.py` are named for the story they hold, without a milestone
+And `spec/data/` is `spec/demo-data/`
+And "design" names one thing: `design/` and `spec/design-system/` no longer share the word with two meanings
+And `tools/moltbot/` is named for what it does
+And every reference to an old path is updated in the same change: PCM's tests, service files, deploy scripts, documents, and the requirement files of this workspace
+
+Test scenarios:
+- T-REPO-007a (anywhere, automated by PCM's own tests): every test passes after the renames, and the demo starts.
+- T-REPO-007b (anywhere, automated by a search to write in [checks](../../checks)): no file in any repository names `build/pcm_proto`, `pcm_proto`, `sources/` of PCM or `story_m5`, outside archives and dated records.
+- T-REPO-007c (anywhere, manual): T-WS-007b on PCM finds no wrong guess.

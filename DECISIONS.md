@@ -187,3 +187,9 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Reason:** The author, 2026-11-26 (round 3, Q-133).
 - **Consequence:** without a licence, ordinary copyright applies: GitHub's terms let others view a public repository and fork it on GitHub, but give no permission to copy it elsewhere, change it or run it. That conflicts with principle 4 (forkable: customers copy the product privately and customise it) and with the contributions agreement of WD-024. Revisit before the first customer copies the product; this is not legal advice.
 
+
+## WD-030 Guessable names
+
+- **Date:** 2026-11-27
+- **Decision:** In every repository, an ID, term, heading, folder or file name can be guessed from itself. Each concept has one word; a name uses two words when one would be ambiguous, as Agent E2's knowledge folders do. Folder and file names carry no version, milestone or status word (such as v5, m5, proto, new, old or final), because git keeps the history. When a name stops being true, it is renamed in every file, and no text explains the exception.
+- **Reason:** The author, 2026-11-27: "The best documentation is No Documentation." Every session, person or AI, reads the files without memory of earlier ones, so a name that needs explaining costs every reader and invites misreading.
