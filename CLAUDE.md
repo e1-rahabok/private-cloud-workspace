@@ -23,6 +23,9 @@ Rules for Claude in work that crosses the repositories. Inside one repository, t
 
 - Start no build milestone before its requirements and test scenarios exist in [spec/requirements](spec/requirements) and the author has approved them.
 - Every requirement cites the question or decision it comes from. Never write a requirement from a guess.
+- Write a workspace requirement only for a contract between repositories, its check, or a workspace tool (WD-036). It states that two sides are equal and names the check.
+- Put domain knowledge (a formula, the scoring model, a threshold) in agent-e2, and a repository's implementation and its tests in that repository.
+- Before writing a requirement on a repository's behaviour: read the code that implements it today and the Agent E2 knowledge file that explains it.
 
 ## Stop conditions
 
@@ -59,7 +62,8 @@ Two kinds of document (WD-023):
 - When a name or number stops being true: rename it in every file. Never add text that explains the exception.
 - In both: every file reference a link; every diagram an SVG drawn by [tools/diagrams.py](tools/diagrams.py) with its text generated underneath; every ID with its meaning or a glossary link on first use (WD-020).
 - Write each paragraph as one source line. GitHub joins wrapped lines into one sentence, so a wrapped line reads as a run-on.
-- Before each commit, run and pass: `python tools/docs.py`, `python tools/style.py`, `python tools/spec_check.py`.
+- Before each commit, run and pass: `python tools/milestone_review.py`, `python tools/docs.py`, `python tools/style.py`, `python tools/spec_check.py`.
+- To ask the author to approve a milestone: link its review page, [spec/review](spec/review)`/M<n>.md`. Never ask them to read the requirement files one by one.
 
 ## Session end
 

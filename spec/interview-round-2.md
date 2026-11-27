@@ -249,6 +249,8 @@ You answered Q-14 "if we're changing formula, yes". **Recommendation:** read as:
 
 **Status:** Decided by Claude at the author's request (2026-11-26): the formula belongs to C1, checked by worked examples.
 
+**Replaced:** by WD-036 (2026-11-27): the catalog holds data rows only; the formula is explained in Agent E2's knowledge and implemented and tested in the adapter.
+
 ### Q-88 Guest OS run queue: per vCPU, or total?
 
 Still open from Q-1. The adapter's part is "Guest CPU Run Queue per vCPU"; the catalog's is "Peak vCPU run queue length". **Recommendation:** if the limits were set per vCPU, rename the catalog row "Peak run queue length per vCPU"; otherwise the adapter changes to the total.

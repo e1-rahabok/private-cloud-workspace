@@ -39,6 +39,10 @@ A few things to notice:
 - Keep each requirement to one behaviour. A requirement with five "and"s is usually three requirements.
 - Let the agent draft and the person review. Reading a requirement takes a minute; untangling code built from a misunderstood goal takes hours.
 
+## Approval on one page
+
+A person cannot approve forty requirements spread over four files. In this project a script builds one review page per milestone from the requirement files: one line per requirement, with its ID, what it says and how many of its tests need the lab. The ID links to the full text. The person reads one page and approves it, or names the lines they reject. Because a script writes the page and a check compares it with the files, it cannot go stale.
+
 ## Definition of done
 
 A milestone's definition of done is its list of requirement IDs. It is finished when every scenario of every listed requirement passes, or when the person has agreed in writing that a scenario stays manual. In this project the milestones in [ROADMAP.md](../ROADMAP.md) list their requirements and what they depend on.

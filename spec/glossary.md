@@ -34,6 +34,7 @@ Every short name and ID used in this workspace, with what it means and where it 
 | Suite API | VCF Operations' REST API, which PCM and the VCF vCommunity Adapter tools read |
 | PCM-Adapter | The repository of the VCF vCommunity Adapter |
 | VCF vCommunity Adapter | The management pack in VCF Operations that computes the KPIs of PCM's scenario 7 ([SYSTEM.md](../SYSTEM.md)) |
+| Review page | One page per milestone, [spec/review](review), listing its requirements for the author's approval |
 | Demo scenario | One entry of PCM's demo control; 7 is live, 1 to 6 synthetic |
 | Catalog | Agent E2's [knowledge/catalog](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge/catalog) YAML files, master of every KPI definition |
 | KPI | A 0 to 100% score built from several sub-metrics (parts), for example Cluster Performance |
