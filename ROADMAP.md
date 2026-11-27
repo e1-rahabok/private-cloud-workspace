@@ -80,7 +80,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 
 - [x] The milestones revamped: M1 to M8, one outcome each, no file or requirement in two milestones, both checked by code (WD-042) ([#40](https://github.com/e1-rahabok/private-cloud-workspace/pull/40), [agent-e2#476](https://github.com/e1-rahabok/agent-e2/pull/476)).
 - [x] The foundations reviewed against the decisions: SYSTEM.md, CONTRACTS.md, README.md, the glossary and the tutorial's method chapters ([#41](https://github.com/e1-rahabok/private-cloud-workspace/pull/41)).
-- [ ] Every requirement in the repository that implements it (WD-036); the workspace keeps the contracts and their checks, and its tools read the requirements of every repository.
+- [x] Every requirement in the repository that implements it (WD-036); the workspace keeps the contracts and their checks, and its tools read the requirements of every repository ([#42](https://github.com/e1-rahabok/private-cloud-workspace/pull/42), [agent-e2#477](https://github.com/e1-rahabok/agent-e2/pull/477), [PCM-Adapter#106](https://github.com/e1-rahabok/PCM-Adapter/pull/106), [private-cloud-manager#76](https://github.com/e1-rahabok/private-cloud-manager/pull/76), [isvara#3](https://github.com/e1-rahabok/isvara/pull/3)).
 - [ ] Every contradiction between two requirement files fixed, each listed in its pull request.
 - [ ] Agent E2's requirements updated for the Day 2 scope (WD-026) and the round 2 decisions; the parts that need live lab facts moved to M8.
 - [ ] Requirements on the callers of Agent E2 moved to the callers: PCM's to M8, isvara.io's to M5.
