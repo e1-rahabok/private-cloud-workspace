@@ -25,6 +25,7 @@ Every short name and ID used in this workspace, with what it means and where it 
 | Word | Meaning |
 |---|---|
 | PCM | Private Cloud Manager, the web app (WD-028) |
+| E1, E2 | E1: the author, Iwan Rahabok. E2: version 2.0 of him, available 24/7 |
 | Release 1.0 | The goal: PCM as a lab demo, a cloud model, isvara.io public on Vercel |
 | Release | A scope of work for all repositories at once, set only in the roadmap (WD-037) |
 | Milestone | A step toward release 1.0 in the roadmap |

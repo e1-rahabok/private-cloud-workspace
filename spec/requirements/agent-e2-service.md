@@ -10,7 +10,7 @@ Files involved:
 - The pipeline it runs: [harness/answer_modes.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_modes.py) (`converse`) and [harness/expert_agent.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/expert_agent.py).
 - PCM's client: [build/pcm_proto/agent_e2.py](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/pcm_proto/agent_e2.py).
 - The contract check: [checks/agent_e2_api.py](../../checks/agent_e2_api.py).
-- The free-text grader that the answer set reuses, archived since 2026-11-14: [project/archive/legacy/judge-2026-11-14/judge.py](https://github.com/e1-rahabok/agent-e2/blob/main/project/archive/legacy/judge-2026-11-14/judge.py).
+- The free-text grader that the answer set reuses, archived since 2026-11-14: [project/archive/legacy/judge-2026-11-14/judge.py](https://github.com/e1-rahabok/agent-e2/blob/ebbc7dc0be3268abc0f4939fe1ea40e400ac9bbb/project/archive/legacy/judge-2026-11-14/judge.py).
 
 ## Model and knowledge
 

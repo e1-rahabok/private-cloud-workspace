@@ -128,6 +128,7 @@ Requirements as drafted; they may still change in M1. The author approves them a
 ## After release 1.0
 
 - Personal dashboards and what-if analysis in PCM; the tenant or application owner role.
+- A code review of the VCF vCommunity Adapter: the next page of its [engineering review](https://github.com/e1-rahabok/PCM-Adapter/tree/main/docs/development-guide/engineering-review), after the dated pages of October 2026.
 - The people side of operations.
 - Agent E2's new knowledge forms: workload footprints, investigations over several steps, "At large scale" notes; then isvara.io's choice of a small or large estate ([knowledge model](spec/knowledge-model.md), section Proposals; WD-035).
 - Value management, the fifth pillar of The SP5 Framework: cost, price and business value (WD-034).
