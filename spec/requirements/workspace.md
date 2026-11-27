@@ -26,8 +26,8 @@ Source: WD-010; answer to Q-WS-I1.
 - And isvara, the one private repository, runs them in its own CI with the four public repositories checked out, because the workspace's CI cannot read isvara without a token
 
 Test scenarios:
-- T-WS-002a (anywhere, automated by GitHub Actions): a pull request in each child repository, isvara included, shows the cross-repo checks as a status. Today only this repository runs them.
-- T-WS-002b (anywhere, manual once per repository): open a pull request in agent-e2 that changes one catalog limit; expect the KPI definitions check to fail on that pull request, before merge.
+- T-WS-002a (anywhere, automated by GitHub Actions): a pull request in each child repository, isvara included, shows the cross-repo checks as a status; each child calls [.github/workflows/cross-repo.yml](../../.github/workflows/cross-repo.yml).
+- T-WS-002b (anywhere, manual once per repository): open a pull request in agent-e2 that changes one catalog limit; expect the KPI definitions check to fail on that pull request, before merge; done 2026-11-27 in [agent-e2#489](https://github.com/e1-rahabok/agent-e2/pull/489), closed unmerged.
 
 ### R-WS-003 Every requirement is tested, and every test has a requirement
 
