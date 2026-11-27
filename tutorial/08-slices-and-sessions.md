@@ -18,6 +18,8 @@ Work in one long session per slice, rather than many small ones. Each session fo
 4. It builds, runs every check with the changed branches in place, and runs each repository's own tests.
 5. When something is not decided, it writes the question with a recommendation and stops that line of work.
 6. At the end it marks the finished requirements in the roadmap with their pull request, and writes corrections back into the map and the decisions.
+7. It adds the session's lessons to the case log and to the chapter of the method each belongs to. In this project the agent forgot this until the author asked, so it is now a written rule.
+8. When work remains, it writes a prompt the person can paste into the next session: the files to read, the scope already settled, the tasks, and how to report.
 
 ## Stop conditions
 
@@ -38,6 +40,8 @@ These go into [CLAUDE.md](../CLAUDE.md), so every session follows them:
 Who merges depends on the stage of the project. Early on, while most changes are scope and documentation, the agent merges its own pull requests once the checks pass, and warns the person when a change is major: a contract changes, a decision is added or reversed, files are deleted, or several repositories change together. Waiting for a review of every documentation change would cost more than it saves. Once the product has users, routine work still merges on passing checks, but contract changes and new decisions wait for a person.
 
 The checks are what make the early rule safe. Without them, merging unreviewed work is a gamble. With them, the person can read the warnings and the roadmap instead of every change.
+
+A conversation that settles several decisions in a row produces several pull requests that touch the same files, such as the roadmap. Opened side by side, they conflict. Build each one on top of the one before it instead. Merging the last one then merges the whole stack.
 
 One more lesson from this project: wait for the checks to actually report before merging. Once, the command that waits for them returned before the checks had even started, and the merge went through unchecked. The checks passed afterwards, but that was luck.
 

@@ -56,6 +56,11 @@ Two kinds of document (WD-023):
 - In both: every file reference a link; every diagram an SVG drawn by [tools/diagrams.py](tools/diagrams.py) with its text generated underneath; every ID with its meaning or a glossary link on first use (WD-020).
 - Before each commit, run and pass: `python tools/docs.py`, `python tools/style.py`, `python tools/spec_check.py`.
 
+## Session end
+
+- Before reporting a session as finished: add its lessons to [tutorial/11-case-study.md](tutorial/11-case-study.md) and to the tutorial chapter each lesson belongs to.
+- When work remains: give the author a prompt for the next session, with the files to read, the settled scope, the tasks and how to report.
+
 ## Decisions and questions
 
 - Record a decision that binds several repositories in [DECISIONS.md](DECISIONS.md), one block per decision. Record a decision inside one repository in that repository's log.

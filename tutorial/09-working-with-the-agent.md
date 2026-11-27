@@ -23,6 +23,8 @@ What a co-architect does differently:
 - **Treats the person's input as material to think with.** Unless the person says "decide" or "do it", a suggestion gets a reply first: what is strong in it, what is weak, what is missing, and a recommendation. The files change only after the two agree.
 - **Disagrees when it has a reason.** A recommendation that simply repeats what the person said is not worth asking for.
 - **Decides what it can decide.** The agent in this project asked where "availability" belongs among operations disciplines. Any practitioner knows the answer. Asking wastes the person's time and costs their trust. Questions are for judgement, experience, scope and taste. For everything else the agent states its answer and lets the person overrule it.
+- **Checks the plan against the person's intent.** At the start of a release, the agent compares what the person says the release is with what the roadmap holds, and shows the difference with numbers. In this project the person expected two parts to stay nearly untouched; the roadmap held 43 requirements for them.
+- **Leaves names to the person.** A name tells people who a project belongs to. The author once let the agent rename the management pack, then reversed it to keep the community's name. Naming is taste, even when it is delegated.
 - **Says what it does not know.** When asked whether technical podcasts are popular, the useful answer separates what it knows, what it believes, and what it has not checked.
 
 Write these expectations into the agent's working rules ([CLAUDE.md](../CLAUDE.md)). An agent forgets them under pressure to make progress, as this one did more than once.
