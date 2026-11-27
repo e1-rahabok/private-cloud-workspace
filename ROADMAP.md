@@ -55,7 +55,7 @@ Arrows: `-->` solid, `..>` dashed.
 - The milestones are numbered from M1 in the order of work (WD-042). One is open at a time: the first whose heading does not end with ": done" (WD-039).
 - [tools/milestone_gate.py](tools/milestone_gate.py) shows the open milestone and its next item at every prompt. It fails a pull request that changes a file owned only by a later milestone, and fails when two milestones own one file or the numbers do not run M1, M2, M3 in order.
 - Each requirement belongs to exactly one milestone, or to the list after release 1.0. [tools/milestone_review.py](tools/milestone_review.py) fails otherwise, and writes one review page per milestone from the requirement files.
-- A build milestone is done when every test scenario of its requirements passes ([tools/spec_check.py](tools/spec_check.py) checks that each requirement has one). Every test scenario that needs the lab sits in M8, the only milestone that runs in the lab; the review tool fails otherwise. Before M8, a check that needs the lab, such as the adapter's live validation after a code change, is reported as not run, and M8's lab session runs it for every change since; the line of work goes on.
+- A build milestone is done when every test scenario of its requirements passes ([tools/spec_check.py](tools/spec_check.py) checks that each requirement has one). Every test scenario that needs the lab sits in M8, the only milestone that runs in the lab; the review tool fails otherwise. Before M8, a check that needs the lab, such as the adapter's live validation after a code change, is reported as not run and listed in the pull request, and the line of work goes on (WD-042). M8's lab session runs every listed check.
 - The author approves each milestone. For M1 only, the author delegated the approval to Claude's self-review, and reviews M1 afterwards (WD-042).
 
 ## Done before the milestones
@@ -138,7 +138,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 
 ### M8 PCM live demo
 
-- **Outcome:** PCM's live demo shows the lab's L2 workspace for performance and capacity, read from VCF Operations; the VCF vCommunity Adapter publishes no value built from a partial read; Agent E2 explains a real lab KPI correctly; and every test scenario of release 1.0 that needs the lab has run.
+- **Outcome:** PCM's live demo shows the lab's L2 workspace for performance and capacity, read from VCF Operations; the VCF vCommunity Adapter publishes no value built from a partial read; Agent E2 explains a real lab KPI correctly; and every test scenario of release 1.0 that needs the lab has run, with every lab check that an earlier pull request listed as not run.
 - **Needs:** M2 for the catalog names, M3 for Agent E2's jobs and facts.
 - **Runs:** in the lab, from the author's laptop over the VPN, with the adapter's build, install, restart and validation tools. A cloud session writes the code and the tests that run anywhere.
 - **First slice:** one lab cluster's Cluster Performance on the L2 Performance tab (R-LIVE-001, R-LIVE-024, R-LIVE-030), then the rest.

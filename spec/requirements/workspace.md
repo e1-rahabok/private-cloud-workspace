@@ -23,9 +23,10 @@ Source: WD-010; answer to Q-WS-I1.
 - When it is opened or updated
 - Then the cross-repo checks run on it with the pull request's branch in place of that repository's main
 - And they also run daily on main, and on demand
+- And isvara, the one private repository, runs them in its own CI with the four public repositories checked out, because the workspace's CI cannot read isvara without a token
 
 Test scenarios:
-- T-WS-002a (anywhere, automated by GitHub Actions): a pull request in a child repository shows the cross-repo checks as a status. Today only this repository runs them.
+- T-WS-002a (anywhere, automated by GitHub Actions): a pull request in each child repository, isvara included, shows the cross-repo checks as a status. Today only this repository runs them.
 - T-WS-002b (anywhere, manual once per repository): open a pull request in agent-e2 that changes one catalog limit; expect the KPI definitions check to fail on that pull request, before merge.
 
 ### R-WS-003 Every requirement is tested, and every test has a requirement
@@ -75,7 +76,7 @@ Source: WD-023 (writing rules for people and for machines), as revised for M2.
 - Then the rules and the list exist once, in this workspace
 - And agent-e2's writing rules keep only what is particular to knowledge files, and link to the general ones
 - And each repository runs [tools/style.py](../../tools/style.py) on its pull requests
-- And each problem the first run finds is fixed in M2, or listed in that repository's baseline, which may only shrink, with one question per repository in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md) that names its list, as CLAUDE.md requires for a baseline
+- And each problem the first run finds is fixed in M2, or listed in that repository's baseline, which may only shrink, with one question per repository that names its list, in that repository's question file (WD-019); a repository without one starts it, with the IDs of WD-038, as CLAUDE.md requires for a baseline
 
 Test scenarios:
 - T-WS-006a (anywhere, automated by tools/style.py in each repository's CI): a pull request that adds a flagged phrase or a sentence heading to a document for people fails; one that fixes a known problem passes and lowers the baseline.
@@ -89,7 +90,7 @@ Source: WD-030; WD-032 (the shipped content keeps its names).
 - And outside names that are titles written for readers or for the model, which describe their content and keep it true: agent-e2's [`knowledge/`](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge) and [`benchmark/questions/`](https://github.com/e1-rahabok/agent-e2/tree/main/benchmark/questions), the adapter's shipped `Management Pack/content/` (WD-032), and the review pages `spec/review/M<n>.md`, each named for the milestone it reviews
 - When the name check runs
 - Then no folder or file name contains, as a whole word between separators, a version (v2, v5), a milestone (m5) or a status word (proto, new, old, final, copy); `thresholds-performance.yaml` does not match "old"
-- And each problem the first run finds is renamed in M2, or listed in a baseline that may only shrink, with one question per repository in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md) that names its list
+- And each problem the first run finds is renamed in M2, or listed in a baseline that may only shrink, with one question per repository that names its list, in that repository's question file (WD-019); a repository without one starts it, with the IDs of WD-038
 
 Test scenarios:
 - T-WS-007a (anywhere, automated by a check to write in [checks](../../checks), run by run_all.py and in each repository's CI): a pull request that adds `report_v2.md` or `story_m5.py` fails; one that adds `knowledge/…/why-a-new-framework.md` or `spec/review/M9.md` passes; one that renames a known problem passes and lowers the baseline.
