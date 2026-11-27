@@ -9,9 +9,9 @@ VMware administrators have the author's knowledge inside their own private cloud
 ## Release 1.0
 
 - **Agent E2:** Day 2 knowledge on Gemma 4 31B, its free-text answers graded automatically, a visible progress state, screenshots and CSV files, sources for every answer ([requirements](spec/requirements/agent-e2-service.md)).
-- **PCM-Adapter:** a new identity, explicit data states, and every KPI definition taken from Agent E2 ([requirements](spec/requirements/pcm-adapter.md), [KPI definitions](spec/requirements/kpi-definitions.md)).
+- **PCM-Adapter:** explicit data states, and every KPI definition taken from Agent E2 ([requirements](spec/requirements/pcm-adapter.md), [KPI definitions](spec/requirements/kpi-definitions.md)).
 - **PCM:** the synthetic demo unchanged, plus a live demo of the L2 workspace for performance and capacity on the lab ([requirements](spec/requirements/pcm-live.md)).
-- **isvara.io:** rebuilt on the three learning paths, with Ask, contributions and practice ([plan](spec/design/isvara-revamp.md)).
+- **isvara.io:** rebuilt on the three learning paths, with ask, contributions and practice ([plan](spec/design/isvara-revamp.md)). This is the main focus on Release 1.0
 - **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge ([DECISIONS](DECISIONS.md), WD-026).
 
 ![Release 1.0 milestones and what each depends on: M0 done; M1 in progress; M2 leads to M6, M3, M5 and M8; M6 to M7; M3 to M4 and M7; M5 to M7 and M9; M8 to M9 and M10](images/roadmap.svg)
