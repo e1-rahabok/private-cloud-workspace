@@ -56,7 +56,7 @@ The author's answer to what would bring an administrator back weekly (2026-11-26
 | Downloads | Keep | Books, spreadsheets, diagrams; weekly refresh |
 | MCP endpoint | Keep | Its ask tool calls Agent E2 |
 | Old `/read` links | Redirect | To the article that covers the same section |
-| Operations Score | Drop | Replaced by the KPIs PCM-Adapter publishes |
+| Operations Score | Drop | Replaced by the KPIs the VCF vCommunity Adapter publishes |
 | Self-assessment | Drop | The quiz's mastery map replaces it |
 | Cost calculator, SLA builder | Drop | No source in Agent E2's knowledge |
 | Podcast | Drop | Agreed with the author, 2026-11-26 |

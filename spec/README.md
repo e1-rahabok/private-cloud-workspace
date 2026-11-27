@@ -26,7 +26,7 @@ What the product must do, and how each part of that is tested. Built in M1 from 
 | [workspace.md](requirements/workspace.md) | 6 | M2: ready for approval |
 | [kpi-definitions.md](requirements/kpi-definitions.md) | 8 | M2 (001 to 007): ready for approval |
 | [repositories.md](requirements/repositories.md) | 6 | M2: ready for approval |
-| [pcm-adapter.md](requirements/pcm-adapter.md) | 24 | M2 part (005 to 012): ready for approval; the rest to update |
+| [pcm-adapter.md](requirements/pcm-adapter.md) | 25 | M2 part (005 to 012): ready for approval; the rest to update |
 | [lab-build.md](requirements/lab-build.md) | 4 | After release 1.0 (WD-031) |
 | [agent-e2-service.md](requirements/agent-e2-service.md) | 20 | To update for round 2 and WD-026 |
 | [pcm-live.md](requirements/pcm-live.md) | 32 | To update for round 2 |

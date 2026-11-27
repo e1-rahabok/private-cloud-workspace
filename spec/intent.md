@@ -18,14 +18,14 @@ The material began as the first edition of the author's book in 2014. Each year 
 | Part | What it is | Who takes it |
 |---|---|---|
 | Agent E2 | The knowledge, codified: the foundation | Customers, with PCM |
-| PCM-Adapter | Agent E2's KPIs, computed inside VCF Operations | Customers; also installable alone |
+| VCF vCommunity Adapter | Agent E2's KPIs, computed inside VCF Operations | Customers; also installable alone |
 | PCM (Private Cloud Manager) | The web app that shows the knowledge for each role | Customers, as a Linux container |
 | isvara.io | The public place to learn, ask, practise and contribute | Everyone; never installed or forked |
 | Books and spreadsheets | The author's own living editions, updated by hand | Downloaded from isvara.io |
 
 - Customers take all three product repositories, and the parent workspace, as one product ([DECISIONS](../DECISIONS.md), WD-025).
-- PCM-Adapter alone is the simplest deployment: one pak file in VCF Operations, no Linux and no container, with the KPIs, dashboards and reports but without Agent E2. Its documentation presents it as one part of the whole.
-- Domain knowledge lives in Agent E2 only. PCM-Adapter's documentation explains what it computes and how to install it, and points to the knowledge on isvara.io (WD-001).
+- VCF vCommunity Adapter alone is the simplest deployment: one pak file in VCF Operations, no Linux and no container, with the KPIs, dashboards and reports but without Agent E2. Its documentation presents it as one part of the whole.
+- Domain knowledge lives in Agent E2 only. VCF vCommunity Adapter's documentation explains what it computes and how to install it, and points to the knowledge on isvara.io (WD-001).
 - The books, spreadsheets and diagrams are a separate, living body of the author's work. They reach isvara.io once or twice a month, and the site refreshes from there weekly.
 
 ## Success

@@ -7,7 +7,7 @@ What happened while this workspace was set up, in order, mistakes included. It c
 Four repositories make one product:
 
 - **Agent E2**, a knowledge service that answers like a VMware performance and capacity expert. It has no user interface.
-- **PCM-Adapter**, a management pack that computes performance and capacity scores inside VMware's monitoring product.
+- **VCF vCommunity Adapter**, a management pack that computes performance and capacity scores inside VMware's monitoring product.
 - **PCM**, a web app for operations teams that shows those scores and asks Agent E2 to explain them.
 - **isvara.io**, a public learning site that will also use Agent E2.
 
@@ -87,6 +87,8 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **Many decisions in one conversation.** The session changed the plan seven times in a few hours. Each change became its own pull request, and several touched the same lines of the roadmap, so two of them conflicted. The agent built the later ones on top of the earlier ones. Merging the last pull request merged the whole stack.
 
+**"Part of", and a Level 100 question.** Another session audited the management pack and reported six names for it, adding that the repository name "suggests it is part of PCM, which it is not". The agent relayed that sentence to the author as a contradiction and asked: "is the adapter part of PCM?" The workspace already answered it. Three files recorded the author's earlier answer, and the contract file described the mechanism: the adapter computes the KPIs inside VCF Operations, and PCM reads them through the Suite API. The author's reply: technically, PCM never connects to the adapter; functionally, PCM's live scenario has no data without it. "Part of" had two meanings, and the agent used the word without saying which. The author asked what else the agent might not know. The relation is now written by mechanism in [SYSTEM.md](../SYSTEM.md), and the working rules say: search the files before asking, verify an audit's claim before relaying it, and describe a relation by mechanism.
+
 **The lesson log.** At the end the agent reported that nothing was outstanding. The author asked whether this tutorial had been updated with the session's lessons, "or you forget about it, again?" It had not. Updating this log is now a rule for the end of every session in the agent's working rules ([CLAUDE.md](../CLAUDE.md)).
 
 ## Lessons
@@ -109,5 +111,8 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - A number in a test scenario is no design decision. Where the requirements are silent, the person's knowledge of the user sets the number.
 - A name says who a project belongs to. Even when the person delegates naming, the agent should check the choice with them.
 - A rule the agent wrote still slips under load. One question without a link or context cost a full round trip.
+- Search the map, the contracts, the decisions and the glossary before asking the person anything. A question the files already answer costs the person's trust as well as their time.
+- Verify a claim from an audit or another session against the files before passing it on.
+- Describe how two parts relate by mechanism: code, network, data, dependency or contract. A word with several meanings, such as "part of", hides which one is meant.
 - Updating the lesson log is part of finishing a session. Without a written rule, the agent forgot it.
 - The strongest model available, at high effort, made every mistake in this log. The files, the checks and the person's questions are what stopped them repeating.

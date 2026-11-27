@@ -23,21 +23,21 @@ def system() -> None:
     # arrow label inside a frame would be lost. Where a part runs is written in its own box.
     k.begin(960, 490)
     k.t(20, 30, "The system, release 1.0", 16, "bold")
-    k.legend(20, 44, [("PCM", "data"), ("Agent E2", "method"), ("PCM-Adapter", "prod"),
+    k.legend(20, 44, [("PCM", "data"), ("Agent E2", "method"), ("VCF vCommunity Adapter", "prod"),
                       ("isvara.io", "shared"), ("Model", "guest")])
     k.t(700, 56, "Dashed: planned", 11.5, "normal", "#555")
 
     k.box(20, 90, 250, "PCM", ["Web app for operations roles;", "synthetic ACME or live data;", "lab VM, https://10.114.1.29"], "data")
     k.box(350, 90, 250, "Agent E2 for PCM", ["Knowledge service over HTTP;", "owns all domain knowledge;", "same lab VM, port 8090"], "method")
     k.box(20, 300, 300, "VCF Operations", ["Lab, https://10.115.1.81"], "white", h=180)
-    k.box(40, 370, 260, "PCM-Adapter", ["Computes the KPIs inside VCF", "Operations, under vCommunity|"], "prod")
+    k.box(40, 370, 260, "VCF vCommunity Adapter", ["Computes the KPIs inside VCF", "Operations, under vCommunity|"], "prod")
 
     k.box(680, 90, 260, "isvara.io", ["Public learning site;", "on Vercel; no live system"], "shared")
     k.box(680, 230, 260, "Agent E2 for isvara.io", ["Where it runs: OPEN-QUESTIONS Q-4"], "method", dash=True)
     k.box(680, 390, 260, "Vercel AI Gateway", ["Cloud model for release 1.0"], "guest")
 
     k.arrow([(270, 130), (350, 130)], "C3", 310, 123)
-    k.arrow([(145, 171), (145, 300)], "C2 Suite API, live mode", 145, 240)
+    k.arrow([(145, 171), (145, 300)], "C2 Suite API, scenario 7", 145, 240)
     k.arrow([(475, 171), (475, 410), (300, 410)], "C1 KPI definitions", 475, 300, dash=True)
     k.arrow([(600, 150), (640, 150), (640, 415), (680, 415)], "C5", 640, 300)
     k.arrow([(600, 110), (680, 110)], "C4", 640, 103, dash=True)

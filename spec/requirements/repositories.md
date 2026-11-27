@@ -4,13 +4,13 @@ The clean-up in milestone M2 that is not a contract: knowledge that sits in the 
 
 ## Knowledge in the right place
 
-### R-REPO-001 Every fact in PCM-Adapter's knowledge pages exists in Agent E2 first
+### R-REPO-001 Every fact in the VCF vCommunity Adapter's knowledge pages exists in Agent E2 first
 
 Milestone: M2.
 
 Source: WD-025 (the adapter's documentation points to the knowledge instead of repeating it); WD-001 (Agent E2 owns domain knowledge).
 
-Given PCM-Adapter's knowledge pages: [docs/concepts/capacity-management.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/concepts/capacity-management.md), [docs/concepts/kpi-scoring-models.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/concepts/kpi-scoring-models.md), and the explanatory sections of the pages in [docs/reference/metrics](https://github.com/e1-rahabok/PCM-Adapter/tree/main/docs/reference/metrics)
+Given VCF vCommunity Adapter's knowledge pages: [docs/concepts/capacity-management.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/concepts/capacity-management.md), [docs/concepts/kpi-scoring-models.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/concepts/kpi-scoring-models.md), and the explanatory sections of the pages in [docs/reference/metrics](https://github.com/e1-rahabok/PCM-Adapter/tree/main/docs/reference/metrics)
 When their facts are compared with Agent E2's knowledge base
 Then every fact is found in a knowledge file, or is added to one through a source note before anything is removed from the adapter
 And a fact that contradicts the knowledge base is listed for the author to settle, never silently dropped
@@ -18,13 +18,13 @@ And a fact that contradicts the knowledge base is listed for the author to settl
 Test scenarios:
 - T-REPO-001a (anywhere, manual with an AI comparison): extract the claims of each adapter page; for each, name the knowledge file and line that holds it, or the source note that adds it. Expect a complete table with no claim unaccounted for, kept in the pull request that removes the pages.
 
-### R-REPO-002 PCM-Adapter's documentation keeps only what the adapter does
+### R-REPO-002 VCF vCommunity Adapter's documentation keeps only what the adapter does
 
 Milestone: M2.
 
 Source: WD-025; the author's message of 2026-11-26 naming the adapter's concept and metric pages as knowledge that belongs to Agent E2.
 
-Given PCM-Adapter's documentation after R-REPO-001
+Given VCF vCommunity Adapter's documentation after R-REPO-001
 When a reader opens a metric or concept page
 Then it describes what the adapter computes and publishes (keys, inputs, settings, states) and how to install and run it
 And for what a metric means and how to use it, it links to the Agent E2 knowledge file (until isvara.io's articles exist in M8, then to the article)

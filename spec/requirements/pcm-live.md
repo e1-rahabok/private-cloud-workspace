@@ -7,10 +7,10 @@ Milestones ([ROADMAP.md](../../ROADMAP.md)): M6 is one lab cluster's Cluster Per
 Files involved:
 
 - PCM's L2 specification: [spec/catalog/l2.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml), [spec/workspaces/l2/monitor.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/workspaces/l2/monitor.md), [spec/workspaces/l2/frame.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/workspaces/l2/frame.md), [spec/api/l2.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/api/l2.yaml).
-- What PCM-Adapter publishes, and how it makes absent data and its check settings readable: [pcm-adapter.md](pcm-adapter.md), drafted in parallel. This file does not repeat it.
-- The contracts: [C2, KPI metric keys](../glossary.md#c2) (the keys PCM-Adapter publishes and PCM reads) and [C3, the Agent E2 API](../glossary.md#c3) (the calls PCM makes to Agent E2), in [CONTRACTS.md](../../CONTRACTS.md).
+- What VCF vCommunity Adapter publishes, and how it makes absent data and its check settings readable: [pcm-adapter.md](pcm-adapter.md), drafted in parallel. This file does not repeat it.
+- The contracts: [C2, KPI metric keys](../glossary.md#c2) (the keys the VCF vCommunity Adapter publishes and PCM reads) and [C3, the Agent E2 API](../glossary.md#c3) (the calls PCM makes to Agent E2), in [CONTRACTS.md](../../CONTRACTS.md).
 
-Tests named below do not exist yet unless stated; "to write" marks them. Lab scenarios run from the author's laptop over the VPN. They use the read-only VCF Operations credential in `$HOME\.secrets\` ([WD-011, lab credentials](../../DECISIONS.md)). They start by running PCM-Adapter's [validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1), so a failure caused by a pack that is not collecting is reported as such. A lab scenario that cannot reach the lab is reported as not run, never as passed.
+Tests named below do not exist yet unless stated; "to write" marks them. Lab scenarios run from the author's laptop over the VPN. They use the read-only VCF Operations credential in `$HOME\.secrets\` ([WD-011, lab credentials](../../DECISIONS.md)). They start by running VCF vCommunity Adapter's [validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1), so a failure caused by a pack that is not collecting is reported as such. A lab scenario that cannot reach the lab is reported as not run, never as passed.
 
 ## The demo and its scope
 
@@ -195,11 +195,11 @@ Test scenarios:
 
 ## The values shown
 
-### R-LIVE-014 PCM shows what PCM-Adapter publishes
+### R-LIVE-014 PCM shows what the VCF vCommunity Adapter publishes
 
 Source: answer to Q-23 ("PCM can compute for UI purpose"); answer to Q-27 ("PCM simply regurgitate the adapter"); WD-015.
 
-Given a KPI, a part or a check value that PCM-Adapter publishes on a live object
+Given a KPI, a part or a check value that the VCF vCommunity Adapter publishes on a live object
 When a live page shows it
 Then each point on the chart is the sample value VCF Operations returns for that key and time
 And PCM computes only what the page displays from those samples: Now, Worst, the percentile figure, the worst and percentile lines across objects, and the band colour
@@ -212,7 +212,7 @@ Test scenarios:
 
 Source: answer to Q-27 ("No need to wait 15 minutes"); WD-015. The rule below is proposed and waits for the author's confirmation in round two (Q-64 in the [interview, round 2](../interview-round-2.md): decided, 10 minutes).
 
-Given PCM-Adapter collects every 5 minutes, and marks its own inputs stale after 10 minutes ([STALE_AFTER_MINUTES in ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L32))
+Given VCF vCommunity Adapter collects every 5 minutes, and marks its own inputs stale after 10 minutes ([STALE_AFTER_MINUTES in ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L32))
 When the newest sample of a key on an object is older than 10 minutes (one collection cycle plus a margin of one cycle) at the time PCM reads it
 Then Now shows "No data" in grey, with the time of the newest sample
 And the chart keeps the older points and draws nothing after the newest
@@ -221,7 +221,7 @@ And with the 60-second cache (R-LIVE-010), a value is shown as stale at most 11 
 
 Test scenarios:
 - T-LIVE-015a (anywhere, automated by build/tests/test_live.py::test_stale_after_10_minutes, to write). Data: the fake Suite API with Cluster Performance samples ending 9 minutes ago on one cluster and 11 minutes ago on another. Steps: open both Performance tabs. Expected: the first shows its Now value; the second shows "No data" with the time of its newest sample.
-- T-LIVE-015b (lab, automated by tools/lab/Test-Live.ps1, to write). Data: a powered-off lab VM, which PCM-Adapter stops publishing for. Steps: open the VM's Performance tab. Expected: VM Performance's Now shows "No data" with the time of the last sample. If the lab has no powered-off VM, the scenario reports "not run" and asks the author for one; it never changes the lab itself.
+- T-LIVE-015b (lab, automated by tools/lab/Test-Live.ps1, to write). Data: a powered-off lab VM, which the VCF vCommunity Adapter stops publishing for. Steps: open the VM's Performance tab. Expected: VM Performance's Now shows "No data" with the time of the last sample. If the lab has no powered-off VM, the scenario reports "not run" and asks the author for one; it never changes the lab itself.
 
 ### R-LIVE-016 Gaps stay visible
 
@@ -250,9 +250,9 @@ Test scenarios:
 
 ### R-LIVE-018 Parts carry the catalog's names, found by key
 
-Source: answer to Q-1 ("For key, adapter is correct. For name, Agent E2 is correct"); [WD-016, PCM-Adapter changes and key and name ownership](../../DECISIONS.md).
+Source: answer to Q-1 ("For key, adapter is correct. For name, Agent E2 is correct"); [WD-016, VCF vCommunity Adapter changes and key and name ownership](../../DECISIONS.md).
 
-Given a part PCM-Adapter publishes under its key
+Given a part VCF vCommunity Adapter publishes under its key
 When a live page shows it
 Then its name is the name in Agent E2's catalog row that holds that key ([C1, KPI definitions](../glossary.md#c1))
 And a key with no catalog row is shown under its key, and the key list check (R-LIVE-023) fails on it
@@ -276,7 +276,7 @@ Test scenarios:
 
 ### R-LIVE-020 Parts an object does not have
 
-Source: answer to Q-28 ("we should fix them in the PCM Adapter"); WD-016. Until PCM-Adapter makes absent data explicit ([pcm-adapter.md](pcm-adapter.md)), the rule below is proposed for round two.
+Source: answer to Q-28 ("we should fix them in the PCM Adapter"); WD-016. Until the VCF vCommunity Adapter makes absent data explicit ([pcm-adapter.md](pcm-adapter.md)), the rule below is proposed for round two.
 
 Given a part key that VCF Operations does not hold for an object at all (for example a memory tiering key on a cluster without a tiered host)
 When the object's Details fold opens
@@ -295,7 +295,7 @@ Given a lab cluster with Periodic Cluster Check values for its latest window
 When its Capacity tab opens
 Then the verdict and the three check values are the published values of that window, with its window end
 And the rule shown is named by comparing published values with published closure levels; PCM decides nothing
-And when no value is published for a window that ended more than 30 minutes ago (proposed: PCM-Adapter may publish a few cycles late), the page says "No check for the {period} to {end time}", never "Open"
+And when no value is published for a window that ended more than 30 minutes ago (proposed: the VCF vCommunity Adapter may publish a few cycles late), the page says "No check for the {period} to {end time}", never "Open"
 
 Test scenarios:
 - T-LIVE-021a (anywhere, automated by build/tests/test_live.py::test_check_published, to write). Data: the fake Suite API with a check window ending 2 hours ago (Close for Business 1) and none for a window ending 40 minutes ago. Steps: open the Capacity tab. Expected: "No check" for the latest window; the strip shows the earlier window closed with its published values.
@@ -305,7 +305,7 @@ Test scenarios:
 
 Source: answer to Q-31; [PCM D-095, which statistic, on which axis](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L102).
 
-Given the Adapter Instance's Cluster Check Period, Cluster Check Time (UTC) and Cluster Check Worst Percent, made readable by PCM-Adapter ([pcm-adapter.md](pcm-adapter.md))
+Given the Adapter Instance's Cluster Check Period, Cluster Check Time (UTC) and Cluster Check Worst Percent, made readable by the VCF vCommunity Adapter ([pcm-adapter.md](pcm-adapter.md))
 When the Capacity tab labels a check value
 Then the label uses those settings, for example "5th percentile, 24 hours to 08:00 GMT+8"
 And when the settings cannot be read, the label omits the percentile rank and the period, and says "check settings not available"
@@ -318,11 +318,11 @@ Test scenarios:
 
 Source: answer to Q-29 ("You will need to get from a live environment"); C2.
 
-Given the lab VCF Operations with PCM-Adapter installed
+Given the lab VCF Operations with the VCF vCommunity Adapter installed
 When a read-only tool lists the `vCommunity|` keys, and the VCF Operations capacity keys PCM reads, that the cluster, host and VM objects hold
 Then it writes one file in PCM's specification (proposed `spec/catalog/vcf-operations-keys.yaml`) with each key, its object type, its unit and its catalog name, plus the adapter version and the date
 And every key PCM's live demo reads is in that file
-And the C2 check compares the file with the keys PCM reads and with what PCM-Adapter says it publishes ([pcm-adapter.md](pcm-adapter.md))
+And the C2 check compares the file with the keys PCM reads and with what the VCF vCommunity Adapter says it publishes ([pcm-adapter.md](pcm-adapter.md))
 
 Test scenarios:
 - T-LIVE-023a (lab, automated by tools/lab/live_keys.py, to write). Steps: run the tool against the lab. Expected: the file lists at least the KPI score keys and their parts for cluster, host and VM; it names the adapter version shown by validate.ps1.
@@ -368,7 +368,7 @@ Milestone: M7.
 Given every lab cluster is under the selected node
 When its Performance and Capacity tabs above the cluster open
 Then the worst and percentile lines are computed from each cluster's published score at each point
-And they equal PCM-Adapter's vSphere World metrics (Worst Cluster Performance, Worst 10 Percent Cluster Performance, Worst Cluster Risk, Worst 10 Percent Cluster Risk, Highest Cluster Utilization, Highest 10 Percent Cluster Utilization) at whole percent
+And they equal VCF vCommunity Adapter's vSphere World metrics (Worst Cluster Performance, Worst 10 Percent Cluster Performance, Worst Cluster Risk, Worst 10 Percent Cluster Risk, Highest Cluster Utilization, Highest 10 Percent Cluster Utilization) at whole percent
 
 Test scenarios:
 - T-LIVE-026a (lab, automated by tools/lab/live_reference.py and build/tests/live.lab.test.mjs::test_world_lines, to write). Steps: open the lab's VCF instance node; read the vSphere World keys for the same window. Expected: equal at whole percent at every point. If the lab has one cluster only, the scenario says so and still compares.
@@ -439,7 +439,7 @@ Source: answer to Q-37 ("You forgot you have live access"); [WD-018, the lab bui
 
 Given the author's laptop on the VPN, the read-only credential file in `$HOME\.secrets\`, and the live demo deployed on the lab VM
 When one command runs (proposed `pwsh tools/lab/Test-Live.ps1` in PCM)
-Then it runs PCM-Adapter's validate.ps1 first and stops with its result if the pack is not collecting
+Then it runs VCF vCommunity Adapter's validate.ps1 first and stops with its result if the pack is not collecting
 And it runs every lab scenario of this file, writes a screenshot of each live page checked, and prints pass, fail or not run per scenario
 And it changes nothing in VCF Operations, vCenter or the lab VM's data
 
@@ -469,7 +469,7 @@ Each line is a change to make in private-cloud-manager in a later pull request. 
 | [decisions.md, D-062](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L69) | The VCF APIs are now checked against the lab VCF Operations; record its version. |
 | [decisions.md, D-087](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L94) | Add that the live demo's tree is VCF Operations' inventory from the VCF instance down (Q-25). |
 | [decisions.md, D-100 rationale](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L800) and [D-106](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L113) | "Release 1.0: placeholder values" becomes "synthetic demo: placeholder or story values; live demo: read from VCF Operations". |
-| [design/pcm-core.md, 3.2](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L46) | PCM reads every KPI, part and check value from PCM-Adapter and computes only for display (Q-23). |
+| [design/pcm-core.md, 3.2](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L46) | PCM reads every KPI, part and check value from the VCF vCommunity Adapter and computes only for display (Q-23). |
 | [design/pcm-core.md, 3.3](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L67) | Release 1.0 stores no metrics; the live demo reads through with a 60-second cache (Q-30). |
 | [design/pcm-core.md, 3.5](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L108) | Replace "two collection cycles" with the rule of R-LIVE-015 once confirmed. |
 | [design/pcm-core.md, 3.13](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L207) | The live demo is a separate demo, L2 only (Q-20, Q-22). |

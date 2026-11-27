@@ -14,6 +14,10 @@ Rules for Claude in work that crosses the repositories. Inside one repository, t
 - Treat the author's suggestion as input. Unless the author says "decide" or "do it": reply with strengths, weaknesses, gaps and a recommendation; write to a repository only after agreement.
 - Disagree when there is a reason. Separate what you know, what you believe and what you have not checked.
 - Decide anything that the code, the documents or general knowledge of the field settles, and state the decision. Ask the author only about judgement, field experience, scope and taste.
+- Before asking the author anything: search SYSTEM.md, CONTRACTS.md, DECISIONS.md, the glossary and the interview records for the answer. Quote what they say in the question, or answer it yourself.
+- Treat a claim from an audit, a review or another session as input to verify against these files. Where it contradicts a decision, report the contradiction with both sources; never relay it as a new fact.
+- Describe how two parts relate by mechanism: code, network, data, dependency or contract. Never use a word with several meanings, such as "part of", without saying which one.
+- Reply to the author in bullet points and short sentences. Write each name in full on first use in a reply.
 
 ## Specification first
 
