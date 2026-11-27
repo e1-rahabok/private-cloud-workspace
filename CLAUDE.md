@@ -1,13 +1,17 @@
 # CLAUDE.md
 
-Rules for Claude in work that crosses the repositories. Inside one repository, that repository's CLAUDE.md also applies. IDs: [spec/glossary.md](spec/glossary.md).
+Rules for Claude in work that crosses the repositories. Inside one repository, that repository's CLAUDE.md also applies. IDs: [spec/glossary.md](spec/glossary.md). The sections up to Git hold the method; the section This project holds the rules of this product only.
+
+## Milestone gate
+
+- Work only on the earliest milestone in [ROADMAP.md](ROADMAP.md) that is not done (WD-039). The hook in [.claude/settings.json](.claude/settings.json) prints it, and its next item, at every prompt.
+- When a request belongs to a later milestone: list it as parked, in one line, and act on nothing in it.
+- Write `: done` on a milestone's heading only after the author has approved the milestone.
 
 ## Session start
 
 - Read [SYSTEM.md](SYSTEM.md), [CONTRACTS.md](CONTRACTS.md), [ROADMAP.md](ROADMAP.md) and the requirement files the request touches.
-- Name the milestone and the requirement IDs. If the request belongs to none, say so before starting.
 - Read the CLAUDE.md of each repository the change touches.
-- Work on GitHub through clones. Use the author's laptop only for Windows tools and the lab (VPN): PCM-Adapter's build, install and validation tools, and live VCF Operations.
 
 ## Thinking
 
@@ -19,13 +23,12 @@ Rules for Claude in work that crosses the repositories. Inside one repository, t
 - Describe how two parts relate by mechanism: code, network, data, dependency or contract. Never use a word with several meanings, such as "part of", without saying which one.
 - Reply to the author in bullet points and short sentences. Write each name in full on first use in a reply.
 
-## Specification first
+## Requirements
 
-- Start no build milestone before its requirements and test scenarios exist in [spec/requirements](spec/requirements) and the author has approved them.
 - Every requirement cites the question or decision it comes from. Never write a requirement from a guess.
 - Write a workspace requirement only for a contract between repositories, its check, or a workspace tool (WD-036). It states that two sides are equal and names the check.
-- Put domain knowledge (a formula, the scoring model, a threshold) in agent-e2, and a repository's implementation and its tests in that repository.
-- Before writing a requirement on a repository's behaviour: read the code that implements it today and the Agent E2 knowledge file that explains it.
+- Put a repository's implementation and its tests in that repository.
+- Before writing a requirement on a repository's behaviour: read the code that implements it today.
 
 ## Stop conditions
 
@@ -34,12 +37,7 @@ Stop the line of work, add a question with a recommendation and an empty `Answer
 - the specification does not decide something, or two documents disagree;
 - a requirement cannot be tested as written;
 - a fix would change a contract's shape or reverse a decision;
-- a test needs the lab and the lab cannot be reached. Report the test as not run.
-
-## Scope
-
-- Release 1.0 only (WD-002): a lab demo on a cloud model. Build nothing toward the on-premises deployment with a local model; keep the text that describes it.
-- Change domain knowledge (a KPI, threshold or explanation) in agent-e2 first (WD-001).
+- a test needs a system that cannot be reached. Report the test as not run.
 
 ## Tests and checks
 
@@ -54,17 +52,16 @@ Stop the line of work, add a question with a recommendation and an empty `Answer
 Two kinds of document (WD-023):
 
 - For people: README.md, SYSTEM.md, CONTRACTS.md, DECISIONS.md, ROADMAP.md, OPEN-QUESTIONS.md, spec/intent.md, spec/glossary.md, spec/design, tutorial, commit messages, pull request text.
-  - Follow agent-e2's [writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md) and its `avoid_ai_speak` list: plain sentences; no flagged phrase, slogan or "X, not Y"; headings as noun phrases of at most 9 words; table cells of about 12 words, else bullets.
-  - Reread each changed line with the lines around it for slogans and "X, not Y"; no script finds them.
+  - Follow agent-e2's [writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md) and its `avoid_ai_speak` list: plain sentences; headings as noun phrases of at most 9 words; table cells of about 12 words, else bullets.
+  - Reread each changed line with the lines around it for slogans and "X, not Y": [tools/style.py](tools/style.py) cannot find them.
 - For machines: the CLAUDE.md files, spec/requirements, tutorial/templates.
   - One rule or fact per bullet. Trigger before action. Exact paths, names and IDs. No history or attribution.
 - Before adding an ID prefix, term, heading or numbering: make it guessable from itself, with one word per concept and no overlap with an existing one.
 - When a name or number stops being true: rename it in every file. Never add text that explains the exception.
 - In both: every file reference a link; every diagram an SVG drawn by [tools/diagrams.py](tools/diagrams.py) with its text generated underneath; every ID with its meaning or a glossary link on first use (WD-020).
-- Write each paragraph as one source line. GitHub joins wrapped lines into one sentence, so a wrapped line reads as a run-on.
-- Before each commit, run and pass: `python tools/milestone_review.py`, `python tools/docs.py`, `python tools/style.py`, `python tools/spec_check.py`.
+- Write each paragraph as one source line.
+- Before each commit, run and pass: `python tools/milestone_gate.py --check origin/main`, `python tools/milestone_review.py`, `python tools/docs.py`, `python tools/style.py`, `python tools/spec_check.py`.
 - To ask the author to approve a milestone: link its review page, [spec/review](spec/review)`/M<n>.md`. Never ask them to read the requirement files one by one.
-- Ask for a milestone's approval only when every other item of the milestone before it in [ROADMAP.md](ROADMAP.md) is ticked.
 
 ## Session end
 
@@ -80,14 +77,19 @@ Two kinds of document (WD-023):
 ## Git
 
 - One branch and one pull request per change per repository. Across repositories: the same branch name in each, and each pull request links the others.
-- Merge in ownership order: agent-e2, PCM-Adapter, private-cloud-manager, isvara.
 - Merge your own pull request once its checks have reported and passed (WD-009). Never merge while checks are pending or failing.
 - Put a warning at the top of the pull request and in the report when the change is major: a contract's shape changes; a decision is added, changed or reversed; files are deleted or archived; or more than one child repository changes.
-- Wait for the author before anything that deletes data or changes the lab.
+- Wait for the author before anything that deletes data.
 - Never push to a default branch. Delete the branch after the merge.
-
-## Secrets and the lab
-
-- Load laptop credentials with `Import-Clixml` from DPAPI files in `$HOME\.secrets\`. On the PCM lab VM they are in `/etc/pcm/pcm.env`.
 - Never print, log or commit a credential, or copy one into a repository.
+
+## This project
+
+- Release 1.0 only (WD-002): a lab demo on a cloud model. Build nothing toward the on-premises deployment with a local model; keep the text that describes it.
+- Change domain knowledge (a KPI, a threshold, a formula, the scoring model or an explanation) in agent-e2 first (WD-001).
+- Before writing a requirement on a repository's behaviour: also read the Agent E2 knowledge file that explains it.
+- Merge in ownership order: agent-e2, PCM-Adapter, private-cloud-manager, isvara.
+- Work on GitHub through clones. Use the author's laptop only for Windows tools and the lab (VPN): PCM-Adapter's build, install and validation tools, and live VCF Operations.
+- Wait for the author before anything that changes the lab.
+- Load laptop credentials with `Import-Clixml` from DPAPI files in `$HOME\.secrets\`. On the PCM lab VM they are in `/etc/pcm/pcm.env`.
 - Stay read-only against VCF Operations and vCenter unless the milestone says otherwise.

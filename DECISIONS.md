@@ -244,3 +244,9 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** A question to the author has the ID `Q-WS-n` in this workspace (`Q-WS-In` for intent) and `Q-E2-nnn` in agent-e2. Every earlier `Q-n` and `Qnnn` is renamed in every file, records included. A repository that starts a question file uses `Q-` with its own short name.
 - **Reason:** The workspace's Q-120 and agent-e2's Q120 were two different questions. The author, 2026-11-27: "Add a prefix? WS for Workspace, E2 for Agent E2?"
+
+## WD-039 Work only in the open milestone
+
+- **Date:** 2026-11-27
+- **Decision:** Work happens only in the open milestone: the first milestone in [ROADMAP.md](ROADMAP.md) whose heading does not end with ": done". A milestone is marked done only after the author approves it. A request for a later milestone is parked in one line, and nothing in it is done. [tools/milestone_gate.py](tools/milestone_gate.py) enforces this in two places: a hook in [.claude/settings.json](.claude/settings.json) prints the open milestone and its next item at every prompt, and CI fails a pull request that changes a file owned only by a later milestone. Each milestone lists the files it owns in this repository. This one rule replaces the earlier CLAUDE.md rules on starting a build milestone and on asking for approval. M0 is reopened, because it was marked done without the author's review.
+- **Reason:** The agent worked ahead of the open milestone three times between 2026-11-25 and 2026-11-27, and each time a narrow rule was added for that one case. The author, 2026-11-27, agreed to one rule with a mechanism behind it: "Do it. Merge".
