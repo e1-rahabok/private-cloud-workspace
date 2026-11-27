@@ -2,79 +2,46 @@
 
 What [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) must do in release 1.0, written from the author's answers in [interview round 1](../interview-round-1.md) and the decisions in [DECISIONS.md](../../DECISIONS.md). Short names and IDs are explained in the [glossary](../glossary.md).
 
-**Draft for the author's review.** The new identifiers in this file (adapter kind `PCM`, key prefix `PCM|` and the others) are proposals. The author has not named them yet; each one is a question at the end of this file.
+**Draft for the author's review.** The pack keeps its identity: adapter kind `vCommunity`, display name "VCF vCommunity Adapter" and key prefix `vCommunity|` ([WD-032](../../DECISIONS.md)).
 
 ## Scope and conventions
 
 - **Area:** the management pack in VCF Operations, its build and lab tools, and its side of two contracts: [C1, the KPI definitions](../glossary.md#c1), and [C2, the KPI metric keys](../glossary.md#c2), both described in [CONTRACTS.md](../../CONTRACTS.md).
-- **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-001 to R-ADP-018 and R-ADP-021 to R-ADP-022 belong to M2, closing the known gaps. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M6, the first live cluster in PCM. R-ADP-007 is needed before M7, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build) and comes after release 1.0 ([WD-031](../../DECISIONS.md)).
-- **Keys** are written with the proposed prefix `PCM|`. Today the prefix is `vCommunity|`.
+- **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-005 to R-ADP-018 and R-ADP-021 to R-ADP-022 belong to M2, closing the known gaps. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M6, the first live cluster in PCM. R-ADP-007 is needed before M7, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build) and comes after release 1.0 ([WD-031](../../DECISIONS.md)).
+- **Keys** start with `vCommunity|` ([WD-032](../../DECISIONS.md)).
 - **The adapter may change anything.** The author confirmed that no installed instance or upgrade path needs protecting: Q-I4 and Q-2 in [round 1](../interview-round-1.md), recorded as decisions [WD-007 and WD-016](../../DECISIONS.md).
 - **How lab scenarios run.** From the author's laptop over VPN, with the repository's own tools ([tools/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/README.md)): [build.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/build/build.ps1), [install.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/install/install.ps1), [restart.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/restart/restart.ps1), then one collection cycle, then [validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1). This sequence is called "install and validate" below. The live validation checks the build installed on the lab, so a lab scenario passes only after that build is installed ([validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L12)).
 - **Test names marked "(new)"** do not exist yet. Each is written as part of its requirement.
 
-## Pack identity and the rename
+## Pack identity
 
-### R-ADP-001 The pack has its own identity in VCF Operations
+### R-ADP-001 Dropped: the pack has its own identity in VCF Operations
 
-Source: Q-I4 and Q-2 in [interview round 1](../interview-round-1.md) ("It can change anything", "Change all"); [WD-016](../../DECISIONS.md), the decision on PCM-Adapter's scope; [WD-007](../../DECISIONS.md), the rename.
+Source: [WD-032](../../DECISIONS.md).
 
-Given the pack is built from `main`
-When `build.ps1` finishes
-Then the adapter kind is `PCM` ([constants/main.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/constants/main.py#L4), today `vCommunity`)
-And the adapter name and the display name are "PCM Adapter" ([constants/main.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/constants/main.py#L5), [resources.properties](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/resources/resources.properties#L4))
-And the manifest name is `iSDK_PCM` ([manifest.txt](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/manifest.txt#L3))
-And the image is pushed to `ghcr.io/e1-rahabok/pcm-adapter` ([build.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/build/build.ps1#L21))
-And the pak file is `PCM_<version>.pak`
+Dropped by WD-032: the pack keeps adapter kind `vCommunity`, display name "VCF vCommunity Adapter", manifest name `iSDK_vCommunity`, its image and its pak name.
 
-Test scenarios:
-- T-ADP-001a (anywhere, automated by `Management Pack/tests/test_identity.py` (new)): read the constants, the manifest, `resources.properties` and the default registry of `build.ps1`; expect the five values above, and no "vCommunity" in any of them.
-- T-ADP-001b (lab, automated by validate.ps1 check 3, changed to the new adapter kind): install and validate; expect adapter kind `PCM` to exist, and the installed solution version to equal `manifest.txt`.
+### R-ADP-002 Dropped: every key has the new prefix, set in one place
 
-### R-ADP-002 Every key has the new prefix, set in one place
+Source: [WD-032](../../DECISIONS.md).
 
-Source: Q-2 in [round 1](../interview-round-1.md); [WD-016](../../DECISIONS.md).
+Dropped by WD-032: every key keeps the prefix `vCommunity|`.
 
-Given any collection cycle
-When the adapter publishes metrics and properties
-Then every key starts with `PCM|`
-And the prefix is one constant that every module uses. Today it is written out 239 times in 50 files under `Management Pack/app`, for example in [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py#L218)
-And no key starts with `vCommunity|`
+### R-ADP-003 Dropped: the old pack is replaced on the lab
 
-Test scenarios:
-- T-ADP-002a (anywhere, automated by `Management Pack/tests/test_key_prefix.py` (new)): run every collector against the fakes in [tests/fakes.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/tests/fakes.py) and collect each key published; expect each to start with `PCM|`. Search `Management Pack/app` for the text `vCommunity|`; expect no match.
-- T-ADP-002b (lab, automated by validate.ps1 checks 7 to 12, changed to the new prefix): install and validate; expect `PCM|` keys with fresh samples on every sampled object type.
+Source: [WD-032](../../DECISIONS.md).
 
-### R-ADP-003 The old pack is replaced on the lab
+Dropped by WD-032: with the identity kept, the pack is upgraded in place and keeps its history.
 
-Source: Q-2 in [round 1](../interview-round-1.md) ("No issue on installed instances at all"); the rule in the workspace [CLAUDE.md](../../CLAUDE.md) that anything that deletes data or changes the lab waits for the author.
+### R-ADP-004 Dropped: the shipped content uses the new keys and names
 
-Given the lab VCF Operations at https://10.115.1.81 runs the old pack, adapter kind `vCommunity`
-When the new pack is installed
-Then the old pack and its Adapter Instances are removed
-And each vCenter that had an old Adapter Instance has a new one, with the same Advanced Settings
-And the history of the old keys is not carried over
+Source: [WD-032](../../DECISIONS.md).
 
-Test scenarios:
-- T-ADP-003a (lab, manual with the author, because it deletes data on the lab): the author approves; the old pack is uninstalled; the new Adapter Instances are created with the [bulk importer](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/importer/importer.md); install and validate; expect adapter kind `vCommunity` gone, check 5 (instance state) passing for every vCenter, and no `vCommunity|` sample newer than the removal.
-
-### R-ADP-004 The shipped content uses the new keys and names
-
-Source: Q-2 in [round 1](../interview-round-1.md); [WD-016](../../DECISIONS.md).
-
-Given the content in [Management Pack/content](https://github.com/e1-rahabok/PCM-Adapter/tree/main/Management%20Pack/content): dashboards, views, reports, alert definitions and super metrics (38 files name "vCommunity" today)
-When the pak is built
-Then every key in that content starts with `PCM|`
-And every adapter kind in it is `PCM`
-And no content name contains "vCommunity", such as "ESXi Host Details vCommunity"
-
-Test scenarios:
-- T-ADP-004a (anywhere, automated by `Management Pack/tests/test_content_rename.py` (new)): scan every file under `Management Pack/content`; expect no "vCommunity" in keys, adapter kinds or names.
-- T-ADP-004b (lab, automated by `validate.ps1 -Release`, checks 21 to 24): install and validate with `-Release`; expect every shipped view and dashboard on the instance once. Then open the vSphere Cluster Performance 2.0 dashboard with [screenshot.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/screenshot/screenshot.md); expect no empty widget on a lab cluster (manual review of the screenshot).
+Dropped by WD-032: the shipped content keeps its keys and its names, "vCommunity" included.
 
 ### R-ADP-005 No file names the old repository
 
-Milestone: M2. The pack's own names ("vCommunity MP", "vCommunity_") change with its identity in M3 (R-ADP-004).
+Milestone: M2. The pack's own names, such as "vCommunity MP" and "vCommunity_", stay (WD-032).
 
 Source: Q-3 in [round 1](../interview-round-1.md) ("agree": one pull request per repository, archive files left as they are); Q-80 in [round 2](../interview-round-2.md) (the dated engineering reviews and the README's sentence about the vCommunity keep the old name).
 
@@ -120,7 +87,7 @@ And the case in issue #85 is closed, including the cluster property declared as 
 
 Test scenarios:
 - T-ADP-007a (anywhere, automated by `Management Pack/tests/test_declared_keys.py` (new)): build the definition; run every collector against the fakes; expect the two key sets to be equal, for each object type.
-- T-ADP-007b (lab, automated by a new validate.ps1 check): for one object of each type, read the `PCM|` keys from `GET /suite-api/api/resources/stats/latest?resourceId=<id>` and from `GET /suite-api/api/resources/<id>/properties`; expect each to be in the declared set. **Verify on the lab** that the properties endpoint returns the adapter's properties for a vCenter object.
+- T-ADP-007b (lab, automated by a new validate.ps1 check): for one object of each type, read the `vCommunity|` keys from `GET /suite-api/api/resources/stats/latest?resourceId=<id>` and from `GET /suite-api/api/resources/<id>/properties`; expect each to be in the declared set. **Verify on the lab** that the properties endpoint returns the adapter's properties for a vCenter object.
 
 ### R-ADP-008 Each sub-metric reads the statistic its catalog name states
 
@@ -225,8 +192,8 @@ Source: Q-28 in [round 1](../interview-round-1.md) ("we should fix them in the P
 
 Given an object with a KPI: a cluster, host or VM
 When a collection cycle publishes that KPI
-Then for each row the adapter publishes `PCM|<KPI>|State|<row key>` with one code from the table
-And for the KPI it publishes `PCM|<KPI>|State|<KPI key>`
+Then for each row the adapter publishes `vCommunity|<KPI>|State|<row key>` with one code from the table
+And for the KPI it publishes `vCommunity|<KPI>|State|<KPI key>`
 And the states carry the same timestamp as the values of that cycle
 And a row's value is published exactly when its state is 0 or 1
 And the code table is in the adapter's [Metrics reference](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md) and in the C2 contract
@@ -312,7 +279,7 @@ Two other endpoints may give the declared keys with their names: `GET /suite-api
 Source: Q-29 in [round 1](../interview-round-1.md) ("You will need to get from a live environment"); Q-1 (key from the adapter, name from the catalog).
 
 Given one lab cluster, one host and one VM, after one collection cycle of the new pack
-When `GET /suite-api/api/resources/stats/latest?resourceId=<id>` is read for each, keeping the keys that start with `PCM|`
+When `GET /suite-api/api/resources/stats/latest?resourceId=<id>` is read for each, keeping the keys that start with `vCommunity|`
 Then the keys of each object equal the expected set for its object type: every value key with state 0 or 1, and every state key
 And the expected set for a cluster is the one listed in [Cluster keys](#cluster-keys) below
 And the same set comes from every object of that type, so the list does not depend on which object is read
@@ -348,8 +315,8 @@ Source: Q-31 in [round 1](../interview-round-1.md) ("PCM gets from the PCM Adapt
 
 Given a cluster collected by a PCM-Adapter instance
 When a collection cycle runs
-Then the cluster has the properties `PCM|Periodic Cluster Check|Period (hours)`, `PCM|Periodic Cluster Check|Time (UTC)` and `PCM|Periodic Cluster Check|Worst Percent`, with the values the check uses after defaults
-And each time the check publishes its four values, it also publishes the metric `PCM|Periodic Cluster Check|Window End`, the end of the window in UTC as epoch milliseconds, with the same timestamp
+Then the cluster has the properties `vCommunity|Periodic Cluster Check|Period (hours)`, `vCommunity|Periodic Cluster Check|Time (UTC)` and `vCommunity|Periodic Cluster Check|Worst Percent`, with the values the check uses after defaults
+And each time the check publishes its four values, it also publishes the metric `vCommunity|Periodic Cluster Check|Window End`, the end of the window in UTC as epoch milliseconds, with the same timestamp
 And PCM can read both with the cluster, through `GET /suite-api/api/resources/<id>/properties` and `stats/latest`, with no read of the adapter instances
 
 Test scenarios:
@@ -419,7 +386,7 @@ Test scenarios:
 
 ## Cluster keys
 
-The value keys a cluster carries after the rename, with the proposed prefix. Each row also has a state key, `PCM|<KPI>|State|<row key>`, and each KPI a state key, `PCM|<KPI>|State|<KPI key>` (R-ADP-013). The keys after the prefix are the adapter's row names today.
+The value keys a cluster carries after the rename, with the proposed prefix. Each row also has a state key, `vCommunity|<KPI>|State|<row key>`, and each KPI a state key, `vCommunity|<KPI>|State|<KPI key>` (R-ADP-013). The keys after the prefix are the adapter's row names today.
 
 | KPI | KPI key | Row keys | Defined in |
 |---|---|---|---|

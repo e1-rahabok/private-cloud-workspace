@@ -108,7 +108,7 @@ def roadmap() -> None:
     b(20, 80, "M0 Workspace", ["Files, checks, tutorial"], "prod")
     b(20, 190, "M1 Specification", ["Intent, model, requirements;", "approval"], "guest")
     b(230, 190, "M2 Contracts, clean-up", ["KPI definitions, docs,", "Agent E2 plan"], "white")
-    b(440, 190, "M3 Adapter identity", ["New name, data states"], "white")
+    b(440, 190, "M3 Adapter data states", ["States, key list, accounts"], "white")
     b(440, 300, "M5 Agent E2 for 1.0", ["Grader, progress, files,", "Day 2 scope"], "white")
     b(650, 80, "M6 Live demo: one KPI", ["One cluster, live"], "white")
     b(860, 80, "M7 Live demo: the rest", ["L2 performance, capacity"], "white")

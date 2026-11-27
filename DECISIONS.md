@@ -52,6 +52,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-25
 - **Decision:** VCF-vCommunity-Adapter is renamed PCM-Adapter: the repository, and also the pack's identity in VCF Operations (WD-016).
 - **Reason:** PCM D-096: the adapter is part of PCM. The author confirmed no installed instance needs protecting (Q-2, Q-I4).
+- **Status:** the repository is renamed; the pack's identity in VCF Operations stays, by WD-032.
 
 ## WD-008 Decision logs per repository
 
@@ -106,6 +107,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-25
 - **Decision:** PCM-Adapter may change anything, including its adapter kind, manifest name, metric key prefix, image path and pak name. A metric's key comes from the adapter; its name comes from Agent E2's catalog. All scoring logic comes from Agent E2, including the score bands and the closure levels. One Cluster Risk level for every cluster. Usable capacity is Total − HA − Buffer. A metric whose name says "peak" is a 20-second peak; others are 5-minute averages. Data absent by design is made explicit by the adapter.
 - **Reason:** The author's answers to Q-I4, Q-1, Q-2, Q-14 to Q-17, Q-19 and Q-28. Requirements: [spec/requirements/pcm-adapter.md](spec/requirements/pcm-adapter.md).
+- **Status:** the adapter kind, manifest name, key prefix, image path and pak name stay, by WD-032.
 
 ## WD-017 isvara.io rebuild
 
@@ -200,3 +202,9 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** The lab build for memory tiering (WD-018, [lab-build.md](spec/requirements/lab-build.md)) and R-ADP-024 move to after release 1.0. In release 1.0, the tiering rows of PCM-Adapter are tested with fakes, and on the physical lab clusters as "not applicable" (R-ADP-014). The lab facts of Q-120 and Q-122 wait until the lab build starts.
 - **Reason:** The author, 2026-11-27: "Defer memory tiering lab to be after Release 1.0."
+
+## WD-032 The adapter keeps its vCommunity identity
+
+- **Date:** 2026-11-27
+- **Decision:** The management pack keeps its identity in VCF Operations: adapter kind `vCommunity`, display name "VCF vCommunity Adapter", manifest name `iSDK_vCommunity`, key prefix `vCommunity|`, the image `ghcr.io/e1-rahabok/vcf-operations-vcommunity`, the pak name the build makes from them, and "vCommunity" in the names of its dashboards, views and reports. The repository keeps its name, PCM-Adapter. The pack's description explains how it works with Agent E2, PCM and isvara.io. R-ADP-001 to R-ADP-004 are dropped. This replaces the decisions on Q-72 to Q-78 and the parts of WD-007 and WD-016 that renamed the pack.
+- **Reason:** The author, 2026-11-27: PCM is a vCommunity project, where VMware vExperts and VMUG members work together, and the name shows a grassroots effort. "Private Cloud Manager" is too long for a key prefix.

@@ -27,7 +27,7 @@ Boxes, nested as drawn:
 - n3 **M7 Live demo: the rest** (Not started): L2 performance, capacity
 - n4 **M1 Specification** (In progress): Intent, model, requirements; approval
 - n5 **M2 Contracts, clean-up** (Not started): KPI definitions, docs, Agent E2 plan
-- n6 **M3 Adapter identity** (Not started): New name, data states
+- n6 **M3 Adapter data states** (Not started): States, key list, accounts
 - n7 **M5 Agent E2 for 1.0** (Not started): Grader, progress, files, Day 2 scope
 - n8 **M9 isvara.io Ask** (Not started): Agent E2, contributions, protection
 - n9 **M8 isvara.io content** (Not started): Paths, articles, search, infographics, tools
@@ -37,11 +37,11 @@ Arrows (from, to, label):
 - n1 M0 Workspace --> n4 M1 Specification
 - n4 M1 Specification --> n5 M2 Contracts, clean-up
 - n5 M2 Contracts, clean-up --> n2 M6 Live demo: one KPI
-- n5 M2 Contracts, clean-up --> n6 M3 Adapter identity
+- n5 M2 Contracts, clean-up --> n6 M3 Adapter data states
 - n5 M2 Contracts, clean-up --> n7 M5 Agent E2 for 1.0
 - n5 M2 Contracts, clean-up --> n9 M8 isvara.io content
 - n2 M6 Live demo: one KPI --> n3 M7 Live demo: the rest
-- n6 M3 Adapter identity --> n3 M7 Live demo: the rest
+- n6 M3 Adapter data states --> n3 M7 Live demo: the rest
 - n7 M5 Agent E2 for 1.0 --> n3 M7 Live demo: the rest
 - n7 M5 Agent E2 for 1.0 --> n8 M9 isvara.io Ask
 - n9 M8 isvara.io content --> n8 M9 isvara.io Ask
@@ -79,9 +79,9 @@ Requirements, ready for the author's approval:
 - PCM-Adapter, the parts that follow from the KPI definitions: R-ADP-005 to R-ADP-012 ([pcm-adapter.md](spec/requirements/pcm-adapter.md)).
 - Repository clean-up: R-REPO-001 to R-REPO-008 ([repositories.md](spec/requirements/repositories.md)): the adapter's knowledge pages to Agent E2, Agent E2's plan and old benchmarks, the product's name, old repository names, and PCM's folders and files named for what they hold and grouped by workspace.
 
-### M3 PCM-Adapter's new identity and data states
+### M3 PCM-Adapter's data states
 
-- Requirements: R-ADP-001 to R-ADP-004; R-ADP-013 to R-ADP-023.
+- Requirements: R-ADP-013 to R-ADP-023.
 
 ### M5 Agent E2 for release 1.0
 
@@ -120,7 +120,7 @@ Requirements, ready for the author's approval:
 ## Waiting for the author
 
 - The licence, before the first customer copies the product (WD-029).
-- Approvals at the time of the work: removing the old pack from the lab (Q-79), turning on the packet counters (Q-85), the exam's ten questions (Q-113), grading 20 answers once (Q-92).
+- Approvals at the time of the work: turning on the packet counters (Q-85), the exam's ten questions (Q-113), grading 20 answers once (Q-92).
 - Review of each pull request marked as a major change.
 
 ## After release 1.0
