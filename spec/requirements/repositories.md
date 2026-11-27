@@ -102,13 +102,14 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: WD-030.
+Source: WD-030; PCM D-132.
 
 - Given [private-cloud-manager](https://github.com/e1-rahabok/private-cloud-manager), whose folder [`build/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/build) holds the application's source code and [`sources/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/sources) holds the author's papers
 - When a reader sees its folder tree
 - Then the Python package `pcm_proto` is `pcm`
 - And [`sources/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/sources) is `author-papers/`, and the papers' file names carry no version number
-- And `l2_story_m5.py` and `test_story_m5.py` are named for what their story shows; the story ID M-5 in the file name tells a reader nothing
+- And "story" becomes "PCM scenario story" in every file of PCM: design notes, decisions, spec, tests and generated code; the IDs stay (N-2, O-1, M-5)
+- And `l2_story_m5.py` and `test_story_m5.py` are named for what their PCM scenario story shows; the ID M-5 in the file name tells a reader nothing
 - And [`spec/data/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/spec/data) is `spec/demo-data/`
 - And "design" names one thing: [`design/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/design) and [`spec/design-system/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/spec/design-system) no longer share the word with two meanings
 - And [`tools/moltbot/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/tools/moltbot) is named for what it does

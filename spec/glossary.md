@@ -40,6 +40,7 @@ Every short name and ID used in this workspace, with what it means and where it 
 | VCF vCommunity Adapter | The management pack in VCF Operations that computes the KPIs of PCM's scenario 7 ([SYSTEM.md](../SYSTEM.md)) |
 | Review page | One page per milestone, [spec/review](review), listing its requirements for the author's approval |
 | Demo scenario | One entry of PCM's demo control; 7 is live, 1 to 6 synthetic |
+| PCM scenario story | A condition planted in PCM's synthetic data, with the result each workspace must show (PCM D-132) |
 | Catalog | Agent E2's [knowledge/catalog](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge/catalog) YAML files, master of every KPI definition |
 | KPI | A 0 to 100% score built from several sub-metrics (parts), for example Cluster Performance |
 | Part, sub-metric | One input of a KPI, with five limits that set its score |
