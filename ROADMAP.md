@@ -101,9 +101,9 @@ Claude's working method, about how Claude works and never about the product (WD-
 - Files in this repository: [`checks/`](checks), [`tools/style.py`](tools/style.py).
 - **Requirements:** R-WS-001 to R-WS-007 and R-REPO-006 ([workspace.md](spec/requirements/workspace.md)), R-KPI-001 to R-KPI-006 ([kpi-definitions.md](spec/requirements/kpi-definitions.md)), R-ADP-005 to R-ADP-011 and R-ADP-025 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-REPO-001 and R-REPO-002 (PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md)), R-REPO-003 and R-REPO-004 (agent-e2's [clean-up.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/clean-up.md)), R-REPO-005, R-REPO-007 and R-REPO-008 (private-cloud-manager's [clean-up.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/clean-up.md)).
 
-- [ ] C1, step 1: every row of Agent E2's catalog has a `key`, the adapter row's name (R-KPI-001).
-- [ ] C1, step 2: the KPI definitions check matches rows by key and compares names, limits, intervals, score bands and closure levels (R-KPI-001 to R-KPI-006, T-ADP-006a, T-ADP-008a, T-ADP-010a, T-ADP-011a).
-- [ ] C1, step 3: the catalog's renamed rows, its Cluster Performance score row and its one Cluster Risk level, with the adapter's labels and intervals to match; `NAME_GAPS` is empty (R-ADP-006, R-ADP-008, R-ADP-010, R-ADP-011).
+- [x] C1, step 1: every row of Agent E2's catalog has a `key`, the adapter row's name (R-KPI-001) ([agent-e2#483](https://github.com/e1-rahabok/agent-e2/pull/483)).
+- [ ] C1, step 2: the KPI definitions check matches rows by key, then compares names, limits and excluded-when-green, with a planted break of each kind (R-KPI-001 to R-KPI-003).
+- [ ] C1, step 3: the catalog's renamed rows, its Cluster Performance score row and its one Cluster Risk level, with the adapter's labels and intervals to match; the check also compares intervals, score bands and closure levels, and `NAME_GAPS` is empty (R-KPI-005, R-KPI-006, R-ADP-006, R-ADP-008, R-ADP-010, R-ADP-011).
 - [ ] The adapter's declared keys equal its published keys, and its files use one name for the pack and none of the old repository names (R-ADP-005, R-ADP-007, R-ADP-025).
 - [ ] One set of writing rules, run by [tools/style.py](tools/style.py) in every repository (R-WS-006).
 - [ ] The name check and the old repository names check, run by [checks/run_all.py](checks/run_all.py) (R-WS-007, R-REPO-006).

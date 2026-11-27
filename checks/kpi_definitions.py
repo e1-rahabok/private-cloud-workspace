@@ -6,14 +6,18 @@
 
 Agent E2 owns every KPI definition (CONTRACTS.md, C1). PCM-Adapter implements them.
 For each KPI this check compares, sub-metric by sub-metric:
-  - the sub-metric exists on both sides (matched by name: the adapter's label against
-    the catalog's metric name without its unit in brackets),
-  - the five limits [best, green, yellow, orange, zero-at],
+  - the sub-metric exists on both sides, matched by key: the catalog row's `key` against the
+    name the adapter's KPI module gives the row (R-KPI-001),
+  - its name: the adapter's label (its LABELS table, else the row name) against the catalog's
+    metric name without its unit in brackets (R-KPI-003),
+  - the five limits [best, green, yellow, orange, zero-at] (R-KPI-002),
   - "excluded when green" (the adapter's skip_when_green).
+Each catalog row must have a key and five limits for at least one interval, and no KPI may use
+one key twice. A ratio has no unit, so a unit is not required.
 
-Known name gaps (NAME_GAPS below) are a baseline: they are reported as KNOWN and do not fail,
-but their limits are still compared. A new gap fails. A baseline entry that no longer applies
-also fails, so the baseline only shrinks.
+Known name gaps (NAME_GAPS below) are a baseline: they are reported as KNOWN and do not fail.
+A new gap fails. A baseline entry that no longer applies also fails, so the baseline only shrinks.
+checks/test_kpi_definitions.py plants a break of each kind and expects this check to fail on it.
 
 It reads both repositories from local clones and connects to nothing.
 Exit 0: no new difference. Exit 1: a difference. Exit 2: a repository could not be read.
@@ -56,25 +60,14 @@ ADAPTER_MODULES = {
     "Cluster Consumption": "metrics.cluster.cluster_consumption_metrics",
 }
 
-# Known name gaps (OPEN-QUESTIONS.md, Q-WS-1): adapter name -> catalog name, for the rows the adapter
-# publishes under a name other than the catalog's. Close a gap by giving the adapter row the catalog
-# name (its LABELS table), then delete the line here; the check fails until you do.
+# Known name gaps (Q-WS-1; R-ADP-006 closes them in M2): the keys of the rows whose adapter label differs
+# from the catalog name. Close a gap by giving the adapter row the catalog name (its LABELS table), then
+# delete the key here; the check fails until you do.
 NAME_GAPS = {
-    "VM Performance": {
-        "CPU Co-Stop": "Peak CPU Co-stop among any vCPU",
-        "CPU Ready": "Peak CPU Ready among any vCPU",
-        "CPU Overlap": "Peak CPU Overlap",
-        "Disk Latency": "Peak read/write latency among vDisks",
-        "Network Dropped Tx": "Peak network TX dropped packets",
-        "CPU Run": "CPU Net Run",
-        "Memory Ballooned": "VM Memory Ballooned",
-    },
-    "Guest OS Performance": {
-        "Guest CPU Run Queue per vCPU": "Peak vCPU run queue length",
-        "Guest Disk Queue": "Peak disk queue length",
-        "Guest Free Memory": "Free memory",
-        "Guest Page-Out Rate": "Memory page-out rate",
-    },
+    "VM Performance": {"CPU Co-Stop", "CPU Ready", "CPU Overlap", "Disk Latency", "Network Dropped Tx", "CPU Run",
+                       "Memory Ballooned"},
+    "Guest OS Performance": {"Guest CPU Run Queue per vCPU", "Guest Disk Queue", "Guest Free Memory",
+                             "Guest Page-Out Rate"},
 }
 
 UNIT_SUFFIX = re.compile(r"\s*\([^()]*\)\s*$")
@@ -85,8 +78,8 @@ def norm(name: str) -> str:
     return " ".join(UNIT_SUFFIX.sub("", name).lower().split())
 
 
-def load_catalog(agent_e2: Path) -> dict[str, dict[str, dict]]:
-    """{KPI: {normalized name: row}} from the Agent E2 catalog."""
+def load_catalog(agent_e2: Path, problems: list[str]) -> dict[str, dict[str, dict]]:
+    """{KPI: {key: row}} from the Agent E2 catalog. A row without a key or limits, or a key used twice, is a problem."""
     kpis: dict[str, dict[str, dict]] = {}
     for rel, section in CATALOG_SECTIONS:
         data = yaml.safe_load((agent_e2 / rel).read_text(encoding="utf-8"))
@@ -94,7 +87,15 @@ def load_catalog(agent_e2: Path) -> dict[str, dict[str, dict]]:
             kpi = KPI_BY_KB.get(str(row.get("kb", "")).rsplit("/", 1)[-1])
             if kpi is None:
                 continue
-            kpis.setdefault(kpi, {})[norm(row["metric"])] = row
+            name = row.get("metric", "?")
+            if not row.get("key"):
+                problems.append(f"{kpi}: catalog row '{name}' has no key")
+                continue
+            if not any(isinstance(row.get(k), list) and len(row[k]) == 5 for k in ("5m", "20s", "2s")):
+                problems.append(f"{kpi}: catalog row '{name}' has no five limits for any interval")
+            if row["key"] in kpis.get(kpi, {}):
+                problems.append(f"{kpi}: the catalog uses key '{row['key']}' twice")
+            kpis.setdefault(kpi, {})[row["key"]] = row
     return kpis
 
 
@@ -106,45 +107,44 @@ def stub_sdk() -> None:
     sys.modules["aria.ops.suite_api_client"].SuiteApiClient = type("SuiteApiClient", (), {})
 
 
-def load_adapter(adapter: Path) -> dict[str, dict[str, object]]:
-    """{KPI: {normalized label: Metric}} from the adapter's KPI modules."""
+def load_adapter(adapter: Path) -> dict[str, dict[str, tuple[object, str]]]:
+    """{KPI: {row name: (Metric, label)}} from the adapter's KPI modules."""
     sys.path.insert(0, str(adapter / "Management Pack" / "app"))
     stub_sdk()
-    kpis: dict[str, dict[str, object]] = {}
+    kpis: dict[str, dict[str, tuple[object, str]]] = {}
     for kpi, module_name in ADAPTER_MODULES.items():
         module = importlib.import_module(module_name)
         labels = getattr(module, "LABELS", {})
-        kpis[kpi] = {norm(labels.get(m.name, m.name)): m for m in module.METRICS}
+        kpis[kpi] = {m.name: (m, labels.get(m.name, m.name)) for m in module.METRICS}
     return kpis
-
-
-def resolve_name_gaps(adapter: dict, problems: list[str], known: list[str]) -> None:
-    """File each known gap's row under the catalog name, so its limits are compared; a stale entry is a problem."""
-    for kpi, gaps in NAME_GAPS.items():
-        rows = adapter.get(kpi, {})
-        for adapter_name, catalog_name in gaps.items():
-            if norm(adapter_name) in rows:
-                rows[norm(catalog_name)] = rows.pop(norm(adapter_name))
-                known.append(f"{kpi}: adapter names it '{adapter_name}', the catalog '{catalog_name}'")
-            else:
-                problems.append(f"{kpi}: NAME_GAPS lists '{adapter_name}', which the adapter no longer has: delete the entry")
 
 
 def limits_of(metric) -> list[float]:
     return [metric.best, metric.green, metric.yellow, metric.orange, metric.zero_at]
 
 
-def compare(catalog: dict, adapter: dict, known: list[str]) -> list[str]:
+def compare(catalog: dict, adapter: dict, known: list[str], gaps: dict | None = None) -> list[str]:
+    """The differences between the catalog and the adapter, by key. Known name gaps go to known."""
+    gaps = NAME_GAPS if gaps is None else gaps
     problems: list[str] = []
-    resolve_name_gaps(adapter, problems, known)
     for kpi in ADAPTER_MODULES:
         cat_rows, ada_rows = catalog.get(kpi, {}), adapter.get(kpi, {})
-        for name in sorted(cat_rows.keys() - ada_rows.keys()):
-            problems.append(f"{kpi}: '{cat_rows[name]['metric']}' is in the Agent E2 catalog but not in the adapter")
-        for name in sorted(ada_rows.keys() - cat_rows.keys()):
-            problems.append(f"{kpi}: '{ada_rows[name].name}' is in the adapter but not in the Agent E2 catalog")
-        for name in sorted(cat_rows.keys() & ada_rows.keys()):
-            row, metric = cat_rows[name], ada_rows[name]
+        for key in sorted(cat_rows.keys() - ada_rows.keys()):
+            problems.append(f"{kpi}: key '{key}' ('{cat_rows[key]['metric']}') is in the Agent E2 catalog but not in the adapter")
+        for key in sorted(ada_rows.keys() - cat_rows.keys()):
+            problems.append(f"{kpi}: key '{key}' is in the adapter but not in the Agent E2 catalog")
+        for key in sorted(set(gaps.get(kpi, set())) - ada_rows.keys()):
+            problems.append(f"{kpi}: NAME_GAPS lists '{key}', which the adapter no longer has: delete the entry")
+        for key in sorted(cat_rows.keys() & ada_rows.keys()):
+            row, (metric, label) = cat_rows[key], ada_rows[key]
+            same_name = norm(label) == norm(row["metric"])
+            if key in gaps.get(kpi, set()):
+                if same_name:
+                    problems.append(f"{kpi}: NAME_GAPS lists '{key}', whose label now equals the catalog name: delete the entry")
+                else:
+                    known.append(f"{kpi}: '{key}' is labelled '{label}', the catalog names it '{row['metric']}'")
+            elif not same_name:
+                problems.append(f"{kpi}: '{key}' is labelled '{label}', the catalog names it '{row['metric']}'")
             wanted = [row[k] for k in ("5m", "20s", "2s") if row.get(k)]
             have = limits_of(metric)
             if not any([float(v) for v in w] == [float(v) for v in have] for w in wanted):
@@ -165,9 +165,10 @@ def main() -> int:
         if not repo.is_dir():
             print(f"ERROR: {repo} not found. Clone it, or pass --repos.")
             return 2
-    catalog, implemented = load_catalog(agent_e2), load_adapter(adapter)
+    problems: list[str] = []
+    catalog, implemented = load_catalog(agent_e2, problems), load_adapter(adapter)
     known: list[str] = []
-    problems = compare(catalog, implemented, known)
+    problems += compare(catalog, implemented, known)
     checked = sum(len(v) for v in catalog.values())
     for k in known:
         print(f"KNOWN {k}")
