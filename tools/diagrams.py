@@ -33,7 +33,7 @@ def system() -> None:
     k.box(40, 370, 260, "VCF vCommunity Adapter", ["Computes the KPIs inside VCF", "Operations, under vCommunity|"], "prod")
 
     k.box(680, 90, 260, "isvara.io", ["Public learning site;", "on Vercel; no live system"], "shared")
-    k.box(680, 230, 260, "Agent E2 for isvara.io", ["Where it runs: OPEN-QUESTIONS Q-WS-4"], "method", dash=True)
+    k.box(680, 230, 260, "Agent E2 for isvara.io", ["Where it runs: measured and chosen", "in M5 (Q-WS-4)"], "method", dash=True)
     k.box(680, 390, 260, "Vercel AI Gateway", ["Cloud model for release 1.0"], "guest")
 
     k.arrow([(270, 130), (350, 130)], "C3", 310, 123)
@@ -42,7 +42,7 @@ def system() -> None:
     k.arrow([(600, 150), (640, 150), (640, 415), (680, 415)], "C5", 640, 300)
     k.arrow([(600, 110), (680, 110)], "C4", 640, 103, dash=True)
     k.arrow([(810, 156), (810, 230)], "C3", 810, 197, dash=True)
-    k.arrow([(810, 281), (810, 390)], "C5", 810, 340, dash=True)
+    k.arrow([(810, 296), (810, 390)], "C5", 810, 345, dash=True)
     k.finish(str(ROOT / "images" / "system.svg"))
 
 

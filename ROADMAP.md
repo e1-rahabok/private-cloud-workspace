@@ -80,6 +80,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 
 - [x] The milestones revamped: M1 to M8, one outcome each, no file or requirement in two milestones, both checked by code (WD-042) ([#40](https://github.com/e1-rahabok/private-cloud-workspace/pull/40), [agent-e2#476](https://github.com/e1-rahabok/agent-e2/pull/476)).
 - [ ] The foundations reviewed against the decisions: SYSTEM.md, CONTRACTS.md, README.md, the glossary and the tutorial's method chapters.
+- [ ] Every requirement in the repository that implements it (WD-036); the workspace keeps the contracts and their checks, and its tools read the requirements of every repository.
 - [ ] Every contradiction between two requirement files fixed, each listed in its pull request.
 - [ ] Agent E2's requirements updated for the Day 2 scope (WD-026) and the round 2 decisions; the parts that need live lab facts moved to M8.
 - [ ] Requirements on the callers of Agent E2 moved to the callers: PCM's to M8, isvara.io's to M5.
@@ -88,7 +89,6 @@ Claude's working method, about how Claude works and never about the product (WD-
 - [ ] The exam's requirements updated for the round 2 decisions.
 - [ ] isvara.io before and after: one document, feature by feature, for the author's review before anything is built (answer to Q-WS-41).
 - [ ] isvara.io's requirements for M4 to M7, written from that document.
-- [ ] Every requirement in the repository that implements it (WD-036); the workspace keeps the contracts and their checks, and its tools read the requirements of every repository.
 - [ ] A fresh agent reads the specification cold and finds no contradiction, no requirement that cannot be tested, and no requirement outside a milestone.
 - [ ] Approval: Claude's self-review, delegated by the author (WD-042).
 

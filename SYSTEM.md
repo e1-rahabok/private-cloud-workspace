@@ -15,7 +15,7 @@ Boxes, nested as drawn:
 - n1 **PCM** (PCM): Web app for operations roles; synthetic ACME or live data; lab VM, https://10.114.1.29
 - n2 **Agent E2 for PCM** (Agent E2): Knowledge service over HTTP; owns all domain knowledge; same lab VM, port 8090
 - n3 **isvara.io** (isvara.io): Public learning site; on Vercel; no live system
-- n4 **Agent E2 for isvara.io** (Agent E2): Where it runs: OPEN-QUESTIONS Q-WS-4
+- n4 **Agent E2 for isvara.io** (Agent E2): Where it runs: measured and chosen in M5 (Q-WS-4)
 - n5 **VCF Operations**: Lab, https://10.115.1.81
   - n6 **VCF vCommunity Adapter** (VCF vCommunity Adapter): Computes the KPIs inside VCF Operations, under vCommunity|
 - n7 **Vercel AI Gateway** (Model): Cloud model for release 1.0
@@ -42,7 +42,7 @@ Arrows: `-->` solid, `..>` dashed.
 | Agent E2 for PCM | agent-e2 | Same lab VM, port 8090, as a systemd service | Vercel AI Gateway |
 | VCF vCommunity Adapter | PCM-Adapter | Inside the lab VCF Operations, https://10.115.1.81 (VPN) | vCenter, VCF Operations |
 | isvara.io | isvara | Vercel, public | Agent E2 (planned, ROADMAP M5); today its own AskIO agent |
-| Agent E2 for isvara.io | agent-e2 | Not decided (OPEN-QUESTIONS, Q-WS-4) | Vercel AI Gateway |
+| Agent E2 for isvara.io | agent-e2 | Chosen in ROADMAP M5 after measuring start-up time and cost per answer (Q-WS-4) | Vercel AI Gateway |
 
 ## Sources of each kind of data
 
