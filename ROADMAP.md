@@ -9,10 +9,10 @@ VMware administrators have the author's knowledge inside their own private cloud
 ## Release 1.0
 
 - **Agent E2:** Day 2 knowledge on Gemma 4 31B, its free-text answers graded automatically, a visible progress state, screenshots and CSV files, sources for every answer ([requirements](spec/requirements/agent-e2-service.md)).
-- **PCM-Adapter:** explicit data states, and every KPI definition taken from Agent E2 ([requirements](spec/requirements/pcm-adapter.md), [KPI definitions](spec/requirements/kpi-definitions.md)).
+- **PCM-Adapter:** no value from a partial read, and every KPI definition taken from Agent E2 ([requirements](spec/requirements/pcm-adapter.md), [KPI definitions](spec/requirements/kpi-definitions.md)).
 - **PCM:** the synthetic demo unchanged, plus a live demo of the L2 workspace for performance and capacity on the lab ([requirements](spec/requirements/pcm-live.md)).
 - **isvara.io:** rebuilt on the three learning paths, with ask, contributions and practice ([plan](spec/design/isvara-revamp.md)). This is the main focus on Release 1.0
-- **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge ([DECISIONS](DECISIONS.md), WD-026).
+- **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge, value management, PCM-Adapter's state codes ([DECISIONS](DECISIONS.md), WD-026, WD-033, WD-034).
 
 ![Release 1.0 milestones and what each depends on: M0 done; M1 in progress; M2 leads to M6, M3, M5 and M8; M6 to M7; M3 to M7; M5 to M7 and M9; M8 to M9 and M10](images/roadmap.svg)
 
@@ -27,7 +27,7 @@ Boxes, nested as drawn:
 - n3 **M7 Live demo: the rest** (Not started): L2 performance, capacity
 - n4 **M1 Specification** (In progress): Intent, model, requirements; approval
 - n5 **M2 Contracts, clean-up** (Not started): KPI definitions, docs, Agent E2 plan
-- n6 **M3 Adapter data states** (Not started): States, key list, accounts
+- n6 **M3 Adapter for live demo** (Not started): Partial reads, key list, settings, accounts
 - n7 **M5 Agent E2 for 1.0** (Not started): Grader, progress, files, Day 2 scope
 - n8 **M9 isvara.io Ask** (Not started): Agent E2, contributions, protection
 - n9 **M8 isvara.io content** (Not started): Paths, articles, search, infographics, tools
@@ -37,11 +37,11 @@ Arrows (from, to, label):
 - n1 M0 Workspace --> n4 M1 Specification
 - n4 M1 Specification --> n5 M2 Contracts, clean-up
 - n5 M2 Contracts, clean-up --> n2 M6 Live demo: one KPI
-- n5 M2 Contracts, clean-up --> n6 M3 Adapter data states
+- n5 M2 Contracts, clean-up --> n6 M3 Adapter for live demo
 - n5 M2 Contracts, clean-up --> n7 M5 Agent E2 for 1.0
 - n5 M2 Contracts, clean-up --> n9 M8 isvara.io content
 - n2 M6 Live demo: one KPI --> n3 M7 Live demo: the rest
-- n6 M3 Adapter data states --> n3 M7 Live demo: the rest
+- n6 M3 Adapter for live demo --> n3 M7 Live demo: the rest
 - n7 M5 Agent E2 for 1.0 --> n3 M7 Live demo: the rest
 - n7 M5 Agent E2 for 1.0 --> n8 M9 isvara.io Ask
 - n9 M8 isvara.io content --> n8 M9 isvara.io Ask
@@ -79,9 +79,9 @@ Requirements, ready for the author's approval:
 - PCM-Adapter, the parts that follow from the KPI definitions: R-ADP-005 to R-ADP-012 ([pcm-adapter.md](spec/requirements/pcm-adapter.md)).
 - Repository clean-up: R-REPO-001 to R-REPO-008 ([repositories.md](spec/requirements/repositories.md)): the adapter's knowledge pages to Agent E2, Agent E2's plan and old benchmarks, the product's name, old repository names, and PCM's folders and files named for what they hold and grouped by workspace.
 
-### M3 PCM-Adapter's data states
+### M3 PCM-Adapter for the live demo
 
-- Requirements: R-ADP-013 to R-ADP-023.
+- Requirements: R-ADP-018 to R-ADP-023.
 
 ### M5 Agent E2 for release 1.0
 
@@ -127,6 +127,8 @@ Requirements, ready for the author's approval:
 
 - Personal dashboards and what-if analysis in PCM; the tenant or application owner role.
 - The people side of operations.
+- Value management, the fifth pillar of The SP5 Framework: cost, price and business value (WD-034).
+- PCM-Adapter's state codes: every row and KPI says why it has no value (R-ADP-013 to R-ADP-017; WD-033).
 - A larger answer set for Agent E2's grader, from about 15 questions toward 40, weighted to the questions visitors ask.
 - The lab build for memory tiering: nested ESXi hosts with an NVMe tier (R-LAB-001 to R-LAB-004, R-ADP-024; WD-031). It starts with a spike: can a nested host use a virtual NVMe tier (Q-119)? Claude then asks for the lab facts (Q-120, Q-122).
 - Depth beyond vSphere, grown through contributions: vSAN, NSX, Kubernetes, Guest OS, physical infrastructure.

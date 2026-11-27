@@ -107,7 +107,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-25
 - **Decision:** PCM-Adapter may change anything, including its adapter kind, manifest name, metric key prefix, image path and pak name. A metric's key comes from the adapter; its name comes from Agent E2's catalog. All scoring logic comes from Agent E2, including the score bands and the closure levels. One Cluster Risk level for every cluster. Usable capacity is Total − HA − Buffer. A metric whose name says "peak" is a 20-second peak; others are 5-minute averages. Data absent by design is made explicit by the adapter.
 - **Reason:** The author's answers to Q-I4, Q-1, Q-2, Q-14 to Q-17, Q-19 and Q-28. Requirements: [spec/requirements/pcm-adapter.md](spec/requirements/pcm-adapter.md).
-- **Status:** the adapter kind, manifest name, key prefix, image path and pak name stay, by WD-032.
+- **Status:** the adapter kind, manifest name, key prefix, image path and pak name stay, by WD-032. Data absent by design is made explicit after release 1.0, by WD-033.
 
 ## WD-017 isvara.io rebuild
 
@@ -208,3 +208,15 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** The management pack keeps its identity in VCF Operations: adapter kind `vCommunity`, display name "VCF vCommunity Adapter", manifest name `iSDK_vCommunity`, key prefix `vCommunity|`, the image `ghcr.io/e1-rahabok/vcf-operations-vcommunity`, the pak name the build makes from them, and "vCommunity" in the names of its dashboards, views and reports. The repository keeps its name, PCM-Adapter. The pack's description explains how it works with Agent E2, PCM and isvara.io. R-ADP-001 to R-ADP-004 are dropped. This replaces the decisions on Q-72 to Q-79 and the parts of WD-007 and WD-016 that renamed the pack.
 - **Reason:** The author, 2026-11-27: PCM is a vCommunity project, where VMware vExperts and VMUG members work together, and the name shows a grassroots effort. "Private Cloud Manager" is too long for a key prefix.
+
+## WD-033 Data states in release 1.0
+
+- **Date:** 2026-11-27
+- **Decision:** In release 1.0, PCM-Adapter publishes no value built from a partial read (R-ADP-018). PCM shows "No data" for a stale value from the time of the value (R-LIVE-015). The state codes, which say why a row or KPI has no value, come after release 1.0 (R-ADP-013 to R-ADP-017). PCM's key list comes from the adapter's module tables, and the lab read checks it (R-ADP-019).
+- **Reason:** The author, 2026-11-27, accepting Claude's recommendation. The adapter already leaves a metric blank when its input is older than 10 minutes. A partial read gives values that look normal, which is a correctness bug. The reason for a blank is useful, but release 1.0 is a demo and can show "No data" without it.
+
+## WD-034 Value management after release 1.0
+
+- **Date:** 2026-11-27
+- **Decision:** Value management, the fifth pillar of The SP5 Framework (cost, price and business value), comes after release 1.0. Release 1.0 adds no knowledge, KPI or feature for it. Agent E2's files tagged `value` stay as they are, and isvara.io's IT management path shows them under value.
+- **Reason:** The author, 2026-11-27: "Value Management is after Release 1.0."
