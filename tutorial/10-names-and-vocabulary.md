@@ -23,7 +23,7 @@ Workspace decisions were numbered W-001 to W-029. Nobody could guess what "W" st
 | Prefix | Means | Example |
 |---|---|---|
 | WD- | A decision that binds several repositories | WD-026 Release 1.0 scope |
-| Q- | A question for the author | Q-120 Where the nested ESXi hosts run |
+| Q-WS-, Q-E2- | A question for the author, with the repository it belongs to | Q-WS-120 Where the nested ESXi hosts run |
 | R-ADP- | A requirement on the VCF vCommunity Adapter | R-ADP-018 No value from a partial read |
 | T-ADP- | A test scenario of that requirement | T-ADP-018a |
 
@@ -35,7 +35,8 @@ Numbers change again when scope changes. When a milestone was removed from relea
 
 ## Folder and file names
 
-- **No version, milestone or status words.** `pcm_proto`, `story_m5`, `v5`, `new`, `old` and `final` all stop being true. Git keeps the history.
+- **No version, milestone or status words.** `pcm_proto`, `v5`, `new`, `old` and `final` all stop being true. Git keeps the history.
+- **No bare IDs in a name.** `l2_story_m5.py` names its demo story by its ID, M-5. A reader took the ID for milestone 5.
 - **Group by what one task needs.** PCM's files were grouped by phase: specifications, design, code, deployment. One workspace of the app was spread over six folders, so every session had to collect it. They are now grouped by workspace, and one folder holds the whole context of a task.
 - **Use full words.** `executive` reads better than `exec`, and `agent-e2` better than `e2`.
 

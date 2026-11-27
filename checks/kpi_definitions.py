@@ -56,7 +56,7 @@ ADAPTER_MODULES = {
     "Cluster Consumption": "metrics.cluster.cluster_consumption_metrics",
 }
 
-# Known name gaps (OPEN-QUESTIONS.md, Q-1): adapter name -> catalog name, for the rows the adapter
+# Known name gaps (OPEN-QUESTIONS.md, Q-WS-1): adapter name -> catalog name, for the rows the adapter
 # publishes under a name other than the catalog's. Close a gap by giving the adapter row the catalog
 # name (its LABELS table), then delete the line here; the check fails until you do.
 NAME_GAPS = {

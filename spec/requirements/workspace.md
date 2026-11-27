@@ -4,7 +4,7 @@ What keeps the repositories one integrated set: the contract checks, the specifi
 
 ### R-WS-001 Every contract has an automated check
 
-Source: answer to Q-I1 ("I expect you to check all the contracts"); WD-010.
+Source: answer to Q-WS-I1 ("I expect you to check all the contracts"); WD-010.
 
 - Given a contract listed in [CONTRACTS.md](../../CONTRACTS.md)
 - When the checks run
@@ -17,7 +17,7 @@ Test scenarios:
 
 ### R-WS-002 The checks run where a break would happen
 
-Source: WD-010; answer to Q-I1.
+Source: WD-010; answer to Q-WS-I1.
 
 - Given a pull request in this repository or in any child repository
 - When it is opened or updated
@@ -30,7 +30,7 @@ Test scenarios:
 
 ### R-WS-003 Every requirement is tested, and every test has a requirement
 
-Source: ROADMAP M1; answer to Q-I1.
+Source: ROADMAP M1; answer to Q-WS-I1.
 
 - Given the requirement files in [spec/requirements](.)
 - When the specification check runs
@@ -57,10 +57,10 @@ Test scenarios:
 
 ### R-WS-005 No bare short names
 
-Source: WD-020 (from Q-46).
+Source: WD-020 (from Q-WS-46).
 
 - Given a document in this repository
-- When it uses an ID such as C3, WD-012 or Q-27
+- When it uses an ID such as C3, WD-012 or Q-WS-27
 - Then on its first use in that document it gives the meaning, or links to the [glossary](../glossary.md)
 
 Test scenarios:

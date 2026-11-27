@@ -30,7 +30,7 @@ Fine-tuning trains the model further on examples, so that its weights hold new b
   - Today: the file changes, and the next answer uses it.
   - Fine-tuned: a trained fact stays until the next training run. The knowledge base changes daily (11 flow files on 2026-11-25 alone).
 - **Citations.**
-  - Today: each answer names the files it read, and the person can check them (Q-45, isvara.io citations).
+  - Today: each answer names the files it read, and the person can check them (Q-WS-45, isvara.io citations).
   - Fine-tuned: a trained fact has no file behind it, so the answer cannot say where it came from.
 - **A wrong answer.**
   - Today: the trace shows what was read, and the fix is one file.
@@ -41,7 +41,7 @@ Fine-tuning trains the model further on examples, so that its weights hold new b
 - **Answer style and shape.**
   - Today: set by prompt rules and code.
   - Fine-tuned: can be trained in, so prompts get shorter.
-- **A later Gemma version** (Q-7: "or later version when it comes").
+- **A later Gemma version** (Q-WS-7: "or later version when it comes").
   - Today: change one line in the settings and rerun the answer set.
   - Fine-tuned: every adapter is tied to one model version, so a new version needs new training.
 - **Hosting in release 1.0.**
@@ -65,7 +65,7 @@ Free-text answers are a different matter and are not measured yet. The answer se
 These are estimates, not quotes. Prices change; check them before any trial.
 
 - **Training data.** Claude drafts 1,000 to 3,000 examples from the knowledge base, and a review agent checks each one: tens of US dollars in model calls. Each example needs a question, the files it rests on, and a correct answer at Level 400.
-- **The author's review.** The real cost: at least 100 sampled examples, read by the author. A wrong example teaches a wrong habit to every answer, and the author has no time to review files one by one (Q-10).
+- **The author's review.** The real cost: at least 100 sampled examples, read by the author. A wrong example teaches a wrong habit to every answer, and the author has no time to review files one by one (Q-WS-10).
 - **Training.** A few hours on one rented 80 GB GPU per run, at a few US dollars an hour, and several runs to settle the settings: tens of US dollars per round of trials.
 - **Hosting.** One GPU endpoint running all day costs hundreds of US dollars a month or more. One that starts on demand is cheaper, but its first answer waits for the model to load. The gateway cannot serve it.
 - **Upkeep.** One more training run for each new Gemma version, and for each large change to the behaviour wanted, since adapters do not carry across model versions.

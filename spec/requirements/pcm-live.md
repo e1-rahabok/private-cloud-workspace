@@ -1,8 +1,8 @@
 # Requirements: PCM live demo
 
-PCM's live demo is the L2 workspace reading the author's lab VCF Operations (https://10.115.1.81) through its Suite API. It is a separate demo with its own entry in the demo drop-down. The synthetic ACME demo stays as it is. The scope is performance and capacity management only. These requirements come from [WD-015, the live demo decision](../../DECISIONS.md), and from the author's answers to Q-20 to Q-39 in the [interview, round 1](../interview-round-1.md) (also in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md) until they move). Other short names are explained in the [glossary](../glossary.md).
+PCM's live demo is the L2 workspace reading the author's lab VCF Operations (https://10.115.1.81) through its Suite API. It is a separate demo with its own entry in the demo drop-down. The synthetic ACME demo stays as it is. The scope is performance and capacity management only. These requirements come from [WD-015, the live demo decision](../../DECISIONS.md), and from the author's answers to Q-WS-20 to Q-WS-39 in the [interview, round 1](../interview-round-1.md) (also in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md) until they move). Other short names are explained in the [glossary](../glossary.md).
 
-Milestones ([ROADMAP.md](../../ROADMAP.md)): M6 is one lab cluster's Cluster Performance on the L2 Performance tab; M7 is the rest of the live demo. Each requirement names its milestone.
+Milestones ([ROADMAP.md](../../ROADMAP.md)): M5 is one lab cluster's Cluster Performance on the L2 Performance tab; M6 is the rest of the live demo. Each requirement names its milestone.
 
 Files involved:
 
@@ -16,9 +16,9 @@ Tests named below do not exist yet unless stated; "to write" marks them. Lab sce
 
 ### R-LIVE-001 A separate entry for the live demo
 
-Source: the author's answers to Q-20 and Q-32 in the interview, round 1 ("The synthetic and the live are 2 separate demoes. Not flippable"); WD-003, the decision to keep ACME and add a separate live demo.
+Source: the author's answers to Q-WS-20 and Q-WS-32 in the interview, round 1 ("The synthetic and the live are 2 separate demoes. Not flippable"); WD-003, the decision to keep ACME and add a separate live demo.
 
-Milestone: M6.
+Milestone: M5.
 
 - Given PCM runs with the demo control on
 - When a person opens the demo drop-down on any page
@@ -32,7 +32,7 @@ Test scenarios:
 
 ### R-LIVE-002 Live and synthetic data never meet
 
-Source: answer to Q-32; WD-015.
+Source: answer to Q-WS-32; WD-015.
 
 - Given the live demo and the synthetic demo run in the same PCM
 - When any page or API call of either demo answers
@@ -45,7 +45,7 @@ Test scenarios:
 
 ### R-LIVE-003 The live demo is the L2 workspace only
 
-Source: answer to Q-22 ("The live mode is only L2. The rest of the role is synthetic only"); WD-015.
+Source: answer to Q-WS-22 ("The live mode is only L2. The rest of the role is synthetic only"); WD-015.
 
 - Given the live demo
 - When a person or a test asks for an Executive, NOC, Capacity or Docs page or API path under the live prefix
@@ -57,7 +57,7 @@ Test scenarios:
 
 ### R-LIVE-004 Performance and capacity only
 
-Source: answer to Q-33 ("All these are out of scope in 1.0. Focus on performance and capacity management"); WD-015.
+Source: answer to Q-WS-33 ("All these are out of scope in 1.0. Focus on performance and capacity management"); WD-015.
 
 - Given the live L2 page
 - When it opens on any object
@@ -71,7 +71,7 @@ Test scenarios:
 
 ### R-LIVE-005 No clock and no planted stories in the live demo
 
-Source: answer to Q-32; answer to Q-33.
+Source: answer to Q-WS-32; answer to Q-WS-33.
 
 - Given the live API
 - When a request carries `now` or `enable`
@@ -83,7 +83,7 @@ Test scenarios:
 
 ### R-LIVE-006 No class of service, region, environment or time zone
 
-Source: answer to Q-24 ("All these are only applicable in synthetic"); WD-015.
+Source: answer to Q-WS-24 ("All these are only applicable in synthetic"); WD-015.
 
 - Given the live L2 page above the cluster, on the Performance or Capacity tab
 - When it opens
@@ -99,7 +99,7 @@ Test scenarios:
 
 ### R-LIVE-007 Sign-in with a read-only account from the lab VM's secret file
 
-Source: answer to Q-34 ("agree"); WD-011.
+Source: answer to Q-WS-34 ("agree"); WD-011.
 
 - Given `/etc/pcm/pcm.env` on the lab VM holds the Suite API URL, user and password (proposed names `PCM_VCFOPS_URL`, `PCM_VCFOPS_USER`, `PCM_VCFOPS_PASSWORD`)
 - When the live demo needs data
@@ -114,7 +114,7 @@ Test scenarios:
 
 ### R-LIVE-008 The lab certificate is checked
 
-Source: answer to Q-34 (the lab CA pinned, no skip-verify).
+Source: answer to Q-WS-34 (the lab CA pinned, no skip-verify).
 
 - Given the CA file of the lab VCF Operations certificate is named in `/etc/pcm/pcm.env` (proposed `PCM_VCFOPS_CA_FILE`)
 - When PCM connects to the Suite API
@@ -127,7 +127,7 @@ Test scenarios:
 
 ### R-LIVE-009 PCM never writes to VCF Operations
 
-Source: answer to Q-23 ("It can't store in the VCF Operations database"); WD-015.
+Source: answer to Q-WS-23 ("It can't store in the VCF Operations database"); WD-015.
 
 - Given the live demo
 - When PCM calls the Suite API for any page or Agent E2 question
@@ -140,7 +140,7 @@ Test scenarios:
 
 ### R-LIVE-010 Read through, with a 60-second cache and no store
 
-Source: answer to Q-30 ("Agree"); WD-015.
+Source: answer to Q-WS-30 ("Agree"); WD-015.
 
 - Given the live demo
 - When the same data is asked for twice within 60 seconds
@@ -154,7 +154,7 @@ Test scenarios:
 
 ### R-LIVE-011 A failed read shows "No data" for the whole page
 
-Source: answer to Q-27 ("If the data is stale, say no data"); [PCM D-041, wall behaviour: stale data turns grey, never green](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L47).
+Source: answer to Q-WS-27 ("If the data is stale, say no data"); [PCM D-041, wall behaviour: stale data turns grey, never green](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L47).
 
 - Given the Suite API times out (proposed limit 10 seconds), answers an HTTP error, refuses the login, or fails the certificate check
 - When a live page loads
@@ -169,7 +169,7 @@ Test scenarios:
 
 ### R-LIVE-012 The tree is VCF Operations' inventory, from the VCF instance down
 
-Source: answer to Q-25 ("Use the inventory from VCF Operations. It starts with VCF Instance"); WD-015.
+Source: answer to Q-WS-25 ("Use the inventory from VCF Operations. It starts with VCF Instance"); WD-015.
 
 - Given the lab VCF Operations
 - When the live L2 page opens
@@ -183,7 +183,7 @@ Test scenarios:
 
 ### R-LIVE-013 An object's ID is its VCF Operations resource ID
 
-Source: answer to Q-26 ("Yes"); WD-015.
+Source: answer to Q-WS-26 ("Yes"); WD-015.
 
 - Given any live object
 - When it appears in a URL, an API response or an Agent E2 fact
@@ -197,7 +197,7 @@ Test scenarios:
 
 ### R-LIVE-014 PCM shows what the VCF vCommunity Adapter publishes
 
-Source: answer to Q-23 ("PCM can compute for UI purpose"); answer to Q-27 ("PCM simply regurgitate the adapter"); WD-015.
+Source: answer to Q-WS-23 ("PCM can compute for UI purpose"); answer to Q-WS-27 ("PCM simply regurgitate the adapter"); WD-015.
 
 - Given a KPI, a part or a check value that the VCF vCommunity Adapter publishes on a live object
 - When a live page shows it
@@ -210,7 +210,7 @@ Test scenarios:
 
 ### R-LIVE-015 A stale value shows "No data" at once
 
-Source: answer to Q-27 ("No need to wait 15 minutes"); WD-015. The rule below is proposed and waits for the author's confirmation in round two (Q-64 in the [interview, round 2](../interview-round-2.md): decided, 10 minutes).
+Source: answer to Q-WS-27 ("No need to wait 15 minutes"); WD-015. The rule below is proposed and waits for the author's confirmation in round two (Q-WS-64 in the [interview, round 2](../interview-round-2.md): decided, 10 minutes).
 
 - Given VCF vCommunity Adapter collects every 5 minutes, and marks its own inputs stale after 10 minutes ([STALE_AFTER_MINUTES in ops_stats.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/utils/ops_stats.py#L32))
 - When the newest sample of a key on an object is older than 10 minutes (one collection cycle plus a margin of one cycle) at the time PCM reads it
@@ -225,7 +225,7 @@ Test scenarios:
 
 ### R-LIVE-016 Gaps stay visible
 
-Source: answer to Q-27; answer to Q-30.
+Source: answer to Q-WS-27; answer to Q-WS-30.
 
 - Given a key whose samples in the window have a gap longer than one collection cycle
 - When its chart is drawn
@@ -237,7 +237,7 @@ Test scenarios:
 
 ### R-LIVE-017 A window longer than the history
 
-Source: answer to Q-30 ("Agree": longer windows ask for the maximum per slot, draw nothing before the first point, say "Data from {date}").
+Source: answer to Q-WS-30 ("Agree": longer windows ask for the maximum per slot, draw nothing before the first point, say "Data from {date}").
 
 - Given a window of 7 days, 30 days or 1 year
 - When PCM reads a key for it
@@ -250,7 +250,7 @@ Test scenarios:
 
 ### R-LIVE-018 Parts carry the catalog's names, found by key
 
-Source: answer to Q-1 ("For key, adapter is correct. For name, Agent E2 is correct"); [WD-016, VCF vCommunity Adapter changes and key and name ownership](../../DECISIONS.md).
+Source: answer to Q-WS-1 ("For key, adapter is correct. For name, Agent E2 is correct"); [WD-016, VCF vCommunity Adapter changes and key and name ownership](../../DECISIONS.md).
 
 - Given a part VCF vCommunity Adapter publishes under its key
 - When a live page shows it
@@ -263,7 +263,7 @@ Test scenarios:
 
 ### R-LIVE-019 Band colours follow the statistic of each key
 
-Source: answer to Q-19 ("If a metric does not have the word peak, it's likely a 5-minute average"); WD-016.
+Source: answer to Q-WS-19 ("If a metric does not have the word peak, it's likely a 5-minute average"); WD-016.
 
 - Given a part whose catalog name contains "peak"
 - When its figures and chart are coloured
@@ -276,7 +276,7 @@ Test scenarios:
 
 ### R-LIVE-020 Parts an object does not have
 
-Source: answer to Q-28 ("we should fix them in the PCM Adapter"); WD-016. Until the VCF vCommunity Adapter makes absent data explicit ([pcm-adapter.md](pcm-adapter.md)), the rule below is proposed for round two.
+Source: answer to Q-WS-28 ("we should fix them in the PCM Adapter"); WD-016. Until the VCF vCommunity Adapter makes absent data explicit ([pcm-adapter.md](pcm-adapter.md)), the rule below is proposed for round two.
 
 - Given a part key that VCF Operations does not hold for an object at all (for example a memory tiering key on a cluster without a tiered host)
 - When the object's Details fold opens
@@ -289,7 +289,7 @@ Test scenarios:
 
 ### R-LIVE-021 The Periodic Cluster Check as the adapter publishes it
 
-Source: answer to Q-31 ("PCM gets from the PCM Adapter"); [PCM D-094, the Capacity tab reads the check and never recomputes it](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L101).
+Source: answer to Q-WS-31 ("PCM gets from the PCM Adapter"); [PCM D-094, the Capacity tab reads the check and never recomputes it](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L101).
 
 - Given a lab cluster with Periodic Cluster Check values for its latest window
 - When its Capacity tab opens
@@ -303,7 +303,7 @@ Test scenarios:
 
 ### R-LIVE-022 The check labels use the adapter's own settings
 
-Source: answer to Q-31; [PCM D-095, which statistic, on which axis](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L102).
+Source: answer to Q-WS-31; [PCM D-095, which statistic, on which axis](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L102).
 
 - Given the Adapter Instance's Cluster Check Period, Cluster Check Time (UTC) and Cluster Check Worst Percent, made readable by the VCF vCommunity Adapter ([pcm-adapter.md](pcm-adapter.md))
 - When the Capacity tab labels a check value
@@ -316,7 +316,7 @@ Test scenarios:
 
 ### R-LIVE-023 The key list comes from the live environment
 
-Source: answer to Q-29 ("You will need to get from a live environment"); C2.
+Source: answer to Q-WS-29 ("You will need to get from a live environment"); C2.
 
 - Given the lab VCF Operations with the VCF vCommunity Adapter installed
 - When a read-only tool lists the `vCommunity|` keys, and the VCF Operations capacity keys PCM reads, that the cluster, host and VM objects hold
@@ -329,11 +329,11 @@ Test scenarios:
 - T-LIVE-023b (anywhere, automated by checks/kpi_keys.py, to write). Data: the key file and PCM's catalog. Steps: run the check; then plant a key PCM reads that the file lacks. Expected: passes on the real files; fails and names the planted key.
 - T-LIVE-023c (lab, automated by checks/kpi_keys.py --lab, to write). Expected: each listed key has a sample newer than 10 minutes on at least one lab object, or is marked conditional by PCM-Adapter.
 
-### R-LIVE-024 Cluster Performance matches VCF Operations (M6)
+### R-LIVE-024 Cluster Performance matches VCF Operations (M5)
 
-Source: answer to Q-35 ("okay"); [PCM D-131, percentiles labelled by rank](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L139).
+Source: answer to Q-WS-35 ("okay"); [PCM D-131, percentiles labelled by rank](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L139).
 
-Milestone: M6.
+Milestone: M5.
 
 - Given one lab cluster and the 24-hour window
 - When its live Performance tab opens
@@ -345,11 +345,11 @@ Test scenarios:
 - T-LIVE-024a (lab, automated by tools/lab/live_reference.py and build/tests/live.lab.test.mjs::test_cluster_performance_matches, to write). Steps: open the tab; read its window from the API; the reference script reads the raw samples for that window and computes Now, Worst and the 5th percentile. Expected: all three equal at whole percent; Worst's time equal; a screenshot is saved.
 - T-LIVE-024b (anywhere, automated by build/tests/test_live.py::test_figures_nearest_rank, to write). Data: a fake series of 288 known samples. Expected: Now, Worst, its time and the 5th percentile equal the values computed by hand in the test.
 
-### R-LIVE-025 The other KPIs match VCF Operations (M7)
+### R-LIVE-025 The other KPIs match VCF Operations (M6)
 
-Source: answer to Q-35; [PCM D-124, the four pages of release 1.0](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L132). The page list waits for round two, because the author has not answered Q-21.
+Source: answer to Q-WS-35; [PCM D-124, the four pages of release 1.0](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L132). The page list waits for round two, because the author has not answered Q-WS-21.
 
-Milestone: M7.
+Milestone: M6.
 
 - Given the live Performance and Capacity tabs of a lab cluster, a lab ESXi host and a lab VM
 - When they open on the 24-hour window
@@ -361,9 +361,9 @@ Test scenarios:
 
 ### R-LIVE-026 Lines across clusters agree with vSphere World
 
-Source: answer to Q-23; [PCM D-091, the Performance tab above the cluster](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L98).
+Source: answer to Q-WS-23; [PCM D-091, the Performance tab above the cluster](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L98).
 
-Milestone: M7.
+Milestone: M6.
 
 - Given every lab cluster is under the selected node
 - When its Performance and Capacity tabs above the cluster open
@@ -375,9 +375,9 @@ Test scenarios:
 
 ### R-LIVE-027 Capacity Remaining, Time Remaining and VM Remaining are read
 
-Source: answer to Q-20 ("yes": live mode reads what the synthetic demo shows as placeholders); [PCM D-100, the KPI first on the Performance and Capacity tabs](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L107).
+Source: answer to Q-WS-20 ("yes": live mode reads what the synthetic demo shows as placeholders); [PCM D-100, the KPI first on the Performance and Capacity tabs](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L107).
 
-Milestone: M7.
+Milestone: M6.
 
 - Given a lab VM, ESXi host or cluster
 - When its live Capacity tab opens
@@ -392,7 +392,7 @@ Test scenarios:
 
 ### R-LIVE-028 Agent E2 gets the live facts in the usual shapes
 
-Source: answer to Q-36 ("agree"); C3.
+Source: answer to Q-WS-36 ("agree"); C3.
 
 - Given a question asked in the Agent E2 panel of the live demo
 - When PCM builds the facts
@@ -406,7 +406,7 @@ Test scenarios:
 
 ### R-LIVE-029 What the live facts never carry
 
-Source: answer to Q-39 ("yes no issue at all. It's just a lab"); answer to Q-33.
+Source: answer to Q-WS-39 ("yes no issue at all. It's just a lab"); answer to Q-WS-33.
 
 - Given a question asked in the live demo
 - When PCM sends the facts to Agent E2
@@ -417,11 +417,11 @@ Source: answer to Q-39 ("yes no issue at all. It's just a lab"); answer to Q-33.
 Test scenarios:
 - T-LIVE-029a (anywhere, automated by build/tests/test_live.py::test_facts_clean, to write). Data: the marker password and token of T-LIVE-007b, and a calendar entry in PCM's database. Steps: ask one question on each live page. Expected: no marker, no Suite API URL and no calendar entry in any recorded request.
 
-### R-LIVE-030 Agent E2 names the part that moved the KPI (M6)
+### R-LIVE-030 Agent E2 names the part that moved the KPI (M5)
 
-Source: answer to Q-35 (the worst part is the one that lost the most points at the worst point, under the adapter's scoring); [WD-012, release 1.0 success](../../DECISIONS.md).
+Source: answer to Q-WS-35 (the worst part is the one that lost the most points at the worst point, under the adapter's scoring); [WD-012, release 1.0 success](../../DECISIONS.md).
 
-Milestone: M6.
+Milestone: M5.
 
 - Given one lab cluster and the 24-hour window
 - When the person asks Agent E2 "Why the worst?" on its Cluster Performance
@@ -435,7 +435,7 @@ Test scenarios:
 
 ### R-LIVE-031 Lab tests run automatically from the laptop
 
-Source: answer to Q-37 ("You forgot you have live access"); [WD-018, the lab build and lab tests from the laptop](../../DECISIONS.md); WD-011.
+Source: answer to Q-WS-37 ("You forgot you have live access"); [WD-018, the lab build and lab tests from the laptop](../../DECISIONS.md); WD-011.
 
 - Given the author's laptop on the VPN, the read-only credential file in `$HOME\.secrets\`, and the live demo deployed on the lab VM
 - When one command runs (proposed `pwsh tools/lab/Test-Live.ps1` in PCM)
@@ -449,7 +449,7 @@ Test scenarios:
 
 ### R-LIVE-032 The synthetic demo is unchanged
 
-Source: answer to Q-20 ("The synthetic remains as they are"); WD-003.
+Source: answer to Q-WS-20 ("The synthetic remains as they are"); WD-003.
 
 - Given the live demo is added
 - When the existing synthetic tests run (executive, noc, l2, capacity, store, docs, and the page tests in [build/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/README.md))
@@ -464,15 +464,15 @@ Each line is a change to make in private-cloud-manager in a later pull request. 
 
 | File | Change |
 |---|---|
-| [decisions.md, D-076](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L83) and its [rationale](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L406) | Say that the live demo sends lab facts to the cloud model through the gateway (Q-39), and that facts never carry the VCF Operations credential, token or URL. |
+| [decisions.md, D-076](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L83) and its [rationale](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L406) | Say that the live demo sends lab facts to the cloud model through the gateway (Q-WS-39), and that facts never carry the VCF Operations credential, token or URL. |
 | [decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md) | Add a PCM decision for the live demo that points to WD-015 and this file. |
 | [decisions.md, D-062](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L69) | The VCF APIs are now checked against the lab VCF Operations; record its version. |
-| [decisions.md, D-087](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L94) | Add that the live demo's tree is VCF Operations' inventory from the VCF instance down (Q-25). |
+| [decisions.md, D-087](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L94) | Add that the live demo's tree is VCF Operations' inventory from the VCF instance down (Q-WS-25). |
 | [decisions.md, D-100 rationale](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L800) and [D-106](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L113) | "Release 1.0: placeholder values" becomes "synthetic demo: placeholder or story values; live demo: read from VCF Operations". |
-| [design/pcm-core.md, 3.2](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L46) | PCM reads every KPI, part and check value from the VCF vCommunity Adapter and computes only for display (Q-23). |
-| [design/pcm-core.md, 3.3](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L67) | Release 1.0 stores no metrics; the live demo reads through with a 60-second cache (Q-30). |
+| [design/pcm-core.md, 3.2](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L46) | PCM reads every KPI, part and check value from the VCF vCommunity Adapter and computes only for display (Q-WS-23). |
+| [design/pcm-core.md, 3.3](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L67) | Release 1.0 stores no metrics; the live demo reads through with a 60-second cache (Q-WS-30). |
 | [design/pcm-core.md, 3.5](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L108) | Replace "two collection cycles" with the rule of R-LIVE-015 once confirmed. |
-| [design/pcm-core.md, 3.13](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L207) | The live demo is a separate demo, L2 only (Q-20, Q-22). |
+| [design/pcm-core.md, 3.13](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/pcm-core.md#L207) | The live demo is a separate demo, L2 only (Q-WS-20, Q-WS-22). |
 | [design/l2-workspace.md, 3.2](https://github.com/e1-rahabok/private-cloud-manager/blob/main/design/l2-workspace.md#L97) | Fix the Compute path to match D-087, and add the live tree. |
 | [spec/catalog/l2.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml#L111) (L111, L264, L285) | Placeholders become synthetic-only; "PCM keeps its own history" becomes synthetic-only; add a `key` per part from the key list. |
 | [spec/catalog/settings.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/settings.yaml) | Add the live settings: the Suite API URL, user, password and CA file variable names, cache 60 s, stale after 10 minutes, check late after 30 minutes, read timeout 10 s. |
@@ -486,8 +486,8 @@ Each line is a change to make in private-cloud-manager in a later pull request. 
 | [build/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/README.md#L275) | Remove the gap "No VCF Operations connector in 1.0"; add the live tests. |
 | [deploy/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/deploy/README.md#L3) and [deploy/pcm.env.example](https://github.com/e1-rahabok/private-cloud-manager/blob/main/deploy/pcm.env.example) | The live demo connects read-only to VCF Operations; add its variables to `pcm.env`. |
 | [demo/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/demo/README.md#L21) | The drop-down has the live entry; add a short live demo script. |
-| [tools/lab/Test-Lab.ps1](https://github.com/e1-rahabok/private-cloud-manager/blob/main/tools/lab/Test-Lab.ps1#L2) | Read the DPAPI files of WD-011 in place of Windows Credential Manager (Q-40). |
+| [tools/lab/Test-Lab.ps1](https://github.com/e1-rahabok/private-cloud-manager/blob/main/tools/lab/Test-Lab.ps1#L2) | Read the DPAPI files of WD-011 in place of Windows Credential Manager (Q-WS-40). |
 
 ## Questions for round two
 
-The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-63 to Q-71 (and Q-57). The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).
+The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-WS-63 to Q-WS-71 (and Q-WS-57). The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).

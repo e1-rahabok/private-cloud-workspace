@@ -1,8 +1,8 @@
 # Requirements: the isvara.io exam
 
-The exam for people on isvara.io, roadmap milestone M10 ([ROADMAP.md](../../ROADMAP.md)). It has ten short, Level 400 multiple-choice questions that test depth of understanding. A wrong answer loses marks, and no answer scores 0. The exam is kept in isvara.io and is separate from Agent E2's benchmark, which tests the machine ([WD-006](../../DECISIONS.md), a decision binding several repositories).
+The exam for people on isvara.io, roadmap milestone M9 ([ROADMAP.md](../../ROADMAP.md)). It has ten short, Level 400 multiple-choice questions that test depth of understanding. A wrong answer loses marks, and no answer scores 0. The exam is kept in isvara.io and is separate from Agent E2's benchmark, which tests the machine ([WD-006](../../DECISIONS.md), a decision binding several repositories).
 
-Question IDs (Q-) point at your answers in the [interview, round 1](../interview-round-1.md). Decision IDs (WD-) are in [DECISIONS.md](../../DECISIONS.md). Other IDs are explained in the [glossary](../glossary.md). The rest of the site's revamp, including where the exam sits, is in [design/isvara-revamp.md](../design/isvara-revamp.md), feature 33.
+Question IDs (Q-) point at your answers in the [interview, round 1](../interview-round-1.md). Decision IDs (WD-) are in [DECISIONS.md](../../DECISIONS.md). Other IDs are explained in the [glossary](../glossary.md). The rest of the site's revamp, including where the exam sits, is in [design/isvara-plan.md](../design/isvara-plan.md), feature 33.
 
 Two words used below:
 
@@ -11,7 +11,7 @@ Two words used below:
 
 ### R-EXAM-001 The exam has its own page next to the 2am game
 
-Source: WD-006; answer to Q-56.
+Source: WD-006; answer to Q-WS-56.
 
 - Given the site's header and home page
 - When a reader opens isvara.io
@@ -23,7 +23,7 @@ Test scenarios:
 
 ### R-EXAM-002 Ten questions, each with one or more correct option(s)
 
-Source: WD-006 ("10 short, Level 400 multiple-choice questions"); answer to Q-56 ("Format is MCQ").
+Source: WD-006 ("10 short, Level 400 multiple-choice questions"); answer to Q-WS-56 ("Format is MCQ").
 
 - Given the exam data file
 - When the site is built
@@ -35,7 +35,7 @@ Test scenarios:
 
 ### R-EXAM-003 A wrong answer loses marks and no answer scores 0
 
-Source: WD-006; answer to Q-56 ("Have a penalty for wrong answer. 0 for no answer").
+Source: WD-006; answer to Q-WS-56 ("Have a penalty for wrong answer. 0 for no answer").
 
 - Given the exam data file sets the mark for a correct answer and the penalty for a wrong one, both above 0
 - When a reader finishes the exam
@@ -53,7 +53,7 @@ Test scenarios:
 
 ### R-EXAM-004 A reader may leave any question unanswered
 
-Source: answer to Q-56 ("0 for no answer"); WD-006.
+Source: answer to Q-WS-56 ("0 for no answer"); WD-006.
 
 - Given any question on screen
 - When the reader chooses "Skip"
@@ -65,7 +65,7 @@ Test scenarios:
 
 ### R-EXAM-005 The reasoning is shown after each answer, and the answer is then locked
 
-Source: WD-006; answer to Q-56.
+Source: WD-006; answer to Q-WS-56.
 
 - Given a question on screen
 - When the reader confirms an option
@@ -79,7 +79,7 @@ Test scenarios:
 
 ### R-EXAM-006 The reasoning links to the topic pages it rests on
 
-Source: WD-017 ("a cited source opens the knowledge file"); answers to Q-45 and Q-I5.
+Source: WD-017 ("a cited source opens the knowledge file"); answers to Q-WS-45 and Q-WS-I5.
 
 - Given a question's reasoning on screen
 - When the reader follows a source link in it
@@ -92,7 +92,7 @@ Test scenarios:
 
 ### R-EXAM-007 The exam is kept in isvara.io and calls no service
 
-Source: answer to Q-56 ("Keep the exams at isvara.io"); WD-006; WD-014 (the US$50 a month limit on Vercel AI Gateway).
+Source: answer to Q-WS-56 ("Keep the exams at isvara.io"); WD-006; WD-014 (the US$50 a month limit on Vercel AI Gateway).
 
 - Given the site is built and served
 - When a reader takes and finishes the exam
@@ -106,7 +106,7 @@ Test scenarios:
 
 ### R-EXAM-008 Each question stays aligned with Agent E2's knowledge
 
-Source: WD-001 ("isvara.io holds no knowledge of its own"); answers to Q-18 and Q-56.
+Source: WD-001 ("isvara.io holds no knowledge of its own"); answers to Q-WS-18 and Q-WS-56.
 
 - Given each question lists the knowledge files it rests on, with each file's content fingerprint from the export at the time the question was checked
 - When the site is built with a newer export
@@ -120,7 +120,7 @@ Test scenarios:
 
 ### R-EXAM-009 Every answer and its reasoning are supported by the knowledge files
 
-Source: WD-013 (free-text answers are graded automatically by a strong model as judge); answer to Q-5; WD-001.
+Source: WD-013 (free-text answers are graded automatically by a strong model as judge); answer to Q-WS-5; WD-001.
 
 - Given a question, its options, its reasoning and the text of the knowledge files it lists
 - When the judge checks it
@@ -150,7 +150,7 @@ Source: WD-006 ("10 short, very hard multiple-choice questions").
 
 - Given the exam data file
 - When the site is built
-- Then each question's text is at most 50 words and each option at most 20 words (Q-117 in the [interview, round 2](../interview-round-2.md))
+- Then each question's text is at most 50 words and each option at most 20 words (Q-WS-117 in the [interview, round 2](../interview-round-2.md))
 
 Test scenarios:
 - T-EXAM-011a (anywhere, automated by the exam data check, to write): a fixture question of 51 words fails the build; a fixture option of 21 words fails; the real file passes.
@@ -168,7 +168,7 @@ Test scenarios:
 
 ### R-EXAM-013 The exam keeps the site's look
 
-Source: WD-017 ("same look and feel"); answer to Q-44.
+Source: WD-017 ("same look and feel"); answer to Q-WS-44.
 
 - Given the dark and the light theme, and a screen 375 pixels wide or a desktop screen
 - When `/exam` opens and a question is answered
@@ -180,4 +180,4 @@ Test scenarios:
 
 ## Questions for round two
 
-The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-109 to Q-118. The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).
+The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-WS-109 to Q-WS-118. The few still open are in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md).

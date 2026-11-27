@@ -4,17 +4,17 @@ Decisions that bind more than one repository. A decision inside one repository g
 
 | Repository | Its decision log |
 |---|---|
-| agent-e2 | [project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md) |
+| agent-e2 | The document that owns each rule ([CLAUDE.md](https://github.com/e1-rahabok/agent-e2/blob/main/CLAUDE.md), Start of every session) |
 | PCM-Adapter | Its issues and pull requests |
 | private-cloud-manager | [decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md) |
-| isvara | [PLAN.md](https://github.com/e1-rahabok/isvara/blob/main/PLAN.md) |
+| isvara | [CLAUDE.md](https://github.com/e1-rahabok/isvara/blob/main/CLAUDE.md) |
 
-One entry each, newest at the bottom. A changed decision is edited in place; git keeps the history. Each entry has a heading with its ID, the decision, and the reason. "Q-" IDs are the author's answers in the [interview, round 1](spec/interview-round-1.md); other IDs are explained in the [glossary](spec/glossary.md).
+One entry each, newest at the bottom. A changed decision is edited in place; git keeps the history. Each entry has a heading with its ID, the decision, and the reason. "Q-WS-" IDs are the author's answers in the interview rounds and [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md); other IDs are explained in the [glossary](spec/glossary.md).
 
 ## WD-001 Agent E2 as the source of domain knowledge
 
 - **Date:** 2026-11-25
-- **Decision:** Agent E2 is the source of all domain knowledge: KPI names, parts, limits, scoring, thresholds, flows and explanations. The VCF vCommunity Adapter implements the KPIs. PCM and isvara.io consume; isvara.io holds no knowledge of its own (Q-15, Q-18). A change to domain knowledge starts in agent-e2.
+- **Decision:** Agent E2 is the source of all domain knowledge: KPI names, parts, limits, scoring, thresholds, flows and explanations. The VCF vCommunity Adapter implements the KPIs. PCM and isvara.io consume; isvara.io holds no knowledge of its own (Q-WS-15, Q-WS-18). A change to domain knowledge starts in agent-e2.
 - **Reason:** With one master copy, every other copy can be generated from it or checked against it ([C1, KPI definitions](spec/glossary.md#c1)).
 
 ## WD-002 Release 1.0: lab demo, cloud model
@@ -27,13 +27,13 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 
 - **Date:** 2026-11-25
 - **Decision:** PCM keeps its synthetic ACME demo unchanged and adds a separate live demo as a new entry in the demo drop-down. The two are separate demos, never switched inside one page. Details: WD-015.
-- **Reason:** The lab has too little activity to show Agent E2; the live demo proves PCM reads real data (Q-20, Q-32).
+- **Reason:** The lab has too little activity to show Agent E2; the live demo proves PCM reads real data (Q-WS-20, Q-WS-32).
 
 ## WD-004 Two web apps sharing Agent E2
 
 - **Date:** 2026-11-25
 - **Decision:** PCM (private) and isvara.io (public) are two web apps. Both use Agent E2 for knowledge, through the same Vercel AI Gateway. isvara.io connects to no live system. Agent E2 replaces AskIO on isvara.io.
-- **Reason:** Both apps then give the same answers from the same knowledge. Agent E2's model costs less per call than AskIO's, but it holds conversations and reads CSV files and screenshots, so the cost per visitor may rise (Q-I1); the budget is WD-014.
+- **Reason:** Both apps then give the same answers from the same knowledge. Agent E2's model costs less per call than AskIO's, but it holds conversations and reads CSV files and screenshots, so the cost per visitor may rise (Q-WS-I1); the budget is WD-014.
 
 ## WD-005 isvara.io content from the knowledge base
 
@@ -45,13 +45,13 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 
 - **Date:** 2026-11-25
 - **Decision:** isvara.io gets an exam for people: 10 short, very hard multiple-choice questions that test depth of understanding, not calculation. A wrong answer loses marks; no answer scores 0. The exam is kept in isvara.io. It is separate from Agent E2's benchmark, which tests the machine.
-- **Reason:** A people's exam and a machine benchmark have different purposes (Q-56).
+- **Reason:** A people's exam and a machine benchmark have different purposes (Q-WS-56).
 
 ## WD-007 PCM-Adapter's new name and identity
 
 - **Date:** 2026-11-25
 - **Decision:** VCF-vCommunity-Adapter is renamed PCM-Adapter: the repository, and also the pack's identity in VCF Operations (WD-016).
-- **Reason:** PCM D-096: the adapter is part of PCM. The author confirmed no installed instance needs protecting (Q-2, Q-I4).
+- **Reason:** PCM D-096: the adapter is part of PCM. The author confirmed no installed instance needs protecting (Q-WS-2, Q-WS-I4).
 - **Status:** the repository is renamed; the pack's identity in VCF Operations stays, by WD-032.
 
 ## WD-008 Decision logs per repository
@@ -69,76 +69,76 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-010 Contract checks in code
 
 - **Date:** 2026-11-25
-- **Decision:** Contracts between repositories are checked by code in [`checks/`](checks). A pull request that breaks a check is not merged. Known gaps are a baseline that only shrinks. Every contract has a check (Q-I1).
+- **Decision:** Contracts between repositories are checked by code in [`checks/`](checks). A pull request that breaks a check is not merged. Known gaps are a baseline that only shrinks. Every contract has a check (Q-WS-I1).
 - **Reason:** Without a check, the two sides of a contract drift apart and nobody notices until something breaks.
 
 ## WD-011 Lab credentials
 
 - **Date:** 2026-11-25
 - **Decision:** Lab credentials. On the author's laptop: two DPAPI files in `$HOME\.secrets\` (`Export-Clixml`), one for a read-only VCF Operations account (reading and validating) and one for the admin account (installing and restarting the pack); the scripts of the VCF vCommunity Adapter and PCM change to read them. On the PCM lab VM: `/etc/pcm/pcm.env`, root and group `pcm` only.
-- **Reason:** Agreed (Q-40). Before this, the VCF vCommunity Adapter's scripts read an admin login from a file inside the repository folder, and PCM's lab script read Windows Credential Manager.
+- **Reason:** Agreed (Q-WS-40). Before this, the VCF vCommunity Adapter's scripts read an admin login from a file inside the repository folder, and PCM's lab script read Windows Credential Manager.
 
 ## WD-012 Release 1.0 success
 
 - **Date:** 2026-11-25
 - **Decision:** Release 1.0 succeeds when VMware colleagues and customers who see the PCM demo find it useful and want to fork the repositories privately, to customise and deploy in their own private cloud; when Agent E2 explains a real lab KPI correctly in the live demo; and when every contract is checked automatically.
-- **Reason:** The author's answers to Q-I1 and Q-I2.
+- **Reason:** The author's answers to Q-WS-I1 and Q-WS-I2.
 
 ## WD-013 Agent E2 in release 1.0
 
 - **Date:** 2026-11-25
 - **Decision:** Agent E2 in release 1.0: accuracy comes before speed; an answer may take minutes; no streaming, but the user always sees that Agent E2 is still working. Free-text answers are graded automatically by a strong model as judge, as Agent E2's earlier free-text benchmark was. The model is Gemma 4 31B, or a later version when one comes. Every knowledge file is used, drafts included; a review gate on files waits until after go-live.
-- **Reason:** The author's answers to Q-I3, Q-5, Q-7 and Q-10.
+- **Reason:** The author's answers to Q-WS-I3, Q-WS-5, Q-WS-7 and Q-WS-10.
 
 ## WD-014 Spending on Vercel AI Gateway
 
 - **Date:** 2026-11-25
 - **Decision:** Spending on Vercel AI Gateway is tracked by the author on vercel.com. A benchmark run has a budget of US$100. After isvara.io goes live, it must stay within US$50 a month (the Vercel subscription is already US$40).
-- **Reason:** The author's answer to Q-9. The US$50 limit is a roadmap task after go-live.
+- **Reason:** The author's answer to Q-WS-9. The US$50 limit is a roadmap task after go-live.
 
 ## WD-015 PCM's live demo
 
 - **Date:** 2026-11-25
 - **Decision:** PCM's live demo: the L2 workspace only, for performance and capacity management only. Its inventory comes from VCF Operations and starts at the VCF instance; an object's ID is its VCF Operations resource ID. Class of service, region, environment and time zone exist only in the synthetic demo. PCM shows what the VCF vCommunity Adapter publishes and says "No data" when a value is stale. It reads through with a 60-second cache and stores no metrics. It may compute for display, and never writes to VCF Operations. Lab facts may go to the cloud model. Actions, stories, cases and the calendar are out of 1.0.
-- **Reason:** The author's answers to Q-20 to Q-39. Requirements: [spec/requirements/pcm-live.md](spec/requirements/pcm-live.md).
+- **Reason:** The author's answers to Q-WS-20 to Q-WS-39. Requirements: [spec/requirements/pcm-live.md](spec/requirements/pcm-live.md).
 
 ## WD-016 Scope of change for the VCF vCommunity Adapter
 
 - **Date:** 2026-11-25
 - **Decision:** The VCF vCommunity Adapter may change anything, including its adapter kind, manifest name, metric key prefix, image path and pak name. A metric's key comes from the adapter; its name comes from Agent E2's catalog. All scoring logic comes from Agent E2, including the score bands and the closure levels. One Cluster Risk level for every cluster. Usable capacity is Total − HA − Buffer. A metric whose name says "peak" is a 20-second peak; others are 5-minute averages. Data absent by design is made explicit by the adapter.
-- **Reason:** The author's answers to Q-I4, Q-1, Q-2, Q-14 to Q-17, Q-19 and Q-28. Requirements: [spec/requirements/pcm-adapter.md](spec/requirements/pcm-adapter.md).
+- **Reason:** The author's answers to Q-WS-I4, Q-WS-1, Q-WS-2, Q-WS-14 to Q-WS-17, Q-WS-19 and Q-WS-28. Requirements: [spec/requirements/pcm-adapter.md](spec/requirements/pcm-adapter.md).
 - **Status:** the adapter kind, manifest name, key prefix, image path and pak name stay, by WD-032. Data absent by design is made explicit after release 1.0, by WD-033. "Comes from Agent E2" means: stated in Agent E2's knowledge and catalog, implemented in the adapter's code, and compared by the C1 check, by WD-036.
 
 ## WD-017 isvara.io rebuild
 
 - **Date:** 2026-11-25
-- **Decision:** isvara.io is rebuilt: same look and feel, new functionality; the old site goes. Its pages are AI rewrites of Agent E2's knowledge files, with no AI-speak. A cited source opens the knowledge file, with a note that it is written for a model. The injection guard sits in isvara.io, before it calls Agent E2. The "load-and-ask" design retires. Downloads and the weekly Word refresh continue. It is built on a branch with a Vercel preview and switched over in one release. Each feature waits for the author's review in [spec/design/isvara-revamp.md](spec/design/isvara-revamp.md).
-- **Reason:** The author's answers to Q-41 to Q-55.
+- **Decision:** isvara.io is rebuilt: same look and feel, new functionality; the old site goes. Its pages are AI rewrites of Agent E2's knowledge files, with no AI-speak. A cited source opens the knowledge file, with a note that it is written for a model. The injection guard sits in isvara.io, before it calls Agent E2. The "load-and-ask" design retires. Downloads and the weekly Word refresh continue. It is built on a branch with a Vercel preview and switched over in one release. Each feature waits for the author's review in [spec/design/isvara-plan.md](spec/design/isvara-plan.md).
+- **Reason:** The author's answers to Q-WS-41 to Q-WS-55.
 
 ## WD-018 Lab build for memory tiering
 
 - **Date:** 2026-11-25
 - **Decision:** The physical lab hosts have no memory tiering. The new repository [lab-build](https://github.com/e1-rahabok/lab-build) builds nested virtual ESXi hosts with memory tiering automatically, so tiering features can be tested. Tests run against the live lab from the author's laptop, using the PCM-Adapter repository's tools to install, validate and take screenshots.
-- **Reason:** The author's answers to Q-37 and Q-38. Requirements: [spec/requirements/lab-build.md](spec/requirements/lab-build.md).
+- **Reason:** The author's answers to Q-WS-37 and Q-WS-38. Requirements: [spec/requirements/lab-build.md](spec/requirements/lab-build.md).
 - **Status:** after release 1.0, by WD-031.
 
 ## WD-019 Place for questions across repositories
 
 - **Date:** 2026-11-25
 - **Decision:** A question about one repository stays in that repository's question file; a question that binds several repositories goes to this workspace's [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md).
-- **Reason:** The author's answer to Q-13.
+- **Reason:** The author's answer to Q-WS-13.
 
 ## WD-020 No bare short names
 
 - **Date:** 2026-11-25
-- **Decision:** No bare short names. A document uses an ID such as C3, WD-012 or Q-27 only with its meaning, or as a link to the [glossary](spec/glossary.md), on first use.
-- **Reason:** The author could not tell what "C3" meant (Q-46).
+- **Decision:** No bare short names. A document uses an ID such as C3, WD-012 or Q-WS-27 only with its meaning, or as a link to the [glossary](spec/glossary.md), on first use.
+- **Reason:** The author could not tell what "C3" meant (Q-WS-46).
 
 ## WD-021 Agent E2's plan and older benchmarks
 
 - **Date:** 2026-11-25
 - **Decision:** Agent E2's plan is rewritten for release 1.0, and its older benchmarks are removed permanently.
-- **Reason:** The author's answers to Q-6 and Q-12: the outdated material confuses readers and Claude.
+- **Reason:** The author's answers to Q-WS-6 and Q-WS-12: the outdated material confuses readers and Claude.
 
 ## WD-022 isvara.io organised by visitor reasons
 
@@ -156,7 +156,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-024 Contributions from release 1.0
 
 - **Date:** 2026-11-26
-- **Decision:** isvara.io accepts contributions from release 1.0: a correction, an addition or something to review, with a note, one link and up to three files (PNG, JPEG, CSV). They go to a private queue and are never published automatically; the author decides each week from an AI-sorted list, and accepted items become source notes in agent-e2. Contributors may stay anonymous; credit is shown only with a public profile link, checked at review. No email address is collected. Contributors agree, in one sentence, that they may share it, that it holds no confidential customer data, and that it may be used, changed and published. Files are deleted once processed, and after at most 30 days; no IP address is kept with a contribution. Limits: 3 contributions a day per address, 3 files, 5 MB per image, 2 MB per CSV file, 2,000 characters, 1 link, 100 contributions a day in total; all are settings. There is no masking in 1.0: visitors remove IP addresses and host names before uploading. Protection against floods, bots, large or disguised files and indecent images is described in the [isvara.io plan](spec/design/isvara-revamp.md), section Protection.
+- **Decision:** isvara.io accepts contributions from release 1.0: a correction, an addition or something to review, with a note, one link and up to three files (PNG, JPEG, CSV). They go to a private queue and are never published automatically; the author decides each week from an AI-sorted list, and accepted items become source notes in agent-e2. Contributors may stay anonymous; credit is shown only with a public profile link, checked at review. No email address is collected. Contributors agree, in one sentence, that they may share it, that it holds no confidential customer data, and that it may be used, changed and published. Files are deleted once processed, and after at most 30 days; no IP address is kept with a contribution. Limits: 3 contributions a day per address, 3 files, 5 MB per image, 2 MB per CSV file, 2,000 characters, 1 link, 100 contributions a day in total; all are settings. There is no masking in 1.0: visitors remove IP addresses and host names before uploading. Protection against floods, bots, large or disguised files and indecent images is described in the [isvara.io plan](spec/design/isvara-plan.md), section Protection.
 - **Reason:** The author wants the vCommunity to give feedback, corrections and files from 1.0, and asked Claude to decide the details as the one who knows public websites (2026-11-26). Nothing published without review removes the incentive for spam; no account and no email address keep the barrier low and the personal data nil.
 
 ## WD-025 The product and how customers take it
@@ -174,20 +174,20 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-027 isvara.io plan and the knowledge model
 
 - **Date:** 2026-11-26
-- **Decision:** isvara.io follows the [isvara.io plan](spec/design/isvara-revamp.md): the three learning paths as navigation; articles rewritten from knowledge files; infographics as a core feature; Ask Agent E2; contributions; a quiz with a mastery map, the exam and the 2am game; calculators on the catalog; a weekly summary of changes. Dropped: the podcast, the Operations Score, the cost calculator and SLA builder, the self-assessment, a global leaderboard. The [knowledge model](spec/knowledge-model.md) (three paths, four lenses as a completeness check, depth, experience, scale notes) is shared by Agent E2, isvara.io and the knowledge factory.
+- **Decision:** isvara.io follows the [isvara.io plan](spec/design/isvara-plan.md): the three learning paths as navigation; articles rewritten from knowledge files; infographics as a core feature; Ask Agent E2; contributions; a quiz with a mastery map, the exam and the 2am game; calculators on the catalog; a weekly summary of changes. Dropped: the podcast, the Operations Score, the cost calculator and SLA builder, the self-assessment, a global leaderboard. The [knowledge model](spec/knowledge-model.md) (three paths, four lenses as a completeness check, depth, experience, scale notes) is shared by Agent E2, isvara.io and the knowledge factory.
 - **Reason:** The author's paths and answers of 2026-11-26, and Claude's decisions at the author's request on the details. Replaces WD-022.
 
 ## WD-028 The product's name
 
 - **Date:** 2026-11-26
 - **Decision:** The product is Private Cloud Manager, PCM for short. The books keep "Private Cloud Management" as the name of the discipline. PCM's own D-001 ("Private Cloud Management") is updated in PCM's decision log in M2. The repository was renamed from private-cloud-management to [private-cloud-manager](https://github.com/e1-rahabok/private-cloud-manager) on 2026-11-26; GitHub redirects the old address.
-- **Reason:** The author, 2026-11-26: "Manager, not Management" (round 3, Q-60).
+- **Reason:** The author, 2026-11-26: "Manager, not Management" (round 3, Q-WS-60).
 
 ## WD-029 No licence file for now
 
 - **Date:** 2026-11-26
 - **Decision:** The repositories keep no licence file for now, as today.
-- **Reason:** The author, 2026-11-26 (round 3, Q-133).
+- **Reason:** The author, 2026-11-26 (round 3, Q-WS-133).
 - **Consequence:** without a licence, ordinary copyright applies: GitHub's terms let others view a public repository and fork it on GitHub, but give no permission to copy it elsewhere, change it or run it. That conflicts with principle 4 (forkable: customers copy the product privately and customise it) and with the contributions agreement of WD-024. Revisit before the first customer copies the product; this is not legal advice.
 
 
@@ -200,13 +200,13 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-031 Lab build after release 1.0
 
 - **Date:** 2026-11-27
-- **Decision:** The lab build for memory tiering (WD-018, [lab-build.md](spec/requirements/lab-build.md)) and R-ADP-024 move to after release 1.0. In release 1.0, the tiering rows of the VCF vCommunity Adapter are tested with fakes, and on the physical lab clusters as "not applicable" (R-ADP-014). The lab facts of Q-120 and Q-122 wait until the lab build starts.
+- **Decision:** The lab build for memory tiering (WD-018, [lab-build.md](spec/requirements/lab-build.md)) and R-ADP-024 move to after release 1.0. In release 1.0, the tiering rows of the VCF vCommunity Adapter are tested with fakes, and on the physical lab clusters as "not applicable" (R-ADP-014). The lab facts of Q-WS-120 and Q-WS-122 wait until the lab build starts.
 - **Reason:** The author, 2026-11-27: "Defer memory tiering lab to be after Release 1.0."
 
 ## WD-032 The adapter keeps its vCommunity identity
 
 - **Date:** 2026-11-27
-- **Decision:** The management pack keeps its identity in VCF Operations: adapter kind `vCommunity`, display name "VCF vCommunity Adapter", manifest name `iSDK_vCommunity`, key prefix `vCommunity|`, the image `ghcr.io/e1-rahabok/vcf-operations-vcommunity`, the pak name the build makes from them, and "vCommunity" in the names of its dashboards, views and reports. The repository keeps its name, PCM-Adapter. The pack's description explains how it works with Agent E2, PCM and isvara.io. R-ADP-001 to R-ADP-004 are dropped. This replaces the decisions on Q-72 to Q-79 and the parts of WD-007 and WD-016 that renamed the pack.
+- **Decision:** The management pack keeps its identity in VCF Operations: adapter kind `vCommunity`, display name "VCF vCommunity Adapter", manifest name `iSDK_vCommunity`, key prefix `vCommunity|`, the image `ghcr.io/e1-rahabok/vcf-operations-vcommunity`, the pak name the build makes from them, and "vCommunity" in the names of its dashboards, views and reports. The repository keeps its name, PCM-Adapter. The pack's description explains how it works with Agent E2, PCM and isvara.io. R-ADP-001 to R-ADP-004 are dropped. This replaces the decisions on Q-WS-72 to Q-WS-79 and the parts of WD-007 and WD-016 that renamed the pack.
 - **Reason:** The author, 2026-11-27: PCM is a vCommunity project, where VMware vExperts and VMUG members work together, and the name shows a grassroots effort. "Private Cloud Manager" is too long for a key prefix.
 
 ## WD-033 Data states in release 1.0
@@ -230,5 +230,17 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-036 What the workspace specifies
 
 - **Date:** 2026-11-27
-- **Decision:** The workspace specifies only where the repositories meet: the contracts, the checks that compare both sides, and the workspace's own tools. Domain knowledge, such as a formula, the scoring model or a threshold, lives in agent-e2: its knowledge files explain it and its catalog holds the data rows. How a repository implements something, and the tests of that implementation, live in that repository. A workspace requirement on a contract says that two sides are equal and names the check that compares them. "Comes from Agent E2" means that a value is stated in Agent E2 and that the implementing repository's copy equals it; nothing reads the agent-e2 repository at run time. Dropped by this decision: R-KPI-004, R-KPI-007, R-KPI-008 (moved to R-CONTENT-001), R-ADP-009 and R-ADP-012. Replaces the decision on Q-87.
+- **Decision:** The workspace specifies only where the repositories meet: the contracts, the checks that compare both sides, and the workspace's own tools. Domain knowledge, such as a formula, the scoring model or a threshold, lives in agent-e2: its knowledge files explain it and its catalog holds the data rows. How a repository implements something, and the tests of that implementation, live in that repository. A workspace requirement on a contract says that two sides are equal and names the check that compares them. "Comes from Agent E2" means that a value is stated in Agent E2 and that the implementing repository's copy equals it; nothing reads the agent-e2 repository at run time. Dropped by this decision: R-KPI-004, R-KPI-007, R-KPI-008 (moved to R-CONTENT-001), R-ADP-009 and R-ADP-012. Replaces the decision on Q-WS-87.
 - **Reason:** The author, 2026-11-27. R-KPI-004 asked the catalog to hold scoring rules, which a catalog of data rows cannot do; the scoring is explained in Agent E2's [performance-kpi-design.md](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/sp5-framework/performance/performance-kpi-design.md) and implemented in the adapter's [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py). R-KPI-007 and R-ADP-012 restated domain knowledge that Agent E2 already holds.
+
+## WD-037 Releases are set only in the workspace
+
+- **Date:** 2026-11-27
+- **Decision:** A release, and the milestones toward it, are defined only in this workspace's [ROADMAP.md](ROADMAP.md), for all repositories at once. A child repository names no release, phase or stage of its own; its plan names the workspace milestone it serves. agent-e2's milestones toward release 1.0 are A1 to A6 (Q-WS-58). The VCF vCommunity Adapter keeps the version numbers of its pak: a version number names one build of the pak.
+- **Reason:** The author, 2026-11-27: "Release should only apply at the Workspace level, not individual component repository. We work on all these repository as a set."
+
+## WD-038 Question IDs name their repository
+
+- **Date:** 2026-11-27
+- **Decision:** A question to the author has the ID `Q-WS-n` in this workspace (`Q-WS-In` for intent) and `Q-E2-nnn` in agent-e2. Every earlier `Q-n` and `Qnnn` is renamed in every file, records included. A repository that starts a question file uses `Q-` with its own short name.
+- **Reason:** The workspace's Q-120 and agent-e2's Q120 were two different questions. The author, 2026-11-27: "Add a prefix? WS for Workspace, E2 for Agent E2?"
