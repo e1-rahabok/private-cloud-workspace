@@ -19,6 +19,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: private-cloud-workspace
+          fetch-depth: 0
       - uses: actions/checkout@v4
         with:
           repository: e1-rahabok/agent-e2
@@ -44,6 +45,9 @@ jobs:
         run: python private-cloud-workspace/tools/style.py
       - name: Links and diagram text
         run: python private-cloud-workspace/tools/docs.py --check
+      - name: Changes stay in the open milestone (WD-039)
+        if: github.event_name == 'pull_request'
+        run: python private-cloud-workspace/tools/milestone_gate.py --check origin/${{ github.base_ref }}
       - name: Diagrams are up to date
         run: |
           python private-cloud-workspace/tools/diagrams.py

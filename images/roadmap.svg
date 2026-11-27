@@ -7,14 +7,14 @@
 <rect x="87.2" y="40" width="14" height="14" rx="3" fill="#fdebd3" stroke="#c25e00" stroke-width="1.4"/>
 <text x="107.2" y="52" font-size="11.5" font-weight="normal" fill="#333" text-anchor="start">In progress</text>
 <rect x="198.5" y="40" width="14" height="14" rx="3" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
-<text x="218.5" y="52" font-size="11.5" font-weight="normal" fill="#333" text-anchor="start">Not started</text>
-<rect x="20" y="80" width="180" height="70" rx="6" fill="#e6f4e4" stroke="#2e7d32" stroke-width="1.4"/>
-<text x="30" y="99" font-size="13" font-weight="bold" fill="#173a16" text-anchor="start">M0 Workspace</text>
-<text x="30" y="118" font-size="11.5" font-weight="normal" fill="#173a16" text-anchor="start">Files, checks, tutorial</text>
-<rect x="20" y="190" width="180" height="70" rx="6" fill="#fdebd3" stroke="#c25e00" stroke-width="1.4"/>
-<text x="30" y="209" font-size="13" font-weight="bold" fill="#4a2400" text-anchor="start">M1 Specification</text>
-<text x="30" y="228" font-size="11.5" font-weight="normal" fill="#4a2400" text-anchor="start">Intent, model, requirements;</text>
-<text x="30" y="243" font-size="11.5" font-weight="normal" fill="#4a2400" text-anchor="start">approval</text>
+<text x="218.5" y="52" font-size="11.5" font-weight="normal" fill="#333" text-anchor="start">Not started or paused</text>
+<rect x="20" y="80" width="180" height="70" rx="6" fill="#fdebd3" stroke="#c25e00" stroke-width="1.4"/>
+<text x="30" y="99" font-size="13" font-weight="bold" fill="#4a2400" text-anchor="start">M0 Workspace</text>
+<text x="30" y="118" font-size="11.5" font-weight="normal" fill="#4a2400" text-anchor="start">Files, checks, tutorial</text>
+<rect x="20" y="190" width="180" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
+<text x="30" y="209" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M1 Specification</text>
+<text x="30" y="228" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Intent, model, requirements;</text>
+<text x="30" y="243" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">approval</text>
 <rect x="230" y="190" width="180" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
 <text x="240" y="209" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M2 Contracts, clean-up</text>
 <text x="240" y="228" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">KPI definitions, docs,</text>

@@ -92,14 +92,14 @@ def roadmap() -> None:
     """ROADMAP.md: the milestones of release 1.0, their state and what each depends on."""
     k.begin(1060, 500)
     k.t(20, 26, "Release 1.0: milestones and what each depends on", 16, "bold")
-    k.legend(20, 40, [("Done", "prod"), ("In progress", "guest"), ("Not started", "white")])
+    k.legend(20, 40, [("Done", "prod"), ("In progress", "guest"), ("Not started or paused", "white")])
     w, h = 180, 70
 
     def b(x, y, title, lines, kind):
         k.box(x, y, w, title, lines, kind, h=h)
 
-    b(20, 80, "M0 Workspace", ["Files, checks, tutorial"], "prod")
-    b(20, 190, "M1 Specification", ["Intent, model, requirements;", "approval"], "guest")
+    b(20, 80, "M0 Workspace", ["Files, checks, tutorial"], "guest")
+    b(20, 190, "M1 Specification", ["Intent, model, requirements;", "approval"], "white")
     b(230, 190, "M2 Contracts, clean-up", ["KPI definitions, docs,", "Agent E2 plan"], "white")
     b(440, 190, "M3 Adapter for live demo", ["Partial reads, key list,", "settings, accounts"], "white")
     b(440, 300, "M4 Agent E2 for 1.0", ["Grader, progress, files,", "Day 2 scope"], "white")
