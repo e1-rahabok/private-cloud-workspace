@@ -103,15 +103,15 @@ Claude's working method, about how Claude works and never about the product (WD-
 
 - [x] C1, step 1: every row of Agent E2's catalog has a `key`, the adapter row's name (R-KPI-001) ([agent-e2#483](https://github.com/e1-rahabok/agent-e2/pull/483)).
 - [x] C1, step 2: the KPI definitions check matches rows by key, then compares names, limits and excluded-when-green, with a planted break of each kind (R-KPI-001 to R-KPI-003) ([#52](https://github.com/e1-rahabok/private-cloud-workspace/pull/52)).
-- [ ] C1, step 3: the catalog's renamed rows, its Cluster Performance score row and its one Cluster Risk level, with the adapter's labels and intervals to match; the check also compares intervals, score bands and closure levels, and `NAME_GAPS` is empty (R-KPI-005, R-KPI-006, R-ADP-006, R-ADP-008, R-ADP-010, R-ADP-011).
-- [ ] The adapter's declared keys equal its published keys, and its files use one name for the pack and none of the old repository names (R-ADP-005, R-ADP-007, R-ADP-025).
+- [ ] C1, step 3: the catalog's renamed rows, its Cluster Performance score row and its one Cluster Risk level, with the adapter's labels and intervals to match; the check also compares intervals, score bands and closure levels, and `NAME_GAPS` is empty (R-KPI-005, R-KPI-006, R-ADP-006, R-ADP-008, R-ADP-010, R-ADP-011); done except the Cluster Risk closure level, which waits for Q-WS-138 ([agent-e2#484](https://github.com/e1-rahabok/agent-e2/pull/484), [PCM-Adapter#113](https://github.com/e1-rahabok/PCM-Adapter/pull/113), [#53](https://github.com/e1-rahabok/private-cloud-workspace/pull/53)).
+- [x] The adapter's declared keys equal its published keys, and its files use one name for the pack and none of the old repository names (R-ADP-005, R-ADP-007, R-ADP-025) ([PCM-Adapter#114](https://github.com/e1-rahabok/PCM-Adapter/pull/114)).
 - [ ] One set of writing rules, run by [tools/style.py](tools/style.py) in every repository (R-WS-006).
-- [ ] The name check and the forbidden names check, run by [checks/run_all.py](checks/run_all.py) (R-WS-007, R-REPO-006, T-REPO-007b, T-REPO-008e).
-- [ ] Every contract names its check, and the cross-repo checks run on the pull requests of every child repository, isvara's in its own CI (R-WS-001, R-WS-002).
+- [x] The name check and the forbidden names check, run by [checks/run_all.py](checks/run_all.py) (R-WS-007, R-REPO-006, T-REPO-007b, T-REPO-008e) ([#56](https://github.com/e1-rahabok/private-cloud-workspace/pull/56), [private-cloud-manager#85](https://github.com/e1-rahabok/private-cloud-manager/pull/85)).
+- [x] Every contract names its check, and the cross-repo checks run on the pull requests of every child repository, isvara's in its own CI (R-WS-001, R-WS-002) ([#54](https://github.com/e1-rahabok/private-cloud-workspace/pull/54), [isvara#10](https://github.com/e1-rahabok/isvara/pull/10), [private-cloud-manager#84](https://github.com/e1-rahabok/private-cloud-manager/pull/84), [agent-e2#486](https://github.com/e1-rahabok/agent-e2/pull/486), [PCM-Adapter#115](https://github.com/e1-rahabok/PCM-Adapter/pull/115)).
 - [ ] R-WS-003 to R-WS-005 hold on every pull request of M2.
-- [ ] Agent E2's plan describes release 1.0, and the older benchmarks are removed (R-REPO-003, R-REPO-004).
+- [x] Agent E2's plan describes release 1.0, and the older benchmarks are removed (R-REPO-003, R-REPO-004) ([agent-e2#485](https://github.com/e1-rahabok/agent-e2/pull/485)).
 - [ ] The adapter's documentation keeps only what the adapter does (R-REPO-001, R-REPO-002).
-- [ ] PCM is named Private Cloud Manager, its files are named for what they hold, and its folders are grouped by workspace (R-REPO-005, R-REPO-007, R-REPO-008).
+- [x] PCM is named Private Cloud Manager, its files are named for what they hold, and its folders are grouped by workspace (R-REPO-005, R-REPO-007, R-REPO-008) ([private-cloud-manager#83](https://github.com/e1-rahabok/private-cloud-manager/pull/83), [private-cloud-manager#84](https://github.com/e1-rahabok/private-cloud-manager/pull/84), [#55](https://github.com/e1-rahabok/private-cloud-workspace/pull/55)).
 - [ ] A fresh session guesses each repository's folders from the tree alone, and every wrong guess is renamed (T-WS-007b).
 - [ ] Approval: the author approves M2 from its [review page](spec/review/M2.md).
 
