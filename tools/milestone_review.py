@@ -8,6 +8,9 @@ A milestone's requirements are the IDs its section in ROADMAP.md names (single I
 "R-KPI-001 to R-KPI-006"), plus every requirement whose "Milestone:" line names it. Dropped
 requirements are listed apart, for reference.
 
+Each requirement that is not dropped belongs to exactly one milestone, or its "Milestone:" line says
+"after release 1.0" (WD-042). Both modes fail otherwise.
+
     python tools/milestone_review.py           # write spec/review/M<n>.md for each milestone with requirements
     python tools/milestone_review.py --check   # exit 1 when a page differs from what the files say
 """
@@ -76,6 +79,7 @@ def requirements() -> dict[str, dict]:
                 "dropped": title.startswith("Dropped:"),
                 "anywhere": where.count("anywhere"), "lab": where.count("lab"),
                 "milestones": set(re.findall(r"\bM\d+\b", ms.group(1))) if ms else set(),
+                "after": bool(ms and re.search(r"after release 1\.0", ms.group(1), re.I)),
             }
     return reqs
 
@@ -96,6 +100,26 @@ def milestones(reqs: dict[str, dict]) -> dict[str, tuple[str, list[str]]]:
         if seen:
             out[m.group(1)] = (m.group(2).strip(), seen)
     return out
+
+
+def membership(reqs: dict[str, dict], ms: dict[str, tuple[str, list[str]]]) -> list[str]:
+    """Each requirement in exactly one milestone, or after release 1.0 (WD-042)."""
+    where: dict[str, list[str]] = {}
+    for mid, (_, ids) in ms.items():
+        for r in ids:
+            where.setdefault(r, []).append(mid)
+    problems = []
+    for r, v in reqs.items():
+        if v["dropped"]:
+            continue
+        found = where.get(r, [])
+        if len(found) > 1:
+            problems.append(f"{r} belongs to {' and '.join(found)}: one milestone per requirement")
+        elif not found and not v["after"]:
+            problems.append(f"{r} belongs to no milestone: name it in ROADMAP.md or give it a Milestone line")
+        elif found and v["after"]:
+            problems.append(f"{r} is after release 1.0 and also in {found[0]}")
+    return problems
 
 
 def page(mid: str, title: str, ids: list[str], reqs: dict[str, dict]) -> str:
@@ -135,7 +159,7 @@ def main() -> int:
     args = ap.parse_args()
     reqs = requirements()
     pages = {f"{mid}.md": page(mid, t, ids, reqs) for mid, (t, ids) in milestones(reqs).items()}
-    problems = []
+    problems = membership(reqs, milestones(reqs))
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for name, content in pages.items():
         path = OUT_DIR / name

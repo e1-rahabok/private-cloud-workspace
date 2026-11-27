@@ -1,8 +1,10 @@
 """The milestone gate: work happens only in the earliest milestone of ROADMAP.md that is not done (WD-039).
 
 ROADMAP.md format the gate reads:
-- A milestone is a heading `### M<n> <title>`, where n may be -1. It is done when the heading ends with `: done`.
-  Claude writes `: done` only after the author has approved the milestone.
+- A milestone is a heading `### M<n> <title>`. The numbers run M1, M2, M3 in file order, with no gap and no
+  M0 (WD-042). It is done when the heading ends with `: done`. Claude writes `: done` only after the author
+  has approved the milestone.
+- No file or folder is owned by two milestones (WD-042).
 - The open milestone is the first one, in file order, that is not done.
 - Its next item is the first `- [ ]` line in its section.
 - A `- Files in this repository:` line lists the files the milestone owns, in backticks. A path that ends
@@ -11,7 +13,8 @@ ROADMAP.md format the gate reads:
     python tools/milestone_gate.py                  # print the open milestone and its next item
     python tools/milestone_gate.py --hook           # the same, worded for Claude; run on every prompt
     python tools/milestone_gate.py --check BASE     # exit 1 if the change from BASE to HEAD touches a
-                                                    # file owned only by milestones after the open one
+                                                    # file owned only by milestones after the open one,
+                                                    # or if the numbering or the ownership is broken
 """
 from __future__ import annotations
 
@@ -45,6 +48,21 @@ def owns(path: str, pattern: str) -> bool:
     return path.startswith(pattern) if pattern.endswith("/") else path == pattern
 
 
+def structure(ms: list[dict]) -> list[str]:
+    """Problems with the milestones themselves: numbering and files owned twice (WD-042)."""
+    problems = []
+    for n, m in enumerate(ms, 1):
+        if m["id"] != f"M{n}":
+            problems.append(f"milestone {n} in ROADMAP.md is {m['id']}: number them M1, M2, M3 in order")
+    for i, a in enumerate(ms):
+        for b in ms[i + 1:]:
+            for p in a["files"]:
+                for q in b["files"]:
+                    if owns(p, q) or owns(q, p):
+                        problems.append(f"{a['id']} owns {p} and {b['id']} owns {q}: one milestone per file")
+    return problems
+
+
 def open_milestone(ms: list[dict]) -> int | None:
     return next((i for i, m in enumerate(ms) if not m["done"]), None)
 
@@ -57,6 +75,8 @@ def status(hook: bool) -> int:
         return 0
     m = ms[i]
     nxt = m["next"] or "no open item; ask the author to approve the milestone"
+    for p in structure(ms):
+        print(f"Milestone gate: FAIL {p}")
     if hook:
         print(f"Milestone gate (WD-039): the open milestone is {m['id']} {m['title']}.")
         print(f"Its next item: {nxt}")
@@ -84,6 +104,9 @@ def check(base: str) -> int:
     changed += subprocess.run(["git", "ls-files", "--others", "--exclude-standard"], cwd=ROOT,
                               capture_output=True, text=True).stdout.split()
     problems = 0
+    for p in structure(ms):
+        problems += 1
+        print(f"FAIL {p}")
     for path in sorted(set(changed)):
         if any(owns(path, p) for p in allowed):
             continue

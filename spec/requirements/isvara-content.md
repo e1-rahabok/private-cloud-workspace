@@ -4,7 +4,7 @@ What isvara.io's pages, tools and calculators must do, and how each part is test
 
 ### R-CONTENT-001 isvara.io's numbers are generated from Agent E2's catalog
 
-Milestone: M7.
+Milestone: M6.
 
 Source: answer to Q-WS-18 ("isvara.io is just a website. It is not where knowledge is stored."); WD-036. Reason: the capacity calculator on isvara.io today was ported from an old spreadsheet and uses an overcommit ratio of 4 to 1, where Agent E2 says 3 to 1 ([tutorial, chapter 11](../../tutorial/11-trust-in-ai-written-content.md)).
 
