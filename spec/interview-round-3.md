@@ -18,7 +18,7 @@ The last questions only the author could answer, asked in [OPEN-QUESTIONS.md](..
 
 **Answer:** "will supply later. remind me."
 
-**Result:** both stay in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md). They are needed when milestone M4 (lab build) starts; Claude asks again then.
+**Result:** both stay in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md). They are needed when the lab build starts, after release 1.0 (WD-031). Answered in [round 5](interview-round-5.md).
 
 ## Q-WS-130 Events for birds-of-a-feather sessions
 
