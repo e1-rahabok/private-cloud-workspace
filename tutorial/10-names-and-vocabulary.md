@@ -10,7 +10,7 @@ A VMware administrator already knows this from naming conventions. A VM called `
 
 In this project "stage 1" and "release 1.0" named the same scope, and "stage" also named a step inside Agent E2's answer pipeline. Three meanings shared two words. The fix:
 
-- **Release 1.0** is the goal; **milestones** M0, M1, M2 and onward are its steps.
+- **Release 1.0** is the goal; **milestones** M1, M2 and onward are its steps.
 - The other meaning of "stage", inside Agent E2, keeps its word, because it is a different concept.
 - The [glossary](../spec/glossary.md) maps the old words to the new ones, so old notes can still be read.
 
@@ -32,6 +32,8 @@ Workspace decisions were numbered W-001 to W-029. Nobody could guess what "W" st
 Milestones added later got the next free numbers, M8 to M10, but had to be built before M3. The roadmap then read M2, M8, M9, M10, M3, and every reader had to work out the real order. They were renumbered so the numbers give the sequence.
 
 Numbers change again when scope changes. When a milestone was removed from release 1.0 later, the numbers jumped from M3 to M5. The renumbering waited until the scope had settled, so it was done once.
+
+A milestone inserted before the first one got the numbers M0 and then M-1. The author's reply: "A project first milestone is called Milestone 1." Work that prepares the agent is done before the milestones and is not one of them; the milestones start at M1, and the milestone gate fails when the numbers do not run M1, M2, M3 in order. M-1 also clashed with PCM's demo story M-1.
 
 ## Folder and file names
 

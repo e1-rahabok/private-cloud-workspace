@@ -41,7 +41,7 @@ Arrows: `-->` solid, `..>` dashed.
 | PCM | private-cloud-manager | Lab Linux VM moltbot29, https://10.114.1.29 (VPN) | Agent E2 over HTTP; VCF Operations Suite API (scenario 7) |
 | Agent E2 for PCM | agent-e2 | Same lab VM, port 8090, as a systemd service | Vercel AI Gateway |
 | VCF vCommunity Adapter | PCM-Adapter | Inside the lab VCF Operations, https://10.115.1.81 (VPN) | vCenter, VCF Operations |
-| isvara.io | isvara | Vercel, public | Agent E2 (planned, ROADMAP M8); today its own AskIO agent |
+| isvara.io | isvara | Vercel, public | Agent E2 (planned, ROADMAP M5); today its own AskIO agent |
 | Agent E2 for isvara.io | agent-e2 | Not decided (OPEN-QUESTIONS, Q-WS-4) | Vercel AI Gateway |
 
 ## Sources of each kind of data
@@ -66,7 +66,7 @@ PCM is a web application that runs in a browser. In release 1.0 all of PCM is a 
 6. Docs reader (auditor)
 
 - **Scenarios 1 to 6** show synthetic data: ACME, a global bank with stories written relative to now. They show Agent E2 at its best.
-- **Scenario 7, added in release 1.0** (ROADMAP M5 and M6): the L2 platform engineer on the author's lab VCF Operations, with live data. It proves PCM reads real data. It is still a demo, and the lab is too quiet to show Agent E2 well.
+- **Scenario 7, added in release 1.0** (ROADMAP M8): the L2 platform engineer on the author's lab VCF Operations, with live data. It proves PCM reads real data. It is still a demo, and the lab is too quiet to show Agent E2 well.
 
 ## PCM and the VCF vCommunity Adapter
 

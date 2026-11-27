@@ -250,15 +250,23 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** Work happens only in the open milestone: the first milestone in [ROADMAP.md](ROADMAP.md) whose heading does not end with ": done". A milestone is marked done only after the author approves it. A request for a later milestone is parked in one line, and nothing in it is done. [tools/milestone_gate.py](tools/milestone_gate.py) enforces this in two places: a hook in [.claude/settings.json](.claude/settings.json) prints the open milestone and its next item at every prompt, and CI fails a pull request that changes a file owned only by a later milestone. Each milestone lists the files it owns in this repository. This one rule replaces the earlier CLAUDE.md rules on starting a build milestone and on asking for approval. M0 is reopened, because it was marked done without the author's review.
 - **Reason:** The agent worked ahead of the open milestone three times between 2026-11-25 and 2026-11-27, and each time a narrow rule was added for that one case. The author, 2026-11-27, agreed to one rule with a mechanism behind it: "Do it. Merge".
+- **Status:** the milestones are renumbered by WD-042; M0's open work is in M1.
 
 ## WD-040 M-1 prepares Claude for spec-driven development
 
 - **Date:** 2026-11-27
 - **Decision:** Milestone M-1 comes before M0. It holds Claude's rules (CLAUDE.md), the milestone gate of WD-039 and its hook. It is about how Claude works, never about the product. M0, the workspace set-up, waits until the author approves M-1.
 - **Reason:** The author, 2026-11-27: "M0 requires you to be in SDD-mode already. M-1 is to prep Claude to be in SDD mode."
+- **Status:** renamed by WD-042: the method is done before the milestones, which start at M1; M0's work is in M1.
 
 ## WD-041 CLAUDE.md holds only the method
 
 - **Date:** 2026-11-27
 - **Decision:** CLAUDE.md holds only the rules of spec-driven development, written so they apply to any project, in any field. Everything about this project, its repositories, tools, paths, domain and lab, is in [CLAUDE-PROJECT.md](CLAUDE-PROJECT.md). CLAUDE.md loads it with an `@CLAUDE-PROJECT.md` import line, so Claude reads both files at the start of every session.
 - **Reason:** The author, 2026-11-27: "The Claude.md should be universal claude setting. It should be 100% relevant to other project that I will work in the future." and "Project-specific rules should be placed in a separate file."
+
+## WD-042 Milestones from M1, one outcome each
+
+- **Date:** 2026-11-27
+- **Decision:** The milestones of release 1.0 are M1 to M8, numbered in the order of work. No milestone is numbered 0 or below: Claude's working method (approved as M-1, WD-040) is done before the milestones and is not one of them. Each milestone has one outcome. No file of this repository and no requirement belongs to two milestones, and the milestone gate and the review tool fail when one does. M0's open work and M1 become M1, release 1.0 specified. M2 stays, contracts checked and repositories cleaned. Agent E2 for both callers is M3. isvara.io's four milestones (M4 reading, M5 Ask and contributions, M6 practice and tools, M7 switch-over) come before the live demo, because they run without the lab. The VCF vCommunity Adapter's work for the live demo and the two live demo milestones become M8, PCM live demo, the only milestone that uses the lab; every test scenario that needs the lab moves there. The author delegates the approval of M1 to Claude's self-review: every check passes, and a fresh agent's cold read of the specification finds no contradiction, no requirement that cannot be tested and no requirement outside a milestone. The author reviews M1 afterwards and can reopen it. The author approves every later milestone.
+- **Reason:** The author, 2026-11-27: "M0, M1, M2 today overlap. M5 and M6 seems to be just 1 milestone." and "A project first milestone is called Milestone 1." M-1 and M0 owned the same files, M0 and M2 both built checks, and M1 and M2 both changed M2's requirements. The roadmap ran M3 and M4 in parallel, which the gate of WD-039 does not allow. 26 of the 32 live demo requirements belonged to no milestone, and two Agent E2 requirements belonged to two. The lab needs the author's laptop, which a cloud session cannot reach, so the lab work is gathered in one milestone at the end. The author chose isvara.io before the live demo and delegated M1 only, before several hours away.

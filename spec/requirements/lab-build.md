@@ -4,6 +4,8 @@ An automatic build of nested virtual ESXi hosts with memory tiering in the autho
 
 ### R-LAB-001 One command builds the tiered nested hosts
 
+Milestone: after release 1.0 ([WD-031](../../DECISIONS.md)).
+
 Source: answer to Q-WS-38.
 
 - Given the lab vCenter (https://10.115.1.87) and the author's credential file in `$HOME\.secrets\`
@@ -17,6 +19,8 @@ Test scenarios:
 
 ### R-LAB-002 The tiered cluster is monitored by the lab VCF Operations
 
+Milestone: after release 1.0 ([WD-031](../../DECISIONS.md)).
+
 Source: answer to Q-WS-38; WD-018.
 
 - Given the nested cluster is built
@@ -27,6 +31,8 @@ Test scenarios:
 - T-LAB-002a (lab, automated by PCM-Adapter's tools/validate, to extend): the four tiering keys have a sample newer than one cycle on the nested cluster.
 
 ### R-LAB-003 The build can be repeated and removed
+
+Milestone: after release 1.0 ([WD-031](../../DECISIONS.md)).
 
 Source: answer to Q-WS-38 ("automatic build").
 
@@ -39,6 +45,8 @@ Test scenarios:
 - T-LAB-003a (lab, automated, to write): run the build twice; the second run reports no change. Run remove; vCenter shows none of the build's objects.
 
 ### R-LAB-004 No secret in the repository
+
+Milestone: after release 1.0 ([WD-031](../../DECISIONS.md)).
 
 Source: WD-011.
 

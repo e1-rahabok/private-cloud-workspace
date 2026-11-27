@@ -1,6 +1,6 @@
 # Specification
 
-What the product must do, and how each part of that is tested. Built in M1 from the author's answers to the interview, before any build milestone starts. The plan on one page is [ROADMAP.md](../ROADMAP.md). IDs are explained in the [glossary](glossary.md).
+What the product must do, and how each part of that is tested. Built in milestone M1 from the author's answers to the interview, before any build milestone starts. The plan on one page is [ROADMAP.md](../ROADMAP.md). IDs are explained in the [glossary](glossary.md).
 
 ## Five layers
 
@@ -24,15 +24,15 @@ What the product must do, and how each part of that is tested. Built in M1 from 
 
 | File | Status |
 |---|---|
-| [workspace.md](requirements/workspace.md) | M2: draft; approved at the end of M1 |
-| [kpi-definitions.md](requirements/kpi-definitions.md) | M2 (001 to 006; 004 dropped): draft; approved at the end of M1 |
-| [isvara-content.md](requirements/isvara-content.md) | M7; the rest to write from the isvara.io plan |
-| [repositories.md](requirements/repositories.md) | M2: draft; approved at the end of M1 |
-| [pcm-adapter.md](requirements/pcm-adapter.md) | M2 part (005 to 012): draft; approved at the end of M1; the rest to update |
+| [workspace.md](requirements/workspace.md) | M2 |
+| [kpi-definitions.md](requirements/kpi-definitions.md) | M2 (001 to 006; 004 dropped) |
+| [isvara-content.md](requirements/isvara-content.md) | M6 (001); the rest to write in M1 from the isvara.io plan |
+| [repositories.md](requirements/repositories.md) | M2 |
+| [pcm-adapter.md](requirements/pcm-adapter.md) | M2 (005 to 012, 025), M8 (018 to 023); after release 1.0 (013 to 017, 024) |
 | [lab-build.md](requirements/lab-build.md) | After release 1.0 (WD-031) |
-| [agent-e2-service.md](requirements/agent-e2-service.md) | To update for round 2 and WD-026 |
-| [pcm-live.md](requirements/pcm-live.md) | To update for round 2 |
-| [isvara-exam.md](requirements/isvara-exam.md) | To update for round 2 |
-| isvara.io content, Ask, contributions, practice | To write from the [isvara.io plan](design/isvara-plan.md) |
+| [agent-e2-service.md](requirements/agent-e2-service.md) | M3; to update in M1 for round 2 and WD-026 |
+| [pcm-live.md](requirements/pcm-live.md) | M8; to update in M1 for round 2 |
+| [isvara-exam.md](requirements/isvara-exam.md) | M6; to update in M1 for round 2 |
+| isvara.io reading, Ask, contributions, practice, switch-over | M4 to M7; to write in M1 from the [isvara.io plan](design/isvara-plan.md) |
 
 `python tools/spec_check.py` prints the current totals and fails on a requirement with no source or no test, or a test with no requirement.

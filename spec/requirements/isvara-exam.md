@@ -1,6 +1,6 @@
 # Requirements: the isvara.io exam
 
-The exam for people on isvara.io, roadmap milestone M9 ([ROADMAP.md](../../ROADMAP.md)). It has ten short, Level 400 multiple-choice questions that test depth of understanding. A wrong answer loses marks, and no answer scores 0. The exam is kept in isvara.io and is separate from Agent E2's benchmark, which tests the machine ([WD-006](../../DECISIONS.md), a decision binding several repositories).
+The exam for people on isvara.io, roadmap milestone M6 ([ROADMAP.md](../../ROADMAP.md)). It has ten short, Level 400 multiple-choice questions that test depth of understanding. A wrong answer loses marks, and no answer scores 0. The exam is kept in isvara.io and is separate from Agent E2's benchmark, which tests the machine ([WD-006](../../DECISIONS.md), a decision binding several repositories).
 
 Question IDs (Q-) point at your answers in the [interview, round 1](../interview-round-1.md). Decision IDs (WD-) are in [DECISIONS.md](../../DECISIONS.md). Other IDs are explained in the [glossary](../glossary.md). The rest of the site's revamp, including where the exam sits, is in [design/isvara-plan.md](../design/isvara-plan.md), feature 33.
 

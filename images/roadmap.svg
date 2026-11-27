@@ -1,63 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="500" viewBox="0 0 1060 500" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="410" viewBox="0 0 1060 410" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif">
 <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#555555"/></marker></defs>
-<rect width="1060" height="500" fill="#ffffff"/>
+<rect width="1060" height="410" fill="#ffffff"/>
 <text x="20" y="26" font-size="16" font-weight="bold" fill="#222" text-anchor="start">Release 1.0: milestones and what each depends on</text>
 <rect x="20" y="40" width="14" height="14" rx="3" fill="#e6f4e4" stroke="#2e7d32" stroke-width="1.4"/>
 <text x="40" y="52" font-size="11.5" font-weight="normal" fill="#333" text-anchor="start">Done</text>
 <rect x="87.2" y="40" width="14" height="14" rx="3" fill="#fdebd3" stroke="#c25e00" stroke-width="1.4"/>
 <text x="107.2" y="52" font-size="11.5" font-weight="normal" fill="#333" text-anchor="start">In progress</text>
 <rect x="198.5" y="40" width="14" height="14" rx="3" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
-<text x="218.5" y="52" font-size="11.5" font-weight="normal" fill="#333" text-anchor="start">Not started or paused</text>
-<rect x="230" y="80" width="180" height="70" rx="6" fill="#e6f4e4" stroke="#2e7d32" stroke-width="1.4"/>
-<text x="240" y="99" font-size="13" font-weight="bold" fill="#173a16" text-anchor="start">M-1 Claude in SDD mode</text>
-<text x="240" y="118" font-size="11.5" font-weight="normal" fill="#173a16" text-anchor="start">Rules, gate, hook</text>
-<rect x="20" y="80" width="180" height="70" rx="6" fill="#fdebd3" stroke="#c25e00" stroke-width="1.4"/>
-<text x="30" y="99" font-size="13" font-weight="bold" fill="#4a2400" text-anchor="start">M0 Workspace</text>
-<text x="30" y="118" font-size="11.5" font-weight="normal" fill="#4a2400" text-anchor="start">Files, checks, tutorial</text>
-<rect x="20" y="190" width="180" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
-<text x="30" y="209" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M1 Specification</text>
-<text x="30" y="228" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Intent, model, requirements;</text>
-<text x="30" y="243" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">approval</text>
-<rect x="230" y="190" width="180" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
-<text x="240" y="209" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M2 Contracts, clean-up</text>
-<text x="240" y="228" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">KPI definitions, docs,</text>
-<text x="240" y="243" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Agent E2 plan</text>
-<rect x="440" y="190" width="180" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
-<text x="450" y="209" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M3 Adapter for live demo</text>
-<text x="450" y="228" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Partial reads, key list,</text>
-<text x="450" y="243" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">settings, accounts</text>
-<rect x="440" y="300" width="180" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
-<text x="450" y="319" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M4 Agent E2 for 1.0</text>
-<text x="450" y="338" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Grader, progress, files,</text>
-<text x="450" y="353" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Day 2 scope</text>
-<rect x="650" y="80" width="180" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
-<text x="660" y="99" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M5 Live demo: one KPI</text>
-<text x="660" y="118" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">One cluster, live</text>
-<rect x="860" y="80" width="180" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
-<text x="870" y="99" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M6 Live demo: the rest</text>
-<text x="870" y="118" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">L2 performance, capacity</text>
-<rect x="650" y="410" width="180" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
-<text x="660" y="429" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M7 isvara.io content</text>
-<text x="660" y="448" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Paths, articles, search,</text>
-<text x="660" y="463" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">infographics, tools</text>
-<rect x="860" y="300" width="180" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
-<text x="870" y="319" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M8 isvara.io Ask</text>
-<text x="870" y="338" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Agent E2, contributions,</text>
-<text x="870" y="353" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">protection</text>
-<rect x="860" y="410" width="180" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
-<text x="870" y="429" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M9 isvara.io Practice</text>
-<text x="870" y="448" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Quiz, mastery map, exam</text>
-<path d="M 230 115 L 200 115" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
-<path d="M 110 150 L 110 190" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
-<path d="M 200 225 L 230 225" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
-<path d="M 410 205 L 420 205 L 420 115 L 650 115" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
-<path d="M 410 225 L 440 225" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
-<path d="M 410 245 L 425 245 L 425 335 L 440 335" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
-<path d="M 410 255 L 430 255 L 430 445 L 650 445" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
-<path d="M 830 115 L 860 115" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
-<path d="M 530 190 L 530 170 L 940 170 L 940 150" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
-<path d="M 620 320 L 845 320 L 845 160 L 880 160 L 880 150" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
-<path d="M 620 350 L 860 350" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
-<path d="M 740 410 L 740 390 L 950 390 L 950 370" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
-<path d="M 830 445 L 860 445" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="218.5" y="52" font-size="11.5" font-weight="normal" fill="#333" text-anchor="start">Not started</text>
+<rect x="20" y="80" width="190" height="70" rx="6" fill="#e6f4e4" stroke="#2e7d32" stroke-width="1.4"/>
+<text x="30" y="99" font-size="13" font-weight="bold" fill="#173a16" text-anchor="start">Claude's method</text>
+<text x="30" y="118" font-size="11.5" font-weight="normal" fill="#173a16" text-anchor="start">Rules, gate, hook;</text>
+<text x="30" y="133" font-size="11.5" font-weight="normal" fill="#173a16" text-anchor="start">done before the milestones</text>
+<rect x="230" y="80" width="190" height="70" rx="6" fill="#fdebd3" stroke="#c25e00" stroke-width="1.4"/>
+<text x="240" y="99" font-size="13" font-weight="bold" fill="#4a2400" text-anchor="start">M1 Release 1.0 specified</text>
+<text x="240" y="118" font-size="11.5" font-weight="normal" fill="#4a2400" text-anchor="start">Every requirement, isvara.io</text>
+<text x="240" y="133" font-size="11.5" font-weight="normal" fill="#4a2400" text-anchor="start">design; no code</text>
+<rect x="440" y="80" width="190" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
+<text x="450" y="99" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M2 Contracts, clean-up</text>
+<text x="450" y="118" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Checks in every repository;</text>
+<text x="450" y="133" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">names, PCM folders</text>
+<rect x="650" y="80" width="190" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
+<text x="660" y="99" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M3 Agent E2 for both</text>
+<text x="660" y="118" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Jobs, files, sources,</text>
+<text x="660" y="133" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">grader, Day 2 only</text>
+<rect x="860" y="80" width="190" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
+<text x="870" y="99" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M8 PCM live demo</text>
+<text x="870" y="118" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Adapter fixes, live L2;</text>
+<text x="870" y="133" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">every lab test</text>
+<rect x="440" y="200" width="190" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
+<text x="450" y="219" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M4 isvara.io reading</text>
+<text x="450" y="238" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Export, articles, paths,</text>
+<text x="450" y="253" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">search, infographics</text>
+<rect x="650" y="200" width="190" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
+<text x="660" y="219" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M5 isvara.io Ask</text>
+<text x="660" y="238" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Agent E2, contributions,</text>
+<text x="660" y="253" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">protection</text>
+<rect x="860" y="200" width="190" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
+<text x="870" y="219" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M7 isvara.io switch-over</text>
+<text x="870" y="238" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Home, What's New, manual;</text>
+<text x="870" y="253" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">old links redirected</text>
+<rect x="650" y="320" width="190" height="70" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
+<text x="660" y="339" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">M6 isvara.io practice</text>
+<text x="660" y="358" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Quiz, exam, daily question;</text>
+<text x="660" y="373" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">catalog calculators</text>
+<path d="M 210 115 L 230 115" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M 420 115 L 440 115" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M 630 115 L 650 115" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M 840 115 L 860 115" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M 535 150 L 535 200" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M 745 150 L 745 200" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M 630 235 L 650 235" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M 840 235 L 860 235" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M 535 270 L 535 355 L 650 355" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M 840 355 L 955 355 L 955 270" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#ah)"/>
 </svg>

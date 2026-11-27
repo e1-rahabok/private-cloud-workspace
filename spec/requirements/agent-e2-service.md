@@ -147,7 +147,7 @@ Source: WD-013 ("the user always sees that Agent E2 is still working"); answer t
 Test scenarios:
 - T-E2-020a (anywhere, automated in private-cloud-manager by `build/tests/agent_e2_job.test.mjs`, to write): a fake job endpoint that counts requests and runs a job for 60 seconds; expect at most 7 reads, the stage in words, and the answer at the end.
 - T-E2-020b (anywhere, the same test): the fake stops changing `updated_at`; expect "not responding" on screen within 70 seconds.
-- T-E2-020c (anywhere, automated in isvara by Ask Agent E2's tests, to write in M8): T-E2-020a and T-E2-020b on Ask Agent E2.
+- T-E2-020c (anywhere, automated in isvara by Ask Agent E2's tests, to write in M5): T-E2-020a and T-E2-020b on Ask Agent E2.
 
 ### R-E2-009 The synchronous call keeps working until both callers have moved
 

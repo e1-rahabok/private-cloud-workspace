@@ -90,39 +90,34 @@ def parts() -> None:
 
 def roadmap() -> None:
     """ROADMAP.md: the milestones of release 1.0, their state and what each depends on."""
-    k.begin(1060, 500)
+    k.begin(1060, 410)
     k.t(20, 26, "Release 1.0: milestones and what each depends on", 16, "bold")
-    k.legend(20, 40, [("Done", "prod"), ("In progress", "guest"), ("Not started or paused", "white")])
-    w, h = 180, 70
+    k.legend(20, 40, [("Done", "prod"), ("In progress", "guest"), ("Not started", "white")])
+    w, h = 190, 70
 
     def b(x, y, title, lines, kind):
         k.box(x, y, w, title, lines, kind, h=h)
 
-    b(230, 80, "M-1 Claude in SDD mode", ["Rules, gate, hook"], "prod")
-    b(20, 80, "M0 Workspace", ["Files, checks, tutorial"], "guest")
-    b(20, 190, "M1 Specification", ["Intent, model, requirements;", "approval"], "white")
-    b(230, 190, "M2 Contracts, clean-up", ["KPI definitions, docs,", "Agent E2 plan"], "white")
-    b(440, 190, "M3 Adapter for live demo", ["Partial reads, key list,", "settings, accounts"], "white")
-    b(440, 300, "M4 Agent E2 for 1.0", ["Grader, progress, files,", "Day 2 scope"], "white")
-    b(650, 80, "M5 Live demo: one KPI", ["One cluster, live"], "white")
-    b(860, 80, "M6 Live demo: the rest", ["L2 performance, capacity"], "white")
-    b(650, 410, "M7 isvara.io content", ["Paths, articles, search,", "infographics, tools"], "white")
-    b(860, 300, "M8 isvara.io Ask", ["Agent E2, contributions,", "protection"], "white")
-    b(860, 410, "M9 isvara.io Practice", ["Quiz, mastery map, exam"], "white")
+    b(20, 80, "Claude's method", ["Rules, gate, hook;", "done before the milestones"], "prod")
+    b(230, 80, "M1 Release 1.0 specified", ["Every requirement, isvara.io", "design; no code"], "guest")
+    b(440, 80, "M2 Contracts, clean-up", ["Checks in every repository;", "names, PCM folders"], "white")
+    b(650, 80, "M3 Agent E2 for both", ["Jobs, files, sources,", "grader, Day 2 only"], "white")
+    b(860, 80, "M8 PCM live demo", ["Adapter fixes, live L2;", "every lab test"], "white")
+    b(440, 200, "M4 isvara.io reading", ["Export, articles, paths,", "search, infographics"], "white")
+    b(650, 200, "M5 isvara.io Ask", ["Agent E2, contributions,", "protection"], "white")
+    b(860, 200, "M7 isvara.io switch-over", ["Home, What's New, manual;", "old links redirected"], "white")
+    b(650, 320, "M6 isvara.io practice", ["Quiz, exam, daily question;", "catalog calculators"], "white")
 
-    k.arrow([(230, 115), (200, 115)])
-    k.arrow([(110, 150), (110, 190)])
-    k.arrow([(200, 225), (230, 225)])
-    k.arrow([(410, 205), (420, 205), (420, 115), (650, 115)])
-    k.arrow([(410, 225), (440, 225)])
-    k.arrow([(410, 245), (425, 245), (425, 335), (440, 335)])
-    k.arrow([(410, 255), (430, 255), (430, 445), (650, 445)])
-    k.arrow([(830, 115), (860, 115)])
-    k.arrow([(530, 190), (530, 170), (940, 170), (940, 150)])
-    k.arrow([(620, 320), (845, 320), (845, 160), (880, 160), (880, 150)])
-    k.arrow([(620, 350), (860, 350)])
-    k.arrow([(740, 410), (740, 390), (950, 390), (950, 370)])
-    k.arrow([(830, 445), (860, 445)])
+    k.arrow([(210, 115), (230, 115)])
+    k.arrow([(420, 115), (440, 115)])
+    k.arrow([(630, 115), (650, 115)])
+    k.arrow([(840, 115), (860, 115)])
+    k.arrow([(535, 150), (535, 200)])
+    k.arrow([(745, 150), (745, 200)])
+    k.arrow([(630, 235), (650, 235)])
+    k.arrow([(840, 235), (860, 235)])
+    k.arrow([(535, 270), (535, 355), (650, 355)])
+    k.arrow([(840, 355), (955, 355), (955, 270)])
     k.finish(str(ROOT / "images" / "roadmap.svg"))
 
 

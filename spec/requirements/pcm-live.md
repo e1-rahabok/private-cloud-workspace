@@ -2,7 +2,7 @@
 
 PCM's live demo is the L2 workspace reading the author's lab VCF Operations (https://10.115.1.81) through its Suite API. It is a separate demo with its own entry in the demo drop-down. The synthetic ACME demo stays as it is. The scope is performance and capacity management only. These requirements come from [WD-015, the live demo decision](../../DECISIONS.md), and from the author's answers to Q-WS-20 to Q-WS-39 in the [interview, round 1](../interview-round-1.md) (also in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md) until they move). Other short names are explained in the [glossary](../glossary.md).
 
-Milestones ([ROADMAP.md](../../ROADMAP.md)): M5 is one lab cluster's Cluster Performance on the L2 Performance tab; M6 is the rest of the live demo. Each requirement names its milestone.
+Milestone ([ROADMAP.md](../../ROADMAP.md)): every requirement here belongs to M8, the PCM live demo. Its first slice is one lab cluster's Cluster Performance on the L2 Performance tab: R-LIVE-001, R-LIVE-024 and R-LIVE-030.
 
 Files involved:
 
@@ -18,7 +18,7 @@ Tests named below do not exist yet unless stated; "to write" marks them. Lab sce
 
 Source: the author's answers to Q-WS-20 and Q-WS-32 in the interview, round 1 ("The synthetic and the live are 2 separate demoes. Not flippable"); WD-003, the decision to keep ACME and add a separate live demo.
 
-Milestone: M5.
+Milestone: M8, first slice.
 
 - Given PCM runs with the demo control on
 - When a person opens the demo drop-down on any page
@@ -329,11 +329,11 @@ Test scenarios:
 - T-LIVE-023b (anywhere, automated by checks/kpi_keys.py, to write). Data: the key file and PCM's catalog. Steps: run the check; then plant a key PCM reads that the file lacks. Expected: passes on the real files; fails and names the planted key.
 - T-LIVE-023c (lab, automated by checks/kpi_keys.py --lab, to write). Expected: each listed key has a sample newer than 10 minutes on at least one lab object, or is marked conditional by PCM-Adapter.
 
-### R-LIVE-024 Cluster Performance matches VCF Operations (M5)
+### R-LIVE-024 Cluster Performance matches VCF Operations
 
 Source: answer to Q-WS-35 ("okay"); [PCM D-131, percentiles labelled by rank](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L139).
 
-Milestone: M5.
+Milestone: M8, first slice.
 
 - Given one lab cluster and the 24-hour window
 - When its live Performance tab opens
@@ -345,11 +345,11 @@ Test scenarios:
 - T-LIVE-024a (lab, automated by tools/lab/live_reference.py and build/tests/live.lab.test.mjs::test_cluster_performance_matches, to write). Steps: open the tab; read its window from the API; the reference script reads the raw samples for that window and computes Now, Worst and the 5th percentile. Expected: all three equal at whole percent; Worst's time equal; a screenshot is saved.
 - T-LIVE-024b (anywhere, automated by build/tests/test_live.py::test_figures_nearest_rank, to write). Data: a fake series of 288 known samples. Expected: Now, Worst, its time and the 5th percentile equal the values computed by hand in the test.
 
-### R-LIVE-025 The other KPIs match VCF Operations (M6)
+### R-LIVE-025 The other KPIs match VCF Operations
 
 Source: answer to Q-WS-35; [PCM D-124, the four pages of release 1.0](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L132). The page list waits for round two, because the author has not answered Q-WS-21.
 
-Milestone: M6.
+Milestone: M8.
 
 - Given the live Performance and Capacity tabs of a lab cluster, a lab ESXi host and a lab VM
 - When they open on the 24-hour window
@@ -363,7 +363,7 @@ Test scenarios:
 
 Source: answer to Q-WS-23; [PCM D-091, the Performance tab above the cluster](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L98).
 
-Milestone: M6.
+Milestone: M8.
 
 - Given every lab cluster is under the selected node
 - When its Performance and Capacity tabs above the cluster open
@@ -377,7 +377,7 @@ Test scenarios:
 
 Source: answer to Q-WS-20 ("yes": live mode reads what the synthetic demo shows as placeholders); [PCM D-100, the KPI first on the Performance and Capacity tabs](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L107).
 
-Milestone: M6.
+Milestone: M8.
 
 - Given a lab VM, ESXi host or cluster
 - When its live Capacity tab opens
@@ -417,11 +417,11 @@ Source: answer to Q-WS-39 ("yes no issue at all. It's just a lab"); answer to Q-
 Test scenarios:
 - T-LIVE-029a (anywhere, automated by build/tests/test_live.py::test_facts_clean, to write). Data: the marker password and token of T-LIVE-007b, and a calendar entry in PCM's database. Steps: ask one question on each live page. Expected: no marker, no Suite API URL and no calendar entry in any recorded request.
 
-### R-LIVE-030 Agent E2 names the part that moved the KPI (M5)
+### R-LIVE-030 Agent E2 names the part that moved the KPI
 
 Source: answer to Q-WS-35 (the worst part is the one that lost the most points at the worst point, under the adapter's scoring); [WD-012, release 1.0 success](../../DECISIONS.md).
 
-Milestone: M5.
+Milestone: M8, first slice.
 
 - Given one lab cluster and the 24-hour window
 - When the person asks Agent E2 "Why the worst?" on its Cluster Performance
