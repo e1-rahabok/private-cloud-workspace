@@ -21,6 +21,8 @@ Work in one long session per slice, rather than many small ones. Each session fo
 7. It adds the session's lessons to the case log and to the chapter of the method each belongs to. In this project the agent forgot this until the author asked, so it is now a written rule.
 8. When work remains, it writes a prompt the person can paste into the next session: the files to read, the scope already settled, the tasks, and how to report.
 
+Before asking the person to approve the next milestone, the agent checks that every other item of the current one is done. In this project the agent once asked for approval of M2 while four items of M1 were open, any of which could still change M2.
+
 ## Stop conditions
 
 These go into [CLAUDE.md](../CLAUDE.md), so every session follows them:

@@ -24,11 +24,11 @@ What the product must do, and how each part of that is tested. Built in M1 from 
 
 | File | Requirements | Status |
 |---|---|---|
-| [workspace.md](requirements/workspace.md) | 6 | M2: ready for approval |
-| [kpi-definitions.md](requirements/kpi-definitions.md) | 8 | M2 (001 to 006; 004 dropped): ready for approval |
+| [workspace.md](requirements/workspace.md) | 6 | M2: draft; approved at the end of M1 |
+| [kpi-definitions.md](requirements/kpi-definitions.md) | 8 | M2 (001 to 006; 004 dropped): draft; approved at the end of M1 |
 | [isvara-content.md](requirements/isvara-content.md) | 1 | M8; the rest to write from the isvara.io plan |
-| [repositories.md](requirements/repositories.md) | 6 | M2: ready for approval |
-| [pcm-adapter.md](requirements/pcm-adapter.md) | 25 | M2 part (005 to 012): ready for approval; the rest to update |
+| [repositories.md](requirements/repositories.md) | 6 | M2: draft; approved at the end of M1 |
+| [pcm-adapter.md](requirements/pcm-adapter.md) | 25 | M2 part (005 to 012): draft; approved at the end of M1; the rest to update |
 | [lab-build.md](requirements/lab-build.md) | 4 | After release 1.0 (WD-031) |
 | [agent-e2-service.md](requirements/agent-e2-service.md) | 20 | To update for round 2 and WD-026 |
 | [pcm-live.md](requirements/pcm-live.md) | 32 | To update for round 2 |
