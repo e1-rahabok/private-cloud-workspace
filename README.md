@@ -54,7 +54,8 @@ Arrows: `-->` solid, `..>` dashed.
 | [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) | The questions only the author can answer |
 | [`spec/`](spec) | The specification: intent, then requirements with test scenarios |
 | [`tools/`](tools) | Keep the documents readable by people and machines: clickable links, SVG diagrams with generated text |
-| [CLAUDE.md](CLAUDE.md) | How Claude works across the repositories |
+| [CLAUDE.md](CLAUDE.md) | Claude's method, the same file in every repository |
+| [CLAUDE-PROJECT.md](CLAUDE-PROJECT.md) | This project's rules, tools and paths, loaded by CLAUDE.md |
 | [`checks/`](checks) | The cross-repo checks |
 | [`tutorial/`](tutorial) | How this workspace is built with AI, written to teach the method to others |
 

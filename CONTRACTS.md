@@ -17,7 +17,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 - **Implementer:** VCF vCommunity Adapter, `Management Pack/app/metrics/`: one module per KPI, a `METRICS` table of `Metric` rows (name, unit, five limits, `skip_when_green`) and a `LABELS` table that gives a row its catalog name.
 - **Consumer:** PCM shows the parts under the catalog names (PCM D-113, D-115) in [`spec/catalog/l2.yaml`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/l2.yaml). Not checked yet: PCM names parts in prose (ROADMAP M2).
 - **The check** matches each sub-metric by name (the adapter's label against the catalog name without its unit) and compares the five limits and excluded-when-green, for Cluster Performance, ESXi Performance, VM Performance, Guest OS Performance, Cluster Risk and Cluster Consumption.
-- **To change a KPI:** change the documentation & catalog first, then the PCM adapter, in the same session, with the check run before both merges.
+- **To change a KPI:** change Agent E2's knowledge file and catalog first, then the VCF vCommunity Adapter, in the same session, with the check run before both merges.
 - **Status:** limits and excluded-when-green agree for every sub-metric; the known name gaps are to close by [R-KPI-003](spec/requirements/kpi-definitions.md). [`checks/run_all.py`](checks/run_all.py) prints the counts.
 
 ## C2 KPI metric keys
@@ -32,7 +32,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 - **Owner:** agent-e2, [`harness/answer_service.py`](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py) (its docstring is the specification). Endpoints: `POST /v1/answer`, `POST /v1/topic`, `POST /v1/suggest` (page and card), `GET /v1/health`.
 - **Consumer:** PCM, [`build/pcm_proto/agent_e2.py`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/build/pcm_proto/agent_e2.py), generated from [`spec/catalog/settings.yaml`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/catalog/settings.yaml) and [`spec/workspaces/l2/frame.md`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/workspaces/l2/frame.md).
 - **The check** starts the real service in mock mode (no model, no network) and calls it with PCM's own client code. It checks every field PCM reads, by name and type, on the raw responses: PCM's client turns errors into `source: unavailable`, which would hide a broken contract.
-- **Status:** running; 4 endpoints, 0 differences.
+- **Status:** running; [`checks/run_all.py`](checks/run_all.py) prints the endpoints and the differences.
 
 ## C4 Knowledge content for isvara
 
