@@ -6,10 +6,10 @@ What <area> must do. Each requirement has an ID, a source, the behaviour in Give
 
 Source: <the question and answer, or the decision, this comes from>.
 
-Given <the situation>
-When <what happens>
-Then <what the user or the system sees>
-And <what must not happen, or must not change>
+- Given <the situation>
+- When <what happens>
+- Then <what the user or the system sees>
+- And <what must not happen, or must not change>
 
 Test scenarios:
 - T-<AREA>-001a (anywhere, automated by <test name, or "to write">): <data>, <steps>, <expected result>.
@@ -19,9 +19,9 @@ Test scenarios:
 
 Source: <...>.
 
-Given <...>
-When <...>
-Then <...>
+- Given <...>
+- When <...>
+- Then <...>
 
 Test scenarios:
 - T-<AREA>-002a (anywhere, ...): <...>.

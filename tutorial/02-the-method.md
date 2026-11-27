@@ -51,7 +51,7 @@ The specification is what the people maintain. The code is generated from it and
 
 Anything that has to outlast a conversation goes into a file in the repository. A conversation is a good place to think something through, but the next session cannot see it.
 
-When a fact appears in more than one place, one copy is the master and the others are generated from it or checked against it.
+- When a fact appears in more than one place, one copy is the master and the others are generated from it or checked against it.
 
 Every place where two parts depend on each other gets a script that fails when they stop agreeing.
 

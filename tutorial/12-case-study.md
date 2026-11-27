@@ -116,3 +116,4 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - Describe how two parts relate by mechanism: code, network, data, dependency or contract. A word with several meanings, such as "part of", hides which one is meant.
 - Updating the lesson log is part of finishing a session. Without a written rule, the agent forgot it.
 - The strongest model available, at high effort, made every mistake in this log. The files, the checks and the person's questions are what stopped them repeating.
+- Hard-wrapped Markdown read as one run-on sentence on GitHub. The agent wrapped lines by habit; a rule in CLAUDE.md and a one-time reflow of 46 files fixed it.

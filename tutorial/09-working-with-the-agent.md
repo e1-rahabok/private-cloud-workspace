@@ -16,7 +16,7 @@ The table above says what the agent does. This section is about how it should th
 
 An agent is very good at carrying out instructions, and that is exactly the risk. In this project the author shared a table of reasons why visitors come to the public website: to read, ask, listen, solve, catch up, and so on. It was meant as input for a design discussion. Within the hour the agent had recorded it as a formal decision, rebuilt the whole site plan around it, added six features and merged the change. The author's reply was short: you are behaving like a doer; I need a thinker; that was a suggestion, not an instruction.
 
-When the agent then did think about it, it found real weaknesses. The table mixed what visitors want done with the format they prefer. It multiplied the number of AI-written forms of content that nobody had time to review. And it left out what made the site unusual. The author then proposed a better backbone of three learning paths, and that discussion produced most of the final design. None of this happens if the agent executes first.
+- When the agent then did think about it, it found real weaknesses. The table mixed what visitors want done with the format they prefer. It multiplied the number of AI-written forms of content that nobody had time to review. And it left out what made the site unusual. The author then proposed a better backbone of three learning paths, and that discussion produced most of the final design. None of this happens if the agent executes first.
 
 What a co-architect does differently:
 
@@ -32,7 +32,7 @@ Write these expectations into the agent's working rules ([CLAUDE.md](../CLAUDE.m
 
 ## Asking good questions
 
-When the agent does ask, each question should stand on its own: the files involved, what they say, what is blocked, and a recommendation with its reason. The person can then answer in a word. [Chapter 4](04-the-interview.md) covers this in detail.
+- When the agent does ask, each question should stand on its own: the files involved, what they say, what is blocked, and a recommendation with its reason. The person can then answer in a word. [Chapter 4](04-the-interview.md) covers this in detail.
 
 ## Correcting the agent
 

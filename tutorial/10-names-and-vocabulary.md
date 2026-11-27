@@ -41,7 +41,7 @@ Numbers change again when scope changes. When a milestone was removed from relea
 
 ## Renaming everywhere
 
-When a name or number stops being true, rename it in every file. Never add a note that explains the exception, because each note is one more thing every session must read and remember. Renaming across many files is safe only with checks: here, scripts fail on a broken link or a requirement that cites an ID that does not exist ([chapter 7](07-checks.md)).
+- When a name or number stops being true, rename it in every file. Never add a note that explains the exception, because each note is one more thing every session must read and remember. Renaming across many files is safe only with checks: here, scripts fail on a broken link or a requirement that cites an ID that does not exist ([chapter 7](07-checks.md)).
 
 A planned check goes further: a fresh session sees only the folder tree and guesses what each folder holds. Every wrong guess is a name to fix.
 

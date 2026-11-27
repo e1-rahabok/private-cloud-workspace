@@ -22,7 +22,7 @@ This decides which pages must be live, which can stay ACME only, and what "convi
 
 - **Recommendation:** you name the audience (for example customers' operations leaders, or Broadcom colleagues) and the one sentence they should repeat afterwards.
 
-**Answer:** I've been demoing it to VMware colleagues and customers. They should say it's useful and they want to fork the repository private so they can customise and deploy in their private cloud. 
+**Answer:** I've been demoing it to VMware colleagues and customers. They should say it's useful and they want to fork the repository private so they can customise and deploy in their private cloud.
 
 ### Q-I3 What is Agent E2's stage 1 success, separate from its stage 2 release gate? (blocks M6)
 
@@ -38,7 +38,7 @@ It runs inside VCF Operations for people other than PCM. Renaming its adapter ki
 
 - **Recommendation:** stage 1 changes only labels, documentation, the fixes in Q-1 and Q-14 to Q-17, and issue #85. No change to the adapter kind, manifest name, keys or image path.
 
-**Answer:** It can change anything. No issue on upgrade. 
+**Answer:** It can change anything. No issue on upgrade.
 
 ### Q-I5 Who is isvara.io for, what is success, and what is not done? (blocks M8)
 
@@ -46,7 +46,7 @@ Today it is built from the books for their readers. After the revamp its source 
 
 - **Recommendation:** for VMware administrators and architects learning to run a private cloud. Success: every approved knowledge file is a page people can read, Agent E2 answers with sources, and the exam exists. Not done: live connections, sign-in, paid content.
 
-**Answer:** Agree. The knowledge should be bookmarkable. Today each HTML page is very deep, making it hard to find the information. The page navigation is poor. Hard to tell where we are in the overall structure. 
+**Answer:** Agree. The knowledge should be bookmarkable. Today each HTML page is very deep, making it hard to find the information. The page navigation is poor. Hard to tell where we are in the overall structure.
 
 ## B. Quality bars for Agent E2's answers
 
@@ -64,7 +64,7 @@ Agent E2's own plan defines release 1.0 by stage 2 items: a local model, an offl
 
 - **Recommendation:** add a "Stage 1" exit to agent-e2's plan: model chosen (Q-7), Q-5 passed, C3 passing for PCM and isvara.io, time and cost measured. Mark the local items as stage 2. Rename agent-e2's milestones A1 to A6.
 
-**Answer:** Update Agent E2's plan. It's outdated. 
+**Answer:** Update Agent E2's plan. It's outdated.
 
 ### Q-7 Which model and reasoning setting serve PCM and isvara.io? (blocks M6)
 
@@ -72,7 +72,7 @@ Agent E2's service runs a placeholder, `google/gemma-4-31b-it`, until its model 
 
 - **Recommendation:** one configuration for both apps: the open-weight model agent-e2's round picks (so stage 2 stays possible), reasoning off unless Q-5 shows a gain. Keep the placeholder until the round runs.
 
-**Answer:** Gemma 4 31B, or later version when it comes. 
+**Answer:** Gemma 4 31B, or later version when it comes.
 
 ### Q-8 How long may an answer take, and must it stream?
 
@@ -88,7 +88,7 @@ One gateway key and one team budget serve the benchmark, PCM and isvara.io; a be
 
 - **Recommendation:** three keys (benchmark, PCM lab, isvara.io), each with a budget and an alert at 80%. AskIO's cost per answer, measured from its question log, is the baseline Agent E2 must not exceed. A per-IP rate limit on isvara.io.
 
-**Answer:** Today I manually track via vercel.com. I adjusted the budget if I need more. During development, since we're benchmarking, budget per benchmark is $100. Write down as a to do list that after isvara.io goes live, you keep the budget within $50 per month. My Vercel subscription is already $40. 
+**Answer:** Today I manually track via vercel.com. I adjusted the budget if I need more. During development, since we're benchmarking, budget per benchmark is $100. Write down as a to do list that after isvara.io goes live, you keep the budget within $50 per month. My Vercel subscription is already $40.
 
 ### Q-10 May unreviewed knowledge files reach answers and public pages?
 
@@ -153,7 +153,7 @@ The catalog says it uses the adapter's model ([thresholds-performance.yaml](http
 
 - **Recommendation:** add worked examples to the catalog (inputs, expected score) and have C1 run them through the adapter's scoring code. Grey is not in stage 1.
 
-**Answer:** if we're changing formula, yes. 
+**Answer:** if we're changing formula, yes.
 
 ### Q-15 Where do the Cluster Performance score bands and the closure levels live?
 
@@ -161,7 +161,7 @@ Cluster Risk and Cluster Consumption have score rows in the catalog; Cluster Per
 
 - **Recommendation:** add a score row for Cluster Performance to the catalog, and extend C1 to the score rows and closure levels.
 
-**Answer:** Check again. All their logic should come from Agent E2. PCM Adapter must implement the same. 
+**Answer:** Check again. All their logic should come from Agent E2. PCM Adapter must implement the same.
 
 ### Q-16 Close for Business: one Risk level for every cluster, or one for production and another for non-production?
 
@@ -193,7 +193,7 @@ PCM colours parts with 20-second levels ([D-108](https://github.com/e1-rahabok/p
 
 - **Recommendation:** record the statistic per key in PCM's key list (Q-29) and colour by the matching catalog interval; leave a part uncoloured when no level matches.
 
-**Answer:** 20-second. If a metric does not have the word peak, it's likely a 5-minute average. 
+**Answer:** 20-second. If a metric does not have the word peak, it's likely a 5-minute average.
 
 ## D. PCM live mode
 
@@ -203,7 +203,7 @@ PCM's spec says release 1.0 has no VCF Operations connector and shows placeholde
 
 - **Recommendation:** yes. Every "placeholder" rule becomes "synthetic mode: placeholder or story values; live mode: read from VCF Operations, with time and source".
 
-**Answer:** yes. I already replied much earlier that PCM will add A NEW drop down called Live. The synthetic remains as they are. 
+**Answer:** yes. I already replied much earlier that PCM will add A NEW drop down called Live. The synthetic remains as they are.
 
 ### Q-21 Which pages are live in stage 1? (blocks M6)
 
@@ -235,7 +235,7 @@ ACME derives class from a letter in the cluster name ([estate.yaml](https://gith
 
 - **Recommendation:** a small live mapping file: the lab is one region and one location with a set time zone; class and environment come from vSphere tags read through VCF Operations; untagged objects show as "Unclassified". Tag the M6 cluster Gold.
 
-**Answer:** All these are only applicable in synthetic. 
+**Answer:** All these are only applicable in synthetic.
 
 ### Q-25 Which inventory tree does live mode build?
 
@@ -243,7 +243,7 @@ D-087 and PCM's catalog say Location, VCF instance, workload domain, down to the
 
 - **Recommendation:** D-087's path, filled from VCF Operations' VCF topology where the lab has it, otherwise vCenter as the workload domain. Fix the design text.
 
-**Answer:** Use the inventory from VCF Operations. It starts with VCF Instance. 
+**Answer:** Use the inventory from VCF Operations. It starts with VCF Instance.
 
 ### Q-26 What is an object's ID in live mode?
 
@@ -255,7 +255,7 @@ Synthetic IDs are names such as SG-S-04. Names can repeat across vCenters and ch
 
 ### Q-27 When is a value stale, and what does PCM show? (blocks M6)
 
-When data is missing, the adapter publishes nothing, and a "latest" read returns the last old value as if current ([metrics/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md#L138)). Collection also stops after each pack upgrade until restarted.
+- When data is missing, the adapter publishes nothing, and a "latest" read returns the last old value as if current ([metrics/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md#L138)). Collection also stops after each pack upgrade until restarted.
 
 - **Recommendation:** a key on an object is stale when its newest sample is older than 15 minutes (3 cycles); "Now" then shows "No data" and the time of the last sample. A failed read or failed login marks the whole source stale. Gaps break the line. One test per case.
 
@@ -267,7 +267,7 @@ Some keys are missing on purpose: tiering keys on clusters without memory tierin
 
 - **Recommendation:** "Not applicable" for keys absent by design, marked conditional in the key list; "Full: no usable capacity" and "No running host" for the Consumption cases; partial reads accepted for the small lab.
 
-**Answer:** we should fix them in the PCM Adapter. 
+**Answer:** we should fix them in the PCM Adapter.
 
 ### Q-29 Where is the list of keys PCM reads? (blocks M6)
 
@@ -275,7 +275,7 @@ PCM's spec names keys only for scores; parts have names but no keys ([l2.yaml](h
 
 - **Recommendation:** one file in PCM, `spec/catalog/vcf-operations-keys.yaml`: key, object kind, unit, statistic, catalog name, conditional or not. C2 compares it with the keys the adapter's KPI modules publish. Fix #85 before M7.
 
-**Answer:** You will need to get from a live environment. 
+**Answer:** You will need to get from a live environment.
 
 ### Q-30 Does live mode store metrics, or read through on each request?
 
@@ -291,7 +291,7 @@ The check publishes once per fixed window, set on the adapter instance, not on t
 
 - **Recommendation:** PCM shows the published values with their window end. It reads the settings from the adapter instance if the read-only account can; otherwise it shows "(default assumed)".
 
-**Answer:** PCM gets from the PCM Adapter. Do you know how to get it? 
+**Answer:** PCM gets from the PCM Adapter. Do you know how to get it?
 
 ### Q-32 How is the mode carried, and what happens to `now` and `enable`?
 
@@ -299,7 +299,7 @@ A server-wide switch lets two viewers flip each other's data; `now` and `enable`
 
 - **Recommendation:** a per-request parameter `data=acme|live` in the URL, set by the demo control. In live mode, `now` and `enable` are refused with a visible note.
 
-**Answer:** I think you confuse. The synthetic and the live are 2 separate demoes. Not flippable. The drop down menu clearly shows they are 2 different solution altogether. 
+**Answer:** I think you confuse. The synthetic and the live are 2 separate demoes. Not flippable. The drop down menu clearly shows they are 2 different solution altogether.
 
 ### Q-33 What do actions, stories, cases and the calendar do in live mode?
 
@@ -307,7 +307,7 @@ SOP buttons and approvals act on synthetic objects ([deploy/README.md](https://g
 
 - **Recommendation:** every write is disabled in live mode ("Read-only lab connection"); no stories; findings, cases and Improve show "Not in Live VCF Operations"; records are kept apart by mode.
 
-**Answer:** All these are out of scope in 1.0. Focus on performance and capacity management. Ignore the rest. 
+**Answer:** All these are out of scope in 1.0. Focus on performance and capacity management. Ignore the rest.
 
 ### Q-34 How does PCM sign in to VCF Operations?
 
@@ -349,7 +349,7 @@ PCM's tests assume synthetic data with a fixed clock.
 - The host power and maintenance values the adapter has not checked live (issue [#2](https://github.com/e1-rahabok/PCM-Adapter/issues/2)).
 - **Recommendation:** Claude reads all four from the lab, read-only, and records them in SYSTEM.md; you turn on the packet counters.
 
-**Answer:** the physical host does not have memory tiering. Create the automatic build https://github.com/e1-rahabok/lab-build using Virtual ESXi. 
+**Answer:** the physical host does not have memory tiering. Create the automatic build https://github.com/e1-rahabok/lab-build using Virtual ESXi.
 
 ### Q-39 May live lab facts go to the cloud model?
 
@@ -376,7 +376,7 @@ The adapter kind `vCommunity`, the manifest name, the keys and the container ima
 
 - **Recommendation:** keep all four. Change only display names, titles, badges and repository links. Keep the pak file name.
 
-**Answer:** Change all. No issue on installed instances at all. 
+**Answer:** Change all. No issue on installed instances at all.
 
 ### Q-3 Renaming references in the child repositories
 
@@ -384,7 +384,7 @@ The old repository name appears in agent-e2 (10 files), PCM-Adapter (12) and pri
 
 - **Recommendation:** one pull request per repository in M2, leaving archive files as they are.
 
-**Answer:** agree. 
+**Answer:** agree.
 
 ## F. isvara.io
 
@@ -419,7 +419,7 @@ The books had 5 parts and 50 chapters; the knowledge base has 288 topic files an
 
 - **Recommendation:** a small ordered list in agent-e2 (sections, each a list of file IDs); its check confirms every published file appears once.
 
-**Answer:** This is the hard part. You need to think how to present the topic. Today isvara presents the book as HTML, which is bad. It should fully take advantage of web experience. It should present multiple ways to slice and dice the knowledge. 
+**Answer:** This is the hard part. You need to think how to present the topic. Today isvara presents the book as HTML, which is bad. It should fully take advantage of web experience. It should present multiple ways to slice and dice the knowledge.
 
 ### Q-44 Do old `/read/...` links redirect, and where does each page's search description come from?
 
@@ -435,7 +435,7 @@ AskIO writes `/read/...` links into its text, and the eval checks for them ([eva
 
 - **Recommendation:** isvara.io turns Agent E2's `files_read` into a Sources list of page links, through the export's ID-to-page map.
 
-**Answer:** User must be able to click on the cited page , as he may want to read the actual source. Tell him the source is not designed for human, but for LLM. 
+**Answer:** User must be able to click on the cited page , as he may want to read the actual source. Tell him the source is not designed for human, but for LLM.
 
 ### Q-46 What must C3 add for isvara.io?
 
@@ -507,7 +507,7 @@ The eval prints a count and never fails ([evals/run.mjs](https://github.com/e1-r
 
 - **Recommendation:** rewrite the expectations from the knowledge base; the eval fails on any miss. Pass: all 20 answers cite a published page and contain each question's key fact. The injection battery is unchanged, with 0 violations.
 
-**Answer:** I don't know what you mean by eval pass. Explain the context. 
+**Answer:** I don't know what you mean by eval pass. Explain the context.
 
 ### Q-55 Where is the revamp built, and when is it done? (blocks M8)
 
