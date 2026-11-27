@@ -10,7 +10,7 @@ Files involved:
 
 ### R-KPI-001 Every KPI part has one complete row in the catalog
 
-Source: W-001; answers to Q-1, Q-15 and Q-19 (round 1); Q-81 and Q-89 (round 2: the interval decides the statistic; a key column in every row).
+Source: WD-001; answers to Q-1, Q-15 and Q-19 (round 1); Q-81 and Q-89 (round 2: the interval decides the statistic; a key column in every row).
 
 Given any KPI that PCM-Adapter publishes (Cluster Performance, ESXi Performance, VM Performance, Guest OS Performance, Cluster Risk, Cluster Consumption)
 When its catalog rows are read
@@ -23,7 +23,7 @@ Test scenarios:
 
 ### R-KPI-002 PCM-Adapter computes each part with the catalog's limits
 
-Source: W-001; answers to Q-15 and Q-16.
+Source: WD-001; answers to Q-15 and Q-16.
 
 Given a part in the catalog
 When PCM-Adapter's KPI module for that KPI is read

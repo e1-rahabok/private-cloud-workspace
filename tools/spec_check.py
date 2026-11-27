@@ -2,7 +2,7 @@
 
 Rules (spec/requirements/README.md and requirement R-WS-003):
 - A requirement is a heading "### R-AREA-nnn Title". Its ID is unique across all files.
-- It has a "Source:" line naming at least one existing question (Q-), workspace decision (W-) or
+- It has a "Source:" line naming at least one existing question (Q-), workspace decision (WD-) or
   PCM decision (D-). Questions are found in spec/interview-round-*.md and OPEN-QUESTIONS.md,
   workspace decisions in DECISIONS.md, PCM decisions in the private-cloud-manager clone.
 - It has at least one test scenario: a line "- T-AREA-nnnx (anywhere|lab, ...)" whose number is
@@ -24,7 +24,7 @@ PCM_DECISIONS = ROOT.parent / "private-cloud-manager" / "decisions.md"
 REQ = re.compile(r"^### (R-[A-Z0-9]+-\d{3})\b", re.M)
 SCEN = re.compile(r"^- (T-[A-Z0-9]+-\d{3}[a-z]) \(([a-z]+)", re.M)
 SOURCE = re.compile(r"^Source:(.*)$", re.M)
-CITED = re.compile(r"\b(Q-I?\d+|W-\d{3}|D-\d{3})\b")
+CITED = re.compile(r"\b(Q-I?\d+|WD-\d{3}|D-\d{3})\b")
 
 
 def known_ids() -> set[str]:
@@ -32,7 +32,7 @@ def known_ids() -> set[str]:
     for f in list((ROOT / "spec").glob("interview-round-*.md")) + [ROOT / "OPEN-QUESTIONS.md"]:
         if f.exists():
             ids |= set(re.findall(r"^#{2,4} (Q-I?\d+)\b", f.read_text(encoding="utf-8"), re.M))
-    ids |= set(re.findall(r"^## (W-\d{3}) ", (ROOT / "DECISIONS.md").read_text(encoding="utf-8"), re.M))
+    ids |= set(re.findall(r"^## (WD-\d{3}) ", (ROOT / "DECISIONS.md").read_text(encoding="utf-8"), re.M))
     if PCM_DECISIONS.exists():
         ids |= set(re.findall(r"^\| (D-\d{3}) \|", PCM_DECISIONS.read_text(encoding="utf-8"), re.M))
     return ids

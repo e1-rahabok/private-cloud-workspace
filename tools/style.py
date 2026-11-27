@@ -5,7 +5,7 @@ The rules are Agent E2's, kept in one place:
 - agent-e2/project/tools/rules_check_values.yaml, avoid_ai_speak: the flagged phrases, read from the
   clone next to this repository.
 
-Documents fall into two groups (W-023 in DECISIONS.md):
+Documents fall into two groups (WD-023 in DECISIONS.md):
 - For people: plain prose. Checked for flagged phrases, sentence headings (questions, How/Why/What
   openers), long headings, and tables too wide or too wordy for GitHub.
 - For machines: CLAUDE.md files, requirements and templates. Optimised for an agent to follow, so only the

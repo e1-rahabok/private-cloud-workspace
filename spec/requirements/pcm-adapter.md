@@ -9,7 +9,7 @@ What [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) must do in release
 - **Area:** the management pack in VCF Operations, its build and lab tools, and its side of two contracts: [C1, the KPI definitions](../glossary.md#c1), and [C2, the KPI metric keys](../glossary.md#c2), both described in [CONTRACTS.md](../../CONTRACTS.md).
 - **Milestones** ([ROADMAP.md](../../ROADMAP.md)): R-ADP-001 to R-ADP-018 and R-ADP-021 to R-ADP-022 belong to M2, closing the known gaps. R-ADP-019, R-ADP-020 and R-ADP-023 are needed before M6, the first live cluster in PCM. R-ADP-007 is needed before M7, when PCM also reads hosts, VMs and vCenter. R-ADP-024 depends on the new lab repository [lab-build](https://github.com/e1-rahabok/lab-build).
 - **Keys** are written with the proposed prefix `PCM|`. Today the prefix is `vCommunity|`.
-- **The adapter may change anything.** The author confirmed that no installed instance or upgrade path needs protecting: Q-I4 and Q-2 in [round 1](../interview-round-1.md), recorded as decisions [W-007 and W-016](../../DECISIONS.md).
+- **The adapter may change anything.** The author confirmed that no installed instance or upgrade path needs protecting: Q-I4 and Q-2 in [round 1](../interview-round-1.md), recorded as decisions [WD-007 and WD-016](../../DECISIONS.md).
 - **How lab scenarios run.** From the author's laptop over VPN, with the repository's own tools ([tools/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/README.md)): [build.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/build/build.ps1), [install.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/install/install.ps1), [restart.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/restart/restart.ps1), then one collection cycle, then [validate.ps1](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.ps1). This sequence is called "install and validate" below. The live validation checks the build installed on the lab, so a lab scenario passes only after that build is installed ([validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L12)).
 - **Test names marked "(new)"** do not exist yet. Each is written as part of its requirement.
 
@@ -17,7 +17,7 @@ What [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) must do in release
 
 ### R-ADP-001 The pack has its own identity in VCF Operations
 
-Source: Q-I4 and Q-2 in [interview round 1](../interview-round-1.md) ("It can change anything", "Change all"); [W-016](../../DECISIONS.md), the decision on PCM-Adapter's scope; [W-007](../../DECISIONS.md), the rename.
+Source: Q-I4 and Q-2 in [interview round 1](../interview-round-1.md) ("It can change anything", "Change all"); [WD-016](../../DECISIONS.md), the decision on PCM-Adapter's scope; [WD-007](../../DECISIONS.md), the rename.
 
 Given the pack is built from `main`
 When `build.ps1` finishes
@@ -33,7 +33,7 @@ Test scenarios:
 
 ### R-ADP-002 Every key has the new prefix, set in one place
 
-Source: Q-2 in [round 1](../interview-round-1.md); [W-016](../../DECISIONS.md).
+Source: Q-2 in [round 1](../interview-round-1.md); [WD-016](../../DECISIONS.md).
 
 Given any collection cycle
 When the adapter publishes metrics and properties
@@ -60,7 +60,7 @@ Test scenarios:
 
 ### R-ADP-004 The shipped content uses the new keys and names
 
-Source: Q-2 in [round 1](../interview-round-1.md); [W-016](../../DECISIONS.md).
+Source: Q-2 in [round 1](../interview-round-1.md); [WD-016](../../DECISIONS.md).
 
 Given the content in [Management Pack/content](https://github.com/e1-rahabok/PCM-Adapter/tree/main/Management%20Pack/content): dashboards, views, reports, alert definitions and super metrics (38 files name "vCommunity" today)
 When the pak is built
@@ -92,7 +92,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-1 in [round 1](../interview-round-1.md) ("For key, adapter is correct. For name, Agent E2 is correct."); Q-89 in [round 2](../interview-round-2.md) (a key column in every catalog row); Q-88 in [round 3](../interview-round-3.md) (the run queue is per vCPU); [W-016](../../DECISIONS.md); [W-001](../../DECISIONS.md), Agent E2 as the source of domain knowledge.
+Source: Q-1 in [round 1](../interview-round-1.md) ("For key, adapter is correct. For name, Agent E2 is correct."); Q-89 in [round 2](../interview-round-2.md) (a key column in every catalog row); Q-88 in [round 3](../interview-round-3.md) (the run queue is per vCPU); [WD-016](../../DECISIONS.md); [WD-001](../../DECISIONS.md), Agent E2 as the source of domain knowledge.
 
 Given a KPI row in any of the six KPI modules under [Management Pack/app/metrics](https://github.com/e1-rahabok/PCM-Adapter/tree/main/Management%20Pack/app/metrics)
 When the adapter definition is built
@@ -126,7 +126,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-19 in [round 1](../interview-round-1.md) ("20-second. If a metric does not have the word peak, it's likely a 5-minute average."); Q-81 in [round 2](../interview-round-2.md) (the catalog's interval is the rule); [W-016](../../DECISIONS.md).
+Source: Q-19 in [round 1](../interview-round-1.md) ("20-second. If a metric does not have the word peak, it's likely a 5-minute average."); Q-81 in [round 2](../interview-round-2.md) (the catalog's interval is the rule); [WD-016](../../DECISIONS.md).
 
 Given a KPI row whose catalog limits are given for the `20s` interval, a 20-second peak
 When the adapter reads its input from VCF Operations
@@ -145,7 +145,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-14 in [round 1](../interview-round-1.md) ("if we're changing formula, yes"); Q-87 in [round 2](../interview-round-2.md) (the formula belongs to contract C1, checked by worked examples); [W-016](../../DECISIONS.md) ("All scoring logic comes from Agent E2").
+Source: Q-14 in [round 1](../interview-round-1.md) ("if we're changing formula, yes"); Q-87 in [round 2](../interview-round-2.md) (the formula belongs to contract C1, checked by worked examples); [WD-016](../../DECISIONS.md) ("All scoring logic comes from Agent E2").
 
 Given a worked example in the Agent E2 catalog: the sub-metric values of one KPI and the expected KPI
 When the values go through the adapter's scoring, `publish_kpi()` in [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py#L198), including the rounding to two decimals and the "higher is worse" flip
@@ -160,7 +160,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-15 in [round 1](../interview-round-1.md) ("All their logic should come from Agent E2. PCM Adapter must implement the same."); [W-016](../../DECISIONS.md).
+Source: Q-15 in [round 1](../interview-round-1.md) ("All their logic should come from Agent E2. PCM Adapter must implement the same."); [WD-016](../../DECISIONS.md).
 
 Given the catalog's score rows for Cluster Risk ([thresholds-risk.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-risk.yaml#L23)) and Cluster Consumption ([thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L40)), and a score row for Cluster Performance that agent-e2 adds first (the catalog has none today)
 When the adapter colours a KPI value, in `band()` of [periodic_cluster_check.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/cluster/periodic_cluster_check.py#L97)
@@ -174,7 +174,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-15 and Q-16 in [round 1](../interview-round-1.md) (Q-16: "agree", one Cluster Risk level for every cluster); [W-016](../../DECISIONS.md).
+Source: Q-15 and Q-16 in [round 1](../interview-round-1.md) (Q-16: "agree", one Cluster Risk level for every cluster); [WD-016](../../DECISIONS.md).
 
 Given the catalog's Close for Business decisions in [thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml#L55)
 When the Periodic Cluster Check decides Close for Business
@@ -192,7 +192,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-17 in [round 1](../interview-round-1.md) ("agree"); [W-016](../../DECISIONS.md).
+Source: Q-17 in [round 1](../interview-round-1.md) ("agree"); [WD-016](../../DECISIONS.md).
 
 Given a cluster with HA admission control and a Capacity Buffer (Demand) in its policy
 When Cluster Consumption is calculated
@@ -205,7 +205,7 @@ Test scenarios:
 
 ## Explicit data states
 
-The adapter today publishes nothing for a row with no data. A Suite API "latest" read then returns the last old value as if it were current ([metrics/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md#L138)). The author asked for this to be fixed in the adapter (Q-28), so that PCM shows what the adapter publishes and says "No data" when it is stale ([W-015](../../DECISIONS.md)).
+The adapter today publishes nothing for a row with no data. A Suite API "latest" read then returns the last old value as if it were current ([metrics/README.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics/README.md#L138)). The author asked for this to be fixed in the adapter (Q-28), so that PCM shows what the adapter publishes and says "No data" when it is stale ([WD-015](../../DECISIONS.md)).
 
 The states use one code each:
 
@@ -221,7 +221,7 @@ The states use one code each:
 
 ### R-ADP-013 Every row and every KPI has a state, every cycle
 
-Source: Q-28 in [round 1](../interview-round-1.md) ("we should fix them in the PCM Adapter"); [W-016](../../DECISIONS.md) ("Data absent by design is made explicit by the adapter"); Q-27 and [W-015](../../DECISIONS.md) (PCM says "No data" when a value is stale).
+Source: Q-28 in [round 1](../interview-round-1.md) ("we should fix them in the PCM Adapter"); [WD-016](../../DECISIONS.md) ("Data absent by design is made explicit by the adapter"); Q-27 and [WD-015](../../DECISIONS.md) (PCM says "No data" when a value is stale).
 
 Given an object with a KPI: a cluster, host or VM
 When a collection cycle publishes that KPI
@@ -237,7 +237,7 @@ Test scenarios:
 
 ### R-ADP-014 Memory tiering rows say when a cluster has no tiering
 
-Source: Q-28 and Q-38 in [round 1](../interview-round-1.md) (Q-38: "the physical host does not have memory tiering"); [W-018](../../DECISIONS.md), the lab-build decision.
+Source: Q-28 and Q-38 in [round 1](../interview-round-1.md) (Q-38: "the physical host does not have memory tiering"); [WD-018](../../DECISIONS.md), the lab-build decision.
 
 Given a cluster where no host has an NVMe memory tier (`mem:NVMe|memory_tier_size` is 0 or missing)
 When Cluster Risk and Cluster Consumption are published
@@ -344,7 +344,7 @@ Linking a cluster to its instance takes three more steps:
 
 ### R-ADP-020 Each cluster carries its check settings and each result its window
 
-Source: Q-31 in [round 1](../interview-round-1.md) ("PCM gets from the PCM Adapter"); [W-015](../../DECISIONS.md) (PCM shows what PCM-Adapter publishes).
+Source: Q-31 in [round 1](../interview-round-1.md) ("PCM gets from the PCM Adapter"); [WD-015](../../DECISIONS.md) (PCM shows what PCM-Adapter publishes).
 
 Given a cluster collected by a PCM-Adapter instance
 When a collection cycle runs
@@ -360,7 +360,7 @@ Test scenarios:
 
 ### R-ADP-021 Reading and validating use a read-only account
 
-Source: Q-40 in [round 1](../interview-round-1.md) ("agree": two DPAPI files in `$HOME\.secrets\`); [W-011](../../DECISIONS.md), the decision on lab credentials.
+Source: Q-40 in [round 1](../interview-round-1.md) ("agree": two DPAPI files in `$HOME\.secrets\`); [WD-011](../../DECISIONS.md), the decision on lab credentials.
 
 Given the author's laptop, with the read-only VCF Operations login saved as a DPAPI file in `$HOME\.secrets\` (`Export-Clixml`, the format in [validate.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md#L24): `Url` and `Credential`)
 When validate.ps1 or screenshot.ps1 runs with no `-SecretFile`
@@ -374,7 +374,7 @@ Test scenarios:
 
 ### R-ADP-022 Installing and restarting use the admin account
 
-Source: Q-40 in [round 1](../interview-round-1.md); [W-011](../../DECISIONS.md).
+Source: Q-40 in [round 1](../interview-round-1.md); [WD-011](../../DECISIONS.md).
 
 Given the admin login saved as a second DPAPI file in `$HOME\.secrets\`
 When install.ps1 or restart.ps1 runs with no `-SecretFile`
@@ -390,7 +390,7 @@ Test scenarios:
 
 ### R-ADP-023 The inputs not yet seen live are checked on the lab
 
-Source: Q-38 in [round 1](../interview-round-1.md) (lab facts to confirm before M6); issue [#2](https://github.com/e1-rahabok/PCM-Adapter/issues/2) ("Verify on a live system"); [W-018](../../DECISIONS.md).
+Source: Q-38 in [round 1](../interview-round-1.md) (lab facts to confirm before M6); issue [#2](https://github.com/e1-rahabok/PCM-Adapter/issues/2) ("Verify on a live system"); [WD-018](../../DECISIONS.md).
 
 Given the lab VCF Operations
 When a read-only script reads the lab hosts and VMs
@@ -403,7 +403,7 @@ Test scenarios:
 
 ### R-ADP-024 Memory tiering is tested on nested hosts built by lab-build
 
-Source: Q-38 in [round 1](../interview-round-1.md) ("Create the automatic build https://github.com/e1-rahabok/lab-build using Virtual ESXi"); [W-018](../../DECISIONS.md); requirements in [lab-build.md](lab-build.md).
+Source: Q-38 in [round 1](../interview-round-1.md) ("Create the automatic build https://github.com/e1-rahabok/lab-build using Virtual ESXi"); [WD-018](../../DECISIONS.md); requirements in [lab-build.md](lab-build.md).
 
 Depends on lab-build: a cluster of nested ESXi hosts with an NVMe memory tier, monitored by the lab VCF Operations.
 

@@ -20,14 +20,14 @@ You said Agent E2's plan is outdated (Q-6). Proposed milestones, replacing M1 to
 
 | # | Milestone | Done when |
 |---|---|---|
-| A1 | Repository cleaned for stage 1 | Older benchmarks removed (Q-59); stage 2 text marked; W-019 applied |
+| A1 | Repository cleaned for stage 1 | Older benchmarks removed (Q-59); stage 2 text marked; WD-019 applied |
 | A2 | Answer set and grader | The free-text answer set and the automated grader built; first report on Gemma 4 31B |
 | A3 | Service for two callers | The Agent E2 API additions built (progress, attachments, sources, usage); its contract check passes |
 | A4 | Live demo support | Agent E2 answers correctly on facts recorded from the lab |
 | A5 | isvara.io support | isvara.io's calls work; where the public Agent E2 runs is measured and chosen (Q-4) |
 | A6 | Stage 1 exit | The answer set passes on the shipped settings; spending projected within US$50 a month |
 | Ongoing | Knowledge base | Content work continues; the review gate waits until after go-live (Q-10) |
-| Stage 2, parked | Local model, offline bundle, live test with blocked network, every file reviewed | Text kept as the target (W-002) |
+| Stage 2, parked | Local model, offline bundle, live test with blocked network, every file reviewed | Text kept as the target (WD-002) |
 
 - **Recommendation:** approve. Claude then rewrites plan.md in one pull request.
 
@@ -211,9 +211,9 @@ They are an interface between the adapter and PCM, not domain knowledge. **Recom
 
 ### Q-84 Credential file names
 
-PCM-Adapter's CONTRIBUTING.md forbids lab addresses in code, but W-011 names the file `vcf-ops-10.115.1.81.xml`. **Recommendation:** `$HOME\.secrets\vcf-ops-readonly.xml` and `vcf-ops-admin.xml`; W-011 changes to match.
+PCM-Adapter's CONTRIBUTING.md forbids lab addresses in code, but WD-011 names the file `vcf-ops-10.115.1.81.xml`. **Recommendation:** `$HOME\.secrets\vcf-ops-readonly.xml` and `vcf-ops-admin.xml`; WD-011 changes to match.
 
-**Status:** Decided by Claude at the author's request (2026-11-26): `vcf-ops-readonly.xml` and `vcf-ops-admin.xml`; W-011 updated.
+**Status:** Decided by Claude at the author's request (2026-11-26): `vcf-ops-readonly.xml` and `vcf-ops-admin.xml`; WD-011 updated.
 
 ### Q-85 The two packet counters in the lab policy
 
@@ -283,7 +283,7 @@ The progress calls (Q-57) keep each job in the service's memory. That works on o
 
 **Recommendation:** up to 5 images of 5 MB each, and up to 3 CSV files of 200 KB in all; raise them only when a real question needs more.
 
-**Status:** Decided by Claude at the author's request (2026-11-26): 5 images of 5 MB; CSV files up to 2 MB, as for contributions (W-024).
+**Status:** Decided by Claude at the author's request (2026-11-26): 5 images of 5 MB; CSV files up to 2 MB, as for contributions (WD-024).
 
 ### Q-96 CSV values read by the model, or computed by code
 
@@ -329,11 +329,11 @@ agent-e2 is a public repository today, but a reader should not depend on that. *
 
 No knowledge file carries a role tag. **Recommendation:** a short list in agent-e2: for each of PCM's four roles, the files that role reads first; isvara.io shows it as a reading path.
 
-**Status:** Superseded: by the three learning paths (W-027); no role slice.
+**Status:** Superseded: by the three learning paths (WD-027); no role slice.
 
 ### Q-103 Do pages say the knowledge is still under review?
 
-Every file is used, drafts included (W-013). **Recommendation:** one footer line on each topic page: "Written by AI from Agent E2's knowledge base, which is still being reviewed."
+Every file is used, drafts included (WD-013). **Recommendation:** one footer line on each topic page: "Written by AI from Agent E2's knowledge base, which is still being reviewed."
 
 **Status:** Decided by Claude at the author's request (2026-11-26): the footer line as recommended.
 
@@ -411,7 +411,7 @@ They live in isvara.io (Q-56), so they copy facts whose master is Agent E2. **Re
 
 **Recommendation (revised 2026-11-26):** a board, since your visitor model says "compare scores". Without sign-in, a visitor enters a nickname, as on the 2am game's board today. One board per quiz slice and one for the exam. This changes R-EXAM-007, which today lets nothing but a usage count leave the browser.
 
-**Status:** Superseded: by the isvara.io plan: anonymous percentiles, a share card, boards for one event; no global board (W-027).
+**Status:** Superseded: by the isvara.io plan: anonymous percentiles, a share card, boards for one event; no global board (WD-027).
 
 ### Q-116 A "not official" line?
 
@@ -467,7 +467,7 @@ Your table of why visitors come (2026-11-26) is now the plan's top level ([spec/
 
 Your message says visitors come "to read, ask, download"; the table has no Download row. **Recommendation:** keep Download as an eleventh door, for the books and spreadsheets (features 37, 38).
 
-**Status:** Superseded: the ten doors are gone (W-027); downloads remain.
+**Status:** Superseded: the ten doors are gone (WD-027); downloads remain.
 
 ### Q-124 Articles: one knowledge file each?
 
@@ -485,7 +485,7 @@ Most knowledge files take 3 to 5 minutes to read; your table says about 10. **Re
 
 The podcast needs a synthetic voice, which costs money per minute of audio, outside or inside the US$50 a month. **Recommendation:** one voice, a fellow practitioner's tone, one episode per book chapter (10 to 15 minutes); made again only when its articles change; start with one book and measure the cost before doing the rest. You approve the voice from a sample.
 
-**Status:** Superseded: the podcast is dropped (W-027).
+**Status:** Superseded: the podcast is dropped (WD-027).
 
 ### Q-127 What's New: how much detail, and how are corrections shown?
 
@@ -497,13 +497,13 @@ The podcast needs a synthetic voice, which costs money per minute of audio, outs
 
 **Recommendation:** the manual covers forking Agent E2 with its knowledge base, PCM and PCM-Adapter, setting them up in one lab, pointing Agent E2 at one's own model, and adding one's own knowledge. isvara.io itself is not in the manual; it stays the author's public site.
 
-**Status:** Decided by Claude at the author's request (2026-11-26): the three product repositories and the parent, copied privately by mirroring (W-025).
+**Status:** Decided by Claude at the author's request (2026-11-26): the three product repositories and the parent, copied privately by mirroring (WD-025).
 
 ### Q-129 Survey: what is stored, and is anything personal asked?
 
 **Recommendation:** no personal data required. A visitor may leave an email address only to be told about a birds-of-a-feather session they asked for; it is kept apart from the answers and deleted after the session.
 
-**Status:** Superseded: the survey is folded into contributions (W-024): no personal data.
+**Status:** Superseded: the survey is folded into contributions (WD-024): no personal data.
 
 ### Q-130 Birds-of-a-feather sessions: where are they held?
 

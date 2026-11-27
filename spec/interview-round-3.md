@@ -6,7 +6,7 @@ The last questions only the author could answer, asked in [OPEN-QUESTIONS.md](..
 
 **Answer:** "Manager, not Management."
 
-**Result:** the product is Private Cloud Manager, PCM for short ([DECISIONS](../DECISIONS.md), W-028). The books keep "Private Cloud Management" as the name of the discipline.
+**Result:** the product is Private Cloud Manager, PCM for short ([DECISIONS](../DECISIONS.md), WD-028). The books keep "Private Cloud Management" as the name of the discipline.
 
 ## Q-88 Guest OS run queue: per vCPU, or total
 
@@ -30,10 +30,10 @@ The last questions only the author could answer, asked in [OPEN-QUESTIONS.md](..
 
 **Answer:** "not applicable. This is my personal project."
 
-**Result:** the repositories stay under the author's account. Customers copy them from there by mirroring (W-025).
+**Result:** the repositories stay under the author's account. Customers copy them from there by mirroring (WD-025).
 
 ## Q-133 The licence
 
 **Answer:** "leave it blank as it uses GitHub default."
 
-**Result:** no licence file for now (W-029). None of the five repositories has one today. The consequence is recorded with the decision, to be revisited before the first customer copies the product.
+**Result:** no licence file for now (WD-029). None of the five repositories has one today. The consequence is recorded with the decision, to be revisited before the first customer copies the product.

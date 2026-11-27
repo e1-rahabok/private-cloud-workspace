@@ -1,6 +1,6 @@
 # Requirements: lab build
 
-An automatic build of nested virtual ESXi hosts with memory tiering in the author's lab, in the new repository [lab-build](https://github.com/e1-rahabok/lab-build) (empty today). The physical lab hosts have no memory tiering, so the tiering parts of Cluster Risk and Cluster Consumption cannot be tested without it (answer to Q-38 in the [interview, round 1](../interview-round-1.md); [W-018](../../DECISIONS.md)).
+An automatic build of nested virtual ESXi hosts with memory tiering in the author's lab, in the new repository [lab-build](https://github.com/e1-rahabok/lab-build) (empty today). The physical lab hosts have no memory tiering, so the tiering parts of Cluster Risk and Cluster Consumption cannot be tested without it (answer to Q-38 in the [interview, round 1](../interview-round-1.md); [WD-018](../../DECISIONS.md)).
 
 ### R-LAB-001 One command builds the tiered nested hosts
 
@@ -17,7 +17,7 @@ Test scenarios:
 
 ### R-LAB-002 The tiered cluster is monitored by the lab VCF Operations
 
-Source: answer to Q-38; W-018.
+Source: answer to Q-38; WD-018.
 
 Given the nested cluster is built
 When one collection cycle of PCM-Adapter has passed
@@ -40,7 +40,7 @@ Test scenarios:
 
 ### R-LAB-004 No secret in the repository
 
-Source: W-011.
+Source: WD-011.
 
 Given the build's scripts
 When they need a password

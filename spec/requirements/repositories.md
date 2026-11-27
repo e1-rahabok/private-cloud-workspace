@@ -8,7 +8,7 @@ The clean-up in milestone M2 that is not a contract: knowledge that sits in the 
 
 Milestone: M2.
 
-Source: W-025 (the adapter's documentation points to the knowledge instead of repeating it); W-001 (Agent E2 owns domain knowledge).
+Source: WD-025 (the adapter's documentation points to the knowledge instead of repeating it); WD-001 (Agent E2 owns domain knowledge).
 
 Given PCM-Adapter's knowledge pages: [docs/concepts/capacity-management.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/concepts/capacity-management.md), [docs/concepts/kpi-scoring-models.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/concepts/kpi-scoring-models.md), and the explanatory sections of the pages in [docs/reference/metrics](https://github.com/e1-rahabok/PCM-Adapter/tree/main/docs/reference/metrics)
 When their facts are compared with Agent E2's knowledge base
@@ -22,7 +22,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: W-025; the author's message of 2026-11-26 naming the adapter's concept and metric pages as knowledge that belongs to Agent E2.
+Source: WD-025; the author's message of 2026-11-26 naming the adapter's concept and metric pages as knowledge that belongs to Agent E2.
 
 Given PCM-Adapter's documentation after R-REPO-001
 When a reader opens a metric or concept page
@@ -46,7 +46,7 @@ Given Agent E2's [project/plan.md](https://github.com/e1-rahabok/agent-e2/blob/m
 When a session reads it at the start of work
 Then its milestones are A1 to A6 as decided in Q-58, with the items of the on-premises deployment (local model, offline bundle, live test with blocked network) listed as parked
 And its fine-tuning row points to the workspace's [design note](../design/fine-tuning.md)
-And agent-e2's CLAUDE.md sends questions that bind several repositories to this workspace (W-019)
+And agent-e2's CLAUDE.md sends questions that bind several repositories to this workspace (WD-019)
 
 Test scenarios:
 - T-REPO-003a (anywhere, manual review): the plan's milestone table has A1 to A6 and a parked row for the on-premises deployment; agent-e2's rules check passes.
@@ -75,7 +75,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-60 (round 3: "Manager, not Management"); W-028.
+Source: Q-60 (round 3: "Manager, not Management"); WD-028.
 
 Given PCM's documents and its decision log
 When a reader meets the product's full name
@@ -89,7 +89,7 @@ Test scenarios:
 
 Milestone: M2.
 
-Source: Q-3 (round 1: rename references, archives left as they are); W-007; W-028.
+Source: Q-3 (round 1: rename references, archives left as they are); WD-007; WD-028.
 
 Given the repositories agent-e2, PCM-Adapter, private-cloud-manager, isvara and this workspace
 When their files outside archives and dated records are searched

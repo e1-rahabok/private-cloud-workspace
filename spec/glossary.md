@@ -1,6 +1,6 @@
 # Glossary
 
-Every short name and ID used in this workspace, with what it means and where it is defined. A document uses an ID only with its meaning on first use, or as a link to this page (DECISIONS, W-020).
+Every short name and ID used in this workspace, with what it means and where it is defined. A document uses an ID only with its meaning on first use, or as a link to this page (DECISIONS, WD-020).
 
 ## IDs
 
@@ -11,7 +11,7 @@ Every short name and ID used in this workspace, with what it means and where it 
 | <a id="c3"></a>C3 | Contract 3, **the Agent E2 API**: the HTTP calls PCM and isvara.io make to Agent E2 | [CONTRACTS.md](../CONTRACTS.md) |
 | <a id="c4"></a>C4 | Contract 4, **knowledge content for isvara.io**: what Agent E2 gives isvara.io to build its pages from | [CONTRACTS.md](../CONTRACTS.md) |
 | <a id="c5"></a>C5 | Contract 5, **the model gateway**: Vercel AI Gateway, through which Agent E2 calls its model | [CONTRACTS.md](../CONTRACTS.md) |
-| W-001 to W-0nn | A decision that binds more than one repository | [DECISIONS.md](../DECISIONS.md) |
+| WD-001 to WD-0nn | A workspace decision: one that binds more than one repository | [DECISIONS.md](../DECISIONS.md) |
 | D-001 to D-1nn | A decision inside PCM | [PCM decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md) |
 | Q-1, Q-I1 and so on | A question in the interview; Q-I questions are about intent | Rounds [1](interview-round-1.md), [2](interview-round-2.md), [3](interview-round-3.md) |
 | M0 to M5 | A milestone of the roadmap | [ROADMAP.md](../ROADMAP.md) |
@@ -22,7 +22,7 @@ Every short name and ID used in this workspace, with what it means and where it 
 
 | Word | Meaning |
 |---|---|
-| PCM | Private Cloud Manager, the web app (W-028) |
+| PCM | Private Cloud Manager, the web app (WD-028) |
 | Release 1.0 | The goal: PCM as a lab demo, a cloud model, isvara.io public on Vercel |
 | Milestone | A step toward release 1.0, M0 to M5 in the roadmap |
 | On-premises deployment | After release 1.0, out of scope: customers run everything on premises, with a local model |

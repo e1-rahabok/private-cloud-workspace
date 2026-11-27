@@ -23,14 +23,14 @@ The material began as the first edition of the author's book in 2014. Each year 
 | isvara.io | The public place to learn, ask, practise and contribute | Everyone; never installed or forked |
 | Books and spreadsheets | The author's own living editions, updated by hand | Downloaded from isvara.io |
 
-- Customers take all three product repositories, and the parent workspace, as one product ([DECISIONS](../DECISIONS.md), W-025).
+- Customers take all three product repositories, and the parent workspace, as one product ([DECISIONS](../DECISIONS.md), WD-025).
 - PCM-Adapter alone is the simplest deployment: one pak file in VCF Operations, no Linux and no container, with the KPIs, dashboards and reports but without Agent E2. Its documentation presents it as one part of the whole.
-- Domain knowledge lives in Agent E2 only. PCM-Adapter's documentation explains what it computes and how to install it, and points to the knowledge on isvara.io (W-001).
+- Domain knowledge lives in Agent E2 only. PCM-Adapter's documentation explains what it computes and how to install it, and points to the knowledge on isvara.io (WD-001).
 - The books, spreadsheets and diagrams are a separate, living body of the author's work. They reach isvara.io once or twice a month, and the site refreshes from there weekly.
 
 ## Success
 
-- Customers who see the PCM demo find it useful and want to copy it privately, to customise and deploy in their own private cloud (W-012).
+- Customers who see the PCM demo find it useful and want to copy it privately, to customise and deploy in their own private cloud (WD-012).
 - With PCM, a team becomes proactive: each person ends up with a dashboard that answers exactly their own questions, and a weekly one for deeper analysis (personal dashboards come after 1.0).
 - Agent E2 explains a real lab KPI correctly in the live demo.
 - isvara.io is where administrators come back to: for tools, for an expert to ask, and to learn.
@@ -49,8 +49,8 @@ The material began as the first edition of the author's book in 2014. Each year 
 
 ## Scope
 
-- **Day 2 only:** running, monitoring, troubleshooting and planning. Design, installation, building, configuration and upgrades (Day 0 and Day 1) are out, because they depend on the release. Agent E2 says so when asked, and points to Broadcom's documentation (W-026).
-- **Release 1.0 in the lab:** a lab demo, with a cloud model through Vercel AI Gateway. The customer's on-premises deployment with a local model comes after release 1.0 (W-002).
+- **Day 2 only:** running, monitoring, troubleshooting and planning. Design, installation, building, configuration and upgrades (Day 0 and Day 1) are out, because they depend on the release. Agent E2 says so when asked, and points to Broadcom's documentation (WD-026).
+- **Release 1.0 in the lab:** a lab demo, with a cloud model through Vercel AI Gateway. The customer's on-premises deployment with a local model comes after release 1.0 (WD-002).
 - **PCM replaces VCF Operations narrowly:** performance and capacity management, for the L2 role in the live demo. It does not replace lifecycle, fleet management or SDDC Manager.
 - **After 1.0:** personal dashboards in PCM, what-if analysis, the "people" side of operations (convincing application owners), and areas beyond vSphere at depth.
 
@@ -61,8 +61,8 @@ These decide a conflict between two good things, without asking the author.
 1. **Free.** No paid content, no paid tier.
 2. **Accurate before complete.** A confident wrong answer is worse than none. Say what is unknown.
 3. **The customer's data stays with the customer.** In the on-premises deployment nothing leaves their network; on isvara.io, visitors remove their own IP addresses and host names before uploading, and the site keeps no copy of what they ask about.
-4. **Forkable.** Customers can copy the product privately and make it theirs. Nothing in the product depends at run time on the author's services. Today the repositories have no licence (W-029), which gives no such permission; it is revisited before the first customer copies the product.
-5. **One master copy of each fact.** Knowledge lives in Agent E2; every other copy is generated from it or checked against it (W-001).
+4. **Forkable.** Customers can copy the product privately and make it theirs. Nothing in the product depends at run time on the author's services. Today the repositories have no licence (WD-029), which gives no such permission; it is revisited before the first customer copies the product.
+5. **One master copy of each fact.** Knowledge lives in Agent E2; every other copy is generated from it or checked against it (WD-001).
 6. **The specification is what people maintain.** AI writes the code; the author and Claude keep the specification true (PCM D-010).
 7. **Challenge with evidence.** Few rules hold in operations management. Any assumption, the author's included, can be challenged with evidence (Agent E2's [MISSION.md](https://github.com/e1-rahabok/agent-e2/blob/main/MISSION.md)).
 
