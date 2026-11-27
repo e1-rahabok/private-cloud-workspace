@@ -8,7 +8,7 @@ The lab build creates two small nested ESXi hosts with memory tiering ([lab-buil
 
 - **Needs you:** the physical cluster, datastore and network to use, and how much CPU, memory and NVMe space you can spare.
 
-**Answer:**
+**Answer:** in the lab. This is after Release 1.0
 
 ## Q-WS-122 Licences for the nested hosts
 
@@ -16,7 +16,7 @@ Needed with Q-WS-120.
 
 - **Needs you:** do the lab licences cover two more ESXi hosts?
 
-**Answer:**
+**Answer:** Yes. 
 
 ## Q-WS-135 The upstream licence of the VCF vCommunity Adapter
 
@@ -31,4 +31,4 @@ The [PCM-Adapter](https://github.com/e1-rahabok/PCM-Adapter) repository is a for
   - [WD-029](DECISIONS.md) records "no licence file" for the author's own repositories. It does not cover code under another author's licence.
 - **Recommendation:** restore the upstream LICENSE file and its Required Notice in the PCM-Adapter repository now. Before the first customer copies the product, ask Onur Yuzseven for permission for commercial use, or replace the upstream code. This is not legal advice.
 
-**Answer:**
+**Answer:** settled already. Close this
