@@ -23,6 +23,8 @@ Each level proves something the others cannot. The examples are this project's.
 
 A level is chosen by what it costs and what it catches. A unit test runs in a second and catches a broken function. The contract check runs in eight seconds and catches a renamed field that both sides' unit tests miss ([chapter 11](11-checks.md)). A lab test needs the author's laptop and catches what no fake can, such as a metric key the real API does not return.
 
+Write down which test each kind of change needs, with its cost and who starts it. A change to the code around a model needs no test of the model; a change to what the model reads does. A test that spends the person's money starts on the person's go. Without such a table, this project's plan once held a US$71 test because a milestone was closing ([chapter 16](16-case-study.md)).
+
 ## Environments
 
 Every scenario says where it runs: "anywhere", on any machine with fakes, or "lab", on the real VCF Operations behind the author's VPN. The plan names three environments and what runs in each:
