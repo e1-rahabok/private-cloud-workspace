@@ -123,7 +123,7 @@ The lab VM's address in the link is replaced by its role, by the rule this answe
 
 > Why did you wait for me for the security on the IP address and host name? Shouldn't this be part of your professional application development role as an experienced software architect? Is there anything else that you need to consider? Remember the SDD mode.
 
-**Result:** DESIGN-24 in the [system design](../design/system.md) reviews release 1.0 against four public baselines, mapped item by item in its section Security baseline; DESIGN-25 to DESIGN-27 add dependency updates, secret scanning, least rights in workflows, and recovery. R-WS-011 to R-WS-013 in [workspace.md](../requirements/workspace.md) and their checks enforce them in all five repositories. ASSUMPTION-9 and RISK-12 are in the [brief](../brief.md); R-PROTECT-007 and R-PROTECT-008 are in isvara's [protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md). The lab VM's hardening follows as a requirement in private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md).
+**Result:** DESIGN-24 in the [system design](../design/system.md) reviews release 1.0 against four public baselines, mapped item by item in its section Security baseline; DESIGN-25 to DESIGN-27 add dependency updates, secret scanning, least rights in workflows, and recovery. R-WS-011 to R-WS-013 in [workspace.md](../requirements/workspace.md) and their checks enforce them in all five repositories. ASSUMPTION-9 and RISK-12 are in the [brief](../brief.md); R-PROTECT-007 and R-PROTECT-008 are in isvara's [protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md). R-LIVE-037 in private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md) closes the lab VM to everything but TLS and SSH from the VPN, and keeps it patched; the author approved closing port 8080 ("Go ahead and close port 8080").
 
 ## Answers in the question files of the other repositories
 
@@ -136,6 +136,32 @@ The lab VM's address in the link is replaced by its role, by the rule this answe
 - **Q-PCM-1**, the style baseline of private-cloud-manager ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/OPEN-QUESTIONS.md)):
   - Answer: "Agree".
   - Result: PCM's decisions.md becomes one block per decision in M2; the design notes keep their baseline and are fixed when next edited. Recorded in PCM's [decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md).
+- **Q-PCM-3**, how the author shows the live demo ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/OPEN-QUESTIONS.md)):
+  - Answer:
+
+    > PCM Live Instance.
+    > Since it's connected to a live VCF Operations, it shows the actual VCF inventory. Same structure and UI as the synthetic demo, except the data is live.
+    >
+    > PCM Demo: Live instance demo.
+    > The follows the same as the L2 Specialist.
+    > 1. Select a vSphere Cluster. In the lab, there is only 1.
+    > 2. The default summary tab appears. I'd ignore this in Release 1.0
+    > 3. I'd click the Performance tab.
+    > 4. The same content as L2 Specialist demo appears, except the data is live
+    > 5. I clicked the larger Agent E2 icon at the top right hand corner
+    > 6. The default OOTB questions must be relevant.
+    > 7. I clicked on each of them, verifying their answer is correct. The answer is coming live from Vercel the AI gateway, just like in synthetic demo. No difference at all.
+    > 8. I click the small Agent E2 icon on the Performance trend chart.
+    > 9. The default OOTB questions must be relevant.
+    > 10. See step 7 as I'm just repeating.
+    > 11. I click every single small Agent E2 icon. Repeat the test.
+    > 12. I click the Capacity tab. I repeat step 5 - 11.
+    > 13. I select one of the ESXi.
+    > 14. This time, I only do Performance tab. No capacity tab needed.
+    > 15. I select one of the VM in the ESXi.
+    > 16. This time, I only do Performance tab. No capacity tab needed.
+
+  - Result: the live demo opens an object on its Performance tab, with no Summary tab (R-LIVE-004). R-LIVE-036 walks the script: the cluster's Performance and Capacity tabs, then the first host and its first VM, worst first, Performance only, with every Agent E2 mark and every suggested question. "Relevant" and "correct" became tests: R-LIVE-038 checks each suggestion against Agent E2's own rule for the page's situation, R-LIVE-039 checks each answer's figures against the reference script and grades it, and the author rates every answer at the M8 rehearsal. R-LIVE-040 covers Agent E2 or the gateway failing mid-demo. The script is in PCM's [demo/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/demo/README.md), section The live demo; the synthetic walk runs now as LPG-31 and LPG-32. The answer does not open VCF Operations beside PCM, so the numbers are compared by the reference script (R-LIVE-024).
 - **Q-PCM-2**, two of PCM's folder names:
   - Answer: "Agree".
   - Result: the Docs workspace folder, pcm/docs, becomes [`pcm/definitions`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/definitions) in M2; the route `/docs` and PCM's [`spec/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/spec) stay. Recorded in PCM's decisions.md.
