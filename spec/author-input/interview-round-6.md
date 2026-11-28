@@ -201,7 +201,15 @@ Whether the fork is connected to a Vercel project:
 
 > I don't think so. As The Architect, design the deployment architecture, document it. When done, ask The Implementer to read and set up.
 
-**Result:** CONSTRAINT-10 in the [brief](../brief.md) and DESIGN-29 in the [system design](../design/system.md): the parallel site `isvara-next` in the same Vercel team, not indexed and with its own stores, and a switch-over that merges the fork into the original after the author's approval. isvara's [deployment.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/deployment.md) holds R-DEPLOY-001 to R-DEPLOY-004; ROADMAP M2 sets the parallel site up and M7 switches over.
+Once the parallel site was up, on whether it should ask visitors to sign in:
+
+> It does not ask to sign in. I'm good with it as the real one hardly has any visitors.
+>
+> What do you mean compare? It's the old content.
+
+> No need sign in. As The Architect, have you updated the spec?
+
+**Result:** CONSTRAINT-10 in the [brief](../brief.md) and DESIGN-29 in the [system design](../design/system.md): the parallel site `isvara-next` in the same Vercel team, not indexed and with its own stores, and a switch-over that merges the fork into the original after the author's approval. isvara's [deployment.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/deployment.md) holds R-DEPLOY-001 to R-DEPLOY-004; ROADMAP M2 sets the parallel site up and M7 switches over. The parallel site needs no sign-in, and the comparison with isvara.io starts when it holds new content, because until then it shows the old content.
 
 ### Who speaks to the author
 
