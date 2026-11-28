@@ -144,6 +144,18 @@ The folders the author names are isvara's, the site that is rebuilt on Agent E2.
 
 **Result:** DESIGN-6 in the [system design](../design/system.md) now designs names for a reader who knows the field but not the framework, and T-WS-007b in [workspace.md](../requirements/workspace.md) reads the tree that way. R-REPO-010 in isvara's [clean-up.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/clean-up.md) sets isvara's layout, mapped in its README; R-REPO-011 removes Homelabs. isvara's [visitor-experience.md](https://github.com/e1-rahabok/isvara/blob/main/spec/visitor-experience.md) adds the first visit and the return, and the addresses to bookmark, with R-SITE-009 and R-SITE-010 in its [site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md); its text art is replaced by SVG wireframes drawn from one list of parts and checked in CI.
 
+Two replies on the result, the same day:
+
+> evals/ → ask-io-tests/
+>
+> Why AskIO? It will be 100% gone. No more. Agent E2 replaces it. I've said this multiple times.
+
+> Homelabs is deleted, and /homelabs redirects to /tools.
+>
+> if deleted, why redirect? That homelab serve no purpose anymore. Completely delete it
+
+**Result:** R-REPO-010 now refuses a folder named after a part the roadmap removes: AskIO's code is [`site-logic/answering/`](https://github.com/e1-rahabok/isvara/tree/main/site-logic/answering) and its tests are [`answer-tests/`](https://github.com/e1-rahabok/isvara/tree/main/answer-tests), and isvara's folder check fails on such a name. R-REPO-011 now has `/homelabs` answer 404, with no redirect; R-SITE-010 in isvara's [site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md) says a page removed with nothing to cover it answers 404.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):
