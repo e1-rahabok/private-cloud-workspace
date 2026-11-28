@@ -251,6 +251,20 @@ What the gateway's usage showed on 2026-11-28, from 1 October: three full benchm
 
 **Result:** CONSTRAINT-1 in the [brief](../brief.md) and DESIGN-31 in the [system design](../design/system.md): a test run stops when the money it spends reaches US$100; an answer or a grade whose inputs have not changed is reused; the full round runs only before a milestone is closed, on the shipped model and the frontier reference. agent-e2's [test-spending.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/test-spending.md) holds R-E2-029 to R-E2-031, and R-E2-005 reuses unchanged grades.
 
+On the projection of US$71 for the next full round:
+
+> What do you mean by "full" round? It can't be $71. Way too expensive
+
+> Why do you need to do the full run? That took 3 hours last time. What is the objective? Agent E2 knowledge barely changed
+
+**Result:** DESIGN-31: the full round asks Gemma 4 31B 3 times per question and the frontier reference once, and stops at US$25; it runs once, before M3 is closed, because M3 rebuilds how Agent E2 answers. R-E2-030 and R-E2-031 in agent-e2's test-spending.md.
+
+After that answer:
+
+> NEVER RUN THE FULL RUN AT ALL
+
+**Result:** CONSTRAINT-1 and DESIGN-31: the full benchmark round never runs, and the runner refuses to start one; the answer set and the free automatic checks test Agent E2. R-E2-031 in agent-e2's test-spending.md.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):
