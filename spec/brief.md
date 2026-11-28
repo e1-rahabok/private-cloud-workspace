@@ -102,6 +102,7 @@ These decide a conflict between two good things without asking the author. Sourc
 - **PRINCIPLE-5 One master copy of each fact.** Knowledge lives in Agent E2; every other copy is generated from it or checked against it. Why: two copies of a fact drift apart, and nobody notices until a customer reads both.
 - **PRINCIPLE-6 The specification is what people maintain.** AI writes the code; the author and Claude keep the specification true (PCM's D-010). Why: the code is regenerated from the specification, so a fix made only in code is lost.
 - **PRINCIPLE-7 Challenge with evidence.** Few rules hold in operations management; any assumption, the author's included, can be challenged with evidence (Agent E2's [MISSION.md](https://github.com/e1-rahabok/agent-e2/blob/main/MISSION.md)). Why: the field changes with each release and each estate.
+- **PRINCIPLE-8 isvara.io is built for the desktop; the phone invites.** Every page is designed for a desktop screen. On a phone, isvara.io offers only what suits a small screen, and invites the visitor to try the full site on a desktop; no desktop feature is squeezed onto a phone. Why: the work isvara.io serves, reading at depth, asking with a screenshot or a CSV file, running a calculator or the exam, happens at a desk, and a feature cramped onto a phone teaches less than an invitation to the real one. Source: the author, 2026-11-28 ([round 6](author-input/interview-round-6.md), answer to Q-ISVARA-3).
 
 ## Constraints
 
