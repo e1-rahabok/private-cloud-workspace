@@ -11,7 +11,7 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 - A product with pages has a drawing of what its visitor sees: the site map, the menus, a rough mock of each page and the journeys through them. A journey test walks each journey across pages. isvara's is [visitor-experience.md](https://github.com/e1-rahabok/isvara/blob/main/spec/visitor-experience.md) with [journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md); PCM's are its demo scripts in [demo/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/demo/README.md), walked by [`demo/rehearse.mjs`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/demo/rehearse.mjs).
 - A repository with lab tests has its own test plan: the run order, the oracle that gives each expected value, safety, and what decides a pass. The adapter's is its [Live Validation Test Plan](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md); PCM's is its [test plan](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/test-plan.md).
 - A lab test that checks a value compares it with an oracle that shares no code with the system under test, such as PCM's reference script reading the Suite API itself.
-- On 2026-11-28 the specification held 223 requirements and 341 test scenarios, 44 of them in the lab; `python tools/spec_check.py` prints the current totals.
+- On 2026-11-28 the specification held 222 requirements and 339 test scenarios, 42 of them in the lab; `python tools/spec_check.py` prints the current totals.
 
 ## Test levels
 

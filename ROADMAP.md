@@ -156,7 +156,7 @@ Claude's working method, about how Claude works and never about the product, app
 - **Needs:** M2 for the catalog names, M3 for Agent E2's jobs and facts.
 - **Runs:** in the lab, from the author's laptop over the VPN, with the adapter's build, install, restart and validation tools. A cloud session writes the code and the tests that run anywhere.
 - **First slice:** one lab cluster's Cluster Performance on the L2 Performance tab (R-LIVE-001, R-LIVE-024, R-LIVE-030), then the rest.
-- **Requirements:** R-ADP-018 to R-ADP-023 and R-ADP-026 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-LIVE-001 to R-LIVE-033, R-LIVE-035 to R-LIVE-037 and R-E2-020 (private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)), R-E2-026 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md)); the check of contract C2 (KPI metric keys).
+- **Requirements:** R-ADP-018 to R-ADP-023 and R-ADP-026 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-LIVE-001 to R-LIVE-033, R-LIVE-035, R-LIVE-036 and R-E2-020 (private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)), R-E2-026 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md)); the check of contract C2 (KPI metric keys).
 - **Release 1.0 is done** when the author approves M8.
 
 ## Waiting for the author
