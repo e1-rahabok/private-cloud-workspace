@@ -52,6 +52,7 @@ For a series of video calls, one call per session above:
 - Q-WS-136 asked the author to choose one of three designs for a security guard. Which input did the choice really need, and who should have made it?
 - Agent E2 and isvara.io answered questions about the same books with opposite designs. Which constraint decided each one?
 - A check found 11 known gaps on its first run. Fail every build until they are fixed, or record them as known? What can go wrong with each?
+- The author found a wrong fact about the books' source in a README, and the agent fixed the sentence. What did that fix leave wrong, and what would the architect's step have found first?
 - The agent turned a suggestion into a decision within an hour. What in the working rules, and what in the way answers were recorded, let it happen?
 - The strongest model available made every mistake in the case study. What does that say about choosing models?
 - A calculator with no AI in it can still be wrong. How would you prove a calculator is right?

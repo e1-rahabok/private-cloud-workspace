@@ -2,7 +2,7 @@
 
 ## Division of work
 
-The person is the domain expert and the user. The agent is the architect and the builder. Each gives what the other cannot.
+The person is the domain expert and the user. The agent is the architect and the implementer. Each gives what the other cannot.
 
 - **The person gives input:** the goals, the scope and what success means; who the users are and what they expect; the domain knowledge, such as the KPIs, their limits and how operations teams work; the constraints and the reasons behind them; the assumptions only field experience can confirm; names that carry identity; and acceptance of each milestone on its review page.
 - **The agent decides and writes:** the survey of the code; the requirements, drafted from the input; the design, covering security, scalability, performance, reliability and maintainability; the contracts and the master copy of each shared fact; numbers derived from the input; the checks, the code and the tests.
@@ -50,6 +50,22 @@ Write these expectations into the agent's working rules ([CLAUDE.md](../CLAUDE.m
 
 Corrections are the most valuable thing the person gives. Put each one into a file so the next session starts from it. In this project the author corrected facts ("the demo data stays") and also the agent's framing: it had treated a benchmark as a contest to win, when the author only cared that the product works. Both kinds of correction were written down.
 
+### The architect, then the implementer
+
+A wrong fact in a file usually means the specification does not hold the right one. The agent has two roles, and a correction passes through both, in order. The author drew the flow on 2026-11-28:
+
+> Me --> Give corrections, addition, changes.
+>
+> You (The Architect) --> update the docs. Requirements, milestone,
+>
+> You (The Implementer) --> build, execute, code the actual changes.
+
+- **As architect,** the agent finds why the specification missed the fact, and changes the specification: the brief, a requirement, the design, the test plan or the roadmap.
+- **As implementer,** it changes code and documents only from the changed specification. It searches the files for the fact the specification now states, in any wording. A search for the person's own words finds the sentence they pointed to and misses the others.
+- **In its report,** it keeps the two apart: the cause, the changes to the specification, then the implementation.
+
+The rule came from a correction the agent handled as a prompt. The author pointed to a sentence in isvara's README that said the books are published on a Box share, and the agent changed that sentence. The author found a second one in the same file and asked: "I thought you've cleaned them up?" The agent then searched for Box and changed what it found, and the author replied: "You again jump into "iterative prompting" mode. Stay in SDD mode. You should think WHY you missed them." The cause was a gap in the specification. No item said where the books come from, and the READMEs and CLAUDE-PROJECT.md files had been written before the specification and never read against it. As architect, the agent added DEPENDENCY-10 to the brief: the master copies are on the author's laptop, and the author uploads each edition to Vercel Blob. It added R-WS-009, under which a fresh reviewer reads every README and CLAUDE-PROJECT.md against the specification. As implementer, it then searched isvara's files for that fact, and found three statements the search for Box had missed: two called the Blob copy "the source of truth", and one said to download a new edition "when it is published". The [CLAUDE.md](../CLAUDE.md) of every repository now names the two roles in its section Roles. [Chapter 16](16-case-study.md), day six, has the whole case.
+
 ## Choosing a model and effort
 
 Use the strongest model and a high reasoning effort where a mistake spreads: surveying the system, writing the map and the requirements, and reviewing finished work against the requirements. A cheaper, faster model is fine for work that is already fully specified.
@@ -85,8 +101,8 @@ The agent had read those repositories and still ignored both conventions at firs
 
 ## A fresh reviewer
 
-Review finished work in a new session that sees only the requirements and the change. It has not followed the builder's reasoning, so it notices different mistakes.
+Review finished work in a new session that sees only the requirements and the change. It has not followed the implementer's reasoning, so it notices different mistakes.
 
 ## Secrets
 
-The agent never sees a password. Here, credentials are encrypted files that only the author's Windows account can decrypt, created by the author with a command that prompts for the password. Scripts load them, and nothing prints, logs or commits them. On a Linux server they sit in an environment file that only root can read.
+The agent never sees a password. Here, credentials are encrypted files that only the author's Windows account can decrypt, created by the author with a command that prompts for the password. Scripts load them, and nothing prints, logs or commits them. On the lab's Linux virtual machine they sit in an environment file that only root and the `pcm` group can read (DESIGN-9 in the [system design](../spec/design/system.md)).

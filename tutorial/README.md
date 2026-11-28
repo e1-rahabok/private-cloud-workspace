@@ -93,7 +93,7 @@ Spec-driven development has real costs, and the tutorial does not hide them:
 | [10. Test plan and traceability](10-test-plan-and-traceability.md) | Levels, environments, data, and the chain from goal to test | 20 min |
 | [11. Checks](11-checks.md) | Scripts that prove the parts still agree | 20 min |
 | [12. Slices and sessions](12-slices-and-sessions.md) | The order of work, and how each working session runs | 15 min |
-| [13. Working with the agent](13-working-with-the-agent.md) | Input and decisions; the agent as architect; models and effort | 20 min |
+| [13. Working with the agent](13-working-with-the-agent.md) | Input and decisions; the agent as architect, then implementer; models and effort | 20 min |
 | [14. Names and vocabulary](14-names-and-vocabulary.md) | Names, IDs and folders the agent can guess | 15 min |
 | [15. Trust in AI-written content](15-trust-in-ai-written-content.md) | Keeping published material credible when an AI writes it | 15 min |
 | [16. Case study log](16-case-study.md) | What actually happened in this project, mistakes included | 30 min |

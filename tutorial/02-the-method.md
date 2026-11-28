@@ -29,6 +29,8 @@ Each decision is written where it takes effect:
 - A behaviour goes into a requirement, with its reason beside it ([chapter 7](07-requirements-and-acceptance.md)).
 - A choice of how goes into the design, with the options it rejected ([chapter 8](08-design.md)).
 
+The agent then has a second role. As the implementer, it builds the code and the documents from the specification, and only from it. The two roles come in that order, also for a correction: a fact the person corrects goes into the specification first, and the files change from there ([chapter 13](13-working-with-the-agent.md)).
+
 ## One home for each reason
 
 This project first kept a separate decision log, [DECISIONS.md](https://github.com/e1-rahabok/private-cloud-workspace/blob/8677e71/DECISIONS.md), with 46 entries from WD-001 to WD-046 (WD for "workspace decision"). The workspace retired it on 2026-11-28, for three reasons.
