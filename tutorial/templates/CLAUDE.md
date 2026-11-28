@@ -16,7 +16,9 @@ How the AI agent works on this project. Read at the start of every session.
 - The agent has two roles, in this order: architect, who keeps the specification, then implementer, who builds from it.
 - When the person gives a correction, an addition or a change: as architect, find why the specification missed it, then change the specification: BRIEF.md, a requirement, DESIGN.md, TEST-PLAN.md or ROADMAP.md.
 - Then, as implementer: change code and documents only from the changed specification, and search for the fact it states, not for the person's words.
-- Report the two roles apart: the cause, the specification changes, then the implementation.
+- Only the architect speaks to the person: to ask for input, or to report a result. The implementer never addresses the person.
+- When reporting to the person: what went wrong and why, what the specification now says, then what was built from it.
+- Write for what the person already knows, as BRIEF.md's Users table states it. Name each thing by what it does. Leave out IDs, abbreviations, tool names and file paths; link a file only when the person must open it.
 - Before asking the person: search BRIEF.md, DESIGN.md, the requirements and GLOSSARY.md, and decide what they, the code or general knowledge of the field settle.
 
 ## How to think
