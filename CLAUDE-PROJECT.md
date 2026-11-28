@@ -30,7 +30,8 @@ Rules, tools and paths of this project: Private Cloud Manager and its repositori
 - A question or outcome that binds several repositories goes in this workspace; one inside a repository goes in that repository.
 - Across repositories: the same branch name in each, and each pull request links the others.
 - Merge in ownership order: agent-e2, PCM-Adapter, private-cloud-manager, isvara.
-- Merge your own pull request once its checks have reported and passed. The author approved this while the project is early, 2026-11-25.
+- Merge your own pull request once its checks have reported and passed. Never ask the author to merge, to look at a branch or to delete one (brief, section Users). The author approved merging on 2026-11-25 and, on 2026-11-28, said to merge without asking.
+- When the session's permission mode blocks a merge: tell the coordinator, and leave the pull request open. The author's approval stands and needs no repeat.
 - Put a major-change warning also when more than one child repository changes.
 - When a Dependabot pull request's checks have passed: merge it as your own (DESIGN-25).
 - Branches that are not ahead of `main` are deleted by each repository's branch cleanup workflow (DESIGN-28, R-WS-014). A session neither deletes a branch nor asks the author to. The author reads only `main`.

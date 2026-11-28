@@ -227,6 +227,14 @@ On being asked to approve M2 from its review page, which listed each requirement
 
 **Result:** R-WS-015 in [workspace.md](../requirements/workspace.md) and DESIGN-30 in the [system design](../design/system.md): the review page tells the author in plain words what the milestone set out to do and why, what changes, what the author is asked to confirm, what was left out and what could go wrong, and says in one line that Claude tested it. It has no test counts. DEPENDENCY-1 in the [brief](../brief.md) names what the page holds.
 
+### Merging pull requests
+
+On a card that asked whether to merge the pull request with the new review page, after the same merge had been blocked once by the session's permission mode:
+
+> As The Architect, you should not ask me for merging, as I don't know the branch details. You should auto merge. With me, focus on requirements, scope, goals.
+
+**Result:** the brief's section [Users](../brief.md#users) says Claude never asks the author to merge, to look at a branch or to delete one, and the workspace's [CLAUDE-PROJECT.md](../../CLAUDE-PROJECT.md), section Several repositories, says Claude merges its own pull request once its checks have passed, without asking. It extends the approval of 2026-11-25, which that file recorded for the early project only.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):
