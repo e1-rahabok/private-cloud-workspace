@@ -125,6 +125,25 @@ The lab VM's address in the link is replaced by its role, by the rule this answe
 
 **Result:** DESIGN-24 in the [system design](../design/system.md) reviews release 1.0 against four public baselines, mapped item by item in its section Security baseline; DESIGN-25 to DESIGN-27 add dependency updates, secret scanning, least rights in workflows, and recovery. R-WS-011 to R-WS-013 in [workspace.md](../requirements/workspace.md) and their checks enforce them in all five repositories. ASSUMPTION-9 and RISK-12 are in the [brief](../brief.md); R-PROTECT-007 and R-PROTECT-008 are in isvara's [protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md). R-LIVE-037 in private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md) closes the lab VM to everything but TLS and SSH from the VPN, and keeps it patched; the author approved closing port 8080 ("Go ahead and close port 8080").
 
+### isvara.io's folders, visitors and wireframes
+
+> I think you should review the Agent E2 properly.
+>
+> The folder structure is still confusing. I'm unable to guess what those top level folders are for.
+> For examples:
+>
+> * app = what application, since the whole isvara.io is an application? It has a dozen or so subfolders. From the name, I'm unsure. For example, estate means screen real estate? homelabs can be removed as it's no longer required. Design the folder properly. Maybe you need additional layer of folder hierarchy?
+> * components = The English word components means parts. Maybe you need 2 words so it's easier?
+>
+> Think of the Visitors and why they come.
+> How do you serve first time visitor and repeat visitor? Can repeat visitor bookmark certain page directly? How do you know someone is first time or not if they simply lands at the home page?
+>
+> The Agent E2 visitor experience is shown in ASCII art. It is hard to guess what you intend to build. As a UX professional, how will you convey the mock to minimize surprise. I don't have to know the details. Just high level rough sketch that has better screen alignment that ASCII art will do. It can be SVG or whatever. You know better. Again, as The Architect you update the spec, so The Implementer can execute.
+
+The folders the author names are isvara's, the site that is rebuilt on Agent E2.
+
+**Result:** DESIGN-6 in the [system design](../design/system.md) now designs names for a reader who knows the field but not the framework, and T-WS-007b in [workspace.md](../requirements/workspace.md) reads the tree that way. R-REPO-010 in isvara's [clean-up.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/clean-up.md) sets isvara's layout, mapped in its README; R-REPO-011 removes Homelabs. isvara's [visitor-experience.md](https://github.com/e1-rahabok/isvara/blob/main/spec/visitor-experience.md) adds the first visit and the return, and the addresses to bookmark, with R-SITE-009 and R-SITE-010 in its [site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md); its text art is replaced by SVG wireframes drawn from one list of parts and checked in CI.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):

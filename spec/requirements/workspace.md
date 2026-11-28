@@ -98,7 +98,7 @@ Test scenarios:
 
 Why: a version or status word in a name stops being true and misleads the next reader.
 
-Source: DESIGN-6, with isvara's renames in M4; CONSTRAINT-2 (the shipped content keeps its names).
+Source: DESIGN-6; CONSTRAINT-2 (the shipped content keeps its names).
 
 - Given the tracked folders and files of agent-e2, PCM-Adapter, private-cloud-manager, isvara and this workspace, outside archives and dated records
 - And outside names that are titles written for readers or for the model, which describe their content and keep it true: agent-e2's [`knowledge/`](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge) and [`benchmark/questions/`](https://github.com/e1-rahabok/agent-e2/tree/main/benchmark/questions), the adapter's shipped `Management Pack/content/` (CONSTRAINT-2), and the review pages `spec/review/M<n>.md`, each named for the milestone it reviews
@@ -108,7 +108,7 @@ Source: DESIGN-6, with isvara's renames in M4; CONSTRAINT-2 (the shipped content
 
 Test scenarios:
 - T-WS-007a (anywhere, automated by [tools/file_names.py](../../tools/file_names.py), run by run_all.py and in each repository's CI; planted breaks in [tools/test_file_names.py](../../tools/test_file_names.py)): a pull request that adds `report_v2.md` or `story_m5.py` fails; one that adds `knowledge/…/why-a-new-framework.md` or `spec/review/M9.md` passes; one that renames a known problem passes and lowers the baseline.
-- T-WS-007b (anywhere, manual by a fresh session, once per repository): given only the repository's folder tree, the session writes what it expects in each top-level folder and in each folder one level down, then opens them. Each wrong guess becomes a rename in the same milestone; isvara's five are renamed in M4 (DESIGN-6).
+- T-WS-007b (anywhere, manual by a fresh session, once per repository): the session is told it knows the field but not the repository's framework, as the author reads it (DESIGN-6). Given only the repository's folder tree, it writes what it expects in each top-level folder and in each folder one level down, then opens them. Each wrong guess becomes a rename in the same milestone, or a row in the README's folder map where a framework fixes the name.
 
 ### R-REPO-006 No repository uses an old repository name
 
