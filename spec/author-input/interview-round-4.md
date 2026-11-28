@@ -1,6 +1,6 @@
 # Interview, round 4
 
-Questions asked in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) on 2026-11-27, with the author's answers as written and what follows from each. IDs are explained in the [glossary](glossary.md).
+Questions asked in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md) on 2026-11-27, with the author's answers as written and what follows from each. IDs are explained in the [glossary](../glossary.md).
 
 ## Q-WS-134 PCM's folders by workspace or by phase
 

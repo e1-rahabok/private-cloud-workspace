@@ -35,6 +35,8 @@ Agent E2 chose how its model gets its facts, and the choice reads well in this f
 - **Consequences:** an answer is only as good as the files retrieval finds, so every change to the structure needs a before and after number from the retrieval check.
 - **Serves:** accurate before complete; the customer's data stays on site; every answer cites its source.
 
+The workspace's [system design](../spec/design/system.md) writes the same fields in a shorter form: a title and the choice, then Why, Rejected and Serves. DESIGN-17, "Missing data never shown as a value", says that the adapter "publishes no value built from a partial read" and that PCM shows "No data" for a stale value. Why: "a partial read gives values that look normal, which is a correctness bug, and a blank is honest". Rejected: state codes in release 1.0, and a 15-minute wait before a value counts as stale, since "the author asked for no wait". Serves: PRINCIPLE-2, SCOPE-5 and four requirements. The context is in the IDs it serves, and the consequences are in the requirements that cite it.
+
 ## Same problem, other constraints
 
 isvara.io answered questions about the same books with the opposite design. It put the whole Book, about 327,000 tokens, into a large cloud model's context on every request, with no search at all, and kept the fixed part of the prompt first so the provider could reuse it from its cache. With a large model, a cache and a small budget per question, that was the simplest design that worked.
@@ -52,8 +54,8 @@ Start with a short threat model: what is worth protecting, who might attack it, 
 - **Least privilege.** PCM's users never log in to vCenter through PCM; only PCM's service accounts reach the source systems, and the role a person has decides what they see and do ([pcm-core.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/pcm/core/design-notes/pcm-core.md), section 3.10). The adapter's tools read and validate with a read-only account, and only installing uses the admin account.
 - **No hidden access.** Agent E2 reads and acts only through PCM's API, with the permissions of the person it acts for, so every action can name a person (section 3.12).
 - **Data leaves only by rule.** When Agent E2 searches the web for current facts, its query drops words that look like the customer's system names, so the names of VMs, hosts and datastores stay on site. It refuses private and local network addresses, so a crafted link cannot reach the customer's internal systems, and it treats every fetched page as untrusted text.
-- **Instructions hidden in a question.** isvara.io will check each visitor's question with one small model call before Agent E2 sees it, and a flagged question gets a fixed reply.
-- **Secrets.** The agent never sees a password. On the author's laptop, credentials are encrypted files that only the author's Windows account can open; on the lab's virtual machine they sit in a file only root can read.
+- **Instructions hidden in a question.** isvara.io will check each visitor's question with one small model call before Agent E2 sees it, and a flagged question gets a fixed reply (DESIGN-10).
+- **Secrets.** The agent never sees a password. On the author's laptop, credentials are encrypted files that only the author's Windows account can open; on the lab's virtual machine they sit in a file that only root and the `pcm` group can read (DESIGN-9).
 
 ### Scalability
 
@@ -67,18 +69,18 @@ Agent E2 makes the same move for its automated health check: tens of millions of
 
 ### Performance
 
-The target comes from the requirement, and the requirement from the person's knowledge of the users. Agent E2 puts accuracy before speed, so an answer may take minutes. The design follows: no streaming of a half-finished answer; the caller starts a job, reads its state every 10 seconds, and counts the elapsed time up in the browser between reads, so the screen moves every second without a call. The 10 seconds came from the author's input that a VMware administrator "does not mind 10 seconds waiting".
+The target comes from the requirement, and the requirement from the person's knowledge of the users. Agent E2 puts accuracy before speed, so an answer may take minutes. The design follows: no streaming of a half-finished answer; the caller starts a job, reads its state every 10 seconds, and counts the elapsed time up in the browser between reads, so the screen moves every second without a call. The 10 seconds came from the author's input that a VMware administrator "does not mind 10 seconds waiting" (DESIGN-14, ASSUMPTION-2).
 
 ### Reliability
 
 - **Every number carries its age.** Each value in PCM's API carries its source, its time and the version of its definition, and a value older than two collection cycles shows grey. The design note gives the reason in one line: "The most dangerous screen is green because it is blind" (section 3.5).
-- **No value from a partial read.** When one batch of objects fails to read, the adapter publishes nothing for the rows built from it, since a worst-VM value computed from half the VMs looks normal and is wrong.
+- **No value from a partial read.** When one batch of objects fails to read, the adapter publishes nothing for the rows built from it, since a worst-VM value computed from half the VMs looks normal and is wrong (DESIGN-17).
 - **A circuit breaker per source.** After repeated failures PCM stops calling one VCF Operations instance for a while and marks its data stale, so one slow region does not slow every screen (section 3.9).
 - **PCM watches itself.** Once the operations centre runs on PCM, an outage of PCM must never look like a quiet night, so its own health is on its wall (section 3.11).
 
 ### Maintainability
 
-- **One number, one definition, one place.** Every KPI and threshold is defined once, and every other copy is generated from it or checked against it (section 1). The contract check of [chapter 11](11-checks.md) is this principle in code.
+- **One number, one definition, one place.** Every KPI and threshold is defined once, and every other copy is generated from it or checked against it (section 1; DESIGN-2 in the workspace). The contract check of [chapter 11](11-checks.md) is this principle in code.
 - **The specification is the source.** AI generates the code from the specification, and people maintain the specification, so a change starts in the specification.
 - **Plain technology for the prototype.** PCM's prototype uses Python's standard library, plain HTML and JavaScript, with no framework and no build step. The choice covers the prototype only; the product's technology waits for the facts, as the next section shows.
 
@@ -88,7 +90,7 @@ PCM's prototype serves synthetic data, ACME Corp, a made-up global bank, through
 
 ### Cost
 
-Model spending has a monthly limit ([chapter 6](06-constraints-assumptions-risks-dependencies.md)). The design spends model calls only where judgement is needed: code does the scoring, the counting and the parsing of CSV files, and the model explains.
+Model spending has a monthly limit ([chapter 6](06-constraints-assumptions-risks-dependencies.md)). The design spends model calls only where judgement is needed: code does the scoring, the counting and the parsing of CSV files, and the model explains. A daily ceiling on model calls and question limits per address keep the month inside the budget (DESIGN-20).
 
 ## Choices made late on purpose
 
@@ -96,7 +98,7 @@ Some choices are better made later, once the facts exist. PCM's design defers it
 
 ## The home of a design choice
 
-A choice is written in the design, beside the part it shapes, and nowhere else. PCM's design note began with "Decisions proposed here move to decisions.md once accepted", which kept every accepted choice in two files. With the decision logs retired, the design is the one home, and git records when each choice changed and why.
+A choice is written in the design, beside the part it shapes, and nowhere else. PCM's design note began with "Decisions proposed here move to decisions.md once accepted", which kept every accepted choice in two files. Once the decision logs retire, the design is the one home, and git records when each choice changed and why.
 
 ## The person's part
 

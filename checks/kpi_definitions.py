@@ -4,7 +4,7 @@
 # ///
 """Check C1: the KPI definitions in PCM-Adapter match the Agent E2 catalog.
 
-Agent E2 owns every KPI definition (CONTRACTS.md, C1). PCM-Adapter implements them.
+Agent E2 owns every KPI definition (contract C1 in spec/design/system.md). PCM-Adapter implements them.
 For each KPI this check compares, sub-metric by sub-metric:
   - the sub-metric exists on both sides, matched by key: the catalog row's `key` against the
     name the adapter's KPI module gives the row (R-KPI-001),
@@ -69,7 +69,7 @@ NAME_GAPS: dict[str, set[str]] = {}
 
 # Close for Business decisions compared with the adapter's levels: decision id -> (KPI, band). The adapter closes every
 # cluster at Risk orange, the catalog's production row; the non-production row is Agent E2's practice, not applied in
-# release 1.0 and not compared (WD-044).
+# release 1.0 and not compared (DESIGN-18).
 CLOSURE_DECISIONS = {
     "closure-cluster-consumption-red": ("Consumption", "red"),
     "closure-cluster-consumption-orange": ("Consumption", "orange"),
@@ -77,7 +77,7 @@ CLOSURE_DECISIONS = {
     "closure-cluster-performance-orange": ("Performance", "orange"),
     "closure-cluster-risk-prod": ("Risk", "orange"),
 }
-# Known closure gaps: decision id -> the question in OPEN-QUESTIONS.md that decides it. Empty since WD-044.
+# Known closure gaps: decision id -> the question in OPEN-QUESTIONS.md that decides it. Empty since DESIGN-18.
 CLOSURE_GAPS: dict[str, str] = {}
 
 # The score row of each KPI the Periodic Cluster Check colours, by the last part of its kb path.

@@ -18,7 +18,7 @@ import diagram_kit as k  # noqa: E402
 
 
 def system() -> None:
-    """SYSTEM.md: the parts, where they run, and the contracts between them."""
+    """spec/design/system.md: the parts, where they run, and the contracts between them."""
     # No group frames: the text generator reads every text inside a rectangle as part of it, so an
     # arrow label inside a frame would be lost. Where a part runs is written in its own box.
     k.begin(960, 490)
@@ -121,8 +121,32 @@ def roadmap() -> None:
     k.finish(str(ROOT / "images" / "roadmap.svg"))
 
 
+def spec_chain() -> None:
+    """spec/README.md: the chain from the author's input to the code, and who writes each link."""
+    k.begin(1060, 270)
+    k.t(20, 26, "The specification, from the author's input to the code", 16, "bold")
+    k.legend(20, 40, [("The author's input", "prod"), ("Written together", "guest"),
+                      ("Claude decides", "method"), ("Code", "white")])
+    w, h = 160, 84
+    k.box(20, 100, w, "Author input", ["Answers to questions,", "word for word", "author-input/"], "prod", h=h)
+    k.box(210, 100, w, "Brief", ["Goals, scope, principles,", "constraints, assumptions,", "risks, dependencies"], "prod", h=h)
+    k.box(400, 100, w, "Requirements", ["What each part must do:", "Why, Source, Given,", "When, Then; scenarios"], "guest", h=h)
+    k.box(620, 60, w, "System design", ["How, and why: DESIGN-n", "with rejected options;", "contracts C1 to C5"], "method", h=h)
+    k.box(620, 170, w, "Test plan", ["Levels, environments,", "data, criteria,", "traceability"], "guest", h=h)
+    k.box(850, 115, 190, "Tests and code", ["In each repository,", "generated from the", "specification"], "white", h=h)
+    k.arrow([(180, 142), (210, 142)])
+    k.arrow([(370, 142), (400, 142)])
+    k.arrow([(560, 125), (590, 125), (590, 102), (620, 102)])
+    k.arrow([(560, 160), (590, 160), (590, 212), (620, 212)])
+    k.arrow([(780, 102), (815, 102), (815, 140), (850, 140)])
+    k.arrow([(780, 212), (815, 212), (815, 175), (850, 175)])
+    k.t(20, 255, "tools/spec_check.py checks every link it can read; the brief and the design hold each outcome once, with its reason.", 11.5, "normal", "#555")
+    k.finish(str(ROOT / "images" / "spec-chain.svg"))
+
+
 if __name__ == "__main__":
     system()
     method()
     roadmap()
     parts()
+    spec_chain()

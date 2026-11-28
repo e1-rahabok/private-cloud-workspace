@@ -1,7 +1,7 @@
 # /// script
 # requires-python = ">=3.10"
 # ///
-"""Check of R-WS-007: no folder or file name carries a version, milestone or status word (WD-030).
+"""Check of R-WS-007: no folder or file name carries a version, milestone or status word (DESIGN-6).
 
 For each repository it reads the tracked paths (git ls-files) of its clone and fails on a folder or file name that
 holds, as a whole word between separators (start or end, '-', '_', ' ', '.'), a version (v2, v5), a milestone (m5)

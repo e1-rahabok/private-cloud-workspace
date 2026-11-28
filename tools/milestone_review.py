@@ -9,10 +9,10 @@ A milestone's requirements are the IDs its section in ROADMAP.md names (single I
 requirements are listed apart, for reference.
 
 Each requirement that is not dropped belongs to exactly one milestone, or its "Milestone:" line says
-"after release 1.0" (WD-042). A requirement with a test scenario that needs the lab belongs to a milestone
-whose section says "**Runs:** in the lab", or to after release 1.0 (WD-042). Both modes fail otherwise.
+"after release 1.0" (DESIGN-21). A requirement with a test scenario that needs the lab belongs to a milestone
+whose section says "**Runs:** in the lab", or to after release 1.0 (DESIGN-21). Both modes fail otherwise.
 
-Requirement files are read from every repository (WD-036, tools/requirement_files.py). A page that lists a
+Requirement files are read from every repository (DESIGN-4, tools/requirement_files.py). A page that lists a
 requirement of a repository not read (CI cannot read isvara) is reported as not run, never as checked.
 
     python tools/milestone_review.py           # write spec/review/M<n>.md for each milestone with requirements
@@ -120,7 +120,7 @@ def lab_milestones() -> set[str]:
 
 
 def membership(reqs: dict[str, dict], ms: dict[str, tuple[str, list[str]]]) -> list[str]:
-    """Each requirement in exactly one milestone, or after release 1.0; lab tests only in a lab milestone (WD-042)."""
+    """Each requirement in exactly one milestone, or after release 1.0; lab tests only in a lab milestone (DESIGN-21)."""
     lab = lab_milestones()
     where: dict[str, list[str]] = {}
     for mid, (_, ids) in ms.items():

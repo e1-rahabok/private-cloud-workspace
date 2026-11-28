@@ -1,12 +1,12 @@
 # Requirements: <area>
 
-What <area> must do. Each requirement has an ID, a source, a reason, the behaviour in Given, When, Then form, and at least one test scenario. The Then and And lines are the acceptance criteria: each one observable, met or not met.
+What <area> must do. Each requirement has an ID, a reason, a source, the behaviour in Given, When, Then form, and at least one test scenario. The Then and And lines are the acceptance criteria: each one observable, met or not met.
 
 ### R-<AREA>-001 <one behaviour, in a few words>
 
-Source: <the question, goal, constraint or principle this comes from, by ID>.
+Why: <the reason in one line, so a reader can judge the requirement without opening its source>.
 
-Why: <the reason, in the person's words where they gave one>.
+Source: <the question, goal, constraint, principle or design choice this comes from, by ID>.
 
 - Given <the situation>
 - When <what happens>
@@ -19,9 +19,9 @@ Test scenarios:
 
 ### R-<AREA>-002 <a failure case: missing, late or wrong data>
 
-Source: <...>.
-
 Why: <...>.
+
+Source: <...>.
 
 - Given <...>
 - When <...>

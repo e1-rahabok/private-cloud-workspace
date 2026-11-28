@@ -12,7 +12,7 @@ writing/flagged-phrases.yaml. Documents fall into three groups (GROUPS below, pe
 Known style debt is a baseline in each repository, style-baseline.yaml at its root (file -> number of problems): a
 listed file is reported as KNOWN while it has its listed number of problems. The baseline may only shrink: a file with
 more problems fails, and so does a file with fewer until the same pull request lowers its number or, when clean,
-removes it. A repository's baseline goes with a question in that repository's question file (WD-019). A repository
+removes it. A repository's baseline goes with a question in that repository's question file (DESIGN-23). A repository
 without the file is not checked yet, and the check says so.
 
 What no pattern finds (slogans, "X, not Y", hedging, praise) is left to review: read each changed line with the
@@ -40,7 +40,7 @@ WORKSPACE = "private-cloud-workspace"
 COMMON_MACHINE = ["CLAUDE.md", "*/CLAUDE.md", "CLAUDE-PROJECT.md", "spec/requirements/*", "project/requirements/*"]
 # Per repository: (documents for machines, records kept verbatim), as fnmatch patterns on the repository path.
 GROUPS = {
-    WORKSPACE: (["tutorial/templates/*"], ["spec/interview-round-*.md"]),
+    WORKSPACE: (["tutorial/templates/*"], ["spec/author-input/*"]),
     "agent-e2": (["knowledge/*", "benchmark/questions/*", "benchmark/_templates/*", "project/templates/*"],
                  ["project/author-questions-resolved.md", "benchmark/results/*", "project/sources/*",
                   "project/*-20[0-9][0-9]-[0-9][0-9]-[0-9][0-9].md"]),  # dated records

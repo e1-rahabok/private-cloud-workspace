@@ -41,15 +41,15 @@ One entry shows the second copy. [WD-015](https://github.com/e1-rahabok/private-
 
 | Part of WD-015 | Kind | Home |
 |---|---|---|
-| "the L2 workspace only, for performance and capacity management only" | Scope | Brief |
+| "the L2 workspace only, for performance and capacity management only" | Scope | Brief, SCOPE-5 |
 | "says 'No data' when a value is stale" | Requirement | R-LIVE-015, with its reason |
-| "never writes to VCF Operations" | Constraint | Brief |
-| "reads through with a 60-second cache and stores no metrics" | Design choice | Design, with the options rejected |
-| "Actions, stories, cases and the calendar are out of 1.0" | Scope | Brief |
+| "never writes to VCF Operations" | Constraint | Brief, SCOPE-5 |
+| "reads through with a 60-second cache and stores no metrics" | Design choice | DESIGN-15, with the options rejected |
+| "Actions, stories, cases and the calendar are out of 1.0" | Scope | Brief, SCOPE-5 |
 
-An objection came up, and it has an answer. One reason can serve many requirements: WD-001, which makes Agent E2 the source of all domain knowledge, is cited by 12 requirements in four repositories, and copying its reason twelve times would let the copies drift apart. Such a reason gets a home of its own, at the level where it belongs: a principle or a constraint with its own ID, which each requirement cites. The reason is then written once. In this project that reason is a principle of the brief: one master copy of each fact.
+An objection came up, and it has an answer. One reason can serve many requirements: WD-001, which makes Agent E2 the source of all domain knowledge, is cited by 12 requirements in four repositories, and copying its reason twelve times would let the copies drift apart. Such a reason gets a home of its own, at the level where it belongs: a principle or a constraint with its own ID, which each requirement cites. The reason is then written once. In this project that reason is PRINCIPLE-5 in the brief, "One master copy of each fact". The design choice that applies it, DESIGN-2, lists the twelve requirements in its Serves line.
 
-The checks change with the method. [tools/spec_check.py](../tools/spec_check.py) fails a requirement whose Source line names no existing question or decision, and 157 of the 202 requirements in the five repositories cite a WD decision. The check exists to hold the method in place, so it moves when the method moves, in the three steps used for any contract ([chapter 9](09-seams-and-owners.md)): accept the new IDs, move each requirement to them, then refuse the old ones.
+The checks change with the method. [tools/spec_check.py](../tools/spec_check.py) fails a requirement whose Source line names no existing question or decision, and 157 of the 202 requirements in the five repositories cite a WD decision. The check exists to hold the method in place, so it moves when the method moves, in the three steps used for any contract ([chapter 9](09-seams-and-owners.md)): accept the new IDs, move each requirement to them, then refuse the old ones. The restructure's first pull request took the first step: the check accepts the brief's and the design's IDs and lists, per repository, the requirements still to move.
 
 ## The loop back
 

@@ -13,13 +13,13 @@ Quality requirements are the ones most often left out, because nobody asks for t
 
 ## The format
 
-Each requirement has an ID, a short title, its source, its reason, the behaviour written as Given, When, Then, and one or more test scenarios. Here is one from this project, slightly shortened, with its reason written out beside its source:
+Each requirement has an ID, a short title, its reason, its source, the behaviour written as Given, When, Then, and one or more test scenarios. Here is one from this project, slightly shortened, in the form of the workspace's [requirement format](../spec/requirements/README.md):
 
 > **R-LIVE-015 A stale value shows "No data" at once**
 >
-> Source: the author's answer to Q-WS-27.
+> Why: PCM shows what the adapter publishes, and a value that stopped updating must never look current.
 >
-> Why: PCM shows what the adapter publishes, and a value that stopped updating must never look current. The author: "PCM simply regurgitate the adapter. If the data is stale, say no data. No need to wait 15 minutes."
+> Source: Q-WS-27; Q-WS-64; DESIGN-17.
 >
 > - Given the VCF vCommunity Adapter collects every 5 minutes
 > - When the newest sample of a metric is more than 10 minutes old (one cycle plus a margin of one cycle) when PCM reads it
@@ -27,12 +27,12 @@ Each requirement has an ID, a short title, its source, its reason, the behaviour
 > - And it is never shown as 0 or coloured green
 >
 > Test scenarios:
-> - T-LIVE-015a (anywhere): a fake API returns samples ending 9 minutes ago for one cluster and 11 minutes ago for another. The first shows its value; the second shows "No data".
-> - T-LIVE-015b (lab): a powered-off lab VM, for which no new samples arrive. Its page shows "No data" with the time of the last sample.
+> - T-LIVE-015a (anywhere, automated by a unit test of PCM's live pages): a fake API returns samples ending 9 minutes ago for one cluster and 11 minutes ago for another. The first shows its value; the second shows "No data".
+> - T-LIVE-015b (lab, automated by the lab test script): a powered-off lab VM, for which no new samples arrive. Its page shows "No data" with the time of the last sample.
 
 A few things to notice:
 
-- **The source line.** Every requirement points at the input it came from: an answer, a goal, a constraint or a principle. A requirement with no source is the agent's invention, and it gets questioned. A script fails the build if a source is missing or points at nothing ([tools/spec_check.py](../tools/spec_check.py)).
+- **The Why and Source lines.** The Why line gives the reason in one sentence, so a reader can judge the requirement without opening anything else. The Source line points at the input it came from: here the author's answer to Q-WS-27, "If the data is stale, say no data. No need to wait 15 minutes"; Q-WS-64, where the agent set the limit at 10 minutes at the author's request; and the design choice it applies. A source can also be a goal, a constraint or a principle. A requirement with no source is the agent's invention, and it gets questioned. A script fails the build if a source is missing or points at nothing ([tools/spec_check.py](../tools/spec_check.py)).
 - **The reason, beside the requirement.** When the restructure began on 2026-11-28, 157 of the 202 requirements in this project cited a decision such as WD-015 in their source, and the reason sat in the decision log. A reader had to open a second file to learn why. The method puts the reason next to what it shaped. When one reason serves many requirements, it lives once, in the principle or constraint they all cite ([chapter 2](02-the-method.md)).
 - **Failure cases are explicit.** What happens when data is missing, late or wrong is where agents guess most, so those cases get their own requirements.
 - **The numbers are pinned.** "Stale" is defined as more than 10 minutes old; a test can measure that, and "too old" it could not. The number is the agent's design, derived from the author's input and from a constraint, the 5-minute cycle. Where a number is not yet known, the requirement says so and names the assumption it uses meanwhile.
