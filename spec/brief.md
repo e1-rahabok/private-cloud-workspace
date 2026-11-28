@@ -54,7 +54,7 @@ The material began as the first edition of the author's book in 2014. Each year 
   - Actions, stories, cases and the calendar are out of release 1.0 (Q-WS-33).
 - **SCOPE-6 Agent E2 in release 1.0.** Why: accuracy matters more than time; even minutes are better than waiting for a person. Source: Q-WS-I3, Q-WS-5, Q-WS-7, Q-WS-10, Q-WS-91.
   - Accuracy comes before speed. An answer may take minutes, with no streaming, and the user always sees that Agent E2 is still working (Q-WS-I3).
-  - Free-text answers are graded automatically by a strong model as judge, Opus 5.5, as Agent E2's earlier free-text benchmark was (Q-WS-5, Q-WS-91).
+  - Free-text answers are graded automatically by Claude Haiku 5.5 at low effort as judge: the cheapest grader, from another maker than the answering model, and the author's 20-answer check guards it; Opus 5.5 replaces it if it fails (the author, 2026-11-28: no bill beyond the existing gateway spend; Q-WS-5, Q-WS-91).
   - The answer set holds about 15 free-text questions in release 1.0 and grows toward 40 after it. Why: isvara.io's quiz is multiple choice and never uses the grader. Source: the author, 2026-11-27.
   - The model is Gemma 4 31B, or a later version when one comes (Q-WS-7).
   - Every knowledge file is used, drafts included; a review gate on files waits until after go-live, because the author has no time to review each file (Q-WS-10).
