@@ -177,7 +177,9 @@ Which Vercel account serves isvara.io today:
 
 > agentisvara-4524
 
-(The account's email address, also given, is left out of the repository.)
+(The account's email address, also given, is left out of the repository.) A screenshot the author sent next shows the live project `isvara` in the Vercel team Agent ISV (`agent-isv`), with the author's own account `iwanang-1023` a member:
+
+> iwanang-1023 has access. See screenshot. You should login and check for yourself as you're in SDD mode.
 
 Whether the fork is connected to a Vercel project:
 
