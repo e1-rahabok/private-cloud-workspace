@@ -38,7 +38,7 @@ An interview full of questions the agent could answer itself wastes the person's
 
 ## Rounds
 
-Expect more than one round. Writing the requirements from the first round's answers raised 66 new questions in this project, smaller and more precise than the first: names, exact numbers, limits. Keep each round as a record. Here the first round, with the author's answers exactly as written, is kept in [spec/interview-round-1.md](../spec/interview-round-1.md), and requirements cite it by question number.
+Expect more than one round. Writing the requirements from the first round's answers raised 66 new questions in this project, smaller and more precise than the first: names, exact numbers, limits. Keep each round as a record. Here the first round, with the author's answers exactly as written, is kept in [spec/interview-round-1.md](../spec/interview-round-1.md), and requirements cite it by question number. An answered question usually leaves only its answer and its result in the record. When the person asks for the explanation to be kept, as the author did for the question on the injection guard ("Document the answers so human readers can learn from it"), the record keeps the question's whole text, and a requirement plans the page for readers.
 
 ## Exercise
 

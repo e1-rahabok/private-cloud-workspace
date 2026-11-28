@@ -39,6 +39,13 @@ class PlantedOldNames(unittest.TestCase):
             problems = names.problems_in("agent-e2", Path(tmp))
         self.assertEqual(sorted(p.split(":")[1].strip() for p in problems), ["ARCHITECTURE.md", "live.md"])
 
+    def test_the_old_docs_folder_fails_and_the_new_one_passes(self):
+        with clone_with({"a.md": "see pcm/docs/design-note.md\n", "b.md": "run python3 -m pcm.docs.docs --export\n",
+                         "c.md": "[link](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/docs)\n",
+                         "d.md": "see pcm/definitions/pages/docs.js and the route /docs\n"}) as tmp:
+            problems = names.problems_in("agent-e2", Path(tmp))
+        self.assertEqual(sorted(p.split(":")[1].strip() for p in problems), ["a.md", "b.md", "c.md"])
+
     def test_a_link_pinned_to_a_commit_and_the_tutorial_pass(self):
         with clone_with({"README.md": "[b](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928/build/README.md)\n",
                          "tutorial/10.md": "`pcm_proto` stops being true\n"}) as tmp:

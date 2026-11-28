@@ -189,7 +189,7 @@ isvara.io's tools hold their own copies, for example Bronze overcommit CPU 4 and
 
 ### Q-WS-19 Is each part a 5-minute peak of 20-second values, or a 5-minute average?
 
-PCM colours parts with 20-second levels ([D-108](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L115)); what the adapter publishes per part is still "to verify" in PCM's spec ([spec/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/README.md#L60)).
+PCM colours parts with 20-second levels ([D-108](https://github.com/e1-rahabok/private-cloud-manager/blob/bc06479c707e37f81d67a493d11418c35184f2b0/decisions.md#L115)); what the adapter publishes per part is still "to verify" in PCM's spec ([spec/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/README.md#L60)).
 
 - **Recommendation:** record the statistic per key in PCM's key list (Q-WS-29) and colour by the matching catalog interval; leave a part uncoloured when no level matches.
 
@@ -199,7 +199,7 @@ PCM colours parts with 20-second levels ([D-108](https://github.com/e1-rahabok/p
 
 ### Q-WS-20 Does release 1.0 now include live reads? (blocks M6)
 
-PCM's spec says release 1.0 has no VCF Operations connector and shows placeholder values ([build/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/build/README.md#L275), [D-106](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L113)).
+PCM's spec says release 1.0 has no VCF Operations connector and shows placeholder values ([build/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/build/README.md#L275), [D-106](https://github.com/e1-rahabok/private-cloud-manager/blob/bc06479c707e37f81d67a493d11418c35184f2b0/decisions.md#L113)).
 
 - **Recommendation:** yes. Every "placeholder" rule becomes "synthetic mode: placeholder or story values; live mode: read from VCF Operations, with time and source".
 
@@ -207,7 +207,7 @@ PCM's spec says release 1.0 has no VCF Operations connector and shows placeholde
 
 ### Q-WS-21 Which pages are live in stage 1? (blocks M6)
 
-"Release 1.0 pages" can be read as the four L2 pages of [D-124](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L132) or the four workspaces of [D-053](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L60).
+"Release 1.0 pages" can be read as the four L2 pages of [D-124](https://github.com/e1-rahabok/private-cloud-manager/blob/bc06479c707e37f81d67a493d11418c35184f2b0/decisions.md#L132) or the four workspaces of [D-053](https://github.com/e1-rahabok/private-cloud-manager/blob/bc06479c707e37f81d67a493d11418c35184f2b0/decisions.md#L60).
 
 - **Recommendation:** the four L2 pages (cluster Performance and Capacity, ESXi host Performance, VM Performance) and the L2 inventory tree. M6 is one cluster's Performance tab; M7 is the rest.
 
@@ -319,7 +319,7 @@ PCM's settings have nothing for it; PCM's lab script skips certificate checks ([
 
 ### Q-WS-35 What exactly does "matches VCF Operations" mean in a test? (blocks M6)
 
-VCF Operations shows no percentile for an arbitrary window and no "worst part". PCM labels Cluster Performance's figure the 5th percentile ([D-131](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L139)).
+VCF Operations shows no percentile for an arbitrary window and no "worst part". PCM labels Cluster Performance's figure the 5th percentile ([D-131](https://github.com/e1-rahabok/private-cloud-manager/blob/bc06479c707e37f81d67a493d11418c35184f2b0/decisions.md#L139)).
 
 - **Recommendation:** the reference is a test script that reads the raw 5-minute points from the Suite API for the last 24 hours. Now is the last point, Worst the minimum, the 5th percentile by nearest rank, equal at whole percent. The worst part is the one that lost the most points at the worst point, under the adapter's scoring.
 
@@ -343,7 +343,7 @@ PCM's tests assume synthetic data with a fixed clock.
 
 ### Q-WS-38 Lab facts to confirm before M6
 
-- The exact VCF Operations version (the spec assumes 9.1; [D-062](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L69)).
+- The exact VCF Operations version (the spec assumes 9.1; [D-062](https://github.com/e1-rahabok/private-cloud-manager/blob/bc06479c707e37f81d67a493d11418c35184f2b0/decisions.md#L69)).
 - Whether any lab host has memory tiering.
 - Whether the two packet counters are active in the lab policy.
 - The host power and maintenance values the adapter has not checked live (issue [#2](https://github.com/e1-rahabok/PCM-Adapter/issues/2)).
@@ -353,7 +353,7 @@ PCM's tests assume synthetic data with a fixed clock.
 
 ### Q-WS-39 May live lab facts go to the cloud model?
 
-D-076 says the demo sends only synthetic ACME data ([decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L406)). Live mode sends lab object names and metrics through the gateway.
+D-076 says the demo sends only synthetic ACME data ([decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/bc06479c707e37f81d67a493d11418c35184f2b0/decisions.md#L406)). Live mode sends lab object names and metrics through the gateway.
 
 - **Recommendation:** yes for your own lab; amend D-076. Facts never carry credentials or IP addresses.
 
@@ -527,7 +527,7 @@ The eval prints a count and never fails ([evals/run.mjs](https://github.com/e1-r
 
 Each is a mistake with only one right answer. Say so here if you object.
 
-- PCM: two decisions numbered D-114 ([decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L121)); `l2.log_noise_max` defined twice ([settings.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/spec/catalog/settings.yaml#L244)); three different counts of Cluster Risk parts in the text (D-106, D-113, l2.yaml).
+- PCM: two decisions numbered D-114 ([decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/bc06479c707e37f81d67a493d11418c35184f2b0/decisions.md#L121)); `l2.log_noise_max` defined twice ([settings.yaml](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928690eae3165bfa0b58e0b2b227dcbdfb16/spec/catalog/settings.yaml#L244)); three different counts of Cluster Risk parts in the text (D-106, D-113, l2.yaml).
 - PCM-Adapter: "5 sub-metrics" should be 6 ([metrics-and-properties.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics-and-properties.md#L79)); issues #2 and #94 are out of date.
 - agent-e2: SECURITY.md understates model calls per answer ([SECURITY.md](https://github.com/e1-rahabok/agent-e2/blob/main/SECURITY.md#L31)); two documents say the service runs 3 samples, its config says 1 ([service_config.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/harness/service_config.yaml#L32)).
 - isvara: CLAUDE.md says three books; there are five.
