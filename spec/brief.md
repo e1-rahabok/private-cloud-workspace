@@ -37,7 +37,7 @@ The material began as the first edition of the author's book in 2014. Each year 
 - **SCOPE-2 Day 2 knowledge only.** The knowledge covers running, monitoring, troubleshooting and planning. Design, installation, building, configuration and upgrades (Day 0 and Day 1) are out, and Agent E2 says so when asked and points to Broadcom's documentation. Why: Day 1 knowledge changes with each release, and release 1.0 must be small enough to finish. Source: the author, 2026-11-26.
 - **SCOPE-3 The product and how customers take it.** The product is Agent E2, the VCF vCommunity Adapter and PCM, taken together with this workspace. Why: each part alone shows only part of the knowledge. Source: the author, 2026-11-26.
   - The VCF vCommunity Adapter alone is the simplest deployment: one pak file, no Linux, without Agent E2. Its documentation presents it as one part of the whole and points to the knowledge.
-  - PCM runs as a Linux container, with VKS integration. Whether release 1.0 ships it is open (Q-WS-139); release 1.0's lab runs PCM as a systemd service ([system design](design/system.md)).
+  - In release 1.0, PCM runs on a Linux VM in the lab, as a service, where it already serves its pages ([system design](design/system.md)). The Linux container with VKS integration that the author named on 2026-11-26 waits until after release 1.0 (SCOPE-19). Source: Q-WS-139.
   - isvara.io is a separate public site that customers use but never install or copy.
   - Customers copy the product by mirroring each repository into a private one, because a fork of a public repository on GitHub is always public. The manual says so.
 - **SCOPE-4 Two PCM demos, synthetic and live.** PCM keeps its synthetic ACME demo unchanged and adds a separate live demo as a new entry in the demo drop-down; no page switches between the two. Why: the lab has too little activity to show Agent E2 at its best, and the live demo proves PCM reads real data. Source: Q-WS-20, Q-WS-32.
@@ -89,6 +89,7 @@ The material began as the first edition of the author's book in 2014. Each year 
   - An email newsletter for isvara.io's weekly summary.
   - Watching isvara.io's spending against CONSTRAINT-1 once it is live.
   - Removing Agent E2's synchronous call, once PCM's synthetic demo uses the job calls too (R-E2-009).
+  - PCM as a Linux container, with VKS integration (Q-WS-139).
   - A code review of the VCF vCommunity Adapter: the next page of its [engineering review](https://github.com/e1-rahabok/PCM-Adapter/tree/main/docs/development-guide/engineering-review).
 
 ## Principles

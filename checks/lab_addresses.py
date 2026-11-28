@@ -14,7 +14,7 @@ comma-separated list (on the author's laptop, from `$HOME\\.secrets\\lab.json`),
 itself is never committed.
 
 Outside the rule: the author's books as isvara.io serves them (`content/books/` in isvara), which are published as
-they are, and this check's own planted breaks. A repository with no clone is reported as not run: isvara is private,
+they are, and this check and its planted breaks, which name the private ranges. A repository with no clone is reported as not run: isvara is private,
 and its own CI runs this check (R-WS-002). checks/test_lab_addresses.py plants a break of each kind.
 Exit 0: no problem. Exit 1: a problem. Exit 2: no repository could be read.
 """
@@ -33,7 +33,7 @@ EXAMPLE_NETWORK = ipaddress.ip_network("10.20.0.0/16")
 PRIVATE = [ipaddress.ip_network(n) for n in ("10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16")]
 OUTSIDE = {
     "isvara": ["content/books/"],
-    "private-cloud-workspace": ["checks/test_lab_addresses.py"],
+    "private-cloud-workspace": ["checks/lab_addresses.py", "checks/test_lab_addresses.py"],
 }
 ADDRESS = re.compile(r"(?<![\d.])(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})(?!\.?\d)")
 PREFILTER = r"(^|[^0-9.])(10|172|192)\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
