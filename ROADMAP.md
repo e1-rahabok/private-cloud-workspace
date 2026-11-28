@@ -125,7 +125,7 @@ Claude's working method, about how Claude works and never about the product, app
 - [x] The milestone review page is written for the author, in plain words, from the roadmap, the requirements and the brief: eight sections, no ID, file name or test count, rebuilt and checked on every pull request (R-WS-015, DESIGN-30); this repository's next pull request.
 - [x] Approval: the author approved M2 on 2026-11-28 from its [review page](spec/review/M2.md).
 
-### M3 Agent E2 serves PCM and isvara.io: in progress
+### M3 Agent E2 serves PCM and isvara.io: done
 
 - **Outcome:** one Agent E2 service answers both callers: long answers as jobs with a visible stage, screenshots and CSV files, sources by ID and title, time and tokens per answer, Day 2 questions only. It is a service around the harness: it changes no knowledge.
 - **Needs:** M2, so the contract check C3 (the Agent E2 API) runs on every pull request.
@@ -145,13 +145,17 @@ Claude's working method, about how Claude works and never about the product, app
 - [ ] The public service accepts calls only from isvara.io (R-E2-024).
 - [x] The answer set of 14 free-text questions, its automatic grader (Claude Haiku 5.5 at low effort) and its keys checked by an independent agent are built ([agent-e2#509](https://github.com/e1-rahabok/agent-e2/pull/509), [#106](https://github.com/e1-rahabok/private-cloud-workspace/pull/106)). Its graded runs, your grade on about 20 answers and the pass on the shipped configuration moved to M8, and run only when you say go.
 - [x] At the author's request, 2026-11-28: an unchanged benchmark answer is reused, a round stops at its budget, and the runner refuses to start the full round (R-E2-029 to R-E2-031) ([agent-e2#507](https://github.com/e1-rahabok/agent-e2/pull/507), [#99](https://github.com/e1-rahabok/private-cloud-workspace/pull/99)). The grade reuse is built with the grader.
-- [ ] Approval: the author approves M3 from its [review page](spec/review/M3.md).
+- [x] Approval: the author approved M3, 2026-11-28.
 
 ### M4 isvara.io reading
 
 - **Outcome:** on the parallel site (DESIGN-29), a visitor reads every Agent E2 knowledge file as an article, finds it through the three learning paths and through search, and sees the first infographic. Every fact and number on an article comes from Agent E2's export; the tools follow in M6.
 - **Needs:** M2 for the checks, and the author's review of the [before and after](spec/design/isvara-before-and-after.md), which the author asked for before anything is built (Q-WS-41). It does not need M3.
 - **Runs:** in a cloud session. The rewrite of each article and its checks need the Vercel AI Gateway key.
+- **In plain words:** isvara.io today is a reading site over the books. M4 builds the parallel site where every Agent E2 knowledge file becomes an article, with three learning paths and search. Before anything is built, you review a page that shows the old site and the new one side by side.
+- **What changes:** for visitors of isvara.io, nothing: the live site stays as it is, and the parallel site is live but not advertised. For you, one page to read first, the before and after, and later the articles on the parallel site.
+- **Left out on purpose:** Ask and contributions (M5), practice and tools (M6), the switch-over of isvara.io (M7), PCM's live demo (M8).
+- **What I need from you:** read the [before and after](spec/design/isvara-before-and-after.md) and tell me what to change. Nothing is built until you have read it.
 - **Requirements:** R-CONTENT-002 to R-CONTENT-023 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), R-JOURNEY-001 and R-JOURNEY-002 (isvara's [journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md)), R-E2-027 and R-E2-028 (agent-e2's [knowledge-export.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/knowledge-export.md)), R-EXPORT-001 and R-EXPORT-002 (the workspace's [knowledge-export.md](spec/requirements/knowledge-export.md), contract C4); and the move of isvara.io's plan and before and after from this repository to isvara (DESIGN-4).
 
 ### M5 isvara.io Ask and contributions
