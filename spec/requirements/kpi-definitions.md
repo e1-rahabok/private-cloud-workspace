@@ -14,10 +14,10 @@ Source: WD-001; answers to Q-WS-1 and Q-WS-19 (round 1); Q-WS-89 (round 2: a key
 
 - Given any KPI that the VCF vCommunity Adapter publishes (Cluster Performance, ESXi Performance, VM Performance, Guest OS Performance, Cluster Risk, Cluster Consumption)
 - When the check reads Agent E2's catalog
-- Then each part of the KPI has exactly one catalog row, with the fields the comparison needs: name, key, unit, interval, five limits and the excluded-while-green flag
+- Then each part of the KPI has exactly one catalog row, with the fields the comparison needs: name, key, five limits for at least one interval, and the unit in the name when the metric has one; and the excluded-while-green flag, which a row leaves out when it is false
 
 Test scenarios:
-- T-KPI-001a (anywhere, automated by checks/kpi_definitions.py, to extend): for every part the adapter publishes, find its catalog row by key; fail on a missing row, a missing field or two rows with one key.
+- T-KPI-001a (anywhere, automated by checks/kpi_definitions.py): for every part the adapter publishes, find its catalog row by key; fail on a missing row, a missing field or two rows with one key.
 
 ### R-KPI-002 Each part's limits in the adapter equal the catalog's
 
@@ -44,7 +44,7 @@ Source: answer to Q-WS-1 ("For key, adapter is correct. For name, Agent E2 is co
 - And the label in the adapter's code equals the catalog row's name without its unit
 
 Test scenarios:
-- T-KPI-003a (anywhere, automated by checks/kpi_definitions.py, to extend): match parts by key; fail when an adapter label differs from the catalog name. The baseline of 11 VM and Guest OS name gaps must be empty.
+- T-KPI-003a (anywhere, automated by checks/kpi_definitions.py): match parts by key; fail when an adapter label differs from the catalog name. The baseline of 11 VM and Guest OS name gaps must be empty.
 - Its lab check, a screenshot of one lab cluster's and one lab VM's metric list after installing the pack, is T-ADP-026a in M8 ([R-ADP-026](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md#r-adp-026-the-installed-pack-matches-the-catalog-on-the-lab)).
 
 ### R-KPI-004 Dropped: the scoring rules are defined once, in the catalog
@@ -65,7 +65,7 @@ Source: answer to Q-WS-15; WD-036.
 - And a KPI the adapter colours with no score row in the catalog fails the check
 
 Test scenarios:
-- T-KPI-005a (anywhere, automated by checks/kpi_definitions.py, to extend): compare every score row with the adapter's band table; any difference fails.
+- T-KPI-005a (anywhere, automated by checks/kpi_definitions.py): compare every score row with the adapter's band table; any difference fails.
 
 ### R-KPI-006 The close-for-business levels equal the catalog's
 
@@ -78,7 +78,7 @@ Source: answers to Q-WS-15 and Q-WS-16; WD-036.
 - Then each level for Consumption, Performance and Risk is equal
 
 Test scenarios:
-- T-KPI-006a (anywhere, automated by checks/kpi_definitions.py, to extend): compare every level; any difference fails.
+- T-KPI-006a (anywhere, automated by checks/kpi_definitions.py): compare every level; any difference fails.
 
 ### R-KPI-007 Dropped: usable capacity is Total − HA − Buffer
 

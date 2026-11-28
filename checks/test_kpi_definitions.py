@@ -119,6 +119,24 @@ class PlantedBreaks(unittest.TestCase):
         problems = self.periodic_problems(edit)
         self.assertTrue(any("Consumption red" in p for p in problems), problems)
 
+    def test_a_changed_excluded_when_green_fails(self):
+        adapter = copy.deepcopy(self.adapter)
+        metric, label = adapter["Cluster Risk"]["Worst ESXi CPU Imbalance"]
+        adapter["Cluster Risk"]["Worst ESXi CPU Imbalance"] = (metric._replace(skip_when_green=not metric.skip_when_green), label)
+        problems, _ = self.run_compare(adapter=adapter)
+        self.assertTrue(any("excluded when green" in p and "CPU imbalance" in p for p in problems), problems)
+
+    def test_a_changed_closure_window_fails(self):
+        def edit(folder):
+            f = folder / "thresholds-capacity.yaml"
+            text = f.read_text(encoding="utf-8")
+            at = text.index("id: closure-cluster-performance-red")
+            start = text.rindex("- ", 0, at)
+            part = text[start:at + 200].replace("5th percentile of the last 24 hours", "10th percentile of the last 24 hours", 1)
+            f.write_text(text[:start] + part + text[at + 200:], encoding="utf-8")
+        problems = self.periodic_problems(edit)
+        self.assertTrue(any("closure-cluster-performance-red" in p and "percentile" in p for p in problems), problems)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -32,6 +32,13 @@ class PlantedOldNames(unittest.TestCase):
             problems = names.problems_in("agent-e2", Path(tmp))
         self.assertEqual(sorted(p.rsplit("(", 1)[1] for p in problems), ["R-REPO-007)", "R-REPO-007)", "R-REPO-008)"])
 
+    def test_an_old_pcm_path_written_out_fails_and_a_new_one_passes(self):
+        with clone_with({"ARCHITECTURE.md": "PCM `spec/workspaces/l2/frame.md`\n",
+                         "live.md": "no change under spec/tests/ and build/tests/\n",
+                         "new.md": "see pcm/core/spec/catalog/settings.yaml and pcm/l2/spec/pages/frame.md\n"}) as tmp:
+            problems = names.problems_in("agent-e2", Path(tmp))
+        self.assertEqual(sorted(p.split(":")[1].strip() for p in problems), ["ARCHITECTURE.md", "live.md"])
+
     def test_a_link_pinned_to_a_commit_and_the_tutorial_pass(self):
         with clone_with({"README.md": "[b](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928/build/README.md)\n",
                          "tutorial/10.md": "`pcm_proto` stops being true\n"}) as tmp:

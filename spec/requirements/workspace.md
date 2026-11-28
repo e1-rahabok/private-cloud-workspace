@@ -13,7 +13,7 @@ Source: answer to Q-WS-I1 ("I expect you to check all the contracts"); WD-010.
 
 Test scenarios:
 - T-WS-001a (anywhere, automated by tools/spec_check.py, to extend): every row of CONTRACTS.md names an existing check file, or is marked planned with a milestone.
-- T-WS-001b (anywhere, manual once per check): plant a break, run the check, record the failure in the check's docstring.
+- T-WS-001b (anywhere, automated once per check): plant a break of each kind the check compares, run the check, and keep the plant as a test in `checks/test_<check>.py`, which CI runs.
 
 ### R-WS-002 The checks run where a break would happen
 

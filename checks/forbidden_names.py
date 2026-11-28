@@ -8,8 +8,10 @@ that name the old names to forbid them, give them as examples, or record them as
 - R-REPO-006 (Q-WS-3, WD-007, WD-028): the old repository names "VCF-vCommunity-Adapter" and
   "private-cloud-management", in any case.
 - R-REPO-007 and R-REPO-008 (T-REPO-007b, T-REPO-008e): PCM's old package and file names `pcm_proto` and `story_m5`,
-  and links to PCM's old folders `build/` and `sources/` on its main branch. A link pinned to a commit, as the
-  interview records use, still resolves and is not an old name.
+  links to PCM's old folders `build/` and `sources/` on its main branch, and PCM's old paths written out
+  (`build/tests`, `build/pcm_proto`, and `spec/<folder>/` for the specification folders that moved into each
+  workspace in D-133). A link pinned to a commit, as the interview records use, still resolves and is not an old
+  name; a path inside a workspace folder, such as `pcm/core/spec/catalog/`, is a new path.
 
 Outside every rule: decision logs, the interview records, agent-e2's record of the author's answers, the adapter's
 dated engineering reviews, the workspace's tutorial (it gives the old names as examples) and these checks' own planted
@@ -44,11 +46,14 @@ RULES = [
     ("R-REPO-007", re.compile(r"pcm_proto|story_m5"),
      {"private-cloud-workspace": ["spec/requirements/workspace.md", "spec/review/"],
       "private-cloud-manager": ["spec/requirements/clean-up.md"]}),
-    ("R-REPO-008", re.compile(r"private-cloud-manager/(?:blob|tree)/main/(?:build|sources)(?:/|\b)"),
+    ("R-REPO-008", re.compile(r"private-cloud-manager/(?:blob|tree)/main/(?:build|sources)(?:/|\b)"
+                              r"|(?<![\w/-])build/(?:tests|pcm_proto)\b"
+                              r"|(?<![\w/-])spec/(?:workspaces|catalog|data|design-system|api|objects|database|tests)/"),
      {"private-cloud-manager": ["spec/requirements/clean-up.md"]}),
 ]
 # What git grep reads first, in its own pattern language; the rules above then decide.
-PREFILTER = r"VCF-vCommunity-Adapter|private-cloud-management|pcm_proto|story_m5|private-cloud-manager/(blob|tree)/main/(build|sources)"
+PREFILTER = (r"VCF-vCommunity-Adapter|private-cloud-management|pcm_proto|story_m5|private-cloud-manager/(blob|tree)/main/(build|sources)"
+             r"|build/(tests|pcm_proto)|spec/(workspaces|catalog|data|design-system|api|objects|database|tests)/")
 
 
 def outside(repo: str, path: str, rule_outside: dict[str, list[str]]) -> bool:

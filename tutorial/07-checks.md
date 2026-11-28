@@ -6,7 +6,7 @@ A check is a short script that reads two sides of a seam and fails when they dis
 
 ## Two kinds
 
-The first kind compares definitions. [checks/kpi_definitions.py](../checks/kpi_definitions.py) reads the performance definitions in the knowledge service's catalog and in the management pack's code, and compares them row by row: five limits and one flag per sub-metric, 49 sub-metrics in all. It connects to nothing and runs in about a second.
+The first kind compares definitions. [checks/kpi_definitions.py](../checks/kpi_definitions.py) reads the performance definitions in the knowledge service's catalog and in the management pack's code, and compares them row by row, 49 sub-metrics in all: it finds each row by its key, then compares the name, the five limits, one flag and the interval, and also the score bands and the closure levels. It connects to nothing and runs in about a second.
 
 The second kind exercises the real thing. [checks/agent_e2_api.py](../checks/agent_e2_api.py) starts the actual knowledge service with its model switched off, then calls each endpoint using the web app's own client code and checks every field the web app reads. It takes about eight seconds. Because it uses the real code on both sides, it catches a change that a comparison of documents would miss.
 
@@ -22,7 +22,7 @@ Plant the break on a copy of the file and restore it from the copy. In this proj
 
 A new check often finds real problems that cannot all be fixed at once. The first check here found 11 sub-metrics whose names differed between the two repositories, although their limits agreed. Letting the check fail every day until all 11 were fixed would have taught everyone to ignore it. Removing it would have let the gaps grow.
 
-Instead the 11 are listed in the check as known gaps. They are reported, but they do not fail the run. Any new gap does fail, and so does a listed gap that has since been fixed, until someone removes it from the list. The list can only get shorter. Each known gap also has an open question saying who decides the fix.
+Instead the 11 were listed in the check as known gaps. They were reported, but they did not fail the run. Any new gap did fail, and so did a listed gap that had since been fixed, until someone removed it from the list. The list could only get shorter, and in M2 it reached zero. Each known gap has an open question that names who decides the fix. The one gap left, the Cluster Risk closure level, waits for the author's answer to [Q-WS-138](../OPEN-QUESTIONS.md).
 
 ## Checks on the specification itself
 
@@ -34,7 +34,7 @@ The plan itself is checked too. When the roadmap was rebuilt, a count showed tha
 
 - Locally, with one command: `uv run checks/run_all.py`.
 - In GitHub Actions, on every push and pull request to this repository, once a day, and on demand.
-- Later, on every pull request in each of the other repositories, so a break is caught before it merges rather than the next morning.
+- On every pull request in each of the other repositories, through one shared workflow each of them calls, so a break is caught before it merges rather than the next morning.
 
 ## Rules for the agent
 

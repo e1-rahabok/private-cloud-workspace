@@ -50,15 +50,15 @@ To compare models, give two of them the same slice and the same files, and count
 
 Some documents are mainly for people: the readme, the map, the decisions, the design notes, this tutorial, commit messages. Others are mainly for the agent: its working rules (CLAUDE.md), the requirements, the templates. They are written differently, and each kind has its own rules.
 
-**For people,** the rules are the ones the author had already worked out in the knowledge service's repository, after fixing AI-written text there several times ([writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md)). In short:
+**For people,** the rules began as the ones the author had worked out in the knowledge service's repository ([writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md)), after fixing AI-written text there several times. In M2 they moved to this workspace's [writing rules](../writing/README.md), so every repository follows one copy. In short:
 
 - plain sentences, with the fact itself rather than filler;
-- none of the phrases on a list of typical AI wording (each listed with its plain replacement), kept in one file in that repository;
+- none of the phrases on a list of typical AI wording, each listed with its plain replacement, kept in one file in this workspace ([flagged-phrases.yaml](../writing/flagged-phrases.yaml));
 - no slogans and no "X, not Y" constructions;
 - headings that name the topic, as in a reference book: "Stop conditions" rather than "When the agent must stop";
 - short table cells, with bullets instead when the text is long, because GitHub squeezes wide tables.
 
-A script ([tools/style.py](../tools/style.py)) reads the phrase list from that repository, so the rules exist in one place, and checks every document for people on each pull request. It cannot spot a slogan or an "X, not Y"; those need a reader, who should judge each line together with the lines around it.
+A script ([tools/style.py](../tools/style.py)) reads that list, so the rules exist in one place, and checks every document for people in every repository on each pull request, against each repository's own baseline of known problems. It cannot spot a slogan or an "X, not Y"; those need a reader, who should judge each line together with the lines around it.
 
 **For the agent,** the aim is to be followed exactly: one rule per bullet, the trigger before the action ("Before each commit, run…"), exact file paths and names, and no history or attribution the agent has to skip.
 
