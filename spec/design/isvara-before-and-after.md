@@ -127,7 +127,7 @@ A knowledge file's form says which lens it serves. The lenses are a completeness
 ### Contributions
 
 - **Before:** none.
-- **After:** `/contribute` (Author, DESIGN-11): a correction, an addition or something to review; one area, a note of up to 2,000 characters, one link and up to three files (PNG, JPEG, CSV).
+- **After:** `/contribute` (Author, DESIGN-11): a correction, an addition, something to review or a question; a screen refuses spam and explicit text before anything is stored; one area, a note of up to 2,000 characters, one link and up to three files (PNG, JPEG, CSV).
 - **Queue:** private; nothing is published by itself. Each week AI sorts the queue and the author decides; accepted items become source notes in agent-e2, with credit when the contributor gave a public profile link (Author, DESIGN-11).
 - **Kept:** files until processed and at most 30 days; no IP address with a contribution; no email address asked (Author, DESIGN-11).
 - **Review page:** a key-gated `/admin/contributions`, like today's `/admin/questions`. Claude's call: the author already reviews questions there.

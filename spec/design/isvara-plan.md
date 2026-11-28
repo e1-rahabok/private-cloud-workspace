@@ -74,7 +74,9 @@ The author's answer to what would bring an administrator back weekly (2026-11-26
 
 From release 1.0 (DESIGN-11):
 
-- **What can be sent:** a correction, an addition or something to review, in one area, with a note, one link and up to three files.
+- **What can be sent:** a correction, an addition, something to review or a question (with the sender's answer if they have one), in one area, with a note, one link and up to three files.
+- **Screen:** before anything is stored, a model refuses spam, advertising, explicit or abusive text, hidden instructions and text unrelated to private cloud; nothing refused is kept.
+- **A reader's question:** once accepted, it becomes knowledge, and its answer reaches the site through the article it changes, listed in What's New as "Asked by a reader". Readers never answer readers on the site, and their own words and images are never shown (RISK-11).
 - **Where it goes:** a private queue. Nothing is published automatically. Each week AI sorts the queue and the author decides; an accepted item becomes a source note in agent-e2, with credit if the contributor gave a public profile link.
 - **Agreement:** "By submitting, you confirm that you may share this, that it holds no confidential customer data, and that it may be used, changed and published in Agent E2 and isvara.io, with credit if you give a profile link."
 - **Kept:** files until processed, and at most 30 days; no IP address with a contribution.
