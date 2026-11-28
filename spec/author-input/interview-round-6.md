@@ -1,6 +1,6 @@
 # Interview, round 6
 
-Questions answered by the author on 2026-11-28: two in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md), and nine in the question files of private-cloud-manager, PCM-Adapter, isvara and agent-e2. The answers are as written, with what follows from each. IDs are explained in the [glossary](../glossary.md).
+Questions answered by the author on 2026-11-28: three in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md), and nine in the question files of private-cloud-manager, PCM-Adapter, isvara and agent-e2. The answers are as written, with what follows from each. IDs are explained in the [glossary](../glossary.md).
 
 ## Q-WS-136 The injection guard and the evals once Agent E2 answers
 
@@ -23,6 +23,14 @@ Options for the guard:
 **Answer:** "Ok. Document the answers so human readers can learn from it."
 
 **Result:** option (a), with the two batteries rewritten as recommended (DESIGN-10 in the [system design](../design/system.md)). isvara.io gets a page for people that explains its guard and the two batteries, written in M5 with the guard it describes (R-ASK-012 in isvara's [ask.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/ask.md)). Until then, the question above is that explanation.
+
+## Q-WS-137 The key of the 20-second peak of dropped TX packets
+
+The question: Agent E2's catalog names the VM row "Peak network TX dropped packets" with 20-second limits, and the VCF vCommunity Adapter reads `net|droppedTxPct_max`. The VM key list exported from VCF Operations 9.1.1 had no key that matched Peak Transmitted Packet Dropped within collection cycle exactly, so Claude took `net|droppedTxPct_max` for a 5-minute maximum and planned to read the lab in M8.
+
+**Answer:** "that is the key. net|droppedTxPct_max is correct." And, later the same day: "Anyway, VCF vCommunity Adapter answer is correct. It is 20 second peak indeed."
+
+**Result:** ASSUMPTION-8 in the [brief](../brief.md). The adapter's row and Agent E2's catalog row stay as they are. The adapter's test of R-ADP-008 lists `net|droppedTxPct_max` as a 20-second peak in place of a known gap, and Agent E2's knowledge file on 20-second peaks names the key.
 
 ## Q-WS-138 Close for Business: one Risk level in release 1.0
 
