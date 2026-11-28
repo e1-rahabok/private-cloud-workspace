@@ -259,6 +259,12 @@ On the projection of US$71 for the next full round:
 
 **Result:** DESIGN-31: the full round asks Gemma 4 31B 3 times per question and the frontier reference once, and stops at US$25; it runs once, before M3 is closed, because M3 rebuilds how Agent E2 answers. R-E2-030 and R-E2-031 in agent-e2's test-spending.md.
 
+After that answer:
+
+> NEVER RUN THE FULL RUN AT ALL
+
+**Result:** CONSTRAINT-1 and DESIGN-31: the full benchmark round never runs, and the runner refuses to start one; the answer set and the free automatic checks test Agent E2. R-E2-031 in agent-e2's test-spending.md.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):
