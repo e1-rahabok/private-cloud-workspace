@@ -27,7 +27,7 @@ Three questions from this project show the difference.
 
 - **Input given where a decision was asked.** Q-WS-27 asked when a value counts as stale and recommended 15 minutes. The author answered with a requirement and its reason: "PCM simply regurgitate the adapter. If the data is stale, say no data. No need to wait 15 minutes." The number then became the agent's design: 10 minutes, one collection cycle of the adapter plus a margin of one cycle, so a single late collection does not blank the screen ([chapter 7](07-requirements-and-acceptance.md)).
 - **A design put to the expert.** Q-WS-136 offered three designs for isvara.io's guard against instructions hidden in a question, and asked the author to choose. That is a security design, and the agent's to make. The input it depended on was already in the files: the guard sits in isvara.io (the author's answer to Q-WS-47), and model spending stays within US$50 a month. The author's answer asked for the reasoning instead of a choice: "Ok. Document the answers so human readers can learn from it."
-- **A question for field knowledge.** Q-WS-137 asks for the key of one metric in VCF Operations, which no document names. It says what the agent will do without an answer: read the lab in milestone M8, and if no such key exists, turn the catalog row into a 5-minute value without "peak" in its name. Field knowledge settles it at once; without it, the work goes on.
+- **A question for field knowledge.** Q-WS-137 asked for the key of one metric in VCF Operations, which no document names. It said what the agent would do without an answer: read the lab in milestone M8, and if no such key existed, turn the catalog row into a 5-minute value without "peak" in its name. Field knowledge settled it at once: "It is 20 second peak indeed." Without the answer, the work would have gone on.
 
 ## Parts of a good question
 
@@ -48,6 +48,8 @@ The person answers by editing the file on GitHub, in their own time. Answers giv
 ## Questions the agent answers itself
 
 An interview full of questions the agent could answer itself wastes the person's time and their trust. In this project the agent asked where "availability" belongs among operations disciplines, which any practitioner knows. Anything that can be found in the documents, the code or general knowledge of the field, the agent decides and states, and the person can still overrule it. Design questions belong here too: security, performance, scalability and maintainability are the architect's work ([chapter 8](08-design.md)).
+
+Data the agent can reach is also its to read before it asks. To draw the journeys of the rebuilt isvara.io, the agent needed to know where visitors land and on which devices. The site records both in Vercel Web Analytics, so the agent tried to read them first. Its Vercel connector reached another account, which holds no isvara project, so it asked the author: Q-ISVARA-2 and Q-ISVARA-3 in isvara's [OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md). Each question says where the answer is (isvara's project in Vercel, Analytics, the last 90 days) and offers the other way: connect the right account, and the agent reads it. Meanwhile the journeys rest on a working assumption, that most first visits land on an article from a search engine.
 
 ## Answers and where they go
 
