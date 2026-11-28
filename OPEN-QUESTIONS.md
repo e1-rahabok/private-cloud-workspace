@@ -8,4 +8,4 @@ Agent E2's catalog names the VM row "Peak network TX dropped packets" with 20-se
 
 - **Working assumption:** in M2, the adapter's test of R-ADP-008 lists this row as its one known gap, so M2 can finish. In M8, T-ADP-026d reads the lab: if a 20-second key exists, the adapter reads it; if none does, agent-e2's catalog row becomes 5-minute and drops "peak" from its name, then the adapter follows. If you know the key from the field, the answer settles it now.
 
-Answer:
+Answer: that is the key. net|droppedTxPct_max is correct.
