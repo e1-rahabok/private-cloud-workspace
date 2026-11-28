@@ -1,7 +1,7 @@
-"""Planted breaks for check C1 (checks/kpi_definitions.py): each one must make the check fail and name the part.
+"""Planted breaks for check C1 (contract-checks/kpi_definitions.py): each one must make the check fail and name the part.
 
 Reads the clones of agent-e2 and PCM-Adapter next to this repository, as the check does, and changes copies in
-memory or in a temporary folder only. Run: python -m unittest discover -s checks -p "test_*.py"
+memory or in a temporary folder only. Run: python -m unittest discover -s contract-checks -p "test_*.py"
 """
 from __future__ import annotations
 

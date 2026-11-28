@@ -2,13 +2,13 @@
 
 ## Purpose
 
-A check is a short script that reads two sides of a seam and fails when they disagree. It runs on every pull request, once a day, and whenever someone asks. The checks in this project are in [checks](../checks) and [tools](../tools), and each can be read in a few minutes.
+A check is a short script that reads two sides of a seam and fails when they disagree. It runs on every pull request, once a day, and whenever someone asks. The checks in this project are in [contract-checks](../contract-checks) and [tools](../tools), and each can be read in a few minutes.
 
 ## Two kinds
 
-The first kind compares definitions. [checks/kpi_definitions.py](../checks/kpi_definitions.py) reads the performance definitions in the knowledge service's catalog and in the management pack's code, and compares them row by row, 49 sub-metrics in all: it finds each row by its key, then compares the name, the five limits, one flag and the interval, and also the score bands and the closure levels. It connects to nothing and runs in about a second.
+The first kind compares definitions. [contract-checks/kpi_definitions.py](../contract-checks/kpi_definitions.py) reads the performance definitions in the knowledge service's catalog and in the management pack's code, and compares them row by row, 49 sub-metrics in all: it finds each row by its key, then compares the name, the five limits, one flag and the interval, and also the score bands and the closure levels. It connects to nothing and runs in about a second.
 
-The second kind exercises the real thing. [checks/agent_e2_api.py](../checks/agent_e2_api.py) starts the actual knowledge service with its model switched off, then calls each endpoint using the web app's own client code and checks every field the web app reads. It takes about eight seconds. Because it uses the real code on both sides, it catches a change that a comparison of documents would miss.
+The second kind exercises the real thing. [contract-checks/agent_e2_api.py](../contract-checks/agent_e2_api.py) starts the actual knowledge service with its model switched off, then calls each endpoint using the web app's own client code and checks every field the web app reads. It takes about eight seconds. Because it uses the real code on both sides, it catches a change that a comparison of documents would miss.
 
 Use the second kind where it is cheap enough. Documentation can say one thing while the code has already moved on.
 
@@ -32,9 +32,13 @@ The plan itself is checked too. When the roadmap was rebuilt, a count showed tha
 
 A check covers only what it reads. The link check opens relative links; a link to another repository by its full GitHub address is never followed. During the restructure, bulk rewrites of paths broke links twice with every check green: once because a group in a regular expression had been renumbered, once because a pattern missed a "/". After the move, one requirement in PCM-Adapter still pointed at the workspace's deleted SYSTEM.md by its full address, until a later commit repointed it. After a bulk rewrite, search every clone for the old path.
 
+## Folders of the checks
+
+Name the folder for what only it holds. This workspace first kept its checks in `checks/` and its other scripts in [`tools/`](../tools), and [`tools/`](../tools) soon held checks too. A fresh reader, given only the folder names, could not tell the two apart. The checks of contracts between repositories now live in [contract-checks](../contract-checks), with their planted breaks, and every other check, of names, lab addresses, secrets, workflows, words, links or the specification, lives in [tools](../tools).
+
 ## Places they run
 
-- Locally, with one command: `uv run checks/run_all.py`.
+- Locally, with one command: `uv run contract-checks/run_all.py`.
 - In GitHub Actions, on every push and pull request to this repository, once a day, and on demand.
 - On every pull request in each of the other repositories, through one shared workflow each of them calls, so a break is caught before it merges rather than the next morning.
 

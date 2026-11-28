@@ -17,8 +17,8 @@ Rules (spec/README.md, spec/requirements/README.md, R-WS-003, DESIGN-8):
 - Every brief item and design choice ("- **PREFIX-n Title.**") has a unique ID and its lines (FIELDS): a "Why:",
   or an assumption's "Status:", a risk's "Effect:", "Reduced by:" and "Acts:", a dependency's "Provided by:" and
   "Needed by:"; a design choice also has "Rejected:" and "Serves:". Every ID either names exists.
-- Every contract row in spec/design/system.md, section Contracts, names a check file in checks/ that
-  exists and that checks/run_all.py runs, or says it is planned in a ROADMAP milestone (R-WS-001).
+- Every contract row in spec/design/system.md, section Contracts, names a check file in contract-checks/ that
+  exists and that contract-checks/run_all.py runs, or says it is planned in a ROADMAP milestone (R-WS-001).
 
     python tools/spec_check.py                    # every repository; exit 1 on any problem
     python tools/spec_check.py --repos agent-e2   # only these child repositories (CI cannot read isvara)
@@ -106,14 +106,14 @@ def item_problems(ids: set[str], reqs: dict[str, str], read_all: bool) -> list[s
 
 
 CONTRACT_ROW = re.compile(r"^\| (C\d+) \|(.*)$", re.M)
-CHECK_LINK = re.compile(r"\]\((?:\.\./\.\./)?(checks/[\w./-]+\.py)\)")
+CHECK_LINK = re.compile(r"\]\((?:\.\./\.\./)?(contract-checks/[\w./-]+\.py)\)")
 PLANNED = re.compile(r"planned in ROADMAP M\d+", re.I)
 
 
 def contract_problems() -> list[str]:
     """Each contract row names a running check that exists and run_all.py runs, or a milestone that plans one."""
     problems = []
-    run_all = (ROOT / "checks" / "run_all.py").read_text(encoding="utf-8")
+    run_all = (ROOT / "contract-checks" / "run_all.py").read_text(encoding="utf-8")
     text = DESIGN.read_text(encoding="utf-8")
     rows = CONTRACT_ROW.findall(text[text.find("## Contracts"):])
     if not rows:
@@ -126,7 +126,7 @@ def contract_problems() -> list[str]:
             if not path.is_file():
                 problems.append(f"spec/design/system.md: {cid} names {link.group(1)}, which does not exist")
             elif f'"{path.name}"' not in run_all:
-                problems.append(f"spec/design/system.md: {cid} names {link.group(1)}, which checks/run_all.py does not run")
+                problems.append(f"spec/design/system.md: {cid} names {link.group(1)}, which contract-checks/run_all.py does not run")
         elif not PLANNED.search(check):
             problems.append(f"spec/design/system.md: {cid} names no check and no milestone that plans one")
     return problems

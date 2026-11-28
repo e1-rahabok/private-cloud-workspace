@@ -16,7 +16,7 @@ Rules, tools and paths of this project: Private Cloud Manager and its repositori
 - `python tools/milestone_gate.py --check origin/main`
 - `python tools/claude_md_copies.py`: every child repository has this CLAUDE.md and its own CLAUDE-PROJECT.md. CI checks all but isvara, which it cannot read.
 - `python tools/milestone_review.py`, `python tools/docs.py`, `python tools/style.py`, `python tools/spec_check.py`
-- Before and after changing a contract in [spec/design/system.md](spec/design/system.md), section Contracts: `uv run checks/run_all.py`, with the changed branch checked out in its clone.
+- Before and after changing a contract in [spec/design/system.md](spec/design/system.md), section Contracts: `uv run contract-checks/run_all.py`, with the changed branch checked out in its clone.
 
 ## Writing
 

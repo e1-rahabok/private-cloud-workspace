@@ -2,7 +2,7 @@
 
 The workspace keeps the requirements on contracts, their checks and its own tools; every other requirement
 lives in the repository that implements it. The child repositories are read from clones next to this one,
-as for checks/run_all.py.
+as for contract-checks/run_all.py.
 
     from requirement_files import add_repos_argument, files
 """

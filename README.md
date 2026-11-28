@@ -55,8 +55,8 @@ Arrows: `-->` solid, `..>` dashed.
 | [spec/design/system.md](spec/design/system.md) | Parts, contracts C1 to C5, quality attributes, design choices |
 | [spec/test-plan.md](spec/test-plan.md) | Test levels, environments, data, criteria, traceability |
 | [spec/author-input/](spec/author-input) | The author's answers, word for word |
-| [`checks/`](checks) | The cross-repo checks |
-| [`tools/`](tools) | Checks of the specification and the documents; the diagram tool |
+| [`contract-checks/`](contract-checks) | The contract checks, and `run_all.py`, which runs every cross-repo check |
+| [`tools/`](tools) | Checks of the specification, documents and file names; the diagram and review tools |
 | [`writing/`](writing) | The writing rules every repository follows, and their flagged phrases |
 | [CLAUDE.md](CLAUDE.md) | Claude's method, the same file in every repository |
 | [CLAUDE-PROJECT.md](CLAUDE-PROJECT.md) | This project's rules, tools and paths, loaded by CLAUDE.md |
@@ -67,9 +67,9 @@ Arrows: `-->` solid, `..>` dashed.
 Clone the repositories next to this one, or let the script clone what is missing:
 
 ```powershell
-uv run checks/run_all.py
+uv run contract-checks/run_all.py
 ```
 
-Without uv: `pip install pyyaml requests`, then `python checks/run_all.py`. Add `--pull` to update the clones first. To test a branch of a child repository before merging it, check that branch out in its clone and run without `--pull`.
+Without uv: `pip install pyyaml requests`, then `python contract-checks/run_all.py`. Add `--pull` to update the clones first. To test a branch of a child repository before merging it, check that branch out in its clone and run without `--pull`.
 
 GitHub Actions runs the same checks on every push and pull request here, every day, and on demand ([checks workflow](.github/workflows/checks.yml)).

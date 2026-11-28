@@ -19,7 +19,7 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 |---|---|---|---|
 | Specification checks | Every requirement traced, tested, sourced; links and diagrams; writing rules | [`tools/`](../tools) | Every pull request |
 | Unit tests | One part's logic, against fakes | Each repository's tests | Every pull request of that repository |
-| Contract checks | Both sides of a contract agree; each planted break fails | [`checks/`](../checks) | Every pull request of every repository; daily |
+| Contract checks | Both sides of a contract agree; each planted break fails | [`contract-checks/`](../contract-checks) | Every pull request of every repository; daily |
 | Page tests | A page renders and behaves, with stub services | PCM's Playwright page tests; isvara's build | Every pull request of that repository |
 | Journey tests | A visitor's path through several pages leads where it should | isvara's journey tests on the Vercel preview, from M4; PCM's demo rehearsals, synthetic and live | Every pull request of isvara from M4; before every PCM demo |
 | Model evaluations | Answers are right, cited and safe | Agent E2's graded answer set; isvara.io's two batteries | Each change of model or prompt |
@@ -44,7 +44,7 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 | Fakes of the Suite API and of Agent E2 | Unit and page tests | Each repository's tests |
 | ACME, PCM's synthetic bank | PCM's demos 1 to 6 and page tests | PCM's generator |
 | Agent E2 in mock mode, no model | Contract check C3 | agent-e2's answer service |
-| Planted breaks | Each contract check's own test | `checks/test_<check>.py` |
+| Planted breaks | Each check's own test: contracts, names, lab addresses, secrets, workflows | `test_<check>.py` beside its check, in [`contract-checks/`](../contract-checks) or [`tools/`](../tools) |
 | Free-text answer set, about 15 questions | Agent E2's graded evaluation | agent-e2's benchmark |
 | 20 reader questions and an attack battery | isvara.io's two batteries | isvara's evals |
 | The lab's VCF Operations and vCenter | Lab tests, read-only | The author's lab |
@@ -55,7 +55,7 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 ## Entry and exit criteria
 
 - **A pull request may merge** when every check its repository runs has reported and passed, and its text lists any lab check it could not run. Claude merges its own pull requests once the checks pass.
-- **A build milestone may start** when the milestone before it is approved and the repositories it changes run their own tests in CI (section Known gaps).
+- **A build milestone may start** when the milestone before it is approved and the repositories it changes run their own tests in CI (section Own tests in CI).
 - **A milestone is done** when every test scenario of its requirements passes, every listed lab check has run (M8), its review page is current, and the author approves it (DEPENDENCY-1).
 - **Release 1.0 is done** when the author approves M8 and the measures of GOAL-4 hold.
 
@@ -73,11 +73,23 @@ The chain from the author's input to the code, and the tool that checks each lin
 | Scenario to automated test | "automated by" in the scenario | Not checked yet (Known gaps) |
 | Contract to its check | The contracts table of the system design | spec_check: the check exists and runs |
 
+## Own tests in CI
+
+Each repository runs its own tests on every pull request and every push to main, beside the cross-repo checks:
+
+| Repository | Workflow | Runs |
+|---|---|---|
+| agent-e2 | [tests.yml](https://github.com/e1-rahabok/agent-e2/blob/main/.github/workflows/tests.yml) | The rules check, the harness and runner unit tests, the project tools' tests |
+| PCM-Adapter | [ci.yml](https://github.com/e1-rahabok/PCM-Adapter/blob/main/.github/workflows/ci.yml) | Unit tests, lint, security scan, dependency audit |
+| private-cloud-manager | [tests.yml](https://github.com/e1-rahabok/private-cloud-manager/blob/main/.github/workflows/tests.yml) | Every unit test, then every page test, one after the other |
+| isvara | [`.github/workflows/checks.yml`](../.github/workflows/checks.yml), in the private repository | Lint, type check, the RVTools test, the link gate, the build |
+
+- Why: on 2026-11-28 PCM's L2 page test LPG-20 failed on main and nobody saw it, because only sessions ran it (RISK-7 in the [brief](brief.md)).
+- A test that needs the lab or the gateway key stays out of CI (section Environments).
+
 ## Known gaps
 
-- **Own tests outside CI:** agent-e2, private-cloud-manager and isvara run only the cross-repo checks in GitHub Actions; their own unit tests, page tests, lint, type check and build run only in sessions. PCM-Adapter runs its unit tests, lint, security scan and dependency audit in CI. Each repository adds its own tests to CI before the first build milestone that changes it: agent-e2 before M3, isvara before M4, private-cloud-manager before M8.
-- **A failing page test:** on 2026-11-28, PCM's L2 page test LPG-20, the Agent E2 mark and panel, failed on main. It is fixed before PCM's page tests enter CI.
-- **Scenario to automated test:** a scenario names its test in prose ("automated by ..."), and no check confirms that the test exists. Once each repository runs its tests in CI, spec_check reads the named path of each scenario in a done milestone and fails when it does not exist.
+- **Scenario to automated test:** a scenario names its test in prose ("automated by ..."), and no check confirms that the test exists. Every repository runs its own tests in CI since 2026-11-28 (section Own tests in CI), so the next step is that spec_check reads the named path of each scenario in a done milestone and fails when it does not exist.
 - **isvara in the workspace's CI:** isvara is private, so the workspace's CI cannot read it; isvara runs the cross-repo checks in its own CI with the four public repositories checked out (R-WS-002).
 - **Contracts without a check:** C2, C4 and C5, planned in M8, M4 and M3.
 
@@ -89,4 +101,4 @@ The chain from the author's input to the code, and the tool that checks each lin
 | PCM-Adapter | `python -m pytest tests`, from `Management Pack` | `pwsh tools/build/build.ps1`, `install.ps1`, `restart.ps1`, `validate.ps1` (the lab) |
 | private-cloud-manager | Unit and page tests per workspace ([pcm/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/pcm/README.md)); `node demo/rehearse.mjs` | Install on the lab VM ([deploy/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/deploy/README.md)); `pwsh tools/lab/Test-Live.ps1`, to write ([test plan](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/test-plan.md)) |
 | isvara | `npm run lint`, `typecheck`, `build`, `test:rvtools`; the journey tests on the Vercel preview, from M4 | `npm run eval` and `eval:injection` need a server and the key |
-| All four together | `uv run checks/run_all.py` (this repository) | |
+| All four together | `uv run contract-checks/run_all.py` (this repository) | |

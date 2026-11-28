@@ -36,6 +36,7 @@ Every short name and ID used in this workspace, with what it means and where it 
 | Word | Meaning |
 |---|---|
 | PCM | Private Cloud Manager, the web app (CONSTRAINT-3) |
+| SP5 | The author's operations framework: availability, performance, security, capacity, value ([Agent E2's files](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge/sp5-framework)) |
 | E1, E2 | E1: the author, Iwan Rahabok. E2: version 2.0 of him, available 24/7 |
 | Release 1.0 | The goal: PCM as a lab demo, a cloud model, isvara.io public on Vercel |
 | Release | A scope of work for all repositories at once, set only in the roadmap (DESIGN-21) |
@@ -62,5 +63,5 @@ Every short name and ID used in this workspace, with what it means and where it 
 | Metric key | A metric's identifier in VCF Operations, as the Suite API returns it |
 | Metric name | The words a person reads for a metric, set by Agent E2's catalog |
 | Peak metric | Named "peak": the highest 20-second value of each 5-minute cycle |
-| Check | Code in [checks/](../checks) or [tools/](../tools) that proves a contract or a rule, run in CI |
+| Check | Code in [contract-checks/](../contract-checks) or [tools/](../tools) that proves a contract or a rule, run in CI |
 | Baseline | A list of known gaps a check reports without failing; it may only shrink |

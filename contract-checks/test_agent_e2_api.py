@@ -1,6 +1,6 @@
-"""Planted breaks for check C3 (checks/agent_e2_api.py, R-WS-001, T-WS-001b): a response that lacks a field PCM
+"""Planted breaks for check C3 (contract-checks/agent_e2_api.py, R-WS-001, T-WS-001b): a response that lacks a field PCM
 reads, or holds it with another type, fails and names the endpoint and the field. The full check starts the real
-service; these tests plant the break in a response without it. Run: python -m unittest discover -s checks -p "test_*.py".
+service; these tests plant the break in a response without it. Run: python -m unittest discover -s contract-checks -p "test_*.py".
 """
 import unittest
 

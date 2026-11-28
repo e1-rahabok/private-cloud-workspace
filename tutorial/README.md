@@ -113,7 +113,7 @@ Each is a working example of what the method produces:
 | [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) and [spec/author-input](../spec/author-input/interview-round-1.md) | The input still needed, and the interview rounds with the author's answers | 5 |
 | [spec/requirements](../spec/requirements) | Requirements with acceptance criteria and test scenarios | 7 |
 | [spec/test-plan.md](../spec/test-plan.md) | The test plan and the traceability chain | 10 |
-| [checks](../checks) and [tools](../tools) | The scripts that check contracts, requirements and documents | 11 |
+| [contract-checks](../contract-checks) and [tools](../tools) | The scripts that check contracts, requirements and documents | 11 |
 | [ROADMAP.md](../ROADMAP.md) | The milestones and their order | 12 |
 | [CLAUDE.md](../CLAUDE.md) | How the agent is told to work | 13 |
 | [spec/glossary.md](../spec/glossary.md) | Every ID and term, with its meaning | 14 |

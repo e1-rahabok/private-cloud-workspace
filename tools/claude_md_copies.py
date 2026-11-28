@@ -1,7 +1,7 @@
 """Every repository holds the same CLAUDE.md as this workspace, and its own CLAUDE-PROJECT.md (DESIGN-22).
 
 CLAUDE.md is the method, for any project; CLAUDE-PROJECT.md is the repository's own rules. The clones sit
-next to this repository, as for checks/run_all.py.
+next to this repository, as for contract-checks/run_all.py.
 
     python tools/claude_md_copies.py                         # the four child repositories
     python tools/claude_md_copies.py agent-e2 PCM-Adapter    # only these (CI cannot read isvara)

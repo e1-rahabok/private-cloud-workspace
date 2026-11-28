@@ -15,7 +15,7 @@ Source: Q-WS-I1 ("I expect you to check all the contracts"); DESIGN-5.
 
 Test scenarios:
 - T-WS-001a (anywhere, automated by tools/spec_check.py, to extend): every row of the contracts table names an existing check file, or is marked planned with a milestone.
-- T-WS-001b (anywhere, automated once per check): plant a break of each kind the check compares, run the check, and keep the plant as a test in `checks/test_<check>.py`, which CI runs.
+- T-WS-001b (anywhere, automated once per check): plant a break of each kind the check compares, run the check, and keep the plant as a test in `contract-checks/test_<check>.py`, which CI runs.
 
 ### R-WS-002 The checks run where a break would happen
 
@@ -107,7 +107,7 @@ Source: DESIGN-6, with isvara's renames in M4; CONSTRAINT-2 (the shipped content
 - And each problem the first run finds is renamed in M2, or listed in a baseline that may only shrink, with one question per repository that names its list, in that repository's question file; a repository without one starts it, with IDs of the form Q-ADP-n, Q-PCM-n or Q-ISVARA-n
 
 Test scenarios:
-- T-WS-007a (anywhere, automated by [checks/file_names.py](../../checks/file_names.py), run by run_all.py and in each repository's CI; planted breaks in [checks/test_file_names.py](../../checks/test_file_names.py)): a pull request that adds `report_v2.md` or `story_m5.py` fails; one that adds `knowledge/…/why-a-new-framework.md` or `spec/review/M9.md` passes; one that renames a known problem passes and lowers the baseline.
+- T-WS-007a (anywhere, automated by [tools/file_names.py](../../tools/file_names.py), run by run_all.py and in each repository's CI; planted breaks in [tools/test_file_names.py](../../tools/test_file_names.py)): a pull request that adds `report_v2.md` or `story_m5.py` fails; one that adds `knowledge/…/why-a-new-framework.md` or `spec/review/M9.md` passes; one that renames a known problem passes and lowers the baseline.
 - T-WS-007b (anywhere, manual by a fresh session, once per repository): given only the repository's folder tree, the session writes what it expects in each top-level folder and in each folder one level down, then opens them. Each wrong guess becomes a rename in the same milestone; isvara's five are renamed in M4 (DESIGN-6).
 
 ### R-REPO-006 No repository uses an old repository name
@@ -123,7 +123,7 @@ Source: Q-WS-3 (round 1: rename references, archives left as they are); CONSTRAI
 - Then none contains "VCF-vCommunity-Adapter" or "private-cloud-management"
 
 Test scenarios:
-- T-REPO-006a (anywhere, automated by [checks/forbidden_names.py](../../checks/forbidden_names.py), run by run_all.py; planted breaks in [checks/test_forbidden_names.py](../../checks/test_forbidden_names.py)): search the clones for the two old names outside archives, dated records and the files that forbid them; expect no match.
+- T-REPO-006a (anywhere, automated by [tools/forbidden_names.py](../../tools/forbidden_names.py), run by run_all.py; planted breaks in [tools/test_forbidden_names.py](../../tools/test_forbidden_names.py)): search the clones for the two old names outside archives, dated records and the files that forbid them; expect no match.
 
 
 ### R-WS-010 No repository holds a lab address, host name or credential
@@ -140,7 +140,7 @@ Source: the author, 2026-11-28 ([round 6](../author-input/interview-round-6.md#l
 - And the check's report names the file and line, never the value
 
 Test scenarios:
-- T-WS-010a (anywhere, automated by [checks/lab_addresses.py](../../checks/lab_addresses.py), run by run_all.py on every pull request of every repository; planted breaks in [checks/test_lab_addresses.py](../../checks/test_lab_addresses.py)): an address in each private range, and one inside a file name, fails; an example-network address, a version number, a documentation or public address and the books pass; a listed name fails; the report holds no address.
+- T-WS-010a (anywhere, automated by [tools/lab_addresses.py](../../tools/lab_addresses.py), run by run_all.py on every pull request of every repository; planted breaks in [tools/test_lab_addresses.py](../../tools/test_lab_addresses.py)): an address in each private range, and one inside a file name, fails; an example-network address, a version number, a documentation or public address and the books pass; a listed name fails; the report holds no address.
 
 ### R-WS-011 No repository holds a token, key or password
 
@@ -155,7 +155,7 @@ Source: DESIGN-26.
 - And the check's report names the file and line, never the value
 
 Test scenarios:
-- T-WS-011a (anywhere, automated by [checks/secret_values.py](../../checks/secret_values.py), run by run_all.py on every pull request of every repository; planted breaks in [checks/test_secret_values.py](../../checks/test_secret_values.py)): a planted token of each kind, a private key and a quoted password fail; a placeholder and an environment-variable reference pass; the report holds no value.
+- T-WS-011a (anywhere, automated by [tools/secret_values.py](../../tools/secret_values.py), run by run_all.py on every pull request of every repository; planted breaks in [tools/test_secret_values.py](../../tools/test_secret_values.py)): a planted token of each kind, a private key and a quoted password fail; a placeholder and an environment-variable reference pass; the report holds no value.
 
 ### R-WS-012 Every repository keeps its dependencies and workflows safe
 
@@ -171,7 +171,7 @@ Source: DESIGN-25, DESIGN-26.
 - And isvara.io's CI fails when `npm audit --omit=dev --audit-level=high` finds an advisory
 
 Test scenarios:
-- T-WS-012a (anywhere, automated by [checks/workflows.py](../../checks/workflows.py), run by run_all.py; planted breaks in [checks/test_workflows.py](../../checks/test_workflows.py)): a workflow with no permissions, a third-party action on a tag, and a repository with a lockfile but no npm entry in `dependabot.yml` each fail; GitHub's own actions on a major tag pass.
+- T-WS-012a (anywhere, automated by [tools/workflows.py](../../tools/workflows.py), run by run_all.py; planted breaks in [tools/test_workflows.py](../../tools/test_workflows.py)): a workflow with no permissions, a third-party action on a tag, and a repository with a lockfile but no npm entry in `dependabot.yml` each fail; GitHub's own actions on a major tag pass.
 - T-WS-012b (anywhere, automated by the npm audit step of [cross-repo.yml](../../.github/workflows/cross-repo.yml)): on a repository with a [`package-lock.json`](https://github.com/e1-rahabok/isvara/blob/main/package-lock.json), a high advisory in a production dependency fails the run.
 
 ### R-WS-013 Each milestone review rereads the security baseline
@@ -210,12 +210,12 @@ Source: DESIGN-5 (every contract has a check); GOAL-4 (every contract is checked
 Milestone: M3.
 
 - Given the Vercel AI Gateway key in the environment
-- When `checks/model_gateway.py` runs
+- When `contract-checks/model_gateway.py` runs
 - Then it sends one short question to the model named in agent-e2's `service_config.yaml` and expects an answer with text
 - And without the key it reports "not run", never "passed"
 
 Test scenarios:
-- T-WS-008a (anywhere with the gateway key, automated by `checks/model_gateway.py`, to write, run by [`checks/run_all.py`](../../checks/run_all.py)): the configured model answers; a model ID that does not exist fails and names the ID.
+- T-WS-008a (anywhere with the gateway key, automated by `contract-checks/model_gateway.py`, to write, run by [`contract-checks/run_all.py`](../../contract-checks/run_all.py)): the configured model answers; a model ID that does not exist fails and names the ID.
 ## Questions for round two
 
 - None.

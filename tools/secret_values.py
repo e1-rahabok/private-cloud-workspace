@@ -10,7 +10,7 @@ A value that is a placeholder passes: it holds `...`, `<`, `$`, `{`, "example", 
 
 isvara is private on a free plan, where GitHub runs no secret scanning, so this check is the one that covers it there;
 the public repositories also have GitHub's secret scanning and push protection. A repository with no clone is reported
-as not run. The report names the file, the line and the kind, never the value. checks/test_secret_values.py plants a break
+as not run. The report names the file, the line and the kind, never the value. tools/test_secret_values.py plants a break
 of each kind. Exit 0: no problem. Exit 1: a problem. Exit 2: no repository could be read.
 """
 from __future__ import annotations
@@ -32,7 +32,7 @@ KINDS = [
     ("password or key written as a value", re.compile(r"""(?i)\b(?:password|passwd|pwd|secret|token|api[_-]?key|access[_-]?key)\b["']?\s*[:=]\s*["']([^"'\s]{6,})["']""")),
 ]
 PLACEHOLDER = re.compile(r"(?i)\.\.\.|[<>${}]|example|changeme|placeholder|your|xxx|dummy|fake|test|redacted|VMware1!")
-OUTSIDE = {"private-cloud-workspace": ["checks/test_secret_values.py"]}
+OUTSIDE = {"private-cloud-workspace": ["tools/test_secret_values.py"]}
 PREFILTER = (r"gh[pousr]_|github_pat_|sk-|AKIA|xox[abpr]-|vc[kp]_|PRIVATE KEY-----"
              r"|(password|passwd|pwd|secret|token|api[_-]?key|access[_-]?key)[\"']?[[:space:]]*[:=]")
 

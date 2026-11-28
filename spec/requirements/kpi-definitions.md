@@ -1,12 +1,12 @@
 # Requirements: KPI definitions
 
-Contract [C1, KPI definitions](../glossary.md#c1): the KPI tables in the VCF vCommunity Adapter's code equal the rows of Agent E2's catalog, and a workspace check compares them. The catalog holds data: for each part of a KPI, its name, key, unit, interval, five limits and whether it is excluded while green, plus the score bands and the close-for-business levels. How a score is computed is domain knowledge, explained in Agent E2's [performance-kpi-design.md](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/sp5-framework/performance/performance-kpi-design.md) and implemented and tested in the adapter's [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py); neither is specified here (DESIGN-4). Question IDs (Q-) point at the interview: [round 1](../author-input/interview-round-1.md), [round 2](../author-input/interview-round-2.md), [round 3](../author-input/interview-round-3.md). R-KPI-001 to R-KPI-006 belong to milestone M2.
+Contract [C1, KPI definitions](../glossary.md#c1): the KPI tables in the VCF vCommunity Adapter's code equal the rows of Agent E2's catalog, and a workspace check compares them. The catalog holds data: for each part of a KPI, its name, key, unit, interval, five limits and whether it is excluded while green, plus the score bands and the close-for-business levels. How a score is computed is domain knowledge, explained in Agent E2's [performance-kpi-design.md](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/sp5-framework/performance/performance-kpi-design.md) and implemented and tested in the adapter's [kpi_score.py](https://github.com/e1-rahabok/PCM-Adapter/blob/main/Management%20Pack/app/metrics/kpi_score.py); neither is specified here (DESIGN-4). Question IDs (Q-) point at the interview: [round 1](../author-input/interview-round-1.md), [round 2](../author-input/interview-round-2.md), [round 3](../author-input/interview-round-3.md). R-KPI-001 to R-KPI-006 belong to milestone M2. Other IDs are explained in the [glossary](../glossary.md).
 
 Files involved:
 
 - The master: [knowledge/catalog/thresholds-performance.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-performance.yaml), [thresholds-risk.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-risk.yaml), [thresholds-capacity.yaml](https://github.com/e1-rahabok/agent-e2/blob/main/knowledge/catalog/thresholds-capacity.yaml).
 - The implementation: [Management Pack/app/metrics](https://github.com/e1-rahabok/PCM-Adapter/tree/main/Management%20Pack/app/metrics) in PCM-Adapter.
-- The check: [checks/kpi_definitions.py](../../checks/kpi_definitions.py).
+- The check: [contract-checks/kpi_definitions.py](../../contract-checks/kpi_definitions.py).
 
 ### R-KPI-001 Every part the adapter publishes has a catalog row with a key
 
@@ -19,7 +19,7 @@ Source: DESIGN-2; answers to Q-WS-1 and Q-WS-19 (round 1); Q-WS-89 (round 2: a k
 - Then each part of the KPI has exactly one catalog row, with the fields the comparison needs: name, key, five limits for at least one interval, and the unit in the name when the metric has one; and the excluded-while-green flag, which a row leaves out when it is false
 
 Test scenarios:
-- T-KPI-001a (anywhere, automated by checks/kpi_definitions.py): for every part the adapter publishes, find its catalog row by key; fail on a missing row, a missing field or two rows with one key.
+- T-KPI-001a (anywhere, automated by contract-checks/kpi_definitions.py): for every part the adapter publishes, find its catalog row by key; fail on a missing row, a missing field or two rows with one key.
 
 ### R-KPI-002 Each part's limits in the adapter equal the catalog's
 
@@ -33,8 +33,8 @@ Source: DESIGN-2; answers to Q-WS-15 and Q-WS-16.
 - And the adapter has no part that the catalog lacks
 
 Test scenarios:
-- T-KPI-002a (anywhere, automated by checks/kpi_definitions.py): compare every part; any difference fails. Runs in CI today for all 49 parts of the 6 KPIs.
-- T-KPI-002b (anywhere, automated by checks/kpi_definitions.py): plant a changed limit in a copy of the catalog; the check must fail and name the part.
+- T-KPI-002a (anywhere, automated by contract-checks/kpi_definitions.py): compare every part; any difference fails. Runs in CI today for all 49 parts of the 6 KPIs.
+- T-KPI-002b (anywhere, automated by contract-checks/kpi_definitions.py): plant a changed limit in a copy of the catalog; the check must fail and name the part.
 
 ### R-KPI-003 Each part's key and name agree between catalog and adapter
 
@@ -50,7 +50,7 @@ Source: answer to Q-WS-1 ("For key, adapter is correct. For name, Agent E2 is co
 - And the label in the adapter's code equals the catalog row's name without its unit
 
 Test scenarios:
-- T-KPI-003a (anywhere, automated by checks/kpi_definitions.py): match parts by key; fail when an adapter label differs from the catalog name. The baseline of 11 VM and Guest OS name gaps must be empty.
+- T-KPI-003a (anywhere, automated by contract-checks/kpi_definitions.py): match parts by key; fail when an adapter label differs from the catalog name. The baseline of 11 VM and Guest OS name gaps must be empty.
 - Its lab check, a screenshot of one lab cluster's and one lab VM's metric list after installing the pack, is T-ADP-026a in M8 ([R-ADP-026](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md#r-adp-026-the-installed-pack-matches-the-catalog-on-the-lab)).
 
 ### R-KPI-004 Dropped: the scoring rules are defined once, in the catalog
@@ -73,7 +73,7 @@ Source: answer to Q-WS-15; DESIGN-4.
 - And a KPI the adapter colours with no score row in the catalog fails the check
 
 Test scenarios:
-- T-KPI-005a (anywhere, automated by checks/kpi_definitions.py): compare every score row with the adapter's band table; any difference fails.
+- T-KPI-005a (anywhere, automated by contract-checks/kpi_definitions.py): compare every score row with the adapter's band table; any difference fails.
 
 ### R-KPI-006 The close-for-business levels equal the catalog's
 
@@ -89,7 +89,7 @@ Source: answers to Q-WS-15 and Q-WS-16; DESIGN-4; DESIGN-18 (one Risk level for 
 - And the adapter's one Risk level equals the catalog's production row, `closure-cluster-risk-prod`, which the catalog says release 1.0 applies to every cluster; the non-production row is not compared
 
 Test scenarios:
-- T-KPI-006a (anywhere, automated by checks/kpi_definitions.py): compare every level, Risk against the production row; any difference fails. A planted break of each level is in checks/test_kpi_definitions.py.
+- T-KPI-006a (anywhere, automated by contract-checks/kpi_definitions.py): compare every level, Risk against the production row; any difference fails. A planted break of each level is in contract-checks/test_kpi_definitions.py.
 
 ### R-KPI-007 Dropped: usable capacity is Total − HA − Buffer
 

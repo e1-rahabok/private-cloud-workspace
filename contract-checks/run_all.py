@@ -2,7 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["pyyaml", "requests"]
 # ///
-"""Run every cross-repo check (the contracts in spec/design/system.md), and the name checks of R-WS-007, R-REPO-006, R-REPO-007 and R-REPO-008, the lab address check of R-WS-010, and the secret and workflow checks of R-WS-011 and R-WS-012, against clones of the repositories.
+"""Run every cross-repo check against clones of the repositories: the contract checks here (the contracts in spec/design/system.md), then the name checks of R-WS-007, R-REPO-006, R-REPO-007 and R-REPO-008, the lab address check of R-WS-010, and the secret and workflow checks of R-WS-011 and R-WS-012, in tools/.
 
 The clones sit next to this repository by default:
 
@@ -26,16 +26,17 @@ from pathlib import Path
 
 OWNER = "e1-rahabok"
 HERE = Path(__file__).resolve().parent
+TOOLS = HERE.parent / "tools"
 # (title, script, the clones it needs). The name checks also read isvara when its clone is there, and report it as
 # not run otherwise: isvara is private, and its own CI runs them (R-WS-002).
 CHECKS = [
-    ("C1 KPI definitions", "kpi_definitions.py", ["agent-e2", "PCM-Adapter"]),
-    ("C3 Agent E2 API", "agent_e2_api.py", ["agent-e2", "private-cloud-manager"]),
-    ("R-WS-007 file names", "file_names.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
-    ("Forbidden names", "forbidden_names.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
-    ("R-WS-010 lab addresses", "lab_addresses.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
-    ("R-WS-011 secrets", "secret_values.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
-    ("R-WS-012 workflows and Dependabot", "workflows.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
+    ("C1 KPI definitions", HERE / "kpi_definitions.py", ["agent-e2", "PCM-Adapter"]),
+    ("C3 Agent E2 API", HERE / "agent_e2_api.py", ["agent-e2", "private-cloud-manager"]),
+    ("R-WS-007 file names", TOOLS / "file_names.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
+    ("Forbidden names", TOOLS / "forbidden_names.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
+    ("R-WS-010 lab addresses", TOOLS / "lab_addresses.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
+    ("R-WS-011 secrets", TOOLS / "secret_values.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
+    ("R-WS-012 workflows and Dependabot", TOOLS / "workflows.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
 ]
 
 
@@ -67,7 +68,7 @@ def main() -> int:
     worst = 0
     for title, script, _ in CHECKS:
         print(f"\n== {title}", flush=True)
-        code = subprocess.run([sys.executable, str(HERE / script), "--repos", str(args.repos)]).returncode
+        code = subprocess.run([sys.executable, str(script), "--repos", str(args.repos)]).returncode
         worst = max(worst, code)
     print("\nAll checks passed." if worst == 0 else
           f"\nAt least one check {'failed' if worst == 1 else 'could not run'}.")

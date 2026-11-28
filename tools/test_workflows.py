@@ -1,4 +1,4 @@
-"""Planted breaks for checks/workflows.py (R-WS-012, T-WS-012a). Run: python -m unittest discover -s checks -p "test_*.py"."""
+"""Planted breaks for tools/workflows.py (R-WS-012, T-WS-012a). Run: python -m unittest discover -s tools -p "test_*.py"."""
 import subprocess
 import tempfile
 import unittest
