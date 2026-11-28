@@ -54,7 +54,7 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 
 ## Entry and exit criteria
 
-- **A pull request may merge** when every check its repository runs has reported and passed, and its text lists any lab check it could not run. Claude merges its own pull requests once the checks pass.
+- **A pull request may merge** when every check its repository runs has reported and passed, and its text lists any lab check it could not run. Claude merges its own pull requests, and Dependabot's (DESIGN-25), once the checks pass.
 - **A build milestone may start** when the milestone before it is approved and the repositories it changes run their own tests in CI (section Own tests in CI).
 - **A milestone is done** when every test scenario of its requirements passes, every listed lab check has run (M8), its review page is current, and the author approves it (DEPENDENCY-1).
 - **Release 1.0 is done** when the author approves M8 and the measures of GOAL-4 hold.
