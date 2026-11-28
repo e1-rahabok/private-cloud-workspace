@@ -126,6 +126,20 @@ Test scenarios:
 - T-REPO-006a (anywhere, automated by [checks/forbidden_names.py](../../checks/forbidden_names.py), run by run_all.py; planted breaks in [checks/test_forbidden_names.py](../../checks/test_forbidden_names.py)): search the clones for the two old names outside archives, dated records and the files that forbid them; expect no match.
 
 
+### R-WS-009 Project documents agree with the specification
+
+Why: the READMEs and CLAUDE-PROJECT.md files were written before the specification and were never read against it, so a fact in them can contradict it, or state what the specification never decided, and a reader or a session acts on it. isvara's README said the books come from Box; the books come from the author's laptop (DEPENDENCY-10).
+
+Source: the author, 2026-11-28 ([round 6](../author-input/interview-round-6.md), "Corrections"); DESIGN-8.
+
+- Given the README.md and CLAUDE-PROJECT.md of each of the five repositories
+- When a reviewer reads each statement of fact about the product: where data comes from, who provides it, what runs where, and what a part does
+- Then each one agrees with the brief, the system design, a requirement or the code
+- And a fact the specification does not hold is added to it first, then the document is changed to match
+
+Test scenarios:
+- T-WS-009a (anywhere, manual by a fresh reviewer, once in M2 and for each pull request that changes one of these files): read the files against the specification and list every statement that disagrees with it or that it does not hold; expect an empty list after the fixes. A check is not planned: it needs judgement about what is a fact.
+
 ### R-WS-008 The model gateway answers the model Agent E2 is set to
 
 Why: Agent E2 fails in the demo when the model it is set to no longer answers at the gateway.
