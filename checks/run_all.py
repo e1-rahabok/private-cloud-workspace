@@ -2,7 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["pyyaml", "requests"]
 # ///
-"""Run every cross-repo check (the contracts in spec/design/system.md), and the name checks of R-WS-007, R-REPO-006, R-REPO-007 and R-REPO-008, and the lab address check of R-WS-010, against clones of the repositories.
+"""Run every cross-repo check (the contracts in spec/design/system.md), and the name checks of R-WS-007, R-REPO-006, R-REPO-007 and R-REPO-008, the lab address check of R-WS-010, and the secret and workflow checks of R-WS-011 and R-WS-012, against clones of the repositories.
 
 The clones sit next to this repository by default:
 
@@ -34,6 +34,8 @@ CHECKS = [
     ("R-WS-007 file names", "file_names.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
     ("Forbidden names", "forbidden_names.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
     ("R-WS-010 lab addresses", "lab_addresses.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
+    ("R-WS-011 secrets", "secret_values.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
+    ("R-WS-012 workflows and Dependabot", "workflows.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
 ]
 
 
