@@ -1,4 +1,4 @@
-"""Planted breaks for tools/workflows.py (R-WS-012, T-WS-012a). Run: python -m unittest discover -s tools -p "test_*.py"."""
+"""Planted breaks for tools/workflows.py (R-WS-012, T-WS-012a; R-WS-014, T-WS-014b). Run: python -m unittest discover -s tools -p "test_*.py"."""
 import subprocess
 import tempfile
 import unittest
@@ -20,6 +20,8 @@ jobs:
       - uses: pnpm/action-setup@0123456789abcdef0123456789abcdef01234567
   shared:
     uses: e1-rahabok/private-cloud-workspace/.github/workflows/cross-repo.yml@main
+  branch-cleanup:
+    uses: e1-rahabok/private-cloud-workspace/.github/workflows/branch-cleanup.yml@main
 """
 DEPENDABOT = """version: 2
 updates:
@@ -62,10 +64,25 @@ class PlantedWorkflows(unittest.TestCase):
     def test_a_missing_dependabot_or_ecosystem_fails(self):
         with clone_with({".github/workflows/ci.yml": GOOD_WORKFLOW}) as tmp:
             self.assertIn("dependabot.yml is missing", wf.problems_in("agent-e2", Path(tmp))[0])
-        with clone_with({".github/dependabot.yml": DEPENDABOT, "package-lock.json": "{}",
-                         "app/requirements.txt": "requests==2.32.3\n"}) as tmp:
+        with clone_with({".github/workflows/ci.yml": GOOD_WORKFLOW, ".github/dependabot.yml": DEPENDABOT,
+                         "package-lock.json": "{}", "app/requirements.txt": "requests==2.32.3\n"}) as tmp:
             problems = wf.problems_in("isvara", Path(tmp))
         self.assertEqual(sorted(p.split(" has no ")[1].split(" entry")[0] for p in problems), ["npm", "pip"])
+
+    def test_a_repository_without_the_branch_cleanup_fails(self):
+        text = GOOD_WORKFLOW.split("  branch-cleanup:\n")[0]
+        with clone_with({".github/workflows/ci.yml": text, ".github/dependabot.yml": DEPENDABOT}) as tmp:
+            problems = wf.problems_in("isvara", Path(tmp))
+        self.assertEqual(len(problems), 1)
+        self.assertIn("no workflow calls the branch cleanup", problems[0])
+
+    def test_the_workspace_passes_with_its_own_branch_cleanup_and_a_child_does_not(self):
+        text = GOOD_WORKFLOW.split("  branch-cleanup:\n")[0]
+        files = {".github/workflows/ci.yml": text, ".github/workflows/branch-cleanup.yml": text,
+                 ".github/dependabot.yml": DEPENDABOT}
+        with clone_with(files) as tmp:
+            self.assertEqual(wf.problems_in("private-cloud-workspace", Path(tmp)), [])
+            self.assertEqual(len(wf.problems_in("agent-e2", Path(tmp))), 1)
 
 
 if __name__ == "__main__":
