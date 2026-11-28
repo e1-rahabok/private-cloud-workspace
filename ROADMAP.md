@@ -4,17 +4,11 @@ The whole plan on one page: where the product is going, what release 1.0 holds, 
 
 ## Goal
 
-VMware administrators have the author's knowledge inside their own private cloud, and isvara.io is recognised worldwide as the authority on large-scale private cloud performance and capacity management. The test: a customer gets value without the author ([intent and principles](spec/intent.md)).
+VMware administrators have the author's knowledge inside their own private cloud, and isvara.io is recognised worldwide as the authority on large-scale private cloud performance and capacity management. The test: a customer gets value without the author ([intent and principles](spec/brief.md)).
 
 ## Release 1.0
 
-Two goals, and the work that supports them:
-
-- **isvara.io, the main goal and most of the work:** rebuilt on the three learning paths, with articles, Ask Agent E2, contributions and practice ([plan](spec/design/isvara-plan.md)).
-- **PCM's live demo, the second goal:** the synthetic demo unchanged, plus a live demo of the L2 workspace for performance and capacity on the lab ([requirements](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)).
-- **Agent E2, in support of both:** Day 2 knowledge on Gemma 4 31B, its free-text answers graded automatically, a visible progress state, screenshots and CSV files, sources for every answer ([requirements](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md), [API](spec/requirements/agent-e2-api.md)).
-- **VCF vCommunity Adapter, in support of the live demo:** no value from a partial read, and every KPI definition taken from Agent E2 ([requirements](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md), [KPI definitions](spec/requirements/kpi-definitions.md)).
-- **Out of 1.0:** personal dashboards, what-if analysis, the people side of operations, Day 0 and Day 1 knowledge, value management, the VCF vCommunity Adapter's state codes, Agent E2's new knowledge forms ([DECISIONS](DECISIONS.md), WD-026, WD-033, WD-034, WD-035).
+What release 1.0 holds and why is in the [brief](spec/brief.md): its goals and success (GOAL-4, GOAL-5), its scope (SCOPE-1 to SCOPE-11) and what waits until after it (SCOPE-12 to SCOPE-19). How it is built is in the [system design](spec/design/system.md), and how it is proven in the [test plan](spec/test-plan.md). isvara.io's rebuild comes first and is most of the work (M4 to M7); PCM's live demo comes last (M8), because it needs the lab.
 
 ![Release 1.0 milestones and what each depends on: Claude's method done before them; M1 done; M2 in progress; M3 to M8 not started; M1 leads to M2; M2 to M3 and M4; M3 to M5 and M8; M4 to M5 and M6; M5 and M6 to M7](images/roadmap.svg)
 
@@ -52,16 +46,16 @@ Arrows: `-->` solid, `..>` dashed.
 
 ## Rules of the milestones
 
-- The milestones are numbered from M1 in the order of work (WD-042). One is open at a time: the first whose heading does not end with ": done" (WD-039).
+- The milestones are numbered from M1 in the order of work . One is open at a time: the first whose heading does not end with ": done".
 - [tools/milestone_gate.py](tools/milestone_gate.py) shows the open milestone and its next item at every prompt. It fails a pull request that changes a file owned only by a later milestone, and fails when two milestones own one file or the numbers do not run M1, M2, M3 in order.
 - Each requirement belongs to exactly one milestone, or to the list after release 1.0. [tools/milestone_review.py](tools/milestone_review.py) fails otherwise, and writes one review page per milestone from the requirement files.
-- A build milestone is done when every test scenario of its requirements passes ([tools/spec_check.py](tools/spec_check.py) checks that each requirement has one). Every test scenario that needs the lab sits in M8, the only milestone that runs in the lab; the review tool fails otherwise. Before M8, a check that needs the lab, such as the adapter's live validation after a code change, is reported as not run and listed in the pull request, and the line of work goes on (WD-042). M8's lab session runs every listed check.
+- A build milestone is done when every test scenario of its requirements passes ([tools/spec_check.py](tools/spec_check.py) checks that each requirement has one). Every test scenario that needs the lab sits in M8, the only milestone that runs in the lab; the review tool fails otherwise. Before M8, a check that needs the lab, such as the adapter's live validation after a code change, is reported as not run and listed in the pull request, and the line of work goes on ([test plan](spec/test-plan.md), section Environments). M8's lab session runs every listed check.
 - When a milestone opens, its first pull request writes its work items, one `- [ ]` line each, so the gate shows the next one.
-- The author approves each milestone. For M1 only, the author delegated the approval to Claude's self-review, and reviews M1 afterwards (WD-042).
+- The author approves each milestone. For M1 only, the author delegated the approval to Claude's self-review, and reviews M1 afterwards.
 
 ## Done before the milestones
 
-Claude's working method, about how Claude works and never about the product (WD-040), approved by the author on 2026-11-27:
+Claude's working method, about how Claude works and never about the product, approved by the author on 2026-11-27:
 
 - One rule for the order of work, its prompt hook and its CI check ([#35](https://github.com/e1-rahabok/private-cloud-workspace/pull/35)).
 - CLAUDE.md pruned: one rule per bullet, no rule twice, the method apart from this project's rules ([#36](https://github.com/e1-rahabok/private-cloud-workspace/pull/36)).
@@ -76,14 +70,14 @@ Claude's working method, about how Claude works and never about the product (WD-
 
 - **Outcome:** every requirement of release 1.0 is written, testable, free of contradictions and kept in the repository that implements it, and every later milestone has its review page. No code is written in M1.
 - **Runs:** in a cloud session; documents only.
-- **The author:** delegated the approval to Claude's self-review (WD-042); reviews M1 on return and can reopen it.
-- Files in this repository: [`ROADMAP.md`](ROADMAP.md), [`DECISIONS.md`](DECISIONS.md), [`OPEN-QUESTIONS.md`](OPEN-QUESTIONS.md), [`README.md`](README.md), [`SYSTEM.md`](SYSTEM.md), [`CONTRACTS.md`](CONTRACTS.md), [`spec/`](spec), [`images/`](images), [`tools/milestone_gate.py`](tools/milestone_gate.py), [`tools/milestone_review.py`](tools/milestone_review.py), [`tools/spec_check.py`](tools/spec_check.py), [`tools/diagrams.py`](tools/diagrams.py), [`tools/docs.py`](tools/docs.py), [`tools/requirement_files.py`](tools/requirement_files.py), [`.github/`](.github).
+- **The author:** delegated the approval to Claude's self-review; reviews M1 on return and can reopen it.
+- Files in this repository: [`ROADMAP.md`](ROADMAP.md), [`DECISIONS.md`](DECISIONS.md), [`OPEN-QUESTIONS.md`](OPEN-QUESTIONS.md), [`README.md`](README.md), [`spec/`](spec), [`images/`](images), [`tools/milestone_gate.py`](tools/milestone_gate.py), [`tools/milestone_review.py`](tools/milestone_review.py), [`tools/spec_check.py`](tools/spec_check.py), [`tools/diagrams.py`](tools/diagrams.py), [`tools/docs.py`](tools/docs.py), [`tools/requirement_files.py`](tools/requirement_files.py), [`.github/`](.github).
 
-- [x] The milestones revamped: M1 to M8, one outcome each, no file or requirement in two milestones, both checked by code (WD-042) ([#40](https://github.com/e1-rahabok/private-cloud-workspace/pull/40), [agent-e2#476](https://github.com/e1-rahabok/agent-e2/pull/476)).
+- [x] The milestones revamped: M1 to M8, one outcome each, no file or requirement in two milestones, both checked by code ([#40](https://github.com/e1-rahabok/private-cloud-workspace/pull/40), [agent-e2#476](https://github.com/e1-rahabok/agent-e2/pull/476)).
 - [x] The foundations reviewed against the decisions: SYSTEM.md, CONTRACTS.md, README.md, the glossary and the tutorial's method chapters ([#41](https://github.com/e1-rahabok/private-cloud-workspace/pull/41)).
-- [x] Every requirement in the repository that implements it (WD-036); the workspace keeps the contracts and their checks, and its tools read the requirements of every repository ([#42](https://github.com/e1-rahabok/private-cloud-workspace/pull/42), [agent-e2#477](https://github.com/e1-rahabok/agent-e2/pull/477), [PCM-Adapter#106](https://github.com/e1-rahabok/PCM-Adapter/pull/106), [private-cloud-manager#76](https://github.com/e1-rahabok/private-cloud-manager/pull/76), [isvara#3](https://github.com/e1-rahabok/isvara/pull/3)).
+- [x] Every requirement in the repository that implements it (DESIGN-4); the workspace keeps the contracts and their checks, and its tools read the requirements of every repository ([#42](https://github.com/e1-rahabok/private-cloud-workspace/pull/42), [agent-e2#477](https://github.com/e1-rahabok/agent-e2/pull/477), [PCM-Adapter#106](https://github.com/e1-rahabok/PCM-Adapter/pull/106), [private-cloud-manager#76](https://github.com/e1-rahabok/private-cloud-manager/pull/76), [isvara#3](https://github.com/e1-rahabok/isvara/pull/3)).
 - [x] Every contradiction between two requirement files fixed, each listed in its pull request ([agent-e2#478](https://github.com/e1-rahabok/agent-e2/pull/478), [PCM-Adapter#107](https://github.com/e1-rahabok/PCM-Adapter/pull/107), [private-cloud-manager#77](https://github.com/e1-rahabok/private-cloud-manager/pull/77), [isvara#4](https://github.com/e1-rahabok/isvara/pull/4), [#43](https://github.com/e1-rahabok/private-cloud-workspace/pull/43)).
-- [x] Agent E2's requirements updated for the Day 2 scope (WD-026) and the round 2 decisions; the parts that need live lab facts moved to M8 ([agent-e2#478](https://github.com/e1-rahabok/agent-e2/pull/478), [PCM-Adapter#107](https://github.com/e1-rahabok/PCM-Adapter/pull/107), [private-cloud-manager#77](https://github.com/e1-rahabok/private-cloud-manager/pull/77), [isvara#4](https://github.com/e1-rahabok/isvara/pull/4), [#43](https://github.com/e1-rahabok/private-cloud-workspace/pull/43)).
+- [x] Agent E2's requirements updated for the Day 2 scope (SCOPE-2) and the round 2 decisions; the parts that need live lab facts moved to M8 ([agent-e2#478](https://github.com/e1-rahabok/agent-e2/pull/478), [PCM-Adapter#107](https://github.com/e1-rahabok/PCM-Adapter/pull/107), [private-cloud-manager#77](https://github.com/e1-rahabok/private-cloud-manager/pull/77), [isvara#4](https://github.com/e1-rahabok/isvara/pull/4), [#43](https://github.com/e1-rahabok/private-cloud-workspace/pull/43)).
 - [x] Requirements on the callers of Agent E2 moved to the callers: PCM's to M8, isvara.io's to M5 ([agent-e2#479](https://github.com/e1-rahabok/agent-e2/pull/479), [private-cloud-manager#78](https://github.com/e1-rahabok/private-cloud-manager/pull/78), [isvara#5](https://github.com/e1-rahabok/isvara/pull/5), [#44](https://github.com/e1-rahabok/private-cloud-workspace/pull/44)).
 - [x] The live demo's requirements updated for the round 2 decisions ([agent-e2#478](https://github.com/e1-rahabok/agent-e2/pull/478), [PCM-Adapter#107](https://github.com/e1-rahabok/PCM-Adapter/pull/107), [private-cloud-manager#77](https://github.com/e1-rahabok/private-cloud-manager/pull/77), [isvara#4](https://github.com/e1-rahabok/isvara/pull/4), [#43](https://github.com/e1-rahabok/private-cloud-workspace/pull/43)).
 - [x] Every test scenario that needs the lab in M8; M2 and M3 keep the scenarios that run anywhere, and the review tool checks it ([agent-e2#478](https://github.com/e1-rahabok/agent-e2/pull/478), [PCM-Adapter#107](https://github.com/e1-rahabok/PCM-Adapter/pull/107), [private-cloud-manager#77](https://github.com/e1-rahabok/private-cloud-manager/pull/77), [isvara#4](https://github.com/e1-rahabok/isvara/pull/4), [#43](https://github.com/e1-rahabok/private-cloud-workspace/pull/43)).
@@ -91,7 +85,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - [x] isvara.io before and after: one document, feature by feature, for the author's review before anything is built (answer to Q-WS-41) ([agent-e2#479](https://github.com/e1-rahabok/agent-e2/pull/479), [private-cloud-manager#78](https://github.com/e1-rahabok/private-cloud-manager/pull/78), [isvara#5](https://github.com/e1-rahabok/isvara/pull/5), [#44](https://github.com/e1-rahabok/private-cloud-workspace/pull/44)).
 - [x] isvara.io's requirements for M4 to M7, written from that document ([agent-e2#479](https://github.com/e1-rahabok/agent-e2/pull/479), [private-cloud-manager#78](https://github.com/e1-rahabok/private-cloud-manager/pull/78), [isvara#5](https://github.com/e1-rahabok/isvara/pull/5), [#44](https://github.com/e1-rahabok/private-cloud-workspace/pull/44)).
 - [x] A fresh agent reads the specification cold and finds no contradiction, no requirement that cannot be tested, and no requirement outside a milestone: three cold reads and two checks of the fixes, the last of which found one stale word, fixed ([#46](https://github.com/e1-rahabok/private-cloud-workspace/pull/46), [#47](https://github.com/e1-rahabok/private-cloud-workspace/pull/47), [#48](https://github.com/e1-rahabok/private-cloud-workspace/pull/48), [#49](https://github.com/e1-rahabok/private-cloud-workspace/pull/49), [PCM-Adapter#112](https://github.com/e1-rahabok/PCM-Adapter/pull/112)).
-- [x] Approval: Claude's self-review, delegated by the author (WD-042); the author reviews M1 on return and can reopen it ([#50](https://github.com/e1-rahabok/private-cloud-workspace/pull/50)).
+- [x] Approval: Claude's self-review, delegated by the author; the author reviews M1 on return and can reopen it ([#50](https://github.com/e1-rahabok/private-cloud-workspace/pull/50)).
 
 ### M2 Contracts checked and repositories cleaned: in progress
 
@@ -103,7 +97,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 
 - [x] C1, step 1: every row of Agent E2's catalog has a `key`, the adapter row's name (R-KPI-001) ([agent-e2#483](https://github.com/e1-rahabok/agent-e2/pull/483)).
 - [x] C1, step 2: the KPI definitions check matches rows by key, then compares names, limits and excluded-when-green, with a planted break of each kind (R-KPI-001 to R-KPI-003) ([#52](https://github.com/e1-rahabok/private-cloud-workspace/pull/52)).
-- [x] C1, step 3: the catalog's renamed rows, its Cluster Performance score row and its production Risk level, which release 1.0 applies to every cluster (WD-044), with the adapter's labels and intervals to match; the check also compares intervals, score bands and closure levels, and `NAME_GAPS` and `CLOSURE_GAPS` are empty (R-KPI-005, R-KPI-006, R-ADP-006, R-ADP-008, R-ADP-010, R-ADP-011) ([agent-e2#484](https://github.com/e1-rahabok/agent-e2/pull/484), [PCM-Adapter#113](https://github.com/e1-rahabok/PCM-Adapter/pull/113), [#53](https://github.com/e1-rahabok/private-cloud-workspace/pull/53), [agent-e2#491](https://github.com/e1-rahabok/agent-e2/pull/491), [PCM-Adapter#120](https://github.com/e1-rahabok/PCM-Adapter/pull/120), [#63](https://github.com/e1-rahabok/private-cloud-workspace/pull/63)).
+- [x] C1, step 3: the catalog's renamed rows, its Cluster Performance score row and its production Risk level, which release 1.0 applies to every cluster (DESIGN-18), with the adapter's labels and intervals to match; the check also compares intervals, score bands and closure levels, and `NAME_GAPS` and `CLOSURE_GAPS` are empty (R-KPI-005, R-KPI-006, R-ADP-006, R-ADP-008, R-ADP-010, R-ADP-011) ([agent-e2#484](https://github.com/e1-rahabok/agent-e2/pull/484), [PCM-Adapter#113](https://github.com/e1-rahabok/PCM-Adapter/pull/113), [#53](https://github.com/e1-rahabok/private-cloud-workspace/pull/53), [agent-e2#491](https://github.com/e1-rahabok/agent-e2/pull/491), [PCM-Adapter#120](https://github.com/e1-rahabok/PCM-Adapter/pull/120), [#63](https://github.com/e1-rahabok/private-cloud-workspace/pull/63)).
 - [x] The adapter's declared keys equal its published keys, and its files use one name for the pack and none of the old repository names (R-ADP-005, R-ADP-007, R-ADP-025) ([PCM-Adapter#114](https://github.com/e1-rahabok/PCM-Adapter/pull/114)).
 - [x] One set of writing rules, run by [tools/style.py](tools/style.py) in every repository (R-WS-006) ([#57](https://github.com/e1-rahabok/private-cloud-workspace/pull/57), [#58](https://github.com/e1-rahabok/private-cloud-workspace/pull/58), [#60](https://github.com/e1-rahabok/private-cloud-workspace/pull/60), [agent-e2#488](https://github.com/e1-rahabok/agent-e2/pull/488), [PCM-Adapter#118](https://github.com/e1-rahabok/PCM-Adapter/pull/118), [private-cloud-manager#86](https://github.com/e1-rahabok/private-cloud-manager/pull/86), [isvara#11](https://github.com/e1-rahabok/isvara/pull/11), [isvara#12](https://github.com/e1-rahabok/isvara/pull/12)).
 - [x] The name check and the forbidden names check, run by [checks/run_all.py](checks/run_all.py) (R-WS-007, R-REPO-006; T-REPO-007b and T-REPO-008e in PCM's [clean-up.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/clean-up.md)) ([#56](https://github.com/e1-rahabok/private-cloud-workspace/pull/56), [private-cloud-manager#85](https://github.com/e1-rahabok/private-cloud-manager/pull/85)).
@@ -112,14 +106,16 @@ Claude's working method, about how Claude works and never about the product (WD-
 - [x] Agent E2's plan describes release 1.0, and the older benchmarks are removed (R-REPO-003, R-REPO-004) ([agent-e2#485](https://github.com/e1-rahabok/agent-e2/pull/485)).
 - [x] The adapter's documentation keeps only what the adapter does (R-REPO-001, R-REPO-002) ([agent-e2#487](https://github.com/e1-rahabok/agent-e2/pull/487), [PCM-Adapter#116](https://github.com/e1-rahabok/PCM-Adapter/pull/116)).
 - [x] PCM is named Private Cloud Manager, its files are named for what they hold, and its folders are grouped by workspace (R-REPO-005, R-REPO-007, R-REPO-008) ([private-cloud-manager#83](https://github.com/e1-rahabok/private-cloud-manager/pull/83), [private-cloud-manager#84](https://github.com/e1-rahabok/private-cloud-manager/pull/84), [#55](https://github.com/e1-rahabok/private-cloud-workspace/pull/55)).
-- [x] A fresh session guesses each repository's folders from the tree alone, and every wrong guess is renamed ([T-WS-007b](spec/requirements/workspace.md)). The review ran and three folders were renamed ([PCM-Adapter#117](https://github.com/e1-rahabok/PCM-Adapter/pull/117)). PCM's Docs workspace folder is now [`pcm/definitions`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/definitions) (Q-PCM-2, [round 6](spec/interview-round-6.md); [private-cloud-manager#89](https://github.com/e1-rahabok/private-cloud-manager/pull/89)). isvara's five renames move to M4 (WD-046). agent-e2's [`knowledge/sp5-framework/`](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge/sp5-framework) keeps its name (Q-E2-273 in agent-e2's [author-questions-resolved.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions-resolved.md), [agent-e2#492](https://github.com/e1-rahabok/agent-e2/pull/492)).
+- [x] A fresh session guesses each repository's folders from the tree alone, and every wrong guess is renamed ([T-WS-007b](spec/requirements/workspace.md)). The review ran and three folders were renamed ([PCM-Adapter#117](https://github.com/e1-rahabok/PCM-Adapter/pull/117)). PCM's Docs workspace folder is now [`pcm/definitions`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/definitions) (Q-PCM-2, [round 6](spec/author-input/interview-round-6.md); [private-cloud-manager#89](https://github.com/e1-rahabok/private-cloud-manager/pull/89)). isvara's five renames move to M4 (DESIGN-6). agent-e2's [`knowledge/sp5-framework/`](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge/sp5-framework) keeps its name (Q-E2-273 in agent-e2's [author-questions-resolved.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions-resolved.md), [agent-e2#492](https://github.com/e1-rahabok/agent-e2/pull/492)).
+- [ ] The specification set out for spec-driven development: the author's input word for word, the [brief](spec/brief.md), the [system design](spec/design/system.md) with its design choices and the options rejected, the [test plan](spec/test-plan.md), and a Why line on every workspace requirement, all checked by [tools/spec_check.py](tools/spec_check.py) (R-WS-003, DESIGN-8).
+- [ ] Every requirement in the child repositories has a Why line and cites the brief or the system design; the decision log is retired and its outcomes live where they apply (R-WS-003, DESIGN-8).
 - [ ] Approval: the author approves M2 from its [review page](spec/review/M2.md).
 
 ### M3 Agent E2 serves PCM and isvara.io
 
 - **Outcome:** one Agent E2 service answers both callers: long answers as jobs with a visible stage, screenshots and CSV files, sources by ID and title, time and tokens per answer, Day 2 questions only; its free-text answers are graded automatically.
 - **Needs:** M2, so the contract check C3 (the Agent E2 API) runs on every pull request.
-- **Runs:** in a cloud session. The graded runs need the Vercel AI Gateway key, within US$100 a run (WD-014).
+- **Runs:** in a cloud session. The graded runs need the Vercel AI Gateway key, within US$100 a run (CONSTRAINT-1).
 - **The author:** gives the gateway key for this environment at the start, reviews the answer keys an independent agent marks uncertain, and grades 20 answers once (Q-WS-92). M3 is done only after these.
 - **Requirements:** R-WS-008 (the C5 check, in [workspace.md](spec/requirements/workspace.md)); R-E2-001 to R-E2-019 and R-E2-021 to R-E2-025 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md); R-E2-009, R-E2-017 and R-E2-019 in the workspace's [agent-e2-api.md](spec/requirements/agent-e2-api.md)).
 
@@ -128,12 +124,12 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Outcome:** on the Vercel preview, a visitor reads every Agent E2 knowledge file as an article, finds it through the three learning paths and through search, and sees the first infographic. Every fact and number on an article comes from Agent E2's export; the tools follow in M6.
 - **Needs:** M2 for the checks, and the author's review of the [before and after](spec/design/isvara-before-and-after.md), which the author asked for before anything is built (Q-WS-41). It does not need M3.
 - **Runs:** in a cloud session. The rewrite of each article and its checks need the Vercel AI Gateway key.
-- **Requirements:** R-CONTENT-002 to R-CONTENT-021 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), R-E2-027 and R-E2-028 (agent-e2's [knowledge-export.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/knowledge-export.md)), R-EXPORT-001 and R-EXPORT-002 (the workspace's [knowledge-export.md](spec/requirements/knowledge-export.md), contract C4); and isvara's five folder renames, with the redirects (T-WS-007b, WD-046).
+- **Requirements:** R-CONTENT-002 to R-CONTENT-021 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), R-E2-027 and R-E2-028 (agent-e2's [knowledge-export.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/knowledge-export.md)), R-EXPORT-001 and R-EXPORT-002 (the workspace's [knowledge-export.md](spec/requirements/knowledge-export.md), contract C4); and isvara's five folder renames, with the redirects (T-WS-007b, DESIGN-6).
 
 ### M5 isvara.io Ask and contributions
 
 - **Outcome:** on the preview, a visitor asks Agent E2 a question, with screenshots and CSV files, follows its progress and opens its sources; sends a contribution to a private queue; and the protection layers stop floods, bots, unsafe files and hidden instructions.
-- **Needs:** M3 for the Agent E2 API, and M4 for the articles that sources open. The injection guard is decided (WD-045).
+- **Needs:** M3 for the Agent E2 API, and M4 for the articles that sources open. The injection guard is decided (DESIGN-10).
 - **Runs:** in a cloud session. Where the public Agent E2 runs is chosen after measuring (Q-WS-4); a new hosting account would need the author.
 - **Requirements:** R-ASK-001 to R-ASK-012 ([ask.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/ask.md)), R-CONTRIB-001 to R-CONTRIB-006 ([contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md)), R-PROTECT-001 to R-PROTECT-006 ([protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md)).
 
@@ -162,28 +158,8 @@ Claude's working method, about how Claude works and never about the product (WD-
 
 ## Waiting for the author
 
-- The licence, before the first customer copies the product (WD-029).
-- Approval of each milestone from M2 on.
-- Before M4: a review of the [isvara.io before and after](spec/design/isvara-before-and-after.md) (Q-WS-41).
-- At M3: the Vercel AI Gateway key for this cloud environment, the answer keys marked uncertain, and grading 20 answers once (Q-WS-92).
-- At M5: an account on the host chosen for the public Agent E2, if it needs one, and the bot-check service the protection uses.
-- At M6: the exam's ten questions (Q-WS-113), and a review of 20 quiz questions (R-PRACTICE-003).
-- At M7: the switch from the preview.
-- At M8: a lab session with the laptop and the VPN, and turning on the packet counters in the lab policy (Q-WS-85).
-- Review of each pull request marked as a major change.
+What each milestone needs from the author is in the [brief](spec/brief.md), section Dependencies (DEPENDENCY-1 to DEPENDENCY-9).
 
 ## After release 1.0
 
-- Personal dashboards and what-if analysis in PCM; the tenant or application owner role.
-- A code review of the VCF vCommunity Adapter: the next page of its [engineering review](https://github.com/e1-rahabok/PCM-Adapter/tree/main/docs/development-guide/engineering-review), after the dated pages of October 2026.
-- The people side of operations.
-- Agent E2's new knowledge forms: workload footprints, investigations over several steps, "At large scale" notes; then isvara.io's choice of a small or large estate ([knowledge model](spec/knowledge-model.md), section Proposals; WD-035).
-- Value management, the fifth pillar of The SP5 Framework: cost, price and business value (WD-034).
-- VCF vCommunity Adapter's state codes: every row and KPI says why it has no value (R-ADP-013 to R-ADP-017; WD-033).
-- A larger answer set for Agent E2's grader, from about 15 questions toward 40, weighted to the questions visitors ask.
-- The lab build for memory tiering: nested ESXi hosts with an NVMe tier (R-LAB-001 to R-LAB-004, R-ADP-024; WD-031). It starts with a spike: can a nested host use a virtual NVMe tier (Q-WS-119)? Claude then asks for the cluster, datastore, network and spare capacity in the lab (Q-WS-120, [round 5](spec/interview-round-5.md)).
-- Depth beyond vSphere, grown through contributions: vSAN, NSX, Kubernetes, Guest OS, physical infrastructure.
-- Executable flow steps and the capacity consultation in Agent E2.
-- An email newsletter for isvara.io's weekly summary.
-- Watching isvara.io's spending against US$50 a month once it is live (WD-014); the daily ceiling itself is built in M5 (R-PROTECT-005).
-- Removing the synchronous Agent E2 call, once PCM's synthetic demo uses the job calls too (R-E2-009).
+The work after release 1.0, with its reasons, is in the [brief](spec/brief.md), section Out of release 1.0 (SCOPE-12 to SCOPE-19).

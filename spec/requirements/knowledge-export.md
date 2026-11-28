@@ -1,10 +1,12 @@
 # Requirements: knowledge content for isvara.io
 
-Contract [C4, knowledge content for isvara.io](../glossary.md#c4): what Agent E2's export gives isvara.io to build its pages from. Agent E2 writes the export ([knowledge-export.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/knowledge-export.md) in agent-e2); isvara.io reads it at a pinned commit; the workspace keeps the schema both sides check against, and the check of the export ([WD-036](../../DECISIONS.md)). These requirements belong to milestone M4 in [ROADMAP.md](../../ROADMAP.md). Other IDs are explained in the [glossary](../glossary.md).
+Contract [C4, knowledge content for isvara.io](../glossary.md#c4): what Agent E2's export gives isvara.io to build its pages from. Agent E2 writes the export ([knowledge-export.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/knowledge-export.md) in agent-e2); isvara.io reads it at a pinned commit; the workspace keeps the schema both sides check against, and the check of the export (DESIGN-4). These requirements belong to milestone M4 in [ROADMAP.md](../../ROADMAP.md). Other IDs are explained in the [glossary](../glossary.md).
 
 ### R-EXPORT-001 One schema for the export, checked on both sides
 
-Source: Q-WS-41 (the recommendation of an export with a check that every link and image resolves; the author reviews the change in the [before and after](../design/isvara-before-and-after.md) before M4); WD-010 (every contract has a check); WD-036.
+Why: isvara.io builds its pages from the export, so without one schema a change on either side breaks the other.
+
+Source: Q-WS-41 (the recommendation of an export with a check that every link and image resolves; the author reviews the change in the [before and after](../design/isvara-before-and-after.md) before M4); DESIGN-3; DESIGN-5 (every contract has a check); DESIGN-4.
 
 - Given the export schema in this workspace, `checks/knowledge_export_schema.json`
 - When the cross-repo checks run
@@ -17,7 +19,9 @@ Test scenarios:
 
 ### R-EXPORT-002 isvara.io reads only what the schema names
 
-Source: WD-001 (isvara.io holds no knowledge of its own); WD-005.
+Why: knowledge isvara.io keeps outside the schema becomes a second master that drifts from Agent E2.
+
+Source: DESIGN-2 (isvara.io holds no knowledge of its own); DESIGN-3.
 
 - Given isvara.io's build
 - When it reads Agent E2's knowledge

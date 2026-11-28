@@ -4,7 +4,7 @@
 # ///
 """Check C3: PCM's Agent E2 client and the Agent E2 service still agree.
 
-Agent E2 owns the API (CONTRACTS.md, C3); PCM is its caller. The check starts the real Agent E2
+Agent E2 owns the API (contract C3 in spec/design/system.md); PCM is its caller. The check starts the real Agent E2
 service from its clone in mock mode (no model, no network), then calls it with PCM's own client
 code, pcm/core/agent_e2.py, for each endpoint PCM uses. PCM's client turns any error into
 source "unavailable" so the panel can say so; that same behaviour would hide a broken contract,

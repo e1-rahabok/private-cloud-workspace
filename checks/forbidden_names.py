@@ -5,7 +5,7 @@
 
 Each rule searches the tracked text files of every clone and fails on a line that matches it, outside the files
 that name the old names to forbid them, give them as examples, or record them as they were (OUTSIDE below):
-- R-REPO-006 (Q-WS-3, WD-007, WD-028): the old repository names "VCF-vCommunity-Adapter" and
+- R-REPO-006 (Q-WS-3, CONSTRAINT-2, CONSTRAINT-3): the old repository names "VCF-vCommunity-Adapter" and
   "private-cloud-management", in any case.
 - R-REPO-007 and R-REPO-008 (T-REPO-007b, T-REPO-008e): PCM's old package and file names `pcm_proto` and `story_m5`,
   links to PCM's old folders `build/` and `sources/` on its main branch, and PCM's old paths written out
@@ -35,7 +35,7 @@ from pathlib import Path
 REPOS = ["private-cloud-workspace", "agent-e2", "PCM-Adapter", "private-cloud-manager", "isvara"]
 # Each rule: its requirement, its pattern, and the path prefixes outside its search per repository ("*": every one).
 RECORDS = {
-    "private-cloud-workspace": ["DECISIONS.md", "spec/interview-round-", "tutorial/", "checks/forbidden_names.py",
+    "private-cloud-workspace": ["DECISIONS.md", "spec/author-input/", "tutorial/", "checks/forbidden_names.py",
                                 "checks/test_forbidden_names.py", "checks/test_file_names.py"],
     "agent-e2": ["project/author-questions-resolved.md"],
     "PCM-Adapter": ["docs/development-guide/engineering-review/"],

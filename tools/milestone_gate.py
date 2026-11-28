@@ -1,10 +1,10 @@
-"""The milestone gate: work happens only in the earliest milestone of ROADMAP.md that is not done (WD-039).
+"""The milestone gate: work happens only in the earliest milestone of ROADMAP.md that is not done (DESIGN-21).
 
 ROADMAP.md format the gate reads:
 - A milestone is a heading `### M<n> <title>`. The numbers run M1, M2, M3 in file order, with no gap and no
-  M0 (WD-042). It is done when the heading ends with `: done`. Claude writes `: done` only after the author
+  M0 (DESIGN-21). It is done when the heading ends with `: done`. Claude writes `: done` only after the author
   has approved the milestone.
-- No file or folder is owned by two milestones (WD-042).
+- No file or folder is owned by two milestones (DESIGN-21).
 - The open milestone is the first one, in file order, that is not done.
 - Its next item is the first `- [ ]` line in its section.
 - A `- Files in this repository:` line lists the files the milestone owns, in backticks. A path that ends
@@ -49,7 +49,7 @@ def owns(path: str, pattern: str) -> bool:
 
 
 def structure(ms: list[dict]) -> list[str]:
-    """Problems with the milestones themselves: numbering and files owned twice (WD-042)."""
+    """Problems with the milestones themselves: numbering and files owned twice (DESIGN-21)."""
     problems = []
     for n, m in enumerate(ms, 1):
         if m["id"] != f"M{n}":
@@ -78,7 +78,7 @@ def status(hook: bool) -> int:
     for p in structure(ms):
         print(f"Milestone gate: FAIL {p}")
     if hook:
-        print(f"Milestone gate (WD-039): the open milestone is {m['id']} {m['title']}.")
+        print(f"Milestone gate (DESIGN-21): the open milestone is {m['id']} {m['title']}.")
         print(f"Its next item: {nxt}")
         print(f"Work only on {m['id']}. Park any request for a later milestone in one line and act on nothing in it.")
     else:

@@ -1,12 +1,14 @@
 # Requirements: the Agent E2 API
 
-Contract [C3, the Agent E2 API](../glossary.md#c3): the HTTP calls PCM and isvara.io make to Agent E2. Agent E2 owns the shape, written in the docstring of [harness/answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py); the workspace keeps the requirements on the contract and its check, [checks/agent_e2_api.py](../../checks/agent_e2_api.py) ([WD-036](../../DECISIONS.md)). What Agent E2 does behind the API is in agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md). Question IDs (Q-) point at the interview: [round 1](../interview-round-1.md), [round 2](../interview-round-2.md). Other IDs are explained in the [glossary](../glossary.md). These requirements belong to milestone M3 in [ROADMAP.md](../../ROADMAP.md).
+Contract [C3, the Agent E2 API](../glossary.md#c3): the HTTP calls PCM and isvara.io make to Agent E2. Agent E2 owns the shape, written in the docstring of [harness/answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py); the workspace keeps the requirements on the contract and its check, [checks/agent_e2_api.py](../../checks/agent_e2_api.py) (DESIGN-4). What Agent E2 does behind the API is in agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md). Question IDs (Q-) point at the interview: [round 1](../author-input/interview-round-1.md), [round 2](../author-input/interview-round-2.md). Other IDs are explained in the [glossary](../glossary.md). These requirements belong to milestone M3 in [ROADMAP.md](../../ROADMAP.md).
 
 ## Time and progress
 
 ### R-E2-009 The synchronous call keeps working until both callers have moved
 
-Source: WD-010 (every contract has a check; changes go expand, migrate, contract); WD-013.
+Why: PCM and isvara.io move to the job call in different milestones, and neither may break in between.
+
+Source: DESIGN-5 (every contract has a check; a contract changes in three steps); SCOPE-6.
 
 - Given PCM's client, which calls `/v1/answer` and waits up to 180 seconds ([agent_e2.py](https://github.com/e1-rahabok/private-cloud-manager/blob/main/pcm/core/agent_e2.py#L105))
 - When the job calls of R-E2-007 are added
@@ -21,7 +23,9 @@ Test scenarios:
 
 ### R-E2-017 The specification lists the facts each answer feature needs
 
-Source: answer to Q-WS-36 ("agree": C3's specification lists the facts each feature needs; C3's check adds a live-shaped case; Agent E2 says when a needed fact is missing); WD-044 (no `production` fact: release 1.0 has no data on a cluster's environment).
+Why: Agent E2 answers wrongly, or guesses, when a caller leaves out a fact the feature needs.
+
+Source: answer to Q-WS-36 ("agree": C3's specification lists the facts each feature needs; C3's check adds a live-shaped case; Agent E2 says when a needed fact is missing); CONSTRAINT-5 (no `production` fact: release 1.0 has no data on a cluster's environment).
 
 - Given the docstring of [answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py), the specification of the Agent E2 API
 - When it is read
@@ -45,7 +49,9 @@ Test scenarios:
 
 ### R-E2-019 The contract check covers both callers and every new field
 
-Source: WD-010; answer to Q-WS-I1 ("I expect you to check all the contracts").
+Why: PCM and isvara.io both call Agent E2, and a field one of them needs can break without the other noticing.
+
+Source: DESIGN-5; Q-WS-I1 ("I expect you to check all the contracts").
 
 - Given the Agent E2 service in mock mode (no model, no network)
 - When [checks/agent_e2_api.py](../../checks/agent_e2_api.py) runs

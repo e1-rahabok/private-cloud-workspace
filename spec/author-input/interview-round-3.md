@@ -1,12 +1,12 @@
 # Interview, round 3
 
-The last questions only the author could answer, asked in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) on 2026-11-26, with his answers as written and what follows from each. IDs are explained in the [glossary](glossary.md).
+The last questions only the author could answer, asked in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md) on 2026-11-26, with his answers as written and what follows from each. IDs are explained in the [glossary](../glossary.md).
 
 ## Q-WS-60 The product's name
 
 **Answer:** "Manager, not Management."
 
-**Result:** the product is Private Cloud Manager, PCM for short ([DECISIONS](../DECISIONS.md), WD-028). The books keep "Private Cloud Management" as the name of the discipline.
+**Result:** the product is Private Cloud Manager, PCM for short ([DECISIONS](../../DECISIONS.md), WD-028). The books keep "Private Cloud Management" as the name of the discipline.
 
 ## Q-WS-88 Guest OS run queue: per vCPU, or total
 
@@ -18,7 +18,7 @@ The last questions only the author could answer, asked in [OPEN-QUESTIONS.md](..
 
 **Answer:** "will supply later. remind me."
 
-**Result:** both stay in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md). They are needed when the lab build starts, after release 1.0 (WD-031). Answered in [round 5](interview-round-5.md).
+**Result:** both stay in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md). They are needed when the lab build starts, after release 1.0 (WD-031). Answered in [round 5](interview-round-5.md).
 
 ## Q-WS-130 Events for birds-of-a-feather sessions
 

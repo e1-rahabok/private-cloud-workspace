@@ -6,7 +6,7 @@ Links in this file point at the lines as they were when the question was asked.
 
 ## A. Intent
 
-Answers fill [spec/intent.md](intent.md).
+Answers fill [spec/intent.md](../brief.md).
 
 ### Q-WS-I1 What makes stage 1 a success? (blocks M1)
 

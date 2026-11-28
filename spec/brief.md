@@ -1,0 +1,157 @@
+# Brief
+
+What the product is for and what bounds it: goals, users, success, scope, principles, constraints, assumptions, risks and dependencies. The author gives this input as the domain expert and the user; Claude writes it down here and keeps it true. Risks and dependencies are written by both. Every design choice that follows from it is Claude's, in the [system design](design/system.md). The [requirements](requirements) cite the IDs on this page. IDs are explained in the [glossary](glossary.md).
+
+Each item is one bullet: its ID, the outcome, its reason after "Why:", and its source. A source is a question the author answered in the [author input](author-input) records, such as Q-WS-27, or the author's words with their date when no question was asked. A changed answer changes the item in place; git keeps the history.
+
+## Origin
+
+The material began as the first edition of the author's book in 2014. Each year it has become deeper, broader and easier to consume, and the reaction has been almost entirely positive. It lands only when the author explains or demonstrates it, and that does not scale. The software exists so that customers can deploy and use the knowledge without the author. The horizon is a few years; release 1.0 is the first step.
+
+## Goals
+
+- **GOAL-1 Knowledge inside the customer's private cloud.** VMware administrators have the author's knowledge inside their own environment, made visible through PCM (Private Cloud Manager) for every role of the SP5 framework. Why: the knowledge reaches people only when the author presents it. Source: the author's intent, 2026-11-26.
+- **GOAL-2 isvara.io as the authority.** isvara.io is recognised worldwide as the authority on large-scale private cloud performance and capacity management, based on VCF. Why: the public site is where administrators learn the field and come back to it. Source: the author's intent, 2026-11-26.
+- **GOAL-3 Value without the author.** A customer installs from the manual without contacting the author; Agent E2 answers the questions people ask the author after a demo; PCM shows each role what the author would have pointed at. Why: this is the test of GOAL-1 and GOAL-2; every requirement can pass and the product still fail if a customer needs the author. Source: the author's intent, 2026-11-26.
+- **GOAL-4 Release 1.0 success.** VMware colleagues and customers who see the PCM demo find it useful and want to copy the repositories privately, to customise and deploy in their own private cloud; Agent E2 explains a real lab KPI correctly in the live demo; on isvara.io every knowledge file is a page people can read and bookmark, Agent E2 answers with sources, and the exam exists; every contract between the repositories is checked automatically. Why: the author demos PCM to these people, and their wish to copy it is the first sign of GOAL-3; isvara.io's pages today are deep, hard to navigate and hard to place in the whole. Source: Q-WS-I1, Q-WS-I2, Q-WS-I5.
+- **GOAL-5 Order of the two release goals.** isvara.io's rebuild comes first and is most of the work (M4 to M7); PCM's live demo comes last (M8); Agent E2 and the VCF vCommunity Adapter serve both. Why: isvara.io runs without the lab, and the lab needs the author's laptop (CONSTRAINT-6). Source: the author's choice of milestone order, 2026-11-27.
+- **GOAL-6 Measures of authority.** isvara.io's position and impressions for about 20 searches that define the field, from Google Search Console, monthly; returning visitors and questions asked, from the site's counters and question log, monthly; contributions received and accepted; referral by Broadcom, through the author's marketing. Why: these show GOAL-2 moving. Source: the author's intent, 2026-11-26.
+
+## Users
+
+| User | Need | Served by |
+|---|---|---|
+| VMware administrator | Run a large private cloud day to day | Agent E2 and PCM, first audience |
+| L2 platform engineer | The expert view behind the NOC | PCM's live demo |
+| Administrator or architect learning the field | Master the operation of a private cloud | isvara.io |
+| vCommunity member | Correct and add to the knowledge | isvara.io's contributions |
+| Large global enterprise | Many teams and roles to align | PCM, organised by role |
+| The author | Answers once, reused by everyone | The whole product |
+
+- Customers are large global enterprises; their difficulty is organisational, with many teams and many people, which is why PCM is organised by role. Mid-sized companies are not the focus. Source: the author's intent, 2026-11-26.
+- The CIO is not a focus for Agent E2. After L2, the next role in PCM is the tenant or application owner, after release 1.0. Source: the author, 2026-11-26.
+
+## Scope of release 1.0
+
+- **SCOPE-1 A lab demo with a cloud model.** PCM runs in the author's lab; Agent E2 uses a cloud model through Vercel AI Gateway; isvara.io is public on Vercel. Why: a plan that describes two futures at once leads each session to build toward the wrong one. Source: the author, 2026-11-25.
+- **SCOPE-2 Day 2 knowledge only.** The knowledge covers running, monitoring, troubleshooting and planning. Design, installation, building, configuration and upgrades (Day 0 and Day 1) are out, and Agent E2 says so when asked and points to Broadcom's documentation. Why: Day 1 knowledge changes with each release, and release 1.0 must be small enough to finish. Source: the author, 2026-11-26.
+- **SCOPE-3 The product and how customers take it.** The product is Agent E2, the VCF vCommunity Adapter and PCM, taken together with this workspace. Why: each part alone shows only part of the knowledge. Source: the author, 2026-11-26.
+  - The VCF vCommunity Adapter alone is the simplest deployment: one pak file, no Linux, without Agent E2. Its documentation presents it as one part of the whole and points to the knowledge.
+  - PCM runs as a Linux container, with VKS integration.
+  - isvara.io is a separate public site that customers use but never install or copy.
+  - Customers copy the product by mirroring each repository into a private one, because a fork of a public repository on GitHub is always public. The manual says so.
+- **SCOPE-4 Two PCM demos, synthetic and live.** PCM keeps its synthetic ACME demo unchanged and adds a separate live demo as a new entry in the demo drop-down; no page switches between the two. Why: the lab has too little activity to show Agent E2 at its best, and the live demo proves PCM reads real data. Source: Q-WS-20, Q-WS-32.
+- **SCOPE-5 PCM's live demo.** Why: one workspace on live data proves the connection with the least work. Source: Q-WS-20 to Q-WS-39, Q-WS-61.
+  - The L2 workspace only, for performance and capacity management only (Q-WS-22, Q-WS-33).
+  - The inventory comes from VCF Operations and starts at the VCF instance; an object's ID is its VCF Operations resource ID (Q-WS-25, Q-WS-26).
+  - Class of service, region, environment and time zone exist only in the synthetic demo (Q-WS-24).
+  - PCM shows what the VCF vCommunity Adapter publishes and says "No data" when a value is stale (Q-WS-27).
+  - PCM stores no metrics. It keeps each Agent E2 answer with its trace ID and rating for the 30 days that Agent E2 keeps the trace (Q-WS-30, Q-WS-61).
+  - PCM may compute for display and never writes to VCF Operations (Q-WS-23).
+  - Lab facts may go to the cloud model (Q-WS-39).
+  - Actions, stories, cases and the calendar are out of release 1.0 (Q-WS-33).
+- **SCOPE-6 Agent E2 in release 1.0.** Why: accuracy matters more than time; even minutes are better than waiting for a person. Source: Q-WS-I3, Q-WS-5, Q-WS-7, Q-WS-10, Q-WS-91.
+  - Accuracy comes before speed. An answer may take minutes, with no streaming, and the user always sees that Agent E2 is still working (Q-WS-I3).
+  - Free-text answers are graded automatically by a strong model as judge, Opus 5.5, as Agent E2's earlier free-text benchmark was (Q-WS-5, Q-WS-91).
+  - The answer set holds about 15 free-text questions in release 1.0 and grows toward 40 after it. Why: isvara.io's quiz is multiple choice and never uses the grader. Source: the author, 2026-11-27.
+  - The model is Gemma 4 31B, or a later version when one comes (Q-WS-7).
+  - Every knowledge file is used, drafts included; a review gate on files waits until after go-live, because the author has no time to review each file (Q-WS-10).
+- **SCOPE-7 The VCF vCommunity Adapter in release 1.0.** Why: the adapter computes the KPIs that PCM shows and Agent E2 explains, so both must agree with it. Source: Q-WS-I4, Q-WS-1, Q-WS-14 to Q-WS-19, Q-WS-28, Q-WS-81.
+  - It may change anything except its identity in VCF Operations (CONSTRAINT-2) (Q-WS-I4).
+  - A metric's key comes from the adapter; its name comes from Agent E2's catalog (Q-WS-1).
+  - All scoring logic comes from Agent E2, including the score bands and the closure levels (Q-WS-15).
+  - Usable capacity is Total minus HA minus Buffer (Q-WS-17).
+  - A metric whose name says "peak" is a 20-second peak; others are 5-minute averages. Where a catalog row's interval and its name disagree, the catalog's interval is the rule (Q-WS-19, Q-WS-81).
+- **SCOPE-8 isvara.io rebuilt.** Same look and feel, new functionality; the old site goes. Why: nothing brings people back to isvara.io today, and they cannot tell what has changed. Source: Q-WS-41 to Q-WS-55.
+  - Its pages are AI rewrites of Agent E2's knowledge files, with no AI-speak (Q-WS-42).
+  - A cited source opens the knowledge file, with a note that it is written for a model (Q-WS-45).
+  - The injection guard sits in isvara.io, before it calls Agent E2 (Q-WS-47).
+  - The "load-and-ask" design retires (Q-WS-48).
+  - Downloads and the weekly refresh of the Word books continue, as downloads (Q-WS-55).
+  - It is built on a branch with a Vercel preview and switched over in one release; each feature waits for the author's review of the [before and after](design/isvara-before-and-after.md) (Q-WS-41).
+- **SCOPE-9 isvara.io's features in release 1.0.** The three learning paths as navigation; articles rewritten from knowledge files; infographics; Ask Agent E2; contributions; a quiz with a mastery map, the exam and the 2am game; calculators on Agent E2's catalog; a weekly summary of changes. Dropped: the podcast, the Operations Score, the cost calculator and SLA builder, the self-assessment and a global leaderboard. Why: an administrator comes back weekly for tools, an expert to ask and learning; the dropped features serve none of these or hold knowledge of their own. Source: the author's learning paths and return reasons, 2026-11-26; Q-WS-49 to Q-WS-53.
+- **SCOPE-10 An exam for people.** isvara.io gets 10 short, very hard multiple-choice questions that test depth of understanding and need no calculation. A wrong answer loses marks; no answer scores 0. The exam is kept in isvara.io, apart from Agent E2's benchmark, which tests the machine. Why: an exam for people and a benchmark for a model have different purposes. Source: Q-WS-56.
+- **SCOPE-11 Contributions from the vCommunity.** From release 1.0, visitors send a correction, an addition or something to review, with files. Why: the vCommunity grows the knowledge in breadth, which the author cannot do alone. Source: the author, 2026-11-26.
+
+## Out of release 1.0
+
+- **SCOPE-12 On-premises deployment with a local model.** A customer runs PCM and Agent E2 on premises with a local model server. Text about it stays in the child repositories as the target; some of it calls it stage 2. Why: SCOPE-1. Source: the author, 2026-11-25.
+- **SCOPE-13 PCM beyond the live L2 demo.** Personal dashboards, what-if analysis, the people side of operations (convincing application owners) and the tenant or application owner role. Why: release 1.0 must be small enough to finish. Source: the author, 2026-11-26.
+- **SCOPE-14 Knowledge beyond vSphere at depth.** vSAN, NSX, Kubernetes, the Guest OS and physical infrastructure grow through contributions; the product track comes before a separate knowledge track. Why: breadth comes from the vCommunity (SCOPE-11). Source: the author, 2026-11-26.
+- **SCOPE-15 Value management.** The fifth pillar of the SP5 framework, cost, price and business value, gets no new knowledge, KPI or feature. Agent E2's files tagged `value` stay, and isvara.io shows them under the IT management path. Why: the author's call on what release 1.0 holds. Source: the author, 2026-11-27.
+- **SCOPE-16 New knowledge forms.** Workload footprints, investigations over several steps and "At large scale" notes ([knowledge model](design/knowledge-model.md), sections Experience and Scale); isvara.io's choice of a small or large estate waits for the notes. Adding the knowledge model to agent-e2's KNOWLEDGE-ENGINEERING.md stays in release 1.0. Why: each form needs new knowledge from the author's field experience. Source: the author, 2026-11-27.
+- **SCOPE-17 Lab build for memory tiering.** The [lab-build](https://github.com/e1-rahabok/lab-build) repository builds nested ESXi hosts with an NVMe memory tier in the lab ([lab-build.md](requirements/lab-build.md)). In release 1.0 the adapter's tiering rows are tested with fakes, and a tiering part that a cluster does not have is left out of PCM's page (Q-WS-68). It starts with a spike: can a nested host use a virtual NVMe tier (Q-WS-119)? Why: the physical lab hosts have no memory tiering (CONSTRAINT-7). Source: Q-WS-37, Q-WS-38, Q-WS-120, Q-WS-122; the author, 2026-11-27.
+- **SCOPE-18 The adapter's state codes.** Every row and KPI says why it has no value (R-ADP-013 to R-ADP-017). Why: the reason for a blank is useful, but a demo can show "No data" without it (DESIGN-17). Source: the author, 2026-11-27.
+- **SCOPE-19 Smaller items after release 1.0.** Why: each waits until release 1.0 is live. Source: the author, 2026-11-26 and 2026-11-27.
+  - A larger answer set for Agent E2's grader, from about 15 questions toward 40, weighted to the questions visitors ask.
+  - The review gate on knowledge files (Q-WS-10).
+  - Executable flow steps and the capacity consultation in Agent E2 (Q-WS-62).
+  - An email newsletter for isvara.io's weekly summary.
+  - Watching isvara.io's spending against CONSTRAINT-1 once it is live.
+  - Removing Agent E2's synchronous call, once PCM's synthetic demo uses the job calls too (R-E2-009).
+  - A code review of the VCF vCommunity Adapter: the next page of its [engineering review](https://github.com/e1-rahabok/PCM-Adapter/tree/main/docs/development-guide/engineering-review).
+
+## Principles
+
+These decide a conflict between two good things without asking the author. Source of all seven: the author's intent, 2026-11-26. The reasons are Claude's reading of that intent, except where a source is named; the author corrects any that is wrong.
+
+- **PRINCIPLE-1 Free.** No paid content and no paid tier. Why: the knowledge reaches the most people when nothing stands in the way.
+- **PRINCIPLE-2 Accurate before complete.** A confident wrong answer is worse than none; Agent E2 fails if it gives one, and "I don't know" is acceptable, as it is from an expert. Why: an administrator acts on the answer in production.
+- **PRINCIPLE-3 The customer's data stays with the customer.** In the on-premises deployment nothing leaves the customer's network. On isvara.io, visitors remove their own IP addresses and host names before uploading, and the site keeps data only as DESIGN-13 says. Why: customers will not share data that can leak.
+- **PRINCIPLE-4 Forkable.** Customers can copy the product privately and make it theirs; nothing in the product depends at run time on the author's services. Why: GOAL-3; the product must outlive the author's involvement.
+- **PRINCIPLE-5 One master copy of each fact.** Knowledge lives in Agent E2; every other copy is generated from it or checked against it. Why: two copies of a fact drift apart, and nobody notices until a customer reads both.
+- **PRINCIPLE-6 The specification is what people maintain.** AI writes the code; the author and Claude keep the specification true (PCM's D-010). Why: the code is regenerated from the specification, so a fix made only in code is lost.
+- **PRINCIPLE-7 Challenge with evidence.** Few rules hold in operations management; any assumption, the author's included, can be challenged with evidence (Agent E2's [MISSION.md](https://github.com/e1-rahabok/agent-e2/blob/main/MISSION.md)). Why: the field changes with each release and each estate.
+
+## Constraints
+
+- **CONSTRAINT-1 Spending on Vercel AI Gateway.** A benchmark run has a budget of US$100. After go-live, isvara.io stays within US$50 a month on the gateway alone; the Vercel subscription of US$40 is apart. The author tracks spending on vercel.com and raises a budget when needed. Why: the author pays for the product himself. Source: Q-WS-9, Q-WS-104.
+- **CONSTRAINT-2 The adapter keeps its vCommunity identity.** The management pack keeps adapter kind `vCommunity`, display name "VCF vCommunity Adapter", manifest name `iSDK_vCommunity`, key prefix `vCommunity|`, the image `ghcr.io/e1-rahabok/vcf-operations-vcommunity`, the pak name the build makes from them, and "vCommunity" in the names of its dashboards, views and reports. The repository is named PCM-Adapter. The pack's description explains how it works with Agent E2, PCM and isvara.io. Why: PCM is a vCommunity project, where VMware vExperts and VMUG members work together, and the name shows a grassroots effort; "Private Cloud Manager" is too long for a key prefix. Source: the author, 2026-11-27; Q-WS-2, Q-WS-3.
+- **CONSTRAINT-3 The product's name.** The product is Private Cloud Manager, PCM for short; the books keep "Private Cloud Management" as the name of the discipline. The repository is [private-cloud-manager](https://github.com/e1-rahabok/private-cloud-manager). Why: the author's choice of name. Source: Q-WS-60.
+- **CONSTRAINT-4 No licence file for now.** The repositories keep no licence file; GitHub's default applies. Why: the author's choice; see RISK-2. Source: Q-WS-133.
+- **CONSTRAINT-5 No data on a cluster's environment.** In release 1.0, neither the VCF vCommunity Adapter nor Agent E2 knows whether a cluster is production or non-production, and no caller sends it. Why: no data source holds it in the lab. Source: Q-WS-138.
+- **CONSTRAINT-6 The lab is reached only from the author's laptop.** The lab's VCF Operations and vCenter are behind a VPN, reached from the author's Windows laptop with PowerShell 7; a cloud session cannot reach them. Work stays read-only against them unless a milestone says otherwise, and every change to the lab waits for the author. Why: it is the author's own lab and network. Source: Q-WS-37, Q-WS-40, Q-WS-79, Q-WS-85; the author, 2026-11-27.
+- **CONSTRAINT-7 No memory tiering in the physical lab.** The physical lab hosts have no memory tiering. Why: a fact of the lab's hardware. Source: Q-WS-38.
+- **CONSTRAINT-8 The author's review time.** The author cannot review each knowledge file or each pull request one by one. Why: one person, with other work. Source: Q-WS-10; the author, 2026-11-25.
+
+## Assumptions
+
+Each assumption says whether the author confirmed it, and how it is checked when it is not.
+
+- **ASSUMPTION-1 The lab is too quiet to show Agent E2 well.** Status: confirmed by the author. Effect: the synthetic demo stays the main demo (SCOPE-4); a load generator may come later. Source: Q-WS-20, Q-WS-70.
+- **ASSUMPTION-2 A 10-second wait between progress reads is acceptable.** Status: confirmed by the author: "VMware Admin does not mind 10 seconds waiting as he knows this is not a general chat." Effect: callers read a job every 10 seconds and count the time up in the browser between reads (DESIGN-14). Source: the author, 2026-11-27.
+- **ASSUMPTION-3 Gemma 4 31B answers Day 2 questions accurately enough.** Status: unconfirmed. Check: the first graded run of the answer set in M3 (DESIGN-19); if it is far below the target, the gate is set from that run (Q-WS-90). Source: Q-WS-7.
+- **ASSUMPTION-4 Agent E2 may cost more per visitor than AskIO.** Agent E2's model costs less per call, but it holds conversations and reads CSV files and screenshots. Status: unconfirmed. Check: cost per answer measured in M5, with the hosting choice (DESIGN-16). Source: Q-WS-I1.
+- **ASSUMPTION-5 Visitors remove IP addresses and host names before uploading.** Release 1.0 has no masking. Status: unconfirmed. Check: contributions are read before any use (DESIGN-11); see RISK-9. Source: the author, 2026-11-26.
+- **ASSUMPTION-6 No installed copy of the adapter needs protecting on upgrade.** Status: confirmed by the author: "It can change anything. No issue on upgrade." Source: Q-WS-I4, Q-WS-2.
+- **ASSUMPTION-7 Agent E2's knowledge base holds everything in the books.** Extraction from the books is complete ([agent-e2 CLAUDE-PROJECT.md](https://github.com/e1-rahabok/agent-e2/blob/main/CLAUDE-PROJECT.md)), so isvara.io's pages lose nothing when they move to the knowledge base (DESIGN-3). Status: stated in agent-e2. Check: the export check of contract C4 in M4. Source: Q-WS-18, Q-WS-42.
+- **ASSUMPTION-8 A 20-second key exists for dropped TX packets.** Status: open, [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md), Q-WS-137. Check: read on the lab in M8; if no key exists, the catalog row becomes a 5-minute row and drops "peak" from its name.
+
+## Risks
+
+Each risk names its effect, what reduces it, and who acts. Claude keeps this list; the author adds what the field has taught.
+
+- **RISK-1 Agent E2 gives confident wrong answers.** Effect: Agent E2 fails by PRINCIPLE-2. An earlier generation was confidently wrong on 31 to 41% of open answers (Q-WS-5). Reduced by: the graded answer set on every change of model or prompt (DESIGN-19), sources on every answer, the Day 2 scope (SCOPE-2). Acts: Claude.
+- **RISK-2 No licence gives no right to copy.** Effect: without a licence, GitHub's terms let others view and fork a public repository on GitHub, but give no permission to copy it elsewhere, change it or run it, which conflicts with PRINCIPLE-4 and with the contributions agreement (DESIGN-11). Reduced by: a licence chosen before the first customer copies the product; this is not legal advice. Acts: the author.
+- **RISK-3 Lab work waits on one laptop.** Effect: M8 and every lab test wait for a session with the author (CONSTRAINT-6). Reduced by: all lab work in M8; fakes for everything else; each lab check an earlier pull request could not run listed for M8's lab session (test plan). Acts: Claude prepares, the author runs the session.
+- **RISK-4 Gateway spending exceeds the budget.** Effect: the author pays more than CONSTRAINT-1. Reduced by: a daily ceiling on model calls, limits per visitor, a budget per benchmark run (DESIGN-20). Acts: Claude builds the limits; the author watches vercel.com.
+- **RISK-5 Abuse of the public site.** Effect: floods, bots, hidden instructions, unsafe files or indecent images on isvara.io. Reduced by: the protection layers (DESIGN-10, DESIGN-12) and one switch that closes Ask or Contribute without a redeploy. Acts: Claude.
+- **RISK-6 Copies of a fact drift apart.** Effect: PCM, the adapter and isvara.io show a KPI differently from Agent E2. Reduced by: a check on every contract, on every pull request of every repository (DESIGN-5); checks of contracts C2, C4 and C5 are planned in M8, M4 and M3. Acts: Claude.
+- **RISK-7 A failing test goes unnoticed.** Effect: a requirement is broken while the checks are green. On 2026-11-28 a PCM L2 page test failed on main and was not run in CI. Reduced by: every repository's tests in its CI (test plan, section Known gaps). Acts: Claude.
+- **RISK-8 The author's time is the bottleneck.** Effect: work stops while it waits for input or approval (CONSTRAINT-8). Reduced by: Claude decides every design question; the author is asked only for input; work goes on under a stated assumption while a question is open. Acts: Claude.
+- **RISK-9 Customer data in an upload.** Effect: a screenshot or CSV file shows a customer's host names or addresses (ASSUMPTION-5). Reduced by: question files are never kept; contribution files are deleted within 30 days; contributors confirm the file holds no confidential customer data (DESIGN-11, DESIGN-13). Acts: Claude.
+- **RISK-10 One vendor for hosting and the model gateway.** Effect: a change of price, model or terms at Vercel stops isvara.io or Agent E2. Reduced by: the gateway is OpenAI-compatible and the model is a setting; the on-premises deployment uses a local model server (SCOPE-12). Acts: Claude.
+
+## Dependencies
+
+What the work needs from people and systems outside Claude's reach. The contracts between the repositories are in the [system design](design/system.md), section Contracts.
+
+- **DEPENDENCY-1 Approval of each milestone.** The author approves each milestone from its [review page](review), and reads each pull request marked as a major change. Provided by: the author. Needed by: every milestone from M2.
+- **DEPENDENCY-2 Gateway key and grading for Agent E2.** The Vercel AI Gateway key for the cloud environment; a review of the answer keys an independent agent marks uncertain; 20 answers graded once (Q-WS-92). Provided by: the author. Needed by: M3.
+- **DEPENDENCY-3 Review of isvara.io's before and after.** The [before and after](design/isvara-before-and-after.md), feature by feature (Q-WS-41). Provided by: the author. Needed by: M4.
+- **DEPENDENCY-4 Hosting and bot check for the public Agent E2.** An account on the host chosen for the public Agent E2, if it needs one, and the bot-check service the protection uses. Provided by: the author. Needed by: M5.
+- **DEPENDENCY-5 Exam and quiz questions approved.** The exam's ten questions (Q-WS-113) and a review of 20 quiz questions (R-PRACTICE-003). Provided by: the author. Needed by: M6.
+- **DEPENDENCY-6 The switch-over of isvara.io.** Approval of the switch from the preview. Provided by: the author. Needed by: M7.
+- **DEPENDENCY-7 A lab session.** The laptop and the VPN, and the two packet counters turned on in the lab policy (Q-WS-85). Provided by: the author. Needed by: M8.
+- **DEPENDENCY-8 Lab placement of the nested hosts.** The cluster, datastore, network and spare capacity for the lab build (Q-WS-120). Provided by: the author. Needed by: the lab build, after release 1.0 (SCOPE-17).
+- **DEPENDENCY-9 Systems outside the repositories.** Vercel (hosting, AI Gateway, Blob storage), the Gemma 4 31B model on the gateway, VCF Operations 9 and vCenter in the lab, GitHub and GitHub Actions, and Broadcom's documentation at techdocs.broadcom.com. Provided by: their vendors. Needed by: every milestone that uses them.

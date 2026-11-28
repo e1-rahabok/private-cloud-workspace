@@ -1,13 +1,13 @@
 # isvara.io before and after
 
-The change to isvara.io in release 1.0, feature by feature: what the site does today, what it will do, and who decided it. The author asked for this document to review before anything is built (answer to Q-WS-41, [interview round 1](../interview-round-1.md)). The requirements of milestones M4 to M7 in [ROADMAP.md](../../ROADMAP.md) are written from it, and M4 starts only after the author's review. The plan it details is [isvara-plan.md](isvara-plan.md); IDs are explained in the [glossary](../glossary.md).
+The change to isvara.io in release 1.0, feature by feature: what the site does today, what it will do, and who decided it. The author asked for this document to review before anything is built (answer to Q-WS-41, [interview round 1](../author-input/interview-round-1.md)). The requirements of milestones M4 to M7 in [ROADMAP.md](../../ROADMAP.md) are written from it, and M4 starts only after the author's review. The plan it details is [isvara-plan.md](isvara-plan.md); IDs are explained in the [glossary](../glossary.md).
 
 ## Basis of each decision
 
 Each item names its basis:
 
 - **Author:** the author's own answer or decision, with its ID.
-- **Round 2:** decided by Claude at the author's request on 2026-11-26 ([interview round 2](../interview-round-2.md)), with its ID.
+- **Round 2:** decided by Claude at the author's request on 2026-11-26 ([interview round 2](../author-input/interview-round-2.md)), with its ID.
 - **Claude's call:** decided in this document, with its reason, under the author's delegation of the plan's details ([isvara-plan.md](isvara-plan.md)). These are the items to review first.
 
 To review: write "Approved" under the heading Review at the end, or name a feature and the change.
@@ -17,11 +17,11 @@ To review: write "Approved" under the heading Review at the end, or name a featu
 - **Before:** a reading site over the author's five books (the Executive Summary and Parts 1 to 4), converted from Word into HTML chapters. AskIO answers from the whole book in its context. Ten tools, an RVTools health check, the 2am game and downloads sit around it.
 - **After:** a site over Agent E2's knowledge base. Each knowledge file becomes an article, reached through the three learning paths and their crossings. Agent E2 answers questions. Visitors contribute corrections and files, practise with a quiz and an exam, and see what changed each week. The books stay downloadable.
 - **Kept:** the Signal design, its look and its two themes (Author, Q-WS-44); the 2am game, the RVTools health check, downloads, the MCP endpoint, Team and Homelabs.
-- **Gone:** the book reader, AskIO, the Operations Score, the self-assessment, the cost calculator and the SLA builder (Author, WD-027).
+- **Gone:** the book reader, AskIO, the Operations Score, the self-assessment, the cost calculator and the SLA builder (Author, SCOPE-9).
 
 ## Knowledge presented for the web
 
-The author called this the hard part: the book as HTML pages wastes the web, and the site should offer several ways to slice the knowledge (answer to Q-WS-43). The design uses what each knowledge file already carries, so isvara.io adds no structure of its own (Author, WD-001, WD-027).
+The author called this the hard part: the book as HTML pages wastes the web, and the site should offer several ways to slice the knowledge (answer to Q-WS-43). The design uses what each knowledge file already carries, so isvara.io adds no structure of its own (Author, DESIGN-2, SCOPE-9).
 
 ### Contents of a knowledge file
 
@@ -36,20 +36,20 @@ The author called this the hard part: the book as HTML pages wastes the web, and
 
 - **Before:** a chapter page is a slice of a book, up to about 25,000 words, at `/read/<book>/<page>`.
 - **After:** one article per knowledge file, at `/articles/<id>`, for example `/articles/vsphere/technology/cpu/metrics/virtual-motherboard/ready` (Round 2, Q-WS-101 for the source view).
-- **The text:** an AI rewrite into plain prose that keeps every fact, number and section of the file, adds none, and follows the writing rules (Author, Q-WS-42; WD-023).
-- **Common misreadings:** the file's Misconceptions as a box at the end, each with its correction (Author, WD-017).
+- **The text:** an AI rewrite into plain prose that keeps every fact, number and section of the file, adds none, and follows the writing rules (Author, Q-WS-42; DESIGN-7).
+- **Common misreadings:** the file's Misconceptions as a box at the end, each with its correction (Author, SCOPE-8).
 - **Numbers:** every limit and band is drawn from the catalog row, never typed by hand (R-CONTENT-001). A metric's five limits show as a coloured band bar; a reader moves a slider to see a value's band. Claude's call: the catalog makes numbers interactive at no cost in accuracy.
-- **Diagrams:** a Mermaid diagram in the file is drawn as an SVG, with its text underneath. Claude's call: the same rule the workspace follows (WD-020).
+- **Diagrams:** a Mermaid diagram in the file is drawn as an SVG, with its text underneath. Claude's call: the same rule the workspace follows (R-WS-004).
 - **Flows:** a troubleshooting, decision-tree or health-check file shows its checks as steps a reader opens one by one, with the branch to the next file. Claude's call: a flow is a sequence, and a reader at 2 a.m. wants the next step.
-- **Where the reader is:** a trail at the top (path, topic, article), chips for the article's other paths, "Read first" from `internal_derive`, "Read with" from `related`, and the neighbours in the same topic (Author, WD-027 through the plan).
+- **Where the reader is:** a trail at the top (path, topic, article), chips for the article's other paths, "Read first" from `internal_derive`, "Read with" from `related`, and the neighbours in the same topic (the [plan](isvara-plan.md), SCOPE-9).
 - **Source:** a link to `/articles/<id>/source`, the file as the model reads it, with the note that it is written for an AI model (Author, Q-WS-45; Round 2, Q-WS-101).
 - **Footer:** "Written by AI from Agent E2's knowledge base, which is still being reviewed." (Round 2, Q-WS-103).
-- **Dates:** "last changed", and "corrected on" when the weekly summary marked a change as a correction (Author, WD-027 through the plan).
+- **Dates:** "last changed", and "corrected on" when the weekly summary marked a change as a correction (the [plan](isvara-plan.md), SCOPE-9).
 - **Ask about this article:** opens Ask with the article named, so Agent E2 reads it first (Round 2, Q-WS-97; R-E2-022).
 
 ### Four lenses on every topic
 
-A knowledge file's form says which lens it serves. The lenses are a completeness check, and the quiz uses them to tell a reader what they are missing ([knowledge model](../knowledge-model.md)).
+A knowledge file's form says which lens it serves. The lenses are a completeness check, and the quiz uses them to tell a reader what they are missing ([knowledge model](knowledge-model.md)).
 
 | Lens | Forms |
 |---|---|
@@ -58,38 +58,38 @@ A knowledge file's form says which lens it serves. The lenses are a completeness
 | How it is managed | what-to-set, health-check, decision-tree; the SP5 framework files |
 | How it fails | troubleshooting |
 
-- The mapping is the [knowledge model](../knowledge-model.md)'s, which adds `what-to-set` under managed; no file gets a new tag. The glossary serves search and sits under no lens.
+- The mapping is the [knowledge model](knowledge-model.md)'s, which adds `what-to-set` under managed; no file gets a new tag. The glossary serves search and sits under no lens.
 
 ### Three paths and their crossings
 
 - **Before:** `/guide` shows a node map of the five books and their chapters.
-- **After:** `/learn` opens the three paths (Author, WD-027):
+- **After:** `/learn` opens the three paths (Author, SCOPE-9):
   - Architecture: CPU, memory, storage, network, from the `technology` tag.
   - IT management: availability, performance, security, capacity and value, from the `pillar` tag.
   - Product: vSphere, vSAN, NSX, VCF Operations, Kubernetes, Windows, Linux, then by object type, from the `product` and `object` tags.
 - **Topic pages:** `/learn/architecture/cpu`, `/learn/management/performance`, `/learn/product/vsphere/cluster`. Each shows its articles in four columns, one per lens, so a gap is visible.
-- **Crossings:** any topic page narrows by the other two paths, and each narrowing has its own address, for example `/learn/architecture/cpu?pillar=performance&object=cluster` (Author, WD-027 through the plan).
+- **Crossings:** any topic page narrows by the other two paths, and each narrowing has its own address, for example `/learn/architecture/cpu?pillar=performance&object=cluster` (the [plan](isvara-plan.md), SCOPE-9).
 - **Start here:** each topic page lists its articles in a reading order where every article comes after the files it builds on (`internal_derive`), and how it works comes before how it is measured, managed and how it fails. Claude's call: this answers the order question of Q-WS-43 from data the files already hold.
 - **Empty lens:** a lens column with no article says so and links to Contribute. Claude's call: the knowledge model asks the coverage table to show where help is needed.
 - **Tag `system`:** files tagged `system` (across CPU, memory, storage and network) show under Architecture as "Across resources". Claude's call: the tag exists in the files and the plan's list of four leaves it out.
-- **Value:** the files tagged `value` show under IT management, value, and nothing new is added for it (Author, WD-034).
+- **Value:** the files tagged `value` show under IT management, value, and nothing new is added for it (Author, SCOPE-15).
 
 ### Search
 
 - **Before:** the ⌘K palette scans the books' headings and text.
-- **After:** the palette searches articles, the glossary, misreadings and metric names. The words people use map to the knowledge base's terms through Agent E2's `user-terms` catalog. A switch allows regular expressions (Author, WD-027 through the plan).
+- **After:** the palette searches articles, the glossary, misreadings and metric names. The words people use map to the knowledge base's terms through Agent E2's `user-terms` catalog. A switch allows regular expressions (the [plan](isvara-plan.md), SCOPE-9).
 - Claude's call: the index is built at build time in the browser bundle, with no search service, as today.
 
 ### Infographics
 
-- **After:** a core feature (Author, WD-027). Each is an SVG drawn by code from a knowledge file, with its text underneath. The first is the I/O path, from application to array (the knowledge model's example of each team reading its own layer).
+- **After:** a core feature (Author, SCOPE-9). Each is an SVG drawn by code from a knowledge file, with its text underneath. The first is the I/O path, from application to array (the knowledge model's example of each team reading its own layer).
 - Claude's call: an infographic draws only facts of the files it cites, and each cites them.
 
 ### The rewrite and its checks
 
-- **When:** every article is rewritten once; after that, each week, only the files changed by that week's knowledge commits (Author, WD-027 through the plan).
+- **When:** every article is rewritten once; after that, each week, only the files changed by that week's knowledge commits (the [plan](isvara-plan.md), SCOPE-9).
 - **Model:** Gemma 4 31B and one stronger model are tried on a pilot article; the cheaper one that passes the checks is used (Round 2, Q-WS-106).
-- **Checks before publishing:** every number of the file appears, every section appears, the misreadings appear, the wording passes the style check, every link resolves, and a judge finds no claim the file does not support (Author, WD-027 through the plan).
+- **Checks before publishing:** every number of the file appears, every section appears, the misreadings appear, the wording passes the style check, every link resolves, and a judge finds no claim the file does not support (the [plan](isvara-plan.md), SCOPE-9).
 - **Where the rewrites live:** committed to isvara with the knowledge commit they were written from, so pages are static and reviewable in a pull request. Claude's call: a page then never calls a model when a visitor reads it.
 - **Where the knowledge comes from:** Agent E2's export (contract C4), read at a pinned agent-e2 commit. A weekly workflow moves the pin, rewrites the changed files and opens a pull request. Claude's call: the pin makes every build repeatable, and the pull request shows the week's changes.
 
@@ -101,39 +101,39 @@ A knowledge file's form says which lens it serves. The lenses are a completeness
 |---|---|---|---|
 | Book reader | `/read/<book>/<page>` chapters | Redirect to the article for that book heading | Round 2, Q-WS-100 |
 | Guide map | `/guide`, `/guide/<book>`, `/map` | Redirect to `/learn` | Claude's call |
-| Self-assessment | `/assess`, `/result` | Gone; the mastery map replaces it | Author, WD-027 |
-| Operations Score | `/tools/ops-score` dial | Gone | Author, WD-027; Q-WS-49 |
-| SLA builder | `/tools/sla-builder` | Gone | Author, WD-027 |
-| Cost calculator | `/tools/cost-calculator` | Gone | Author, WD-027 |
+| Self-assessment | `/assess`, `/result` | Gone; the mastery map replaces it | Author, SCOPE-9 |
+| Operations Score | `/tools/ops-score` dial | Gone | Author, SCOPE-9; Q-WS-49 |
+| SLA builder | `/tools/sla-builder` | Gone | Author, SCOPE-9 |
+| Cost calculator | `/tools/cost-calculator` | Gone | Author, SCOPE-9 |
 
 - **Redirects:** each old `/read/<book>/<page>` address goes to the article whose `source.path` names that page's first heading, from a frozen copy of the old chapter index; an address with no match goes to `/learn`. A `#fragment` never reaches the server, so the browser keeps it across the redirect and a script on the article takes the reader to the article of that heading. Every redirect is permanent, so search engines move their links. Claude's call for the mechanism.
 
 ### Ask
 
 - **Before:** AskIO at `/ask`: Gemini 2.5 Flash or Flash-Lite with the whole book in its context, cite chips to `/read`, the ops-score pill, four cached sample questions, thumbs up and down.
-- **After:** Ask Agent E2 at `/ask` (Author, WD-004, WD-017):
+- **After:** Ask Agent E2 at `/ask` (Author, DESIGN-1, SCOPE-8):
   - a conversation over several turns, where Agent E2 may ask for another screenshot, a CSV file or a longer history;
-  - up to 5 screenshots of 5 MB and 3 CSV files of 2 MB, with a box the visitor ticks to confirm IP addresses and host names are removed (Round 2, Q-WS-95; Author, WD-024);
-  - the stage and the time so far while Agent E2 works, read every 10 seconds, and a message when it stops responding (Author, WD-043; R-ASK-002);
+  - up to 5 screenshots of 5 MB and 3 CSV files of 2 MB, with a box the visitor ticks to confirm IP addresses and host names are removed (Round 2, Q-WS-95; Author, DESIGN-11);
+  - the stage and the time so far while Agent E2 works, read every 10 seconds, and a message when it stops responding (Author, ASSUMPTION-2; R-ASK-002);
   - sources as links to articles and their source view (Author, Q-WS-45);
-  - Day 0 and Day 1 questions answered with a pointer to Broadcom's documentation (Author, WD-026);
+  - Day 0 and Day 1 questions answered with a pointer to Broadcom's documentation (Author, SCOPE-2);
   - thumbs up and down kept, stored with the question, the answer and Agent E2's trace ID (Round 2, Q-WS-61).
 - **Kept from AskIO:** select-to-ask in an article, the Ask button and ⌘I, the shared thread across pages, the names of an RVTools report swapped for stand-ins before they leave the browser.
-- **The injection guard** stays in isvara.io, before Agent E2 is called (Author, Q-WS-47, WD-017): the pre-scan and the fenced user turn. Rule 4 of AskIO's prompt, the layer that stops an attack today, loses its place when Agent E2 writes the prompt. In its place, one small model call reads the fenced turn before Agent E2 and flags an instruction aimed at the assistant; a flagged question gets a fixed reply. The two eval batteries are rewritten for Agent E2, and a page for people explains the guard and the batteries (Author, Q-WS-136, WD-045; the question's text in [round 6](../interview-round-6.md)).
+- **The injection guard** stays in isvara.io, before Agent E2 is called (Author, Q-WS-47, SCOPE-8): the pre-scan and the fenced user turn. Rule 4 of AskIO's prompt, the layer that stops an attack today, loses its place when Agent E2 writes the prompt. In its place, one small model call reads the fenced turn before Agent E2 and flags an instruction aimed at the assistant; a flagged question gets a fixed reply. The two eval batteries are rewritten for Agent E2, and a page for people explains the guard and the batteries (Author, Q-WS-136, DESIGN-10; the question's text in [round 6](../author-input/interview-round-6.md)).
 - **Where Agent E2 runs:** measured in M5 on a Vercel Python function and a small container host; a container host is preferred, since answer jobs live in memory (Author, Q-WS-4; Round 2, Q-WS-94). It answers only calls carrying isvara.io's secret (Round 2, Q-WS-98).
 - **Sample questions:** four, answered by Agent E2 ahead of time and served from a cache, as today. Claude's call: a first visitor sees an answer at once, at no model cost.
 
 ### Contributions
 
 - **Before:** none.
-- **After:** `/contribute` (Author, WD-024): a correction, an addition, something to review, or a request for a session at a VMUG event; one area, a note of up to 2,000 characters, one link and up to three files (PNG, JPEG, CSV).
-- **Queue:** private; nothing is published by itself. Each week AI sorts the queue and the author decides; accepted items become source notes in agent-e2, with credit when the contributor gave a public profile link (Author, WD-024).
-- **Kept:** files until processed and at most 30 days; no IP address with a contribution; no email address asked (Author, WD-024).
+- **After:** `/contribute` (Author, DESIGN-11): a correction, an addition, something to review, or a request for a session at a VMUG event; one area, a note of up to 2,000 characters, one link and up to three files (PNG, JPEG, CSV).
+- **Queue:** private; nothing is published by itself. Each week AI sorts the queue and the author decides; accepted items become source notes in agent-e2, with credit when the contributor gave a public profile link (Author, DESIGN-11).
+- **Kept:** files until processed and at most 30 days; no IP address with a contribution; no email address asked (Author, DESIGN-11).
 - **Review page:** a key-gated `/admin/contributions`, like today's `/admin/questions`. Claude's call: the author already reviews questions there.
 
 ### Protection
 
-All from the plan's Protection table (Author, WD-024; Round 2, Q-WS-61, Q-WS-104, Q-WS-105):
+All from the plan's Protection table (Author, DESIGN-12; Round 2, Q-WS-61, Q-WS-104, Q-WS-105):
 
 - Vercel's firewall rate limits, 60 requests a minute per address (Claude's call), and an "under attack" switch against floods.
 - An invisible bot check and a hidden field before Ask and Contribute.
@@ -145,36 +145,36 @@ All from the plan's Protection table (Author, WD-024; Round 2, Q-WS-61, Q-WS-104
 ### Practice
 
 - **Before:** the 2am game, and five practice questions inside the self-assessment.
-- **After:** `/practice` holds four things (Author, WD-027):
+- **After:** `/practice` holds four things (Author, SCOPE-9):
   - **Quiz:** short rounds on one path or crossing, drawn from a pool so a visitor can come back; each wrong answer links to the section that explains it.
   - **Mastery map:** the paths as a grid against the four lenses, filled in as the visitor proves each part ("strong in how CPU works, weak in how it is measured"), kept in the browser.
-  - **Exam:** `/exam`, ten very hard questions, four options, +3 and −1, dated (Author, WD-006; Round 2, Q-WS-109 to Q-WS-118; requirements in isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md)).
+  - **Exam:** `/exam`, ten very hard questions, four options, +3 and −1, dated (Author, SCOPE-10; Round 2, Q-WS-109 to Q-WS-118; requirements in isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md)).
   - **Daily question:** one question a day for everyone, with the share of visitors who got it right.
-  - **2am game:** kept; its debriefs cite articles, and its numbers are checked against the knowledge files. Its nightly board, one per UTC day, stays as it is. Claude's call: WD-027's dropped global board is the quiz's.
-- **Comparing scores:** anonymous percentiles, a share card, and boards for one event with a room code; no global board (Author, WD-027).
+  - **2am game:** kept; its debriefs cite articles, and its numbers are checked against the knowledge files. Its nightly board, one per UTC day, stays as it is. Claude's call: SCOPE-9's dropped global board is the quiz's.
+- **Comparing scores:** anonymous percentiles, a share card, and boards for one event with a room code; no global board (Author, SCOPE-9).
 - **Quiz questions:** written from the misconceptions of the files they cite, each with the files' fingerprints, checked by a judge, and stopped from building when a cited file changes, as the exam's are (Round 2, Q-WS-112). Claude's call: the pool holds at least 10 questions for every topic with at least 10 articles; the author approves the exam's ten and reviews 20 quiz questions, since the quiz is open-book practice.
 - **Header:** the exam sits in Practice beside the 2am game. Claude's call: the new header has one entry for practice (see Header and home page).
 
 ### Tools
 
-Each tool stays only where Agent E2 holds its knowledge (Author, WD-001; Q-WS-50 left the list to this document).
+Each tool stays only where Agent E2 holds its knowledge (Author, DESIGN-2; Q-WS-50 left the list to this document).
 
 | Tool | After | Basis |
 |---|---|---|
-| Capacity planner | Rebuilt on the catalog and Agent E2's capacity model; first | Author, WD-027 |
+| Capacity planner | Rebuilt on the catalog and Agent E2's capacity model; first | Author, SCOPE-9 |
 | Failover capacity | Kept; its articles cited in place of chapters | Claude's call |
 | Super metric builder | Kept; metric keys and presets from Agent E2's files | Claude's call |
 | Dashboard blueprint | Rebuilt from Agent E2's dashboard files | Claude's call |
 | Cluster KPI | Gone in release 1.0 | Claude's call |
 | Maturity | Gone with the self-assessment | Claude's call |
 | Advanced troubleshooting | Kept, as the author's talk; cites articles | Claude's call |
-| RVTools health check | Kept; each check grounded in a catalog row or a file | Author, WD-027 |
-| Fleet Console | Hidden until its checks come from the catalog | Author, WD-027; Round 2, Q-WS-107 |
+| RVTools health check | Kept; each check grounded in a catalog row or a file | Author, SCOPE-9 |
+| Fleet Console | Hidden until its checks come from the catalog | Author, SCOPE-9; Round 2, Q-WS-107 |
 
 - **Failover capacity:** its arithmetic is the cluster's hosts and admission control, which Agent E2's cluster files explain; it holds no threshold of its own.
 - **Super metric builder:** its metric keys and presets come from the knowledge files that name VCF Operations keys and hold super-metric examples; a key no file names is typed by the reader, as today.
 - **Dashboard blueprint:** its personas and dashboards come from Agent E2's `sp5-framework/outputs` files, so its content has one master.
-- **Cluster KPI:** a second copy of the KPI scoring, which the VCF vCommunity Adapter implements and Agent E2 explains (WD-036). The articles show each KPI's parts and limits from the catalog. Revisit after release 1.0 with a check against the adapter's scoring.
+- **Cluster KPI:** a second copy of the KPI scoring, which the VCF vCommunity Adapter implements and Agent E2 explains (DESIGN-4). The articles show each KPI's parts and limits from the catalog. Revisit after release 1.0 with a check against the adapter's scoring.
 - **Maturity:** its fifteen questions are isvara.io's own knowledge; an organisation's SP5 maturity needs files in Agent E2 first, after release 1.0.
 - **Advanced troubleshooting:** a talk, like the downloads, the author's own work; it computes nothing.
 - **RVTools health check:** a check with five catalog limits shows the band those limits give its value; a check whose article gives one limit shows red or green; a check with neither shows as "to review". Each cluster shows how many checks sit in each band, and the 0 to 100 cluster score goes with the Operations Score curve and the Cluster KPI weights it was built on. Claude's call: a band read from the catalog's limits needs no scoring code, so isvara.io holds no copy of the KPI scoring, for the reason Cluster KPI goes. The Contention area used the Operations Score curve. After, a counter is scored only where the catalog has a row for the same metric and statistic: CPU Ready and disk latency have peak rows; memory latency and a count of dropped packets have none today, so they show unscored, as "to review". Claude's call for the Contention area, since the curve goes.
@@ -182,7 +182,7 @@ Each tool stays only where Agent E2 holds its knowledge (Author, WD-001; Q-WS-50
 ### MCP endpoint
 
 - **Before:** `ask_isvara`, `ops_score`, `health_check`, `fleet_view`, and the books as resources.
-- **After (Author, WD-027; Q-WS-52 left it to this document):**
+- **After (Author, SCOPE-9; Q-WS-52 left it to this document):**
   - `ask_isvara` calls Agent E2 through the same guard and limits as Ask;
   - `ops_score` goes with the Operations Score, in M6;
   - `health_check` stays, scored as the health check is;
@@ -192,36 +192,36 @@ Each tool stays only where Agent E2 holds its knowledge (Author, WD-001; Q-WS-50
 
 ### The weekly What's New page
 
-- **Before:** nothing tells a returning visitor what changed (the failure named in [intent.md](../intent.md)).
-- **After:** `/whats-new`, one entry a week: the articles added, changed and corrected, and the site's own changes. Claude drafts the week's post; the author posts it to LinkedIn, X, Reddit and VMUG channels (Author, Q-WS-16; WD-027 through the plan).
-- An email newsletter comes after release 1.0 (Author, WD-027 through the plan).
+- **Before:** nothing tells a returning visitor what changed (the failure named in [brief](../brief.md)).
+- **After:** `/whats-new`, one entry a week: the articles added, changed and corrected, and the site's own changes. Claude drafts the week's post; the author posts it to LinkedIn, X, Reddit and VMUG channels (Author, Q-WS-16; SCOPE-9 through the plan).
+- An email newsletter comes after release 1.0 (the [plan](isvara-plan.md), SCOPE-9).
 
 ### Manual
 
-- **After:** `/manual`: how customers take the product (Agent E2, the VCF vCommunity Adapter and PCM, with the workspace), the two ways to deploy, and copying each repository privately, since a fork of a public repository is public (Author, WD-025).
+- **After:** `/manual`: how customers take the product (Agent E2, the VCF vCommunity Adapter and PCM, with the workspace), the two ways to deploy, and copying each repository privately, since a fork of a public repository is public (Author, SCOPE-3).
 - Claude's call: the manual explains and links to each repository's own install steps and copies none of them, so the steps have one master.
 
 ### Downloads
 
 - **Kept:** the books, spreadsheets, diagrams and sample reports, with "last updated" dates, refreshed weekly from Vercel Blob (Author, Q-WS-55).
 - **Changed:** the weekly workflow stops converting the books into pages (Round 2, Q-WS-108).
-- **New:** when a book changes, an AI comparison with Agent E2's knowledge lists only the disagreements for the author to settle (Author, WD-027 through the plan).
+- **New:** when a book changes, an AI comparison with Agent E2's knowledge lists only the disagreements for the author to settle (the [plan](isvara-plan.md), SCOPE-9).
 
 ### Team and Homelabs
 
-- Kept unchanged (Author, WD-027 through the plan).
+- Kept unchanged (the [plan](isvara-plan.md), SCOPE-9).
 
 ### Header and home page
 
 - **Before:** Guide, Tools, Health check, Score, 2am, MCP and Team, then the visits counter and Download.
 - **After:** Learn, Ask, Practice, Tools and What's New in the header, then search, the visits counter, the theme switch and Download. Contribute, the manual, MCP, Team and Homelabs sit in the footer and the menu. Claude's call: the header carries the plan's four return reasons (learning, an expert to ask, tools, knowing what changed) and practice.
-- **Home page:** the three paths, Ask, search, this week's changes and the daily question (Author, WD-027 through the plan).
+- **Home page:** the three paths, Ask, search, this week's changes and the daily question (the [plan](isvara-plan.md), SCOPE-9).
 
 ### Behind the pages
 
 - **Telemetry:** the question log, visits, feedback, downloads and tool usage stay, best-effort as today. The question log adds the answer, the trace ID and the rating (Round 2, Q-WS-61).
 - **SEO:** every article and topic page gets its own title, description and canonical address, structured data, and a place in the sitemap and `llms.txt`, under the rules isvara.io follows today. Claude's call: the same rules, applied to the new pages.
-- **Switch-over:** built on a branch with a Vercel preview and switched in one release (Author, WD-017; Q-WS-55).
+- **Switch-over:** built on a branch with a Vercel preview and switched in one release (Author, SCOPE-8; Q-WS-55).
 - **isvara's own rules:** its CLAUDE-PROJECT.md describes the "load-and-ask" design without a retrieval pipeline. That design retires, and the file is rewritten in M4's first pull request (Author, Q-WS-48).
 
 ## Order of the build

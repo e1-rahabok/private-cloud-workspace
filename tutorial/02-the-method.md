@@ -4,9 +4,9 @@ The method has seven steps. The first four are done before any building starts, 
 
 | Step | Question it answers | Files | Chapter |
 |---|---|---|---|
-| 1. Map | What exists today, and what is in scope? | [SYSTEM.md](../SYSTEM.md), [spec/intent.md](../spec/intent.md) | [3](03-map.md) |
+| 1. Map | What exists today, and what is in scope? | [SYSTEM.md](../spec/design/system.md), [spec/intent.md](../spec/brief.md) | [3](03-map.md) |
 | 2. Interview | What is still undecided, unclear or contradictory? | [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) | [4](04-the-interview.md) |
-| 3. Seams and owners | Where do the parts meet, and which copy of each shared fact is the real one? | [CONTRACTS.md](../CONTRACTS.md), [DECISIONS.md](../DECISIONS.md) | [5](05-seams-and-owners.md) |
+| 3. Seams and owners | Where do the parts meet, and which copy of each shared fact is the real one? | [CONTRACTS.md](../spec/design/system.md#contracts), [DECISIONS.md](../DECISIONS.md) | [5](05-seams-and-owners.md) |
 | 4. Requirements | What must each part do, and how will we know it does? | [spec/requirements](../spec/requirements) | [6](06-requirements-and-tests.md) |
 | 5. Checks | Do the parts still agree, after every change? | [checks](../checks), [tools](../tools) | [7](07-checks.md) |
 | 6. Slices | In what order do we build? | [ROADMAP.md](../ROADMAP.md) | [8](08-slices-and-sessions.md) |

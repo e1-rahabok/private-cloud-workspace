@@ -6,7 +6,7 @@
 
 ## Start with intent
 
-Before the requirements, write down for each part of the system who it is for, what success looks like and what it will not do ([spec/intent.md](../spec/intent.md)). In this project the author's answer to "what makes release 1.0 a success?" was: colleagues and customers who see the demo want to fork it and deploy it in their own environment. That one sentence later decided several design questions, because each option could be measured against it.
+Before the requirements, write down for each part of the system who it is for, what success looks like and what it will not do ([spec/intent.md](../spec/brief.md)). In this project the author's answer to "what makes release 1.0 a success?" was: colleagues and customers who see the demo want to fork it and deploy it in their own environment. That one sentence later decided several design questions, because each option could be measured against it.
 
 ## The format
 

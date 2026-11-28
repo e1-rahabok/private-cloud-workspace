@@ -4,9 +4,9 @@ Empty versions of the files the method produces. Copy them into the root of your
 
 | Template | Chapter | Worked example |
 |---|---|---|
-| [SYSTEM.md](SYSTEM.md) | [3. The map](../03-map.md) | [SYSTEM.md](../../SYSTEM.md) |
+| [system design](SYSTEM.md) | [3. The map](../03-map.md) | [SYSTEM.md](../../spec/design/system.md) |
 | [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) | [4. The interview](../04-the-interview.md) | [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md) |
-| [CONTRACTS.md](CONTRACTS.md) | [5. Seams and owners](../05-seams-and-owners.md) | [CONTRACTS.md](../../CONTRACTS.md) |
+| [contracts](CONTRACTS.md) | [5. Seams and owners](../05-seams-and-owners.md) | [CONTRACTS.md](../../spec/design/system.md#contracts) |
 | [DECISIONS.md](DECISIONS.md) | [5. Seams and owners](../05-seams-and-owners.md) | [DECISIONS.md](../../DECISIONS.md) |
 | [REQUIREMENTS.md](REQUIREMENTS.md) | [6. Requirements and tests](../06-requirements-and-tests.md) | [spec/requirements](../../spec/requirements) |
 | [ROADMAP.md](ROADMAP.md) | [8. Slices and sessions](../08-slices-and-sessions.md) | [ROADMAP.md](../../ROADMAP.md) |
