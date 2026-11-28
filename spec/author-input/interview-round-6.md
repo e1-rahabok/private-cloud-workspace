@@ -185,7 +185,7 @@ Whether the fork is connected to a Vercel project:
 
 > I don't think so. As The Architect, design the deployment architecture, document it. When done, ask The Implementer to read and set up.
 
-**Result:** CONSTRAINT-9 in the [brief](../brief.md) and DESIGN-28 in the [system design](../design/system.md): the parallel site `isvara-next` in the same Vercel team, not indexed and with its own stores, and a switch-over that merges the fork into the original after the author's approval. isvara's [deployment.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/deployment.md) holds R-DEPLOY-001 to R-DEPLOY-004; ROADMAP M2 sets the parallel site up and M7 switches over.
+**Result:** CONSTRAINT-10 in the [brief](../brief.md) and DESIGN-29 in the [system design](../design/system.md): the parallel site `isvara-next` in the same Vercel team, not indexed and with its own stores, and a switch-over that merges the fork into the original after the author's approval. isvara's [deployment.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/deployment.md) holds R-DEPLOY-001 to R-DEPLOY-004; ROADMAP M2 sets the parallel site up and M7 switches over.
 
 ## Answers in the question files of the other repositories
 
