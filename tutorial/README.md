@@ -88,9 +88,9 @@ Spec-driven development has real costs, and the tutorial does not hide them:
 | [5. The interview](05-the-interview.md) | Asking the person for input before building | 15 min |
 | [6. Constraints, assumptions, risks and dependencies](06-constraints-assumptions-risks-dependencies.md) | The conditions the work happens under, each handled its own way | 20 min |
 | [7. Requirements and acceptance criteria](07-requirements-and-acceptance.md) | Writing what "done" means, with its reason, so it can be checked | 20 min |
-| [8. Design](08-design.md) | How the parts meet the requirements, and why: the architect's chapter | 30 min |
+| [8. Design](08-design.md) | How the parts meet the requirements, and what a visitor sees | 30 min |
 | [9. Seams and owners](09-seams-and-owners.md) | Where the parts meet, and which copy of a shared fact is the real one | 20 min |
-| [10. Test plan and traceability](10-test-plan-and-traceability.md) | Levels, environments, data, and the chain from goal to test | 20 min |
+| [10. Test plan and traceability](10-test-plan-and-traceability.md) | Levels, environments, journeys, lab run order, oracle, traceability | 20 min |
 | [11. Checks](11-checks.md) | Scripts that prove the parts still agree | 20 min |
 | [12. Slices and sessions](12-slices-and-sessions.md) | The order of work, and how each working session runs | 15 min |
 | [13. Working with the agent](13-working-with-the-agent.md) | Input and decisions; the agent as architect, then implementer; models and effort | 20 min |

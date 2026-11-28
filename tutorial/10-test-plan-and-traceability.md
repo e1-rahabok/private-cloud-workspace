@@ -16,6 +16,7 @@ Each level proves something the others cannot. The examples are this project's.
 | Contract | Both sides of a seam agree | The KPI definitions check; the Agent E2 API check |
 | Specification | The documents are complete and linked | Every requirement has a source and a test |
 | Page | What a user sees works | PCM's page tests in a headless browser |
+| Journey | A visitor's path across several pages leads where it should | PCM's rehearsal of its demo script; isvara.io's journey tests on the Vercel preview, planned from M4 |
 | Evaluation | A model's answers are right, cited and safe | Agent E2's graded answer set; isvara.io's citation and injection batteries |
 | Lab | The product works on the real system | The adapter's live validation against VCF Operations |
 | Acceptance | A milestone's outcome holds, including what no script can judge | The milestone's review page; a demo walk-through |
@@ -39,6 +40,28 @@ Name the data each level uses, and who keeps it true.
 - **Boundaries.** A pair on each side of a limit catches an off-by-one: samples 9 and 11 minutes old around the 10-minute limit for stale data.
 - **Planted breaks.** Each check has a test that breaks one side on purpose and expects the check to fail ([chapter 11](11-checks.md)).
 - **Real data.** The lab supplies what no fake can. A lab test only reads, unless its milestone says otherwise and the person agrees. No test reads customer data.
+
+## A test plan per repository
+
+The workspace's plan sets the rules for every repository. A repository with lab tests also needs a plan of its own, because scenarios spread over many requirements say what to test, and leave out the order, the source of each expected value, and what decides a pass. PCM's live demo had 20 lab scenarios in 35 requirements, with no run order and no walk through the demo itself. The author asked: "Where is the test plan? How do you know it's correct? It's a live validation, so I expect end to end test. See vCommunity Adapter as example of live test."
+
+The adapter's [Live Validation Test Plan](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md) was the model. PCM's [test plan](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/test-plan.md) now holds:
+
+- **The levels,** each with its command and where it runs.
+- **A run order** of ten steps, from access and the adapter's own validation to the demo end to end. A step whose condition fails stops the run, and every later scenario is reported as not run. The key list is checked before any figure, since a key missing from the lab would fail every figure after it.
+- **Safety.** Every lab call only reads, with the read-only account, and no credential is printed or saved in a screenshot.
+- **A pass rule.** One line per scenario, PASS, FAIL or NOT RUN, and the run fails when any scenario failed or did not run.
+- **The demo end to end** (R-LIVE-036). Every page can pass on its own while the walk through them fails: a step that leads nowhere, or a number that changes between two steps.
+
+The same holds for a product with pages. A page test proves one page; a journey test proves that the pages lead to each other. isvara.io's eight journey requirements, R-JOURNEY-001 to R-JOURNEY-008, each walk one journey of the visitor experience ([chapter 8](08-design.md)) on the Vercel preview. The workspace's [test plan](../spec/test-plan.md) now asks both of every product: a drawing with journey tests where there are pages, and a plan of its own where there are lab tests.
+
+## The oracle
+
+A lab test that checks a value needs a second source for the value the product should show: an oracle. The adapter's validation checks that data exists and is fresh, and says under "Not covered" that it compares no values. PCM's must compare them, because the audience can open the same object in VCF Operations during the demo. Its oracle is a reference script that reads the raw samples from the Suite API with its own calls and computes each figure itself. Its design choices are written like any other ([chapter 8](08-design.md)):
+
+- **It shares no code with PCM's live reader.** A bug in a shared reader would put the same wrong value on both sides, and the comparison would pass. Rejected: calling PCM's reader from the test, which tests PCM against itself; reading the values off the VCF Operations screen, which breaks with each release.
+- **It imports the adapter's scoring code.** The adapter computes the KPI that VCF Operations stores, so its code defines the score, and a copy in the test would drift from it.
+- **It is tested itself.** An oracle with a bug passes a wrong product, so T-LIVE-024c runs it on a fixed series of 288 samples and expects the values computed by hand.
 
 ## Entry and exit
 

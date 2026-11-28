@@ -35,6 +35,16 @@ Never write a secret here; name the file or vault that holds it.
 | | | |
 | All together | `<command that runs the cross-repo checks>` | |
 
+## Visitor experience
+
+For a product with pages. Rough on purpose: boxes and the order of their contents; the look is set elsewhere.
+
+- Visitors: <who, where they arrive, what they want, which journey>
+- Site map: <every address, with the requirement of each page>
+- Header, menu and footer: <items, in order>
+- Pages: <a text mock of each page, top to bottom>
+- Journeys: <J1: arrival page > step > step; ends on: the page where the visitor gets what they came for>. Each journey has a requirement and a journey test.
+
 ## Contracts
 
 | ID | Contract | Owner, then consumers | Check |

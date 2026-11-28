@@ -101,7 +101,7 @@ The agent had read those repositories and still ignored both conventions at firs
 
 ## A fresh reviewer
 
-Review finished work in a new session that sees only the requirements and the change. It has not followed the implementer's reasoning, so it notices different mistakes.
+Review finished work in a new session that sees only the requirements and the change. It has not followed the implementer's reasoning, so it notices different mistakes. The rule holds for documents too. R-WS-009 asks a fresh reviewer to read every README and CLAUDE-PROJECT.md against the specification. The session that first read them found and fixed seven disagreements, and still left the review open: having read and edited the files, it was no fresh reader of them.
 
 ## Secrets
 
