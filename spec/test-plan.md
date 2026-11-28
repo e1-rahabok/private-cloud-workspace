@@ -35,7 +35,7 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 ## Environments
 
 - **Anywhere:** a cloud session or GitHub Actions, with the repositories cloned side by side. Every unit test, contract check, page test and specification check runs here.
-- **With the gateway key:** the same, plus the Vercel AI Gateway key in the environment. Model evaluations run here, from M3 on.
+- **With the gateway key:** the same, plus the Vercel AI Gateway key in the environment. Model evaluations run here, from M8 on and only when the author says go.
 - **The lab:** the author's laptop over the VPN, with PowerShell 7 and the adapter's build, install, restart and validation tools (CONSTRAINT-6). Only M8 runs here.
 - **Lab tests before M8:** a cloud session runs every test that works with fakes, reports each check that needs the lab as not run, lists it in its pull request for M8's lab session, and goes on. M8's lab session runs every listed check. [milestone_review.py](../tools/milestone_review.py) fails when a lab scenario sits outside a milestone that runs in the lab.
 
