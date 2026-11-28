@@ -152,6 +152,7 @@ def roadmap_sections(text: str) -> dict[str, dict]:
             "title": raw[: state.start()] if state else raw, "done": bool(state and state.group(1) == "done"),
             "fields": fields, "body": body,
             "open_work": [w for done, w in work if done == " " and not w.startswith("Approval:")],
+            "planned": any(not w.startswith("Approval:") for _, w in work),
         }
     return out
 
@@ -316,7 +317,7 @@ def ensure_stop(s: str) -> str:
 def tested_line(section: dict, has_lab: bool, state: str) -> str:
     if state == "later":
         return "Nothing of this milestone is built yet, so nothing has been tested."
-    if section["open_work"]:
+    if section["open_work"] or not section["planned"]:
         line = "The work of this milestone is not finished, so I have not asked for your approval and not every test has run."
     else:
         line = "I ran every test of this milestone, and all of them pass."
@@ -330,6 +331,8 @@ def status_line(section: dict, state: str, current: str | None) -> str:
         return "Approved."
     if state == "later":
         return f"Not started: this milestone opens after {current} is approved. This page shows what the plan says so far." if current else "Not started."
+    if not section["planned"]:
+        return "Not ready: the work of this milestone is not planned yet."
     if section["open_work"]:
         return "Not ready: some of this milestone's work is still open."
     return "Ready for your approval."
