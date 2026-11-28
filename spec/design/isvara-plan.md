@@ -132,4 +132,4 @@ The milestones of [ROADMAP.md](../../ROADMAP.md), detailed in the [before and af
 1. M4 reading: Agent E2's export, articles and the three paths, search, the page checks, the first infographic (the I/O path), old links redirected.
 2. M5 Ask and contributions: Ask Agent E2 with protection, contributions.
 3. M6 practice and tools: quiz, mastery map, exam, daily question; calculators rebuilt on the catalog.
-4. M7 switch-over: What's New, the manual, the header and home page, and the switch from a Vercel preview in one release.
+4. M7 switch-over: What's New, the manual, the header and home page, and the switch from the parallel site in one release (DESIGN-28).

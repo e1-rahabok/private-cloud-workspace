@@ -41,7 +41,7 @@ Arrows: `-->` solid, `..>` dashed.
 | PCM | private-cloud-manager | The lab VM, a Linux VM (VPN) | Agent E2 over HTTP; VCF Operations Suite API (scenario 7) |
 | Agent E2 for PCM | agent-e2 | Same lab VM, port 8090, as a systemd service | Vercel AI Gateway |
 | VCF vCommunity Adapter | PCM-Adapter | Inside the lab's VCF Operations (VPN) | vCenter, VCF Operations |
-| isvara.io | isvara | Vercel, public | Agent E2 (planned, ROADMAP M5); today its own AskIO agent |
+| isvara.io | isvara: the live site from agent-isv/isvara, the rebuild from its fork e1-rahabok/isvara | Vercel team `agentisvara-4524`, public: the live project, and the parallel project `isvara-next` (DESIGN-28) | Agent E2 (planned, ROADMAP M5); today its own AskIO agent |
 | Agent E2 for isvara.io | agent-e2 | Chosen in ROADMAP M5 after measuring start-up time and cost per answer (Q-WS-4) | Vercel AI Gateway |
 
 C1 and C4 are files, from the agent-e2 repository: the KPI definitions check compares the catalog with the adapter's code on every pull request, and isvara.io's build reads Agent E2's export. No call crosses either at run time, so the lab's Agent E2 never serves isvara.io (DESIGN-1).
@@ -320,3 +320,12 @@ Each choice is Claude's, made from the [brief](../brief.md) and the requirements
   - Why: release 1.0 is a lab demo and a public site that holds no reader's account; a backup of data whose loss stops nothing costs more than it saves.
   - Rejected: (a) a nightly copy of PCM's database: it holds demo ratings, which M8's lab session reads once. (b) Backups of Redis and Blob telemetry: counters and logs that rebuild as visitors come.
   - Serves: DEPENDENCY-10, RISK-3.
+- **DESIGN-28 isvara.io's rebuild served as a parallel site, then merged into the live repository.** isvara's code is served in three places, all in the Vercel team `agentisvara-4524`:
+  - The live site, isvara.io: the existing Vercel project, built from `main` of agent-isv/isvara. It does not change until the switch-over.
+  - The parallel site, `isvara-next.vercel.app`: a new Vercel project, `isvara-next`, built from `main` of the fork e1-rahabok/isvara. It is live but not advertised: no search engine indexes it, and it has its own Redis and Blob stores, model gateway key and admin key, so nothing it does reaches isvara.io's counts, logs or score board. It reads the books' figures and downloads from the live Blob store's public addresses, with no write token.
+  - A preview of each pull request of the fork, from the same project, where the change is checked before it merges.
+  - The fork takes the original's commits, the weekly book refresh among them, once a week and before each comparison. The refresh itself runs only in the original.
+  - The switch-over, in M7 after the author approves: a pull request from the fork's `main` into the original's `main`, which the live project builds, with no change of domain or project. Rollback: Vercel's Instant Rollback to the deployment before, then a revert of the merge.
+  - Why: the author compares the two sites side by side before the world sees a change (CONSTRAINT-9). The same team and plan as the live site make the comparison like for like: the same function limits and firewall, and spending in one place (CONSTRAINT-1).
+  - Rejected: (a) a branch's Vercel preview as the place to compare: its address changes with each commit and sits behind Vercel's sign-in, so it gives no stable page to compare over weeks. (b) Moving the isvara.io domain to the new project at the switch-over: the live project's settings, stores and history would have to move with it, and two projects would stay to retire. (c) A subdomain of isvara.io: it needs a DNS change on the live domain and is easier to guess. (d) The parallel project in another Vercel account: its limits and spending would differ from the live site's.
+  - Serves: CONSTRAINT-9, CONSTRAINT-1, SCOPE-8, DESIGN-27.

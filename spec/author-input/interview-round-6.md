@@ -156,6 +156,35 @@ Two replies on the result, the same day:
 
 **Result:** R-REPO-010 now refuses a folder named after a part the roadmap removes: AskIO's code is [`site-logic/answering/`](https://github.com/e1-rahabok/isvara/tree/main/site-logic/answering) and its tests are [`answer-tests/`](https://github.com/e1-rahabok/isvara/tree/main/answer-tests), and isvara's folder check fails on such a name. R-REPO-011 now has `/homelabs` answer 404, with no redirect; R-SITE-010 in isvara's [site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md) says a page removed with nothing to cover it answers 404.
 
+### isvara.io's deployment
+
+On being asked to approve a merge described as deploying isvara.io:
+
+> As in deploy live in production? How can it be? The website is based on another repository, which I forked. You're updating the fork.
+>
+> We will not replace a live site until its fully tested. Your eagerness to update a website visible to the world is worrying. We need to make sure the spec is 100% correct first.
+>
+> Here is the process:
+>
+> 1. We finalize the spec
+> 2. We deploy to a parallel site. Give it a name.
+> 3. The site goes live. Nobody will basically know as it's not advertised. I will then compare side by side.
+> 4. Only when I'm satisfied, we replace the old site.
+>
+> Make sense?
+
+Which Vercel account serves isvara.io today:
+
+> agentisvara-4524
+
+(The account's email address, also given, is left out of the repository.)
+
+Whether the fork is connected to a Vercel project:
+
+> I don't think so. As The Architect, design the deployment architecture, document it. When done, ask The Implementer to read and set up.
+
+**Result:** CONSTRAINT-9 in the [brief](../brief.md) and DESIGN-28 in the [system design](../design/system.md): the parallel site `isvara-next` in the same Vercel team, not indexed and with its own stores, and a switch-over that merges the fork into the original after the author's approval. isvara's [deployment.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/deployment.md) holds R-DEPLOY-001 to R-DEPLOY-004; ROADMAP M2 sets the parallel site up and M7 switches over.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):
