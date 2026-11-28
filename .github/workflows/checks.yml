@@ -16,23 +16,23 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: private-cloud-workspace
           fetch-depth: 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: e1-rahabok/agent-e2
           path: agent-e2
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: e1-rahabok/PCM-Adapter
           path: PCM-Adapter
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: e1-rahabok/private-cloud-manager
           path: private-cloud-manager
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: pip install pyyaml==6.0.2 requests==2.32.3

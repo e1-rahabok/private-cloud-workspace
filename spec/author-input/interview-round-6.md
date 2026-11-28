@@ -1,6 +1,6 @@
 # Interview, round 6
 
-Questions answered by the author on 2026-11-28: three in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md), and nine in the question files of private-cloud-manager, PCM-Adapter, isvara and agent-e2. The answers are as written, with what follows from each. IDs are explained in the [glossary](../glossary.md).
+Questions answered by the author on 2026-11-28: four in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md), and thirteen in the question files of private-cloud-manager, PCM-Adapter, isvara and agent-e2. The answers are as written, with what follows from each. IDs are explained in the [glossary](../glossary.md).
 
 ## Q-WS-136 The injection guard and the evals once Agent E2 answers
 
@@ -125,6 +125,22 @@ The lab VM's address in the link is replaced by its role, by the rule this answe
 
 **Result:** DESIGN-24 in the [system design](../design/system.md) reviews release 1.0 against four public baselines, mapped item by item in its section Security baseline; DESIGN-25 to DESIGN-27 add dependency updates, secret scanning, least rights in workflows, and recovery. R-WS-011 to R-WS-013 in [workspace.md](../requirements/workspace.md) and their checks enforce them in all five repositories. ASSUMPTION-9 and RISK-12 are in the [brief](../brief.md); R-PROTECT-007 and R-PROTECT-008 are in isvara's [protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md). R-LIVE-037 in private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md) closes the lab VM to everything but TLS and SSH from the VPN, and keeps it patched; the author approved closing port 8080 ("Go ahead and close port 8080").
 
+### Branches
+
+Asked to read Q-PCM-4 while every repository listed branches other than `main`:
+
+> I'm unable to find the folders. Also, there are many branches ahead. This is impossible to review.
+
+On three branches listed for deletion that were ahead of `main`:
+
+> But they are ahead. Why are they ahead? Normally we delete only if they are not ahead.
+
+On four branches, none ahead of `main`, left for the author to delete by hand:
+
+> This is a common problem. Find a solution as we're in SDD mode.
+
+**Result:** CONSTRAINT-9 in the [brief](../brief.md) states that a cloud session cannot delete a branch. DESIGN-28 in the [system design](../design/system.md) deletes every branch that is not ahead of `main` inside GitHub, with each repository's own token, and keeps every branch ahead of it. R-WS-014 in [workspace.md](../requirements/workspace.md) and its tests enforce it in all five repositories, and the workspace's [CLAUDE-PROJECT.md](../../CLAUDE-PROJECT.md) no longer asks the author to delete branches.
+
 ### isvara.io's folders, visitors and wireframes
 
 > I think you should review the Agent E2 properly.
@@ -226,7 +242,10 @@ Whether the fork is connected to a Vercel project:
   - Result: the live demo opens an object on its Performance tab, with no Summary tab (R-LIVE-004). R-LIVE-036 walks the script: the cluster's Performance and Capacity tabs, then the first host and its first VM, worst first, Performance only, with every Agent E2 mark and every suggested question. "Relevant" and "correct" became tests: R-LIVE-038 checks each suggestion against Agent E2's own rule for the page's situation, R-LIVE-039 checks each answer's figures against the reference script and grades it, and the author rates every answer at the M8 rehearsal. R-LIVE-040 covers Agent E2 or the gateway failing mid-demo. The script is in PCM's [demo/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/demo/README.md), section The live demo; the synthetic walk runs now as LPG-31 and LPG-32. The answer does not open VCF Operations beside PCM, so the numbers are compared by the reference script (R-LIVE-024).
 - **Q-PCM-2**, two of PCM's folder names:
   - Answer: "Agree".
-  - Result: the Docs workspace folder, pcm/docs, becomes [`pcm/definitions`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/definitions) in M2; the route `/docs` and PCM's [`spec/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/spec) stay. Recorded in PCM's decisions.md.
+  - Result: the Docs workspace folder, pcm/docs, becomes [`pcm/definitions`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/definitions) in M2; the route `/docs` and PCM's [`spec/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/spec) stay. Recorded in PCM's decisions.md. Q-PCM-4 below renames the folder again.
+- **Q-PCM-4**, what PCM's users call the /docs workspace. The question: a fresh reader of PCM's folder tree (T-WS-007b) took [`pcm/definitions`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/definitions) for the KPI definitions; what do the people who use `/docs` call it? The working assumption, as the author was shown it: "I'm assuming "Docs", so the folder would become pcm/docs-workspace."
+  - Answer: "OK".
+  - Result: the folder is [`pcm/docs_workspace`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/docs_workspace), with an underscore: the folder is a Python package, and Python cannot import a name with a hyphen. Its route stays `/docs`. Written in R-REPO-008 of PCM's [clean-up.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/clean-up.md), with a new rule that no folder is named with a term that the glossary or the contracts give to something the folder does not hold, and in D-135 of PCM's decisions.md.
 - **Q-ADP-1**, the style baseline of PCM-Adapter ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/OPEN-QUESTIONS.md)):
   - Answer: "agree".
   - Result: the baseline stays. [`metrics-and-properties.md`](https://github.com/e1-rahabok/PCM-Adapter/blob/main/docs/reference/metrics-and-properties.md) is split into one table per object type in the next pull request that changes its keys, by a rule in the adapter's [CLAUDE-PROJECT.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/CLAUDE-PROJECT.md).

@@ -182,6 +182,10 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **Two threads, one folder.** A second thread was adding two security checks to `checks/` while this one renamed it. They agreed an order: the security thread merged first and said so, and this thread moved its checks with the rest.
 
+**A name that was already taken.** The author answered Q-PCM-4: the people who use `/docs` call it Docs. As architect, the agent first asked why `definitions` had been chosen at all. The workspace's [glossary](../spec/glossary.md) already gave the word to the KPI definitions of contract C1, and the rule that a new name overlaps no existing one had not been checked against it. R-REPO-008 in PCM's [clean-up.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/clean-up.md) now says that no folder is named with a glossary or contract term for something it does not hold, with a test that searches the glossary for each folder name. The assumed name, `pcm/docs-workspace`, met a limit of the code: the folder is a Python package, and Python cannot import a name with a hyphen. The folder became [`pcm/docs_workspace`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/docs_workspace), the author's meaning with a spelling the code accepts, and the reply said so. The forbidden names check now fails on the two old names ([chapter 11](11-checks.md)).
+
+**Branches ahead of main.** Asked to cut the number of branches to review, the agent listed three branches for deletion because their pull requests were closed and main had the same outcome by other commits. The author stopped it: each branch was ahead of main, so its commits were on no other branch. The workspace's [CLAUDE-PROJECT.md](../CLAUDE-PROJECT.md) now says to delete only branches that are not ahead of main, and to give the author a link and the number of commits ahead for each branch a cloud session cannot delete.
+
 ## Lessons
 
 - The agent's first survey was useful precisely because it was wrong in places. Each error pointed to a missing document.
@@ -261,3 +265,7 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - Measure a slow run before explaining it. The measurement may find a different problem.
 - Name a folder for what only it holds. `checks/` and [`tools/`](../tools) both held checks, and a fresh reader could not tell them apart.
 - A rename that reverses the person's answer is a question for the person, with the assumed new name beside it.
+- Search the glossary before choosing a name. A word the project already uses for something else sends a fresh reader to the wrong folder.
+- When an agreed name meets a limit of the code, keep the person's meaning, change only the spelling, and say why.
+- Compare a branch with main before deleting it. A branch ahead of main holds commits found nowhere else, even when its pull request is closed.
+- Link every folder or file named in a reply. A path without a link leaves the person searching for it.

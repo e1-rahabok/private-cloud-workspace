@@ -23,31 +23,31 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: e1-rahabok/private-cloud-workspace
           ref: main
           path: private-cloud-workspace
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: e1-rahabok/agent-e2
           ref: ${{ github.repository == 'e1-rahabok/agent-e2' && github.sha || 'main' }}
           path: agent-e2
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: e1-rahabok/PCM-Adapter
           ref: ${{ github.repository == 'e1-rahabok/PCM-Adapter' && github.sha || 'main' }}
           path: PCM-Adapter
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: e1-rahabok/private-cloud-manager
           ref: ${{ github.repository == 'e1-rahabok/private-cloud-manager' && github.sha || 'main' }}
           path: private-cloud-manager
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         if: github.repository == 'e1-rahabok/isvara'
         with:
           path: isvara
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: pip install pyyaml==6.0.2 requests==2.32.3
