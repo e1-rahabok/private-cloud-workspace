@@ -126,6 +126,22 @@ Test scenarios:
 - T-REPO-006a (anywhere, automated by [checks/forbidden_names.py](../../checks/forbidden_names.py), run by run_all.py; planted breaks in [checks/test_forbidden_names.py](../../checks/test_forbidden_names.py)): search the clones for the two old names outside archives, dated records and the files that forbid them; expect no match.
 
 
+### R-WS-010 No repository holds a lab address, host name or credential
+
+Why: four of the five repositories are public, and the lab's addresses and its VM's host name were written in the system design, the glossary, PCM's lab tools and the adapter's tools. A rule in the adapter's CONTRIBUTING.md forbade it for code only, and no check enforced it.
+
+Source: the author, 2026-11-28 ([round 6](../author-input/interview-round-6.md#lab-addresses-in-github)); DESIGN-9.
+
+- Given the tracked text files of the five repositories, outside the author's books as isvara.io serves them
+- When they are searched
+- Then none holds an IPv4 address in a private range outside the example network 10.20.0.0/16
+- And none holds a name listed in `LAB_PRIVATE_NAMES`, when that variable is set from `$HOME\.secrets\lab.json`
+- And a lab tool reads every address and host name from `$HOME\.secrets\lab.json` on the laptop, or `/etc/pcm/pcm.env` on the lab VM
+- And the check's report names the file and line, never the value
+
+Test scenarios:
+- T-WS-010a (anywhere, automated by [checks/lab_addresses.py](../../checks/lab_addresses.py), run by run_all.py on every pull request of every repository; planted breaks in [checks/test_lab_addresses.py](../../checks/test_lab_addresses.py)): an address in each private range, and one inside a file name, fails; an example-network address, a version number, a documentation or public address and the books pass; a listed name fails; the report holds no address.
+
 ### R-WS-009 Project documents agree with the specification
 
 Why: the READMEs and CLAUDE-PROJECT.md files were written before the specification and were never read against it, so a fact in them can contradict it, or state what the specification never decided, and a reader or a session acts on it. isvara's README said the books come from Box; the books come from the author's laptop (DEPENDENCY-10).

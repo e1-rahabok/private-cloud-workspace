@@ -59,6 +59,8 @@ Each correction went into the decisions and the map.
 
 **A feature without its abuse case.** The agent proposed that readers send questions. The author asked the questions the agent had skipped: who stops one visitor from asking on one laptop and posting a spam answer from another, who blocks an explicit image, and who is liable. The answer became the design: a screen before anything is stored, the author's review, and publication only as Agent E2's reviewed answer, so readers never answer readers. A public feature is specified with its abuse case, or it is not finished.
 
+**Addresses in public repositories.** The system design listed the lab's addresses and its VM's host name, and the lab tools carried them in code; the adapter's contributing rules forbade it for code only, and nothing checked. The author asked why they were in GitHub at all. The design choice on credentials had covered passwords and missed identifiers. The fix was a rule (documents name a system by its role; tools read addresses from one private file), a check on every pull request, and an example network for every written example, so the check can tell an example from a leak.
+
 A third answer was "will supply later. remind me." Those questions stayed open with a trigger: the agent asks again when the milestone that needs them starts.
 
 **The trust question.** Discussing AI-written public content, the author noted that keeping an expert site credible is not a new problem. The discussion that followed became [chapter 15](15-trust-in-ai-written-content.md): separate a wrong source from a wrong rewrite, spend scarce review time on disagreements and on the most-read pages, and build a community that can review.

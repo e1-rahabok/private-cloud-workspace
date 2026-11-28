@@ -10,7 +10,7 @@ Why: the physical lab hosts have no memory tiering, and nested hosts built by ha
 
 Source: answer to Q-WS-38.
 
-- Given the lab vCenter (https://10.115.1.87) and the author's credential file in `$HOME\.secrets\`
+- Given the lab's vCenter (its address in `$HOME\.secrets\lab.json`, DESIGN-9) and the author's credential file in `$HOME\.secrets\`
 - When the build command runs on the author's laptop
 - Then it creates nested ESXi hosts with a virtual NVMe device configured as the memory tier
 - And adds them to one cluster of their own

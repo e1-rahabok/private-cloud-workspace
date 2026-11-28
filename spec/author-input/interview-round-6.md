@@ -101,6 +101,16 @@ Claude recommended credit by name and one profile link, on request; no company a
 
 **Result:** DESIGN-11 in the [system design](../design/system.md); R-CONTRIB-001, R-CONTRIB-005, R-CONTRIB-007 and R-CONTRIB-009 in isvara's [contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md).
 
+### Lab addresses in GitHub
+
+> PCM is already running in a VM in the lab. https://<the lab VM>/l2/monitor/compute/SG-S-01/capacity?now=2026-10-19T10%3A05%3A00%2B08%3A00&window=24h is PCM.
+>
+> BTW, why did you put all the IP addresses in GitHub? While they are all private, behind my VPN, shouldn't you mask it? Where do you store password, secrets?
+
+The lab VM's address in the link is replaced by its role, by the rule this answer set.
+
+**Result:** DESIGN-9 in the [system design](../design/system.md) keeps the lab's addresses and host names in `$HOME\.secrets\lab.json` and `/etc/pcm/pcm.env`, never in a repository; R-WS-010 in [workspace.md](../requirements/workspace.md) and its check enforce it in all five repositories. The history is not rewritten (DESIGN-9, rejected option f).
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):

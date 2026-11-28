@@ -12,11 +12,11 @@ How the parts of release 1.0 are built and why: where each part runs, how data f
 Colour key: grey = PCM; blue = Agent E2; green = VCF vCommunity Adapter; purple = isvara.io; orange = Model.
 
 Boxes, nested as drawn:
-- n1 **PCM** (PCM): Web app for operations roles; synthetic ACME or live data; lab VM, https://10.114.1.29
+- n1 **PCM** (PCM): Web app for operations roles; synthetic ACME or live data; the lab VM
 - n2 **Agent E2 for PCM** (Agent E2): Knowledge service over HTTP; owns all domain knowledge; same lab VM, port 8090
 - n3 **isvara.io** (isvara.io): Public learning site; on Vercel; no live system
 - n4 **Agent E2 for isvara.io** (Agent E2): Where it runs: measured and chosen in M5 (Q-WS-4)
-- n5 **VCF Operations**: Lab, https://10.115.1.81
+- n5 **VCF Operations**: the lab's VCF Operations
   - n6 **VCF vCommunity Adapter** (VCF vCommunity Adapter): Computes the KPIs inside VCF Operations, under vCommunity|
 - n7 **Vercel AI Gateway** (Model): Cloud model for release 1.0
 
@@ -38,9 +38,9 @@ Arrows: `-->` solid, `..>` dashed.
 
 | Part | Repository | Runs where | Talks to |
 |---|---|---|---|
-| PCM | private-cloud-manager | Lab Linux VM moltbot29, https://10.114.1.29 (VPN) | Agent E2 over HTTP; VCF Operations Suite API (scenario 7) |
+| PCM | private-cloud-manager | The lab VM, a Linux VM (VPN) | Agent E2 over HTTP; VCF Operations Suite API (scenario 7) |
 | Agent E2 for PCM | agent-e2 | Same lab VM, port 8090, as a systemd service | Vercel AI Gateway |
-| VCF vCommunity Adapter | PCM-Adapter | Inside the lab VCF Operations, https://10.115.1.81 (VPN) | vCenter, VCF Operations |
+| VCF vCommunity Adapter | PCM-Adapter | Inside the lab's VCF Operations (VPN) | vCenter, VCF Operations |
 | isvara.io | isvara | Vercel, public | Agent E2 (planned, ROADMAP M5); today its own AskIO agent |
 | Agent E2 for isvara.io | agent-e2 | Chosen in ROADMAP M5 after measuring start-up time and cost per answer (Q-WS-4) | Vercel AI Gateway |
 
@@ -85,11 +85,13 @@ Describe this relation by one of these mechanisms. "Part of PCM" means the data 
 
 ## Lab
 
-| Host | What | Access |
+The lab's addresses and host names are in `$HOME\.secrets\lab.json` on the author's laptop and in `/etc/pcm/pcm.env` on the lab VM, and in no repository (DESIGN-9). Documents name each system by its role.
+
+| System | What | Access |
 |---|---|---|
-| 10.114.1.29 (moltbot29) | PCM and Agent E2 | VPN from the author's laptop. Secrets in `/etc/pcm/pcm.env` on the VM |
-| 10.115.1.81 | VCF Operations 9 with the VCF vCommunity Adapter installed | VPN. Laptop credentials: `$HOME\.secrets\vcf-ops-readonly.xml` and `vcf-ops-admin.xml` (DESIGN-9; Q-WS-84) |
-| 10.115.1.87 | vCenter | VPN. Laptop credential: `$HOME\.secrets\vcenter-10.115.1.87.xml` |
+| The lab VM | PCM and Agent E2 | VPN from the author's laptop. Secrets in `/etc/pcm/pcm.env` on the VM |
+| The lab's VCF Operations | VCF Operations 9 with the VCF vCommunity Adapter installed | VPN. Laptop credentials: `$HOME\.secrets\vcf-ops-readonly.xml` and `vcf-ops-admin.xml` (DESIGN-9; Q-WS-84) |
+| The lab's vCenter | vCenter | VPN. Laptop credential: `$HOME\.secrets\vcenter-readonly.xml` |
 
 ## Contracts
 
@@ -153,7 +155,7 @@ What each quality means for release 1.0, a demo in the lab and a public site, an
 | Quality | Release 1.0 target | Choices |
 |---|---|---|
 | Correctness | No confident wrong answer; no value built from a partial read | DESIGN-17, DESIGN-18, DESIGN-19 |
-| Security and privacy | Secrets outside the repositories; public input treated as data; little data kept | DESIGN-9 to DESIGN-13 |
+| Security and privacy | Secrets and lab addresses outside the repositories; public input treated as data; little data kept | DESIGN-9 to DESIGN-13 |
 | Performance | A live page in under 5 seconds; progress on an answer every 10 seconds | DESIGN-14, DESIGN-15 |
 | Scalability | Public traffic absorbed by Vercel; answer jobs on one long-running process | DESIGN-12, DESIGN-16 |
 | Availability | A demo on one lab VM, no redundancy; a failure shows as "No data" | DESIGN-15, DESIGN-17 |
@@ -205,10 +207,10 @@ Each choice is Claude's, made from the [brief](../brief.md) and the requirements
 
 ### Security and privacy
 
-- **DESIGN-9 Lab credentials outside the repositories.** On the author's laptop, two DPAPI files in `$HOME\.secrets\`, written by `Export-Clixml`: `vcf-ops-readonly.xml` for reading and validating, and `vcf-ops-admin.xml` for installing and restarting the pack. On the PCM lab VM, `/etc/pcm/pcm.env`, readable by root and group `pcm` only. PCM signs in with the read-only account and checks the lab's certificate.
-  - Why: the adapter's scripts used to read an admin login from a file inside the repository folder, one wrong ignore rule away from a commit. DPAPI ties a file to one user on one machine, and a read-only account limits what a bug can do.
-  - Rejected: (a) a file in the repository folder, ignored by git: one wrong ignore rule publishes it. (b) A different store per tool: two ways to rotate one password. (c) A secrets service: none runs in the lab, and it adds a dependency to a demo.
-  - Serves: CONSTRAINT-6; R-ADP-021, R-ADP-022, R-LAB-004, R-LIVE-007, R-LIVE-031.
+- **DESIGN-9 Lab credentials and addresses outside the repositories.** On the author's laptop, DPAPI files in `$HOME\.secrets\`, written by `Export-Clixml`: `vcf-ops-readonly.xml` for reading and validating, `vcf-ops-admin.xml` for installing and restarting the pack, and `vcenter-readonly.xml`. Beside them, `lab.json` holds the lab's addresses and host names (the lab VM, its SSH alias, VCF Operations, vCenter); every lab tool reads them from there. On the PCM lab VM, `/etc/pcm/pcm.env`, readable by root and group `pcm` only, holds the same addresses and the secrets. PCM signs in with the read-only account and checks the lab's certificate. No repository holds an address, a host name or a credential of the lab, the laptop or a customer: documents name a system by its role ("the lab VM"), and examples use the example network 10.20.0.0/16 and names under `example.com`. isvara.io's secrets are environment variables of its Vercel project, and the refresh workflow's Blob token is a GitHub repository secret.
+  - Why: the adapter's scripts used to read an admin login from a file inside the repository folder, one wrong ignore rule away from a commit. DPAPI ties a file to one user on one machine, and a read-only account limits what a bug can do. Four of the five repositories are public: an address or host name in them maps the lab for anyone who reaches the VPN or a laptop on it, and a host name can carry a person's name. A private address is not a secret, but it is a fact about the author's network that the product does not need.
+  - Rejected: (a) a file in the repository folder, ignored by git: one wrong ignore rule publishes it. (b) A different store per tool: two ways to rotate one password. (c) A secrets service: none runs in the lab, and it adds a dependency to a demo. (d) Masking part of an address (10.x.x.29): it still shows the layout, and a tool cannot use it. (e) A private repository for the lab's facts: a sixth repository to keep, for one small file. (f) Rewriting the public history to remove the addresses already committed: the addresses stay in clones, forks and pull request pages, and the rewrite breaks every link pinned to a commit, which the interview records use.
+  - Serves: CONSTRAINT-6; R-WS-010, R-ADP-021, R-ADP-022, R-LAB-004, R-LIVE-007, R-LIVE-031.
 - **DESIGN-10 isvara.io's injection guard before Agent E2.** isvara.io keeps its pre-scan and the fence around the visitor's turn, and adds one small model call that reads the fenced turn before Agent E2 is called and flags an instruction aimed at the assistant. A flagged question gets a fixed reply. The public Agent E2 answers only calls that carry a secret known to isvara.io, so nobody can go around the guard and the limits (Q-WS-98). Two batteries prove it: the citation eval passes when every answer to 20 reader questions lists at least one source that opens an article; the injection battery passes with 0 violations, while a one-off formatting request is still honoured.
   - Why: when Agent E2 answers, isvara.io no longer writes the prompt, so Rule 4 of AskIO's prompt, the layer that stops an attack today, has nowhere to live. The author placed the guard in isvara.io (Q-WS-47) and asked for the answers to be explained to readers (Q-WS-136).
   - Rejected: (a) a rule in Agent E2 that the question is data: it puts the guard in Agent E2, against Q-WS-47, and PCM's calls would pay for it. (b) The pre-scan and the fence only: more attacks get through.
