@@ -6,7 +6,7 @@ Questions in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md) answered by the author
 
 **Answer:** "in the lab. This is after Release 1.0"
 
-**Result:** the nested hosts run in the author's lab. The cluster, datastore, network and spare capacity are asked when the lab build starts, after release 1.0 ([DECISIONS](../../DECISIONS.md), WD-031; [ROADMAP](../../ROADMAP.md), section After release 1.0).
+**Result:** the nested hosts run in the author's lab. The cluster, datastore, network and spare capacity are asked when the lab build starts, after release 1.0 (SCOPE-17 in the [brief](../brief.md); [ROADMAP](../../ROADMAP.md), section After release 1.0).
 
 ## Q-WS-122 Licences for the nested hosts
 

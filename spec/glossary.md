@@ -19,7 +19,7 @@ Every short name and ID used in this workspace, with what it means and where it 
 | RISK-n | What could go wrong, its effect, what reduces it and who acts | [brief.md](brief.md) |
 | DEPENDENCY-n | What the work needs from people or systems outside Claude's reach | [brief.md](brief.md) |
 | DESIGN-n | A design choice, with its reason, the options rejected and what it serves | [design/system.md](design/system.md) |
-| WD-001 to WD-0nn | A workspace decision, in the decision log being retired (DESIGN-8) | [DECISIONS.md](../DECISIONS.md) |
+| WD-001 to WD-046 | A decision of the retired decision log; git history keeps it | Outcomes: [brief](brief.md), [system design](design/system.md) |
 | D-001 to D-1nn | A decision inside PCM | [PCM decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md) |
 | Q-WS-1, Q-WS-I1 and so on | A question to the author about the workspace; Q-WS-I questions are about intent | Rounds [1](author-input/interview-round-1.md), [2](author-input/interview-round-2.md), [3](author-input/interview-round-3.md), [4](author-input/interview-round-4.md), [5](author-input/interview-round-5.md); [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) |
 | Q-E2-001 and so on | A question to the author about agent-e2 | [agent-e2 author-questions.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions.md) |

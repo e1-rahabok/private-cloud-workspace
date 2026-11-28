@@ -6,7 +6,7 @@ The last questions only the author could answer, asked in [OPEN-QUESTIONS.md](..
 
 **Answer:** "Manager, not Management."
 
-**Result:** the product is Private Cloud Manager, PCM for short ([DECISIONS](../../DECISIONS.md), WD-028). The books keep "Private Cloud Management" as the name of the discipline.
+**Result:** the product is Private Cloud Manager, PCM for short (CONSTRAINT-3 in the [brief](../brief.md)). The books keep "Private Cloud Management" as the name of the discipline.
 
 ## Q-WS-88 Guest OS run queue: per vCPU, or total
 
