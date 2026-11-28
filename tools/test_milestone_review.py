@@ -98,6 +98,12 @@ class PlantedPages(unittest.TestCase):
         self.assertIn("Not ready", text)
         self.assertIn("not finished", text.split("## Testing")[1])
 
+    def test_an_open_milestone_with_no_work_listed_is_not_ready(self):
+        self.sections["M2"].update({"open_work": [], "planned": False})
+        text = self.build()
+        self.assertIn("Not ready: the work of this milestone is not planned yet.", text)
+        self.assertNotIn("all of them pass", text)
+
     def test_finished_work_says_every_test_passes_with_no_count(self):
         self.sections["M2"]["open_work"] = []
         text = self.build()

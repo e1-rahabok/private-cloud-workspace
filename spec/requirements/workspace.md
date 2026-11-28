@@ -249,12 +249,12 @@ Source: DEPENDENCY-1; DESIGN-30; the author, 2026-11-28 ([round 6](../author-inp
 - And the work Claude built and owns lists each requirement that rests only on a design choice, with its reason, for information: it asks the author for nothing
 - And the risks list each risk the milestone touches, with its effect and what reduces it
 - And the page asks the author only for input and for the approval
-- And testing is one statement: Claude ran every test of the milestone and all pass; or the milestone's work is not finished; or nothing is built yet because the milestone has not opened; it has no count and names no tool
+- And testing is one statement: Claude ran every test of the milestone and all pass; or the milestone's work is not finished, which includes a milestone with no work listed; or nothing is built yet because the milestone has not opened; it has no count and names no tool
 - And the page has no requirement, test, design choice, question or decision ID, and no file name or path
 - And the page is rebuilt from the roadmap, the requirements and the brief, and the check fails when a page differs from what they say, or when the open milestone lacks a section
 
 Test scenarios:
-- T-WS-015a (anywhere, automated by [tools/test_milestone_review.py](../../tools/test_milestone_review.py)): a requirement whose source names an answer of the author lands under what the author confirms, and one that names only a design choice under what Claude built; the page shows each brief item a requirement cites; a test count, an ID, a file name or a missing section makes the check fail; a milestone with unticked work says so in its testing line, and a milestone that has not opened says it has not started; a file name in a copied line is turned into words.
+- T-WS-015a (anywhere, automated by [tools/test_milestone_review.py](../../tools/test_milestone_review.py)): a requirement whose source names an answer of the author lands under what the author confirms, and one that names only a design choice under what Claude built; the page shows each brief item a requirement cites; a test count, an ID, a file name or a missing section makes the check fail; a milestone with unticked work, or with no work listed, says so in its testing line, and a milestone that has not opened says it has not started; a file name in a copied line is turned into words.
 - T-WS-015b (anywhere, manual, at the author's first review of each milestone): the author reads the page and says what is unclear; each unclear word or missing fact goes to the roadmap, the requirement or the brief it comes from, and the page is rebuilt.
 
 ## Questions for round two

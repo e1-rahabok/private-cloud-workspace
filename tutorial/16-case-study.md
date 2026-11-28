@@ -286,3 +286,4 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - Number a new constraint or design choice after fetching main. Another session took the same numbers in the same hour, and the clash showed only when the branches met.
 - Merge the repository that holds the rules before the one that cites them. A cross-repository check run before that merge fails, and passes when run again.
 - Ask the person only about what they decide. A merge, a branch or a deletion is the agent's work, and a person who does not see branches cannot answer a question about them. Record the standing approval where the next session reads it, and do not ask again.
+- Opening a milestone is part of closing the one before it. Give the next milestone its plain-words fields and its work items in the same pull request, and make the review page say "not planned yet" for a milestone with no work listed, never "ready".
