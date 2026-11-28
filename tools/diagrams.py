@@ -25,7 +25,7 @@ def system() -> None:
     k.t(20, 30, "The system, release 1.0", 16, "bold")
     k.legend(20, 44, [("PCM", "data"), ("Agent E2", "method"), ("VCF vCommunity Adapter", "prod"),
                       ("isvara.io", "shared"), ("Model", "guest")])
-    k.t(700, 56, "Dashed: planned", 11.5, "normal", "#555")
+    k.t(560, 56, "Dashed: planned, or files with no call at run time", 11.5, "normal", "#555")
 
     k.box(20, 90, 250, "PCM", ["Web app for operations roles;", "synthetic ACME or live data;", "lab VM, https://10.114.1.29"], "data")
     k.box(350, 90, 250, "Agent E2 for PCM", ["Knowledge service over HTTP;", "owns all domain knowledge;", "same lab VM, port 8090"], "method")
@@ -40,7 +40,7 @@ def system() -> None:
     k.arrow([(145, 171), (145, 300)], "C2 Suite API, scenario 7", 145, 240)
     k.arrow([(475, 171), (475, 410), (300, 410)], "C1 KPI definitions", 475, 300, dash=True)
     k.arrow([(600, 150), (640, 150), (640, 415), (680, 415)], "C5", 640, 300)
-    k.arrow([(600, 110), (680, 110)], "C4", 640, 103, dash=True)
+    k.arrow([(600, 110), (680, 110)], "C4 export", 640, 103, dash=True)
     k.arrow([(810, 156), (810, 230)], "C3", 810, 197, dash=True)
     k.arrow([(810, 296), (810, 390)], "C5", 810, 345, dash=True)
     k.finish(str(ROOT / "images" / "system.svg"))
@@ -53,11 +53,11 @@ def parts() -> None:
     k.legend(20, 44, [("By people, for people", "prod"), ("For AI to read", "method"),
                       ("For people, built with AI", "shared"), ("No AI", "white")])
 
-    k.box(20, 90, 250, "The Book", ["Private Cloud Management, 4 parts,", "with spreadsheets, slides, diagrams.", "Curated by people, for people."], "prod")
+    k.box(20, 90, 250, "The Book", ["Private Cloud Management: Executive", "Summary and 4 parts, with spreadsheets,", "slides, diagrams. By people, for people."], "prod")
     k.box(355, 230, 250, "Agent E2: the brain", ["Holds the knowledge, for AI to read.", "Answers questions; defines every", "KPI, threshold and metric name."], "method")
     k.box(690, 90, 250, "isvara.io", ["Public website for learning:", "articles, tools, practice, Ask.", "Articles written by AI from Agent E2.", "The Book to download."], "shared")
     k.box(690, 380, 250, "Private Cloud Manager (PCM)", ["Web app for operations teams.", "Shows the KPIs; Agent E2 explains", "them. A demo in release 1.0."], "shared")
-    k.box(20, 380, 250, "VCF vCommunity Adapter", ["Management pack for VCF", "Operations 9.1. Calculates the", "Agent E2 KPIs; adds features.", "No AI."], "white")
+    k.box(20, 380, 250, "VCF vCommunity Adapter", ["Management pack for VCF", "Operations. Calculates the", "Agent E2 KPIs; adds features.", "No AI."], "white")
 
     k.arrow([(270, 110), (690, 110)], "the Book to download", 480, 103)
     k.arrow([(145, 171), (145, 250), (355, 250)], "extracted; kept in agreement", 145, 215)

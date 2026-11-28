@@ -155,6 +155,8 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **A key the code had right.** Q-WS-137 asked about `net|droppedTxPct_max`, the key the VCF vCommunity Adapter reads for the row "Peak network TX dropped packets". The VM key list exported from VCF Operations 9.1.1 had no key whose name matched the metric exactly, so the agent took it for a 5-minute maximum, and the adapter's test carried it as a known gap. The author's answer: "It is 20 second peak indeed." The code stayed as it was. In the test, the known gap became a list of 20-second peak keys whose names lack `20_sec_peak`, and the test fails when a listed key is read by no 20-second row (ASSUMPTION-8 in the brief).
 
+**The review by a fresh reader.** The work item of R-WS-009 went to a session that had written none of the files. It read the brief, the system design and the test plan, then the README.md and CLAUDE-PROJECT.md of all five repositories, and listed 17 statements that disagreed with them. Most were left over from before the specification. Five files still sent readers to "the decisions" in the workspace, a log retired that morning. Agent E2's README promised the capacity planning consultation in release 1.0, which the brief places after it, and four more files of agent-e2 said the same: searching for the fact, and not for the sentence, found them. One disagreement sat inside the specification itself: the brief says PCM runs as a Linux container with VKS integration, while the system design runs it as a service on the lab VM. Which one release 1.0 ships is the author's input, so it became a question, Q-WS-139, with the working assumption written beside it, and the review stays open until it is answered.
+
 **Effort.** The author asked for a high reasoning effort for this work. The project's main chat runs at a fixed low effort, so the deep work went to the threads, where the effort can be raised.
 
 ## Lessons
@@ -197,6 +199,7 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - Two ID series that differ only by a hyphen read as one. Put the owner in the ID: Q-WS-120 and Q-E2-120.
 - A child repository's plan drifts into a release of its own. The workspace sets releases for all repositories, and each child plan names the workspace milestone it serves.
 - Work under review lives on a branch until it merges. A request to review it links the file on the branch and the pull request; the author looked on `main` and found nothing.
+- Read the old documents against the new specification as soon as it exists. Documents written before it keep stating the facts it replaced, and nothing else flags them.
 - A repository setting that blocks the agreed way of working is a blocker to report, with the change it needs and why. The agent called PCM-Adapter's review rule the author's choice; under spec-driven work with self-merge (WD-009) it was a change the work needed.
 - A milestone list can read well file by file and still leave requirements in no milestone. Count membership with a script.
 - Gather work that needs a place only the person can reach into one milestone, so the others can finish without them.

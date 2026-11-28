@@ -25,12 +25,12 @@ Arrows (from, to, label):
 - n1 PCM --> n5 VCF Operations: C2 Suite API, scenario 7
 - n2 Agent E2 for PCM ..> n6 VCF vCommunity Adapter: C1 KPI definitions
 - n2 Agent E2 for PCM --> n7 Vercel AI Gateway: C5
-- n2 Agent E2 for PCM ..> n3 isvara.io: C4
+- n2 Agent E2 for PCM ..> n3 isvara.io: C4 export
 - n3 isvara.io ..> n4 Agent E2 for isvara.io: C3
 - n4 Agent E2 for isvara.io ..> n7 Vercel AI Gateway: C5
 
 Notes on the diagram:
-- Dashed: planned
+- Dashed: planned, or files with no call at run time
 
 Arrows: `-->` solid, `..>` dashed.
 
@@ -43,6 +43,8 @@ Arrows: `-->` solid, `..>` dashed.
 | VCF vCommunity Adapter | PCM-Adapter | Inside the lab VCF Operations, https://10.115.1.81 (VPN) | vCenter, VCF Operations |
 | isvara.io | isvara | Vercel, public | Agent E2 (planned, ROADMAP M5); today its own AskIO agent |
 | Agent E2 for isvara.io | agent-e2 | Chosen in ROADMAP M5 after measuring start-up time and cost per answer (Q-WS-4) | Vercel AI Gateway |
+
+C1 and C4 are files, from the agent-e2 repository: the KPI definitions check compares the catalog with the adapter's code on every pull request, and isvara.io's build reads Agent E2's export. No call crosses either at run time, so the lab's Agent E2 never serves isvara.io (DESIGN-1).
 
 
 ## Sources of each kind of data
