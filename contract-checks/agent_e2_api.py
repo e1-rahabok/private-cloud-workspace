@@ -16,12 +16,17 @@ service did not start.
 from __future__ import annotations
 
 import argparse
+import base64
 import importlib.util
 import json
+import os
+import re
 import socket
 import subprocess
 import sys
+import tempfile
 import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -43,9 +48,21 @@ def free_port() -> int:
         return s.getsockname()[1]
 
 
-def start_service(agent_e2: Path, port: int) -> subprocess.Popen:
-    proc = subprocess.Popen([sys.executable, str(agent_e2 / "harness" / "answer_service.py"), "--mock", "--port", str(port)],
-                            cwd=agent_e2, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+# Added in M3 (R-E2-007, R-E2-010, R-E2-011, R-E2-012, R-E2-016, R-E2-018, R-E2-022, R-E2-023), by name and type.
+ANSWER_FIELDS_M3 = {"sources": (list,), "attachments_read": (list,), "missing_facts": (list,), "trace_id": (str,),
+                    "elapsed_s": (int, float), "stage_seconds": (dict,), "usage": (dict,)}
+USAGE_FIELDS = {"model_calls": (int,), "prompt_tokens": (int,), "completion_tokens": (int,)}
+JOB_FIELDS = {"job": (str,), "state": (str,), "stage": (str, type(None)), "elapsed_s": (int, float), "updated_at": (str,)}
+TRACE_FIELDS = {"trace_id": (str,), "model": (str,), "knowledge_commit": (str, type(None)), "files_read": (list,),
+                "steps": (list,), "attachments": (list,)}
+PNG = b"\x89PNG\r\n\x1a\n" + b"\x00" * 64
+
+
+def start_service(agent_e2: Path, port: int, env: dict | None = None, extra: list[str] | None = None) -> subprocess.Popen:
+    proc = subprocess.Popen([sys.executable, str(agent_e2 / "harness" / "answer_service.py"), "--mock", "--port", str(port),
+                             *(extra or [])],
+                            cwd=agent_e2, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+                            env={**os.environ, **(env or {})})
     deadline = time.time() + 120
     while time.time() < deadline:
         if proc.poll() is not None:
@@ -75,6 +92,127 @@ def check_fields(name: str, out: dict, fields: dict, problems: list[str]) -> Non
         elif not isinstance(out[field], types):
             problems.append(f"{name}: '{field}' is {type(out[field]).__name__}, PCM expects "
                             + " or ".join(t.__name__ for t in types))
+
+
+def http(url: str, path: str, body=None, headers=None, raw: bytes | None = None, timeout: int = 180):
+    """One call; returns (status, JSON, headers). An HTTP error is a result, not an exception."""
+    data = raw if raw is not None else (json.dumps(body).encode() if body is not None else None)
+    req = urllib.request.Request(url + path, data=data, headers={"Content-Type": "application/json", **(headers or {})})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return r.status, json.loads(r.read()), dict(r.headers)
+    except urllib.error.HTTPError as e:
+        return e.code, json.loads(e.read() or b"{}"), dict(e.headers)
+
+
+def table_facts(agent_e2: Path) -> list[str]:
+    """The fact names in the table of the docstring of answer_service.py (R-E2-017): column 2, each name in backticks."""
+    doc = (agent_e2 / "harness" / "answer_service.py").read_text()
+    rows = [r for r in doc.splitlines() if r.startswith("| ") and "---" not in r and not r.startswith("| Feature")]
+    return sorted({n for r in rows for n in re.findall(r"`([^`]+)`", r.split("|")[2])})
+
+
+def check_table(agent_e2: Path, pcm: Path, problems: list[str]) -> None:
+    rows = [r for r in (agent_e2 / "harness" / "answer_service.py").read_text().splitlines()
+            if r.startswith("| ") and "---" not in r and not r.startswith("| Feature")]
+    if len(rows) < 7:
+        problems.append(f"docstring table of facts: {len(rows)} feature rows, expected at least 7")
+    frame = (pcm / "pcm" / "l2" / "spec" / "pages" / "frame.md").read_text()
+    for name in table_facts(agent_e2):
+        if name.split(".")[-1] not in frame:
+            problems.append(f"docstring table of facts: '{name}' is not in PCM's frame.md")
+
+
+def check_m3(url: str, agent_e2: Path, problems: list[str]) -> None:
+    """The fields and refusals added in M3, called as isvara.io calls: a question, the role reader, a page, no facts."""
+    page = "vsphere/technology/cpu/metrics/virtual-motherboard/ready"
+    isvara = {"question": "And at what value is it a problem?", "role": "reader", "page": page,
+              "history": [{"question": "What is CPU Ready?", "answer": "The time a vCPU waited."},
+                          {"question": "Why does it rise?", "answer": "Contention."}]}
+    status, out, _ = http(url, "/v1/answer", isvara)
+    if status != 200:
+        problems.append(f"/v1/answer (isvara.io shape): status {status}")
+        return
+    check_fields("/v1/answer (isvara.io shape)", out, {**ANSWER_FIELDS, **ANSWER_FIELDS_M3}, problems)
+    check_fields("/v1/answer usage", out.get("usage") or {}, USAGE_FIELDS, problems)
+    if out.get("lead") != "":
+        problems.append("/v1/answer (isvara.io shape): 'lead' is not empty")
+    check_fields("/v1/answer topic", out.get("topic") or {}, TOPIC_FIELDS, problems)
+    for src in out.get("sources") or []:
+        path = agent_e2 / "knowledge" / f"{src.get('id')}.md"
+        if not path.is_file():
+            problems.append(f"/v1/answer sources: '{src.get('id')}' is no knowledge file")
+            continue
+        head = next((l for l in path.read_text().splitlines() if l.startswith("# ")), "")[2:].strip()
+        if src.get("title") != head:
+            problems.append(f"/v1/answer sources: title of '{src['id']}' is {src.get('title')!r}, its heading is {head!r}")
+    # Missing facts, in the shape of PCM's live facts, without parts_hourly (R-E2-018).
+    status, live, _ = http(url, "/v1/answer", {"question": "Why did it fall?", "facts": PAGE_FACTS})
+    if status != 200 or "parts_hourly" not in (live.get("missing_facts") or []):
+        problems.append("/v1/answer: facts without parts_hourly did not list it in missing_facts")
+    # The job call (R-E2-007).
+    status, job, _ = http(url, "/v1/answer", {**isvara, "async": True})
+    if status != 202 or job.get("state") != "queued" or not job.get("job"):
+        problems.append(f"/v1/answer async: status {status}, expected 202 with a queued job")
+    else:
+        end = {}
+        for _ in range(240):
+            _, end, _ = http(url, f"/v1/jobs/{job['job']}")
+            if end.get("state") in ("done", "failed"):
+                break
+            time.sleep(0.5)
+        check_fields("/v1/jobs", end, JOB_FIELDS, problems)
+        if end.get("state") != "done":
+            problems.append(f"/v1/jobs: the job ended {end.get('state')!r}, expected 'done'")
+        else:
+            check_fields("/v1/jobs result", end.get("result") or {}, {**ANSWER_FIELDS, **ANSWER_FIELDS_M3}, problems)
+    # The trace (R-E2-023).
+    status, trace, _ = http(url, f"/v1/traces/{out.get('trace_id')}")
+    if status != 200:
+        problems.append(f"/v1/traces: status {status}, expected 200")
+    else:
+        check_fields("/v1/traces", trace, TRACE_FIELDS, problems)
+    # Refusals by status (R-E2-008, R-E2-014, R-E2-022).
+    refusals = [
+        ("page that is no file", 400, "/v1/answer", {"question": "q?", "page": "vsphere/no-such-file"}, None),
+        ("attachment that is no image or CSV", 400, "/v1/answer",
+         {"question": "q?", "attachments": [{"name": "a.pdf", "data": base64.b64encode(b"%PDF-1.4").decode()}]}, None),
+        ("image declared as text", 400, "/v1/answer",
+         {"question": "q?", "attachments": [{"name": "a.csv", "type": "text/csv", "data": base64.b64encode(PNG).decode()}]}, None),
+        ("unknown job", 404, "/v1/jobs/nothing", None, None),
+        ("unknown trace", 404, "/v1/traces/nothing", None, None),
+        ("body above 40 MB", 413, "/v1/answer", None, b'{"question": "' + b"a" * (41 * 1024 * 1024) + b'"}'),
+    ]
+    for name, want, path, body, raw in refusals:
+        got = http(url, path, body, raw=raw)[0]
+        if got != want:
+            problems.append(f"{path} ({name}): status {got}, expected {want}")
+    # An attachment is read: a screenshot and a CSV return attachments_read (R-E2-012, R-E2-013).
+    status, out, _ = http(url, "/v1/answer", {"question": "What does this show?", "attachments": [
+        {"name": "chart.png", "data": base64.b64encode(PNG).decode()},
+        {"name": "vm.csv", "data": base64.b64encode(b"vm,ready\nvm-1,3.1\n").decode()}]})
+    if status != 200 or not isinstance(out.get("attachments_read"), list):
+        problems.append(f"/v1/answer with attachments: status {status}, 'attachments_read' is not a list")
+
+
+def check_guarded(agent_e2: Path, problems: list[str]) -> None:
+    """A service with a secret and no room for jobs: 401 without the header, 429 with it (R-E2-024, R-E2-008)."""
+    config = Path(tempfile.mkdtemp(prefix="c3-")) / "service_config.yaml"
+    config.write_text((agent_e2 / "harness" / "service_config.yaml").read_text() + "\nmax_running_jobs: 0\nmax_queued_jobs: 0\n")
+    port = free_port()
+    proc = start_service(agent_e2, port, {"AGENT_E2_SECRET": "contract-check"}, ["--config", str(config)])
+    try:
+        url, body = f"http://127.0.0.1:{port}", {"question": "q?", "async": True}
+        if http(url, "/v1/answer", body)[0] != 401:
+            problems.append("/v1/answer without the secret: expected 401")
+        if http(url, "/v1/health")[0] != 200:
+            problems.append("/v1/health must answer without the secret")
+        status, _, headers = http(url, "/v1/answer", body, {"Authorization": "Bearer contract-check"})
+        if status != 429 or "Retry-After" not in headers:
+            problems.append(f"/v1/answer async with no room: status {status}, expected 429 with Retry-After")
+    finally:
+        proc.terminate()
+        proc.wait(timeout=10)
 
 
 def run(url: str, client) -> list[str]:
@@ -134,12 +272,18 @@ def main() -> int:
         return 2
     try:
         problems = run(f"http://127.0.0.1:{port}", load_pcm_client(pcm))
+        check_table(agent_e2, pcm, problems)
+        check_m3(f"http://127.0.0.1:{port}", agent_e2, problems)
     finally:
         proc.terminate()
         proc.wait(timeout=10)
+    try:
+        check_guarded(agent_e2, problems)
+    except RuntimeError as e:
+        problems.append(f"the guarded service did not start: {e}")
     for p in problems:
         print(f"FAIL {p}")
-    print(f"C3 Agent E2 API: 4 endpoints called with PCM's client, {len(problems)} difference(s)")
+    print(f"C3 Agent E2 API: PCM's client on 4 endpoints, isvara.io's shape on the job, trace and refusal calls, {len(problems)} difference(s)")
     return 1 if problems else 0
 
 

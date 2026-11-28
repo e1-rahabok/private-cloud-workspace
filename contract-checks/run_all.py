@@ -32,6 +32,7 @@ TOOLS = HERE.parent / "tools"
 CHECKS = [
     ("C1 KPI definitions", HERE / "kpi_definitions.py", ["agent-e2", "PCM-Adapter"]),
     ("C3 Agent E2 API", HERE / "agent_e2_api.py", ["agent-e2", "private-cloud-manager"]),
+    ("C5 Model gateway", HERE / "model_gateway.py", ["agent-e2"]),
     ("R-WS-007 file names", TOOLS / "file_names.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
     ("Forbidden names", TOOLS / "forbidden_names.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
     ("R-WS-010 lab addresses", TOOLS / "lab_addresses.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),

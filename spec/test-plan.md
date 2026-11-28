@@ -29,7 +29,7 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 - **Specification checks:** [spec_check.py](../tools/spec_check.py) (traceability, DESIGN-8), [milestone_review.py](../tools/milestone_review.py) (each requirement in one milestone), [milestone_gate.py](../tools/milestone_gate.py) (changes stay in the open milestone), [docs.py](../tools/docs.py) (links and diagram text), [style.py](../tools/style.py) (writing rules), [claude_md_copies.py](../tools/claude_md_copies.py) (one CLAUDE.md in every repository).
 - **Review page:** [milestone_review.py](../tools/milestone_review.py) writes each milestone's page and fails when a page carries a test count, an ID or a path, or lacks a section; [test_milestone_review.py](../tools/test_milestone_review.py) plants each break (T-WS-015a). The author's first read of each page is the manual test (T-WS-015b).
 - **Branch cleanup:** [branch_cleanup.py](../tools/branch_cleanup.py) is tested against a fake GitHub by [test_branch_cleanup.py](../tools/test_branch_cleanup.py) (T-WS-014a). On every pull request its workflow lists what it would delete, and the first real run in each repository is checked by hand (T-WS-014c).
-- **Contract checks:** C1 and C3 run today; C2 is added in M8, C4 in M4, C5 in M3 ([system design](design/system.md), section Contracts). Each check has a test that plants a break of each kind it compares (R-WS-001).
+- **Contract checks:** C1, C3 and C5 run today (C5 needs the gateway key); C2 is added in M8 and C4 in M4 ([system design](design/system.md), section Contracts). Each check has a test that plants a break of each kind it compares (R-WS-001).
 - **Model evaluations:** Agent E2's free-text answer set, graded by a strong model as judge (DESIGN-19), about US$2 a run; isvara.io's citation eval and injection battery, against a running server (DESIGN-10); Agent E2's full multiple-choice round, only before a milestone that changes Agent E2 is closed. Each run stops when its spending reaches US$100, and an answer or a grade whose inputs have not changed is reused (CONSTRAINT-1, DESIGN-31). All need the Vercel AI Gateway key (DEPENDENCY-2), which no GitHub workflow holds.
 
 ## Environments
@@ -93,7 +93,7 @@ Each repository runs its own tests on every pull request and every push to main,
 
 - **Scenario to automated test:** a scenario names its test in prose ("automated by ..."), and no check confirms that the test exists. Every repository runs its own tests in CI since 2026-11-28 (section Own tests in CI), so the next step is that spec_check reads the named path of each scenario in a done milestone and fails when it does not exist.
 - **isvara in the workspace's CI:** isvara is private, so the workspace's CI cannot read it; isvara runs the cross-repo checks in its own CI with the four public repositories checked out (R-WS-002).
-- **Contracts without a check:** C2, C4 and C5, planned in M8, M4 and M3.
+- **Contracts without a check:** C2 and C4, planned in M8 and M4.
 
 ## Commands per repository
 
