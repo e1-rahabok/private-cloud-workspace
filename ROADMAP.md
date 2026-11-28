@@ -125,28 +125,28 @@ Claude's working method, about how Claude works and never about the product, app
 - **Outcome:** on the Vercel preview, a visitor reads every Agent E2 knowledge file as an article, finds it through the three learning paths and through search, and sees the first infographic. Every fact and number on an article comes from Agent E2's export; the tools follow in M6.
 - **Needs:** M2 for the checks, and the author's review of the [before and after](spec/design/isvara-before-and-after.md), which the author asked for before anything is built (Q-WS-41). It does not need M3.
 - **Runs:** in a cloud session. The rewrite of each article and its checks need the Vercel AI Gateway key.
-- **Requirements:** R-CONTENT-002 to R-CONTENT-021 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), R-E2-027 and R-E2-028 (agent-e2's [knowledge-export.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/knowledge-export.md)), R-EXPORT-001 and R-EXPORT-002 (the workspace's [knowledge-export.md](spec/requirements/knowledge-export.md), contract C4); and isvara's five folder renames, with the redirects (T-WS-007b, DESIGN-6).
+- **Requirements:** R-CONTENT-002 to R-CONTENT-021 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), R-JOURNEY-001 and R-JOURNEY-002 (isvara's [journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md)), R-E2-027 and R-E2-028 (agent-e2's [knowledge-export.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/knowledge-export.md)), R-EXPORT-001 and R-EXPORT-002 (the workspace's [knowledge-export.md](spec/requirements/knowledge-export.md), contract C4); and isvara's five folder renames, with the redirects (T-WS-007b, DESIGN-6).
 
 ### M5 isvara.io Ask and contributions
 
 - **Outcome:** on the preview, a visitor asks Agent E2 a question, with screenshots and CSV files, follows its progress and opens its sources; sends a contribution to a private queue; and the protection layers stop floods, bots, unsafe files and hidden instructions.
 - **Needs:** M3 for the Agent E2 API, and M4 for the articles that sources open. The injection guard is decided (DESIGN-10).
 - **Runs:** in a cloud session. Where the public Agent E2 runs is chosen after measuring (Q-WS-4); a new hosting account would need the author.
-- **Requirements:** R-ASK-001 to R-ASK-012 ([ask.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/ask.md)), R-CONTRIB-001 to R-CONTRIB-006 ([contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md)), R-PROTECT-001 to R-PROTECT-006 ([protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md)).
+- **Requirements:** R-ASK-001 to R-ASK-012 ([ask.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/ask.md)), R-CONTRIB-001 to R-CONTRIB-006 ([contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md)), R-PROTECT-001 to R-PROTECT-006 ([protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md)), R-JOURNEY-003 and R-JOURNEY-006 ([journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md)).
 
 ### M6 isvara.io practice and tools
 
 - **Outcome:** the quiz with its mastery map, the exam, the daily question and the 2am game's debriefs link to articles; the calculators and the RVTools health check take every number from Agent E2's catalog; the dropped tools are gone.
 - **Needs:** M4 for the articles.
 - **Runs:** in a cloud session. The author approves the exam's ten questions once (Q-WS-113).
-- **Requirements:** R-EXAM-001 to R-EXAM-016 (isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md)), R-CONTENT-001 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), R-PRACTICE-001 to R-PRACTICE-007 ([practice.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/practice.md)), R-TOOL-001 to R-TOOL-007 ([tools.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/tools.md)).
+- **Requirements:** R-EXAM-001 to R-EXAM-016 (isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md)), R-CONTENT-001 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), R-PRACTICE-001 to R-PRACTICE-007 ([practice.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/practice.md)), R-TOOL-001 to R-TOOL-007 ([tools.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/tools.md)), R-JOURNEY-005 and R-JOURNEY-007 ([journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md)).
 
 ### M7 isvara.io switched over
 
 - **Outcome:** isvara.io serves the rebuilt site: the home page, What's New with its weekly summary, the manual for copying the product privately, downloads and the MCP endpoint on Agent E2; every old address redirects to the page that covers it.
 - **Needs:** M4, M5 and M6.
 - **Runs:** in a cloud session. The author approves the switch from the preview.
-- **Requirements:** R-SITE-001 to R-SITE-007 ([site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md)); R-REPO-009 (PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md)).
+- **Requirements:** R-SITE-001 to R-SITE-007 ([site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md)), R-JOURNEY-004 and R-JOURNEY-008 ([journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md)); R-REPO-009 (PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md)).
 
 ### M8 PCM live demo
 
@@ -154,7 +154,7 @@ Claude's working method, about how Claude works and never about the product, app
 - **Needs:** M2 for the catalog names, M3 for Agent E2's jobs and facts.
 - **Runs:** in the lab, from the author's laptop over the VPN, with the adapter's build, install, restart and validation tools. A cloud session writes the code and the tests that run anywhere.
 - **First slice:** one lab cluster's Cluster Performance on the L2 Performance tab (R-LIVE-001, R-LIVE-024, R-LIVE-030), then the rest.
-- **Requirements:** R-ADP-018 to R-ADP-023 and R-ADP-026 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-LIVE-001 to R-LIVE-033, R-LIVE-035 and R-E2-020 (private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)), R-E2-026 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md)); the check of contract C2 (KPI metric keys).
+- **Requirements:** R-ADP-018 to R-ADP-023 and R-ADP-026 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-LIVE-001 to R-LIVE-033, R-LIVE-035, R-LIVE-036 and R-E2-020 (private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)), R-E2-026 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md)); the check of contract C2 (KPI metric keys).
 - **Release 1.0 is done** when the author approves M8.
 
 ## Waiting for the author

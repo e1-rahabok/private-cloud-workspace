@@ -18,6 +18,7 @@ To review: write "Approved" under the heading Review at the end, or name a featu
 - **After:** a site over Agent E2's knowledge base. Each knowledge file becomes an article, reached through the three learning paths and their crossings. Agent E2 answers questions. Visitors contribute corrections and files, practise with a quiz and an exam, and see what changed each week. The books stay downloadable.
 - **Kept:** the Signal design, its look and its two themes (Author, Q-WS-44); the 2am game, the RVTools health check, downloads, the MCP endpoint, Team and Homelabs.
 - **Gone:** the book reader, AskIO, the Operations Score, the self-assessment, the cost calculator and the SLA builder (Author, SCOPE-9).
+- **What a visitor sees:** the site map, the header and menu, a rough mock of each page and the seven journeys through them are drawn in isvara's [visitor-experience.md](https://github.com/e1-rahabok/isvara/blob/main/spec/visitor-experience.md), and each journey is tested by [journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md). This document lists the features; that one shows how a visitor moves through them. Review both together (DEPENDENCY-3).
 
 ## Knowledge presented for the web
 

@@ -8,7 +8,10 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 - A scenario says where it runs, anywhere or in the lab, its data and steps, the expected result, and the test or check that automates it, or why it stays manual.
 - A scenario that runs anywhere is preferred. A lab scenario is written only for what a fake cannot prove.
 - A test is never weakened, skipped or deleted to pass. A failure is a bug to fix or a question for the author.
-- On 2026-11-28 the specification held 202 requirements and 309 test scenarios, 41 of them in the lab; `python tools/spec_check.py` prints the current totals.
+- A product with pages has a drawing of what its visitor sees: the site map, the menus, a rough mock of each page and the journeys through them. A journey test walks each journey across pages. isvara's is [visitor-experience.md](https://github.com/e1-rahabok/isvara/blob/main/spec/visitor-experience.md) with [journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md); PCM's are its demo scripts in [demo/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/demo/README.md), walked by [`demo/rehearse.mjs`](https://github.com/e1-rahabok/private-cloud-manager/blob/main/demo/rehearse.mjs).
+- A repository with lab tests has its own test plan: the run order, the oracle that gives each expected value, safety, and what decides a pass. The adapter's is its [Live Validation Test Plan](https://github.com/e1-rahabok/PCM-Adapter/blob/main/tools/validate/validate.md); PCM's is its [test plan](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/test-plan.md).
+- A lab test that checks a value compares it with an oracle that shares no code with the system under test, such as PCM's reference script reading the Suite API itself.
+- On 2026-11-28 the specification held 212 requirements and 323 test scenarios, 42 of them in the lab; `python tools/spec_check.py` prints the current totals.
 
 ## Test levels
 
@@ -18,8 +21,9 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 | Unit tests | One part's logic, against fakes | Each repository's tests | Every pull request of that repository |
 | Contract checks | Both sides of a contract agree; each planted break fails | [`checks/`](../checks) | Every pull request of every repository; daily |
 | Page tests | A page renders and behaves, with stub services | PCM's Playwright page tests; isvara's build | Every pull request of that repository |
+| Journey tests | A visitor's path through several pages leads where it should | isvara's journey tests on the Vercel preview, from M4; PCM's demo rehearsals, synthetic and live | Every pull request of isvara from M4; before every PCM demo |
 | Model evaluations | Answers are right, cited and safe | Agent E2's graded answer set; isvara.io's two batteries | Each change of model or prompt |
-| Lab tests | The system works on real VCF Operations data | The adapter's validation; PCM's live demo | M8, in a session with the author |
+| Lab tests | The system works on real VCF Operations data; PCM's values equal VCF Operations' | The adapter's `validate.ps1`; PCM's `Test-Live.ps1` ([test plan](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/test-plan.md)) | M8, in a session with the author |
 | Acceptance | A milestone's outcome holds | The milestone's [review page](review) | When the milestone's work is done |
 
 - **Specification checks:** [spec_check.py](../tools/spec_check.py) (traceability, DESIGN-8), [milestone_review.py](../tools/milestone_review.py) (each requirement in one milestone), [milestone_gate.py](../tools/milestone_gate.py) (changes stay in the open milestone), [docs.py](../tools/docs.py) (links and diagram text), [style.py](../tools/style.py) (writing rules), [claude_md_copies.py](../tools/claude_md_copies.py) (one CLAUDE.md in every repository).
@@ -83,6 +87,6 @@ The chain from the author's input to the code, and the tool that checks each lin
 |---|---|---|
 | agent-e2 | `python3 project/tools/rules_check.py`; unit tests of the harness and the benchmark runner | The benchmark needs the gateway key |
 | PCM-Adapter | `python -m pytest tests`, from `Management Pack` | `pwsh tools/build/build.ps1`, `install.ps1`, `restart.ps1`, `validate.ps1` (the lab) |
-| private-cloud-manager | Unit and page tests per workspace ([pcm/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/pcm/README.md)) | Install on the lab VM ([deploy/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/deploy/README.md)) |
-| isvara | `npm run lint`, `typecheck`, `build`, `test:rvtools` | `npm run eval` and `eval:injection` need a server and the key |
+| private-cloud-manager | Unit and page tests per workspace ([pcm/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/pcm/README.md)); `node demo/rehearse.mjs` | Install on the lab VM ([deploy/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/deploy/README.md)); `pwsh tools/lab/Test-Live.ps1`, to write ([test plan](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/test-plan.md)) |
+| isvara | `npm run lint`, `typecheck`, `build`, `test:rvtools`; the journey tests on the Vercel preview, from M4 | `npm run eval` and `eval:injection` need a server and the key |
 | All four together | `uv run checks/run_all.py` (this repository) | |
