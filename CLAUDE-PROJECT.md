@@ -35,6 +35,7 @@ Rules, tools and paths of this project: Private Cloud Manager and its repositori
 - When a Dependabot pull request's checks have passed: merge it as your own (DESIGN-25).
 - Before reporting a session as finished: leave on GitHub only `main`, the branches of open pull requests that a session is working on, and branches a workflow writes, such as PCM-Adapter's `badges`. The author reads only `main`.
 - When a pull request left open by an earlier session is overtaken by `main`: close it with a comment that links where its content is now, and delete its branch. When it holds content the specification lacks: list it for the author.
+- When a branch cannot be deleted from the session (a cloud session gets HTTP 403): give the author a link to each one, with the pull request page whose Delete branch button removes it.
 
 ## Domain
 

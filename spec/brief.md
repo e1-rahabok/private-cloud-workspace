@@ -82,7 +82,7 @@ The material began as the first edition of the author's book in 2014. Each year 
 - **SCOPE-16 New knowledge forms.** Workload footprints, investigations over several steps and "At large scale" notes ([knowledge model](design/knowledge-model.md), sections Experience and Scale); isvara.io's choice of a small or large estate waits for the notes. Adding the knowledge model to agent-e2's KNOWLEDGE-ENGINEERING.md stays in release 1.0. Why: each form needs new knowledge from the author's field experience. Source: the author, 2026-11-27.
 - **SCOPE-17 Lab build for memory tiering.** The [lab-build](https://github.com/e1-rahabok/lab-build) repository builds nested ESXi hosts with an NVMe memory tier in the lab ([lab-build.md](requirements/lab-build.md)). In release 1.0 the adapter's tiering rows are tested with fakes, and a tiering part that a cluster does not have is left out of PCM's page (Q-WS-68). It starts with a spike: can a nested host use a virtual NVMe tier (Q-WS-119)? Why: the physical lab hosts have no memory tiering (CONSTRAINT-7). Source: Q-WS-37, Q-WS-38, Q-WS-120, Q-WS-122; the author, 2026-11-27.
 - **SCOPE-18 The adapter's state codes.** Every row and KPI says why it has no value (R-ADP-013 to R-ADP-017). Why: the reason for a blank is useful, but a demo can show "No data" without it (DESIGN-17). Source: the author, 2026-11-27.
-- **SCOPE-19 Smaller items after release 1.0.** Why: each waits until release 1.0 is live. Source: the author, 2026-11-26 and 2026-11-27.
+- **SCOPE-19 Smaller items after release 1.0.** Why: each waits until release 1.0 is live. Source: the author, 2026-10-29, 2026-11-26 and 2026-11-27.
   - A larger answer set for Agent E2's grader, from about 15 questions toward 40, weighted to the questions visitors ask.
   - The review gate on knowledge files (Q-WS-10).
   - Executable flow steps and the capacity consultation in Agent E2 (Q-WS-62).
@@ -91,6 +91,7 @@ The material began as the first edition of the author's book in 2014. Each year 
   - Removing Agent E2's synchronous call, once PCM's synthetic demo uses the job calls too (R-E2-009).
   - PCM as a Linux container, with VKS integration (Q-WS-139).
   - A code review of the VCF vCommunity Adapter: the next page of its [engineering review](https://github.com/e1-rahabok/PCM-Adapter/tree/main/docs/development-guide/engineering-review).
+  - A Guest OS Uptime (%) metric in the VCF vCommunity Adapter: its logic per VM per cycle, its open points and its limits are in the closed [PCM-Adapter#50](https://github.com/e1-rahabok/PCM-Adapter/pull/50) (the author, 2026-10-29).
 
 ## Principles
 
