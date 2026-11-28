@@ -37,7 +37,7 @@ The material began as the first edition of the author's book in 2014. Each year 
 - **SCOPE-2 Day 2 knowledge only.** The knowledge covers running, monitoring, troubleshooting and planning. Design, installation, building, configuration and upgrades (Day 0 and Day 1) are out, and Agent E2 says so when asked and points to Broadcom's documentation. Why: Day 1 knowledge changes with each release, and release 1.0 must be small enough to finish. Source: the author, 2026-11-26.
 - **SCOPE-3 The product and how customers take it.** The product is Agent E2, the VCF vCommunity Adapter and PCM, taken together with this workspace. Why: each part alone shows only part of the knowledge. Source: the author, 2026-11-26.
   - The VCF vCommunity Adapter alone is the simplest deployment: one pak file, no Linux, without Agent E2. Its documentation presents it as one part of the whole and points to the knowledge.
-  - PCM runs as a Linux container, with VKS integration.
+  - PCM runs as a Linux container, with VKS integration. Whether release 1.0 ships it is open (Q-WS-139); release 1.0's lab runs PCM as a systemd service ([system design](design/system.md)).
   - isvara.io is a separate public site that customers use but never install or copy.
   - Customers copy the product by mirroring each repository into a private one, because a fork of a public repository on GitHub is always public. The manual says so.
 - **SCOPE-4 Two PCM demos, synthetic and live.** PCM keeps its synthetic ACME demo unchanged and adds a separate live demo as a new entry in the demo drop-down; no page switches between the two. Why: the lab has too little activity to show Agent E2 at its best, and the live demo proves PCM reads real data. Source: Q-WS-20, Q-WS-32.

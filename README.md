@@ -25,10 +25,10 @@ The Book, Agent E2, isvara.io, PCM and the adapter carry the same knowledge, for
 Colour key: green = By people, for people; blue = For AI to read; purple = For people, built with AI; white = No AI.
 
 Boxes, nested as drawn:
-- n1 **The Book** (By people, for people): Private Cloud Management, 4 parts, with spreadsheets, slides, diagrams. Curated by people, for people.
+- n1 **The Book** (By people, for people): Private Cloud Management: Executive Summary and 4 parts, with spreadsheets, slides, diagrams. By people, for people.
 - n2 **isvara.io** (For people, built with AI): Public website for learning: articles, tools, practice, Ask. Articles written by AI from Agent E2. The Book to download.
 - n3 **Agent E2: the brain** (For AI to read): Holds the knowledge, for AI to read. Answers questions; defines every KPI, threshold and metric name.
-- n4 **VCF vCommunity Adapter** (No AI): Management pack for VCF Operations 9.1. Calculates the Agent E2 KPIs; adds features. No AI.
+- n4 **VCF vCommunity Adapter** (No AI): Management pack for VCF Operations. Calculates the Agent E2 KPIs; adds features. No AI.
 - n5 **Private Cloud Manager (PCM)** (For people, built with AI): Web app for operations teams. Shows the KPIs; Agent E2 explains them. A demo in release 1.0.
 
 Arrows (from, to, label):
@@ -57,6 +57,7 @@ Arrows: `-->` solid, `..>` dashed.
 | [spec/author-input/](spec/author-input) | The author's answers, word for word |
 | [`checks/`](checks) | The cross-repo checks |
 | [`tools/`](tools) | Checks of the specification and the documents; the diagram tool |
+| [`writing/`](writing) | The writing rules every repository follows, and their flagged phrases |
 | [CLAUDE.md](CLAUDE.md) | Claude's method, the same file in every repository |
 | [CLAUDE-PROJECT.md](CLAUDE-PROJECT.md) | This project's rules, tools and paths, loaded by CLAUDE.md |
 | [`tutorial/`](tutorial) | How this workspace is built with AI, written to teach the method to others |
