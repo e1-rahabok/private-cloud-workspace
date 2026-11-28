@@ -38,6 +38,39 @@ The question: Agent E2's catalog names the VM row "Peak network TX dropped packe
 
 **Result:** option (a) (WD-044). Agent E2's knowledge keeps both Risk levels; release 1.0 applies the production level, Risk above 60%, to every cluster. The limitation is written in Agent E2's catalog and its Close for Business file, in the VCF vCommunity Adapter's pages, and in the opening Agent E2 writes on a cluster's Capacity tab. The KPI definitions check compares the adapter's level with the catalog's production row.
 
+## Corrections
+
+The author's corrections of the same day, given in the project chat, word for word.
+
+### The books' source
+
+> "To change the books (they are published on Box — broadcom.ent.box.com/v/OpsYourWorld): download the new " in isvara readme is wrong.
+>
+> The books is in my local laptop, not box.com.
+> I as the author uploads to vercel.
+
+> this section in the readme is wrong also:
+> "The books are publicly published (the Box "Ops Your World" share), though not as official Broadcom or VMware publications. iO grounds in them and cites sections, and — per the product owner — may quote them directly and point to the current Broadcom tech docs for the latest detail."
+>
+> I thought you've cleaned them up?
+
+**Result:** DEPENDENCY-10 in the [brief](../brief.md); R-WS-009 in [workspace.md](../requirements/workspace.md), which reads every README and CLAUDE-PROJECT.md against the specification.
+
+### How a correction is handled
+
+> You again jump into "iterative prompting" mode. Stay in SDD mode.
+>
+> You should think WHY you missed them. Then either update the requirements, scope, design, milestone, etc. Then you work based on updated specification. The spec is your source.
+>
+> The flow is like this
+> Me --> Give corrections, addition, changes.
+> You (The Architect) --> update the docs. Requirements, milestone,
+> You (The Implementer) --> build, execute, code the actual changes.
+>
+> Make sense? You have 2 roles. Don't confuse.
+
+**Result:** the section Roles of [CLAUDE.md](../../CLAUDE.md) names the two roles and the order of their work.
+
 ## Answers in the question files of the other repositories
 
 - **Q-PCM-1**, the style baseline of private-cloud-manager ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/OPEN-QUESTIONS.md)):
