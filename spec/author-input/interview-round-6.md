@@ -71,6 +71,14 @@ The author's corrections of the same day, given in the project chat, word for wo
 
 **Result:** the section Roles of [CLAUDE.md](../../CLAUDE.md) names the two roles and the order of their work.
 
+### VMUG events
+
+> What is the VMUG talk? What is the content there? Visitor watch a recorded VMUG presentation? That can be in YouTube instead. Unless you have a good idea, I don't see the relevance. I think Isvara should focus on the knowledge of Agent E2 because that is unique in the world. It's not something they can get from VMware
+
+> Drop VMUG event
+
+**Result:** isvara.io has no feature for a VMUG event. The quiz has no event board or room code ([R-PRACTICE-005](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/practice.md#r-practice-005-scores-compare-as-percentiles-with-a-share-card)), and the contribution form has no request for a session at an event ([R-CONTRIB-001](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md)). The weekly post still goes to VMUG channels, because those are where readers are (Q-WS-16). The answer to Q-WS-130 in [round 3](interview-round-3.md) had been read as a request for both.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):

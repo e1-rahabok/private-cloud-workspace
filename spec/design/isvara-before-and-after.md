@@ -127,7 +127,7 @@ A knowledge file's form says which lens it serves. The lenses are a completeness
 ### Contributions
 
 - **Before:** none.
-- **After:** `/contribute` (Author, DESIGN-11): a correction, an addition, something to review, or a request for a session at a VMUG event; one area, a note of up to 2,000 characters, one link and up to three files (PNG, JPEG, CSV).
+- **After:** `/contribute` (Author, DESIGN-11): a correction, an addition or something to review; one area, a note of up to 2,000 characters, one link and up to three files (PNG, JPEG, CSV).
 - **Queue:** private; nothing is published by itself. Each week AI sorts the queue and the author decides; accepted items become source notes in agent-e2, with credit when the contributor gave a public profile link (Author, DESIGN-11).
 - **Kept:** files until processed and at most 30 days; no IP address with a contribution; no email address asked (Author, DESIGN-11).
 - **Review page:** a key-gated `/admin/contributions`, like today's `/admin/questions`. Claude's call: the author already reviews questions there.
@@ -152,7 +152,7 @@ All from the plan's Protection table (Author, DESIGN-12; Round 2, Q-WS-61, Q-WS-
   - **Exam:** `/exam`, ten very hard questions, four options, +3 and −1, dated (Author, SCOPE-10; Round 2, Q-WS-109 to Q-WS-118; requirements in isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md)).
   - **Daily question:** one question a day for everyone, with the share of visitors who got it right.
   - **2am game:** kept; its debriefs cite articles, and its numbers are checked against the knowledge files. Its nightly board, one per UTC day, stays as it is. Claude's call: SCOPE-9's dropped global board is the quiz's.
-- **Comparing scores:** anonymous percentiles, a share card, and boards for one event with a room code; no global board (Author, SCOPE-9).
+- **Comparing scores:** anonymous percentiles and a share card; no global board and no event board (Author, SCOPE-9; round 6).
 - **Quiz questions:** written from the misconceptions of the files they cite, each with the files' fingerprints, checked by a judge, and stopped from building when a cited file changes, as the exam's are (Round 2, Q-WS-112). Claude's call: the pool holds at least 10 questions for every topic with at least 10 articles; the author approves the exam's ten and reviews 20 quiz questions, since the quiz is open-book practice.
 - **Header:** the exam sits in Practice beside the 2am game. Claude's call: the new header has one entry for practice (see Header and home page).
 

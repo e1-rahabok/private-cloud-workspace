@@ -55,7 +55,7 @@ Each correction went into the decisions and the map.
 **Round three.** The last questions only the author could answer went out in the open-questions file. Two answers taught the agent something about asking:
 
 - One question asked whether the run queue in the guest operating system is counted per vCPU or for the whole guest. The author was unsure. The agent's own knowledge base already held the answer. It should have looked there first.
-- Another offered "birds-of-a-feather sessions" at events. The author replied: "not sure what you mean here. We have VMUG event." The jargon cost a round trip.
+- Another offered "birds-of-a-feather sessions" at events. The author replied: "not sure what you mean here. We have VMUG event." The jargon cost a round trip. Worse, the agent then read "We have VMUG event" as a request, and wrote two features from it: event boards for the quiz and a request for a session at an event. In round six the author asked what the "VMUG talk" was, and then said "Drop VMUG event". An answer that explains a word is not a request for a feature; the agent should have asked what an event needs before writing one.
 
 A third answer was "will supply later. remind me." Those questions stayed open with a trigger: the agent asks again when the milestone that needs them starts.
 
