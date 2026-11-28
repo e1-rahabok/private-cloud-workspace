@@ -9,7 +9,8 @@ How every requirement is proven: the levels of testing, where each runs, the dat
 | Unit | One module does its job | | Every pull request |
 | Contract | Both sides of a seam agree | | Every pull request, daily |
 | Specification | Every requirement has a source and a test | | Every pull request |
-| End to end | What a user sees works | | Every pull request |
+| Page | What a user sees on one page works | | Every pull request |
+| Journey | A user's path across pages leads where it should, one test per journey in DESIGN.md | | Every pull request |
 | Special environment | The product works on the real system | | <milestone> |
 | Review | What no script can judge | A reader | Before merge |
 
@@ -28,6 +29,27 @@ How every requirement is proven: the levels of testing, where each runs, the dat
 - Fakes: <each fake, and the failures it can return>
 - Boundaries: <a value on each side of each limit>
 - Planted breaks: <one per check, kept as a test>
+
+## Lab run order
+
+A repository with tests in a special environment keeps this section, or its own test plan with the same parts.
+
+| Step | What it checks | Scenarios | On failure |
+|---|---|---|---|
+| 1. Access | <the environment answers, sign-ins work> | | Stop |
+| 2. <inputs exist> | <every key or field the product reads is there and fresh> | | Stop |
+| 3. <values> | <each value equals the oracle's> | | Go on |
+| <n>. End to end | <the whole demo or user path, step by step> | | Go on |
+
+- A step whose condition fails stops the run; every later scenario is reported as not run.
+- Each scenario prints its ID, PASS, FAIL or NOT RUN, and a short detail. The run fails when any scenario failed or did not run.
+- Safety: <read-only calls, the account used, where its credential lives; nothing printed or saved>.
+
+## Oracle
+
+- The second source of each expected value: <the script or system, and what it reads>.
+- It shares no code with the system under test.
+- It is tested itself on data with known answers: <T- ID>.
 
 ## Entry and exit
 

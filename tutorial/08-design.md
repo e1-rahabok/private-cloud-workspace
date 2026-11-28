@@ -12,6 +12,7 @@ In this project the workspace's design is [spec/design/system.md](../spec/design
 - **Structure:** the parts, where each runs, and what data flows between them ([chapter 3](03-map.md)).
 - **Contracts:** where the parts meet and who owns each shape ([chapter 9](09-seams-and-owners.md)).
 - **Quality attributes:** security, scalability, performance, reliability, maintainability, testability and cost, each with its target and the mechanisms that meet it.
+- **Visitor experience:** for a product with pages, the site map, the menus, a rough mock of each page and the journeys a visitor takes through them.
 - **Choices:** each significant choice, with the options it rejected and the reasons.
 - **Risks and deferrals:** what the design depends on that is not yet known, and which choices wait for it.
 
@@ -91,6 +92,12 @@ PCM's prototype serves synthetic data, ACME Corp, a made-up global bank, through
 ### Cost
 
 Model spending has a monthly limit ([chapter 6](06-constraints-assumptions-risks-dependencies.md)). The design spends model calls only where judgement is needed: code does the scoring, the counting and the parsing of CSV files, and the model explains. A daily ceiling on model calls and question limits per address keep the month inside the budget (DESIGN-20).
+
+## The visitor's view
+
+Requirements written feature by feature can each be right while nobody can yet say what the product will be. The rebuild of isvara.io had requirements for every page and no drawing of the site as a visitor meets it. The author asked for one: "I don't see any overall UI design at all. What is experience for visitor? I'm not referring to UX theme as that does not change. I'm referring to rough mock so I know what the menu, flow, functionalities, will be. Right now, I don't have clear idea what it will be. If it's not documented, how will you test?"
+
+The answer is a design document of its own, isvara's [visitor-experience.md](https://github.com/e1-rahabok/isvara/blob/main/spec/visitor-experience.md). It names who visits and why, then draws the site map, the header and menu, a rough mock of each page, and seven journeys, each from the page where a visitor arrives to the page where they get what they came for. The mocks are text and rough on purpose: boxes and the order of their contents, with no colours or sizes, which the existing design already sets. Like the rest of the design, it is the agent's to write, and the person reads it to see the product before it is built. Each journey then becomes a requirement with a test that walks it ([chapter 10](10-test-plan-and-traceability.md)).
 
 ## Choices made late on purpose
 
