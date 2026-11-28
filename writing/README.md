@@ -1,6 +1,6 @@
 # Writing rules
 
-The general writing rules of every repository of Private Cloud Manager, held once, here (R-WS-006 in [workspace.md](../spec/requirements/workspace.md); [WD-023](../DECISIONS.md)). They apply to documents, commit messages and pull request text. Agent E2's knowledge files follow these rules plus the rules particular to them, in agent-e2's [writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md).
+The general writing rules of every repository of Private Cloud Manager, held once, here (R-WS-006 in [workspace.md](../spec/requirements/workspace.md); DESIGN-7 in the [system design](../spec/design/system.md)). They apply to documents, commit messages and pull request text. Agent E2's knowledge files follow these rules plus the rules particular to them, in agent-e2's [writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md).
 
 ## Two kinds of document
 

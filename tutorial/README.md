@@ -98,9 +98,9 @@ Each is a working example of what the method produces:
 
 | File | What it is | Chapter |
 |---|---|---|
-| [SYSTEM.md](../SYSTEM.md) and [spec/intent.md](../spec/intent.md) | The map, and why each part exists | 3 |
-| [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) and [spec/interview-round-1.md](../spec/interview-round-1.md) | The interview: open questions, and the first round with the author's answers | 4 |
-| [CONTRACTS.md](../CONTRACTS.md) and [DECISIONS.md](../DECISIONS.md) | The interfaces between repositories, and the decisions that bind them | 5 |
+| [SYSTEM.md](../spec/design/system.md) and [spec/intent.md](../spec/brief.md) | The map, and why each part exists | 3 |
+| [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) and [spec/interview-round-1.md](../spec/author-input/interview-round-1.md) | The interview: open questions, and the first round with the author's answers | 4 |
+| [CONTRACTS.md](../spec/design/system.md#contracts) and [DECISIONS.md](../DECISIONS.md) | The interfaces between repositories, and the decisions that bind them | 5 |
 | [spec/requirements](../spec/requirements) | Requirements with test scenarios | 6 |
 | [checks](../checks) and [tools](../tools) | The scripts that check contracts, requirements and documents | 7 |
 | [ROADMAP.md](../ROADMAP.md) | The milestones and their order | 8 |

@@ -1,4 +1,4 @@
-"""Where each repository keeps its requirement files (WD-036), for the tools that read them all.
+"""Where each repository keeps its requirement files (DESIGN-4), for the tools that read them all.
 
 The workspace keeps the requirements on contracts, their checks and its own tools; every other requirement
 lives in the repository that implements it. The child repositories are read from clones next to this one,

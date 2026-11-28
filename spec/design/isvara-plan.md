@@ -1,11 +1,11 @@
 # isvara.io plan
 
-The design of the rebuilt isvara.io for release 1.0. It replaces the earlier draft, which listed 47 features under ten visitor reasons ([DECISIONS](../../DECISIONS.md), WD-022, now replaced by WD-027). The author delegated the remaining choices to Claude on 2026-11-26; they are recorded here as decisions. Feature by feature, with what changes from today's site: [isvara-before-and-after.md](isvara-before-and-after.md). To change one, write under it or open a question. IDs are explained in the [glossary](../glossary.md).
+The design of the rebuilt isvara.io for release 1.0. It replaces the earlier draft, which listed 47 features under ten visitor reasons (replaced by SCOPE-9 in the [brief](../brief.md)). The author delegated the remaining choices to Claude on 2026-11-26; they are recorded here as design choices, with their reasons. Feature by feature, with what changes from today's site: [isvara-before-and-after.md](isvara-before-and-after.md). To change one, write under it or open a question. IDs are explained in the [glossary](../glossary.md).
 
 ## Purpose
 
 - The public place where VMware administrators and architects learn to master the operation of a private cloud, ask an expert, practise, and contribute. It is never installed or copied by customers.
-- The goal: recognised worldwide as the authority on large-scale private cloud performance and capacity management, based on VCF ([intent](../intent.md)).
+- The goal: recognised worldwide as the authority on large-scale private cloud performance and capacity management, based on VCF ([intent](../brief.md)).
 - The problem to solve: nothing brings people back today, and they cannot tell what has changed.
 - The look and feel stay; the functionality is new; the old site goes (Q-WS-44).
 
@@ -23,17 +23,17 @@ The author's answer to what would bring an administrator back weekly (2026-11-26
 ## Content and its source
 
 - Every page about the knowledge is an AI rewrite of an Agent E2 knowledge file, so isvara.io holds no knowledge of its own (Q-WS-18, Q-WS-42). Every knowledge file is used, drafts included (Q-WS-10).
-- The rewrite keeps every fact and number of the file, adds none, keeps its sections, turns its misconceptions into a "Common misreadings" box, and follows the writing rules (WD-023). Each page passes checks before it is published: numbers, sections, misreadings, wording, links, and a judge looking for claims the file does not support.
+- The rewrite keeps every fact and number of the file, adds none, keeps its sections, turns its misconceptions into a "Common misreadings" box, and follows the writing rules (DESIGN-7). Each page passes checks before it is published: numbers, sections, misreadings, wording, links, and a judge looking for claims the file does not support.
 - A page shows its source: a link to the knowledge file, with the note that it is written for an AI model to read (Q-WS-45).
 - Pages are rebuilt weekly from the knowledge commits of that week, and only the changed files are rewritten.
 - The books, spreadsheets and diagrams are the author's own living work. They stay downloadable, with their "last updated" date, refreshed weekly (Q-WS-55). When they change, an AI comparison with Agent E2's knowledge lists only the disagreements for the author to settle.
 
 ## Structure
 
-- **Three learning paths** as the navigation: Architecture (CPU, memory, storage, network), IT management (the five pillars: availability, performance, security, capacity, value), and Product (vSphere, vSAN, NSX, VCF Operations, Kubernetes, Windows, Linux, each by object type). They come from the knowledge files' tags ([knowledge model](../knowledge-model.md)).
+- **Three learning paths** as the navigation: Architecture (CPU, memory, storage, network), IT management (the five pillars: availability, performance, security, capacity, value), and Product (vSphere, vSAN, NSX, VCF Operations, Kubernetes, Windows, Linux, each by object type). They come from the knowledge files' tags ([knowledge model](knowledge-model.md)).
 - **Crossings:** a reader narrows by any path and then by the others, for example CPU, then performance, then the cluster. Every narrowing has its own address and can be bookmarked.
 - **Where the reader is:** a trail at the top of each article, chips for its other paths, the neighbouring articles in its topic, and "read with" links at the end.
-- **Scale:** after release 1.0 ([WD-035](../../DECISIONS.md)), the reader says once whether their estate is small or large; "At large scale" notes are shown first for large estates.
+- **Scale:** after release 1.0 ([SCOPE-16](../brief.md)), the reader says once whether their estate is small or large; "At large scale" notes are shown first for large estates.
 - **Search:** one box over articles, the glossary, misreadings and metric names, with the words people use mapped to the knowledge base's terms. An advanced switch allows regular expressions.
 
 ## Features
@@ -65,14 +65,14 @@ The author's answer to what would bring an administrator back weekly (2026-11-26
 ## Ask Agent E2
 
 - A conversation over several turns. Agent E2 may ask for more: another screenshot, a CSV file, a longer history, the way the author probes wider and deeper.
-- Screenshots and CSV files can be attached (Q-WS-I1). The visitor removes IP addresses and host names first and confirms it in a box; a CSV file that seems to hold an IP address gets a reminder. No masking in 1.0 (WD-024). isvara.io keeps no copy of an attachment.
+- Screenshots and CSV files can be attached (Q-WS-I1). The visitor removes IP addresses and host names first and confirms it in a box; a CSV file that seems to hold an IP address gets a reminder. No masking in 1.0 (PRINCIPLE-3). isvara.io keeps no copy of an attachment.
 - Each answer lists its sources as links to the articles and the sections it used.
 - While Agent E2 works, the visitor sees its stage ("reading the knowledge base", "checking the answer") and the time so far, and a message if it stops responding (Q-WS-57).
-- A question about design, installation or upgrades gets a short reply that Agent E2 covers operations, with a pointer to Broadcom's documentation (WD-026).
+- A question about design, installation or upgrades gets a short reply that Agent E2 covers operations, with a pointer to Broadcom's documentation (SCOPE-2).
 
 ## Contributions
 
-From release 1.0 (WD-024):
+From release 1.0 (DESIGN-11):
 
 - **What can be sent:** a correction, an addition, something to review, or a request for a birds-of-a-feather session at a VMUG event, in one area, with a note, one link and up to three files.
 - **Where it goes:** a private queue. Nothing is published automatically. Each week AI sorts the queue and the author decides; an accepted item becomes a source note in agent-e2, with credit if the contributor gave a public profile link.
@@ -84,7 +84,7 @@ From release 1.0 (WD-024):
 - **Quiz:** short rounds of multiple-choice questions on one path or crossing, from a pool, so a visitor can come back. Each wrong answer links to the section that explains it.
 - **Mastery map:** the paths as a grid, filled in as the visitor proves each part, showing which lens is weak ("strong in how CPU works, weak in how it is measured"). Kept in the visitor's browser; no account.
 - **Comparing scores:** as anonymous percentiles ("you beat 78% of visitors on this round"), a share card for LinkedIn, and boards for one event with a room code, such as a VMUG session. There is no global board, because an open-book quiz proves little at the top and an anonymous board attracts abuse.
-- **Exam:** ten short, very hard questions; a wrong answer loses marks and a blank scores 0 (WD-006). Requirements: isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md).
+- **Exam:** ten short, very hard questions; a wrong answer loses marks and a blank scores 0 (SCOPE-10). Requirements: isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md).
 - **Daily question:** one question a day, with how many visitors got it right.
 
 ## Knowing what changed
@@ -101,7 +101,7 @@ From release 1.0 (WD-024):
 | A flood of requests | Vercel's platform protection and firewall rate limits; an "under attack" switch |
 | Bots | An invisible bot check before Ask and Contribute; a hidden field bots fill in |
 | One visitor submitting endlessly | 3 contributions a day per address; limits on Ask per hour and day |
-| A huge file | Signed upload to storage with a size limit (WD-024) |
+| A huge file | Signed upload to storage with a size limit (DESIGN-12) |
 | A disguised file | PNG, JPEG and CSV only, checked by content; image metadata removed |
 | Pornographic or violent images | A model call checks each image is an IT screenshot; others are deleted unseen |
 | Instructions hidden in text | The injection guard before Agent E2; contributions are reviewed as data |
@@ -112,7 +112,7 @@ The exact Vercel features and limits are checked against the current plan before
 
 ## Budget and hosting
 
-- isvara.io must stay within US$50 a month on Vercel AI Gateway after go-live (WD-014).
+- isvara.io must stay within US$50 a month on Vercel AI Gateway after go-live (CONSTRAINT-1).
 - Where the public Agent E2 runs is chosen after measuring start-up time and cost per answer on the two options: a Vercel Python function or a small container host (Q-WS-4). A container host is preferred, because Agent E2 keeps answer jobs in memory.
 
 ## Measures

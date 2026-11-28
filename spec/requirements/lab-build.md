@@ -1,10 +1,12 @@
 # Requirements: lab build
 
-An automatic build of nested virtual ESXi hosts with memory tiering in the author's lab, in the new repository [lab-build](https://github.com/e1-rahabok/lab-build) (empty today). The physical lab hosts have no memory tiering, so the tiering parts of Cluster Risk and Cluster Consumption cannot be tested without it (answer to Q-WS-38 in the [interview, round 1](../interview-round-1.md); [WD-018](../../DECISIONS.md)). It is built after release 1.0 ([WD-031](../../DECISIONS.md)).
+An automatic build of nested virtual ESXi hosts with memory tiering in the author's lab, in the new repository [lab-build](https://github.com/e1-rahabok/lab-build) (empty today). The physical lab hosts have no memory tiering, so the tiering parts of Cluster Risk and Cluster Consumption cannot be tested without it (answer to Q-WS-38 in the [interview, round 1](../author-input/interview-round-1.md); SCOPE-17). It is built after release 1.0 (SCOPE-17).
 
 ### R-LAB-001 One command builds the tiered nested hosts
 
-Milestone: after release 1.0 ([WD-031](../../DECISIONS.md)).
+Milestone: after release 1.0 (SCOPE-17).
+
+Why: the physical lab hosts have no memory tiering, and nested hosts built by hand cannot be built again the same way.
 
 Source: answer to Q-WS-38.
 
@@ -19,9 +21,11 @@ Test scenarios:
 
 ### R-LAB-002 The tiered cluster is monitored by the lab VCF Operations
 
-Milestone: after release 1.0 ([WD-031](../../DECISIONS.md)).
+Milestone: after release 1.0 (SCOPE-17).
 
-Source: answer to Q-WS-38; WD-018.
+Why: the tiering parts of Cluster Risk and Cluster Consumption are read from VCF Operations, so the nested cluster must be monitored there.
+
+Source: answer to Q-WS-38; SCOPE-17.
 
 - Given the nested cluster is built
 - When one collection cycle of the VCF vCommunity Adapter has passed
@@ -32,7 +36,9 @@ Test scenarios:
 
 ### R-LAB-003 The build can be repeated and removed
 
-Milestone: after release 1.0 ([WD-031](../../DECISIONS.md)).
+Milestone: after release 1.0 (SCOPE-17).
+
+Why: the author asked for an automatic build, and a build that cannot be removed leaves the lab changed.
 
 Source: answer to Q-WS-38 ("automatic build").
 
@@ -46,9 +52,11 @@ Test scenarios:
 
 ### R-LAB-004 No secret in the repository
 
-Milestone: after release 1.0 ([WD-031](../../DECISIONS.md)).
+Milestone: after release 1.0 (SCOPE-17).
 
-Source: WD-011.
+Why: the build needs the lab's credentials, and the repository can be read and copied by others.
+
+Source: DESIGN-9.
 
 - Given the build's scripts
 - When they need a password
@@ -59,4 +67,4 @@ Test scenarios:
 
 ## Questions for round two
 
-The questions on this file, with their decisions, are in the [interview, round 2](../interview-round-2.md): Q-WS-119 to Q-WS-122. None is open.
+The questions on this file, with their decisions, are in the [interview, round 2](../author-input/interview-round-2.md): Q-WS-119 to Q-WS-122. None is open.

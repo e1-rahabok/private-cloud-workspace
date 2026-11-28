@@ -176,7 +176,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-027 isvara.io plan and the knowledge model
 
 - **Date:** 2026-11-26
-- **Decision:** isvara.io follows the [isvara.io plan](spec/design/isvara-plan.md): the three learning paths as navigation; articles rewritten from knowledge files; infographics as a core feature; Ask Agent E2; contributions; a quiz with a mastery map, the exam and the 2am game; calculators on the catalog; a weekly summary of changes. Dropped: the podcast, the Operations Score, the cost calculator and SLA builder, the self-assessment, a global leaderboard. The [knowledge model](spec/knowledge-model.md) (three paths, four lenses as a completeness check, depth, experience, scale notes) is shared by Agent E2, isvara.io and the knowledge factory.
+- **Decision:** isvara.io follows the [isvara.io plan](spec/design/isvara-plan.md): the three learning paths as navigation; articles rewritten from knowledge files; infographics as a core feature; Ask Agent E2; contributions; a quiz with a mastery map, the exam and the 2am game; calculators on the catalog; a weekly summary of changes. Dropped: the podcast, the Operations Score, the cost calculator and SLA builder, the self-assessment, a global leaderboard. The [knowledge model](spec/design/knowledge-model.md) (three paths, four lenses as a completeness check, depth, experience, scale notes) is shared by Agent E2, isvara.io and the knowledge factory.
 - **Reason:** The author's paths and answers of 2026-11-26, and Claude's decisions at the author's request on the details. Replaces WD-022.
 
 ## WD-028 The product's name
@@ -228,7 +228,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 ## WD-035 New knowledge forms after release 1.0
 
 - **Date:** 2026-11-27
-- **Decision:** Three new knowledge forms proposed for Agent E2 come after release 1.0: workload footprints, investigations over several steps, and "At large scale" notes ([knowledge model](spec/knowledge-model.md), sections Experience and Scale). isvara.io's choice of a small or large estate waits for the notes. Adding the knowledge model to agent-e2's KNOWLEDGE-ENGINEERING.md stays in release 1.0.
+- **Decision:** Three new knowledge forms proposed for Agent E2 come after release 1.0: workload footprints, investigations over several steps, and "At large scale" notes ([knowledge model](spec/design/knowledge-model.md), sections Experience and Scale). isvara.io's choice of a small or large estate waits for the notes. Adding the knowledge model to agent-e2's KNOWLEDGE-ENGINEERING.md stays in release 1.0.
 - **Reason:** The author, 2026-11-27: "Defer all three to after Release 1.0", on Claude's recommendation. Each form needs new knowledge from the author's field experience, and release 1.0 must stay small enough to finish (WD-026).
 
 ## WD-036 What the workspace specifies

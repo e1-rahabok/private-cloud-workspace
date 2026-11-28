@@ -1,6 +1,6 @@
 # Fine-tuning the model: design note
 
-**Status:** for the author's review. Written in answer to the author's comment in [intent.md](../intent.md): "why do we need to fine tune a model? Document the pros and cons on a separate design document … Provide recommendation".
+**Status:** for the author's review. Written in answer to the author's comment in [brief](../brief.md): "why do we need to fine tune a model? Document the pros and cons on a separate design document … Provide recommendation".
 
 **Short answer:** fine-tuning is not needed for release 1.0, and it would break the set-up of release 1.0. The current approach puts the knowledge in files that Agent E2 reads at answer time. It keeps every fact current, cited and checkable. Fine-tuning becomes worth a measured trial only if the answer set shows a failure that comes from the model's own behaviour and that no prompt or knowledge fix removes.
 
@@ -12,9 +12,9 @@ Nothing was measured to reach this. It was a design call. This note weighs it ag
 
 ## Agent E2 today
 
-- **The model is frozen.** Gemma 4 31B with open weights, the model of release 1.0 ([WD-013](../../DECISIONS.md), Agent E2 in release 1.0). Nobody changes its weights.
+- **The model is frozen.** Gemma 4 31B with open weights, the model of release 1.0 ([SCOPE-6](../brief.md), Agent E2 in release 1.0). Nobody changes its weights.
 - **The knowledge reaches the model at answer time.** For each question, agent code picks up to 32,000 tokens of knowledge files (the reading set), looks up exact values in the catalog, computes figures with a calculator, and puts the misconceptions that matter most at the top of every prompt ([harness/AGENT.md](https://github.com/e1-rahabok/agent-e2/blob/main/harness/AGENT.md)). The model reads and writes; code decides what it reads.
-- **One fact has one home.** A change to a knowledge file reaches the next answer, with no training step. The answer cites the files it used, and the person can open them ([WD-017](../../DECISIONS.md), the isvara.io rebuild).
+- **One fact has one home.** A change to a knowledge file reaches the next answer, with no training step. The answer cites the files it used, and the person can open them ([SCOPE-8](../brief.md), the isvara.io rebuild).
 
 ## Fine-tuning in this setting
 
@@ -70,7 +70,7 @@ These are estimates, not quotes. Prices change; check them before any trial.
 - **Hosting.** One GPU endpoint running all day costs hundreds of US dollars a month or more. One that starts on demand is cheaper, but its first answer waits for the model to load. The gateway cannot serve it.
 - **Upkeep.** One more training run for each new Gemma version, and for each large change to the behaviour wanted, since adapters do not carry across model versions.
 
-The budget after isvara.io goes live is US$50 a month for the gateway, on top of the US$40 Vercel subscription ([WD-014](../../DECISIONS.md), gateway spending). A dedicated GPU endpoint alone would exceed it.
+The budget after isvara.io goes live is US$50 a month for the gateway, on top of the US$40 Vercel subscription ([CONSTRAINT-1](../brief.md), gateway spending). A dedicated GPU endpoint alone would exceed it.
 
 ## Data needed
 
@@ -81,13 +81,13 @@ The budget after isvara.io goes live is US$50 a month for the gateway, on top of
 
 ## Effect on the benchmark
 
-- **The claim changes.** Today the claim is that a standard open-weight model, with this agent, harness and knowledge base, answers better than a frontier model ([benchmark/design.md](https://github.com/e1-rahabok/agent-e2/blob/main/benchmark/design.md#L7)). A fine-tuned model makes it "our own trained model", a weaker story for customers who want to fork and run it on their own models (WD-012, release 1.0 success).
+- **The claim changes.** Today the claim is that a standard open-weight model, with this agent, harness and knowledge base, answers better than a frontier model ([benchmark/design.md](https://github.com/e1-rahabok/agent-e2/blob/main/benchmark/design.md#L7)). A fine-tuned model makes it "our own trained model", a weaker story for customers who want to fork and run it on their own models (GOAL-4, release 1.0 success).
 - **More runs.** Each round would need the base model, Agent E2, and Agent E2 with the adapter, to show what the training adds.
 - **Leakage risk.** The examples come from the same knowledge base the questions test. That is fair as long as no example repeats a question; a check would compare every example with every question, as T-E2-004b does for the answer set.
 
 ## Effect on the on-premises deployment
 
-The on-premises deployment is the customer's own, with a local model; it comes after release 1.0 and is out of scope now ([WD-002](../../DECISIONS.md), release 1.0: lab demo, cloud model). There, an adapter is easier: a local vLLM server can load LoRA adapters next to the base model, and the adapter could ship in the offline bundle with the knowledge. Two limits stay: the adapter is tied to one model version, and customers who pick another open model would get no adapter. Training on a customer's own data is a separate question, with privacy concerns, and is not proposed.
+The on-premises deployment is the customer's own, with a local model; it comes after release 1.0 and is out of scope now ([SCOPE-1](../brief.md), release 1.0: lab demo, cloud model). There, an adapter is easier: a local vLLM server can load LoRA adapters next to the base model, and the adapter could ship in the offline bundle with the knowledge. Two limits stay: the adapter is tied to one model version, and customers who pick another open model would get no adapter. Training on a customer's own data is a separate question, with privacy concerns, and is not proposed.
 
 ## Recommendation
 

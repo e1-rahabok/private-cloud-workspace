@@ -2,7 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["pyyaml", "requests"]
 # ///
-"""Run every cross-repo check (CONTRACTS.md), and the name checks of R-WS-007, R-REPO-006, R-REPO-007 and R-REPO-008, against clones of the repositories.
+"""Run every cross-repo check (the contracts in spec/design/system.md), and the name checks of R-WS-007, R-REPO-006, R-REPO-007 and R-REPO-008, against clones of the repositories.
 
 The clones sit next to this repository by default:
 

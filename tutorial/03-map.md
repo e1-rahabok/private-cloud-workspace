@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Before any work, write down what the system is: its parts, where each runs, what talks to what, and which parts of the plan are in scope now. One page is enough. In this project it is [SYSTEM.md](../SYSTEM.md), with a second file, [spec/intent.md](../spec/intent.md), saying why each part exists, who it is for, what success looks like and what it will not do.
+Before any work, write down what the system is: its parts, where each runs, what talks to what, and which parts of the plan are in scope now. One page is enough. In this project it is [SYSTEM.md](../spec/design/system.md), with a second file, [spec/intent.md](../spec/brief.md), saying why each part exists, who it is for, what success looks like and what it will not do.
 
 ## Keep today apart from tomorrow
 

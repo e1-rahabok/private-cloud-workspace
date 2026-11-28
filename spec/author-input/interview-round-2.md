@@ -1,6 +1,6 @@
 # Interview, round 2
 
-The second round of the interview, kept as the record. Each question keeps its evidence and recommendation as asked, followed by its status: decided by Claude at the author's request ("You decide", 2026-11-26), answered by the author in conversation, superseded by a later decision, or still open in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md). To change a decision, write under it or open a new question.
+The second round of the interview, kept as the record. Each question keeps its evidence and recommendation as asked, followed by its status: decided by Claude at the author's request ("You decide", 2026-11-26), answered by the author in conversation, superseded by a later decision, or still open in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md). To change a decision, write under it or open a new question.
 
 Links in this file point at the files as they were when the question was asked.
 
@@ -46,7 +46,7 @@ You asked to remove them (Q-WS-12). The survey listed them in [project/archive](
 
 ### Q-WS-60 Is PCM's repository renamed?
 
-You changed the heading in [spec/intent.md](intent.md) to "private-cloud-manager"; the repository is [private-cloud-manager](https://github.com/e1-rahabok/private-cloud-manager), and PCM's D-001 says "Private Cloud Management".
+You changed the heading in [spec/intent.md](../brief.md) to "private-cloud-manager"; the repository is [private-cloud-manager](https://github.com/e1-rahabok/private-cloud-manager), and PCM's D-001 says "Private Cloud Management".
 
 - **Recommendation:** keep the name as it is, unless you want the repository renamed; then it is renamed like PCM-Adapter was.
 
@@ -129,7 +129,7 @@ If no part lost points in the last 24 hours, [R-LIVE-030](https://github.com/e1-
 
 ### Q-WS-71 Which VCF Operations version is the lab?
 
-**Recommendation:** the lab test reads it at sign-in, as PCM-Adapter's validate.ps1 does, and records it in [SYSTEM.md](../SYSTEM.md).
+**Recommendation:** the lab test reads it at sign-in, as PCM-Adapter's validate.ps1 does, and records it in [SYSTEM.md](../design/system.md).
 
 **Status:** Decided by Claude at the author's request (2026-11-26): read at sign-in and recorded in SYSTEM.md.
 
@@ -259,7 +259,7 @@ Still open from Q-WS-1. The adapter's part is "Guest CPU Run Queue per vCPU"; th
 
 ### Q-WS-89 A key column in the catalog
 
-**Recommendation:** each catalog row gets the adapter's key next to its name, so PCM maps keys to names and the C1 check matches on the key ([R-KPI-001](requirements/kpi-definitions.md)).
+**Recommendation:** each catalog row gets the adapter's key next to its name, so PCM maps keys to names and the C1 check matches on the key ([R-KPI-001](../requirements/kpi-definitions.md)).
 
 **Status:** Decided by Claude at the author's request (2026-11-26): a key column in every catalog row.
 
@@ -329,7 +329,7 @@ Still open from Q-WS-46, since "C3" was unexplained there. C3 is contract 3, the
 
 ## E. isvara.io
 
-From [spec/design/isvara-plan.md](design/isvara-plan.md). The 47 features there have their own reply lines.
+From [spec/design/isvara-plan.md](../design/isvara-plan.md). The 47 features there have their own reply lines.
 
 ### Q-WS-100 Do old `/read/...` addresses redirect?
 
@@ -451,7 +451,7 @@ They live in isvara.io (Q-WS-56), so they copy facts whose master is Agent E2. *
 
 ## G. Lab build
 
-From [spec/requirements/lab-build.md](requirements/lab-build.md).
+From [spec/requirements/lab-build.md](../requirements/lab-build.md).
 
 ### Q-WS-119 Can a nested ESXi host use a virtual NVMe device as its memory tier?
 
@@ -479,7 +479,7 @@ Not proven. **Recommendation:** a first spike builds one nested host and reports
 
 ## H. isvara.io: the visitor model
 
-Your table of why visitors come (2026-11-26) is now the plan's top level ([spec/design/isvara-plan.md](design/isvara-plan.md), section 4, and the site map there). Six features are new: Books (48), Infographics (49), Podcast (50), What's New (51), Manual (52) and Survey (53); Search gains regular expressions (12), and the exam becomes Fun Quiz and the exam (33). These questions settle what the table does not.
+Your table of why visitors come (2026-11-26) is now the plan's top level ([spec/design/isvara-plan.md](../design/isvara-plan.md), section 4, and the site map there). Six features are new: Books (48), Infographics (49), Podcast (50), What's New (51), Manual (52) and Survey (53); Search gains regular expressions (12), and the exam becomes Fun Quiz and the exam (33). These questions settle what the table does not.
 
 ### Q-WS-123 Is a Download door right, next to your ten reasons?
 
