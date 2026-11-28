@@ -227,7 +227,7 @@ They are an interface between the adapter and PCM, not domain knowledge. **Recom
 
 ### Q-WS-84 Credential file names
 
-PCM-Adapter's CONTRIBUTING.md forbids lab addresses in code, but WD-011 names the file `vcf-ops-<address>.xml`. **Recommendation:** `$HOME\.secrets\vcf-ops-readonly.xml` and `vcf-ops-admin.xml`; WD-011 changes to match.
+PCM-Adapter's CONTRIBUTING.md forbids lab addresses in code, but WD-011, the retired log's decision on lab credentials, names the file `vcf-ops-<address>.xml`. **Recommendation:** `$HOME\.secrets\vcf-ops-readonly.xml` and `vcf-ops-admin.xml`; WD-011 changes to match.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): `vcf-ops-readonly.xml` and `vcf-ops-admin.xml`; WD-011 updated.
 

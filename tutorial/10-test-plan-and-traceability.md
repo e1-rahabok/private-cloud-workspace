@@ -69,7 +69,7 @@ A lab test that checks a value needs a second source for the value the product s
 - **A build milestone may start** when the milestone before it is approved and the repositories it changes run their own tests in continuous integration.
 - **A milestone is done** when every scenario of its requirements passes, every listed lab check has run, its review page is current, and the person approves it ([chapter 7](07-requirements-and-acceptance.md)).
 - **Failures:** a failing test is a bug to fix or a question for the person. It is never weakened, skipped or deleted to get a pass.
-- **Known gaps:** the plan lists what is not tested yet and when it will be. In this project the first gap was that three repositories ran their own tests only in sessions. A page test failed on main and nobody saw it, so in M2 each repository gained a workflow that runs its own tests on every pull request. The gap open now is that a scenario names its test in prose, and no check confirms that the test exists. A gap a check cannot fix at once goes into the check's baseline, with an open question, and the baseline may only shrink.
+- **Known gaps:** the plan lists what is not tested yet and when it will be. In this project the first gap was that three repositories ran their own tests only in sessions. A page test failed on main and nobody saw it, so in milestone M2, which checked the contracts and cleaned the repositories, each repository gained a workflow that runs its own tests on every pull request. The gap open now is that a scenario names its test in prose, and no check confirms that the test exists. A gap a check cannot fix at once goes into the check's baseline, with an open question, and the baseline may only shrink.
 
 ## Traceability
 
