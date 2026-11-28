@@ -11,7 +11,7 @@ R-WS-012 (DESIGN-25, DESIGN-26), in the tracked files of every clone:
 - `.github/dependabot.yml` exists and has an update entry for `github-actions`, one for `npm` when a
   `package-lock.json` is tracked, and one for `pip` when a `requirements.txt` is tracked, in that file's folder.
 
-A repository with no clone is reported as not run. checks/test_workflows.py plants a break of each kind.
+A repository with no clone is reported as not run. tools/test_workflows.py plants a break of each kind.
 Exit 0: no problem. Exit 1: a problem. Exit 2: no repository could be read.
 """
 from __future__ import annotations

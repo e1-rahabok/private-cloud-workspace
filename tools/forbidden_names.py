@@ -21,7 +21,7 @@ them. Outside R-REPO-007 and R-REPO-008 also: only the requirement files that fo
 requirement file that links an old path fails, as T-REPO-008e asks.
 
 A repository with no clone is reported as not run: isvara is private, so the workspace's CI cannot read it, and
-isvara's own CI runs this check (R-WS-002). checks/test_forbidden_names.py plants a break of each kind and expects a failure.
+isvara's own CI runs this check (R-WS-002). tools/test_forbidden_names.py plants a break of each kind and expects a failure.
 Exit 0: no problem. Exit 1: a problem. Exit 2: no repository could be read.
 """
 from __future__ import annotations
@@ -35,8 +35,8 @@ from pathlib import Path
 REPOS = ["private-cloud-workspace", "agent-e2", "PCM-Adapter", "private-cloud-manager", "isvara"]
 # Each rule: its requirement, its pattern, and the path prefixes outside its search per repository ("*": every one).
 RECORDS = {
-    "private-cloud-workspace": ["DECISIONS.md", "spec/author-input/", "tutorial/", "checks/forbidden_names.py",
-                                "checks/test_forbidden_names.py", "checks/test_file_names.py"],
+    "private-cloud-workspace": ["DECISIONS.md", "spec/author-input/", "tutorial/", "tools/forbidden_names.py",
+                                "tools/test_forbidden_names.py", "tools/test_file_names.py"],
     "agent-e2": ["project/author-questions-resolved.md"],
     "PCM-Adapter": ["docs/development-guide/engineering-review/"],
     "private-cloud-manager": ["decisions.md"],

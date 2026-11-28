@@ -1,4 +1,4 @@
-"""Planted breaks for checks/file_names.py (R-WS-007, T-WS-007a). Run: python -m unittest discover -s checks -p "test_*.py"."""
+"""Planted breaks for tools/file_names.py (R-WS-007, T-WS-007a). Run: python -m unittest discover -s tools -p "test_*.py"."""
 import unittest
 
 import file_names as names

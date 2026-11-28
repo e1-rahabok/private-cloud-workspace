@@ -1,4 +1,4 @@
-"""Planted breaks for checks/forbidden_names.py (R-REPO-006, T-REPO-006a; R-REPO-007 and R-REPO-008, T-REPO-007b, T-REPO-008e). Run: python -m unittest discover -s checks -p "test_*.py"."""
+"""Planted breaks for tools/forbidden_names.py (R-REPO-006, T-REPO-006a; R-REPO-007 and R-REPO-008, T-REPO-007b, T-REPO-008e). Run: python -m unittest discover -s tools -p "test_*.py"."""
 import subprocess
 import tempfile
 import unittest

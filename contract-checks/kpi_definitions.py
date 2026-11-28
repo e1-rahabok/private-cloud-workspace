@@ -20,7 +20,7 @@ one key twice. A ratio has no unit, so a unit is not required.
 
 Known name gaps (NAME_GAPS below) are a baseline: they are reported as KNOWN and do not fail.
 A new gap fails. A baseline entry that no longer applies also fails, so the baseline only shrinks.
-checks/test_kpi_definitions.py plants a break of each kind and expects this check to fail on it.
+contract-checks/test_kpi_definitions.py plants a break of each kind and expects this check to fail on it.
 
 It reads both repositories from local clones and connects to nothing.
 Exit 0: no new difference. Exit 1: a difference. Exit 2: a repository could not be read.

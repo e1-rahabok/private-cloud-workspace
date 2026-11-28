@@ -39,7 +39,7 @@ For a series of video calls, one call per session above:
 
 ## Materials
 
-- This repository and its [checks](../checks) and [tools](../tools) as the worked example.
+- This repository and its [contract-checks](../contract-checks) and [tools](../tools) as the worked example.
 - The [templates](templates) for participants' own projects.
 - Any small project with two parts that share something, such as a web app and its API, or a script and the file format it reads. Two repositories of a few dozen files each are enough.
 

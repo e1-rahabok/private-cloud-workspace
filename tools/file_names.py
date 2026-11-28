@@ -12,7 +12,7 @@ Outside the check, by R-WS-007: names that are titles written for readers or for
 content (EXEMPT below), and the review pages spec/review/M<n>.md, each named for the milestone it reviews.
 
 A repository with no clone is reported as not run: isvara is private, so the workspace's CI cannot read it, and
-isvara's own CI runs this check (R-WS-002). checks/test_file_names.py plants a break and expects a failure.
+isvara's own CI runs this check (R-WS-002). tools/test_file_names.py plants a break and expects a failure.
 Exit 0: no problem. Exit 1: a problem. Exit 2: no repository could be read.
 """
 from __future__ import annotations

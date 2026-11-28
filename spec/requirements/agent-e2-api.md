@@ -1,6 +1,6 @@
 # Requirements: the Agent E2 API
 
-Contract [C3, the Agent E2 API](../glossary.md#c3): the HTTP calls PCM and isvara.io make to Agent E2. Agent E2 owns the shape, written in the docstring of [harness/answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py); the workspace keeps the requirements on the contract and its check, [checks/agent_e2_api.py](../../checks/agent_e2_api.py) (DESIGN-4). What Agent E2 does behind the API is in agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md). Question IDs (Q-) point at the interview: [round 1](../author-input/interview-round-1.md), [round 2](../author-input/interview-round-2.md). Other IDs are explained in the [glossary](../glossary.md). These requirements belong to milestone M3 in [ROADMAP.md](../../ROADMAP.md).
+Contract [C3, the Agent E2 API](../glossary.md#c3): the HTTP calls PCM and isvara.io make to Agent E2. Agent E2 owns the shape, written in the docstring of [harness/answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py); the workspace keeps the requirements on the contract and its check, [contract-checks/agent_e2_api.py](../../contract-checks/agent_e2_api.py) (DESIGN-4). What Agent E2 does behind the API is in agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md). Question IDs (Q-) point at the interview: [round 1](../author-input/interview-round-1.md), [round 2](../author-input/interview-round-2.md). Other IDs are explained in the [glossary](../glossary.md). These requirements belong to milestone M3 in [ROADMAP.md](../../ROADMAP.md).
 
 ## Time and progress
 
@@ -17,7 +17,7 @@ Source: DESIGN-5 (every contract has a check; a contract changes in three steps)
 - And PCM's synthetic demo keeps the synchronous call in release 1.0, unchanged (R-LIVE-032); the synchronous form is removed after release 1.0, once that demo has moved too
 
 Test scenarios:
-- T-E2-009a (anywhere, automated by [checks/agent_e2_api.py](../../checks/agent_e2_api.py)): the check as it runs today, through PCM's client, passes after the job calls are added.
+- T-E2-009a (anywhere, automated by [contract-checks/agent_e2_api.py](../../contract-checks/agent_e2_api.py)): the check as it runs today, through PCM's client, passes after the job calls are added.
 
 ## Facts PCM sends
 
@@ -43,7 +43,7 @@ Source: answer to Q-WS-36 ("agree": C3's specification lists the facts each feat
 | Suggested questions | `object.kind`, `pillar`, `kpis` | No suggestion |
 
 Test scenarios:
-- T-E2-017a (anywhere, automated by [checks/agent_e2_api.py](../../checks/agent_e2_api.py), to extend): parse the table from the docstring; every fact name in it appears in PCM's frame.md; every feature has a row.
+- T-E2-017a (anywhere, automated by [contract-checks/agent_e2_api.py](../../contract-checks/agent_e2_api.py), to extend): parse the table from the docstring; every fact name in it appears in PCM's frame.md; every feature has a row.
 
 ## The contract check
 
@@ -54,10 +54,10 @@ Why: PCM and isvara.io both call Agent E2, and a field one of them needs can bre
 Source: DESIGN-5; Q-WS-I1 ("I expect you to check all the contracts").
 
 - Given the Agent E2 service in mock mode (no model, no network)
-- When [checks/agent_e2_api.py](../../checks/agent_e2_api.py) runs
+- When [contract-checks/agent_e2_api.py](../../contract-checks/agent_e2_api.py) runs
 - Then it calls the service as PCM does, through PCM's client, and as isvara.io does: until isvara.io has its own client, with a call the check builds from the specification
 - And it checks the fields of R-E2-007, R-E2-010, R-E2-012, R-E2-016, R-E2-018, R-E2-011 (a `type: clarify` reply and the `turns` sent back), R-E2-022 (`page`, the `reader` role) and R-E2-023 (`trace_id`) by name and type, and the 401 of R-E2-024 when a secret is set
 
 Test scenarios:
-- T-E2-019a (anywhere, automated by [checks/agent_e2_api.py](../../checks/agent_e2_api.py), to extend): the check passes on agent-e2's main branch.
+- T-E2-019a (anywhere, automated by [contract-checks/agent_e2_api.py](../../contract-checks/agent_e2_api.py), to extend): the check passes on agent-e2's main branch.
 - T-E2-019b (anywhere, manual once per new field): remove the field in a copy of the service; the check fails and names it.

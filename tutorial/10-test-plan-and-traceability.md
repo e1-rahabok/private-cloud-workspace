@@ -16,7 +16,7 @@ Each level proves something the others cannot. The examples are this project's.
 | Contract | Both sides of a seam agree | The KPI definitions check; the Agent E2 API check |
 | Specification | The documents are complete and linked | Every requirement has a source and a test |
 | Page | What a user sees works | PCM's page tests in a headless browser |
-| Journey | A visitor's path across several pages leads where it should | PCM's rehearsal of its demo script; isvara.io's journey tests on the Vercel preview, planned from M4 |
+| Journey | A visitor's path across several pages leads where it should | PCM's rehearsal of its demo script; isvara.io's journey tests on the Vercel preview, from milestone M4 |
 | Evaluation | A model's answers are right, cited and safe | Agent E2's graded answer set; isvara.io's citation and injection batteries |
 | Lab | The product works on the real system | The adapter's live validation against VCF Operations |
 | Acceptance | A milestone's outcome holds, including what no script can judge | The milestone's review page; a demo walk-through |
@@ -28,7 +28,7 @@ A level is chosen by what it costs and what it catches. A unit test runs in a se
 Every scenario says where it runs: "anywhere", on any machine with fakes, or "lab", on the real VCF Operations behind the author's VPN. The plan names three environments and what runs in each:
 
 - **Anywhere:** a cloud session or GitHub Actions, with the repositories cloned side by side. The unit tests, page tests, contract checks and specification checks run here. The contract checks run on every pull request of every repository and once a day.
-- **With the gateway key:** the same, plus the key of the model gateway. The model evaluations run here, from M3 on.
+- **With the gateway key:** the same, plus the key of the model gateway. The model evaluations run here, from milestone M3 on, when Agent E2 serves PCM and isvara.io.
 - **Lab:** the author's laptop over the VPN, only in milestone M8. Before M8, a session reports each lab test as "not run", lists it in its pull request, and goes on. A test that was not run is never reported as passed.
 
 ## Test data
@@ -69,7 +69,7 @@ A lab test that checks a value needs a second source for the value the product s
 - **A build milestone may start** when the milestone before it is approved and the repositories it changes run their own tests in continuous integration.
 - **A milestone is done** when every scenario of its requirements passes, every listed lab check has run, its review page is current, and the person approves it ([chapter 7](07-requirements-and-acceptance.md)).
 - **Failures:** a failing test is a bug to fix or a question for the person. It is never weakened, skipped or deleted to get a pass.
-- **Known gaps:** the plan lists what is not tested yet and when it will be. In this project the first gap is that three repositories run their own tests only in sessions, outside continuous integration; each adds them before the first milestone that changes it. A gap a check cannot fix at once goes into the check's baseline, with an open question, and the baseline may only shrink.
+- **Known gaps:** the plan lists what is not tested yet and when it will be. In this project the first gap was that three repositories ran their own tests only in sessions. A page test failed on main and nobody saw it, so in milestone M2, which checked the contracts and cleaned the repositories, each repository gained a workflow that runs its own tests on every pull request. The gap open now is that a scenario names its test in prose, and no check confirms that the test exists. A gap a check cannot fix at once goes into the check's baseline, with an open question, and the baseline may only shrink.
 
 ## Traceability
 

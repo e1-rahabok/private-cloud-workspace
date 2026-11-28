@@ -1,4 +1,4 @@
-"""Planted breaks for checks/lab_addresses.py (R-WS-010, T-WS-010a). Run: python -m unittest discover -s checks -p "test_*.py"."""
+"""Planted breaks for tools/lab_addresses.py (R-WS-010, T-WS-010a). Run: python -m unittest discover -s tools -p "test_*.py"."""
 import subprocess
 import tempfile
 import unittest

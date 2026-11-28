@@ -1,4 +1,4 @@
-"""Planted breaks for checks/secret_values.py (R-WS-011, T-WS-011a). Run: python -m unittest discover -s checks -p "test_*.py".
+"""Planted breaks for tools/secret_values.py (R-WS-011, T-WS-011a). Run: python -m unittest discover -s tools -p "test_*.py".
 
 Each planted token is joined at run time, so this file never holds one whole and no scanner flags it."""
 import subprocess

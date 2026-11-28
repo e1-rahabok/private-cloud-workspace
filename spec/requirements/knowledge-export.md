@@ -8,13 +8,13 @@ Why: isvara.io builds its pages from the export, so without one schema a change 
 
 Source: Q-WS-41 (the recommendation of an export with a check that every link and image resolves; the author reviews the change in the [before and after](../design/isvara-before-and-after.md) before M4); DESIGN-3; DESIGN-5 (every contract has a check); DESIGN-4.
 
-- Given the export schema in this workspace, `checks/knowledge_export_schema.json`
+- Given the export schema in this workspace, `contract-checks/knowledge_export_schema.json`
 - When the cross-repo checks run
-- Then `checks/knowledge_export.py` runs agent-e2's export tool on the agent-e2 clone and validates the result against the schema
+- Then `contract-checks/knowledge_export.py` runs agent-e2's export tool on the agent-e2 clone and validates the result against the schema
 - And isvara.io's build validates the export it reads against the same schema and stops on any difference
 
 Test scenarios:
-- T-EXPORT-001a (anywhere, automated by `checks/knowledge_export.py`, to write, run by [`checks/run_all.py`](../../checks/run_all.py)): the export of agent-e2's main passes; a copy with one record missing its `internal_derive` field fails and names the record.
+- T-EXPORT-001a (anywhere, automated by `contract-checks/knowledge_export.py`, to write, run by [`contract-checks/run_all.py`](../../contract-checks/run_all.py)): the export of agent-e2's main passes; a copy with one record missing its `internal_derive` field fails and names the record.
 - T-EXPORT-001b (anywhere, automated by isvara's article check of R-CONTENT-016, to write): a fixture export without `fingerprint` stops the build.
 
 ### R-EXPORT-002 isvara.io reads only what the schema names

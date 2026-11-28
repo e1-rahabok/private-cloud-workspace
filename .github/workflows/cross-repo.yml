@@ -56,9 +56,11 @@ jobs:
         run: |
           if [ -f package-lock.json ]; then npm audit --omit=dev --audit-level=high; else echo "no package-lock.json: not run"; fi
       - name: Contract and name checks
-        run: python private-cloud-workspace/checks/run_all.py --no-clone
+        run: python private-cloud-workspace/contract-checks/run_all.py --no-clone
       - name: Planted breaks of the checks
-        run: python -m unittest discover -s private-cloud-workspace/checks -p "test_*.py"
+        run: |
+          python -m unittest discover -s private-cloud-workspace/contract-checks -p "test_*.py"
+          python -m unittest discover -s private-cloud-workspace/tools -p "test_*.py"
       - name: Requirements, test scenarios and sources of every repository read here
         run: |
           repos="agent-e2 PCM-Adapter private-cloud-manager"
