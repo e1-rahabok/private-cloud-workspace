@@ -22,7 +22,7 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 | Contract checks | Both sides of a contract agree; each planted break fails | [`contract-checks/`](../contract-checks) | Every pull request of every repository; daily |
 | Page tests | A page renders and behaves, with stub services | PCM's Playwright page tests; isvara's build | Every pull request of that repository |
 | Journey tests | A visitor's path through several pages leads where it should | isvara's journey tests on the Vercel preview, from M4; PCM's demo rehearsals, synthetic and live | Every pull request of isvara from M4; before every PCM demo |
-| Model evaluations | Answers are right, cited and safe | Agent E2's graded answer set; isvara.io's two batteries | Each change of model or prompt |
+| Model evaluations | Answers are right, cited and safe | Agent E2's graded answer set; isvara.io's two batteries | A change that needs one by the table below, on the author's go |
 | Lab tests | The system works on real VCF Operations data; PCM's values equal VCF Operations' | The adapter's `validate.ps1`; PCM's `Test-Live.ps1` ([test plan](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/test-plan.md)) | M8, in a session with the author |
 | Acceptance | A milestone's outcome holds, as the author confirms it in plain words | The milestone's [review page](review), which carries no test counts | When the milestone's work is done |
 
@@ -31,6 +31,20 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 - **Branch cleanup:** [branch_cleanup.py](../tools/branch_cleanup.py) is tested against a fake GitHub by [test_branch_cleanup.py](../tools/test_branch_cleanup.py) (T-WS-014a). On every pull request its workflow lists what it would delete, and the first real run in each repository is checked by hand (T-WS-014c).
 - **Contract checks:** C1, C3 and C5 run today (C5 needs the gateway key); C2 is added in M8 and C4 in M4 ([system design](design/system.md), section Contracts). Each check has a test that plants a break of each kind it compares (R-WS-001).
 - **Model evaluations:** Agent E2's free-text answer set, graded by a strong model as judge (DESIGN-19), about US$2 a run; isvara.io's citation eval and injection battery, against a running server (DESIGN-10); Agent E2's full multiple-choice round never runs (the author, 2026-11-28; DESIGN-31). Each run stops when its spending reaches US$100, and an answer or a grade whose inputs have not changed is reused (CONSTRAINT-1, DESIGN-31). All need the Vercel AI Gateway key (DEPENDENCY-2), which no GitHub workflow holds.
+
+## Tests for each kind of change
+
+Every change gets the smallest test that proves it: the row of what it changed. A change that fits two rows takes the larger test. A test that spends money is offered to the author with its cost, its time and what it proves, and starts only on the author's go (CONSTRAINT-1, DESIGN-31). No row runs a test because a milestone closes.
+
+| What changed | Tests | Cost | Starts |
+|---|---|---|---|
+| Documents, the specification, the checks, the test runner | Specification checks, unit tests of the changed tools | None | Every pull request |
+| Code around the model: Agent E2's service, PCM's and isvara.io's pages | Unit tests, contract checks, page tests; journey tests from M4 | None | Every pull request |
+| What Agent E2's model reads: knowledge files, prompts, the agent's steps, search | Knowledge rules and retrieval checks (free); then the answer set | About US$2 a run | Free checks with the change; the answer set on the author's go |
+| Agent E2's model or its settings | The answer set | About US$2 a run | The author's go |
+| A bad answer the author reports | The screen answer check, before and after the fix | Under US$1 | The author's report (agent-e2's [CLAUDE-PROJECT.md](https://github.com/e1-rahabok/agent-e2/blob/main/CLAUDE-PROJECT.md), section Working with the author) |
+| isvara.io's prompt or its guard against hidden instructions, from M5 | The citation eval and the injection battery, 40 questions | Up to about US$4 a run | The author's go |
+| Anything | Agent E2's full benchmark round | Never run | Refused by the runner (the author, 2026-11-28) |
 
 ## Environments
 
