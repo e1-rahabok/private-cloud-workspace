@@ -10,7 +10,7 @@ that name the old names to forbid them, give them as examples, or record them as
 - R-REPO-007 and R-REPO-008 (T-REPO-007b, T-REPO-008e): PCM's old package and file names `pcm_proto` and `story_m5`,
   links to PCM's old folders `build/` and `sources/` on its main branch, and PCM's old paths written out
   (`build/tests`, `build/pcm_proto`, and `spec/<folder>/` for the specification folders that moved into each
-  workspace in D-133), and the Docs workspace's old folder `pcm/docs` and module `pcm.docs` (D-135). A link pinned to a
+  workspace in D-133), and the Docs workspace's old folders `pcm/docs` and `pcm/definitions` and modules `pcm.docs` and `pcm.definitions` (D-135). A link pinned to a
   commit, as the interview records use, still resolves and is not an old name; a path inside a workspace folder, such
   as `pcm/core/spec/catalog/`, is a new path.
 
@@ -50,12 +50,12 @@ RULES = [
     ("R-REPO-008", re.compile(r"private-cloud-manager/(?:blob|tree)/main/(?:build|sources)(?:/|\b)"
                               r"|(?<![\w/-])build/(?:tests|pcm_proto)\b"
                               r"|(?<![\w/-])spec/(?:workspaces|catalog|data|design-system|api|objects|database|tests)/"
-                              r"|(?<![\w-])pcm[/.]docs(?![\w-])"),
+                              r"|(?<![\w-])pcm[/.](?:docs|definitions)(?![\w-])"),
      {"private-cloud-manager": ["spec/requirements/clean-up.md"]}),
 ]
 # What git grep reads first, in its own pattern language; the rules above then decide.
 PREFILTER = (r"VCF-vCommunity-Adapter|private-cloud-management|pcm_proto|story_m5|private-cloud-manager/(blob|tree)/main/(build|sources)"
-             r"|build/(tests|pcm_proto)|spec/(workspaces|catalog|data|design-system|api|objects|database|tests)/|pcm[/.]docs")
+             r"|build/(tests|pcm_proto)|spec/(workspaces|catalog|data|design-system|api|objects|database|tests)/|pcm[/.](docs|definitions)")
 
 
 def outside(repo: str, path: str, rule_outside: dict[str, list[str]]) -> bool:
