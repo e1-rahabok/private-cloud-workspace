@@ -12,13 +12,15 @@ The person is the domain expert and the user. The agent is the architect and the
 
 For most of this project the split was drawn differently. The person made the decisions; the agent asked for them, recorded each answer as a numbered decision, and carried it out. The author named the flaw on 2026-11-28: "You record all decisions in DECISIONS.md. This makes you take my decisions as the authority, and then jump into execution. Decision is yours, not mine." And on what the agent should bring instead: "You come to me not for decision, but for scope, goals, requirements, assumptions, constraints, and rationale."
 
-The decision log had made the habit worse. Once an answer was a numbered decision, it read as an order, and an order gets executed. The clearest case is in the log itself: WD-022 recorded the author's table of reasons why visitors come to isvara.io as a decision, and the site plan was rebuilt around it within the hour. Its status line now reads: "The visitor model was a suggestion". The next section tells the story.
+The decision log had made the habit worse. Once an answer was a numbered decision, it read as an order, and an order gets executed. The clearest case is in the log itself: WD-022 recorded the author's table of reasons why visitors come to isvara.io as a decision, and the site plan was rebuilt around it within the hour. Its status line was later changed to read: "The visitor model was a suggestion". The next section tells the story.
 
 Three habits follow from the new split:
 
 - **Ask for knowledge, and decide the rest.** A question to the person asks for a goal, a fact, a constraint or a reason, and says what the agent will assume until the answer comes ([chapter 5](05-the-interview.md)).
 - **Show the design.** The person reads the design to learn and to catch a domain mistake, so each choice carries its options and its reasons ([chapter 8](08-design.md)).
 - **Write the outcome where it takes effect.** An answer changes the brief, a requirement or the design directly, with the person's words as the reason ([chapter 2](02-the-method.md)).
+
+Since 2026-11-28 the [CLAUDE.md](../CLAUDE.md) of every repository in this project states these roles in a section of their own. One line in it carries the change: "Ask the author only for input. Never ask the author to approve a design choice or to choose between designs."
 
 ## The agent as co-architect
 
@@ -32,7 +34,7 @@ What a co-architect does differently:
 
 - **Treats the person's input as material to think with.** Unless the person says "decide" or "do it", a suggestion gets a reply first: what is strong in it, what is weak, what is missing, and a recommendation. The files change only after the two agree.
 - **Disagrees when it has a reason.** A recommendation that simply repeats what the person said is not worth asking for.
-- **Decides what it can decide.** The agent in this project asked where "availability" belongs among operations disciplines. Any practitioner knows the answer. Asking wastes the person's time and costs their trust. Questions are for judgement, experience, scope and taste. For everything else the agent states its answer and lets the person overrule it.
+- **Decides what it can decide.** The agent in this project asked where "availability" belongs among operations disciplines. Any practitioner knows the answer. Asking wastes the person's time and costs their trust. Questions are for input: goals, scope, facts from the field, constraints and reasons. For everything else the agent states its answer with its reason, and the person can correct it.
 - **Checks the plan against the person's intent.** At the start of a release, the agent compares what the person says the release is with what the roadmap holds, and shows the difference with numbers. In this project the person expected two parts to stay nearly untouched; the roadmap held 43 requirements for them.
 - **Leaves names to the person.** A name tells people who a project belongs to. The author once let the agent rename the management pack, then reversed it to keep the community's name. Naming is taste, even when it is delegated.
 - **Looks before it asks.** Before any question, the agent searches the brief, the design, the requirements, the interview records and the glossary. In this project it once asked whether the management pack was "part of" PCM. Three files already held the answer, and the question used a word with two meanings. It now describes such relations by mechanism: which code, which network call, which data, which dependency.

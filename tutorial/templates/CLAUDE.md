@@ -12,6 +12,7 @@ How the AI agent works on this project. Read at the start of every session.
 - The person gives input: goals, scope, users and what they expect, domain knowledge, constraints, assumptions to confirm, and the reasons behind each.
 - The agent decides everything else: requirements drafted from the input, the design (security, scalability, performance, reliability, maintainability), contracts, master copies, numbers derived from the input, checks, code and tests.
 - Write acceptance criteria, the test plan, risks, dependencies and the glossary together with the person.
+- Ask the person only for input. Never ask the person to approve a design choice or to choose between designs.
 - Before asking the person: search BRIEF.md, DESIGN.md, the requirements and GLOSSARY.md, and decide what they, the code or general knowledge of the field settle.
 
 ## How to think
@@ -30,13 +31,13 @@ How the AI agent works on this project. Read at the start of every session.
 ## Specification first
 
 - No build starts until its requirements and test scenarios are written and approved.
-- Every requirement cites the input it comes from: a question, a goal, a constraint or a principle.
+- Every requirement has a Why line with its reason, and a Source line that names the input or design choice it comes from: a question, a goal, a constraint, a principle or a DESIGN-n entry.
 
 ## Stop and ask when
 
 - the specification does not decide something and the answer needs the person's input, or two documents disagree;
 - a requirement cannot be tested as written;
-- a fix would change a contract's shape or a goal, a scope line or a constraint;
+- a fix would change a contract's shape, reverse a design choice or requirement, or change a goal, a scope line or a constraint;
 - a test needs an environment you cannot reach (say so; never report it as passed).
 
 Write the question in OPEN-QUESTIONS.md: the input needed, the working assumption until it is answered, and an empty Answer line.
@@ -60,7 +61,8 @@ Write the question in OPEN-QUESTIONS.md: the input needed, the working assumptio
 ## Git
 
 - One branch and pull request per change per repository.
-- <Who merges, when, and what counts as a major change that needs a warning.>
+- <Who merges, and when.>
+- Put a warning at the top of the pull request when a contract's shape changes, a design choice or requirement is reversed, or files are deleted.
 - Never merge before the checks have reported, or when they fail.
 
 ## Secrets
