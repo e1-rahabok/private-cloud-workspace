@@ -71,14 +71,15 @@ Test scenarios:
 
 The contract side. The VCF vCommunity Adapter's side is [R-ADP-011](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md#r-adp-011-the-closure-levels-equal-the-catalogs).
 
-Source: answers to Q-WS-15 and Q-WS-16; WD-036.
+Source: answers to Q-WS-15 and Q-WS-16; WD-036; WD-044 (one Risk level for every cluster in release 1.0).
 
 - Given the close-for-business levels in Agent E2's catalog
 - When the check compares them with the levels in the adapter's Periodic Cluster Check code
-- Then each level for Consumption, Performance and Risk is equal
+- Then each level for Consumption and Performance is equal
+- And the adapter's one Risk level equals the catalog's production row, `closure-cluster-risk-prod`, which the catalog says release 1.0 applies to every cluster; the non-production row is not compared
 
 Test scenarios:
-- T-KPI-006a (anywhere, automated by checks/kpi_definitions.py): compare every level; any difference fails.
+- T-KPI-006a (anywhere, automated by checks/kpi_definitions.py): compare every level, Risk against the production row; any difference fails. A planted break of each level is in checks/test_kpi_definitions.py.
 
 ### R-KPI-007 Dropped: usable capacity is Total − HA − Buffer
 

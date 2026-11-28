@@ -119,6 +119,16 @@ class PlantedBreaks(unittest.TestCase):
         problems = self.periodic_problems(edit)
         self.assertTrue(any("Consumption red" in p for p in problems), problems)
 
+    def test_a_changed_risk_level_fails(self):
+        def edit(folder):
+            f = folder / "thresholds-capacity.yaml"
+            text = f.read_text(encoding="utf-8")
+            at = text.index("id: closure-cluster-risk-prod")
+            end = text.index("value: 60", at)
+            f.write_text(text[:end] + "value: 70" + text[end + len("value: 60"):], encoding="utf-8")
+        problems = self.periodic_problems(edit)
+        self.assertTrue(any("Risk orange" in p for p in problems), problems)
+
     def test_a_changed_excluded_when_green_fails(self):
         adapter = copy.deepcopy(self.adapter)
         metric, label = adapter["Cluster Risk"]["Worst ESXi CPU Imbalance"]

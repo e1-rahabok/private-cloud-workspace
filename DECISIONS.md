@@ -280,3 +280,21 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 - **Date:** 2026-11-27
 - **Decision:** Agent E2's answer set holds about 15 free-text questions in release 1.0, and grows toward 40 after it (R-E2-004). PCM and isvara.io read an Agent E2 job once every 10 seconds while it runs, and count the time up in the browser between reads (R-E2-020, R-ASK-002).
 - **Reason:** The author, 2026-11-27. On the answer set: the grader has a lower priority, since isvara.io's quiz is multiple choice and never uses it ([tutorial, chapter 12](tutorial/12-case-study.md), day four). On the interval: "VMware Admin does not mind 10 seconds waiting as he knows this is not a general chat." Both were quoted in requirements without a decision block, which the cold review of M1 found.
+
+## WD-044 One Cluster Risk closure level in release 1.0
+
+- **Date:** 2026-11-28
+- **Decision:** Agent E2's knowledge and catalog keep two Cluster Risk levels for Close for Business as practice: production closes above 60%, non-production above 80%. Release 1.0 applies the production level to every cluster, because neither the VCF vCommunity Adapter nor Agent E2 has data on a cluster's environment. The catalog's production row says it applies to every cluster in release 1.0, and its non-production row says it is not applied in release 1.0. Agent E2's Close for Business file, the adapter's pages and Agent E2's capacity opening state the limitation. Agent E2 no longer reads a `production` fact, which no caller sends (contract C3). The KPI definitions check compares the adapter's Risk level with the production row (R-KPI-006, R-ADP-011).
+- **Reason:** The author, answer to Q-WS-138: "Agree. Document the limitation that both prod and non-prod have the same level. Agent E2 has no understanding about the environment in Release 1.0." Both levels keep the author's field knowledge, and one level in release 1.0 lets Agent E2 explain the verdict PCM shows, which was the reason for Q-WS-16.
+
+## WD-045 isvara.io's injection guard once Agent E2 answers
+
+- **Date:** 2026-11-28
+- **Decision:** isvara.io keeps its pre-scan and the fence around the visitor's turn, and adds one small model call that reads the fenced turn before Agent E2 is called and flags an instruction aimed at the assistant. A flagged question gets a fixed reply. The guard stays in isvara.io (Q-WS-47). The two batteries are rewritten for Agent E2: the citation eval passes when every answer to 20 reader questions lists at least one source that opens an article; the injection battery passes with 0 violations, and a one-off formatting request is still honoured. Both run before M5 merges. A page for people explains the guard and the two batteries (R-ASK-012).
+- **Reason:** The author, answer to Q-WS-136: "Ok. Document the answers so human readers can learn from it." When Agent E2 answers, isvara.io no longer writes the prompt, so Rule 4 of AskIO's prompt, the layer that stops an attack today, has nowhere to live. The author had asked what "the evals pass" means (Q-WS-54); a reader of isvara.io's code has the same question.
+
+## WD-046 isvara's folder renames in M4
+
+- **Date:** 2026-11-28
+- **Decision:** The five renames that the folder review (T-WS-007b) found in isvara are made in M4, in one pull request with the redirects: `Input File/` to `homelabs-source/`, [`Tools/`](https://github.com/e1-rahabok/isvara/tree/main/Tools) to `calculator-workbooks/`, [`app/estate/`](https://github.com/e1-rahabok/isvara/tree/main/app/estate) to `app/health-check/` with a 308 redirect from `/estate`, [`public/brand/`](https://github.com/e1-rahabok/isvara/tree/main/public/brand) to `public/partner-logos/`, and [`app/_signal/`](https://github.com/e1-rahabok/isvara/tree/main/app/_signal) to `app/_ui/`. For isvara only, this replaces T-WS-007b's rename in the same milestone.
+- **Reason:** The author, answer to Q-ISVARA-1: "AGREE". The rebuild of M4 moves these pages anyway, so they move once, and the redirect keeps the links that the MCP tool `health_check` returns (`/estate#live=...`) working.

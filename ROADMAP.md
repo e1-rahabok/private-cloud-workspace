@@ -112,7 +112,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - [x] Agent E2's plan describes release 1.0, and the older benchmarks are removed (R-REPO-003, R-REPO-004) ([agent-e2#485](https://github.com/e1-rahabok/agent-e2/pull/485)).
 - [x] The adapter's documentation keeps only what the adapter does (R-REPO-001, R-REPO-002) ([agent-e2#487](https://github.com/e1-rahabok/agent-e2/pull/487), [PCM-Adapter#116](https://github.com/e1-rahabok/PCM-Adapter/pull/116)).
 - [x] PCM is named Private Cloud Manager, its files are named for what they hold, and its folders are grouped by workspace (R-REPO-005, R-REPO-007, R-REPO-008) ([private-cloud-manager#83](https://github.com/e1-rahabok/private-cloud-manager/pull/83), [private-cloud-manager#84](https://github.com/e1-rahabok/private-cloud-manager/pull/84), [#55](https://github.com/e1-rahabok/private-cloud-workspace/pull/55)).
-- [ ] A fresh session guesses each repository's folders from the tree alone, and every wrong guess is renamed ([T-WS-007b](spec/requirements/workspace.md)). The review ran and three folders were renamed ([PCM-Adapter#117](https://github.com/e1-rahabok/PCM-Adapter/pull/117)). The other renames wait for the author's answers to [Q-PCM-2](https://github.com/e1-rahabok/private-cloud-manager/blob/main/OPEN-QUESTIONS.md), [Q-ISVARA-1](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md) and [Q-E2-273](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions.md), asked in [private-cloud-manager#86](https://github.com/e1-rahabok/private-cloud-manager/pull/86), [isvara#13](https://github.com/e1-rahabok/isvara/pull/13) and [agent-e2#488](https://github.com/e1-rahabok/agent-e2/pull/488).
+- [ ] A fresh session guesses each repository's folders from the tree alone, and every wrong guess is renamed ([T-WS-007b](spec/requirements/workspace.md)). The review ran and three folders were renamed ([PCM-Adapter#117](https://github.com/e1-rahabok/PCM-Adapter/pull/117)). PCM's Docs workspace folder, pcm/docs, becomes [`pcm/definitions`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/definitions) (Q-PCM-2, [round 6](spec/interview-round-6.md)). isvara's five renames move to M4 (WD-046). agent-e2's rename waits for the author's answer to [Q-E2-273](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions.md), asked in [agent-e2#488](https://github.com/e1-rahabok/agent-e2/pull/488).
 - [ ] Approval: the author approves M2 from its [review page](spec/review/M2.md).
 
 ### M3 Agent E2 serves PCM and isvara.io
@@ -128,12 +128,12 @@ Claude's working method, about how Claude works and never about the product (WD-
 - **Outcome:** on the Vercel preview, a visitor reads every Agent E2 knowledge file as an article, finds it through the three learning paths and through search, and sees the first infographic. Every fact and number on an article comes from Agent E2's export; the tools follow in M6.
 - **Needs:** M2 for the checks, and the author's review of the [before and after](spec/design/isvara-before-and-after.md), which the author asked for before anything is built (Q-WS-41). It does not need M3.
 - **Runs:** in a cloud session. The rewrite of each article and its checks need the Vercel AI Gateway key.
-- **Requirements:** R-CONTENT-002 to R-CONTENT-021 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), R-E2-027 and R-E2-028 (agent-e2's [knowledge-export.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/knowledge-export.md)), R-EXPORT-001 and R-EXPORT-002 (the workspace's [knowledge-export.md](spec/requirements/knowledge-export.md), contract C4).
+- **Requirements:** R-CONTENT-002 to R-CONTENT-021 (isvara's [content.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/content.md)), R-E2-027 and R-E2-028 (agent-e2's [knowledge-export.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/knowledge-export.md)), R-EXPORT-001 and R-EXPORT-002 (the workspace's [knowledge-export.md](spec/requirements/knowledge-export.md), contract C4); and isvara's five folder renames, with the redirects (T-WS-007b, WD-046).
 
 ### M5 isvara.io Ask and contributions
 
 - **Outcome:** on the preview, a visitor asks Agent E2 a question, with screenshots and CSV files, follows its progress and opens its sources; sends a contribution to a private queue; and the protection layers stop floods, bots, unsafe files and hidden instructions.
-- **Needs:** M3 for the Agent E2 API, M4 for the articles that sources open, and the author's answer to Q-WS-136 on the injection guard.
+- **Needs:** M3 for the Agent E2 API, and M4 for the articles that sources open. The injection guard is decided (WD-045).
 - **Runs:** in a cloud session. Where the public Agent E2 runs is chosen after measuring (Q-WS-4); a new hosting account would need the author.
 - **Requirements:** R-ASK-001 to R-ASK-011 ([ask.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/ask.md)), R-CONTRIB-001 to R-CONTRIB-006 ([contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md)), R-PROTECT-001 to R-PROTECT-006 ([protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md)).
 
@@ -166,7 +166,7 @@ Claude's working method, about how Claude works and never about the product (WD-
 - Approval of each milestone from M2 on.
 - Before M4: a review of the [isvara.io before and after](spec/design/isvara-before-and-after.md) (Q-WS-41).
 - At M3: the Vercel AI Gateway key for this cloud environment, the answer keys marked uncertain, and grading 20 answers once (Q-WS-92).
-- Before M5: the answer to Q-WS-136, the injection guard once Agent E2 answers; at M5, an account on the host chosen for the public Agent E2, if it needs one, and the bot-check service the protection uses.
+- At M5: an account on the host chosen for the public Agent E2, if it needs one, and the bot-check service the protection uses.
 - At M6: the exam's ten questions (Q-WS-113), and a review of 20 quiz questions (R-PRACTICE-003).
 - At M7: the switch from the preview.
 - At M8: a lab session with the laptop and the VPN, and turning on the packet counters in the lab policy (Q-WS-85).
