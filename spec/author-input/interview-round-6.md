@@ -265,6 +265,24 @@ After that answer:
 
 **Result:** CONSTRAINT-1 and DESIGN-31: the full benchmark round never runs, and the runner refuses to start one; the answer set and the free automatic checks test Agent E2. R-E2-031 in agent-e2's test-spending.md.
 
+On the first run of the answer set, started as soon as the gateway key was in place:
+
+> Do not execute the test run.
+
+On the reason given for the full round, that M3 "rebuilds how Agent E2 answers":
+
+> What "work"? I notice you like to usen short form. Agent E2 is made up of The Agent + The Harness + The Knowledge + LLM. What did you change? You must inform me as that was not needed at all
+
+> You are planning to build a common service on the harness, but how does it impact the knowledge? You are just making procedural changes that doesn't impact anything.
+
+> I don't understand the flip-flop. First, you wanted to do a test, a full run, and then you said that you don't need the full run because you are just making procedural changes, and now you are even dropping the change. So can you explain to me what is needed actually?
+
+Asking for the cause:
+
+> Do you need Opus to investigate why The Architect hallucinated and believed a full run is needed and it didn't need to inform me? What should I have to avoid the double mistakes? What was missing since we're doing SDD?
+
+**Result:** CONSTRAINT-1: a run that spends the author's money starts only on the author's go, after Claude has told the author its cost, its time and what it proves, and a budget caps a run without approving one. DESIGN-31 and the [test plan](../test-plan.md), section Tests for each kind of change: each test is sized to what changed, and no test runs because a milestone closes. [CLAUDE.md](../../CLAUDE.md) of all five repositories, sections Roles, Before acting, Replies to the author and Spending: the author's money is input, and the state of work is read on main before it is reported. Q-WS-141 in [OPEN-QUESTIONS.md](../../OPEN-QUESTIONS.md) asks what may be spent without asking.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):

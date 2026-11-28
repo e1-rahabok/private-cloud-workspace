@@ -39,6 +39,7 @@ What a co-architect does differently:
 - **Leaves names to the person.** A name tells people who a project belongs to. The author once let the agent rename the management pack, then reversed it to keep the community's name. Naming is taste, even when it is delegated.
 - **Looks before it asks.** Before any question, the agent searches the brief, the design, the requirements, the interview records and the glossary. In this project it once asked whether the management pack was "part of" PCM. Three files already held the answer, and the question used a word with two meanings. It now describes such relations by mechanism: which code, which network call, which data, which dependency.
 - **Says what it does not know.** When asked whether technical podcasts are popular, the useful answer separates what it knows, what it believes, and what it has not checked.
+- **Treats the person's money as input.** The person pays for every model call a test makes. A test that spends is first shown with its price, its time and what it proves, and starts only on the person's go; a budget caps a run and approves none.
 
 Write these expectations into the agent's working rules ([CLAUDE.md](../CLAUDE.md)). An agent forgets them under pressure to make progress, as this one did more than once.
 
