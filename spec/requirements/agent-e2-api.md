@@ -21,7 +21,7 @@ Test scenarios:
 
 ### R-E2-017 The specification lists the facts each answer feature needs
 
-Source: answer to Q-WS-36 ("agree": C3's specification lists the facts each feature needs; C3's check adds a live-shaped case; Agent E2 says when a needed fact is missing).
+Source: answer to Q-WS-36 ("agree": C3's specification lists the facts each feature needs; C3's check adds a live-shaped case; Agent E2 says when a needed fact is missing); WD-044 (no `production` fact: release 1.0 has no data on a cluster's environment).
 
 - Given the docstring of [answer_service.py](https://github.com/e1-rahabok/agent-e2/blob/main/harness/answer_service.py), the specification of the Agent E2 API
 - When it is read
@@ -33,7 +33,7 @@ Source: answer to Q-WS-36 ("agree": C3's specification lists the facts each feat
 | The opening on how a score moved (`lead`) | `kpis`: `label`, `better`, `points` | No opening |
 | When a score changed level, and which parts moved | `kpis` points over at least 2 hours; `parts_hourly` for the parts | No step line; no parts named |
 | The part that pulled a score down at its worst point | `asked_about_kpi.parts_at_worst` | No part named |
-| The capacity opening (close for business) | `pillar: Capacity`; `check` (the Periodic Cluster Check values) or the Consumption, Performance and Risk series; `production` | No capacity opening |
+| The capacity opening (close for business) | `pillar: Capacity`; `check` (the Periodic Cluster Check values) or the Consumption, Performance and Risk series | No capacity opening |
 | The band of each figure on the screen | each metric's name, as in the catalog, and its value | No band line |
 | Where to look next | `screen.drill_down` | No pointer |
 | Suggested questions | `object.kind`, `pillar`, `kpis` | No suggestion |

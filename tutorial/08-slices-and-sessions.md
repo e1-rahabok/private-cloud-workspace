@@ -47,6 +47,8 @@ The checks are what make the early rule safe. Without them, merging unreviewed w
 
 A conversation that settles several decisions in a row produces several pull requests that touch the same files, such as the roadmap. Opened side by side, they conflict. Build each one on top of the one before it instead. Merging the last one then merges the whole stack.
 
+A decision goes in before the requirements that cite it. The specification check refuses a requirement whose source names a decision that does not exist yet, and each repository's CI reads the decisions from the parent's main branch. So when the author answered six questions on one day, the parent recorded the answers and decisions in a pull request of their own and merged it first. Then each child repository's pull request could cite them.
+
 One more lesson from this project: wait for the checks to actually report before merging. Once, the command that waits for them returned before the checks had even started, and the merge went through unchecked. The checks passed afterwards, but that was luck.
 
 ## Exercise

@@ -1,6 +1,6 @@
 # Interview, round 6
 
-Questions answered by the author on 2026-11-28: two in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md), and one or two in the question files of private-cloud-manager, PCM-Adapter and isvara. The answers are as written, with what follows from each. IDs are explained in the [glossary](glossary.md).
+Questions answered by the author on 2026-11-28: two in [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md), and nine in the question files of private-cloud-manager, PCM-Adapter, isvara and agent-e2. The answers are as written, with what follows from each. IDs are explained in the [glossary](glossary.md).
 
 ## Q-WS-136 The injection guard and the evals once Agent E2 answers
 
@@ -44,3 +44,15 @@ Options for the guard:
 - **Q-ISVARA-1**, isvara's folder names ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):
   - Answer: "AGREE".
   - Result: the five renames move to M4, in one pull request with the redirects (WD-046).
+- **Q-E2-273**, the name of agent-e2's [`knowledge/sp5-framework/`](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge/sp5-framework) ([author-questions-resolved.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions-resolved.md)):
+  - Answer: "agree".
+  - Result: the folder keeps its name. agent-e2's part of the folder review (T-WS-007b) is done.
+- **Q-E2-272**, the style baseline of agent-e2:
+  - Answer: "agree".
+  - Result: the baseline stays; a file is fixed when it is next edited.
+- **Q-E2-264**, "grader" or "judge" for the model that scores free-text answers:
+  - Answer: "agree".
+  - Result: "grader". agent-e2's terms.md lists "judge" as the word to avoid.
+- **Q-E2-265**, the Cluster Risk level that new VMs can reopen, and **Q-E2-266**, the hosts out of service in total capacity ([author-questions.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions.md)):
+  - Answer, to each: "do not touch. I will revert."
+  - Result: no file changes for either, and both entries stay as they are. One overlap: agent-e2#491 had already removed the stale review note of close-for-business.md that Q-E2-265 quotes, as part of WD-044.

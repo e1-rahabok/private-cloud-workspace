@@ -131,6 +131,8 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **A check narrower than its test.** A cold review of M2 by a fresh session found PCM's old test paths still written in two files. The forbidden-names check matched only links to PCM's old folders, while its test scenario asked for every old path. The check now also matches the paths written out, and a planted break keeps it so. The same review found ROADMAP lines and requirements that said more than the files showed, such as a ticked line whose renames still waited for the author; each was reworded or unticked.
 
+**Eleven answers on one day.** On 2026-11-28 the author answered eleven questions across the five repositories, most with one word, two with "do not touch. I will revert." The first six were recorded in the parent first, as round 6 with three decisions, because the children's requirements cite them. One answer, on the Cluster Risk level, removed a flag from the knowledge service's API that no caller had ever sent. Another asked for the explanation behind a question to be kept for readers, so the record kept it whole. A helper agent took the two answers that changed only the product repository: one block per decision in its log, and a folder renamed for what it holds. It found two things the plan had missed: the specification check read the decision log's table, and nine links in the interview records pointed at line numbers that the new layout moved. The records' links were pinned to the commit before the move, so they still show what the author read.
+
 ## Lessons
 
 - The agent's first survey was useful precisely because it was wrong in places. Each error pointed to a missing document.

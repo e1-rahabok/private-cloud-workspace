@@ -42,6 +42,10 @@ A contract changes in three steps:
 
 The checks pass after every step, so a change in one repository never breaks another.
 
+A field that no consumer fills is a promise nobody tests. The knowledge service read a `production` flag to choose between two closure levels, and its contract listed the flag, but no caller ever sent it. Every cluster was judged at the production level, and the explanation called it "the production limit" even for a test cluster. The author's answer, that release 1.0 knows nothing about a cluster's environment, removed the flag; the explanation now says that every cluster gets the production limit, and why. When a contract lists a field, check that some consumer sends it.
+
+A document's layout is a contract too, once a tool reads it. The specification check found the product's decision numbers by reading the rows of a table. When the decision log became one block per decision, the change kept a short index table at the top, so every repository's checks still passed; the check then moved to the block headings. Those are the same three steps.
+
 ## Exercise
 
 Draw your system's parts as boxes, and a line wherever two parts depend on each other. Name the owner of each line. A line without an owner is a decision you have not made yet.

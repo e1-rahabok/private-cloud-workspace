@@ -43,7 +43,7 @@ def known_ids() -> set[str]:
             ids |= set(re.findall(r"^#{2,4} (Q-WS-I?\d+)\b", f.read_text(encoding="utf-8"), re.M))
     ids |= set(re.findall(r"^## (WD-\d{3}) ", (ROOT / "DECISIONS.md").read_text(encoding="utf-8"), re.M))
     if PCM_DECISIONS.exists():
-        ids |= set(re.findall(r"^\| (D-\d{3}) \|", PCM_DECISIONS.read_text(encoding="utf-8"), re.M))
+        ids |= set(re.findall(r"^## (D-\d{3}) ", PCM_DECISIONS.read_text(encoding="utf-8"), re.M))  # one block per decision (D-134)
     return ids
 
 

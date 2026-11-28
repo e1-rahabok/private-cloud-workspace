@@ -99,7 +99,7 @@ You said: no waiting, say "No data" (Q-WS-27). A rule still needs a number. [R-L
 
 ### Q-WS-66 Which object types does the live tree show between the VCF instance and the cluster?
 
-"Use the inventory from VCF Operations" (Q-WS-25) may include datacenters and folders, which [PCM D-087](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md#L94) leaves out. **Recommendation:** VCF Operations' VCF chain (VCF instance, workload domain, vCenter, cluster, host, VM), without datacenters and folders; the exact types are read from the lab and recorded.
+"Use the inventory from VCF Operations" (Q-WS-25) may include datacenters and folders, which [PCM D-087](https://github.com/e1-rahabok/private-cloud-manager/blob/bc06479c707e37f81d67a493d11418c35184f2b0/decisions.md#L94) leaves out. **Recommendation:** VCF Operations' VCF chain (VCF instance, workload domain, vCenter, cluster, host, VM), without datacenters and folders; the exact types are read from the lab and recorded.
 
 **Status:** Decided by Claude at the author's request (2026-11-26): the VCF chain, without datacenters and folders.
 
