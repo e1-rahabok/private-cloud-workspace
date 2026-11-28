@@ -132,7 +132,7 @@ Claude's working method, about how Claude works and never about the product, app
 - **Outcome:** on the preview, a visitor asks Agent E2 a question, with screenshots and CSV files, follows its progress and opens its sources; sends a contribution to a private queue; and the protection layers stop floods, bots, unsafe files and hidden instructions.
 - **Needs:** M3 for the Agent E2 API, and M4 for the articles that sources open. The injection guard is decided (DESIGN-10).
 - **Runs:** in a cloud session. Where the public Agent E2 runs is chosen after measuring (Q-WS-4); a new hosting account would need the author.
-- **Requirements:** R-ASK-001 to R-ASK-012 ([ask.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/ask.md)), R-CONTRIB-001 to R-CONTRIB-006 ([contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md)), R-PROTECT-001 to R-PROTECT-006 ([protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md)), R-JOURNEY-003 and R-JOURNEY-006 ([journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md)).
+- **Requirements:** R-ASK-001 to R-ASK-012 ([ask.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/ask.md)), R-CONTRIB-001 to R-CONTRIB-008 ([contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md)), R-PROTECT-001 to R-PROTECT-006 ([protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md)), R-JOURNEY-003 and R-JOURNEY-006 ([journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md)).
 
 ### M6 isvara.io practice and tools
 

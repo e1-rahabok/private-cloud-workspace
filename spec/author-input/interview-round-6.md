@@ -79,6 +79,18 @@ The author's corrections of the same day, given in the project chat, word for wo
 
 **Result:** isvara.io has no feature for a VMUG event. The quiz has no event board or room code ([R-PRACTICE-005](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/practice.md#r-practice-005-scores-compare-as-percentiles-with-a-share-card)), and the contribution form has no request for a session at an event ([R-CONTRIB-001](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md)). The weekly post still goes to VMUG channels, because those are where readers are (Q-WS-16). The answer to Q-WS-130 in [round 3](interview-round-3.md) had been read as a request for both.
 
+### Readers' questions
+
+Claude had recommended that readers may send questions. The author then wrote:
+
+> Think of your idea of people contributing question. This means people can also contribute answer. Now, how would you prevent spam? Because I can contribute question and then I use another laptop to contribute answer, and the answer is spam basically. So maybe the answer should be sent privately to the person. I'm not sure. Will I be liable for it? So think about it. Maybe it has to be fed through first by me, so that before it gets displayed in Isvara. Think of the flow. Somebody contribute a question, and then a few days later somebody answer that question. Now when somebody contribute a question that can contain spam, pornographic image, that needs to be blocked. So that means there has to be a filter or AI that makes sure the question is appropriate and relevant.
+
+Claude recommended a flow: a screen before anything is stored, the private queue, the author's review, and publication only as Agent E2's reviewed answer, with readers never answering readers. The author answered:
+
+> Agree
+
+**Result:** SCOPE-11 and RISK-11 in the [brief](../brief.md); DESIGN-11 in the [system design](../design/system.md); R-CONTRIB-001, R-CONTRIB-005, R-CONTRIB-007 and R-CONTRIB-008 in isvara's [contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md).
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):
