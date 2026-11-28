@@ -296,3 +296,6 @@ On a card that asked whether to merge the pull request with the new review page,
 - **Q-E2-265**, the Cluster Risk level that new VMs can reopen, and **Q-E2-266**, the hosts out of service in total capacity ([author-questions.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions.md)):
   - Answer, to each: "do not touch. I will revert."
   - Result: no file changes for either, and both entries stay as they are. One overlap: agent-e2#491 had already removed the stale review note of close-for-business.md that Q-E2-265 quotes, as part of WD-044.
+- **Q-PCM-5**, whether visitors of the public PCM demo ask Agent E2 live questions:
+  - Answer: "Yes, look at Ask.io today at isvara.io. It is already answering live question. That's why I said it got spam."
+  - Result: yes, with limits against spam and cost: R-PUBLIC-003 in PCM's [public-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/public-demo.md).
