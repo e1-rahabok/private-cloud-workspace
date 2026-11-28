@@ -186,6 +186,8 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **Branches ahead of main.** Asked to cut the number of branches to review, the agent listed three branches for deletion because their pull requests were closed and main had the same outcome by other commits. The author stopped it: each branch was ahead of main, so its commits were on no other branch. The workspace's [CLAUDE-PROJECT.md](../CLAUDE-PROJECT.md) now says to delete only branches that are not ahead of main, and to give the author a link and the number of commits ahead for each branch a cloud session cannot delete.
 
+**A rule only the person could follow.** That rule still left a list for the author after every session, because a cloud session gets HTTP 403 when it deletes a branch. The author answered: "This is a common problem. Find a solution as we're in SDD mode." As architect, the agent recorded the limit as CONSTRAINT-9 in the [brief](../spec/brief.md), chose to delete those branches inside GitHub with each repository's own token (DESIGN-28 in the [system design](../spec/design/system.md)), and wrote the requirement R-WS-014, that no branch whose commits main holds stays on GitHub, with three tests. As implementer, it built [tools/branch_cleanup.py](../tools/branch_cleanup.py), tested against a fake GitHub, and one shared workflow that every repository calls. On a pull request the workflow only lists what it would delete. Its first runs deleted the four branches the author had been asked about, named each with its last commit, and kept every branch ahead of main. The workflows check now fails a repository that does not call it ([chapter 11](11-checks.md)).
+
 ## Lessons
 
 - The agent's first survey was useful precisely because it was wrong in places. Each error pointed to a missing document.
@@ -268,4 +270,5 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - Search the glossary before choosing a name. A word the project already uses for something else sends a fresh reader to the wrong folder.
 - When an agreed name meets a limit of the code, keep the person's meaning, change only the spelling, and say why.
 - Compare a branch with main before deleting it. A branch ahead of main holds commits found nowhere else, even when its pull request is closed.
+- A rule that a session cannot follow turns into work for the person. Move the work to where the rights are, and test it there.
 - Link every folder or file named in a reply. A path without a link leaves the person searching for it.

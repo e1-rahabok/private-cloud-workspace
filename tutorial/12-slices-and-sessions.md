@@ -51,6 +51,8 @@ What a requirement cites goes in before the requirement. The specification check
 
 A check that runs in one repository only sets the order too. The check that every repository holds the same [CLAUDE.md](../CLAUDE.md) runs in the workspace's CI and compares the workspace's copy with each child's main branch. When the method changed on 2026-11-28, the new CLAUDE.md went into the four children first, where nothing compares it, and into the workspace last, whose pull request then found all five copies equal. In the other order, the workspace's pull request would have failed until every child had caught up.
 
+Branches pile up. A branch whose commits main already holds only adds to what a reviewer must look at, and a branch ahead of main holds commits found nowhere else. In this project each repository runs a branch cleanup inside GitHub: it deletes every branch that is not ahead of main, keeps the others with the reason, and names each deleted branch with its last commit so it can be made again. The agent's cloud sessions cannot delete a branch, so before the cleanup this work fell to the person.
+
 One more lesson from this project: wait for the checks to actually report before merging. Once, the command that waits for them returned before the checks had even started, and the merge went through unchecked. The checks passed afterwards, but that was luck.
 
 ## Exercise

@@ -36,7 +36,7 @@ CHECKS = [
     ("Forbidden names", TOOLS / "forbidden_names.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
     ("R-WS-010 lab addresses", TOOLS / "lab_addresses.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
     ("R-WS-011 secrets", TOOLS / "secret_values.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
-    ("R-WS-012 workflows and Dependabot", TOOLS / "workflows.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
+    ("R-WS-012 and R-WS-014 workflows, Dependabot, branch cleanup", TOOLS / "workflows.py", ["agent-e2", "PCM-Adapter", "private-cloud-manager"]),
 ]
 
 

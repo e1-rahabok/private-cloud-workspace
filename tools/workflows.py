@@ -2,7 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["pyyaml"]
 # ///
-"""Check of workflows and dependency updates: least rights, pinned actions, and Dependabot for every package system.
+"""Check of workflows and dependency updates: least rights, pinned actions, Dependabot, and the branch cleanup.
 
 R-WS-012 (DESIGN-25, DESIGN-26), in the tracked files of every clone:
 - every workflow in `.github/workflows/` declares `permissions` at its top level;
@@ -10,6 +10,8 @@ R-WS-012 (DESIGN-25, DESIGN-26), in the tracked files of every clone:
   workspace, or any other action by its full 40-character commit hash;
 - `.github/dependabot.yml` exists and has an update entry for `github-actions`, one for `npm` when a
   `package-lock.json` is tracked, and one for `pip` when a `requirements.txt` is tracked, in that file's folder.
+R-WS-014 (DESIGN-28): every repository has a workflow that calls the workspace's branch cleanup; the workspace
+runs its own `.github/workflows/branch-cleanup.yml`.
 
 A repository with no clone is reported as not run. tools/test_workflows.py plants a break of each kind.
 Exit 0: no problem. Exit 1: a problem. Exit 2: no repository could be read.
@@ -27,6 +29,7 @@ import yaml
 REPOS = ["private-cloud-workspace", "agent-e2", "PCM-Adapter", "private-cloud-manager", "isvara"]
 OWN = re.compile(r"^(?:actions/[\w.-]+@v\d+|\./.+|e1-rahabok/private-cloud-workspace/\.github/workflows/[\w.-]+@main)$")
 PINNED = re.compile(r"^[\w.-]+/[\w./-]+@[0-9a-f]{40}$")
+CLEANUP = "e1-rahabok/private-cloud-workspace/.github/workflows/branch-cleanup.yml@main"
 USES = re.compile(r"^\s*-?\s*uses:\s*['\"]?([^'\"\s#]+)")
 
 
@@ -49,6 +52,7 @@ def ecosystems(clone: Path) -> dict[tuple[str, str], bool]:
 def problems_in(repo: str, clone: Path) -> list[str]:
     problems = []
     files = tracked(clone)
+    cleanup = repo == "private-cloud-workspace" and ".github/workflows/branch-cleanup.yml" in files
     for f in files:
         if not re.match(r"^\.github/workflows/[^/]+\.ya?ml$", f):
             continue
@@ -62,6 +66,10 @@ def problems_in(repo: str, clone: Path) -> list[str]:
             m = USES.match(line)
             if m and not (OWN.match(m.group(1)) or PINNED.match(m.group(1))):
                 problems.append(f"{repo}: {f}:{number} uses '{m.group(1)}', not pinned to a commit hash (R-WS-012)")
+            if m and m.group(1) == CLEANUP:
+                cleanup = True
+    if not cleanup:
+        problems.append(f"{repo}: no workflow calls the branch cleanup, {CLEANUP} (R-WS-014)")
     found = ecosystems(clone)
     if not (clone / ".github" / "dependabot.yml").exists():
         problems.append(f"{repo}: .github/dependabot.yml is missing (R-WS-012)")
