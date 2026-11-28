@@ -123,11 +123,13 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **Three helpers, one branch each.** Every repository has one session branch, so two writers in one clone collide. The clean-up of PCM, of agent-e2 and of the adapter's names went to three helper agents, one repository each, while the lead worked in the workspace. A helper opened its pull request and the lead merged it after running the checks again.
 
-**Contract changes in three steps, across four repositories.** The KPI definitions check moved from matching rows by name to matching them by key: first the catalog's key column, then the check, then the renamed rows and the adapter's labels together. The C3 check moved with PCM's new folders the same way: PCM kept the old path, the check moved, the old path went. A CI run that started a minute before step 2 merged failed for that reason alone; one re-run passed.
+**Contract changes in three steps, across four repositories.** The KPI definitions check moved from matching rows by name to matching them by key: first the catalog's key column, then the check, then the renamed rows and the adapter's labels together. The check of contract C3, the Agent E2 API ([glossary](../spec/glossary.md#c3)), moved with PCM's new folders the same way: PCM kept the old path, the check moved, the old path went. A CI run that started a minute before step 2 merged failed for that reason alone; one re-run passed.
 
 **Checks that caught their author.** The new name check failed on its own first file name, `old_names.py`. The new forbidden-names check found a stale link no review had seen. A baseline kept in the workspace would have stopped a child's fix from passing, so each repository keeps its own.
 
 **A rule against itself.** A requirement said "the catalog holds one Risk level for every cluster". Agent E2's knowledge keeps two levels and says to keep them apart. The requirement had read more into the author's answer than it said, so the comparison waits for a question.
+
+**A check narrower than its test.** A cold review of M2 by a fresh session found PCM's old test paths still written in two files. The forbidden-names check matched only links to PCM's old folders, while its test scenario asked for every old path. The check now also matches the paths written out, and a planted break keeps it so. The same review found ROADMAP lines and requirements that said more than the files showed, such as a ticked line whose renames still waited for the author; each was reworded or unticked.
 
 ## Lessons
 

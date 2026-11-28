@@ -5,7 +5,7 @@ The general writing rules of every repository of Private Cloud Manager, held onc
 ## Two kinds of document
 
 - Documents for people: plain prose for a reader on GitHub.
-- Documents for machines: CLAUDE.md, CLAUDE-PROJECT.md, requirement files, templates and Agent E2's knowledge files. They are written for an agent or a model to follow: one rule or fact per bullet, the trigger before the action, exact names. A heading may state a claim, as a requirement title states a behaviour.
+- Documents for machines: CLAUDE.md, CLAUDE-PROJECT.md, requirement files, templates and Agent E2's knowledge files. They are written for an agent or a model to follow: one rule or fact per bullet, the trigger before the action, exact names. A requirement title may state a claim, as it states a behaviour; the headings of knowledge files follow agent-e2's [writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md), which allows no claims.
 - Records kept as they were said, such as the interview's answers, are not rewritten.
 
 ## Rules for every document
