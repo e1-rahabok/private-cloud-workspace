@@ -91,6 +91,16 @@ Claude recommended a flow: a screen before anything is stored, the private queue
 
 **Result:** SCOPE-11 and RISK-11 in the [brief](../brief.md); DESIGN-11 in the [system design](../design/system.md); R-CONTRIB-001, R-CONTRIB-005, R-CONTRIB-007 and R-CONTRIB-008 in isvara's [contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md).
 
+### Credit for contributors
+
+> How would you acknowledge when someone genuinely contributes? For example, should we have their names, their LinkedIn profile, their company? How to encourage the community building? And should it say their country because you can detect the IP address? Is it a good idea at all? Research other online community places. Reddit is a bad example as people identity cannot be verified at all. LinkedIn is much more civil
+
+Claude recommended credit by name and one profile link, on request; no company and no country; credit on the article, in What's New and on a contributors page without ranks; tags in the weekly post with consent; and a badge. The author answered:
+
+> Agree
+
+**Result:** DESIGN-11 in the [system design](../design/system.md); R-CONTRIB-001, R-CONTRIB-005, R-CONTRIB-007 and R-CONTRIB-009 in isvara's [contributions.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/contributions.md).
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):

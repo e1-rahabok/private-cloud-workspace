@@ -78,6 +78,7 @@ From release 1.0 (DESIGN-11):
 - **Screen:** before anything is stored, a model refuses spam, advertising, explicit or abusive text, hidden instructions and text unrelated to private cloud; nothing refused is kept.
 - **A reader's question:** once accepted, it becomes knowledge, and its answer reaches the site through the article it changes, listed in What's New as "Asked by a reader". Readers never answer readers on the site, and their own words and images are never shown (RISK-11).
 - **Where it goes:** a private queue. Nothing is published automatically. Each week AI sorts the queue and the author decides; an accepted item becomes a source note in agent-e2, with credit if the contributor gave a public profile link.
+- **Credit:** on request, a name and one public profile link, checked by the author; shown on the article, in What's New and on `/contributors` (no ranks, no company, no country), with a badge to post and a tag in the weekly post with consent.
 - **Agreement:** "By submitting, you confirm that you may share this, that it holds no confidential customer data, and that it may be used, changed and published in Agent E2 and isvara.io, with credit if you give a profile link."
 - **Kept:** files until processed, and at most 30 days; no IP address with a contribution.
 
