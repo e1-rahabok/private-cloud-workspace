@@ -30,6 +30,7 @@ The material began as the first edition of the author's book in 2014. Each year 
 
 - Customers are large global enterprises; their difficulty is organisational, with many teams and many people, which is why PCM is organised by role. Mid-sized companies are not the focus. Source: the author's intent, 2026-11-26.
 - The CIO is not a focus for Agent E2. After L2, the next role in PCM is the tenant or application owner, after release 1.0. Source: the author, 2026-11-26.
+- The author is the expert in private cloud operations and is not a software developer. Claude speaks to the author only as the architect, to ask for input or to report a result, in plain words: no IDs, abbreviations, tool names or file paths unless the author must open the file. Source: the author, 2026-11-28: "Jargons like LPG and CI are aliens to me as I'm not a software developer. I'm just a vibe coder."
 
 ## Scope of release 1.0
 

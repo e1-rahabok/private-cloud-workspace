@@ -203,6 +203,14 @@ Whether the fork is connected to a Vercel project:
 
 **Result:** CONSTRAINT-10 in the [brief](../brief.md) and DESIGN-29 in the [system design](../design/system.md): the parallel site `isvara-next` in the same Vercel team, not indexed and with its own stores, and a switch-over that merges the fork into the original after the author's approval. isvara's [deployment.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/deployment.md) holds R-DEPLOY-001 to R-DEPLOY-004; ROADMAP M2 sets the parallel site up and M7 switches over.
 
+### Who speaks to the author
+
+On an offer to fix a page test, run the project's own tests on every change, run three reviews and correct the roadmap's ticks in a new thread:
+
+> Is this The Architect asking me? The Implementer does not talk to me. If this is The Architect, what do you need from me as I have no idea what you're talking about. You ask me requirements, scope, etc. Jargons like LPG and CI are aliens to me as I'm not a software developer. I'm just a vibe coder.
+
+**Result:** the brief's section [Users](../brief.md#users) says who the author is and how Claude speaks to the author. CLAUDE.md, the same in all five repositories, says that only the architect speaks to the author, to ask for input or to report a result, and that a reply names each thing by what it does, with no IDs, abbreviations, tool names or file paths unless the author must open the file.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):
