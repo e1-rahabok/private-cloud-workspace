@@ -125,7 +125,7 @@ Each assumption says whether the author confirmed it, and how it is checked when
 - **ASSUMPTION-5 Visitors remove IP addresses and host names before uploading.** Release 1.0 has no masking. Status: unconfirmed. Check: contributions are read before any use (DESIGN-11); see RISK-9. Source: the author, 2026-11-26.
 - **ASSUMPTION-6 No installed copy of the adapter needs protecting on upgrade.** Status: confirmed by the author: "It can change anything. No issue on upgrade." Source: Q-WS-I4, Q-WS-2.
 - **ASSUMPTION-7 Agent E2's knowledge base holds everything in the books.** Extraction from the books is complete ([agent-e2 CLAUDE-PROJECT.md](https://github.com/e1-rahabok/agent-e2/blob/main/CLAUDE-PROJECT.md)), so isvara.io's pages lose nothing when they move to the knowledge base (DESIGN-3). Status: stated in agent-e2. Check: the export check of contract C4 in M4. Source: Q-WS-18, Q-WS-42.
-- **ASSUMPTION-8 A 20-second key exists for dropped TX packets.** Status: open, [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md), Q-WS-137. Check: read on the lab in M8; if no key exists, the catalog row becomes a 5-minute row and drops "peak" from its name.
+- **ASSUMPTION-8 `net|droppedTxPct_max` is the 20-second peak of dropped TX packets.** It is VCF Operations' Peak Transmitted Packet Dropped within collection cycle, though its key lacks `20_sec_peak`. Status: confirmed by the author: "It is 20 second peak indeed." Effect: the VCF vCommunity Adapter keeps reading it for the row "Peak network TX dropped packets", and Agent E2's catalog row keeps its name and its 20-second limits. Source: Q-WS-137 in [round 6](author-input/interview-round-6.md).
 
 ## Risks
 
