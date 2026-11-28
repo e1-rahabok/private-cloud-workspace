@@ -230,12 +230,12 @@ Source: DESIGN-5 (every contract has a check); GOAL-4 (every contract is checked
 Milestone: M3.
 
 - Given the Vercel AI Gateway key in the environment
-- When `contract-checks/model_gateway.py` runs
+- When [`contract-checks/model_gateway.py`](../../contract-checks/model_gateway.py) runs
 - Then it sends one short question to the model named in agent-e2's `service_config.yaml` and expects an answer with text
 - And without the key it reports "not run", never "passed"
 
 Test scenarios:
-- T-WS-008a (anywhere with the gateway key, automated by `contract-checks/model_gateway.py`, to write, run by [`contract-checks/run_all.py`](../../contract-checks/run_all.py)): the configured model answers; a model ID that does not exist fails and names the ID.
+- T-WS-008a (anywhere with the gateway key, automated by [`contract-checks/model_gateway.py`](../../contract-checks/model_gateway.py), to write, run by [`contract-checks/run_all.py`](../../contract-checks/run_all.py)): the configured model answers; a model ID that does not exist fails and names the ID.
 ### R-WS-015 A milestone's review page is written for the author
 
 Why: the author approves each milestone from its page and could not review the first one: each requirement was one short line with its ID and a count of its tests, with no context, written for the agent. The author is the expert in private cloud operations and is not a software developer (the brief, section Users), and testing is the agent's work.

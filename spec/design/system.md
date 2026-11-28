@@ -103,7 +103,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 | C2 | KPI metric keys              | VCF vCommunity Adapter; PCM (live demo)       | Planned in ROADMAP M8, the PCM live demo                          |
 | C3 | Agent E2 API                 | agent-e2; PCM, isvara (planned)    | [`contract-checks/agent_e2_api.py`](../../contract-checks/agent_e2_api.py), running       |
 | C4 | Knowledge content for isvara | agent-e2; isvara                   | `contract-checks/knowledge_export.py`, planned in ROADMAP M4          |
-| C5 | Model gateway                | Vercel AI Gateway; agent-e2        | `contract-checks/model_gateway.py`, planned in ROADMAP M3                  |
+| C5 | Model gateway                | Vercel AI Gateway; agent-e2        | [`contract-checks/model_gateway.py`](../../contract-checks/model_gateway.py), runs with the gateway key |
 
 ### C1 KPI definitions
 
@@ -138,7 +138,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 
 - **Owner:** Vercel AI Gateway, an OpenAI-compatible service; Agent E2 calls it with the key `AI_GATEWAY_API_KEY`.
 - **Check, ROADMAP M3:** one call to the model agent-e2 is set to, with the gateway key; without the key it reports not run ([R-WS-008](../requirements/workspace.md)). It is a third-party API, so the check proves only that the configured model answers.
-- **Status:** not built.
+- **Status:** built in M3; it reports "not run" without the key.
 
 ### Changing a contract
 
