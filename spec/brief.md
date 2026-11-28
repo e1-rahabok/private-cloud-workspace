@@ -116,6 +116,7 @@ These decide a conflict between two good things without asking the author. Sourc
 - **CONSTRAINT-6 The lab is reached only from the author's laptop.** The lab's VCF Operations and vCenter are behind a VPN, reached from the author's Windows laptop with PowerShell 7; a cloud session cannot reach them. Work stays read-only against them unless a milestone says otherwise, and every change to the lab waits for the author. Why: it is the author's own lab and network. Source: Q-WS-37, Q-WS-40, Q-WS-79, Q-WS-85; the author, 2026-11-27.
 - **CONSTRAINT-7 No memory tiering in the physical lab.** The physical lab hosts have no memory tiering. Why: a fact of the lab's hardware. Source: Q-WS-38.
 - **CONSTRAINT-8 The author's review time.** The author cannot review each knowledge file or each pull request one by one. Why: one person, with other work. Source: Q-WS-10; the author, 2026-11-25.
+- **CONSTRAINT-9 A cloud session cannot delete a branch.** GitHub refuses a branch deletion from a cloud session with HTTP 403, by `git push --delete` and by the API alike. GitHub's setting "Automatically delete head branches" deletes only the head branch of a merged pull request. Why: a rule of the cloud sessions' connection to GitHub. Source: every deletion tried on 2026-11-28; the author, 2026-11-28: "This is a common problem. Find a solution as we're in SDD mode."
 
 ## Assumptions
 

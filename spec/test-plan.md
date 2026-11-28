@@ -27,6 +27,7 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 | Acceptance | A milestone's outcome holds | The milestone's [review page](review) | When the milestone's work is done |
 
 - **Specification checks:** [spec_check.py](../tools/spec_check.py) (traceability, DESIGN-8), [milestone_review.py](../tools/milestone_review.py) (each requirement in one milestone), [milestone_gate.py](../tools/milestone_gate.py) (changes stay in the open milestone), [docs.py](../tools/docs.py) (links and diagram text), [style.py](../tools/style.py) (writing rules), [claude_md_copies.py](../tools/claude_md_copies.py) (one CLAUDE.md in every repository).
+- **Branch cleanup:** [branch_cleanup.py](../tools/branch_cleanup.py) is tested against a fake GitHub by [test_branch_cleanup.py](../tools/test_branch_cleanup.py) (T-WS-014a). On every pull request its workflow lists what it would delete, and the first real run in each repository is checked by hand (T-WS-014c).
 - **Contract checks:** C1 and C3 run today; C2 is added in M8, C4 in M4, C5 in M3 ([system design](design/system.md), section Contracts). Each check has a test that plants a break of each kind it compares (R-WS-001).
 - **Model evaluations:** Agent E2's free-text answer set, graded by a strong model as judge (DESIGN-19), within US$100 a run (CONSTRAINT-1); isvara.io's citation eval and injection battery, against a running server (DESIGN-10). Both need the Vercel AI Gateway key (DEPENDENCY-2).
 

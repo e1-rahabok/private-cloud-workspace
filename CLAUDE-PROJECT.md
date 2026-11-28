@@ -33,10 +33,11 @@ Rules, tools and paths of this project: Private Cloud Manager and its repositori
 - Merge your own pull request once its checks have reported and passed. The author approved this while the project is early, 2026-11-25.
 - Put a major-change warning also when more than one child repository changes.
 - When a Dependabot pull request's checks have passed: merge it as your own (DESIGN-25).
-- Before reporting a session as finished: delete every branch that is not ahead of `main`, except branches a workflow writes, such as PCM-Adapter's `badges`. The author reads only `main`.
+- Branches that are not ahead of `main` are deleted by each repository's branch cleanup workflow (DESIGN-28, R-WS-014). A session neither deletes a branch nor asks the author to. The author reads only `main`.
+- When a workflow writes a branch of its own, such as PCM-Adapter's `badges`: add it to `keep` in that repository's [`.github/workflows/branch-cleanup.yml`](.github/workflows/branch-cleanup.yml).
 - Never delete a branch that is ahead of `main`: its commits are on no other branch (the author).
 - When a pull request left open by an earlier session is overtaken by `main`: close it with a comment that links where its content is now, and keep its branch. When it holds content the specification lacks: list it for the author.
-- When a branch cannot be deleted from the session (a cloud session gets HTTP 403): give the author a link to each one, and say how many commits each is ahead of `main`.
+- When a branch that is not ahead of `main` is still on GitHub after the branch cleanup has run: treat it as a bug of the branch cleanup, and fix it with a failing test first.
 
 ## Domain
 

@@ -1,0 +1,77 @@
+name: Branch cleanup
+
+# Deletes every branch that is not ahead of main, inside GitHub with the repository's own token (R-WS-014, DESIGN-28):
+# a cloud session gets HTTP 403 when it deletes a branch (CONSTRAINT-9). On a pull request it deletes nothing and
+# lists what it would delete. The rules, and how to make a deleted branch again, are in tools/branch_cleanup.py.
+#
+# The workspace runs it for itself. Each child repository calls it with this workflow:
+#
+#   on: {pull_request: {}, push: {branches: [main]}, schedule: [{cron: "30 22 * * *"}], workflow_dispatch: {}}
+#   permissions: {contents: read}
+#   jobs:
+#     branch-cleanup:
+#       permissions: {contents: write, pull-requests: read}
+#       uses: e1-rahabok/private-cloud-workspace/.github/workflows/branch-cleanup.yml@main
+#       with: {keep: badges}   # only where a workflow writes a branch of its own, as in PCM-Adapter
+#
+# Only the job that deletes gets write rights (DESIGN-26).
+
+on:
+  workflow_call:
+    inputs:
+      keep:
+        description: Branches to keep, separated by commas, such as one that a workflow writes
+        type: string
+        default: ""
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "30 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  list:
+    name: List the branches it would delete
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: e1-rahabok/private-cloud-workspace
+          ref: ${{ github.repository == 'e1-rahabok/private-cloud-workspace' && github.sha || 'main' }}
+          path: private-cloud-workspace
+          persist-credentials: false
+      - name: Branches that are not ahead of main, deleting nothing
+        env:
+          GH_TOKEN: ${{ github.token }}
+          KEEP: ${{ inputs.keep }}
+        run: python3 private-cloud-workspace/tools/branch_cleanup.py --repo "$GITHUB_REPOSITORY" --keep "$KEEP" --dry-run
+
+  delete:
+    name: Delete the branches that are not ahead of main
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: e1-rahabok/private-cloud-workspace
+          ref: main
+          path: private-cloud-workspace
+          persist-credentials: false
+      - name: Delete every branch that is not ahead of main
+        env:
+          GH_TOKEN: ${{ github.token }}
+          KEEP: ${{ inputs.keep }}
+        run: python3 private-cloud-workspace/tools/branch_cleanup.py --repo "$GITHUB_REPOSITORY" --keep "$KEEP"
