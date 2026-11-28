@@ -24,7 +24,7 @@ The last questions only the author could answer, asked in [OPEN-QUESTIONS.md](..
 
 **Answer:** "not sure what you mean here. We have VMUG event."
 
-**Result:** a birds-of-a-feather session is an informal discussion at an event, among people who share an interest; the author's visitor model listed requests for them. The contribution form on isvara.io offers "Request a session at a VMUG event", with a topic and a free line for the city or event.
+**Result:** a birds-of-a-feather session is an informal discussion at an event, among people who share an interest; the author's visitor model listed requests for them. The author later dropped every VMUG event feature ([round 6](interview-round-6.md#vmug-events)).
 
 ## Q-WS-132 A GitHub organization
 

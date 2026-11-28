@@ -74,7 +74,7 @@ The author's answer to what would bring an administrator back weekly (2026-11-26
 
 From release 1.0 (DESIGN-11):
 
-- **What can be sent:** a correction, an addition, something to review, or a request for a birds-of-a-feather session at a VMUG event, in one area, with a note, one link and up to three files.
+- **What can be sent:** a correction, an addition or something to review, in one area, with a note, one link and up to three files.
 - **Where it goes:** a private queue. Nothing is published automatically. Each week AI sorts the queue and the author decides; an accepted item becomes a source note in agent-e2, with credit if the contributor gave a public profile link.
 - **Agreement:** "By submitting, you confirm that you may share this, that it holds no confidential customer data, and that it may be used, changed and published in Agent E2 and isvara.io, with credit if you give a profile link."
 - **Kept:** files until processed, and at most 30 days; no IP address with a contribution.
@@ -83,7 +83,7 @@ From release 1.0 (DESIGN-11):
 
 - **Quiz:** short rounds of multiple-choice questions on one path or crossing, from a pool, so a visitor can come back. Each wrong answer links to the section that explains it.
 - **Mastery map:** the paths as a grid, filled in as the visitor proves each part, showing which lens is weak ("strong in how CPU works, weak in how it is measured"). Kept in the visitor's browser; no account.
-- **Comparing scores:** as anonymous percentiles ("you beat 78% of visitors on this round"), a share card for LinkedIn, and boards for one event with a room code, such as a VMUG session. There is no global board, because an open-book quiz proves little at the top and an anonymous board attracts abuse.
+- **Comparing scores:** as anonymous percentiles ("you beat 78% of visitors on this round"), and a share card for LinkedIn. There is no global board and no board for an event (round 6), because an open-book quiz proves little at the top and an anonymous board attracts abuse.
 - **Exam:** ten short, very hard questions; a wrong answer loses marks and a blank scores 0 (SCOPE-10). Requirements: isvara's [exam.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/exam.md).
 - **Daily question:** one question a day, with how many visitors got it right.
 
