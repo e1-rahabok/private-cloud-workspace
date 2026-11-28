@@ -159,7 +159,7 @@ Claude's working method, about how Claude works and never about the product, app
 - **Outcome:** isvara.io serves the rebuilt site: the home page, What's New with its weekly summary, the manual for copying the product privately, downloads and the MCP endpoint on Agent E2; every old address redirects to the page that covers it.
 - **Needs:** M4, M5 and M6.
 - **Runs:** in a cloud session. The author approves the switch after comparing the parallel site with isvara.io side by side (CONSTRAINT-10); the fork's `main` then merges into the original's (DESIGN-29).
-- **Requirements:** R-SITE-001 to R-SITE-010 ([site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md)), R-DEPLOY-004 ([deployment.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/deployment.md)), R-JOURNEY-004 and R-JOURNEY-008 ([journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md)); R-REPO-009 (PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md)).
+- **Requirements:** R-SITE-001 to R-SITE-011 ([site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md)), R-DEPLOY-004 ([deployment.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/deployment.md)), R-JOURNEY-004 and R-JOURNEY-008 ([journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md)); R-REPO-009 (PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md)).
 
 ### M8 PCM live demo
 
@@ -167,7 +167,7 @@ Claude's working method, about how Claude works and never about the product, app
 - **Needs:** M2 for the catalog names, M3 for Agent E2's jobs and facts.
 - **Runs:** in the lab, from the author's laptop over the VPN, with the adapter's build, install, restart and validation tools. A cloud session writes the code and the tests that run anywhere.
 - **First slice:** one lab cluster's Cluster Performance on the L2 Performance tab (R-LIVE-001, R-LIVE-024, R-LIVE-030), then the rest.
-- **Requirements:** R-ADP-018 to R-ADP-023 and R-ADP-026 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-LIVE-001 to R-LIVE-033, R-LIVE-035 to R-LIVE-040 and R-E2-020 (private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)), R-E2-026 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md)); the check of contract C2 (KPI metric keys).
+- **Requirements:** R-ADP-018 to R-ADP-023 and R-ADP-026 ([adapter.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/adapter.md)), R-LIVE-001 to R-LIVE-033, R-LIVE-035 to R-LIVE-040 and R-E2-020 (private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md)), R-PUBLIC-001 and R-PUBLIC-002 (private-cloud-manager's [public-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/public-demo.md)), R-E2-026 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md)); the check of contract C2 (KPI metric keys).
 - **Release 1.0 is done** when the author approves M8.
 
 ## Waiting for the author
