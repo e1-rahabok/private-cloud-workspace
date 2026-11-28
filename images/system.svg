@@ -17,7 +17,7 @@
 <text x="30" y="109" font-size="13" font-weight="bold" fill="#222222" text-anchor="start">PCM</text>
 <text x="30" y="128" font-size="11.5" font-weight="normal" fill="#222222" text-anchor="start">Web app for operations roles;</text>
 <text x="30" y="143" font-size="11.5" font-weight="normal" fill="#222222" text-anchor="start">synthetic ACME or live data;</text>
-<text x="30" y="158" font-size="11.5" font-weight="normal" fill="#222222" text-anchor="start">lab VM, https://10.114.1.29</text>
+<text x="30" y="158" font-size="11.5" font-weight="normal" fill="#222222" text-anchor="start">the lab VM</text>
 <rect x="350" y="90" width="250" height="81" rx="6" fill="#e4edfa" stroke="#1f5fae" stroke-width="1.4"/>
 <text x="360" y="109" font-size="13" font-weight="bold" fill="#0d2a4d" text-anchor="start">Agent E2 for PCM</text>
 <text x="360" y="128" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">Knowledge service over HTTP;</text>
@@ -25,7 +25,7 @@
 <text x="360" y="158" font-size="11.5" font-weight="normal" fill="#0d2a4d" text-anchor="start">same lab VM, port 8090</text>
 <rect x="20" y="300" width="300" height="180" rx="6" fill="#ffffff" stroke="#888888" stroke-width="1.4"/>
 <text x="30" y="319" font-size="13" font-weight="bold" fill="#333333" text-anchor="start">VCF Operations</text>
-<text x="30" y="338" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">Lab, https://10.115.1.81</text>
+<text x="30" y="338" font-size="11.5" font-weight="normal" fill="#333333" text-anchor="start">the lab's VCF Operations</text>
 <rect x="40" y="370" width="260" height="66" rx="6" fill="#e6f4e4" stroke="#2e7d32" stroke-width="1.4"/>
 <text x="50" y="389" font-size="13" font-weight="bold" fill="#173a16" text-anchor="start">VCF vCommunity Adapter</text>
 <text x="50" y="408" font-size="11.5" font-weight="normal" fill="#173a16" text-anchor="start">Computes the KPIs inside VCF</text>

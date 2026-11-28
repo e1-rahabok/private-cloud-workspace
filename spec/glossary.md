@@ -46,7 +46,7 @@ Every short name and ID used in this workspace, with what it means and where it 
 | ACME | The synthetic customer, a global bank, whose data PCM generates for the main demo |
 | Live demo | PCM's L2 workspace on the author's lab VCF Operations; its own demo entry |
 | L2 | The platform engineer role in PCM, the expert behind the NOC |
-| VCF Operations | VMware Cloud Foundation Operations, the monitoring product; lab at https://10.115.1.81 |
+| VCF Operations | VMware Cloud Foundation Operations, the monitoring product; the lab has one, reached over the VPN |
 | Suite API | VCF Operations' REST API, which PCM and the VCF vCommunity Adapter tools read |
 | PCM-Adapter | The repository of the VCF vCommunity Adapter |
 | VCF vCommunity Adapter | The management pack in VCF Operations that computes the KPIs of PCM's scenario 7 ([system design](design/system.md)) |

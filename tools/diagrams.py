@@ -27,9 +27,9 @@ def system() -> None:
                       ("isvara.io", "shared"), ("Model", "guest")])
     k.t(560, 56, "Dashed: planned, or files with no call at run time", 11.5, "normal", "#555")
 
-    k.box(20, 90, 250, "PCM", ["Web app for operations roles;", "synthetic ACME or live data;", "lab VM, https://10.114.1.29"], "data")
+    k.box(20, 90, 250, "PCM", ["Web app for operations roles;", "synthetic ACME or live data;", "the lab VM"], "data")
     k.box(350, 90, 250, "Agent E2 for PCM", ["Knowledge service over HTTP;", "owns all domain knowledge;", "same lab VM, port 8090"], "method")
-    k.box(20, 300, 300, "VCF Operations", ["Lab, https://10.115.1.81"], "white", h=180)
+    k.box(20, 300, 300, "VCF Operations", ["the lab's VCF Operations"], "white", h=180)
     k.box(40, 370, 260, "VCF vCommunity Adapter", ["Computes the KPIs inside VCF", "Operations, under vCommunity|"], "prod")
 
     k.box(680, 90, 260, "isvara.io", ["Public learning site;", "on Vercel; no live system"], "shared")
