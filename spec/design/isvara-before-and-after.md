@@ -16,9 +16,9 @@ To review: write "Approved" under the heading Review at the end, or name a featu
 
 - **Before:** a reading site over the author's five books (the Executive Summary and Parts 1 to 4), converted from Word into HTML chapters. AskIO answers from the whole book in its context. Ten tools, an RVTools health check, the 2am game and downloads sit around it.
 - **After:** a site over Agent E2's knowledge base. Each knowledge file becomes an article, reached through the three learning paths and their crossings. Agent E2 answers questions. Visitors contribute corrections and files, practise with a quiz and an exam, and see what changed each week. The books stay downloadable.
-- **Kept:** the Signal design, its look and its two themes (Author, Q-WS-44); the 2am game, the RVTools health check, downloads, the MCP endpoint, Team and Homelabs.
-- **Gone:** the book reader, AskIO, the Operations Score, the self-assessment, the cost calculator and the SLA builder (Author, SCOPE-9).
-- **What a visitor sees:** the site map, the header and menu, a rough mock of each page and the seven journeys through them are drawn in isvara's [visitor-experience.md](https://github.com/e1-rahabok/isvara/blob/main/spec/visitor-experience.md), and each journey is tested by [journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md). This document lists the features; that one shows how a visitor moves through them. Review both together (DEPENDENCY-3).
+- **Kept:** the Signal design, its look and its two themes (Author, Q-WS-44); the 2am game, the RVTools health check, downloads, the MCP endpoint and Team.
+- **Gone:** the book reader, AskIO, the Operations Score, the self-assessment, the cost calculator and the SLA builder (Author, SCOPE-9); Homelabs, removed already in M2 (Author, R-REPO-011).
+- **What a visitor sees:** who comes and why, how a first visit and a return differ, the addresses to bookmark, the site map, the header and menu, a wireframe of each page and the seven journeys through them are drawn in isvara's [visitor-experience.md](https://github.com/e1-rahabok/isvara/blob/main/spec/visitor-experience.md), and each journey is tested by [journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md). This document lists the features; that one shows how a visitor moves through them. Review both together (DEPENDENCY-3).
 
 ## Knowledge presented for the web
 
@@ -209,14 +209,14 @@ Each tool stays only where Agent E2 holds its knowledge (Author, DESIGN-2; Q-WS-
 - **Changed:** the weekly workflow stops converting the books into pages (Round 2, Q-WS-108).
 - **New:** when a book changes, an AI comparison with Agent E2's knowledge lists only the disagreements for the author to settle (the [plan](isvara-plan.md), SCOPE-9).
 
-### Team and Homelabs
+### Team
 
-- Kept unchanged (the [plan](isvara-plan.md), SCOPE-9).
+- Kept unchanged (the [plan](isvara-plan.md), SCOPE-9). Homelabs was removed in M2 at the author's request (R-REPO-011 in isvara's [clean-up.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/clean-up.md)).
 
 ### Header and home page
 
 - **Before:** Guide, Tools, Health check, Score, 2am, MCP and Team, then the visits counter and Download.
-- **After:** Learn, Ask, Practice, Tools and What's New in the header, then search, the visits counter, the theme switch and Download. Contribute, the manual, MCP, Team and Homelabs sit in the footer and the menu. Claude's call: the header carries the plan's four return reasons (learning, an expert to ask, tools, knowing what changed) and practice.
+- **After:** Learn, Ask, Practice, Tools and What's New in the header, then search, the visits counter, the theme switch and Download. Contribute, the manual, MCP and Team sit in the footer and the menu. Claude's call: the header carries the plan's four return reasons (learning, an expert to ask, tools, knowing what changed) and practice.
 - **Home page:** the three paths, Ask, search, this week's changes and the daily question (the [plan](isvara-plan.md), SCOPE-9).
 
 ### Behind the pages

@@ -141,6 +141,68 @@ On four branches, none ahead of `main`, left for the author to delete by hand:
 
 **Result:** CONSTRAINT-9 in the [brief](../brief.md) states that a cloud session cannot delete a branch. DESIGN-28 in the [system design](../design/system.md) deletes every branch that is not ahead of `main` inside GitHub, with each repository's own token, and keeps every branch ahead of it. R-WS-014 in [workspace.md](../requirements/workspace.md) and its tests enforce it in all five repositories, and the workspace's [CLAUDE-PROJECT.md](../../CLAUDE-PROJECT.md) no longer asks the author to delete branches.
 
+### isvara.io's folders, visitors and wireframes
+
+> I think you should review the Agent E2 properly.
+>
+> The folder structure is still confusing. I'm unable to guess what those top level folders are for.
+> For examples:
+>
+> * app = what application, since the whole isvara.io is an application? It has a dozen or so subfolders. From the name, I'm unsure. For example, estate means screen real estate? homelabs can be removed as it's no longer required. Design the folder properly. Maybe you need additional layer of folder hierarchy?
+> * components = The English word components means parts. Maybe you need 2 words so it's easier?
+>
+> Think of the Visitors and why they come.
+> How do you serve first time visitor and repeat visitor? Can repeat visitor bookmark certain page directly? How do you know someone is first time or not if they simply lands at the home page?
+>
+> The Agent E2 visitor experience is shown in ASCII art. It is hard to guess what you intend to build. As a UX professional, how will you convey the mock to minimize surprise. I don't have to know the details. Just high level rough sketch that has better screen alignment that ASCII art will do. It can be SVG or whatever. You know better. Again, as The Architect you update the spec, so The Implementer can execute.
+
+The folders the author names are isvara's, the site that is rebuilt on Agent E2.
+
+**Result:** DESIGN-6 in the [system design](../design/system.md) now designs names for a reader who knows the field but not the framework, and T-WS-007b in [workspace.md](../requirements/workspace.md) reads the tree that way. R-REPO-010 in isvara's [clean-up.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/clean-up.md) sets isvara's layout, mapped in its README; R-REPO-011 removes Homelabs. isvara's [visitor-experience.md](https://github.com/e1-rahabok/isvara/blob/main/spec/visitor-experience.md) adds the first visit and the return, and the addresses to bookmark, with R-SITE-009 and R-SITE-010 in its [site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md); its text art is replaced by SVG wireframes drawn from one list of parts and checked in CI.
+
+Two replies on the result, the same day:
+
+> evals/ → ask-io-tests/
+>
+> Why AskIO? It will be 100% gone. No more. Agent E2 replaces it. I've said this multiple times.
+
+> Homelabs is deleted, and /homelabs redirects to /tools.
+>
+> if deleted, why redirect? That homelab serve no purpose anymore. Completely delete it
+
+**Result:** R-REPO-010 now refuses a folder named after a part the roadmap removes: AskIO's code is [`site-logic/answering/`](https://github.com/e1-rahabok/isvara/tree/main/site-logic/answering) and its tests are [`answer-tests/`](https://github.com/e1-rahabok/isvara/tree/main/answer-tests), and isvara's folder check fails on such a name. R-REPO-011 now has `/homelabs` answer 404, with no redirect; R-SITE-010 in isvara's [site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md) says a page removed with nothing to cover it answers 404.
+
+### isvara.io's deployment
+
+On being asked to approve a merge described as deploying isvara.io:
+
+> As in deploy live in production? How can it be? The website is based on another repository, which I forked. You're updating the fork.
+>
+> We will not replace a live site until its fully tested. Your eagerness to update a website visible to the world is worrying. We need to make sure the spec is 100% correct first.
+>
+> Here is the process:
+>
+> 1. We finalize the spec
+> 2. We deploy to a parallel site. Give it a name.
+> 3. The site goes live. Nobody will basically know as it's not advertised. I will then compare side by side.
+> 4. Only when I'm satisfied, we replace the old site.
+>
+> Make sense?
+
+Which Vercel account serves isvara.io today:
+
+> agentisvara-4524
+
+(The account's email address, also given, is left out of the repository.) A screenshot the author sent next shows the live project `isvara` in the Vercel team Agent ISV (`agent-isv`), with the author's own account `iwanang-1023` a member:
+
+> iwanang-1023 has access. See screenshot. You should login and check for yourself as you're in SDD mode.
+
+Whether the fork is connected to a Vercel project:
+
+> I don't think so. As The Architect, design the deployment architecture, document it. When done, ask The Implementer to read and set up.
+
+**Result:** CONSTRAINT-10 in the [brief](../brief.md) and DESIGN-29 in the [system design](../design/system.md): the parallel site `isvara-next` in the same Vercel team, not indexed and with its own stores, and a switch-over that merges the fork into the original after the author's approval. isvara's [deployment.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/deployment.md) holds R-DEPLOY-001 to R-DEPLOY-004; ROADMAP M2 sets the parallel site up and M7 switches over.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):
@@ -180,8 +242,8 @@ On four branches, none ahead of `main`, left for the author to delete by hand:
   - Result: the live demo opens an object on its Performance tab, with no Summary tab (R-LIVE-004). R-LIVE-036 walks the script: the cluster's Performance and Capacity tabs, then the first host and its first VM, worst first, Performance only, with every Agent E2 mark and every suggested question. "Relevant" and "correct" became tests: R-LIVE-038 checks each suggestion against Agent E2's own rule for the page's situation, R-LIVE-039 checks each answer's figures against the reference script and grades it, and the author rates every answer at the M8 rehearsal. R-LIVE-040 covers Agent E2 or the gateway failing mid-demo. The script is in PCM's [demo/README.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/demo/README.md), section The live demo; the synthetic walk runs now as LPG-31 and LPG-32. The answer does not open VCF Operations beside PCM, so the numbers are compared by the reference script (R-LIVE-024).
 - **Q-PCM-2**, two of PCM's folder names:
   - Answer: "Agree".
-  - Result: the Docs workspace folder, pcm/docs, becomes `pcm/definitions` in M2; the route `/docs` and PCM's [`spec/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/spec) stay. Recorded in PCM's decisions.md. Q-PCM-4 below renames the folder again.
-- **Q-PCM-4**, what PCM's users call the /docs workspace. The question: a fresh reader of PCM's folder tree (T-WS-007b) took `pcm/definitions` for the KPI definitions; what do the people who use `/docs` call it? The working assumption, as the author was shown it: "I'm assuming "Docs", so the folder would become pcm/docs-workspace."
+  - Result: the Docs workspace folder, pcm/docs, becomes [`pcm/definitions`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/definitions) in M2; the route `/docs` and PCM's [`spec/`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/spec) stay. Recorded in PCM's decisions.md. Q-PCM-4 below renames the folder again.
+- **Q-PCM-4**, what PCM's users call the /docs workspace. The question: a fresh reader of PCM's folder tree (T-WS-007b) took [`pcm/definitions`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/definitions) for the KPI definitions; what do the people who use `/docs` call it? The working assumption, as the author was shown it: "I'm assuming "Docs", so the folder would become pcm/docs-workspace."
   - Answer: "OK".
   - Result: the folder is [`pcm/docs_workspace`](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/docs_workspace), with an underscore: the folder is a Python package, and Python cannot import a name with a hyphen. Its route stays `/docs`. Written in R-REPO-008 of PCM's [clean-up.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/clean-up.md), with a new rule that no folder is named with a term that the glossary or the contracts give to something the folder does not hold, and in D-135 of PCM's decisions.md.
 - **Q-ADP-1**, the style baseline of PCM-Adapter ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/OPEN-QUESTIONS.md)):

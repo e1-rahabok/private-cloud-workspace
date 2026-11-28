@@ -60,7 +60,8 @@ The author's answer to what would bring an administrator back weekly (2026-11-26
 | Self-assessment | Drop | The quiz's mastery map replaces it |
 | Cost calculator, SLA builder | Drop | No source in Agent E2's knowledge |
 | Podcast | Drop | Agreed with the author, 2026-11-26 |
-| Team, homelabs | Keep | Unchanged |
+| Team | Keep | Unchanged |
+| Homelabs | Drop | The author no longer needs it, 2026-11-28 (R-REPO-011 in isvara's [clean-up.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/clean-up.md)) |
 
 ## Ask Agent E2
 
@@ -131,4 +132,4 @@ The milestones of [ROADMAP.md](../../ROADMAP.md), detailed in the [before and af
 1. M4 reading: Agent E2's export, articles and the three paths, search, the page checks, the first infographic (the I/O path), old links redirected.
 2. M5 Ask and contributions: Ask Agent E2 with protection, contributions.
 3. M6 practice and tools: quiz, mastery map, exam, daily question; calculators rebuilt on the catalog.
-4. M7 switch-over: What's New, the manual, the header and home page, and the switch from a Vercel preview in one release.
+4. M7 switch-over: What's New, the manual, the header and home page, and the switch from the parallel site in one release (DESIGN-29).
