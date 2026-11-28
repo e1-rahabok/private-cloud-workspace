@@ -15,6 +15,9 @@ Every short name and ID used in this workspace, with what it means and where it 
 | D-001 to D-1nn | A decision inside PCM | [PCM decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md) |
 | Q-WS-1, Q-WS-I1 and so on | A question to the author about the workspace; Q-WS-I questions are about intent | Rounds [1](interview-round-1.md), [2](interview-round-2.md), [3](interview-round-3.md), [4](interview-round-4.md), [5](interview-round-5.md); [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) |
 | Q-E2-001 and so on | A question to the author about agent-e2 | [agent-e2 author-questions.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions.md) |
+| Q-PCM-1 and so on | A question to the author about private-cloud-manager only (WD-038) | [private-cloud-manager OPEN-QUESTIONS.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/OPEN-QUESTIONS.md); answers in its [decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md) |
+| Q-ADP-1 and so on | A question to the author about PCM-Adapter only (WD-038) | [PCM-Adapter OPEN-QUESTIONS.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/OPEN-QUESTIONS.md) |
+| Q-ISVARA-1 and so on | A question to the author about isvara only (WD-038) | [isvara OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md) |
 | M1 to M8 | A roadmap milestone of release 1.0, numbered from M1 in the order of work (WD-042) | [ROADMAP.md](../ROADMAP.md) |
 | A1 to A6 | A milestone of agent-e2's plan toward its part of release 1.0 (Q-WS-58) | [agent-e2 plan.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/plan.md) |
 | R-AREA-nnn | A requirement, for example R-LIVE-003 | [requirements/](requirements) |

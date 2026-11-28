@@ -6,7 +6,7 @@ Every interface between two repositories. Each has one owner, its consumers, whe
 | ID | Contract                     | Owner, then consumers              | Check                                                             |
 | -- | ---------------------------- | ---------------------------------- | ----------------------------------------------------------------- |
 | C1 | KPI definitions              | agent-e2; VCF vCommunity Adapter, PCM, isvara | [`checks/kpi_definitions.py`](checks/kpi_definitions.py), running |
-| C2 | KPI metric keys              | VCF vCommunity Adapter; PCM (live demo)       | Planned in ROADMAP M8                                             |
+| C2 | KPI metric keys              | VCF vCommunity Adapter; PCM (live demo)       | Planned in ROADMAP M8, the PCM live demo                          |
 | C3 | Agent E2 API                 | agent-e2; PCM, isvara (planned)    | [`checks/agent_e2_api.py`](checks/agent_e2_api.py), running       |
 | C4 | Knowledge content for isvara | agent-e2; isvara                   | `checks/knowledge_export.py`, planned in ROADMAP M4          |
 | C5 | Model gateway                | Vercel AI Gateway; agent-e2        | `checks/model_gateway.py`, planned in ROADMAP M3                  |

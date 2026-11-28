@@ -50,7 +50,7 @@ To compare models, give two of them the same slice and the same files, and count
 
 Some documents are mainly for people: the readme, the map, the decisions, the design notes, this tutorial, commit messages. Others are mainly for the agent: its working rules (CLAUDE.md), the requirements, the templates. They are written differently, and each kind has its own rules.
 
-**For people,** the rules began as the ones the author had worked out in the knowledge service's repository ([writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md)), after fixing AI-written text there several times. In M2 they moved to this workspace's [writing rules](../writing/README.md), so every repository follows one copy. In short:
+**For people,** the rules began as the ones the author had worked out in the knowledge service's repository ([writing.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/knowledge-rules/writing.md)), after fixing AI-written text there several times. In milestone M2 of the [roadmap](../ROADMAP.md) they moved to this workspace's [writing rules](../writing/README.md), so every repository follows one copy. In short:
 
 - plain sentences, with the fact itself rather than filler;
 - none of the phrases on a list of typical AI wording, each listed with its plain replacement, kept in one file in this workspace ([flagged-phrases.yaml](../writing/flagged-phrases.yaml));
