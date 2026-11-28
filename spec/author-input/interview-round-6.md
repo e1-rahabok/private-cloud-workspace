@@ -211,6 +211,14 @@ On an offer to fix a page test, run the project's own tests on every change, run
 
 **Result:** the brief's section [Users](../brief.md#users) says who the author is and how Claude speaks to the author. CLAUDE.md, the same in all five repositories, says that only the architect speaks to the author, to ask for input or to report a result, and that a reply names each thing by what it does, with no IDs, abbreviations, tool names or file paths unless the author must open the file.
 
+### The milestone review page
+
+On being asked to approve M2 from its review page, which listed each requirement as one short line with its number of tests:
+
+> It's impossible to review because each line is just a short sentence. Not enough context. Plus, it's written for The Implementer, not me. The texts at the end "Tests: 2 anywhere, 0 lab." is irrelevant to me right? You should test properly as you deem appropriate. You can definitely ask me for requirements, scope, etc.
+
+**Result:** R-WS-015 in [workspace.md](../requirements/workspace.md) and DESIGN-30 in the [system design](../design/system.md): the review page tells the author in plain words what the milestone set out to do and why, what changes, what the author is asked to confirm, what was left out and what could go wrong, and says in one line that Claude tested it. It has no test counts. DEPENDENCY-1 in the [brief](../brief.md) names what the page holds.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):

@@ -155,7 +155,7 @@ Each risk names its effect, what reduces it, and who acts. Claude keeps this lis
 
 What the work needs from people and systems outside Claude's reach. The contracts between the repositories are in the [system design](design/system.md), section Contracts.
 
-- **DEPENDENCY-1 Approval of each milestone.** The author approves each milestone from its [review page](review), and reads each pull request marked as a major change. Provided by: the author. Needed by: every milestone from M2.
+- **DEPENDENCY-1 Approval of each milestone.** The author approves each milestone from its [review page](review), which says in plain words what the milestone did, what the author confirms, what was left out and what could go wrong (R-WS-015), and reads each pull request marked as a major change. Provided by: the author. Needed by: every milestone from M2.
 - **DEPENDENCY-2 Gateway key and grading for Agent E2.** The Vercel AI Gateway key for the cloud environment; a review of the answer keys an independent agent marks uncertain; 20 answers graded once (Q-WS-92). Provided by: the author. Needed by: M3.
 - **DEPENDENCY-3 Review of isvara.io's before and after.** The [before and after](design/isvara-before-and-after.md), feature by feature (Q-WS-41), with isvara's [visitor experience](https://github.com/e1-rahabok/isvara/blob/main/spec/visitor-experience.md): the site map, menus, page mocks and journeys. Provided by: the author. Needed by: M4.
 - **DEPENDENCY-4 Hosting and bot check for the public Agent E2.** An account on the host chosen for the public Agent E2, if it needs one, and the bot-check service the protection uses. Provided by: the author. Needed by: M5.

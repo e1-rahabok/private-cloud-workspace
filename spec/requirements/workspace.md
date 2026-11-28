@@ -236,6 +236,27 @@ Milestone: M3.
 
 Test scenarios:
 - T-WS-008a (anywhere with the gateway key, automated by `contract-checks/model_gateway.py`, to write, run by [`contract-checks/run_all.py`](../../contract-checks/run_all.py)): the configured model answers; a model ID that does not exist fails and names the ID.
+### R-WS-015 A milestone's review page is written for the author
+
+Why: the author approves each milestone from its page and could not review the first one: each requirement was one short line with its ID and a count of its tests, with no context, written for the agent. The author is the expert in private cloud operations and is not a software developer (the brief, section Users), and testing is the agent's work.
+
+Source: DEPENDENCY-1; DESIGN-30; the author, 2026-11-28 ([round 6](../author-input/interview-round-6.md), section The milestone review page).
+
+- Given a milestone that has requirements
+- When its review page is written
+- Then it has these sections, in this order: what the milestone set out to do and why; what changes, for visitors and for the author; what the author is asked to do; what the author confirms; what Claude built and owns; what was left out on purpose; what could go wrong; how it was tested
+- And what the author confirms lists each requirement whose source is the author's answer or words, with its reason and the author's own words where the specification records them, and the goals, scope, constraints and assumptions the milestone rests on, each with its reason
+- And what Claude built and owns lists each requirement that rests only on a design choice, with its reason, for information: it asks the author for nothing
+- And what could go wrong lists each risk the milestone touches, with what reduces it
+- And the page asks the author only for input and for the approval
+- And how it was tested is one statement that Claude ran every test of the milestone and all pass, or that the milestone's work is not finished; it has no count and names no tool
+- And the page has no requirement, test, design choice, question or decision ID, and no file path
+- And the page is rebuilt from the roadmap, the requirements and the brief, and the check fails when a page differs from what they say, or when the open milestone lacks a section
+
+Test scenarios:
+- T-WS-015a (anywhere, automated by [tools/test_milestone_review.py](../../tools/test_milestone_review.py)): a requirement whose source names an answer of the author lands under what the author confirms, and one that names only a design choice under what Claude built; the page shows each brief item a requirement cites; a test count, an ID or a missing section makes the check fail; a milestone with unticked work says so in its testing line.
+- T-WS-015b (anywhere, manual, at the author's first review of each milestone): the author reads the page and says what is unclear; each unclear word or missing fact goes to the roadmap, the requirement or the brief it comes from, and the page is rebuilt.
+
 ## Questions for round two
 
 - None.
