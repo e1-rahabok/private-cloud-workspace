@@ -119,6 +119,12 @@ The lab VM's address in the link is replaced by its role, by the rule this answe
 
 **Result:** DESIGN-9 in the [system design](../design/system.md) keeps the lab's addresses and host names in `$HOME\.secrets\lab.json` and `/etc/pcm/pcm.env`, never in a repository; R-WS-010 in [workspace.md](../requirements/workspace.md) and its check enforce it in all five repositories. The history is not rewritten (DESIGN-9, rejected option f).
 
+### Security as the architect's work
+
+> Why did you wait for me for the security on the IP address and host name? Shouldn't this be part of your professional application development role as an experienced software architect? Is there anything else that you need to consider? Remember the SDD mode.
+
+**Result:** DESIGN-24 in the [system design](../design/system.md) reviews release 1.0 against four public baselines, mapped item by item in its section Security baseline; DESIGN-25 to DESIGN-27 add dependency updates, secret scanning, least rights in workflows, and recovery. R-WS-011 to R-WS-013 in [workspace.md](../requirements/workspace.md) and their checks enforce them in all five repositories. ASSUMPTION-9 and RISK-12 are in the [brief](../brief.md); R-PROTECT-007 and R-PROTECT-008 are in isvara's [protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md), and R-LIVE-037 in private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md).
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):

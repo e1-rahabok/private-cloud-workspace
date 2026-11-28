@@ -142,6 +142,51 @@ Source: the author, 2026-11-28 ([round 6](../author-input/interview-round-6.md#l
 Test scenarios:
 - T-WS-010a (anywhere, automated by [checks/lab_addresses.py](../../checks/lab_addresses.py), run by run_all.py on every pull request of every repository; planted breaks in [checks/test_lab_addresses.py](../../checks/test_lab_addresses.py)): an address in each private range, and one inside a file name, fails; an example-network address, a version number, a documentation or public address and the books pass; a listed name fails; the report holds no address.
 
+### R-WS-011 No repository holds a token, key or password
+
+Why: isvara is private on a free plan, where GitHub runs no secret scanning, and a secret pushed to any of the five repositories is copied to every clone at once.
+
+Source: DESIGN-26.
+
+- Given the tracked text files of the five repositories
+- When they are searched
+- Then none holds a GitHub, OpenAI, Anthropic, AWS, Slack or Vercel token, a private key, or a password, token or key written as a quoted value
+- And a value that is clearly an example (a placeholder, `...`, or the documented sample password of a vendor's example file) passes
+- And the check's report names the file and line, never the value
+
+Test scenarios:
+- T-WS-011a (anywhere, automated by [checks/secret_values.py](../../checks/secret_values.py), run by run_all.py on every pull request of every repository; planted breaks in [checks/test_secret_values.py](../../checks/test_secret_values.py)): a planted token of each kind, a private key and a quoted password fail; a placeholder and an environment-variable reference pass; the report holds no value.
+
+### R-WS-012 Every repository keeps its dependencies and workflows safe
+
+Why: on 2026-11-28 isvara.io ran a Next.js release with a critical advisory and no alert reported it, and one workflow ran with the default token rights.
+
+Source: DESIGN-25, DESIGN-26.
+
+- Given the five repositories
+- When their workflows and dependency files are read
+- Then every workflow declares `permissions` at its top level
+- And every action outside `actions/` and the workspace's own workflows is pinned to a full commit hash
+- And every repository has a [`.github/dependabot.yml`](../../.github/dependabot.yml) that covers GitHub Actions and each package system it holds (npm with a [`package-lock.json`](https://github.com/e1-rahabok/isvara/blob/main/package-lock.json), pip with a `requirements.txt`)
+- And isvara.io's CI fails when `npm audit --omit=dev --audit-level=high` finds an advisory
+
+Test scenarios:
+- T-WS-012a (anywhere, automated by [checks/workflows.py](../../checks/workflows.py), run by run_all.py; planted breaks in [checks/test_workflows.py](../../checks/test_workflows.py)): a workflow with no permissions, a third-party action on a tag, and a repository with a lockfile but no npm entry in `dependabot.yml` each fail; GitHub's own actions on a major tag pass.
+- T-WS-012b (anywhere, automated by the npm audit step of [cross-repo.yml](../../.github/workflows/cross-repo.yml)): on a repository with a [`package-lock.json`](https://github.com/e1-rahabok/isvara/blob/main/package-lock.json), a high advisory in a production dependency fails the run.
+
+### R-WS-013 Each milestone review rereads the security baseline
+
+Why: a check finds only what it was written for; the baseline names the threats no check covers yet (DESIGN-24).
+
+Source: DESIGN-24.
+
+- Given a milestone's review
+- When Claude prepares the review page
+- Then each row of the system design's section Security baseline is read against the repositories, and every gap is either fixed or written into the specification with its reason
+
+Test scenarios:
+- T-WS-013a (anywhere, manual, at each milestone review): the review page lists the baseline rows read and the gaps found; expect each gap to name the requirement or design choice that now covers it. A check is not planned: it needs judgement about what a row asks.
+
 ### R-WS-009 Project documents agree with the specification
 
 Why: the READMEs and CLAUDE-PROJECT.md files were written before the specification and were never read against it, so a fact in them can contradict it, or state what the specification never decided, and a reader or a session acts on it. isvara's README said the books come from Box; the books come from the author's laptop (DEPENDENCY-10).

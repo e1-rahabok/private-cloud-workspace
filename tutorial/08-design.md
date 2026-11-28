@@ -57,6 +57,8 @@ Start with a short threat model: what is worth protecting, who might attack it, 
 - **Data leaves only by rule.** When Agent E2 searches the web for current facts, its query drops words that look like the customer's system names, so the names of VMs, hosts and datastores stay on site. It refuses private and local network addresses, so a crafted link cannot reach the customer's internal systems, and it treats every fetched page as untrusted text.
 - **Instructions hidden in a question.** isvara.io will check each visitor's question with one small model call before Agent E2 sees it, and a flagged question gets a fixed reply (DESIGN-10).
 - **Secrets.** The agent never sees a password. On the author's laptop, credentials are encrypted files that only the author's Windows account can open; on the lab's virtual machine they sit in a file that only root and the `pcm` group can read (DESIGN-9).
+- **A public baseline.** A threat model built feature by feature covers only the threats each feature raised. Check the whole design against a published list as well: OWASP ASVS for the application, the OWASP Top 10 and its list for LLM applications, and the twelve-factor rule on configuration. Map each item to the choice that meets it, and reread the map at every milestone review (DESIGN-24, section Security baseline of the [system design](../spec/design/system.md)).
+- **The supply chain.** Most of a web site's code is its dependencies. Dependabot keeps them current, CI fails on a high or critical advisory, and actions from outside GitHub are pinned by commit (DESIGN-25).
 
 ### Scalability
 

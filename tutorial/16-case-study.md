@@ -61,6 +61,8 @@ Each correction went into the decisions and the map.
 
 **Addresses in public repositories.** The system design listed the lab's addresses and its VM's host name, and the lab tools carried them in code; the adapter's contributing rules forbade it for code only, and nothing checked. The author asked why they were in GitHub at all. The design choice on credentials had covered passwords and missed identifiers. The fix was a rule (documents name a system by its role; tools read addresses from one private file), a check on every pull request, and an example network for every written example, so the check can tell an example from a leak.
 
+**Security on request only.** The author then asked why the agent had waited to be told: security is the architect's work. The security choices had each come from a feature that raised a threat, so nothing looked at the whole. A review against four public lists found what the features had not raised: a critical advisory in the live site's web framework, no dependency updates in four repositories, a workflow with no limit on its rights, unpinned tools in CI, and an admin key carried in the page address. The fix was a map from each list's items to the design, reread at every milestone review, and checks for secrets, workflow rights and dependency advisories on every pull request.
+
 A third answer was "will supply later. remind me." Those questions stayed open with a trigger: the agent asks again when the milestone that needs them starts.
 
 **The trust question.** Discussing AI-written public content, the author noted that keeping an expert site credible is not a new problem. The discussion that followed became [chapter 15](15-trust-in-ai-written-content.md): separate a wrong source from a wrong rewrite, spend scarce review time on disagreements and on the most-read pages, and build a community that can review.
@@ -240,3 +242,4 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - A session that has edited a document is no fresh reviewer of it. Fix what it finds, and leave the review open for a reader who has not seen the files.
 - Before asking for data, try to read it. When it is out of reach, ask with the place to look and the assumption the work uses meanwhile.
 - An answer that closes a known gap in a test belongs in the test as a fact. A list of exceptions that fails when an entry goes unused shows a stale entry at once.
+- A threat model built one feature at a time misses what no feature raised. Check the whole design against a published baseline, and reread it at each milestone.

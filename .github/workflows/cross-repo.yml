@@ -50,7 +50,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install pyyaml requests
+      - run: pip install pyyaml==6.0.2 requests==2.32.3
+      - name: Production dependencies have no high or critical advisory (R-WS-012)
+        working-directory: ${{ github.event.repository.name }}
+        run: |
+          if [ -f package-lock.json ]; then npm audit --omit=dev --audit-level=high; else echo "no package-lock.json: not run"; fi
       - name: Contract and name checks
         run: python private-cloud-workspace/checks/run_all.py --no-clone
       - name: Planted breaks of the checks
