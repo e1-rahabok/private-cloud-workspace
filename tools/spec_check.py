@@ -5,12 +5,11 @@ child repository's folder named in tools/requirement_files.py, from clones next 
 
 Rules (spec/README.md, spec/requirements/README.md, R-WS-003, DESIGN-8):
 - A requirement is a heading "### R-AREA-nnn Title". Its ID is unique across all files.
-- It has a "Why:" line. Until every repository has moved to it, a missing Why line is counted and
-  reported, and fails only in the workspace's own requirement files.
+- It has a "Why:" line with its reason, unless it is dropped.
 - It has a "Source:" line naming at least one existing ID: a question (Q-WS-) in spec/author-input/ or
   OPEN-QUESTIONS.md, a brief item (GOAL-, SCOPE-, PRINCIPLE-, CONSTRAINT-, ASSUMPTION-, RISK-, DEPENDENCY-)
-  in spec/brief.md, a design choice (DESIGN-) in spec/design/system.md, a PCM decision (D-) in the
-  private-cloud-manager clone, or, while DECISIONS.md exists, a workspace decision (WD-).
+  in spec/brief.md, a design choice (DESIGN-) in spec/design/system.md, or a PCM decision (D-) in the
+  private-cloud-manager clone. A WD- ID, from the retired decision log, fails.
 - It has at least one test scenario: a line "- T-AREA-nnnx (anywhere|lab, ...)" whose number is
   the requirement's. A dropped requirement ("### R-AREA-nnn Dropped: ...") keeps its ID and Source and
   has no scenario.
@@ -31,7 +30,7 @@ import re
 import sys
 from pathlib import Path
 
-from requirement_files import WORKSPACE, add_repos_argument, files
+from requirement_files import add_repos_argument, files
 
 ROOT = Path(__file__).resolve().parents[1]
 PCM_DECISIONS = ROOT.parent / "private-cloud-manager" / "decisions.md"
@@ -40,7 +39,7 @@ REQ = re.compile(r"^### (R-[A-Z0-9]+-\d{3})\b( Dropped:)?", re.M)
 SCEN = re.compile(r"^- (T-[A-Z0-9]+-\d{3}[a-z]) \(([a-z]+)", re.M)
 SOURCE = re.compile(r"^Source:(.*)$", re.M)
 ITEM_PREFIXES = "GOAL|SCOPE|PRINCIPLE|CONSTRAINT|ASSUMPTION|RISK|DEPENDENCY|DESIGN"
-CITED = re.compile(rf"\b(Q-WS-I?\d+|WD-\d{{3}}|D-\d{{3}}|(?:{ITEM_PREFIXES})-\d+)\b")
+CITED = re.compile(rf"\b(Q-WS-I?\d+|WD-\d{{3}}|D-\d{{3}}|(?:{ITEM_PREFIXES})-\d+)\b")  # WD- is found to be refused
 WHY = re.compile(r"^Why:\s*\S", re.M)
 BRIEF = ROOT / "spec" / "brief.md"
 DESIGN = ROOT / "spec" / "design" / "system.md"
@@ -66,9 +65,6 @@ def known_ids() -> set[str]:
     for f in list((ROOT / "spec" / "author-input").glob("*.md")) + [ROOT / "OPEN-QUESTIONS.md"]:
         if f.exists():
             ids |= set(re.findall(r"^#{2,4} (Q-WS-I?\d+)\b", f.read_text(encoding="utf-8"), re.M))
-    decisions = ROOT / "DECISIONS.md"
-    if decisions.exists():
-        ids |= set(re.findall(r"^## (WD-\d{3}) ", decisions.read_text(encoding="utf-8"), re.M))
     ids |= {k for k in items(BRIEF) | items(DESIGN) if "#" not in k}
     if PCM_DECISIONS.exists():
         ids |= set(re.findall(r"^## (D-\d{3}) ", PCM_DECISIONS.read_text(encoding="utf-8"), re.M))  # one block per decision (D-134)
@@ -148,7 +144,6 @@ def main() -> int:
     ids = known_ids()
     problems: list[str] = []
     reqs: dict[str, str] = {}
-    no_why: dict[str, int] = {}
     scenarios: list[tuple[str, str, str]] = []
     for f in req_files:
         text = f.path.read_text(encoding="utf-8")
@@ -161,10 +156,7 @@ def main() -> int:
                 problems.append(f"{f.name}: {rid} is also in {reqs[rid]}")
             reqs[rid] = f.name
             if not m.group(2) and not WHY.search(body):
-                if f.repo == WORKSPACE:
-                    problems.append(f"{f.name}: {rid} has no Why line")
-                else:
-                    no_why[f.repo] = no_why.get(f.repo, 0) + 1
+                problems.append(f"{f.name}: {rid} has no Why line")
             src = SOURCE.search(body)
             if not src:
                 problems.append(f"{f.name}: {rid} has no Source line")
@@ -173,7 +165,9 @@ def main() -> int:
                 if not cited:
                     problems.append(f"{f.name}: {rid} Source names no question, brief item, design choice or decision ID")
                 for c in cited:
-                    if c not in ids:
+                    if c.startswith("WD-"):
+                        problems.append(f"{f.name}: {rid} Source names {c}, from the retired decision log; name the brief item or design choice that holds its outcome")
+                    elif c not in ids:
                         problems.append(f"{f.name}: {rid} Source names {c}, which does not exist")
             own = [s for s in SCEN.finditer(body) if "R-" + s.group(1)[2:-1] == rid]
             if not own and not m.group(2):
@@ -190,8 +184,6 @@ def main() -> int:
     problems += contract_problems()
     for p in problems:
         print(f"FAIL {p}")
-    for repo, n in sorted(no_why.items()):
-        print(f"TO MOVE {repo}: {n} requirement(s) have no Why line yet")
     for repo in unread:
         print(f"NOT RUN {repo}: its requirements were not read")
     lab = sum(1 for _, w, _ in scenarios if w == "lab")

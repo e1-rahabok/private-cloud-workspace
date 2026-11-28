@@ -10,7 +10,6 @@ Rules, tools and paths of this project: Private Cloud Manager and its repositori
 - Requirements: [spec/requirements](spec/requirements). Review pages: [spec/review](spec/review)`/M<n>.md`.
 - System design, contracts C1 to C5 and design choices: [spec/design/system.md](spec/design/system.md). Test plan: [spec/test-plan.md](spec/test-plan.md).
 - Before acting, also read [spec/brief.md](spec/brief.md) and [spec/design/system.md](spec/design/system.md).
-- Until the workspace's DECISIONS.md is retired: add nothing to it; put an outcome in the brief, a requirement or the system design.
 
 ## Checks before each commit
 

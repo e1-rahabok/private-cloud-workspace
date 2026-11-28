@@ -119,7 +119,7 @@ Why: an old name sends a reader or a link to a repository that no longer exists.
 Source: Q-WS-3 (round 1: rename references, archives left as they are); CONSTRAINT-2; CONSTRAINT-3.
 
 - Given the repositories agent-e2, PCM-Adapter, private-cloud-manager, isvara and this workspace
-- When their files outside archives and dated records are searched, and outside the files that name the old names to forbid them (requirement files, DECISIONS.md and the interview records)
+- When their files outside archives and dated records are searched, and outside the files that name the old names to forbid them (requirement files and the author's recorded input)
 - Then none contains "VCF-vCommunity-Adapter" or "private-cloud-management"
 
 Test scenarios:

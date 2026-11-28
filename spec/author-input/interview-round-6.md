@@ -22,7 +22,7 @@ Options for the guard:
 
 **Answer:** "Ok. Document the answers so human readers can learn from it."
 
-**Result:** option (a), with the two batteries rewritten as recommended ([DECISIONS](../../DECISIONS.md), WD-045). isvara.io gets a page for people that explains its guard and the two batteries, written in M5 with the guard it describes (R-ASK-012 in isvara's [ask.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/ask.md)). Until then, the question above is that explanation.
+**Result:** option (a), with the two batteries rewritten as recommended (DESIGN-10 in the [system design](../design/system.md)). isvara.io gets a page for people that explains its guard and the two batteries, written in M5 with the guard it describes (R-ASK-012 in isvara's [ask.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/ask.md)). Until then, the question above is that explanation.
 
 ## Q-WS-138 Close for Business: one Risk level in release 1.0
 

@@ -46,26 +46,6 @@ def system() -> None:
     k.finish(str(ROOT / "images" / "system.svg"))
 
 
-def method() -> None:
-    """tutorial/02-the-method.md: the six steps and the loop back."""
-    k.begin(1060, 250)
-    k.t(20, 26, "The method: seven steps and the loop back", 16, "bold")
-    k.legend(20, 40, [("Before building, then kept current", "method"), ("Repeated for every slice", "prod")])
-    steps = [("1. Map", ["SYSTEM.md", "intent.md"]), ("2. Interview", ["OPEN-QUESTIONS"]),
-             ("3. Seams, owners", ["CONTRACTS.md", "DECISIONS.md"]), ("4. Requirements", ["requirements/"]),
-             ("5. Checks", ["checks/, tools/"]), ("6. Slices", ["ROADMAP.md"]), ("7. Run", ["CLAUDE.md"])]
-    w, gap, y, h = 130, 18, 76, 74
-    for i, (title, lines) in enumerate(steps):
-        x = 20 + i * (w + gap)
-        k.box(x, y, w, title, lines, "method" if i < 4 else "prod", h=h)
-        if i:
-            k.arrow([(x - gap, y + h / 2), (x, y + h / 2)])
-    first, last = 20 + w / 2, 20 + 6 * (w + gap) + w / 2
-    k.arrow([(last, y + h), (last, 210), (first, 210), (first, y + h)],
-            "Corrections, answers and new decisions go back into the files", 530, 214)
-    k.finish(str(ROOT / "images" / "method.svg"))
-
-
 def parts() -> None:
     """README.md: the five parts, who each is for, and what flows between them."""
     k.begin(960, 500)
@@ -146,7 +126,6 @@ def spec_chain() -> None:
 
 if __name__ == "__main__":
     system()
-    method()
     roadmap()
     parts()
     spec_chain()
