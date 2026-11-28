@@ -187,6 +187,26 @@ Source: DESIGN-24.
 Test scenarios:
 - T-WS-013a (anywhere, manual, at each milestone review): the review page lists the baseline rows read and the gaps found; expect each gap to name the requirement or design choice that now covers it. A check is not planned: it needs judgement about what a row asks.
 
+### R-WS-014 No branch that main holds stays on GitHub
+
+Why: a cloud session cannot delete a branch (CONSTRAINT-9), and the author reads only `main` and has no time to review a list of leftover branches (CONSTRAINT-8).
+
+Source: DESIGN-28; the author's corrections of 2026-11-28 ([round 6](../author-input/interview-round-6.md), section Branches).
+
+- Given a branch other than `main` in any of the five repositories
+- When the branch cleanup runs, every day, on every push to `main` and on demand
+- Then the branch is deleted when it is not ahead of `main`
+- And it is kept, with its reason, when it is protected, on the repository's keep list, the head of an open pull request, ahead of `main`, or without history in common with `main`
+- And the run lists each deleted branch with its last commit, and each kept branch ahead of `main` with its number of commits ahead
+- And on a pull request the run deletes nothing and lists what it would delete
+- And a deletion GitHub refuses fails the run
+- And every repository has a workflow that calls the branch cleanup, and only the job that deletes has write rights
+
+Test scenarios:
+- T-WS-014a (anywhere, automated by [tools/test_branch_cleanup.py](../../tools/test_branch_cleanup.py), against a fake GitHub): a branch of each kind to keep is kept with its reason; a branch not ahead of `main` is deleted and listed with its commit; a dry run deletes nothing; a refused deletion fails the run.
+- T-WS-014b (anywhere, automated by [tools/workflows.py](../../tools/workflows.py), run by run_all.py; planted break in [tools/test_workflows.py](../../tools/test_workflows.py)): a repository with no workflow that calls the branch cleanup fails.
+- T-WS-014c (anywhere, manual, once after the first run in each repository): list its branches; expect none that is not ahead of `main` apart from the kinds kept, and the run's list to name each deleted branch with its last commit.
+
 ### R-WS-009 Project documents agree with the specification
 
 Why: the READMEs and CLAUDE-PROJECT.md files were written before the specification and were never read against it, so a fact in them can contradict it, or state what the specification never decided, and a reader or a session acts on it. isvara's README said the books come from Box; the books come from the author's laptop (DEPENDENCY-10).

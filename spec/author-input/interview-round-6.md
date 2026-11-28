@@ -125,6 +125,22 @@ The lab VM's address in the link is replaced by its role, by the rule this answe
 
 **Result:** DESIGN-24 in the [system design](../design/system.md) reviews release 1.0 against four public baselines, mapped item by item in its section Security baseline; DESIGN-25 to DESIGN-27 add dependency updates, secret scanning, least rights in workflows, and recovery. R-WS-011 to R-WS-013 in [workspace.md](../requirements/workspace.md) and their checks enforce them in all five repositories. ASSUMPTION-9 and RISK-12 are in the [brief](../brief.md); R-PROTECT-007 and R-PROTECT-008 are in isvara's [protection.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/protection.md). R-LIVE-037 in private-cloud-manager's [live-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/live-demo.md) closes the lab VM to everything but TLS and SSH from the VPN, and keeps it patched; the author approved closing port 8080 ("Go ahead and close port 8080").
 
+### Branches
+
+Asked to read Q-PCM-4 while every repository listed branches other than `main`:
+
+> I'm unable to find the folders. Also, there are many branches ahead. This is impossible to review.
+
+On three branches listed for deletion that were ahead of `main`:
+
+> But they are ahead. Why are they ahead? Normally we delete only if they are not ahead.
+
+On four branches, none ahead of `main`, left for the author to delete by hand:
+
+> This is a common problem. Find a solution as we're in SDD mode.
+
+**Result:** CONSTRAINT-9 in the [brief](../brief.md) states that a cloud session cannot delete a branch. DESIGN-28 in the [system design](../design/system.md) deletes every branch that is not ahead of `main` inside GitHub, with each repository's own token, and keeps every branch ahead of it. R-WS-014 in [workspace.md](../requirements/workspace.md) and its tests enforce it in all five repositories, and the workspace's [CLAUDE-PROJECT.md](../../CLAUDE-PROJECT.md) no longer asks the author to delete branches.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):
