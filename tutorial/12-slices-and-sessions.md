@@ -1,4 +1,4 @@
-# 8. Slices and sessions
+# 12. Slices and sessions
 
 ## Slices
 
@@ -19,7 +19,7 @@ Work in one long session per slice, rather than many small ones. Each session fo
 3. It lists anything the requirements leave open, and the person answers. Questions that can wait go into the open questions file.
 4. It builds, runs every check with the changed branches in place, and runs each repository's own tests.
 5. When something is not decided, it writes the question with a recommendation and stops that line of work.
-6. At the end it marks the finished requirements in the roadmap with their pull request, and writes corrections back into the map and the decisions.
+6. At the end it marks the finished requirements in the roadmap with their pull request, and writes corrections back into the brief, the requirements and the design.
 7. It adds the session's lessons to the case log and to the chapter of the method each belongs to. In this project the agent forgot this until the author asked, so it is now a written rule.
 8. When work remains, it writes a prompt the person can paste into the next session: the files to read, the scope already settled, the tasks, and how to report.
 
@@ -45,9 +45,9 @@ Who merges depends on the stage of the project. Early on, while most changes are
 
 The checks are what make the early rule safe. Without them, merging unreviewed work is a gamble. With them, the person can read the warnings and the roadmap instead of every change.
 
-A conversation that settles several decisions in a row produces several pull requests that touch the same files, such as the roadmap. Opened side by side, they conflict. Build each one on top of the one before it instead. Merging the last one then merges the whole stack.
+A conversation that settles several questions in a row produces several pull requests that touch the same files, such as the roadmap. Opened side by side, they conflict. Build each one on top of the one before it instead. Merging the last one then merges the whole stack.
 
-A decision goes in before the requirements that cite it. The specification check refuses a requirement whose source names a decision that does not exist yet, and each repository's CI reads the decisions from the parent's main branch. So when the author answered six questions on one day, the parent recorded the answers and decisions in a pull request of their own and merged it first. Then each child repository's pull request could cite them.
+What a requirement cites goes in before the requirement. The specification check refuses a requirement whose source names an ID that does not exist yet, and each repository's CI reads those IDs from the parent's main branch. So when the author answered six questions on one day, the parent recorded the answers in a pull request of its own and merged it first. Then each child repository's pull request could cite them.
 
 One more lesson from this project: wait for the checks to actually report before merging. Once, the command that waits for them returned before the checks had even started, and the merge went through unchecked. The checks passed afterwards, but that was luck.
 

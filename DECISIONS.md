@@ -279,7 +279,7 @@ One entry each, newest at the bottom. A changed decision is edited in place; git
 
 - **Date:** 2026-11-27
 - **Decision:** Agent E2's answer set holds about 15 free-text questions in release 1.0, and grows toward 40 after it (R-E2-004). PCM and isvara.io read an Agent E2 job once every 10 seconds while it runs, and count the time up in the browser between reads (R-E2-020, R-ASK-002).
-- **Reason:** The author, 2026-11-27. On the answer set: the grader has a lower priority, since isvara.io's quiz is multiple choice and never uses it ([tutorial, chapter 12](tutorial/12-case-study.md), day four). On the interval: "VMware Admin does not mind 10 seconds waiting as he knows this is not a general chat." Both were quoted in requirements without a decision block, which the cold review of M1 found.
+- **Reason:** The author, 2026-11-27. On the answer set: the grader has a lower priority, since isvara.io's quiz is multiple choice and never uses it ([tutorial, chapter 16](tutorial/16-case-study.md), day four). On the interval: "VMware Admin does not mind 10 seconds waiting as he knows this is not a general chat." Both were quoted in requirements without a decision block, which the cold review of M1 found.
 
 ## WD-044 One Cluster Risk closure level in release 1.0
 

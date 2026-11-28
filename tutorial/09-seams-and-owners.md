@@ -1,10 +1,10 @@
-# 5. Seams and owners
+# 9. Seams and owners
 
 ## Seams
 
-A seam is any place where two parts depend on each other: an API call, a file one part writes and another reads, a definition two parts must agree on. Bugs gather at seams, because each side is tested on its own and nobody tests where they meet.
+A seam is any place where two parts depend on each other: an API call, a file one part writes and another reads, a definition two parts must agree on. Bugs gather at seams, because each side is tested on its own and nobody tests where they meet. The contracts at the seams are part of the design ([chapter 8](08-design.md)), and the agent writes them.
 
-List every seam in [CONTRACTS.md](../spec/design/system.md#contracts), with these fields:
+List every seam as a contract, with these fields. In this project the contracts C1 to C5 are a section of the design, [spec/design/system.md](../spec/design/system.md):
 
 | Field | Meaning |
 |---|---|
@@ -24,7 +24,7 @@ The second was an API hidden by its own error handling. The web app turns any fa
 
 - When a fact exists in more than one place, decide which copy is the master. The others are then generated from it or checked against it. Without that decision, each copy is edited by a different session and they drift apart.
 
-In this project the documents disagreed about who owned the performance definitions. One repository said its knowledge base was the only master; another said its own metrics were the definitions; a third followed the knowledge base. Only the author could settle that, and did: knowledge starts in the knowledge service, the management pack implements it, the web apps consume it ([DECISIONS](../DECISIONS.md), WD-001). The agent's part was to find the disagreement and put it to the author.
+In this project the documents disagreed about who owned the performance definitions. One repository said its knowledge base was the only master; another said its own metrics were the definitions; a third followed the knowledge base. The agent found the disagreement and asked the author where the knowledge belongs. The author's input settled it: "Isvara.io should never have its own knowledge. Fix it. It should be aligned with Agent E2". The design followed from that input: Agent E2's catalog is the master, the management pack implements it, the web apps consume it, and the contract check compares the copies ([WD-001](https://github.com/e1-rahabok/private-cloud-workspace/blob/8677e71/DECISIONS.md#wd-001-agent-e2-as-the-source-of-domain-knowledge) recorded it as a decision at the time).
 
 Once a master is chosen, check it first whenever two copies disagree. In this project a new design document listed the operations topics with "configuration" where the knowledge service had "value". The agent proposed changing the knowledge service to match. The knowledge service was right: it follows the framework the author wrote. The newer document was the copy that had drifted.
 

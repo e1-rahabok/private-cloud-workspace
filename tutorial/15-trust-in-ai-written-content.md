@@ -1,4 +1,4 @@
-# 11. Trust in AI-written content
+# 15. Trust in AI-written content
 
 ## The problem
 

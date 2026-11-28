@@ -1,4 +1,4 @@
-# 10. Names and vocabulary
+# 14. Names and vocabulary
 
 ## Names and the agent
 
@@ -22,10 +22,15 @@ Workspace decisions were numbered W-001 to W-029. Nobody could guess what "W" st
 
 | Prefix | Means | Example |
 |---|---|---|
-| WD- | A decision that binds several repositories | WD-026 Release 1.0 scope |
+| GOAL- | An outcome the product must bring about, in the brief | GOAL-3 Value without the author |
+| CONSTRAINT- | A limit the design must accept, in the brief | CONSTRAINT-6 The lab is reached only from the author's laptop |
+| RISK- | What could go wrong, and who acts on it | RISK-2 No licence gives no right to copy |
+| DESIGN- | A design choice, with its reason and rejected options | DESIGN-17 Missing data never shown as a value |
 | Q-WS-, Q-E2- | A question for the author, with the repository it belongs to | Q-WS-120 Where the nested ESXi hosts run |
 | R-ADP- | A requirement on the VCF vCommunity Adapter | R-ADP-018 No value from a partial read |
 | T-ADP- | A test scenario of that requirement | T-ADP-018a |
+
+The brief also uses SCOPE-, PRINCIPLE-, ASSUMPTION- and DEPENDENCY-, each named for the kind of statement it holds ([chapter 6](06-constraints-assumptions-risks-dependencies.md)). The WD- prefix is retiring with the decision log: its outcomes now live in these IDs, and the [glossary](../spec/glossary.md) keeps WD- so old notes can still be read.
 
 ## Numbers in the order of work
 
@@ -44,7 +49,7 @@ A milestone inserted before the first one got the numbers M0 and then M-1. The a
 
 ## Renaming everywhere
 
-- When a name or number stops being true, rename it in every file. Never add a note that explains the exception, because each note is one more thing every session must read and remember. Renaming across many files is safe only with checks: here, scripts fail on a broken link or a requirement that cites an ID that does not exist ([chapter 7](07-checks.md)).
+- When a name or number stops being true, rename it in every file. Never add a note that explains the exception, because each note is one more thing every session must read and remember. Renaming across many files is safe only with checks: here, scripts fail on a broken link or a requirement that cites an ID that does not exist ([chapter 11](11-checks.md)).
 
 A planned check goes further: a fresh session sees only the folder tree and guesses what each folder holds. Every wrong guess is a name to fix.
 
