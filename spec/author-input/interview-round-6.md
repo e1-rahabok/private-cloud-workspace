@@ -38,6 +38,14 @@ The question: Agent E2's catalog names the VM row "Peak network TX dropped packe
 
 **Result:** option (a) (WD-044). Agent E2's knowledge keeps both Risk levels; release 1.0 applies the production level, Risk above 60%, to every cluster. The limitation is written in Agent E2's catalog and its Close for Business file, in the VCF vCommunity Adapter's pages, and in the opening Agent E2 writes on a cluster's Capacity tab. The KPI definitions check compares the adapter's level with the catalog's production row.
 
+## Q-WS-139 Whether PCM runs as a container in release 1.0
+
+The question: the brief said "PCM runs as a Linux container, with VKS integration", while the system design and PCM's deploy/README.md run PCM as a service on a Linux VM in the lab, and no requirement builds a container. Asked during the fresh review of R-WS-009.
+
+**Answer:** "PCM is already running in a VM in the lab. [the address of PCM's L2 capacity page on the lab VM] is PCM." The address is left out here: it is a private address in the author's lab.
+
+**Result:** SCOPE-3 in the [brief](../brief.md): in release 1.0 PCM runs on the Linux VM in the lab, as the system design says. The Linux container with VKS integration is listed under SCOPE-19, after release 1.0.
+
 ## Corrections
 
 The author's corrections of the same day, given in the project chat, word for word.
