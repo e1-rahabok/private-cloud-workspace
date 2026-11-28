@@ -73,6 +73,12 @@ The author's corrections of the same day, given in the project chat, word for wo
 
 ## Answers in the question files of the other repositories
 
+- **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):
+  - Answer: "Where do visitors land today is irrelevant. We should think of where we want them to land in the future."
+  - Result: the entry pages are a design choice, made for the rebuilt site in isvara's [visitor-experience.md](https://github.com/e1-rahabok/isvara/blob/main/spec/visitor-experience.md), section Entry pages.
+- **Q-ISVARA-3**, which devices visitors use:
+  - Answer: "Optimize for desktop not mobile. Mobile should be just to encourage them to try the full experience. It should have small screen relevant features and not cram for the sake of features."
+  - Result: PRINCIPLE-8 in the [brief](../brief.md); the phone's pages are in visitor-experience.md, section On a phone, and R-SITE-008 in isvara's [site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md).
 - **Q-PCM-1**, the style baseline of private-cloud-manager ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/OPEN-QUESTIONS.md)):
   - Answer: "Agree".
   - Result: PCM's decisions.md becomes one block per decision in M2; the design notes keep their baseline and are fixed when next edited. Recorded in PCM's [decisions.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/decisions.md).

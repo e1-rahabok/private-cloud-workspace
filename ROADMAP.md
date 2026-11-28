@@ -146,7 +146,7 @@ Claude's working method, about how Claude works and never about the product, app
 - **Outcome:** isvara.io serves the rebuilt site: the home page, What's New with its weekly summary, the manual for copying the product privately, downloads and the MCP endpoint on Agent E2; every old address redirects to the page that covers it.
 - **Needs:** M4, M5 and M6.
 - **Runs:** in a cloud session. The author approves the switch from the preview.
-- **Requirements:** R-SITE-001 to R-SITE-007 ([site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md)), R-JOURNEY-004 and R-JOURNEY-008 ([journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md)); R-REPO-009 (PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md)).
+- **Requirements:** R-SITE-001 to R-SITE-008 ([site.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/site.md)), R-JOURNEY-004 and R-JOURNEY-008 ([journeys.md](https://github.com/e1-rahabok/isvara/blob/main/spec/requirements/journeys.md)); R-REPO-009 (PCM-Adapter's [clean-up.md](https://github.com/e1-rahabok/PCM-Adapter/blob/main/spec/requirements/clean-up.md)).
 
 ### M8 PCM live demo
 
