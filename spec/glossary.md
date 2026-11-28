@@ -51,7 +51,7 @@ Every short name and ID used in this workspace, with what it means and where it 
 | Suite API | VCF Operations' REST API, which PCM and the VCF vCommunity Adapter tools read |
 | PCM-Adapter | The repository of the VCF vCommunity Adapter |
 | VCF vCommunity Adapter | The management pack in VCF Operations that computes the KPIs of PCM's scenario 7 ([system design](design/system.md)) |
-| Review page | One page per milestone, [spec/review](review), listing its requirements for the author's approval |
+| Review page | One page per milestone, [spec/review](review), in plain words, for the author's approval (R-WS-015) |
 | Slice | A thin piece of a milestone, end to end, for one narrow case |
 | Learning path | One of isvara.io's three ways into the knowledge: Architecture, IT management, Product ([knowledge model](design/knowledge-model.md)) |
 | Lens | One of four ways to know a topic ([knowledge model](design/knowledge-model.md)) |

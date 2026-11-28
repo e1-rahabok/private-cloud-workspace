@@ -72,7 +72,7 @@ Arrows: `-->` solid, `..>` dashed.
 ## Checks
 
 - `python tools/spec_check.py` prints the totals and fails when a requirement has no Why, no Source, a Source naming no existing ID, or no test scenario; when a scenario has no requirement; when a brief item or design choice is duplicated, has no reason, or names an ID that does not exist; and when a contract names no check (DESIGN-8).
-- `python tools/milestone_review.py --check` fails when a requirement belongs to no milestone or to two, and keeps the [review](review) pages current.
+- `python tools/milestone_review.py --check` fails when a requirement belongs to no milestone or to two, when a review page carries a test count, an ID or a missing section, and keeps the [review](review) pages current.
 - What each check covers, and what no check covers yet: [test plan](test-plan.md), sections Traceability and Known gaps.
 
 ## Status

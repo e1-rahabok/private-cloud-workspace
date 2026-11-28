@@ -219,6 +219,22 @@ On an offer to fix a page test, run the project's own tests on every change, run
 
 **Result:** the brief's section [Users](../brief.md#users) says who the author is and how Claude speaks to the author. CLAUDE.md, the same in all five repositories, says that only the architect speaks to the author, to ask for input or to report a result, and that a reply names each thing by what it does, with no IDs, abbreviations, tool names or file paths unless the author must open the file.
 
+### The milestone review page
+
+On being asked to approve M2 from its review page, which listed each requirement as one short line with its number of tests:
+
+> It's impossible to review because each line is just a short sentence. Not enough context. Plus, it's written for The Implementer, not me. The texts at the end "Tests: 2 anywhere, 0 lab." is irrelevant to me right? You should test properly as you deem appropriate. You can definitely ask me for requirements, scope, etc.
+
+**Result:** R-WS-015 in [workspace.md](../requirements/workspace.md) and DESIGN-30 in the [system design](../design/system.md): the review page tells the author in plain words what the milestone set out to do and why, what changes, what the author is asked to confirm, what was left out and what could go wrong, and says in one line that Claude tested it. It has no test counts. DEPENDENCY-1 in the [brief](../brief.md) names what the page holds.
+
+### Merging pull requests
+
+On a card that asked whether to merge the pull request with the new review page, after the same merge had been blocked once by the session's permission mode:
+
+> As The Architect, you should not ask me for merging, as I don't know the branch details. You should auto merge. With me, focus on requirements, scope, goals.
+
+**Result:** the brief's section [Users](../brief.md#users) says Claude never asks the author to merge, to look at a branch or to delete one, and the workspace's [CLAUDE-PROJECT.md](../../CLAUDE-PROJECT.md), section Several repositories, says Claude merges its own pull request once its checks have passed, without asking. It extends the approval of 2026-11-25, which that file recorded for the early project only.
+
 ### Spending on tests
 
 With a screenshot of the gateway's API keys in the Vercel team Agent ISV: the key for Agent E2's tests had spent US$374 of its US$400 budget, the key for visitors' questions US$0.50 of US$100.
@@ -233,7 +249,7 @@ On two savings put to the author, "no re-grading of answers that haven't changed
 
 What the gateway's usage showed on 2026-11-28, from 1 October: three full benchmark rounds, on 12, 13 and 16 November, spent US$350; the frontier reference, Claude Opus 5.5, was US$137 of it, and a free-text judge since retired was US$78. All tests from 17 to 28 November spent US$8.50. No GitHub workflow holds the gateway key.
 
-**Result:** CONSTRAINT-1 in the [brief](../brief.md) and DESIGN-30 in the [system design](../design/system.md): a test run stops when the money it spends reaches US$100; an answer or a grade whose inputs have not changed is reused; the full round runs only before a milestone is closed, on the shipped model and the frontier reference. agent-e2's [test-spending.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/test-spending.md) holds R-E2-029 to R-E2-031, and R-E2-005 reuses unchanged grades.
+**Result:** CONSTRAINT-1 in the [brief](../brief.md) and DESIGN-31 in the [system design](../design/system.md): a test run stops when the money it spends reaches US$100; an answer or a grade whose inputs have not changed is reused; the full round runs only before a milestone is closed, on the shipped model and the frontier reference. agent-e2's [test-spending.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/test-spending.md) holds R-E2-029 to R-E2-031, and R-E2-005 reuses unchanged grades.
 
 ## Answers in the question files of the other repositories
 
@@ -296,3 +312,6 @@ What the gateway's usage showed on 2026-11-28, from 1 October: three full benchm
 - **Q-E2-265**, the Cluster Risk level that new VMs can reopen, and **Q-E2-266**, the hosts out of service in total capacity ([author-questions.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/author-questions.md)):
   - Answer, to each: "do not touch. I will revert."
   - Result: no file changes for either, and both entries stay as they are. One overlap: agent-e2#491 had already removed the stale review note of close-for-business.md that Q-E2-265 quotes, as part of WD-044.
+- **Q-PCM-5**, whether visitors of the public PCM demo ask Agent E2 live questions:
+  - Answer: "Yes, look at Ask.io today at isvara.io. It is already answering live question. That's why I said it got spam."
+  - Result: yes, with limits against spam and cost: R-PUBLIC-003 in PCM's [public-demo.md](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/requirements/public-demo.md).

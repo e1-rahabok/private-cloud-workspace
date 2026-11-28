@@ -55,7 +55,7 @@ The acceptance criteria are written together. The agent drafts them from the inp
 
 ## Approval on one page
 
-A person cannot approve forty requirements spread over four files. In this project a script builds one review page per milestone from the requirement files: one line per requirement, with its ID, what it says and how many of its tests need the lab. The ID links to the full text. The person reads one page and approves it, or names the lines they reject. Because a script writes the page and a check compares it with the files, it cannot go stale.
+A person cannot approve forty requirements spread over four files. In this project a script builds one review page per milestone. The first version listed one line per requirement, with its ID, a few words and a count of its tests. The author could not review it: each line gave no context, the page was written for the agent, and the test counts meant nothing to a domain expert. The page now says, in the person's words, what the milestone set out to do and why, what changes, what the person confirms, what the agent built and owns, what was left out on purpose and what could go wrong, and says in one line that the agent tested it. A requirement that rests on the person's own answer lands under what the person confirms, with their words quoted; one that rests only on a design choice is listed for information. The script builds it from the roadmap, the requirements and the brief, removes every ID, and a check fails a page that carries one, so the page stays current and readable.
 
 ## Definition of done
 

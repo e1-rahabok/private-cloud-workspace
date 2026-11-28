@@ -128,7 +128,7 @@ Test scenarios:
 
 ### R-WS-010 No repository holds a lab address, host name or credential
 
-Why: four of the five repositories are public, and the lab's addresses and its VM's host name were written in the system design, the glossary, PCM's lab tools and the adapter's tools. A rule in the adapter's CONTRIBUTING.md forbade it for code only, and no check enforced it.
+Why: four of the five repositories are public, and the lab's addresses and its VM's host name were written in the system design, the glossary, PCM's lab tools and the adapter's tools. A rule in the adapter's contribution guide forbade it for code only, and no check enforced it.
 
 Source: the author, 2026-11-28 ([round 6](../author-input/interview-round-6.md#lab-addresses-in-github)); DESIGN-9.
 
@@ -161,7 +161,7 @@ Test scenarios:
 
 Why: on 2026-11-28 isvara.io ran a Next.js release with a critical advisory and no alert reported it, and one workflow ran with the default token rights. A workflow that held the gateway key would spend the author's money on every pull request.
 
-Source: DESIGN-25, DESIGN-26; DESIGN-30 (no GitHub workflow holds the gateway key).
+Source: DESIGN-25, DESIGN-26; DESIGN-31 (no GitHub workflow holds the gateway key).
 
 - Given the five repositories
 - When their workflows and dependency files are read
@@ -211,7 +211,7 @@ Test scenarios:
 
 ### R-WS-009 Project documents agree with the specification
 
-Why: the READMEs and CLAUDE-PROJECT.md files were written before the specification and were never read against it, so a fact in them can contradict it, or state what the specification never decided, and a reader or a session acts on it. isvara's README said the books come from Box; the books come from the author's laptop (DEPENDENCY-10).
+Why: the READMEs and the project rules files were written before the specification and were never read against it, so a fact in them can contradict it, or state what the specification never decided, and a reader or a session acts on it. isvara's README said the books come from Box; the books come from the author's laptop (DEPENDENCY-10).
 
 Source: the author, 2026-11-28 ([round 6](../author-input/interview-round-6.md), "Corrections"); DESIGN-8.
 
@@ -238,6 +238,27 @@ Milestone: M3.
 
 Test scenarios:
 - T-WS-008a (anywhere with the gateway key, automated by `contract-checks/model_gateway.py`, to write, run by [`contract-checks/run_all.py`](../../contract-checks/run_all.py)): the configured model answers; a model ID that does not exist fails and names the ID.
+### R-WS-015 A milestone's review page is written for the author
+
+Why: the author approves each milestone from its page and could not review the first one: each requirement was one short line with its ID and a count of its tests, with no context, written for the agent. The author is the expert in private cloud operations and is not a software developer (the brief, section Users), and testing is the agent's work.
+
+Source: DEPENDENCY-1; DESIGN-30; the author, 2026-11-28 ([round 6](../author-input/interview-round-6.md), section The milestone review page).
+
+- Given a milestone that has requirements
+- When its review page is written
+- Then it has these sections, in this order, each headed by a noun phrase: Purpose and reason; Changes for users and for you; Input needed from you; Facts you confirm; Work I built and own; Scope left out on purpose; Risks; Testing
+- And the facts the author confirms list each requirement whose source is the author's answer or words, with its reason and the author's own words where the specification records them, and the goals, scope, constraints and assumptions the milestone rests on, each with its reason
+- And the work Claude built and owns lists each requirement that rests only on a design choice, with its reason, for information: it asks the author for nothing
+- And the risks list each risk the milestone touches, with its effect and what reduces it
+- And the page asks the author only for input and for the approval
+- And testing is one statement: Claude ran every test of the milestone and all pass; or the milestone's work is not finished, which includes a milestone with no work listed; or nothing is built yet because the milestone has not opened; it has no count and names no tool
+- And the page has no requirement, test, design choice, question or decision ID, and no file name or path
+- And the page is rebuilt from the roadmap, the requirements and the brief, and the check fails when a page differs from what they say, or when the open milestone lacks a section
+
+Test scenarios:
+- T-WS-015a (anywhere, automated by [tools/test_milestone_review.py](../../tools/test_milestone_review.py)): a requirement whose source names an answer of the author lands under what the author confirms, and one that names only a design choice under what Claude built; the page shows each brief item a requirement cites; a test count, an ID, a file name or a missing section makes the check fail; a milestone with unticked work, or with no work listed, says so in its testing line, and a milestone that has not opened says it has not started; a file name in a copied line is turned into words.
+- T-WS-015b (anywhere, manual, at the author's first review of each milestone): the author reads the page and says what is unclear; each unclear word or missing fact goes to the roadmap, the requirement or the brief it comes from, and the page is rebuilt.
+
 ## Questions for round two
 
 - None.

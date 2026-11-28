@@ -9,7 +9,7 @@ R-WS-012 (DESIGN-25, DESIGN-26), in the tracked files of every clone:
 - every `uses:` names an action of `actions/` (GitHub's own, by major version), a local path, a workflow of this
   workspace, or any other action by its full 40-character commit hash;
 - no workflow names the Vercel AI Gateway key (`AI_GATEWAY_API_KEY`, `VERCEL_OIDC_TOKEN`): a check on a pull request
-  never calls a model, so no pull request spends money (DESIGN-30);
+  never calls a model, so no pull request spends money (DESIGN-31);
 - `.github/dependabot.yml` exists and has an update entry for `github-actions`, one for `npm` when a
   `package-lock.json` is tracked, and one for `pip` when a `requirements.txt` is tracked, in that file's folder.
 R-WS-014 (DESIGN-28): every repository has a workflow that calls the workspace's branch cleanup; the workspace
@@ -73,7 +73,7 @@ def problems_in(repo: str, clone: Path) -> list[str]:
                 cleanup = True
             key = GATEWAY_KEY.search(line)
             if key:
-                problems.append(f"{repo}: {f}:{number} names {key.group(1)}: a workflow never calls a model (R-WS-012, DESIGN-30)")
+                problems.append(f"{repo}: {f}:{number} names {key.group(1)}: a workflow never calls a model (R-WS-012, DESIGN-31)")
     if not cleanup:
         problems.append(f"{repo}: no workflow calls the branch cleanup, {CLEANUP} (R-WS-014)")
     found = ecosystems(clone)
