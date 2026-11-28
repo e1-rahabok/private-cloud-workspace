@@ -30,6 +30,8 @@ The same idea applies to the documents. One script fails when a requirement has 
 
 The plan itself is checked too. When the roadmap was rebuilt, a count showed that 26 of the 32 requirements of the live demo belonged to no milestone and two belonged to two. Nobody had noticed, because each milestone read well on its own. The review tool now fails when a requirement sits in no milestone or in two, and when a test that needs the lab sits in a milestone that does not run there; the milestone gate fails when two milestones own one file, or when the numbers do not run M1, M2, M3.
 
+A check covers only what it reads. The link check opens relative links; a link to another repository by its full GitHub address is never followed. During the restructure, bulk rewrites of paths broke links twice with every check green: once because a group in a regular expression had been renumbered, once because a pattern missed a "/". After the move, one requirement in PCM-Adapter still pointed at the workspace's deleted SYSTEM.md by its full address, until a later commit repointed it. After a bulk rewrite, search every clone for the old path.
+
 ## Places they run
 
 - Locally, with one command: `uv run checks/run_all.py`.

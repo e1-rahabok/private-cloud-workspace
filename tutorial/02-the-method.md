@@ -31,7 +31,7 @@ Each decision is written where it takes effect:
 
 ## One home for each reason
 
-This project first kept a separate decision log, [DECISIONS.md](https://github.com/e1-rahabok/private-cloud-workspace/blob/8677e71/DECISIONS.md), with 46 entries from WD-001 to WD-046 (WD for "workspace decision"). The workspace is retiring it, for three reasons.
+This project first kept a separate decision log, [DECISIONS.md](https://github.com/e1-rahabok/private-cloud-workspace/blob/8677e71/DECISIONS.md), with 46 entries from WD-001 to WD-046 (WD for "workspace decision"). The workspace retired it on 2026-11-28, for three reasons.
 
 - **It turned answers into rulings.** Each answer the author gave in the interview became a numbered decision, and the agent then carried out the numbered decisions as orders. The answers were knowledge to design with. [Chapter 13](13-working-with-the-agent.md) shows where the habit led.
 - **It held a second copy.** An entry restated what the requirements already said, so a change had two places to land.
@@ -49,7 +49,7 @@ One entry shows the second copy. [WD-015](https://github.com/e1-rahabok/private-
 
 An objection came up, and it has an answer. One reason can serve many requirements: WD-001, which makes Agent E2 the source of all domain knowledge, is cited by 12 requirements in four repositories, and copying its reason twelve times would let the copies drift apart. Such a reason gets a home of its own, at the level where it belongs: a principle or a constraint with its own ID, which each requirement cites. The reason is then written once. In this project that reason is PRINCIPLE-5 in the brief, "One master copy of each fact". The design choice that applies it, DESIGN-2, lists the twelve requirements in its Serves line.
 
-The checks change with the method. [tools/spec_check.py](../tools/spec_check.py) fails a requirement whose Source line names no existing question or decision, and 157 of the 202 requirements in the five repositories cite a WD decision. The check exists to hold the method in place, so it moves when the method moves, in the three steps used for any contract ([chapter 9](09-seams-and-owners.md)): accept the new IDs, move each requirement to them, then refuse the old ones. The restructure's first pull request took the first step: the check accepts the brief's and the design's IDs and lists, per repository, the requirements still to move.
+The checks change with the method. [tools/spec_check.py](../tools/spec_check.py) fails a requirement whose Source line names no existing question or decision, and 157 of the 202 requirements in the five repositories cited a WD decision. The check exists to hold the method in place, so it moves when the method moves, in the three steps used for any contract ([chapter 9](09-seams-and-owners.md)): accept the new IDs, move each requirement to them, then refuse the old ones. The restructure took all three. The check first accepted the brief's and the design's IDs beside WD-; each repository then moved its requirements to them; and last, the check refused WD-, in the same pull request that deleted the decision log. Every check stayed green on the way.
 
 ## The loop back
 

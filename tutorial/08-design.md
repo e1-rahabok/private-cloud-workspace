@@ -98,7 +98,7 @@ Some choices are better made later, once the facts exist. PCM's design defers it
 
 ## The home of a design choice
 
-A choice is written in the design, beside the part it shapes, and nowhere else. PCM's design note began with "Decisions proposed here move to decisions.md once accepted", which kept every accepted choice in two files. Once the decision logs retire, the design is the one home, and git records when each choice changed and why.
+A choice is written in the design, beside the part it shapes, and nowhere else. PCM's design note began with "Decisions proposed here move to decisions.md once accepted", which kept every accepted choice in two files. In the workspace, with its decision log retired, the system design is the one home of a design choice, and git records when each choice changed and why. PCM still keeps its own decisions.md.
 
 ## The person's part
 

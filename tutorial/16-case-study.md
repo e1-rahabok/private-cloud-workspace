@@ -147,6 +147,8 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **The second pass.** The tutorial's chapters were drafted while the brief and the design were still being written, so their examples came from the files that were about to move. Once the restructure's first pull request landed, every example was checked against the new files, and six had moved. The failure statements of the old intent file had become the reasons of GOAL-3 and PRINCIPLE-2. The risk examples had a real register to come from, with an ID, an effect, what reduces it and who acts. A cost worry first written as a risk was an assumption in the brief, ASSUMPTION-4, with a check planned for M5. The requirement example gained the new order, Why before Source. The traceability example moved to the workspace's own R-WS-003, since the child repositories' requirements had not yet moved to the new form. And a credentials file described as root's turned out to be readable by a group as well.
 
+**The log retired.** The restructure's second pull request deleted DECISIONS.md and gave the CLAUDE.md of all five repositories a section on roles: the author gives input; Claude decides and owns the design; the two write the test plan, acceptance criteria, risks, dependencies and glossary together. A stop-and-ask question now asks for input and states Claude's working assumption, and no longer carries a recommendation. The stop rule and the major-change warning now speak of reversing "a design choice or requirement". Moving every citation off the retired IDs, across five repositories, taught the last five lessons below.
+
 **Effort.** The author asked for a high reasoning effort for this work. The project's main chat runs at a fixed low effort, so the deep work went to the threads, where the effort can be raised.
 
 ## Lessons
@@ -156,7 +158,7 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - A check written in an afternoon found a real gap on its first run.
 - An agent drifts back to building first even after writing down the method. A short question from the person, such as "is the interview done?", brings it back.
 - A convention the agent has read about is not a convention it follows. Only a script makes it hold.
-- Most answers can be one word when each question carries a recommendation.
+- Most answers can be one word when each question states what the agent will assume without one.
 - A specification raises its own questions. Expect a second round.
 - The agent is most useful when it argues. The best design idea in this log came from the author, in reply to the agent's critique of the author's first idea.
 - Look in your own knowledge base before asking the person. Use their words in a question, without jargon.
@@ -169,7 +171,7 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - A number in a test scenario is no design decision. Where the requirements are silent, the person's knowledge of the user sets the number.
 - A name says who a project belongs to. Even when the person delegates naming, the agent should check the choice with them.
 - A rule the agent wrote still slips under load. One question without a link or context cost a full round trip.
-- Search the map, the contracts, the decisions and the glossary before asking the person anything. A question the files already answer costs the person's trust as well as their time.
+- Search the map, the brief, the requirements, the design and the glossary before asking the person anything. A question the files already answer costs the person's trust as well as their time.
 - Verify a claim from an audit or another session against the files before passing it on.
 - Describe how two parts relate by mechanism: code, network, data, dependency or contract. A word with several meanings, such as "part of", hides which one is meant.
 - Give the workspace a territory. It specifies the contracts between repositories and the checks that compare both sides. Domain knowledge and each repository's implementation belong elsewhere.
@@ -185,7 +187,7 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - Updating the lesson log is part of finishing a session. Without a written rule, the agent forgot it.
 - The strongest model available, at high effort, made every mistake in this log. The files, the checks and the person's questions are what stopped them repeating.
 - Hard-wrapped Markdown read as one run-on sentence on GitHub. The agent wrapped lines by habit; a rule in CLAUDE.md and a one-time reflow of 46 files fixed it.
-- Check an audit's findings against the decisions and the owning repository's documents before acting on them. Two of the ten were settled designs read wrongly.
+- Check an audit's findings against the specification and the owning repository's documents before acting on them. Two of the ten were settled designs read wrongly.
 - Two ID series that differ only by a hyphen read as one. Put the owner in the ID: Q-WS-120 and Q-E2-120.
 - A child repository's plan drifts into a release of its own. The workspace sets releases for all repositories, and each child plan names the workspace milestone it serves.
 - Work under review lives on a branch until it merges. A request to review it links the file on the branch and the pull request; the author looked on `main` and found nothing.
@@ -204,3 +206,8 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - A check that needs a file is no reason to keep the file. Change the check with the method, in the same three steps as a contract.
 - Count again before quoting another session's number. Its count may have left out a repository.
 - Writing about files that are still being written works when the order is agreed, and when each example is checked against the files once they land.
+- A cited ID that changes across several repositories moves like a contract: accept the new IDs beside the old, move each citation, then refuse the old.
+- A check covers only what it reads. After a bulk rewrite of paths, search every clone for the old path.
+- One old ID can become two new ones. A move from one to many needs a look at each citing file.
+- A reason written long after the answer is easy to invent. Cite the input it rests on, or say it is the agent's reading.
+- When a check runs in one repository only, change the repositories it reads first and the one it runs in last.

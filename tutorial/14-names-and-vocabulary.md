@@ -30,7 +30,9 @@ Workspace decisions were numbered W-001 to W-029. Nobody could guess what "W" st
 | R-ADP- | A requirement on the VCF vCommunity Adapter | R-ADP-018 No value from a partial read |
 | T-ADP- | A test scenario of that requirement | T-ADP-018a |
 
-The brief also uses SCOPE-, PRINCIPLE-, ASSUMPTION- and DEPENDENCY-, each named for the kind of statement it holds ([chapter 6](06-constraints-assumptions-risks-dependencies.md)). The WD- prefix is retiring with the decision log: its outcomes now live in these IDs, and the [glossary](../spec/glossary.md) keeps WD- so old notes can still be read.
+The brief also uses SCOPE-, PRINCIPLE-, ASSUMPTION- and DEPENDENCY-, each named for the kind of statement it holds ([chapter 6](06-constraints-assumptions-risks-dependencies.md)). The WD- prefix retired with the decision log. Its outcomes now live in these IDs, and the [glossary](../spec/glossary.md) keeps a row for WD- that points to the brief and the system design, so old notes can still be read.
+
+Retiring an ID is a rename in which one old name can become two new ones. WD-024 held both the contributions queue of isvara.io and the protection of the public site, so each requirement that cited it moved to DESIGN-11 or to DESIGN-12, by what the requirement was about. A search and replace cannot make that choice; each citing file needs its own look.
 
 ## Numbers in the order of work
 
