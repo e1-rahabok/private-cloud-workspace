@@ -159,9 +159,9 @@ Test scenarios:
 
 ### R-WS-012 Every repository keeps its dependencies and workflows safe
 
-Why: on 2026-11-28 isvara.io ran a Next.js release with a critical advisory and no alert reported it, and one workflow ran with the default token rights.
+Why: on 2026-11-28 isvara.io ran a Next.js release with a critical advisory and no alert reported it, and one workflow ran with the default token rights. A workflow that held the gateway key would spend the author's money on every pull request.
 
-Source: DESIGN-25, DESIGN-26.
+Source: DESIGN-25, DESIGN-26; DESIGN-30 (no GitHub workflow holds the gateway key).
 
 - Given the five repositories
 - When their workflows and dependency files are read
@@ -169,10 +169,12 @@ Source: DESIGN-25, DESIGN-26.
 - And every action outside `actions/` and the workspace's own workflows is pinned to a full commit hash
 - And every repository has a [`.github/dependabot.yml`](../../.github/dependabot.yml) that covers GitHub Actions and each package system it holds (npm with a [`package-lock.json`](https://github.com/e1-rahabok/isvara/blob/main/package-lock.json), pip with a `requirements.txt`)
 - And isvara.io's CI fails when `npm audit --omit=dev --audit-level=high` finds an advisory
+- And no workflow names the Vercel AI Gateway key, `AI_GATEWAY_API_KEY` or `VERCEL_OIDC_TOKEN`
 
 Test scenarios:
 - T-WS-012a (anywhere, automated by [tools/workflows.py](../../tools/workflows.py), run by run_all.py; planted breaks in [tools/test_workflows.py](../../tools/test_workflows.py)): a workflow with no permissions, a third-party action on a tag, and a repository with a lockfile but no npm entry in `dependabot.yml` each fail; GitHub's own actions on a major tag pass.
 - T-WS-012b (anywhere, automated by the npm audit step of [cross-repo.yml](../../.github/workflows/cross-repo.yml)): on a repository with a [`package-lock.json`](https://github.com/e1-rahabok/isvara/blob/main/package-lock.json), a high advisory in a production dependency fails the run.
+- T-WS-012c (anywhere, automated by [tools/workflows.py](../../tools/workflows.py); planted break in [tools/test_workflows.py](../../tools/test_workflows.py)): a workflow step whose environment names `AI_GATEWAY_API_KEY` fails; the same name in a comment passes.
 
 ### R-WS-013 Each milestone review rereads the security baseline
 

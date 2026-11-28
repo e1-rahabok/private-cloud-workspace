@@ -22,14 +22,14 @@ How release 1.0 is proven: what is tested, at which level, where each test runs,
 | Contract checks | Both sides of a contract agree; each planted break fails | [`contract-checks/`](../contract-checks) | Every pull request of every repository; daily |
 | Page tests | A page renders and behaves, with stub services | PCM's Playwright page tests; isvara's build | Every pull request of that repository |
 | Journey tests | A visitor's path through several pages leads where it should | isvara's journey tests on the Vercel preview, from M4; PCM's demo rehearsals, synthetic and live | Every pull request of isvara from M4; before every PCM demo |
-| Model evaluations | Answers are right, cited and safe | Agent E2's graded answer set; isvara.io's two batteries | Each change of model or prompt |
+| Model evaluations | Answers are right, cited and safe | Agent E2's graded answer set; isvara.io's two batteries; Agent E2's full benchmark round | Each change of model or prompt; the full round at milestones |
 | Lab tests | The system works on real VCF Operations data; PCM's values equal VCF Operations' | The adapter's `validate.ps1`; PCM's `Test-Live.ps1` ([test plan](https://github.com/e1-rahabok/private-cloud-manager/blob/main/spec/test-plan.md)) | M8, in a session with the author |
 | Acceptance | A milestone's outcome holds | The milestone's [review page](review) | When the milestone's work is done |
 
 - **Specification checks:** [spec_check.py](../tools/spec_check.py) (traceability, DESIGN-8), [milestone_review.py](../tools/milestone_review.py) (each requirement in one milestone), [milestone_gate.py](../tools/milestone_gate.py) (changes stay in the open milestone), [docs.py](../tools/docs.py) (links and diagram text), [style.py](../tools/style.py) (writing rules), [claude_md_copies.py](../tools/claude_md_copies.py) (one CLAUDE.md in every repository).
 - **Branch cleanup:** [branch_cleanup.py](../tools/branch_cleanup.py) is tested against a fake GitHub by [test_branch_cleanup.py](../tools/test_branch_cleanup.py) (T-WS-014a). On every pull request its workflow lists what it would delete, and the first real run in each repository is checked by hand (T-WS-014c).
 - **Contract checks:** C1 and C3 run today; C2 is added in M8, C4 in M4, C5 in M3 ([system design](design/system.md), section Contracts). Each check has a test that plants a break of each kind it compares (R-WS-001).
-- **Model evaluations:** Agent E2's free-text answer set, graded by a strong model as judge (DESIGN-19), within US$100 a run (CONSTRAINT-1); isvara.io's citation eval and injection battery, against a running server (DESIGN-10). Both need the Vercel AI Gateway key (DEPENDENCY-2).
+- **Model evaluations:** Agent E2's free-text answer set, graded by a strong model as judge (DESIGN-19), about US$2 a run; isvara.io's citation eval and injection battery, against a running server (DESIGN-10); Agent E2's full multiple-choice round, only before a milestone that changes Agent E2 is closed. Each run stops when its spending reaches US$100, and an answer or a grade whose inputs have not changed is reused (CONSTRAINT-1, DESIGN-30). All need the Vercel AI Gateway key (DEPENDENCY-2), which no GitHub workflow holds.
 
 ## Environments
 

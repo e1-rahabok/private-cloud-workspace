@@ -123,9 +123,9 @@ Claude's working method, about how Claude works and never about the product, app
 
 - **Outcome:** one Agent E2 service answers both callers: long answers as jobs with a visible stage, screenshots and CSV files, sources by ID and title, time and tokens per answer, Day 2 questions only; its free-text answers are graded automatically.
 - **Needs:** M2, so the contract check C3 (the Agent E2 API) runs on every pull request.
-- **Runs:** in a cloud session. The graded runs need the Vercel AI Gateway key, within US$100 a run (CONSTRAINT-1).
+- **Runs:** in a cloud session. The graded runs need the Vercel AI Gateway key; each stops at US$100 and reuses unchanged answers and grades, and the full benchmark round runs once, before M3 is closed (CONSTRAINT-1, DESIGN-30).
 - **The author:** gives the gateway key for this environment at the start, reviews the answer keys an independent agent marks uncertain, and grades 20 answers once (Q-WS-92). M3 is done only after these.
-- **Requirements:** R-WS-008 (the C5 check, in [workspace.md](spec/requirements/workspace.md)); R-E2-001 to R-E2-019 and R-E2-021 to R-E2-025 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md); R-E2-009, R-E2-017 and R-E2-019 in the workspace's [agent-e2-api.md](spec/requirements/agent-e2-api.md)).
+- **Requirements:** R-WS-008 (the C5 check, in [workspace.md](spec/requirements/workspace.md)); R-E2-001 to R-E2-019 and R-E2-021 to R-E2-025 (agent-e2's [answer-service.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/answer-service.md); R-E2-009, R-E2-017 and R-E2-019 in the workspace's [agent-e2-api.md](spec/requirements/agent-e2-api.md)); R-E2-029 to R-E2-031 (agent-e2's [test-spending.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/test-spending.md)).
 
 ### M4 isvara.io reading
 
