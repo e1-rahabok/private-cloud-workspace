@@ -44,4 +44,4 @@ Rules, tools and paths of this project: Private Cloud Manager and its repositori
 
 ## Session end
 
-- Before reporting a session as finished: add its lessons to [tutorial/12-case-study.md](tutorial/12-case-study.md) and the chapter each belongs to.
+- Before reporting a session as finished: add its lessons to [tutorial/16-case-study.md](tutorial/16-case-study.md) and the chapter each belongs to.

@@ -18,7 +18,7 @@ Five problems showed up, and they are common to any growing system built this wa
 
 **Facts get copied.** The same definition ends up in several places. In this project one performance threshold lived in the knowledge base, in the code that computes it, and in the screen that shows it. Different conversations changed different copies, and they drifted apart.
 
-**Nobody tests where the parts meet.** Each repository had its own tests. The places where one repository relies on another had none. In one case a field renamed in one repository would have made another show "service unavailable", and every test in both repositories would still have passed. [Chapter 7](07-checks.md) shows the check that now catches it.
+**Nobody tests where the parts meet.** Each repository had its own tests. The places where one repository relies on another had none. In one case a field renamed in one repository would have made another show "service unavailable", and every test in both repositories would still have passed. [Chapter 11](11-checks.md) shows the check that now catches it.
 
 ## Weaker remedies
 

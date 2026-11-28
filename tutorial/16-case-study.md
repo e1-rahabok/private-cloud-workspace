@@ -1,6 +1,6 @@
-# 12. Case study log
+# 16. Case study log
 
-What happened while this workspace was set up, in order, mistakes included. It covers four days in November 2026.
+What happened while this workspace was set up, in order, mistakes included. It covers six days in November 2026.
 
 ## The system
 
@@ -59,11 +59,11 @@ Each correction went into the decisions and the map.
 
 A third answer was "will supply later. remind me." Those questions stayed open with a trigger: the agent asks again when the milestone that needs them starts.
 
-**The trust question.** Discussing AI-written public content, the author noted that keeping an expert site credible is not a new problem. The discussion that followed became [chapter 11](11-trust-in-ai-written-content.md): separate a wrong source from a wrong rewrite, spend scarce review time on disagreements and on the most-read pages, and build a community that can review.
+**The trust question.** Discussing AI-written public content, the author noted that keeping an expert site credible is not a new problem. The discussion that followed became [chapter 15](15-trust-in-ai-written-content.md): separate a wrong source from a wrong rewrite, spend scarce review time on disagreements and on the most-read pages, and build a community that can review.
 
 ## Day four: names, and the plan against intent
 
-**Names first.** Early that morning, in short sessions, the author asked for names that explain themselves ([chapter 10](10-names-and-vocabulary.md)):
+**Names first.** Early that morning, in short sessions, the author asked for names that explain themselves ([chapter 14](14-names-and-vocabulary.md)):
 
 - "Stage 1" and "release 1.0" meant the same scope. The plan now says release 1.0 for the goal and milestones for its steps.
 - Milestones had been numbered in the order they were added, so the roadmap read M2, M8, M9, M10, M3. They were renumbered in the order of work, across 16 files.
@@ -83,7 +83,7 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **Names carry identity.** In an earlier round the author had let the agent decide the management pack's new name and key prefix, and the agent chose "PCM". The author reversed it: the pack is a vCommunity project of vExperts and VMUG members, and its name shows a grassroots effort. In the same exchange the agent suggested renaming the book to match the software. The author explained the difference. The book, Private Cloud Management, is the discipline. Private Cloud Manager and isvara.io are two applications built on it, for the same audience and different uses.
 
-**A question with no context.** The agent asked: "Should isvara.io treat `what-to-set` files as configuration, with no Agent E2 change?" The author could not tell what it meant. It named a file type the author had never needed to know, gave no link, and had already been settled by the decision on the topics. [Chapter 4](04-the-interview.md)'s rule was in the files. The agent broke it while summarising many items at once.
+**A question with no context.** The agent asked: "Should isvara.io treat `what-to-set` files as configuration, with no Agent E2 change?" The author could not tell what it meant. It named a file type the author had never needed to know, gave no link, and had already been settled by the decision on the topics. [Chapter 5](05-the-interview.md)'s rule was in the files. The agent broke it while summarising many items at once.
 
 **Many decisions in one conversation.** The session changed the plan seven times in a few hours. Each change became its own pull request, and several touched the same lines of the roadmap, so two of them conflicted. The agent built the later ones on top of the earlier ones. Merging the last pull request merged the whole stack.
 
@@ -133,6 +133,20 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 
 **Eleven answers on one day.** On 2026-11-28 the author answered eleven questions across the five repositories, most with one word, two with "do not touch. I will revert." The first six were recorded in the parent first, as round 6 with three decisions, because the children's requirements cite them. One answer, on the Cluster Risk level, removed a flag from the knowledge service's API that no caller had ever sent. Another asked for the explanation behind a question to be kept for readers, so the record kept it whole. A helper agent took the two answers that changed only the product repository: one block per decision in its log, and a folder renamed for what it holds. It found two things the plan had missed: the specification check read the decision log's table, and nine links in the interview records pointed at line numbers that the new layout moved. The records' links were pinned to the commit before the move, so they still show what the author read. A last fresh review read every Markdown line added in the milestone, across about 170 files, for IDs used without their meaning. It found 4, and a gap in the glossary: three question prefixes no row explained.
 
+## Day six: the method corrected
+
+**The correction.** On 2026-11-28 the author looked at the workspace's folders and wrote that the work was still not spec-driven development: "You record all decisions in DECISIONS.md. This makes you take my decisions as the authority, and then jump into execution. Decision is yours, not mine. I give the input and knowledge as I'm the expert and the user." The workspace had no test plan, and no design of the system as a whole. The author asked for both, for documents to write together (the test plan, acceptance criteria, risks, dependencies and the glossary), and for the agent to design security, scalability, performance and maintainability: "Show me so I can learn." The message ended: "Do not jump to make changes. We need to get this SDD properly done so we can automate."
+
+**An answer that defended the file.** Earlier the same day, asked why DECISIONS.md was needed, a session had answered by mechanism: the specification check reads it, most requirements cite it, and one decision is the source of many requirements. The facts were right, and the answer still missed the point. It argued from what the tools needed, while the author's point was about who decides. Its count was also short: it found nine requirements resting on WD-001, and a count across all five repositories found twelve.
+
+**What the log held.** Sorted by kind, the 46 entries mixed scope, requirements, constraints, design choices, and rules the agent's working files already held. One entry, WD-015 on PCM's live demo, held five kinds in one paragraph ([chapter 2](02-the-method.md)). Each kind has a home in the specification, next to what it shapes.
+
+**Questions that asked for the wrong thing.** The interview records showed the same pattern from the other side. Many questions had asked the author to choose: a stale limit of 15 minutes, one of three designs for the injection guard. The author's most useful answers were input anyway: "No need to wait 15 minutes", and "Document the answers so human readers can learn from it." The interview now asks for input and states the assumption the agent works on meanwhile ([chapter 5](05-the-interview.md)).
+
+**Two threads at once.** One thread restructures the workspace: a brief with the goals, scope, principles, constraints, assumptions, risks and dependencies; a design with its choices and the options each rejected; a test plan; and the decision log retired in three steps, so every check keeps passing on the way. This tutorial follows it in a second thread, in its own folder. The two agreed an order before either wrote: the restructure moves its files first and fixes the tutorial's links to them, and the tutorial's rewrite is built on top, so neither rebases the other's work.
+
+**Effort.** The author asked for a high reasoning effort for this work. The project's main chat runs at a fixed low effort, so the deep work went to the threads, where the effort can be raised.
+
 ## Lessons
 
 - The agent's first survey was useful precisely because it was wrong in places. Each error pointed to a missing document.
@@ -180,3 +194,10 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - Read the data a design document relies on before writing a claim about it.
 - A loop that prints check results does not stop a commit. Make the commit depend on the checks' exit code.
 - Restore a planted break from a copy. A version-control command that restores a file also discards the edits not yet committed.
+- The expert gives input and the agent decides. An answer goes into the goal, scope, constraint, assumption or requirement it changes, with the expert's words as its reason.
+- A separate log of the expert's answers turns them into rulings, and an agent executes rulings. Keep each reason with what it shaped.
+- A reason shared by many items gets one home of its own, a principle or a constraint, and the items cite it.
+- A design choice is the architect's. Ask the expert for what the choice depends on, then decide, and write the options and reasons so the expert can check them and learn.
+- A question that offers options asks for a decision. Ask for the knowledge behind it, and state the assumption the work uses until the answer comes.
+- A check that needs a file is no reason to keep the file. Change the check with the method, in the same three steps as a contract.
+- Count again before quoting another session's number. Its count may have left out a repository.

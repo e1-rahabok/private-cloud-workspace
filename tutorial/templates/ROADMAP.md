@@ -4,7 +4,7 @@ Each milestone is a thin slice across the parts, ordered by how much is unknown,
 
 ## M1 Specification and checks
 
-- [ ] SYSTEM, CONTRACTS, DECISIONS, ROADMAP, OPEN-QUESTIONS and CLAUDE.md exist and are merged.
+- [ ] BRIEF, DESIGN, TEST-PLAN, GLOSSARY, ROADMAP, OPEN-QUESTIONS and CLAUDE.md exist and are merged, with the requirements of the first slice.
 - [ ] Every running contract check passes in CI, and each one was proven to fail on a planted break.
 
 ## M2 <the slice with the most unknowns>

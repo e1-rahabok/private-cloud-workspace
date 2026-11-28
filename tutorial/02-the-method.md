@@ -1,63 +1,68 @@
 # 2. The method
 
-The method has seven steps. The first four are done before any building starts, and their files are kept up to date afterwards. The last three repeat for every piece of work.
+The method has nine steps. The first seven write the specification, and their files are kept true afterwards. The last two repeat for every piece of work. Each step has a lead: the person who knows the domain and the users, the agent, or both together.
 
-| Step | Question it answers | Files | Chapter |
+| Step | Question it answers | Led by | Chapter |
 |---|---|---|---|
-| 1. Map | What exists today, and what is in scope? | [SYSTEM.md](../SYSTEM.md), [spec/intent.md](../spec/intent.md) | [3](03-map.md) |
-| 2. Interview | What is still undecided, unclear or contradictory? | [OPEN-QUESTIONS.md](../OPEN-QUESTIONS.md) | [4](04-the-interview.md) |
-| 3. Seams and owners | Where do the parts meet, and which copy of each shared fact is the real one? | [CONTRACTS.md](../CONTRACTS.md), [DECISIONS.md](../DECISIONS.md) | [5](05-seams-and-owners.md) |
-| 4. Requirements | What must each part do, and how will we know it does? | [spec/requirements](../spec/requirements) | [6](06-requirements-and-tests.md) |
-| 5. Checks | Do the parts still agree, after every change? | [checks](../checks), [tools](../tools) | [7](07-checks.md) |
-| 6. Slices | In what order do we build? | [ROADMAP.md](../ROADMAP.md) | [8](08-slices-and-sessions.md) |
-| 7. Run | How does each working session go? | [CLAUDE.md](../CLAUDE.md) | [8](08-slices-and-sessions.md), [9](09-working-with-the-agent.md) |
+| 1. Map | What exists today? | The agent, corrected by the person | [3](03-map.md) |
+| 2. Goals and scope | What must the product achieve, for whom, and what is out? | The person | [4](04-goals-and-scope.md) |
+| 3. Interview | What does the agent still need to know? | The agent asks; the person answers | [5](05-the-interview.md) |
+| 4. Constraints and risks | What limits the work, what is believed, what could go wrong? | Both | [6](06-constraints-assumptions-risks-dependencies.md) |
+| 5. Requirements | What must each part do, and how is it accepted? | Both: the person's input, the agent's draft | [7](07-requirements-and-acceptance.md) |
+| 6. Design | How do the parts meet the requirements, and why this way? | The agent | [8](08-design.md), [9](09-seams-and-owners.md) |
+| 7. Test plan | How is each requirement proven, where, and with what data? | Both | [10](10-test-plan-and-traceability.md) |
+| 8. Checks | Do the parts and the documents still agree after every change? | The agent | [11](11-checks.md) |
+| 9. Slices and sessions | In what order is it built, and how does each session run? | The agent, within the person's priorities | [12](12-slices-and-sessions.md), [13](13-working-with-the-agent.md) |
 
-![The seven steps in a row, from Map to Run, with an arrow from Run back to Map for corrections, answers and new decisions](../images/method.svg)
+Each slice feeds back into the first steps. A correction or a new answer from the person goes into the map, the brief or a requirement before the next slice starts.
 
-<details>
-<summary>Text of the diagram, for readers that cannot see it</summary>
+## Input and decisions
 
-Colour key: blue = Before building, then kept current; green = Repeated for every slice.
+The person is the domain expert and the user. The person gives what only they know: the goals, the scope, the users and what they expect, the domain knowledge, the constraints, and the reason behind each. The agent works as the architect. It decides how the product meets the goals, writes each decision where it takes effect, and shows its reasoning, so the person can check it and learn from it.
 
-Boxes, nested as drawn:
-- n1 **1. Map** (Before building, then kept current): SYSTEM.md intent.md
-- n2 **2. Interview** (Before building, then kept current): OPEN-QUESTIONS
-- n3 **3. Seams, owners** (Before building, then kept current): CONTRACTS.md DECISIONS.md
-- n4 **4. Requirements** (Before building, then kept current): requirements/
-- n5 **5. Checks** (Repeated for every slice): checks/, tools/
-- n6 **6. Slices** (Repeated for every slice): ROADMAP.md
-- n7 **7. Run** (Repeated for every slice): CLAUDE.md
+The author of this project put it this way on 2026-11-28: "Decision is yours, not mine. I give the input and knowledge as I'm the expert and the user." The author went on: "As you're more technical on application development, you design security, scalability, performance, maintainability, etc. Show me so I can learn."
 
-Arrows (from, to, label):
-- n1 1. Map --> n2 2. Interview
-- n2 2. Interview --> n3 3. Seams, owners
-- n3 3. Seams, owners --> n4 4. Requirements
-- n4 4. Requirements --> n5 5. Checks
-- n5 5. Checks --> n6 6. Slices
-- n6 6. Slices --> n7 7. Run
-- n7 7. Run --> n1 1. Map: Corrections, answers and new decisions go back into the files
+Each decision is written where it takes effect:
 
-Arrows: `-->` solid, `..>` dashed.
+- A goal or a line of scope goes into the brief ([chapter 4](04-goals-and-scope.md)).
+- A limit the design must accept goes into the constraints, with its reason ([chapter 6](06-constraints-assumptions-risks-dependencies.md)).
+- A behaviour goes into a requirement, with its reason beside it ([chapter 7](07-requirements-and-acceptance.md)).
+- A choice of how goes into the design, with the options it rejected ([chapter 8](08-design.md)).
 
-</details>
+## One home for each reason
+
+This project first kept a separate decision log, [DECISIONS.md](https://github.com/e1-rahabok/private-cloud-workspace/blob/8677e71/DECISIONS.md), with 46 entries from WD-001 to WD-046 (WD for "workspace decision"). The workspace is retiring it, for three reasons.
+
+- **It turned answers into rulings.** Each answer the author gave in the interview became a numbered decision, and the agent then carried out the numbered decisions as orders. The answers were knowledge to design with. [Chapter 13](13-working-with-the-agent.md) shows where the habit led.
+- **It held a second copy.** An entry restated what the requirements already said, so a change had two places to land.
+- **It only grew.** An entry overtaken by a later one stayed, with a pointer: WD-022 says it was "replaced by WD-027", and WD-040 was "renamed by WD-042". A reader had to follow the chain to find what holds now.
+
+One entry shows the second copy. [WD-015](https://github.com/e1-rahabok/private-cloud-workspace/blob/8677e71/DECISIONS.md#wd-015-pcms-live-demo), on PCM's live demo, holds five kinds of statement in one paragraph, and each of them has a better home:
+
+| Part of WD-015 | Kind | Home |
+|---|---|---|
+| "the L2 workspace only, for performance and capacity management only" | Scope | Brief |
+| "says 'No data' when a value is stale" | Requirement | R-LIVE-015, with its reason |
+| "never writes to VCF Operations" | Constraint | Brief |
+| "reads through with a 60-second cache and stores no metrics" | Design choice | Design, with the options rejected |
+| "Actions, stories, cases and the calendar are out of 1.0" | Scope | Brief |
+
+An objection came up, and it has an answer. One reason can serve many requirements: WD-001, which makes Agent E2 the source of all domain knowledge, is cited by 12 requirements in four repositories, and copying its reason twelve times would let the copies drift apart. Such a reason gets a home of its own, at the level where it belongs: a principle or a constraint with its own ID, which each requirement cites. The reason is then written once. In this project that reason is a principle of the brief: one master copy of each fact.
+
+The checks change with the method. [tools/spec_check.py](../tools/spec_check.py) fails a requirement whose Source line names no existing question or decision, and 157 of the 202 requirements in the five repositories cite a WD decision. The check exists to hold the method in place, so it moves when the method moves, in the three steps used for any contract ([chapter 9](09-seams-and-owners.md)): accept the new IDs, move each requirement to them, then refuse the old ones.
 
 ## The loop back
 
-Building a slice always teaches something: an assumption on the map that was wrong, a meeting point nobody listed, a question only the person can answer. That goes back into the files before the next slice starts, so the files get more accurate over time instead of falling behind the code.
+Building a slice always teaches something: an assumption that was wrong, a meeting point nobody listed, a question only the person can answer. That goes back into the files before the next slice starts, so the files keep pace with the code and grow more accurate with each slice.
 
 ## The ideas behind the steps
 
-The specification is what the people maintain. The code is generated from it and can be generated again. One of the repositories in this project says so in its own decisions: AI writes all of its code, and people maintain the specification.
-
-Anything that has to outlast a conversation goes into a file in the repository. A conversation is a good place to think something through, but the next session cannot see it.
-
-- When a fact appears in more than one place, one copy is the master and the others are generated from it or checked against it.
-
-Every place where two parts depend on each other gets a script that fails when they stop agreeing.
-
-The person makes the decisions that need judgement, field experience or a change of scope. The agent does the rest, and asks when the files do not decide something. Chapter 9 adds an important refinement: the agent should also think and push back, and should not ask the person what it could work out itself.
-
-Work is built in thin slices, each going end to end across every part it touches, starting with the slice that has the most unknowns.
+- The specification is what the people maintain. The code is generated from it and can be generated again. One of the repositories in this project says so in its own decisions: AI writes all of its code, and people maintain the specification.
+- Anything that has to outlast a conversation goes into a file in the repository. A conversation is a good place to think something through, but the next session cannot see it.
+- When a fact appears in more than one place, one copy is the master, and the others are generated from it or checked against it.
+- Every place where two parts depend on each other gets a script that fails when they stop agreeing.
+- The person gives input; the agent decides, and writes each decision with its reason where it takes effect.
+- Work is built in thin slices, each going end to end across every part it touches, starting with the slice that has the most unknowns.
 
 ## Time needed
 

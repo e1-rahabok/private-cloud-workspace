@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Before any work, write down what the system is: its parts, where each runs, what talks to what, and which parts of the plan are in scope now. One page is enough. In this project it is [SYSTEM.md](../SYSTEM.md), with a second file, [spec/intent.md](../spec/intent.md), saying why each part exists, who it is for, what success looks like and what it will not do.
+Before any work, write down what the system is today: its parts, where each runs, what talks to what, and how each is built and tested. One page is enough. In this project the map is the first part of the design, [spec/design/system.md](../spec/design/system.md). The brief, [spec/brief.md](../spec/brief.md), says why each part exists, who it is for and what is in scope ([chapter 4](04-goals-and-scope.md)). The agent writes the map from a survey of the code, and the person corrects it.
 
 ## Keep today apart from tomorrow
 
@@ -12,7 +12,7 @@ This project has two futures. In the first, the product is a demo in the author'
 
 ## Building the map with the agent
 
-Ask the agent to read the repositories and describe the system in its own words, before you give it your description. Its account will be partly wrong, and the wrong parts point straight at the gaps in your documentation. In this project the first survey got four things wrong, each because a document was out of date or missing ([chapter 12](12-case-study.md) lists them).
+Ask the agent to read the repositories and describe the system in its own words, before you give it your description. Its account will be partly wrong, and the wrong parts point straight at the gaps in your documentation. In this project the first survey got four things wrong, each because a document was out of date or missing ([chapter 16](16-case-study.md) lists them).
 
 Correct the documents, not only the conversation. Otherwise the next session makes the same mistake.
 
@@ -21,7 +21,7 @@ Correct the documents, not only the conversation. Otherwise the next session mak
 - A table of the parts: repository, what it is, where it runs, what it talks to.
 - Where each kind of thing comes from: data, definitions, content.
 - The modes the system runs in, if there are several. Here: demo data, and a live lab.
-- What is in scope now, and what is not.
+- Which parts of the plan exist now and which are still to come. The scope itself is in the brief.
 - The environments: hosts, how they are reached, and where secrets are kept (never the secrets themselves).
 - How to build and test each part, marked "runs anywhere" or "needs the lab".
 

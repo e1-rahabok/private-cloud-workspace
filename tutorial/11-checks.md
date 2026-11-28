@@ -1,4 +1,4 @@
-# 7. Checks
+# 11. Checks
 
 ## Purpose
 
@@ -22,11 +22,11 @@ Plant the break on a copy of the file and restore it from the copy. In this proj
 
 A new check often finds real problems that cannot all be fixed at once. The first check here found 11 sub-metrics whose names differed between the two repositories, although their limits agreed. Letting the check fail every day until all 11 were fixed would have taught everyone to ignore it. Removing it would have let the gaps grow.
 
-Instead the 11 were listed in the check as known gaps. They were reported, but they did not fail the run. Any new gap did fail, and so did a listed gap that had since been fixed, until someone removed it from the list. The list could only get shorter, and in milestone M2 of the [roadmap](../ROADMAP.md) it reached zero. Each known gap had an open question that named who decides the fix. The last one, the Cluster Risk closure level, closed when the author answered it: release 1.0 applies one level to every cluster ([WD-044](../DECISIONS.md)).
+Instead the 11 were listed in the check as known gaps. They were reported, but they did not fail the run. Any new gap did fail, and so did a listed gap that had since been fixed, until someone removed it from the list. The list could only get shorter, and in milestone M2 of the [roadmap](../ROADMAP.md) it reached zero. Each known gap had an open question that named who decides the fix. The last one, the Cluster Risk closure level, closed when the author answered it: release 1.0 applies one level to every cluster ([WD-044](https://github.com/e1-rahabok/private-cloud-workspace/blob/8677e71/DECISIONS.md#wd-044-one-cluster-risk-closure-level-in-release-10)).
 
 ## Checks on the specification itself
 
-The same idea applies to the documents. One script fails when a requirement has no source or no test scenario, or a scenario belongs to no requirement. Another fails when a file reference is not a clickable link, or when a diagram's text no longer matches its picture. A third checks the writing of every document meant for people against the author's writing rules ([tools](../tools); [chapter 9](09-working-with-the-agent.md)).
+The same idea applies to the documents. One script fails when a requirement has no source or no test scenario, or a scenario belongs to no requirement. Another fails when a file reference is not a clickable link, or when a diagram's text no longer matches its picture. A third checks the writing of every document meant for people against the author's writing rules ([tools](../tools); [chapter 13](13-working-with-the-agent.md)).
 
 The plan itself is checked too. When the roadmap was rebuilt, a count showed that 26 of the 32 requirements of the live demo belonged to no milestone and two belonged to two. Nobody had noticed, because each milestone read well on its own. The review tool now fails when a requirement sits in no milestone or in two, and when a test that needs the lab sits in a milestone that does not run there; the milestone gate fails when two milestones own one file, or when the numbers do not run M1, M2, M3.
 
@@ -44,4 +44,4 @@ The plan itself is checked too. When the roadmap was rebuilt, a count showed tha
 
 ## Exercise
 
-Pick one seam from chapter 5's exercise. Write a script that reads both sides and compares one thing. Break one side on purpose. Did the script fail?
+Pick one seam from chapter 9's exercise. Write a script that reads both sides and compares one thing. Break one side on purpose. Did the script fail?
