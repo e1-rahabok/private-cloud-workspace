@@ -1,6 +1,6 @@
 """Planted breaks for check C5 (contract-checks/model_gateway.py, R-WS-001, T-WS-008a): a model that answers passes; a
 model that does not exist, an answer with no text and an unreachable gateway fail and name the model. Without the key the
-check reports not run (exit 2), never passed. Run: python -m unittest discover -s contract-checks -p "test_*.py".
+check prints NOT RUN and does not print a pass. Run: python -m unittest discover -s contract-checks -p "test_*.py".
 """
 import os
 import subprocess
@@ -39,8 +39,9 @@ class PlantedBreaks(unittest.TestCase):
         here = Path(__file__).resolve().parent
         out = subprocess.run([sys.executable, str(here / "model_gateway.py"), "--repos", str(here.parents[1])],
                              env=env, capture_output=True, text=True)
-        self.assertEqual(out.returncode, 2, out.stdout)
-        self.assertIn("not run", out.stdout)
+        self.assertEqual(out.returncode, 0, out.stdout)
+        self.assertIn("NOT RUN", out.stdout)
+        self.assertNotIn("difference(s)", out.stdout)
 
 
 if __name__ == "__main__":

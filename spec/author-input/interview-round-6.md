@@ -235,6 +235,22 @@ On a card that asked whether to merge the pull request with the new review page,
 
 **Result:** the brief's section [Users](../brief.md#users) says Claude never asks the author to merge, to look at a branch or to delete one, and the workspace's [CLAUDE-PROJECT.md](../../CLAUDE-PROJECT.md), section Several repositories, says Claude merges its own pull request once its checks have passed, without asking. It extends the approval of 2026-11-25, which that file recorded for the early project only.
 
+### Spending on tests
+
+With a screenshot of the gateway's API keys in the Vercel team Agent ISV: the key for Agent E2's tests had spent US$374 of its US$400 budget, the key for visitors' questions US$0.50 of US$100.
+
+> You're wrong as vercel charges me for API Gateway. When a visitor asks at isvara.io, the requests go to Vercel, which then routes to LLM provider. Vercel charges me. It's low cost as it's Gemini Lite.
+>
+> You informed me your design for Agent E2 needs a grader. That grader will cost money right? It will go through Vercel right?
+
+On two savings put to the author, "no re-grading of answers that haven't changed, and the full test run only at milestones":
+
+> Good idea. As The Architect, you design and update the spec. Then you ask The Implementer
+
+What the gateway's usage showed on 2026-11-28, from 1 October: three full benchmark rounds, on 12, 13 and 16 November, spent US$350; the frontier reference, Claude Opus 5.5, was US$137 of it, and a free-text judge since retired was US$78. All tests from 17 to 28 November spent US$8.50. No GitHub workflow holds the gateway key.
+
+**Result:** CONSTRAINT-1 in the [brief](../brief.md) and DESIGN-31 in the [system design](../design/system.md): a test run stops when the money it spends reaches US$100; an answer or a grade whose inputs have not changed is reused; the full round runs only before a milestone is closed, on the shipped model and the frontier reference. agent-e2's [test-spending.md](https://github.com/e1-rahabok/agent-e2/blob/main/project/requirements/test-spending.md) holds R-E2-029 to R-E2-031, and R-E2-005 reuses unchanged grades.
+
 ## Answers in the question files of the other repositories
 
 - **Q-ISVARA-2**, where first visits arrive ([OPEN-QUESTIONS.md](https://github.com/e1-rahabok/isvara/blob/main/OPEN-QUESTIONS.md)):

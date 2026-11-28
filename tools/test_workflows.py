@@ -1,4 +1,4 @@
-"""Planted breaks for tools/workflows.py (R-WS-012, T-WS-012a; R-WS-014, T-WS-014b). Run: python -m unittest discover -s tools -p "test_*.py"."""
+"""Planted breaks for tools/workflows.py (R-WS-012, T-WS-012a and T-WS-012c; R-WS-014, T-WS-014b). Run: python -m unittest discover -s tools -p "test_*.py"."""
 import subprocess
 import tempfile
 import unittest
@@ -68,6 +68,18 @@ class PlantedWorkflows(unittest.TestCase):
                          "package-lock.json": "{}", "app/requirements.txt": "requests==2.32.3\n"}) as tmp:
             problems = wf.problems_in("isvara", Path(tmp))
         self.assertEqual(sorted(p.split(" has no ")[1].split(" entry")[0] for p in problems), ["npm", "pip"])
+
+    def test_a_workflow_that_holds_the_gateway_key_fails(self):
+        text = GOOD_WORKFLOW.replace("      - uses: actions/setup-node@v4\n",
+                                    "      - uses: actions/setup-node@v4\n      - run: python3 benchmark/runner/round_executor.py\n"
+                                    "        env:\n          AI_GATEWAY_API_KEY: ${{ secrets.AI_GATEWAY_API_KEY }}\n")
+        with clone_with({".github/workflows/ci.yml": text, ".github/dependabot.yml": DEPENDABOT}) as tmp:
+            problems = wf.problems_in("agent-e2", Path(tmp))
+        self.assertEqual(len(problems), 1, problems)                    # one problem per line that names the key
+        self.assertIn("names AI_GATEWAY_API_KEY", problems[0])
+        with clone_with({".github/workflows/ci.yml": GOOD_WORKFLOW.replace("# - uses", "# AI_GATEWAY_API_KEY - uses"),
+                         ".github/dependabot.yml": DEPENDABOT}) as tmp:
+            self.assertEqual(wf.problems_in("agent-e2", Path(tmp)), [])  # a comment is not a key
 
     def test_a_repository_without_the_branch_cleanup_fails(self):
         text = GOOD_WORKFLOW.split("  branch-cleanup:\n")[0]

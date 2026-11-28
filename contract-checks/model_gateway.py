@@ -8,8 +8,8 @@ Sends one short question to the model named in agent-e2's harness/service_config
 with the key in the environment variable AI_GATEWAY_API_KEY, and expects an answer with text. The gateway is a third-party
 service, so this proves only that the configured model answers. A model that does not exist fails and names its ID.
 
-Exit 0: the model answered. Exit 1: it did not. Exit 2: not run (no key, or the repository is missing). "Not run" is
-never "passed".
+Exit 0: the model answered, or the check was not run (it prints "NOT RUN", as the name checks do, so a pipeline
+without the key stays green and no one reads it as passed). Exit 1: the model did not answer. Exit 2: the repository is missing.
 """
 from __future__ import annotations
 
@@ -61,12 +61,12 @@ def main() -> int:
     args = parser.parse_args()
     config = args.repos / "agent-e2" / "harness" / "service_config.yaml"
     if not config.is_file():
-        print(f"C5 Model gateway: not run ({config} not found)")
+        print(f"NOT RUN C5 Model gateway: {config} not found")
         return 2
     key = os.environ.get("AI_GATEWAY_API_KEY", "")
     if not key:
-        print("C5 Model gateway: not run (AI_GATEWAY_API_KEY is not set)")
-        return 2
+        print("NOT RUN C5 Model gateway: AI_GATEWAY_API_KEY is not set")
+        return 0
     cfg = yaml.safe_load(config.read_text())
     problems = check(cfg["gateway"], cfg["model"], key)
     for p in problems:
