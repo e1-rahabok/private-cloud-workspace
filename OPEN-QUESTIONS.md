@@ -18,7 +18,7 @@ Options for the guard:
 
 - **Recommendation:** (a). The two batteries are rewritten for Agent E2: the citation eval passes when every answer to 20 reader questions lists at least one source that opens an article; the injection battery passes with 0 violations, and a one-off formatting request is still honoured. Both run before M5 merges.
 
-Answer:
+Answer: Ok. Document the answers so human readers can learn from it.
 
 ### Q-WS-137 The key of the 20-second peak of dropped TX packets (settled in M8)
 
@@ -38,4 +38,4 @@ You agreed in Q-WS-16 to "keep the adapter's single level for stage 1 (it cannot
 
 - **Recommendation:** (a). It keeps your field knowledge, and it still lets Agent E2 explain the rule PCM applies, which was the reason for Q-WS-16. Until you answer, the check compares the Consumption and Performance levels and lists the Risk level as its one known gap.
 
-Answer:
+Answer: Agree. Document the limitation that both prod and non-prod have the same level. Agent E2 has no understanding about the environment in Release 1.0.
