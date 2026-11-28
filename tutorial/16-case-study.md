@@ -275,3 +275,9 @@ The author's reason fits on one line: "The best documentation is No Documentatio
 - A rule that a session cannot follow turns into work for the person. Move the work to where the rights are, and test it there.
 - Name a file in a reply only when the person must open it, and link it then. A path without a link leaves the person searching for it.
 - Write replies for the person's background. An ID or a tool name that the agent reads every day is noise to someone who is not a developer.
+- A name tied to a part the roadmap removes stops being true. Name folders for the job they do, and have the check refuse the removed name.
+- A page removed with nothing to cover it answers "not found". A redirect to an unrelated page keeps the old address alive for no reader.
+- State which repository and which hosting project serve the live site before writing "merge" or "deploy". A fork's merge changes nothing live, and saying otherwise alarms the person who owns the site.
+- When the person owns a live site, give the rebuild its own address, hidden from search engines and with its own data, and switch over only after the person's side-by-side review.
+- Number a new constraint or design choice after fetching main. Another session took the same numbers in the same hour, and the clash showed only when the branches met.
+- Merge the repository that holds the rules before the one that cites them. A cross-repository check run before that merge fails, and passes when run again.
