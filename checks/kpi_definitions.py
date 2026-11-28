@@ -67,15 +67,18 @@ ADAPTER_MODULES = {
 # a new gap fails. An entry may be added only with a question in OPEN-QUESTIONS.md, and the check fails once it is fixed.
 NAME_GAPS: dict[str, set[str]] = {}
 
-# Close for Business decisions compared with the adapter's levels: decision id -> (KPI, band). Cluster Risk is a known
-# gap until Q-WS-138 is answered: the catalog keeps a production and a non-production level, the adapter one level.
+# Close for Business decisions compared with the adapter's levels: decision id -> (KPI, band). The adapter closes every
+# cluster at Risk orange, the catalog's production row; the non-production row is Agent E2's practice, not applied in
+# release 1.0 and not compared (WD-044).
 CLOSURE_DECISIONS = {
     "closure-cluster-consumption-red": ("Consumption", "red"),
     "closure-cluster-consumption-orange": ("Consumption", "orange"),
     "closure-cluster-performance-red": ("Performance", "red"),
     "closure-cluster-performance-orange": ("Performance", "orange"),
+    "closure-cluster-risk-prod": ("Risk", "orange"),
 }
-CLOSURE_GAPS = {"closure-cluster-risk-prod": "Q-WS-138", "closure-cluster-risk-nonprod": "Q-WS-138"}
+# Known closure gaps: decision id -> the question in OPEN-QUESTIONS.md that decides it. Empty since WD-044.
+CLOSURE_GAPS: dict[str, str] = {}
 
 # The score row of each KPI the Periodic Cluster Check colours, by the last part of its kb path.
 SCORE_ROWS = {"Performance": "cluster-performance", "Risk": "cluster-risk", "Consumption": "cluster-consumption"}

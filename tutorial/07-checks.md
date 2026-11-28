@@ -22,7 +22,7 @@ Plant the break on a copy of the file and restore it from the copy. In this proj
 
 A new check often finds real problems that cannot all be fixed at once. The first check here found 11 sub-metrics whose names differed between the two repositories, although their limits agreed. Letting the check fail every day until all 11 were fixed would have taught everyone to ignore it. Removing it would have let the gaps grow.
 
-Instead the 11 were listed in the check as known gaps. They were reported, but they did not fail the run. Any new gap did fail, and so did a listed gap that had since been fixed, until someone removed it from the list. The list could only get shorter, and in M2 it reached zero. Each known gap has an open question that names who decides the fix. The one gap left, the Cluster Risk closure level, waits for the author's answer to [Q-WS-138](../OPEN-QUESTIONS.md).
+Instead the 11 were listed in the check as known gaps. They were reported, but they did not fail the run. Any new gap did fail, and so did a listed gap that had since been fixed, until someone removed it from the list. The list could only get shorter, and in M2 it reached zero. Each known gap had an open question that named who decides the fix. The last one, the Cluster Risk closure level, closed when the author answered it: release 1.0 applies one level to every cluster ([WD-044](../DECISIONS.md)).
 
 ## Checks on the specification itself
 

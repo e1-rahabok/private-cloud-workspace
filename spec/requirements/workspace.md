@@ -84,7 +84,7 @@ Test scenarios:
 
 ### R-WS-007 Folder and file names carry no version, milestone or status word
 
-Source: WD-030; WD-032 (the shipped content keeps its names).
+Source: WD-030; WD-032 (the shipped content keeps its names); WD-046 (isvara's renames in M4).
 
 - Given the tracked folders and files of agent-e2, PCM-Adapter, private-cloud-manager, isvara and this workspace, outside archives and dated records
 - And outside names that are titles written for readers or for the model, which describe their content and keep it true: agent-e2's [`knowledge/`](https://github.com/e1-rahabok/agent-e2/tree/main/knowledge) and [`benchmark/questions/`](https://github.com/e1-rahabok/agent-e2/tree/main/benchmark/questions), the adapter's shipped `Management Pack/content/` (WD-032), and the review pages `spec/review/M<n>.md`, each named for the milestone it reviews
@@ -94,7 +94,7 @@ Source: WD-030; WD-032 (the shipped content keeps its names).
 
 Test scenarios:
 - T-WS-007a (anywhere, automated by [checks/file_names.py](../../checks/file_names.py), run by run_all.py and in each repository's CI; planted breaks in [checks/test_file_names.py](../../checks/test_file_names.py)): a pull request that adds `report_v2.md` or `story_m5.py` fails; one that adds `knowledge/…/why-a-new-framework.md` or `spec/review/M9.md` passes; one that renames a known problem passes and lowers the baseline.
-- T-WS-007b (anywhere, manual by a fresh session, once per repository): given only the repository's folder tree, the session writes what it expects in each top-level folder and in each folder one level down, then opens them. Each wrong guess becomes a rename in the same milestone.
+- T-WS-007b (anywhere, manual by a fresh session, once per repository): given only the repository's folder tree, the session writes what it expects in each top-level folder and in each folder one level down, then opens them. Each wrong guess becomes a rename in the same milestone; isvara's five are renamed in M4 (WD-046).
 
 ### R-REPO-006 No repository uses an old repository name
 
