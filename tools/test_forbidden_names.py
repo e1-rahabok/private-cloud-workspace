@@ -39,12 +39,14 @@ class PlantedOldNames(unittest.TestCase):
             problems = names.problems_in("agent-e2", Path(tmp))
         self.assertEqual(sorted(p.split(":")[1].strip() for p in problems), ["ARCHITECTURE.md", "live.md"])
 
-    def test_the_old_docs_folder_fails_and_the_new_one_passes(self):
+    def test_the_old_docs_folders_fail_and_the_new_one_passes(self):
         with clone_with({"a.md": "see pcm/docs/design-note.md\n", "b.md": "run python3 -m pcm.docs.docs --export\n",
                          "c.md": "[link](https://github.com/e1-rahabok/private-cloud-manager/tree/main/pcm/docs)\n",
-                         "d.md": "see pcm/definitions/pages/docs.js and the route /docs\n"}) as tmp:
+                         "d.md": "see pcm/docs_workspace/pages/docs.js and the route /docs\n",
+                         "e.md": "see pcm/definitions/design-note.md\n",
+                         "f.md": "run python3 -m pcm.definitions.definitions --export\n"}) as tmp:
             problems = names.problems_in("agent-e2", Path(tmp))
-        self.assertEqual(sorted(p.split(":")[1].strip() for p in problems), ["a.md", "b.md", "c.md"])
+        self.assertEqual(sorted(p.split(":")[1].strip() for p in problems), ["a.md", "b.md", "c.md", "e.md", "f.md"])
 
     def test_a_link_pinned_to_a_commit_and_the_tutorial_pass(self):
         with clone_with({"README.md": "[b](https://github.com/e1-rahabok/private-cloud-manager/blob/69a3928/build/README.md)\n",
